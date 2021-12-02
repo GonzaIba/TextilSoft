@@ -1,0 +1,15 @@
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\bin\Release\net5.0\Domain.deps.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\bin\Release\net5.0\Domain.runtimeconfig.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\bin\Release\net5.0\Domain.runtimeconfig.dev.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\bin\Release\net5.0\Domain.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\bin\Release\net5.0\ref\Domain.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\bin\Release\net5.0\Domain.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\ref\Domain.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Domain\obj\Release\net5.0\Domain.genruntimeconfig.cache

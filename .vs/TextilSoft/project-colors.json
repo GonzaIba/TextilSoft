@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8548605d-82b9-42ad-9543-ee0ac2e9b999": {
+      "ProjectGuid": "8548605d-82b9-42ad-9543-ee0ac2e9b999",
+      "DisplayName": "UI.TextilSoft",
+      "ColorIndex": 0
+    },
+    "3513a3d0-b0da-456a-bc19-91612f0995ae": {
+      "ProjectGuid": "3513a3d0-b0da-456a-bc19-91612f0995ae",
+      "DisplayName": "Contracts",
+      "ColorIndex": 1
+    },
+    "07a89651-b691-4dd2-a28f-de6d584f4e02": {
+      "ProjectGuid": "07a89651-b691-4dd2-a28f-de6d584f4e02",
+      "DisplayName": "Infrastructure",
+      "ColorIndex": 2
+    },
+    "9dc32247-6201-46bb-8f64-f1b090cebb34": {
+      "ProjectGuid": "9dc32247-6201-46bb-8f64-f1b090cebb34",
+      "DisplayName": "Business",
+      "ColorIndex": 3
+    },
+    "c80e3887-a07f-4f78-bc24-ef69f8126128": {
+      "ProjectGuid": "c80e3887-a07f-4f78-bc24-ef69f8126128",
+      "DisplayName": "IoCRegister",
+      "ColorIndex": 4
+    },
+    "a0834ee0-77a1-498f-b72e-2e74a0355c16": {
+      "ProjectGuid": "a0834ee0-77a1-498f-b72e-2e74a0355c16",
+      "DisplayName": "Domain",
+      "ColorIndex": 5
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Archivos varios",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 6
+}
