@@ -1,0 +1,72 @@
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\Domain.dll
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\Domain.pdb
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\gonza\Desktop\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\gonza\Desktop\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\Domain.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\bin\Debug\net5.0\Domain.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Domain.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Domain.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.deps.json
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.json
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.runtimeconfig.dev.json
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\ref\Contracts.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Contracts.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\bin\Debug\net5.0\Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.csproj.AssemblyReference.cache
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfoInputs.cache
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.AssemblyInfo.cs
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.csproj.CopyComplete
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\ref\Contracts.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Contracts\obj\Debug\net5.0\Contracts.genruntimeconfig.cache
