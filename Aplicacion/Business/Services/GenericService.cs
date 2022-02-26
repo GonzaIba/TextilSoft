@@ -23,7 +23,7 @@ namespace Business.Services
         public virtual void Insertar(T entities)
         {
             _repository.Insert(entities);
-            _unitOfWork.Save();
+            //_unitOfWork.Save();
         }
 
         public void Actualizar(T entities)

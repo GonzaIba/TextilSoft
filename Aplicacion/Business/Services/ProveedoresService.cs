@@ -24,7 +24,7 @@ namespace Business.Services
         {
             try
             {
-
+                var PedidoRepository = _unitOfWork.GetRepository<IPedidosRepository>();
                 //var result = MapperHelper.GetMapper().Map<ProveedoresEntity, ProveedoresModel>(proveedoresEntity);
 
                 //var proveedorrepositorio = _unitOfWork.GetRepository<IClientesRepository>();
