@@ -15,9 +15,9 @@ namespace Infrastructure.TypeBuilders
         {
             builder.HasKey(p => p.ID_ProductoProveedor);
 
-            builder.Property(p => p.DNI)
-                .IsRequired(true)
-                .HasColumnType("varchar(50)");
+            //builder.Property(p => p.DNI)
+            //    .IsRequired(true)
+            //    .HasColumnType("varchar(50)");
 
             builder.Property(p => p.NombreProducto)
                 .IsRequired(false)

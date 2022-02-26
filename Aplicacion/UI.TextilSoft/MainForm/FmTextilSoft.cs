@@ -208,7 +208,7 @@ namespace UI.TextilSoft.MainForm
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
-            AbrirFormHija(new FmProveedores(_proveedoresController));
+            AbrirFormHija(new FmProveedores(_proveedoresController, _productoProveedorController));
             BotonPresionado = true;
         }
 

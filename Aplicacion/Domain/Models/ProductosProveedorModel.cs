@@ -9,7 +9,7 @@ namespace Domain.Models
     public class ProductosProveedorModel
     {
         public int ID_ProductoProveedor { get; set; }
-        public string DNI { get; set; }
+        public string CodigoProducto { get; set; }
         public string NombreProducto { get; set; }
         public string TipoTela { get; set; }
         public string CantidadRollos { get; set; }

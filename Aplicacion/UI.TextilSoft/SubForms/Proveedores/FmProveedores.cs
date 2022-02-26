@@ -21,16 +21,18 @@ namespace UI.TextilSoft.SubForms.Proveedores
     public partial class FmProveedores : Form
     {
         private readonly IProveedoresController _proveedoresController;
+        private readonly IProductoProveedorController _productoProveedorController;
         private List<ProveedoresEntity> proveedor;
         private bool LLenandoGrilla = false; //Esta propiedad nos ayuda a saber si se esta llenando la grilla para que no se ejecute un evento (el if)
         private bool CreandoProveedor = false;
         private dynamic ValorCelda;
         public Form Activeform = null;
 
-        public FmProveedores(IProveedoresController proveedoresController)
+        public FmProveedores(IProveedoresController proveedoresController, IProductoProveedorController productoProveedorController )
         {
             InitializeComponent();
             _proveedoresController = proveedoresController;
+            _productoProveedorController = productoProveedorController;
         }
 
         private void FmProveedores_Load(object sender, EventArgs e)
@@ -105,15 +107,22 @@ namespace UI.TextilSoft.SubForms.Proveedores
             switch (e.ClickedItem.Name.ToString())
             {
                 case "Eliminar":
-                    proveedor = new List<ProveedoresEntity>();
-                    foreach (DataGridViewRow row in GrillaProveedores.SelectedRows)
+                    if (CreandoProveedor == true)
                     {
-                        string DNI = GrillaProveedores.Rows[row.Index].Cells[0].Value.ToString();
-                        var Proveedor = _proveedoresController.ObtenerProveedor(DNI);
-                        if (Proveedor != null)
+                        //GrillaProveedores.Rows.Remove(GrillaProveedores.l);
+                    }
+                    else
+                    {
+                        proveedor = new List<ProveedoresEntity>();
+                        foreach (DataGridViewRow row in GrillaProveedores.SelectedRows)
                         {
-                            proveedor.Add(Proveedor);
-                            _proveedoresController.EliminarProveedor(Proveedor);
+                            string DNI = GrillaProveedores.Rows[row.Index].Cells[0].Value.ToString();
+                            var Proveedor = _proveedoresController.ObtenerProveedor(DNI);
+                            if (Proveedor != null)
+                            {
+                                proveedor.Add(Proveedor);
+                                _proveedoresController.EliminarProveedor(Proveedor);
+                            }
                         }
                     }
                     LLenarGridView();
@@ -423,7 +432,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
 
         private void btnProductoProveedor_Click(object sender, EventArgs e)
         {
-            FmProductoProveedor fmProductoProveedor = new FmProductoProveedor();
+            FmProductoProveedor fmProductoProveedor = new FmProductoProveedor(_proveedoresController, _productoProveedorController);
             PanelProveedores.BringToFront();
             AbrirFormHija(fmProductoProveedor);
         }

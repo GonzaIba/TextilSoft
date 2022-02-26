@@ -30,21 +30,43 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmProveedores));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmProveedores));
+            this.ProveedoresAnimator = new AnimatorNS.Animator(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.GrillaProveedores = new System.Windows.Forms.DataGridView();
             this.btnSaveChanges = new FontAwesome.Sharp.IconButton();
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.btnRejectChanges = new FontAwesome.Sharp.IconButton();
             this.btnProductoProveedor = new FontAwesome.Sharp.IconButton();
-            this.ProveedoresAnimator = new AnimatorNS.Animator(this.components);
             this.PanelProveedores = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaProveedores)).BeginInit();
             this.SuspendLayout();
+            // 
+            // ProveedoresAnimator
+            // 
+            this.ProveedoresAnimator.AnimationType = AnimatorNS.AnimationType.HorizSlide;
+            this.ProveedoresAnimator.Cursor = null;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.ProveedoresAnimator.DefaultAnimation = animation1;
+            this.ProveedoresAnimator.TimeStep = 0.01F;
             // 
             // label1
             // 
@@ -187,28 +209,6 @@
             this.btnProductoProveedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProductoProveedor.UseVisualStyleBackColor = true;
             this.btnProductoProveedor.Click += new System.EventHandler(this.btnProductoProveedor_Click);
-            // 
-            // ProveedoresAnimator
-            // 
-            this.ProveedoresAnimator.AnimationType = AnimatorNS.AnimationType.ScaleAndHorizSlide;
-            this.ProveedoresAnimator.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(30, 0, 0, 0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.ProveedoresAnimator.DefaultAnimation = animation1;
-            this.ProveedoresAnimator.TimeStep = 0.01F;
             // 
             // PanelProveedores
             // 
