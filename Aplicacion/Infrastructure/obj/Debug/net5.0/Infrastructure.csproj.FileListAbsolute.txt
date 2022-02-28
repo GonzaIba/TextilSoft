@@ -88,3 +88,4 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\I
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\ref\Infrastructure.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\ServiceLayer.dll.config

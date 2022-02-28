@@ -11,28 +11,29 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
     {
-        public ApplicationDbContext()
-        {
+        //public ApplicationDbContext()
+        //{
 
-        }
-
+        //}
         public ApplicationDbContext(DbContextOptions dbContextOptions)
             : base(dbContextOptions)
         {
 
         }
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-        {
-            if (!options.IsConfigured)
-            {
-                options.UseSqlServer("Data Source=localhost;Initial Catalog=DBProyectoTextil;User ID=testuser;Password=1234;");
-            }
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //{
+        //    if (!options.IsConfigured)
+        //    {
+        //        options.UseSqlServer("Data Source=localhost;Initial Catalog=DBProyectoTextil;User ID=testUser2;Password=1234;");
+        //    }
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

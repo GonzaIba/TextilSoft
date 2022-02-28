@@ -80,3 +80,4 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\ServiceLayer\obj\Debug\net5.0\Ser
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\ServiceLayer\obj\Debug\net5.0\ref\ServiceLayer.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\ServiceLayer\obj\Debug\net5.0\ServiceLayer.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\ServiceLayer\obj\Debug\net5.0\ServiceLayer.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\ServiceLayer\bin\Debug\net5.0\ServiceLayer.dll.config

@@ -16,7 +16,7 @@ namespace UI.TextilSoft.Controllers
         private readonly IClientesService _clientesService;
         private readonly IProveedoresController _proveedoresController;
         private readonly IMapper _mapper;
-        public ClientesController(IClientesService clientesService, IMapper mapper, IProveedoresController proveedoresController, )
+        public ClientesController(IClientesService clientesService, IMapper mapper, IProveedoresController proveedoresController)
         {
             _clientesService = clientesService;
             _proveedoresController = proveedoresController;

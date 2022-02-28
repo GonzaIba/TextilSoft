@@ -104,3 +104,4 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCR
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\ref\IoCRegister.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\ServiceLayer.dll.config

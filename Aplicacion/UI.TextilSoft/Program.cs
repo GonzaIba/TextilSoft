@@ -1,22 +1,16 @@
 using AutoMapper;
-using Contracts.Controllers;
 using Infrastructure;
 using IoCRegister;
-using log4net;
-using log4net.Config;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ServiceLayer.Services.Mapper;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using UI.TextilSoft.Controllers;
 using UI.TextilSoft.MainForm;
 
 namespace UI.TextilSoft
@@ -42,7 +36,7 @@ namespace UI.TextilSoft
                 .Build();
 
             var services = host.Services;
-            var mainForm = services.GetRequiredService<FmTextilSoft>();
+            var mainForm = services.GetRequiredService<FmLogin>();
             Application.Run(mainForm);
         }
 
@@ -53,9 +47,22 @@ namespace UI.TextilSoft
         private static void ConfigureServices(IServiceCollection services) // Aca configuramos la inyeccion de dependencia
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(GetConnectionString())); //Al contexto le agrego la conexion de la base de datos
-            services.AddSingleton<FmTextilSoft>();
+            services.AddSingleton<FmLogin>();
 
-            services.AddAutoMapper(typeof(FmTextilSoft));
+            services.AddIdentityCore<IdentityUser>(options =>
+            {
+                options.SignIn.RequireConfirmedAccount = true;
+                options.User.RequireUniqueEmail = true;
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequiredLength = 6;
+            })
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddAutoMapper(typeof(FmLogin));
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new MapperHelper());
@@ -85,6 +92,31 @@ namespace UI.TextilSoft
             //var settings2 = Configuration.GetSection("Testing").GetSection("test1").Value;
             return connectionString;
         }
+
+        private static dynamic GetSection(string Section, string Section2 = "", bool getchildren = false) // Levanto el json y agarro la connstring
+        {
+            var builder = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+
+            if (Section != null && Section2 != null)
+            {
+                if (getchildren)
+                    return Configuration.GetSection(Section).GetSection(Section2).GetChildren().ToList();
+                else
+                    return Configuration.GetSection(Section).GetSection(Section2).Value;
+            }
+            //var connectionString2 = Configuration.GetConnectionString("SqlConnectionServiceLayer");
+            //DateTime prueba = DateTime.Now;
+            //DateTime fromdateStr = Convert.ToDateTime(string.Format("{0:dd-MM-yyyy HH:mm:ss}", prueba));
+            //var settings = Configuration.GetSection("AppConfig").GetSection("DatePattern").GetChildren().ToList();
+            //var settings2 = Configuration.GetSection("Testing").GetSection("test1").Value;
+            return "";
+        }
+
+
     }
 
 }
