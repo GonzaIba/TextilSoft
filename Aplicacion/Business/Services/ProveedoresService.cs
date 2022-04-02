@@ -24,6 +24,10 @@ namespace Business.Services
         {
             try
             {
+                var result = _repository.GetDeleted().ToList();
+
+
+
                 var PedidoRepository = _unitOfWork.GetRepository<IPedidosRepository>();
                 //var result = MapperHelper.GetMapper().Map<ProveedoresEntity, ProveedoresModel>(proveedoresEntity);
 
@@ -58,7 +62,7 @@ namespace Business.Services
 
                 
 
-                _unitOfWork.Save();
+                //_unitOfWork.Save();
                 //ProveedoresRepository.GetInstance.Insert(proveedoresEntity);
             }
             catch (DbUpdateConcurrencyException ex)

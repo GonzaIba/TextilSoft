@@ -1,5 +1,6 @@
 ﻿using Contracts.Controllers;
 using FontAwesome.Sharp;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.SubForms.Pedidos;
 using UI.TextilSoft.SubForms.Proveedores;
+using UI.TextilSoft.Tools;
 
 namespace UI.TextilSoft.MainForm
 {
@@ -32,7 +34,10 @@ namespace UI.TextilSoft.MainForm
         private int x = -100, y = 76;
         //Sonido Abrir Formulario
         SoundPlayer player = new SoundPlayer();
-        //----------------------- IoC -------------------
+        #endregion
+
+        #region DI
+        //----------------------- DI -------------------
         private readonly IClientesController _clientesController;
         private readonly IProveedoresController _proveedoresController;
         private readonly IProductosController _productosController;
@@ -43,7 +48,6 @@ namespace UI.TextilSoft.MainForm
         private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
         private readonly IEmpleadosController _empleadosController;
         private readonly IFacturasController _facturasController;
-        #endregion
 
         public FmTextilSoft(IProveedoresController proveedoresController,
                              IClientesController clientesController,
@@ -74,16 +78,28 @@ namespace UI.TextilSoft.MainForm
             _productoProveedorController = productoProveedorController;
             _pedidosController = pedidosController;
         }
+        #endregion
+
+        private IdentityUser _userId
+        {
+            get
+            {
+                //Aca tendria que llamar al controller de user y hacer un get pasandole por parametros toolstrip1.tag
+                IdentityUser data = (IdentityUser)toolStrip1.Tag;
+                return data;
+            }
+        }
+
 
         private void FmTextilSoft_Load(object sender, EventArgs e)
         {
             try
             {
+                toolStrip1.Renderer = new ToolStripRenderCustom();
                 timer1.Start();
                 timer2.Start();
-
+                toolStripLabel1.Text = "Hola " + _userId.UserName + "!";
                 //this.TraducirFormulario();
-
             }
             catch (Exception ex)
             {
@@ -176,9 +192,10 @@ namespace UI.TextilSoft.MainForm
         }
         private void btnPedidos_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
             AbrirFormHija(new FmPedidos(_pedidosController,_clientesController,_productosController));
             BotonPresionado = true;
+            btnPedidos.Enabled = false;
+            ActivateButton(sender);
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
@@ -569,6 +586,16 @@ namespace UI.TextilSoft.MainForm
                 else
                     btnBloquear.Location = new Point(163, 15);
             }
+        }
+
+        private void toolStrip1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void toolStrip1_RendererChanged(object sender, EventArgs e)
+        {
+
         }
 
         private void MoveIconRight()

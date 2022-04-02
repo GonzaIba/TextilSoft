@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public partial class OrdenDeTrabajoModel
+    public partial class OrdenDeTrabajoModel : GenericEntity
     {
         public int ID_OrdenDeTrabajo { get; set; }
         public Nullable<System.DateTime> FechaInicio { get; set; }

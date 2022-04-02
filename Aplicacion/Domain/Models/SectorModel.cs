@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public partial class SectorModel
+    public partial class SectorModel : GenericEntity
     {
         public SectorModel()
         {

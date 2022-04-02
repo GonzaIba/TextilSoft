@@ -6,6 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="AltoControls" Version="1.0.1" />
     <PackageReference Include="Animator" Version="1.0.3" />
@@ -13,7 +17,7 @@
     <PackageReference Include="CircularProgressBar" Version="2.8.0.16" />
     <PackageReference Include="FontAwesome.Sharp" Version="5.15.3" />
     <PackageReference Include="log4net" Version="2.0.13" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.4" />
+    <PackageReference Include="MicroKnights.Log4NetAdoNetAppender" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.11">
       <PrivateAssets>all</PrivateAssets>
@@ -34,6 +38,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\IoCRegister\IoCRegister.csproj" />
+    <ProjectReference Include="..\SL.Infrastructure\SL.Infrastructure.csproj" />
+    <ProjectReference Include="..\SL.IoC\SL.IoC.csproj" />
   </ItemGroup>
 
   <ItemGroup>

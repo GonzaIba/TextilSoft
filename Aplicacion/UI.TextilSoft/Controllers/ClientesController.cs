@@ -26,6 +26,7 @@ namespace UI.TextilSoft.Controllers
         public void CrearCliente(ClientesEntity clientesEntity)
         {
             var ClienteModel = _mapper.Map<ClientesModel>(clientesEntity);
+            ClienteModel.CreateDate = DateTime.Now;
             _clientesService.Insertar(ClienteModel);
         }
 

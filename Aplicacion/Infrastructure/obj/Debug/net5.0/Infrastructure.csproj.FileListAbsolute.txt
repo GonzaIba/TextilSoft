@@ -65,7 +65,6 @@ C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Infrastructure\obj\De
 C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.pdb
 C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.genruntimeconfig.cache
 C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\log4net.config
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\log4net.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.deps.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.runtimeconfig.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.runtimeconfig.dev.json
@@ -74,9 +73,7 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\r
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Contracts.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Domain.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\ServiceLayer.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Contracts.pdb
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\ServiceLayer.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Domain.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.csproj.AssemblyReference.cache
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
@@ -88,4 +85,9 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\I
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\ref\Infrastructure.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\Infrastructure.genruntimeconfig.cache
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\ServiceLayer.dll.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Helper.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Helper.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Contracts.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Contracts.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\log4net.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Helper.dll.config

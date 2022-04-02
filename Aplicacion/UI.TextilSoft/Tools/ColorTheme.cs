@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace UI.TextilSoft.Tools
 {
@@ -44,6 +45,8 @@ namespace UI.TextilSoft.Tools
 
         public static Color ChangeColorBrightness(Color color, double correctionFactor)
         {
+            TextBox txt = new TextBox();
+
             double red = color.R;
             double green = color.G;
             double blue = color.B;

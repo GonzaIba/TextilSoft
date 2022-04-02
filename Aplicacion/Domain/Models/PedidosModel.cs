@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class PedidosModel
+    public class PedidosModel : GenericEntity
     {
         public PedidosModel()
         {

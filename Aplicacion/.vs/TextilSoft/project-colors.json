@@ -6,36 +6,81 @@
       "DisplayName": "UI.TextilSoft",
       "ColorIndex": 0
     },
-    "3513a3d0-b0da-456a-bc19-91612f0995ae": {
-      "ProjectGuid": "3513a3d0-b0da-456a-bc19-91612f0995ae",
-      "DisplayName": "Contracts",
+    "ed19796e-3227-410d-be6a-b889f707ba01": {
+      "ProjectGuid": "ed19796e-3227-410d-be6a-b889f707ba01",
+      "DisplayName": "SL.BLL",
       "ColorIndex": 1
     },
-    "07a89651-b691-4dd2-a28f-de6d584f4e02": {
-      "ProjectGuid": "07a89651-b691-4dd2-a28f-de6d584f4e02",
-      "DisplayName": "Infrastructure",
+    "6e00696a-1be9-4132-98cf-9626ee570712": {
+      "ProjectGuid": "6e00696a-1be9-4132-98cf-9626ee570712",
+      "DisplayName": "SL.Infrastructure",
       "ColorIndex": 2
+    },
+    "69d7a57b-c69e-495d-8de0-0b28f41b7b8c": {
+      "ProjectGuid": "69d7a57b-c69e-495d-8de0-0b28f41b7b8c",
+      "DisplayName": "SL.Business",
+      "ColorIndex": 3
+    },
+    "24864297-6ccf-417b-9801-68b8f6cfa5a8": {
+      "ProjectGuid": "24864297-6ccf-417b-9801-68b8f6cfa5a8",
+      "DisplayName": "SL.Domain",
+      "ColorIndex": 4
+    },
+    "feaa924f-eb73-46a5-b2a4-317c7fe41bb6": {
+      "ProjectGuid": "feaa924f-eb73-46a5-b2a4-317c7fe41bb6",
+      "DisplayName": "SL.Contracts",
+      "ColorIndex": 5
+    },
+    "6b287977-9eb3-49a2-be78-9f7433b77f4a": {
+      "ProjectGuid": "6b287977-9eb3-49a2-be78-9f7433b77f4a",
+      "DisplayName": "SL.IoC",
+      "ColorIndex": 6
     },
     "9dc32247-6201-46bb-8f64-f1b090cebb34": {
       "ProjectGuid": "9dc32247-6201-46bb-8f64-f1b090cebb34",
       "DisplayName": "Business",
-      "ColorIndex": 3
+      "ColorIndex": 7
     },
-    "c80e3887-a07f-4f78-bc24-ef69f8126128": {
-      "ProjectGuid": "c80e3887-a07f-4f78-bc24-ef69f8126128",
-      "DisplayName": "IoCRegister",
-      "ColorIndex": 4
+    "07a89651-b691-4dd2-a28f-de6d584f4e02": {
+      "ProjectGuid": "07a89651-b691-4dd2-a28f-de6d584f4e02",
+      "DisplayName": "Infrastructure",
+      "ColorIndex": 8
     },
-    "a0834ee0-77a1-498f-b72e-2e74a0355c16": {
-      "ProjectGuid": "a0834ee0-77a1-498f-b72e-2e74a0355c16",
-      "DisplayName": "Domain",
-      "ColorIndex": 5
+    "9d382238-0b44-46fc-8142-72762a1f7396": {
+      "ProjectGuid": "9d382238-0b44-46fc-8142-72762a1f7396",
+      "DisplayName": "ServiceLayer",
+      "ColorIndex": 9
+    },
+    "3513a3d0-b0da-456a-bc19-91612f0995ae": {
+      "ProjectGuid": "3513a3d0-b0da-456a-bc19-91612f0995ae",
+      "DisplayName": "Contracts",
+      "ColorIndex": 10
     },
     "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
       "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
       "DisplayName": "Archivos varios",
       "ColorIndex": -1
+    },
+    "500557ed-615a-4156-900c-7d70f7e0765b": {
+      "ProjectGuid": "500557ed-615a-4156-900c-7d70f7e0765b",
+      "DisplayName": "SL.Infrastructure",
+      "ColorIndex": 11
+    },
+    "4344c9d3-d92f-465c-a452-c6cbd82330fd": {
+      "ProjectGuid": "4344c9d3-d92f-465c-a452-c6cbd82330fd",
+      "DisplayName": "SL.Helper",
+      "ColorIndex": 12
+    },
+    "c80e3887-a07f-4f78-bc24-ef69f8126128": {
+      "ProjectGuid": "c80e3887-a07f-4f78-bc24-ef69f8126128",
+      "DisplayName": "IoCRegister",
+      "ColorIndex": 13
+    },
+    "a0834ee0-77a1-498f-b72e-2e74a0355c16": {
+      "ProjectGuid": "a0834ee0-77a1-498f-b72e-2e74a0355c16",
+      "DisplayName": "Domain",
+      "ColorIndex": 14
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 15
 }

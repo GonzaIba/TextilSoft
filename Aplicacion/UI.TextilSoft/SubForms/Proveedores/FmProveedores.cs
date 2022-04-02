@@ -333,6 +333,8 @@ namespace UI.TextilSoft.SubForms.Proveedores
         {
             try
             {
+
+
                 var Fila = e.RowIndex;
                 int FilaCompleta = 0;
 
@@ -341,6 +343,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
                 var LugarEmpresa = GrillaProveedores.Rows[Fila].Cells[2].Value;
                 var Mail = GrillaProveedores.Rows[Fila].Cells[3].Value;
                 var Nombre = GrillaProveedores.Rows[Fila].Cells[4].Value;
+
 
                 #region DNI
                 if (DNI != null && CreandoProveedor == true)
@@ -412,6 +415,12 @@ namespace UI.TextilSoft.SubForms.Proveedores
                 throw ex;
             }
         }
+
+        //private void UnaComilla(string texto)
+        //{
+        //    Regex.Match(texto,@"""")
+        //}
+
 
         private void AbrirAnimator()
         {

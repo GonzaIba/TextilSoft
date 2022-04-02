@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public partial class FacturasModel
+    public partial class FacturasModel : GenericEntity
     {
         public int ID_Factura { get; set; }
         public Nullable<int> NumeroFactura { get; set; }

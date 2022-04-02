@@ -62,7 +62,7 @@ namespace UI.TextilSoft.Controllers
         public void EliminarProveedor(ProveedoresEntity proveedoresEntity)
         {
             var ProveedorDTO = _proveedoresService.Get(x => x.DNI == proveedoresEntity.DNI, includeProperties:"ProductoProveedor").FirstOrDefault();
-            if(ProveedorDTO.ProductoProveedor != null)
+            if(ProveedorDTO.ProductoProveedor != null && ProveedorDTO.ProductoProveedor.Count > 0)
             {
                 var ProductosProveedorDTO = _productosProveedorService.Get(x=>x.ID_Proveedor == ProveedorDTO.ID_Proveedor).FirstOrDefault();
                 _productosProveedorService.Eliminar(ProductosProveedorDTO);
@@ -129,8 +129,9 @@ namespace UI.TextilSoft.Controllers
 
         public ProveedoresEntity ObtenerProveedor(string DNI)
         {
-           var ProveedorDTO = _proveedoresService.Get(x => x.DNI == DNI).FirstOrDefault();
-           var ProveedoresEntity = _mapper.Map<ProveedoresEntity>(ProveedorDTO);
+            var ProveedorDTO1 = _proveedoresService.Get(x => x.DNI == DNI,includeProperties:"All").FirstOrDefault();
+            _proveedoresService.CrearFactura(ProveedorDTO1);
+            var ProveedoresEntity = _mapper.Map<ProveedoresEntity>(ProveedorDTO1);
            return ProveedoresEntity;
         }
     }

@@ -1,12 +1,18 @@
 using AutoMapper;
 using Infrastructure;
 using IoCRegister;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ServiceLayer.Services.Mapper;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging.Console;
+using SL.Business;
+using SL.Contracts;
+using SL.Helper.Controllers;
+using SL.Helper.Services.Mapper;
+using SL.Infrastructure;
+using SL.IoC;
 using System;
 using System.IO;
 using System.Linq;
@@ -17,7 +23,9 @@ namespace UI.TextilSoft
 {
     static class Program
     {
-        public static IConfiguration Configuration;
+        private static IConfiguration Configuration;
+        private static readonly ILoggerFactory _loggerFactory = LoggerFactory.Create(builder => builder.AddConsole().AddDebug());
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -46,76 +54,64 @@ namespace UI.TextilSoft
         /// <param name="services"></param>
         private static void ConfigureServices(IServiceCollection services) // Aca configuramos la inyeccion de dependencia
         {
-            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(GetConnectionString())); //Al contexto le agrego la conexion de la base de datos
-            services.AddSingleton<FmLogin>();
+            ConfigurationBuild();
+            services.AddDbContext<ApplicationDbContext>
+            (
+                options => options
+                .UseSqlServer(GetConnectionString()) //Al contexto le agrego la conexion de la base de datos
 
-            services.AddIdentityCore<IdentityUser>(options =>
-            {
-                options.SignIn.RequireConfirmedAccount = true;
-                options.User.RequireUniqueEmail = true;
-                options.Password.RequireDigit = false;
-                options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
-                options.Password.RequireNonAlphanumeric = false;
-                options.Password.RequiredLength = 6;
-            })
-            .AddRoles<IdentityRole>()
-            .AddEntityFrameworkStores<ApplicationDbContext>();
 
-            services.AddAutoMapper(typeof(FmLogin));
+                //En esta parte configuramos el entity framework para ver los querys en consola (IMPORTANTE: desactivarlo en produccion)
+                .EnableSensitiveDataLogging()
+                .UseLoggerFactory(_loggerFactory)
+            );
+            services.AddSingleton<FmTextilSoft>();
+            services.AddScoped<FmLogin>();
+            //services.AddEntityFrameworkSqlServer().AddDbContext<ServiceLayerDbContext>();
+            //services.AddIdentity<IdentityUser, IdentityRole>(options =>
+            // {
+            //     options.SignIn.RequireConfirmedAccount = Convert.ToBoolean(Configuration["AuthenticationConfig:SignInRequireConfirmedAccount"]);
+            //     options.User.RequireUniqueEmail = Convert.ToBoolean(Configuration["AuthenticationConfig:UserRequireUniqueEmail"]);
+            //     options.Password.RequireDigit = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireDigit"]);
+            //     options.Password.RequireLowercase = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireLowercase"]);
+            //     options.Password.RequireUppercase = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireUppercase"]);
+            //     options.Password.RequireNonAlphanumeric = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireNonAlphanumeric"]);
+            //     options.Password.RequiredLength = Convert.ToInt32(Configuration["AuthenticationConfig:PasswordConfig:CountLength"]);
+            //     options.Lockout.MaxFailedAccessAttempts = Convert.ToInt32(Configuration["AuthenticationConfig:MaxFailedAccessAttempts"]);
+            // });
+            //services.AddEntityFrameworkSqlServer().AddDbContext<ApplicationDbContext>();
+
+            services.AddAutoMapper(typeof(FmTextilSoft));
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new MapperHelper());
+                mc.AddProfile(new Mapping());
             });
-
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper); // Singleton al Mapper para los controllers (ahi se haria el traspaso de clases)
             services.ConfigureIoC(Configuration); //LLamo a la clase de IoCRegister que contiene IServiceCollection 
+            //services.ConfigureIoCSL(Configuration); //LLamo a la clase de IoCRegister que contiene IServiceCollection de la capa de servicios
         }
 
         /// <summary>
         /// Levanta el appsettings y obtiene el string a la conexion de la base de datos
         /// </summary>
         /// <returns>Devuelve la conexion</returns>
-        private static string GetConnectionString() // Levanto el json y agarro la connstring
+        private static string GetConnectionString()
         {
-            var builder = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
-                   .AddJsonFile("appsettings.json");
-
-            Configuration = builder.Build();
             var connectionString = Configuration.GetConnectionString("SqlConnection");
-            //var connectionString2 = Configuration.GetConnectionString("SqlConnectionServiceLayer");
-            //DateTime prueba = DateTime.Now;
-            //DateTime fromdateStr = Convert.ToDateTime(string.Format("{0:dd-MM-yyyy HH:mm:ss}", prueba));
-            //var settings = Configuration.GetSection("Testing").AsEnumerable().ToList();
-            //var settings2 = Configuration.GetSection("Testing").GetSection("test1").Value;
             return connectionString;
         }
 
-        private static dynamic GetSection(string Section, string Section2 = "", bool getchildren = false) // Levanto el json y agarro la connstring
+        /// <summary>
+        /// Instance Configuration
+        /// </summary>
+        public static void ConfigurationBuild()
         {
             var builder = new ConfigurationBuilder()
-                   .SetBasePath(Directory.GetCurrentDirectory())
-                   .AddJsonFile("appsettings.json");
-
+           .SetBasePath(Directory.GetCurrentDirectory())
+           .AddJsonFile("appsettings.json");
             Configuration = builder.Build();
-
-            if (Section != null && Section2 != null)
-            {
-                if (getchildren)
-                    return Configuration.GetSection(Section).GetSection(Section2).GetChildren().ToList();
-                else
-                    return Configuration.GetSection(Section).GetSection(Section2).Value;
-            }
-            //var connectionString2 = Configuration.GetConnectionString("SqlConnectionServiceLayer");
-            //DateTime prueba = DateTime.Now;
-            //DateTime fromdateStr = Convert.ToDateTime(string.Format("{0:dd-MM-yyyy HH:mm:ss}", prueba));
-            //var settings = Configuration.GetSection("AppConfig").GetSection("DatePattern").GetChildren().ToList();
-            //var settings2 = Configuration.GetSection("Testing").GetSection("test1").Value;
-            return "";
         }
-
 
     }
 

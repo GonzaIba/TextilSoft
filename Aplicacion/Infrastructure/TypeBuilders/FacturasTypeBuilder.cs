@@ -34,7 +34,7 @@ namespace Infrastructure.TypeBuilders
 
             builder.HasOne(p => p.Pedidos)
                 .WithOne()
-                .HasForeignKey<FacturasModel>(p=>p.ID_Factura);
+                .HasForeignKey<FacturasModel>(p=>p.ID_Pedido);
 
             builder.ToTable("Factura");
         }

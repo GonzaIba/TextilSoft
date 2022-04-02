@@ -2,7 +2,6 @@
 using Contracts.Services;
 using Infrastructure.UoW;
 using Microsoft.Extensions.DependencyInjection;
-using ServiceLayer.Services.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;

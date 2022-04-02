@@ -41,7 +41,6 @@ namespace Infrastructure.TypeBuilders
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.Telefono)
-                .IsRequired(false)
                 .HasColumnType("int");
 
             builder.Property(p => p.Residencia)

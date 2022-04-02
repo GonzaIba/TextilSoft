@@ -14,7 +14,7 @@ namespace Business.Services
         protected readonly IUnitOfWork _unitOfWork;
         protected readonly IGenericRepository<T> _repository;
         public GenericService(IUnitOfWork unitOfWork,
-            IGenericRepository<T> repository)
+                              IGenericRepository<T> repository)
         {
             this._unitOfWork = unitOfWork;
             this._repository = repository;
@@ -23,7 +23,7 @@ namespace Business.Services
         public virtual void Insertar(T entities)
         {
             _repository.Insert(entities);
-            //_unitOfWork.Save();
+            _unitOfWork.Save();
         }
 
         public void Actualizar(T entities)
@@ -34,7 +34,7 @@ namespace Business.Services
 
         public void CancelChanges(T entity)
         {
-            throw new NotImplementedException();
+            _repository.CancelChanges(entity);
         }
 
         public void Eliminar(T entities)

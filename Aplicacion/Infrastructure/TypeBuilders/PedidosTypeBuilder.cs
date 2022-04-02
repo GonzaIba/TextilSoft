@@ -34,15 +34,15 @@ namespace Infrastructure.TypeBuilders
 
             builder.HasMany(p => p.OrdenDeTrabajo)
                 .WithOne(x=>x.Pedidos)
-                .HasForeignKey(d=>d.ID_Pedido);
+                .HasForeignKey(d=>d.ID_OrdenDeTrabajo);
 
             builder.HasMany(p => p.DetallePedido)
                 .WithOne(x => x.Pedidos)
-                .HasForeignKey(d => d.ID_Pedido);
+                .HasForeignKey(d => d.ID_DetallePedido);
 
             builder.HasMany(p => p.Factura)
                 .WithOne(x => x.Pedidos)
-                .HasForeignKey(d => d.ID_Pedido);
+                .HasForeignKey(d => d.ID_Factura);
             
             builder.ToTable("Pedidos");
         }

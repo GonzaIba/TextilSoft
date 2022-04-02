@@ -43,12 +43,13 @@ namespace Contracts.Repositories
 
 
         /// <summary>
-        /// Devuelve una lista acorde al filtro y orden especificados. La ejecución del
-        /// query sobre la base de datos depende de la acción que se realice sobre la lista.
+        /// Devuelve una lista acorde al filtro y orden especificados.
+        /// <br></br> 
+        /// La ejecución del query sobre la base de datos depende de la acción que se realice sobre la lista.
         /// </summary>
         /// <param name="filter">Predicado para filtrar los registros</param>
         /// <param name="orderBy">Indica de qué manera se deben ordenar los registros</param>
-        /// <param name="includeProperties">Propiedades a incluir, esto genera operaciones join con otras tablas</param>
+        /// <param name="includeProperties">Propiedades a incluir, esto genera operaciones join con otras tablas, si pones "All" por defecto hace el join con todas las tablas que se relacione</param>
         /// <param name="ignoreQueryFilters">Se usa para ignorar filtros por defecto en la configuración del DBContext</param>
         /// <returns>Un IEnumerable de elementos del tipo T</returns>
         /// 
@@ -74,7 +75,7 @@ namespace Contracts.Repositories
             string includeProperties = "",
             bool ignoreQueryFilters = false);
 
-
+        IEnumerable<T> GetDeleted(string includeProperties = "");
 
         IQueryable<T> Table { get; }
 

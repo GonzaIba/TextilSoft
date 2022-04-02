@@ -10,7 +10,7 @@ using Infrastructure.UoW;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using Microsoft.Extensions.Configuration;
-using ServiceLayer.Services.Log4net;
+using SL.Helper.Services.Log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,19 +48,19 @@ namespace UI.TextilSoft
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            txtNombre.Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             //var resultado = _proveedoresService.GetAll().ToList();
             //TablaTest.DataSource = resultado;
-            ProveedoresEntity proveedoresEntity = new ProveedoresEntity();
-            proveedoresEntity.DNI = "3123";
-            proveedoresEntity.FechaNac = DateTime.Now;
-            proveedoresEntity.Nombre = "TEST";
-            proveedoresEntity.Mail = "quecosa";
-            _proveedoresController.CrearProveedor(proveedoresEntity);
+            ClientesEntity clientesEntity = new ClientesEntity();
+            clientesEntity.DNI = 32124;
+            clientesEntity.FechaNac = DateTime.Now;
+            clientesEntity.Nombre = "TEST";
+            clientesEntity.Mail = "quecosa";
+            _clientesController.CrearCliente(clientesEntity);
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -88,7 +88,6 @@ namespace UI.TextilSoft
         {
             ProveedoresEntity proveedoresEntity = new ProveedoresEntity();
             proveedoresEntity.DNI = "asdasdas";
-            proveedoresEntity.FechaNac = DateTime.Now;
             proveedoresEntity.Nombre = "aadsa";
             proveedoresEntity.Mail = "addas";
             _proveedoresController.CrearProveedor(proveedoresEntity);
@@ -102,16 +101,41 @@ namespace UI.TextilSoft
         {
             try
             {
-                LogHelper.GenerateLogPerformance("init button 7");
-                LogHelper.GenerateLog(new Exception("Hola"));
+                //Logger.GenerateLogPerformance("init button 7");
+                //Logger.GenerateLog(new Exception("Hola"));
                 int cero = 0;
                 int diez = 10;
                 int numero = diez / cero;
             }
             catch (Exception ex)
             {
-                LogHelper.GenerateFatalLog(ex.Message, ex);
-                throw;
+                Logger.GenerateFatalLog(ex.Message, ex);
+            }
+        }
+
+        private void txtNombre_KeyUp(object sender, KeyEventArgs e)
+        {
+            
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            //if ((e.KeyData == (Keys.Control | Keys.Q)))
+            //{
+            //    txtNombre.Visible = !txtNombre.Visible;
+            //}
+        }
+
+        private void Form1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyData == (Keys.Control | Keys.Q)))
+            {
+                txtNombre.Visible = !txtNombre.Visible;
             }
         }
     }

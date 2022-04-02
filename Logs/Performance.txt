@@ -1,33 +1,5 @@
-2021-12-11 19:39:48,718 [1] INFO performance - init button 7
-2021-12-11 19:40:14,853 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 19:40:19,843 [1] FATAL FatalLog - FATAL ERROR
-2021-12-11 19:40:51,895 [1] INFO performance - init button 7
-2021-12-11 19:41:05,807 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 19:41:06,798 [1] FATAL FatalLog - FATAL ERROR
-2021-12-11 19:47:53,704 [1] INFO performance - init button 7
-2021-12-11 19:47:56,306 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 19:47:59,157 [1] FATAL FatalLog - FATAL ERROR
-System.Exception: FATAL ERROR
-2021-12-11 19:49:01,091 [1] INFO performance - init button 7
-2021-12-11 19:49:01,104 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 19:49:46,021 [1] FATAL FatalLog - FATAL ERROR
-System.Exception: FATAL ERROR
-2021-12-11 19:53:21,530 [1] INFO performance - init button 7
-2021-12-11 19:53:21,655 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 19:53:23,630 [1] FATAL FatalLog - FATAL ERROR
-System.Exception: FATAL ERROR
-2021-12-11 20:02:27,815 [1] INFO Performance - init button 7
-2021-12-11 20:02:27,905 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 20:02:29,560 [1] FATAL AdoNetAppender - FATAL ERROR
-System.Exception: FATAL ERROR
-2021-12-11 20:03:10,499 [1] INFO Performance - init button 7
-2021-12-11 20:03:10,588 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 20:06:10,372 [1] INFO Performance - init button 7
-2021-12-11 20:06:10,460 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 20:06:34,265 [1] INFO Performance - init button 7
-2021-12-11 20:06:34,354 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
-2021-12-11 20:06:39,097 [1] FATAL AdoNetAppender - Attempted to divide by zero.
+
+2022-03-20 21:09:48,945 [1] INFO  Performance [(null)] 58 - init button 7
+2022-03-20 21:13:50,426 [1] FATAL AdoNetAppender [(null)] 69 - Attempted to divide by zero.
 System.DivideByZeroException: Attempted to divide by zero.
-   at UI.TextilSoft.Form1.button7_Click(Object sender, EventArgs e) in C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\UI.TextilSoft\Form1.cs:line 109
-2022-01-14 16:48:53,415 [1] INFO Performance - init button 7
-2022-01-14 16:48:53,545 [1] ERROR ServiceLayer.Services.Log4net.LogHelper - System.Exception: Hola
+   at UI.TextilSoft.Form1.button7_Click(Object sender, EventArgs e) in C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\Form1.cs:line 108

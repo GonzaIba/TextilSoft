@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class ClientesModel
+    public class ClientesModel : GenericEntity
     {
         public int ID_Cliente { get; set; }
         public string DNI { get; set; }

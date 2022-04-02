@@ -46,7 +46,7 @@ namespace UI.TextilSoft.MainForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AnimatorNS.Animation animation2 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation3 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmTextilSoft));
             this.panelBotones = new System.Windows.Forms.Panel();
             this.btnBloquear = new FontAwesome.Sharp.IconButton();
@@ -59,12 +59,16 @@ namespace UI.TextilSoft.MainForm
             this.btnReportes = new FontAwesome.Sharp.IconButton();
             this.btnPedidos = new FontAwesome.Sharp.IconButton();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.PanelAnimator = new AnimatorNS.Animator(this.components);
             this.panelBotones.SuspendLayout();
+            this.panelContenedor.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelBotones
@@ -313,12 +317,36 @@ namespace UI.TextilSoft.MainForm
             // panelContenedor
             // 
             this.panelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.panelContenedor.Controls.Add(this.toolStrip1);
             this.PanelAnimator.SetDecoration(this.panelContenedor, AnimatorNS.DecorationType.None);
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(200, 0);
             this.panelContenedor.Name = "panelContenedor";
             this.panelContenedor.Size = new System.Drawing.Size(687, 511);
             this.panelContenedor.TabIndex = 1;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.PanelAnimator.SetDecoration(this.toolStrip1, AnimatorNS.DecorationType.None);
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripLabel1});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(687, 26);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            this.toolStrip1.RendererChanged += new System.EventHandler(this.toolStrip1_RendererChanged);
+            this.toolStrip1.Paint += new System.Windows.Forms.PaintEventHandler(this.toolStrip1_Paint);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.toolStripLabel1.ForeColor = System.Drawing.Color.White;
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(51, 23);
+            this.toolStripLabel1.Text = "Hola";
             // 
             // timer1
             // 
@@ -340,22 +368,22 @@ namespace UI.TextilSoft.MainForm
             // 
             this.PanelAnimator.AnimationType = AnimatorNS.AnimationType.Transparent;
             this.PanelAnimator.Cursor = null;
-            animation2.AnimateOnlyDifferences = true;
-            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
-            animation2.LeafCoeff = 0F;
-            animation2.MaxTime = 1F;
-            animation2.MinTime = 0F;
-            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
-            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
-            animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0);
-            animation2.RotateCoeff = 0F;
-            animation2.RotateLimit = 0F;
-            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
-            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
-            animation2.TimeCoeff = 0F;
-            animation2.TransparencyCoeff = 1F;
-            this.PanelAnimator.DefaultAnimation = animation2;
+            animation3.AnimateOnlyDifferences = true;
+            animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
+            animation3.LeafCoeff = 0F;
+            animation3.MaxTime = 1F;
+            animation3.MinTime = 0F;
+            animation3.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicCoeff")));
+            animation3.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation3.MosaicShift")));
+            animation3.MosaicSize = 0;
+            animation3.Padding = new System.Windows.Forms.Padding(0);
+            animation3.RotateCoeff = 0F;
+            animation3.RotateLimit = 0F;
+            animation3.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.ScaleCoeff")));
+            animation3.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.SlideCoeff")));
+            animation3.TimeCoeff = 0F;
+            animation3.TransparencyCoeff = 1F;
+            this.PanelAnimator.DefaultAnimation = animation3;
             this.PanelAnimator.TimeStep = 0.01F;
             // 
             // FmTextilSoft
@@ -374,6 +402,10 @@ namespace UI.TextilSoft.MainForm
             this.Load += new System.EventHandler(this.FmTextilSoft_Load);
             this.panelBotones.ResumeLayout(false);
             this.panelBotones.PerformLayout();
+            this.panelContenedor.ResumeLayout(false);
+            this.panelContenedor.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -396,5 +428,7 @@ namespace UI.TextilSoft.MainForm
         private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Timer timer4;
         private AnimatorNS.Animator PanelAnimator;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        public System.Windows.Forms.ToolStrip toolStrip1;
     }
 }

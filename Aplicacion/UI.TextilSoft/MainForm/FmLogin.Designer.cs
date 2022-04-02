@@ -32,6 +32,7 @@ namespace UI.TextilSoft.MainForm
             this.txtUser = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtUser
@@ -58,12 +59,22 @@ namespace UI.TextilSoft.MainForm
             this.txtPassword.Size = new System.Drawing.Size(100, 23);
             this.txtPassword.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(151, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(38, 15);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "label1";
+            // 
             // FmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(550, 288);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(404, 354);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtUser);
@@ -79,5 +90,6 @@ namespace UI.TextilSoft.MainForm
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label label1;
     }
 }

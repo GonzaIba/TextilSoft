@@ -21,7 +21,7 @@ namespace Infrastructure.TypeBuilders
 
             builder.HasMany(p => p.OrdenDeTrabajo)
                 .WithOne(d=>d.Sector)
-                .HasForeignKey(p=>p.ID_Sector);
+                .HasForeignKey(p=>p.ID_OrdenDeTrabajo);
 
             builder.ToTable("Sector");
         }

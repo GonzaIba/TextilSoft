@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Contracts.Controllers;
+using Microsoft.Extensions.DependencyInjection;
+using SL.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +23,20 @@ namespace IoCRegister.Register
         internal static IServiceCollection RegisterControllers(this IServiceCollection services)
         {
             Type[] Controllers = GetTypesInNamespace(Assembly.Load("UI.TextilSoft"), "UI.TextilSoft.Controllers");
-            Type[] IControllers = GetTypesInNamespace(Assembly.Load("Contracts"), "Contracts.Controllers");
+            //Type[] IControllers = GetTypesInNamespace(Assembly.Load("Contracts"), "Contracts.Controllers");
 
+            //var Controllers = typeof(ProveedoresController).GetGenericTypeDefinition();
+            var IControllers = typeof(IProveedoresController).Assembly.GetTypes(t => t.IsInterface);
 
-            foreach (Type icontrolador in IControllers)//interfaces icontrolador...
+            services = IControllers?.Aggregate(services, (service, iRepository) =>
             {
-                var controller = Controllers.Where(x => x.IsAssignableTo(icontrolador) && icontrolador.IsInterface).FirstOrDefault();
-                if(controller!=null)
+                var repository = Controllers[0].Assembly.FindType(t => t.IsClass && iRepository.IsAssignableFrom(t));
+                if (repository != null)
                 {
-                    services.AddTransient(icontrolador, controller);
+                    service.AddTransient(iRepository, repository);
                 }
-            }
-
+                return service;
+            });
             return services;
         }
     }

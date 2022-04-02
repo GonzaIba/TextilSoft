@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class ProductosProveedorModel
+    public class ProductosProveedorModel : GenericEntity
     {
         public int ID_ProductoProveedor { get; set; }
         public string CodigoProducto { get; set; }

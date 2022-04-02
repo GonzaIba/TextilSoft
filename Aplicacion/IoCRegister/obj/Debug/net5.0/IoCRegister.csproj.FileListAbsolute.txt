@@ -77,7 +77,6 @@ C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\IoCRegister\obj\Debug
 C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.pdb
 C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.genruntimeconfig.cache
 C:\Users\Usuario\Desktop\Gonzalo UAI\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\log4net.config
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\log4net.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCRegister.deps.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCRegister.runtimeconfig.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCRegister.runtimeconfig.dev.json
@@ -88,12 +87,10 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Busi
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Contracts.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Infrastructure.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\ServiceLayer.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Business.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Contracts.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Infrastructure.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Domain.pdb
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\ServiceLayer.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.csproj.AssemblyReference.cache
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.AssemblyInfoInputs.cache
@@ -104,4 +101,9 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCR
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\ref\IoCRegister.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\IoCRegister.genruntimeconfig.cache
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\ServiceLayer.dll.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Helper.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Helper.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Contracts.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Contracts.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\log4net.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Helper.dll.config

@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public partial class EmpleadosModel
+    public partial class EmpleadosModel : GenericEntity
     {
         public EmpleadosModel()
         {
-            this.ProductoProveedor = new HashSet<ProductosProveedorModel>();
             this.Pedidos = new HashSet<PedidosModel>();
         }
 
@@ -20,8 +19,6 @@ namespace Domain.Models
         public string Residencia { get; set; }
         public string Legajo { get; set; }
         public string DNI { get; set; }
-
-        public virtual ICollection<ProductosProveedorModel> ProductoProveedor { get; set; }
         public virtual ICollection<PedidosModel> Pedidos { get; set; }
     }
 }

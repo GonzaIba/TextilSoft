@@ -39,7 +39,6 @@ namespace Infrastructure.TypeBuilders
 
             builder.HasOne(p => p.Proveedor)
                 .WithMany(x => x.ProductoProveedor)
-                .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey(p => p.ID_Proveedor);
 
             builder.ToTable("ProductoProveedor");

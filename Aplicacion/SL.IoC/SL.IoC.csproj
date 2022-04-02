@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0-rc.2.21480.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SL.Business\SL.Business.csproj" />
+    <ProjectReference Include="..\SL.Contracts\SL.Contracts.csproj" />
+    <ProjectReference Include="..\SL.Infrastructure\SL.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>

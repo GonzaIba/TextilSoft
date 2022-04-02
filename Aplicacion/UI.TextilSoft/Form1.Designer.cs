@@ -81,6 +81,7 @@ namespace UI.TextilSoft
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(100, 23);
             this.txtNombre.TabIndex = 3;
+            this.txtNombre.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtNombre_KeyUp);
             // 
             // txtDNI
             // 
@@ -188,8 +189,12 @@ namespace UI.TextilSoft
             this.Controls.Add(this.button2);
             this.Controls.Add(this.TablaTest);
             this.Controls.Add(this.button1);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Form1_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.TablaTest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

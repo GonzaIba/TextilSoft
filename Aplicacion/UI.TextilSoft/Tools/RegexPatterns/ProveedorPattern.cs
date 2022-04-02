@@ -16,7 +16,7 @@ namespace UI.TextilSoft.Tools.RegexPatterns
 
         public static bool CuitMatch(string DNI)
         {
-            var CuitPattern = GetSection("AppConfig", "CuitPattern").Split("||");
+            var CuitPattern = GetSection("PatternConfig", "CuitPattern").Split("||");
             //var result = Regex.IsMatch(DNI, $@"{CuitPattern[0].Replace(@"\\", @"\")}");
             //var result2 = Regex.IsMatch(DNI, $@"{CuitPattern[1]}");
 
@@ -29,9 +29,9 @@ namespace UI.TextilSoft.Tools.RegexPatterns
 
         public static string DateMatch(string fecha)
         {
-            try
-            {
-                var DatePattern = GetSection("AppConfig", "DatePattern", true);
+            //try
+            //{
+                var DatePattern = GetSection("PatternConfig", "DatePattern", true);
                 //string patron = DatePattern[0].Value;
                 //patron = Regex.Replace(patron, @"\\", @"\");
                 //var result = Regex.IsMatch(fecha, patron);
@@ -49,16 +49,16 @@ namespace UI.TextilSoft.Tools.RegexPatterns
                 }
                 else
                     throw new Exception("Formato de fecha incorrecto.");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
 
         public static bool LugarMatch(string LugarEmpresa)
         {
-            var LugarPattern = GetSection("AppConfig", "LugarEmpresaPattern");
+            var LugarPattern = GetSection("PatternConfig", "LugarEmpresaPattern");
 
             if (Regex.IsMatch(LugarEmpresa, $@"{LugarPattern.Replace(@"\\", @"\")}") == false)
                 throw new Exception("La/El localidad/Municipio donde reside la empresa no existe");
@@ -77,7 +77,7 @@ namespace UI.TextilSoft.Tools.RegexPatterns
 
         public static bool NombreMatch(string Nombre)
         {
-            var NombrePattern = GetSection("AppConfig", "NombrePattern");
+            var NombrePattern = GetSection("PatternConfig", "NombrePattern");
 
             if (Regex.IsMatch(Nombre, $@"{NombrePattern[0].Replace(@"\\", @"\")}") == false)
                 throw new Exception("El Nombre ingresado no es válido");
@@ -150,6 +150,5 @@ namespace UI.TextilSoft.Tools.RegexPatterns
             //var settings2 = Configuration.GetSection("Testing").GetSection("test1").Value;
             return "";
         }
-
     }
 }

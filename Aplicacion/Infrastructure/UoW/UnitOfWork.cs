@@ -1,5 +1,5 @@
 ﻿using Contracts.Repositories;
-using ServiceLayer.Services.Extensions;
+using SL.Helper.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

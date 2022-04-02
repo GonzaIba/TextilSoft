@@ -1,4 +1,6 @@
-﻿using Contracts.Repositories;
+﻿using Contracts.Entities;
+using Contracts.Repositories;
+using Domain.Enum;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,26 +11,21 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public abstract class GenericRepository<T> : IGenericRepository<T> where T : class
+    public abstract class GenericRepository<T> : IGenericRepository<T> where T : class, IGenericEntity
     {
         #region Fields
-
         internal ApplicationDbContext _context;
         internal DbSet<T> _entities;
-
         #endregion Fields
 
         #region Constructor
-
         public GenericRepository(ApplicationDbContext context)
         {
             this._context = context;
         }
-
         #endregion Constructor
 
         #region Properties
-
         public virtual IQueryable<T> Table => this.Entities;
 
         public virtual IQueryable<T> TableNoTracking => this.Entities.AsNoTracking();
@@ -44,29 +41,35 @@ namespace Infrastructure.Repositories
                 return _entities;
             }
         }
-
         #endregion Properties
 
         #region Methods
-
-        public virtual T GetById(object id)
+        public virtual T GetById(object entity)
         {
-            return this.Entities.Find(id);
+            return this.Entities.Find(entity);
         }
 
         public void Insert(T entities)
         {
+            entities.CreateDate = DateTime.Now;
             this.Entities.Add(entities);
         }
-
+        
         public void Update(T entities)
         {
+            //var result = Get(x => x == entities).FirstOrDefault();
+            //var result3 = Get(x => x == entities).FirstOrDefault();
+
+            //this._context.Entry(result).State = EntityState.Detached;
+            //result = result3;
+            entities.UpdateDate = DateTime.Now;
             this._context.Entry(entities).State = EntityState.Modified;
         }
 
         public void Delete(T entities)
         {
-            this._context.Entry(entities).State = EntityState.Deleted;
+            entities.Active = false;
+            this._context.Entry(entities).State = EntityState.Modified;
         }
 
         public virtual IEnumerable<T> Get(
@@ -77,43 +80,62 @@ namespace Infrastructure.Repositories
                 bool tracking = true)
         {
             IQueryable<T> query = tracking ? this.Entities : this.Entities.AsNoTracking();
-
+            
             if (ignoreQueryFilters)
-            {
                 query = query.IgnoreQueryFilters();
-            }
 
             if (filter != null)
-            {
                 query = query.Where(filter);
+
+
+            switch (CheckIncludeEnum(includeProperties))
+            {
+                case IncludeEnum.None:
+                    break;
+                case IncludeEnum.All:
+                    var navigations = _context.Model.FindEntityType(typeof(T))
+                                                    .GetDerivedTypesInclusive()
+                                                    .SelectMany(type => type.GetNavigations())
+                                                    .Distinct();
+
+                    foreach (var property in navigations)
+                    {
+                        query = query.Include(property.Name);
+                    }
+
+                    break;
+                case IncludeEnum.Personalized:
+                    foreach (string includeProperty in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                             query = query.Include(includeProperty.Trim());
+                    break;
             }
 
-            foreach (string includeProperty in includeProperties.Split
-                (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
-            {
-                query = query.Include(includeProperty.Trim());
-            }
+
+
 
             if (orderBy != null)
-            {
                 return orderBy(query);
-            }
             else
-            {
                 return query;
-            }
         }
 
-        public T GetOne(
-            Expression<Func<T, bool>> filter = null,
-            Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
-            string includeProperties = "",
-            bool ignoreQueryFilters = false)
+        public T GetOne
+            (
+                Expression<Func<T, bool>> filter = null,
+                Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
+                string includeProperties = "",
+                bool ignoreQueryFilters = false
+            )
         {
             var result = Get(filter, orderBy, includeProperties, ignoreQueryFilters);
             return result.FirstOrDefault();
         }
 
+        public virtual IEnumerable<T> GetDeleted(string includeProperties = "")
+        {
+            var result = Get(x => x.Active == false, null,includeProperties);
+            return result;
+        }
 
         public virtual void CancelChanges(T entity)
         {
@@ -144,7 +166,21 @@ namespace Infrastructure.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
-
         #endregion Methods
+
+
+        #region Helpers
+
+        private IncludeEnum CheckIncludeEnum(string includeProperties)
+        {
+            if(includeProperties == "")
+                return IncludeEnum.None;
+            else if(includeProperties == "All")
+                return IncludeEnum.All;
+            else
+                return IncludeEnum.Personalized;
+        }
+
+        #endregion
     }
 }
