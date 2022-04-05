@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj": {}
+    "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj": {
+    "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj",
+        "projectUniqueName": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj",
         "projectName": "SL.Contracts",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj",
+        "projectPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Contracts\\obj\\",
+        "outputPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Contracts\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj": {
-                "projectPath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj"
+              "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj": {
+                "projectPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj"
               }
             }
           }
@@ -80,14 +80,14 @@
         }
       }
     },
-    "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj": {
+    "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj",
+        "projectUniqueName": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj",
         "projectName": "SL.Domain",
-        "projectPath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj",
+        "projectPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj",
         "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Domain\\obj\\",
+        "outputPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
