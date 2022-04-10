@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fPhRZzCbcdPFjJ9nCz+4mU+A7uvl+JUolpsDVXh6UzoLRnMpTEot9HQZzNV+UWB3kI9tok/19CeuMdXGsR1fww==",
+  "dgSpecHash": "DvA//ZpFoBh0m98PwACAViaLAZm+u6SqJx2f15S3oKxobcKNKfPeE+zMxce37N7ZCaftzrMOmR9YsBIaeBZ3eg==",
   "success": true,
-  "projectFilePath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\SL.Domain\\SL.Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

@@ -19,7 +19,7 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(true)
                 .HasColumnType("varchar(100)");
 
-            builder.ToTable("Usuario");
+            builder.ToTable("usuarios");
         }
     }
 }

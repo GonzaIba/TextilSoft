@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SL.Domain.Entities;
+using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,8 @@ namespace SL.Contracts
 {
     public interface IUsuarioController
     {
-        void CreateUser(IdentityUser appIdentityUser);
-        Task<bool> LoginUser(IdentityUser appIdentityUser);
+        void CreateUser(UsuarioModel appIdentityUser);
+        string LoginUser(Login appIdentityUser);
+        void GuardarPermisos(Usuario usuario);
     }
 }

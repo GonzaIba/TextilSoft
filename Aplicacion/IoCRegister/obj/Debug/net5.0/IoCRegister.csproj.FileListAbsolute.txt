@@ -81,7 +81,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCR
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCRegister.runtimeconfig.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCRegister.runtimeconfig.dev.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCRegister.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\ref\IoCRegister.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\IoCRegister.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Business.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\Contracts.dll
@@ -107,3 +106,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.C
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Contracts.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\log4net.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Helper.dll.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\bin\Debug\net5.0\SL.Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\IoCRegister\obj\Debug\net5.0\refint\IoCRegister.dll

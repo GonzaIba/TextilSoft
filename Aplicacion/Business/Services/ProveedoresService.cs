@@ -29,6 +29,11 @@ namespace Business.Services
 
 
                 var PedidoRepository = _unitOfWork.GetRepository<IPedidosRepository>();
+
+                //get LugarEmpresa
+
+
+
                 //var result = MapperHelper.GetMapper().Map<ProveedoresEntity, ProveedoresModel>(proveedoresEntity);
 
                 //var proveedorrepositorio = _unitOfWork.GetRepository<IClientesRepository>();

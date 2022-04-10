@@ -2,6 +2,8 @@
 using Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SL.Contracts;
+using SL.Domain.Entities;
+using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +21,7 @@ namespace UI.TextilSoft.MainForm
     {
         private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
         private readonly IProductosController _productosController;
-        //private readonly IUserController _userController;
+        private readonly IUsuarioController _userController;
         private readonly IProveedoresController _proveedoresController;
         private readonly IProductoProveedorController _productoProveedorController;
         private readonly IPedidosController _pedidosController;
@@ -29,7 +31,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IVentasController _ventasController;
         private readonly IEmpleadosController _empleadosController;
 
-        public FmLogin( /*IUserController userController,*/
+        public FmLogin(IUsuarioController userController,
                         IProveedoresController proveedoresController,
                         IClientesController clientesController,
                         IPedidosController pedidosController,
@@ -42,7 +44,7 @@ namespace UI.TextilSoft.MainForm
                         IProductosController productosController)
         {
             InitializeComponent();
-            //_userController = userController;
+            _userController = userController;
             _proveedoresController = proveedoresController;
             _clientesController = clientesController;
             _ventasController = ventasController;
@@ -58,24 +60,31 @@ namespace UI.TextilSoft.MainForm
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            IdentityUser identityUser = new IdentityUser();
-            identityUser.Email = "gonza10";
-            identityUser.UserName = "Gonzalo";
+            //IdentityUser identityUser = new IdentityUser();
+            //identityUser.Email = "gonza10";
+            //identityUser.UserName = "Gonzalo";
 
-            ProveedoresEntity proveedoresEntity = new ProveedoresEntity();
-            proveedoresEntity.Nombre = "Aadsda";
-            proveedoresEntity.DNI = "12325678";
-            proveedoresEntity.Mail = "Bdd21e";
-            _proveedoresController.ObtenerProveedor(proveedoresEntity.DNI);
-            //_userController.CreateUser(identityUser);
-            //var result = _userController.LoginUser(new IdentityUser());
+            //ProveedoresEntity proveedoresEntity = new ProveedoresEntity();
+            //proveedoresEntity.Nombre = "Aadsda";
+            //proveedoresEntity.DNI = "12325678";
+            //proveedoresEntity.Mail = "Bdd21e";
+            //_proveedoresController.ObtenerProveedor(proveedoresEntity.DNI);
+            
+            Login login = new Login();
+            login.Usuario = txtUser.Text;
+            login.Contraseña = txtPassword.Text;
+            string Result =_userController.LoginUser(login);
 
-            //AuthController authController = new AuthController(new UserManager<IdentityUser>(new UserStore<IdentityUser>(new IdentityDbContext())));
-            //authController.CreateUser();
-
-            FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController , _productoProveedorController, _productosController);
-            fmTextilSoft.toolStrip1.Tag = identityUser;
-            fmTextilSoft.Show();
+            if(Result == "Ok")
+            {
+                FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController);
+                fmTextilSoft.toolStrip1.Tag = login;
+                fmTextilSoft.Show();
+            }
+            else
+            {
+                MessageBox.Show(Result);
+            }
         }
     }
 }

@@ -47,26 +47,23 @@ namespace Infrastructure
 
             base.OnModelCreating(modelBuilder);
 
-
-            // Set Decimal Precision
-            //var decimals = modelBuilder.Model.GetEntityTypes().SelectMany(t => t.GetProperties()).Where(p => p.ClrType == typeof(decimal));
-            //const string DecimalConfig = "decimal(28, 15)";
-            //foreach (var property in decimals)
-            //    property.SetColumnType(DecimalConfig);
-
-
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly)
-                .SetPropertyDefaultSqlValue("CreateDate", "getdate()")
-                .SetPropertyDefaultValue<bool>("Active", true)
-                .SetPropertyQueryFilter("Active", true);
+                        .SetPropertyDefaultSqlValue("CreateDate", "getdate()")
+                        .SetPropertyDefaultValue<bool>("Active", true)
+                        .SetPropertyQueryFilter("Active", true);
+
+            //A la propiedad Active setearle por defecto el valor true
+            //modelBuilder.SetPropertyDefaultValue<bool>("Active", true);
+        
+
+
 
             //Este metodo configura las entidades para cuando se quiere usar una de respaldo ( ej tenemos _date y date para protegerlo/respaldarlo)
             //.UsePropertyAccessMode(PropertyAccessMode.Field);
 
             //Este metodo no incluye a la clase especificada al contexto. Podria usarse para reglas de negocio en momento de ejecucion?
-            //.Ignore<ProveedoresModel>();
         }
-        
+
         public override int SaveChanges()
         {
             //SetUpdateDateOnModifiedEntries();

@@ -23,16 +23,16 @@ namespace SL.IoC.Collections
 
         internal static IServiceCollection RegisterControllers(this IServiceCollection services)
         {
-            //Type[] Controllers = GetTypesInNamespace(Assembly.Load("SL.Helper"), "SL.Helper.Controllers");
-            //Type[] IControllers = GetTypesInNamespace(Assembly.Load("SL.Contracts"), "SL.Contracts");
-            //foreach (Type icontrolador in IControllers)//interfaces icontrolador...
-            //{
-            //    var controller = Controllers.Where(x => x.IsAssignableTo(icontrolador) && icontrolador.IsInterface).FirstOrDefault();
-            //    if (controller != null)
-            //    {
-            //        services.AddTransient(icontrolador, controller);
-            //    }
-            //}
+            Type[] Controllers = GetTypesInNamespace(Assembly.Load("SL.Helper"), "SL.Helper.Controllers");
+            Type[] IControllers = GetTypesInNamespace(Assembly.Load("SL.Contracts"), "SL.Contracts");
+            foreach (Type icontrolador in IControllers)
+            {
+                var controller = Controllers.Where(x => x.IsAssignableTo(icontrolador) && icontrolador.IsInterface).FirstOrDefault();
+                if (controller != null)
+                {
+                    services.AddTransient(icontrolador, controller);
+                }
+            }
 
             return services;
         }

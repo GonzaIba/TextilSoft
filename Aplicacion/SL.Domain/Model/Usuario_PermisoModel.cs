@@ -8,7 +8,7 @@ namespace SL.Domain.Model
 {
     public class Usuario_PermisoModel
     {
-        public int Id_Usuario_Permiso { get; set; }
+        //public int Id_Usuario_Permiso { get; set; }
         public int Id_Usuario { get; set; }
         public int Id_Permiso { get; set; }
 

@@ -6,16 +6,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
-using SL.Business;
-using SL.Contracts;
-using SL.Helper.Controllers;
 using SL.Helper.Services.Mapper;
 using SL.Infrastructure;
 using SL.IoC;
 using System;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using UI.TextilSoft.MainForm;
 
@@ -60,13 +55,18 @@ namespace UI.TextilSoft
                 options => options
                 .UseSqlServer(GetConnectionString()) //Al contexto le agrego la conexion de la base de datos
 
-
                 //En esta parte configuramos el entity framework para ver los querys en consola (IMPORTANTE: desactivarlo en produccion)
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory)
             );
             services.AddSingleton<FmTextilSoft>();
             services.AddScoped<FmLogin>();
+
+            
+            services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
+
+
+
             //services.AddEntityFrameworkSqlServer().AddDbContext<ServiceLayerDbContext>();
             //services.AddIdentity<IdentityUser, IdentityRole>(options =>
             // {
@@ -89,18 +89,11 @@ namespace UI.TextilSoft
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper); // Singleton al Mapper para los controllers (ahi se haria el traspaso de clases)
             services.ConfigureIoC(Configuration); //LLamo a la clase de IoCRegister que contiene IServiceCollection 
-            //services.ConfigureIoCSL(Configuration); //LLamo a la clase de IoCRegister que contiene IServiceCollection de la capa de servicios
+            services.ConfigureIoCSL(Configuration); //LLamo a la clase de IoCRegister que contiene IServiceCollection de la capa de servicios
         }
 
-        /// <summary>
-        /// Levanta el appsettings y obtiene el string a la conexion de la base de datos
-        /// </summary>
-        /// <returns>Devuelve la conexion</returns>
-        private static string GetConnectionString()
-        {
-            var connectionString = Configuration.GetConnectionString("SqlConnection");
-            return connectionString;
-        }
+
+        
 
         /// <summary>
         /// Instance Configuration
@@ -113,6 +106,20 @@ namespace UI.TextilSoft
             Configuration = builder.Build();
         }
 
-    }
+        /// <summary>
+        /// Levanta el appsettings y obtiene el string a la conexion de la base de datos
+        /// </summary>
+        /// <returns>Devuelve la conexion</returns>
+        private static string GetConnectionString()
+        {
+            var connectionString = Configuration.GetConnectionString("SqlConnection");
+            return connectionString;
+        }
 
+        private static string GetServiceLayerConnectionString()
+        {
+            var connectionString = Configuration.GetConnectionString("SqlConnectionServiceLayer");
+            return connectionString;
+        }
+    }
 }

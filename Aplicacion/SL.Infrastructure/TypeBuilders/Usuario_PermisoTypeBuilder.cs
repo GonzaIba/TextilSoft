@@ -13,7 +13,7 @@ namespace SL.Infrastructure.TypeBuilders
     {
         public void Configure(EntityTypeBuilder<Usuario_PermisoModel> builder)
         {
-            builder.HasKey(p => p.Id_Usuario_Permiso);
+            builder.HasKey(p => new { p.Id_Permiso, p.Id_Usuario });
 
             builder.HasOne(p => p.UsuarioModel)
                    .WithMany(p => p.Usuario_Permisos)
@@ -23,7 +23,7 @@ namespace SL.Infrastructure.TypeBuilders
                    .WithMany(p => p.Usuario_Permisos)
                    .HasForeignKey(p => p.Id_Permiso);
 
-            builder.ToTable("Usuario");
+            builder.ToTable("usuarios_permisos");
         }
     }
 }

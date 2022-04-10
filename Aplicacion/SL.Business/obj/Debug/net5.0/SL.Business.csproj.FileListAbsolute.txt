@@ -5,7 +5,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.B
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.csproj.CoreCompileInputs.cache
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Business.deps.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Business.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\ref\SL.Business.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Business.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Contracts.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Contracts.pdb
@@ -13,3 +12,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.B
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\ref\SL.Business.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\refint\SL.Business.dll

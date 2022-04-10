@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SL.Contracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,8 +13,13 @@ namespace UI.TextilSoft.MainForm
 {
     public partial class FmRegistrarse : Form
     {
-        public FmRegistrarse()
+        //Create all controllers
+        private readonly IUsuarioController _usuarioController;
+
+        //pass by parameter UsuarioController
+        public FmRegistrarse(IUsuarioController usuarioController)
         {
+            _usuarioController = usuarioController;
             InitializeComponent();
         }
 

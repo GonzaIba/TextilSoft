@@ -346,7 +346,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-wi
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\UI.TextilSoft.runtimeconfig.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\UI.TextilSoft.runtimeconfig.dev.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\UI.TextilSoft.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\ref\UI.TextilSoft.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\UI.TextilSoft.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\AltoControls.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\Animator.dll
@@ -465,3 +464,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-wi
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\log4net.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\SL.Helper.dll.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\MicroKnights.Log4NetAdoNetAppender.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\SL.Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\SL.Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\obj\Debug\net5.0-windows\refint\UI.TextilSoft.dll

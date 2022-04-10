@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SL.Domain.Entities;
+using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +9,9 @@ using System.Threading.Tasks;
 
 namespace SL.Contracts
 {
-    public interface IUsuarioService : IGenericService<IdentityUser>
+    public interface IUsuarioService : IGenericService<UsuarioModel>
     {
-
+        string AccesResult(UsuarioModel usuarioModel,bool Result);
+        string Login(Login usuarioModel);
     }
 }

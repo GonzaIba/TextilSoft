@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "O30QOdEQrGg/WwKomsPXdaCQaRslnS6VGlVFZrvLSwJqO4Ox89W4tMAyZqOBg+gSEW1E1CKWpI4ri535b61npw==",
+  "dgSpecHash": "nQVwuQYA8qoTNQH5Z+KZtfm75aMJhoa9xZEEEw3fBUhh7++AxhSHfz0PIZxGz/Lyp/n1SpGToQyoiAM5nhNpiA==",
   "success": true,
-  "projectFilePath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\Contracts\\Contracts.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\Contracts\\Contracts.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

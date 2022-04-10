@@ -1,6 +1,5 @@
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Helper.deps.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Helper.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\ref\SL.Helper.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Helper.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\Domain.pdb
@@ -17,3 +16,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Con
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Contracts.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\log4net.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Helper.dll.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\bin\Debug\net5.0\SL.Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Helper\obj\Debug\net5.0\refint\SL.Helper.dll

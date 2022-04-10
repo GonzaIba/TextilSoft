@@ -62,6 +62,14 @@ namespace Infrastructure.Repositories
 
             //this._context.Entry(result).State = EntityState.Detached;
             //result = result3;
+
+            ////if the entity dont have the property UpdateDate, dont set
+            //if (entities.GetType().GetProperty("UpdateDate") != null)
+            //{
+            //    entities.UpdateDate = DateTime.Now;
+            //}
+
+
             entities.UpdateDate = DateTime.Now;
             this._context.Entry(entities).State = EntityState.Modified;
         }

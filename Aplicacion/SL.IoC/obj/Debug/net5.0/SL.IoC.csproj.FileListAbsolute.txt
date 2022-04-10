@@ -1,6 +1,5 @@
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.IoC.deps.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.IoC.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\ref\SL.IoC.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.IoC.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.AssemblyInfoInputs.cache
@@ -23,3 +22,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Helper
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Helper.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\log4net.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Helper.dll.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\refint\SL.IoC.dll

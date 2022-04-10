@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YFtePehtdgUbygL5x89LPe/eOEI5j5+CyvtJJxzByGe2Fh0jOozvx2g8ZtyJuGJ0ruEpaeFcBCQKIto+MTl5GA==",
+  "dgSpecHash": "i0gvXxdrPh4yiR+sUH4Iy33Vw1p5rogve0MfwMJyD8VXpcxkzUgdeJkeY6RoSt9sSaN9WamY1Ww5kw031ZvKTA==",
   "success": true,
-  "projectFilePath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\Domain\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\Usuario\\Desktop\\TextilSoft\\Aplicacion\\Domain\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Usuario\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

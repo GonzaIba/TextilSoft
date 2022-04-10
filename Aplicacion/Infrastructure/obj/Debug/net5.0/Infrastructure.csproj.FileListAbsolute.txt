@@ -69,7 +69,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\I
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.runtimeconfig.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.runtimeconfig.dev.json
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.dll
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\ref\Infrastructure.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Infrastructure.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Contracts.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\Domain.dll
@@ -91,3 +90,6 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\S
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Contracts.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\log4net.config
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Helper.dll.config
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\bin\Debug\net5.0\SL.Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Infrastructure\obj\Debug\net5.0\refint\Infrastructure.dll
