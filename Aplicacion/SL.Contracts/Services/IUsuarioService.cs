@@ -13,5 +13,9 @@ namespace SL.Contracts
     {
         string AccesResult(UsuarioModel usuarioModel,bool Result);
         string Login(Login usuarioModel);
+        //string Register(UsuarioModel usuarioModel);
+        //string Update(UsuarioModel usuarioModel);
+        //string Delete(UsuarioModel usuarioModel);
+        void GuardarPermisos(Usuario usuarioModel);
     }
 }

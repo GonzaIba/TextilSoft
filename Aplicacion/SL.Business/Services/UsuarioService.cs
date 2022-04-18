@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Configuration;
 using SL.Contracts;
+using SL.Contracts.Services;
 using SL.Domain.Entities;
 using SL.Domain.Model;
 using System;
@@ -15,11 +16,14 @@ namespace SL.Business
     public class UsuarioService : GenericService<UsuarioModel>, IUsuarioService
     {
         private readonly IConfiguration _configuration;
-        public UsuarioService(IUnitOfWork unitOfWork, IConfiguration configuration) 
+        private readonly IUsuario_PermisoService _usuario_PermisoService;
+        public UsuarioService(IUnitOfWork unitOfWork, IConfiguration configuration, IUsuario_PermisoService _usuario_PermisoService) 
         : base(unitOfWork, unitOfWork.GetRepository<IUsuarioRepository>())
         {
             _configuration = configuration;
         }
+
+        
         #region Login
         public string AccesResult(UsuarioModel usuarioModel, bool Result)
         {
@@ -52,7 +56,7 @@ namespace SL.Business
             _unitOfWork.Save();
             return AccesResult;
         }
-        
+
         public string Login(Login usuarioLogin)
         {
             bool LoginResult;
@@ -86,10 +90,35 @@ namespace SL.Business
         #endregion
 
 
-
-
-
-
+        public void GuardarPermisos(Usuario usuario)
+        {
+            try
+            {
+                var Users = _usuario_PermisoService.Get(x => x.Id_Usuario == usuario.Id).ToList();
+                foreach (var Usuario in Users)
+                {
+                    _usuario_PermisoService.Eliminar(Usuario);
+                }
+                foreach (var Permiso in usuario.Permisos)
+                {
+                    UsuarioModel usuarioModel = new UsuarioModel();
+                    usuarioModel.Usuario_Permisos.Add
+                    (
+                        new Usuario_PermisoModel()
+                        {
+                            Id_Usuario = usuario.Id,
+                            Id_Permiso = Permiso.Id
+                        }
+                    );
+                    Insertar(usuarioModel);
+                }
+                _unitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }    
+        }
 
 
         #region Email

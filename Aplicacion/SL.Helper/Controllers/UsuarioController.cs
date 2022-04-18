@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SL.Contracts;
+using SL.Contracts.Services;
 using SL.Domain.Entities;
 using SL.Domain.Model;
 using System;
@@ -14,10 +15,12 @@ namespace SL.Helper.Controllers
     public class UsuarioController : IUsuarioController
     {
         private readonly IUsuarioService _usuarioService;
+        private readonly IUsuario_PermisoService _usuario_PermisoService;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UsuarioController(IUsuarioService usuarioService, IUsuario_PermisoService usuario_PermisoService)
         {
             _usuarioService = usuarioService;
+            _usuario_PermisoService = usuario_PermisoService;
         }
 
         public void CreateUser(UsuarioModel usuarioModel)
@@ -49,11 +52,18 @@ namespace SL.Helper.Controllers
                 throw ex;
             }
         }
+        public List<UsuarioModel> GetAll() => _usuarioService.GetAll().ToList();
 
         public void GuardarPermisos(Usuario usuario)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _usuarioService.GuardarPermisos(usuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }           
         }
-
     }
 }

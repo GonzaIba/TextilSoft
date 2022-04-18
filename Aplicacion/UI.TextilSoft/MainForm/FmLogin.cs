@@ -74,7 +74,7 @@ namespace UI.TextilSoft.MainForm
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
             string Result =_userController.LoginUser(login);
-
+            
             if(Result == "Ok")
             {
                 FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController);

@@ -8,6 +8,11 @@ namespace SL.Domain.Model
 {
     public class UsuarioModel
     {
+        //public UsuarioModel()
+        //{
+        //    Usuario_Permisos = new List<Usuario_PermisoModel>();
+        //}
+            
         public int Id_Usuario { get; set; }
         public string Nombre { get; set; }
         public string Contraseña { get; set; }
