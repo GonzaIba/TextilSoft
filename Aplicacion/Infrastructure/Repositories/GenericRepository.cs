@@ -1,6 +1,7 @@
 ﻿using Contracts.Entities;
 using Contracts.Repositories;
 using Domain.Enum;
+using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Infrastructure.Repositories
         #region Fields
         internal ApplicationDbContext _context;
         internal DbSet<T> _entities;
+        internal EmpleadosModel UsuarioLogueado;
         #endregion Fields
 
         #region Constructor
@@ -174,6 +176,12 @@ namespace Infrastructure.Repositories
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+        
+        public void SetUserLogin(Usuario user)
+        {
+            UsuarioLogueado = user;
+        }
+
         #endregion Methods
 
 

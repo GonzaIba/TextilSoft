@@ -31,7 +31,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IVentasController _ventasController;
         private readonly IEmpleadosController _empleadosController;
 
-        public FmLogin(IUsuarioController userController,
+        public FmLogin( IUsuarioController userController,
                         IProveedoresController proveedoresController,
                         IClientesController clientesController,
                         IPedidosController pedidosController,
@@ -74,9 +74,25 @@ namespace UI.TextilSoft.MainForm
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
             string Result =_userController.LoginUser(login);
-            
-            if(Result == "Ok")
+
+
+            Usuario user = new Usuario();
+            IList<Componente> flia = null;
+            //flia = 
+            //user.Permisos.
+            //user.Id = 2;
+            //user.Permisos.Add
+            //    (
+            //        new Componente()
+            //        {
+            //            Id = 1,
+            //            Nombre = "Pedidos"
+            //        }
+            //    ); ;
+
+            if (Result == "Ok")
             {
+                //_empleadosController
                 FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController);
                 fmTextilSoft.toolStrip1.Tag = login;
                 fmTextilSoft.Show();

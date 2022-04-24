@@ -77,4 +77,4 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Busines
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\ref\Business.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.genruntimeconfig.cache
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\refint\Business.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\ref\Business.dll

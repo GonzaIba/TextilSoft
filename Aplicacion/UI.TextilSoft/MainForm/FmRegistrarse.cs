@@ -27,5 +27,10 @@ namespace UI.TextilSoft.MainForm
         {
 
         }
+
+        private void BtnRegistrarse_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

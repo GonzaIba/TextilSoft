@@ -82,6 +82,7 @@ namespace SL.Business
             else
             {
                 LoginResult = true;
+                _repository.
                 LoginMessage = AccesResult(Usuario, LoginResult);
             }
             return LoginMessage;

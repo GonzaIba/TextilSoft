@@ -142,6 +142,7 @@ namespace UI.TextilSoft.MainForm
             this.BtnRegistrarse.TabIndex = 22;
             this.BtnRegistrarse.Text = "REGISTRARSE";
             this.BtnRegistrarse.UseVisualStyleBackColor = false;
+            this.BtnRegistrarse.Click += new System.EventHandler(this.BtnRegistrarse_Click);
             // 
             // btnLimpiar
             // 
@@ -173,7 +174,6 @@ namespace UI.TextilSoft.MainForm
             this.Controls.Add(this.txtContraseña);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.lblIniciarSesion);
-            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(164)))), ((int)(((byte)(165)))), ((int)(((byte)(169)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FmRegistrarse";

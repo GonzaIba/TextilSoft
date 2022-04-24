@@ -466,4 +466,7 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-wi
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\MicroKnights.Log4NetAdoNetAppender.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\SL.Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\bin\Debug\net5.0-windows\SL.Domain.pdb
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\obj\Debug\net5.0-windows\UI.TextilSoft.SubForms.Configuracion.FmAdminConfig.resources
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\obj\Debug\net5.0-windows\UI.TextilSoft.SubForms.Configuracion.Composite.FmPatenteFamilia.resources
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\obj\Debug\net5.0-windows\UI.TextilSoft.SubForms.Configuracion.Composite.FmUsuarios.resources
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\obj\Debug\net5.0-windows\refint\UI.TextilSoft.dll

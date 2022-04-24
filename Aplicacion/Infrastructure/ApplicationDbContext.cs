@@ -67,6 +67,7 @@ namespace Infrastructure
         public override int SaveChanges()
         {
             //SetUpdateDateOnModifiedEntries();
+            
             return base.SaveChanges();
         }
 
@@ -88,6 +89,20 @@ namespace Infrastructure
         //        modifiedEntry.Property("UpdateDate").CurrentValue = DateTime.Now;
         //    }
         //}
+        
+        //Aca prohibimos que elimine un registro de la tabla empleados... (Solo deberían usar Active)
+        private void SetActiveOnDeleteEmployees()
+        {
+            var modifiedEntries = ChangeTracker
+                .Entries()
+                .Where(e => e.Entity is EmpleadosModel &&
+                            e.State == EntityState.Deleted); //Busco en el contexto la entidad EmpleadosModel y si el estado es Delete
+
+            foreach (var modifiedEntry in modifiedEntries)
+            {
+                modifiedEntry.Property("Active").CurrentValue = false;
+            }
+        }
 
     }
 }

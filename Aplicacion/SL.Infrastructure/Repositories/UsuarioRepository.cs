@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-using SL.Contracts;
+﻿using SL.Contracts;
 using SL.Domain.Model;
 using System;
 using System.Collections.Generic;

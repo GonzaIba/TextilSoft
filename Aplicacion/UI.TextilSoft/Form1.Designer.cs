@@ -162,7 +162,7 @@ namespace UI.TextilSoft
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(433, 21);
+            this.button7.Location = new System.Drawing.Point(435, 12);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(212, 23);
             this.button7.TabIndex = 13;

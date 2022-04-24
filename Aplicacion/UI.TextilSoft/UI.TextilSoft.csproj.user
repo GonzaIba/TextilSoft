@@ -16,6 +16,15 @@
     <Compile Update="MainForm\Inicio.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="SubForms\Configuracion\Composite\FmPatenteFamilia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SubForms\Configuracion\Composite\FmUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SubForms\Configuracion\FmAdminConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="SubForms\Configuracion\FmConfiguracion.cs">
       <SubType>Form</SubType>
     </Compile>

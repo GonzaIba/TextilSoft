@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -81,6 +82,6 @@ namespace Contracts.Repositories
 
         IQueryable<T> TableNoTracking { get; }
 
-
+        void SetUserLogin(EmpleadosModel user);
     }
 }

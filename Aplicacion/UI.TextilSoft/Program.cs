@@ -13,6 +13,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using UI.TextilSoft.MainForm;
+using UI.TextilSoft.SubForms.Configuracion.Composite;
 
 namespace UI.TextilSoft
 {
@@ -59,29 +60,12 @@ namespace UI.TextilSoft
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory)
             );
-            services.AddSingleton<FmTextilSoft>();
-            services.AddScoped<FmLogin>();
+            services.AddSingleton<FmLogin>();
 
             
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
 
-
-
-            //services.AddEntityFrameworkSqlServer().AddDbContext<ServiceLayerDbContext>();
-            //services.AddIdentity<IdentityUser, IdentityRole>(options =>
-            // {
-            //     options.SignIn.RequireConfirmedAccount = Convert.ToBoolean(Configuration["AuthenticationConfig:SignInRequireConfirmedAccount"]);
-            //     options.User.RequireUniqueEmail = Convert.ToBoolean(Configuration["AuthenticationConfig:UserRequireUniqueEmail"]);
-            //     options.Password.RequireDigit = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireDigit"]);
-            //     options.Password.RequireLowercase = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireLowercase"]);
-            //     options.Password.RequireUppercase = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireUppercase"]);
-            //     options.Password.RequireNonAlphanumeric = Convert.ToBoolean(Configuration["AuthenticationConfig:PasswordConfig:RequireNonAlphanumeric"]);
-            //     options.Password.RequiredLength = Convert.ToInt32(Configuration["AuthenticationConfig:PasswordConfig:CountLength"]);
-            //     options.Lockout.MaxFailedAccessAttempts = Convert.ToInt32(Configuration["AuthenticationConfig:MaxFailedAccessAttempts"]);
-            // });
-            //services.AddEntityFrameworkSqlServer().AddDbContext<ApplicationDbContext>();
-
-            services.AddAutoMapper(typeof(FmTextilSoft));
+            services.AddAutoMapper(typeof(FmLogin));
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new Mapping());
