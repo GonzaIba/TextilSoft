@@ -15,7 +15,9 @@ namespace SL.Contracts
         string LoginUser(Login appIdentityUser);
         //void UpdateUser(UsuarioModel appIdentityUser);
         //void DeleteUser(UsuarioModel appIdentityUser);
-        List<Usuario> GetAllUsers();
+        List<Usuario> ObtenerUsuariosCompletos();
+        IList<Usuario> ObtenerUsuarios();
+        IList<Familia> ObtenerFamilias();
         void GuardarPermisos(Usuario usuario);
     }
 }

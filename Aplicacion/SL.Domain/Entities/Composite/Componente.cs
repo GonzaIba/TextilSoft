@@ -14,6 +14,7 @@ namespace SL.Domain.Entities
 
         public abstract IList<Componente> Hijos { get; }
         public abstract void AgregarHijo(Componente c);
+        public abstract void AgregarHijos(IEnumerable<Componente> c);
         public abstract void VaciarHijos();
         public TipoPermiso Permiso { get; set; }
 

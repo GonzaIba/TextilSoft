@@ -31,5 +31,9 @@ namespace SL.Domain.Entities
         {
             _hijos.Add(c);
         }
+        public override void AgregarHijos(IEnumerable<Componente> c)
+        {
+            _hijos.ToList().AddRange(c);
+        }
     }
 }

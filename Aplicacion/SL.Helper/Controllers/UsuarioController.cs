@@ -68,56 +68,20 @@ namespace SL.Helper.Controllers
             }
         }
 
-        public List<Usuario> GetAllUsers()
+        public List<Usuario> ObtenerUsuariosCompletos()
         {
-            //var UsuariosCompletosDto = _usuarioService.Get(includeProperties: "Usuario_Permisos,Usuario_Permisos.PermisoModel").ToList();
-            //var Permisos = _permisoService.Get().ToList();
-            //var Permisos_Usuarios = _usuario_PermisoService.Get().ToList();
-            //var UsuariosCompletos = _mapper.Map<List<Usuario>>(UsuariosCompletosDto);
-            //var result = UsuariosCompletosDto.SelectMany(x => x.Usuario_Permisos.Select(x => x.PermisoModel)).ToList();
+            var Familias = ObtenerFamilias();
+            var Usuarios = ObtenerUsuarios();
+            var UsuariosConPermiso = UsuariosConPermisos(Usuarios.ToList());
+            var Usuarioscompletos = UsuariosCompletos(UsuariosConPermiso, Familias.ToList());
 
-            //var test = _mapper.Map<List<Patente>>(Permisos);
-
-            //foreach (var item in UsuariosCompletosDto)
-            //{
-            //    var UsuariosPermisos = item.Usuario_Permisos.ToList(); //Obtenemos la tabla intermedia entre Usuarios y Permisos
-            //    var usuario = UsuariosCompletos.FirstOrDefault(x => x.Id == item.Id_Usuario); //Obtenemos el usuario por el id
-
-            //    //if (UsuariosPermisos.Select(x => x.PermisoModel).Where(x => x.Permiso == null).Any()) //Preguntamos si hay una familia...
-            //    //{
-            //    //    var Familia = UsuariosPermisos.Select(x => x.PermisoModel).Where(x => x.Permiso == null).FirstOrDefault(); //Obtenemos la familia
-            //    //    //usuario?.Permisos?.AddRange(UsuariosPermisos.Select(x => new Patente { Id = x.PermisoModel.Id_Permiso, Nombre = x.PermisoModel.Permiso, Hijos = Familia.}));
-            //    //}
-            //    //else
-            //    usuario?.Permisos?.AddRange(UsuariosPermisos.Select(x => new Patente { Id = x.PermisoModel.Id_Permiso, Nombre = x.PermisoModel.Permiso }));
-            //}
-            //return UsuariosCompletos;
-
-
-
-
-            var UsuariosCompletosDto = _usuarioService.Get(includeProperties: "Usuario_Permisos,Usuario_Permisos.PermisoModel").ToList();
-            List<Usuario> Usuarios = new List<Usuario>();
-            Usuarios.AddRange(_mapper.Map<List<Usuario>>(UsuariosCompletosDto));
-            foreach (var usuario in Usuarios)
-            {
-                var UsuariosPermisos = UsuariosCompletosDto.SelectMany(x => x.Usuario_Permisos).Where(x => x.Id_Usuario == usuario.Id).ToList();
-
-                usuario?.Permisos?.AddRange(UsuariosPermisos.Select(x => new Patente
-                {
-                    Id = x.PermisoModel.Id_Permiso,
-                    Nombre = x.PermisoModel.Permiso
-                }));
-
-            }
-
-            return null;
+            return Usuarioscompletos;
         }
 
-        private List<Usuario> ObtenerUsuarios()
+        public IList<Usuario> ObtenerUsuarios() /*=> _mapper.Map<List<Usuario>>(_usuarioService.Get().ToList());*/
         {
             //Aca Llenamos la lista de usuarios con sus permisos
-            var UsuariosCompletosDto = _usuarioService.Get(includeProperties: "Usuario_Permisos,Usuario_Permisos.PermisoModel").ToList();
+            var UsuariosCompletosDto = _usuarioService.Get().ToList();
             List<Usuario> Usuarios = new List<Usuario>();
             Usuarios.AddRange(_mapper.Map<List<Usuario>>(UsuariosCompletosDto));
             return Usuarios;
@@ -126,11 +90,13 @@ namespace SL.Helper.Controllers
         private List<Usuario> UsuariosConPermisos(List<Usuario> Usuarios)
         {
             //Aca Llenamos la lista de usuarios con sus permisos
+            var UsuariosPermisos = _usuario_PermisoService.Get(includeProperties: "PermisoModel").ToList();
             foreach (var usuario in Usuarios)
             {
-                var UsuariosPermisos = UsuariosCompletosDto.SelectMany(x => x.Usuario_Permisos).Where(x => x.Id_Usuario == usuario.Id).ToList();
+                //var UsuariosPermisos = UsuariosCompletosDto.SelectMany(x => x.Usuario_Permisos).Where(x => x.Id_Usuario == usuario.Id).ToList();
+                var Permisos = UsuariosPermisos.Where(x => x.Id_Usuario == usuario.Id).ToList();
 
-                usuario?.Permisos?.AddRange(UsuariosPermisos.Select(x => new Patente
+                usuario?.Permisos?.AddRange(Permisos.Select(x => new Patente
                 {
                     Id = x.PermisoModel.Id_Permiso,
                     Nombre = x.PermisoModel.Permiso
@@ -139,13 +105,117 @@ namespace SL.Helper.Controllers
             }
             return Usuarios;
         }
-        
-        private List<Usuario> UsuariosConFamilia(List<Usuario> usuarios)
-        {
 
-            return null;
+        private List<Usuario> UsuariosCompletos(List<Usuario> Usuarios, List<Familia> Familias)
+        {
+            var PermisosDto = _usuario_PermisoService.Get().ToList();
+            foreach (var usuario in Usuarios)
+            {
+                foreach (var familia in Familias)
+                {
+                    var Permisos = PermisosDto.Where(x => x.Id_Permiso == familia.Id && x.Id_Usuario == usuario.Id).FirstOrDefault();
+                    if (Permisos != null)
+                    {
+                        //Si entro a este if es porque es una familia y pertenece a este usuario...
+                        Familia family = Familias.Where(x => x.Id == Permisos.Id_Permiso).FirstOrDefault();
+                        usuario.Permisos.Add(family);
+                    }
+                }
+            }
+            return Usuarios;
         }
+        
+        public IList<Familia> ObtenerFamilias()
+        {
+            var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos
+            var FamiliasDto = PermisosDto.Where(x => x.Permiso == null).ToList(); //Obtenemos las familias
+            var PadreHijosDto = _permiso_PermisoService.Get().ToList(); //Obtenemos toda la tabla de relacion padre hijo
+
+            List<Familia> FamiliasComposite = _mapper.Map<List<Familia>>(FamiliasDto); //Convertimos las familias a familias composite
+
+            foreach (var FamiliaComposite in FamiliasComposite) //Recorremos las familias para agregar agregar sus hijos...
+            {
+                var PadreHijos = PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaComposite.Id).ToList(); //Obtenemos las relaciones del padre(familia) con los hijos
+                foreach (var item in PadreHijos) //Recorremos los permisos de la familia y se los agregamos
+                {
+                    var PermisosDeLaFamilia = PermisosDto.Where(x => x.Id_Permiso == item.Id_Permiso_Hijo && x.Permiso != null).ToList(); //Obt
+                    foreach (var Permiso in PermisosDeLaFamilia) //Recorremos los permisos de la familia y se lo agregamos
+                    {
+                        FamiliaComposite.AgregarHijo(new Patente
+                        {
+                            Id = Permiso.Id_Permiso,
+                            Nombre = Permiso.Permiso
+                        });
+                    }
+                }
+            }
+
+            //Una vez llegado acá, tenemos una lista de familias con sus permisos, y ahora vamos a agregar familia a otra familia sin que exista dependencia circular
+            int Contador = 0;
+            foreach (var item in PadreHijosDto)
+            {
+                var FamiliaHijaDto = PermisosDto.Where(x => x.Id_Permiso == item.Id_Permiso_Hijo && x.Permiso == null).FirstOrDefault(); //A través del id del hijo obtenemos la familia (hija)
+                if (FamiliaHijaDto == null)
+                    continue;
+                foreach (var FamiliaPadre in FamiliasComposite.Where(x => x.Id == item.Id_Permiso_Padre))//A través del id del padre obtenemos la familia (padre)
+                {
+                    if (PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaPadre.Id).Any() && Contador > 0) //No puede haber dependencia circular entre familias...
+                    {
+                        Contador = 0;
+                        break;
+                    }
+                    var FamiliaHija = FamiliasComposite.Where(x => x.Id == FamiliaHijaDto.Id_Permiso).FirstOrDefault();
+                    FamiliaPadre.AgregarHijo(FamiliaHija);
+                    Contador++;
+                }
+            }
+
+            return FamiliasComposite;
+        }
+
 
 
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//var FamiliasDto = _permisoService.Get(x => x.Permiso == null).ToList(); //Obtenemos las familias
+
+//List<Familia> FamiliasComposite = _mapper.Map<List<Familia>>(FamiliasDto); //Convertimos las familias a familias composite
+
+//foreach (var FamiliaComposite in FamiliasComposite) //Recorremos las familias y agregamos sus permisos
+//{
+//    var PadreHijos = _permiso_PermisoService.Get(x => x.Id_Permiso_Padre == FamiliaComposite.Id).ToList();
+//    foreach (var item in PadreHijos) //Recorremos los permisos de la familia y se los agregamos
+//    {
+//        var PermisosDeLaFamilia = _permisoService.Get(x => x.Id_Permiso == item.Id_Permiso_Hijo && x.Permiso != null).ToList();
+//        foreach (var Permiso in PermisosDeLaFamilia) //Recorremos
+//        {
+//            FamiliaComposite.AgregarHijo(new Patente
+//            {
+//                Id = Permiso.Id_Permiso,
+//                Nombre = Permiso.Permiso
+//            });
+//        }
+//    }
+//}
+
+//return FamiliasComposite;

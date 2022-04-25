@@ -17,10 +17,11 @@ namespace SL.Business
     {
         private readonly IConfiguration _configuration;
         private readonly IUsuario_PermisoService _usuario_PermisoService;
-        public UsuarioService(IUnitOfWork unitOfWork, IConfiguration configuration, IUsuario_PermisoService _usuario_PermisoService) 
+        public UsuarioService(IUnitOfWork unitOfWork, IConfiguration configuration, IUsuario_PermisoService usuario_PermisoService) 
         : base(unitOfWork, unitOfWork.GetRepository<IUsuarioRepository>())
         {
             _configuration = configuration;
+            _usuario_PermisoService = usuario_PermisoService;
         }
 
         

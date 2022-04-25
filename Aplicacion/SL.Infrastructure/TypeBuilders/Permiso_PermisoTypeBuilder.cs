@@ -17,11 +17,11 @@ namespace SL.Infrastructure.TypeBuilders
 
             builder.Property(p => p.Id_Permiso_Hijo)
                 .IsRequired(true)
-                .HasColumnType("varchar(100)");
+                .HasColumnType("int");
 
             builder.Property(p => p.Id_Permiso_Padre)
                 .IsRequired(true)
-                .HasColumnType("varchar(100)");
+                .HasColumnType("int");
 
             builder.ToTable("permiso_permiso");
         }

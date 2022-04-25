@@ -9,4 +9,4 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Dom
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\ref\SL.Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.pdb
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\bin\Debug\net5.0\ref\SL.Domain.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\refint\SL.Domain.dll

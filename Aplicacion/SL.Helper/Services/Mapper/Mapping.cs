@@ -23,11 +23,17 @@ namespace SL.Helper.Services.Mapper
                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Permiso))
                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Permiso))
                .ReverseMap();
+            
             CreateMap<Usuario_PermisoModel, Componente>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PermisoModel.Id_Permiso))
                 .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => src.PermisoModel.Permiso))
                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.PermisoModel.Permiso))
                 .ReverseMap();
+
+            CreateMap<PermisoModel, Familia>()
+               .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Permiso))
+               .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Permiso))
+               .ReverseMap();
 
             CreateMap<UsuarioModel, Usuario>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))

@@ -22,7 +22,10 @@ namespace SL.Domain.Entities
         {
 
         }
+        public override void AgregarHijos(IEnumerable<Componente> c)
+        {
 
+        }
 
         public override void VaciarHijos()
         {
