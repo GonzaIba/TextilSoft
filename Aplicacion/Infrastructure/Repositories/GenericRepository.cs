@@ -17,7 +17,6 @@ namespace Infrastructure.Repositories
         #region Fields
         internal ApplicationDbContext _context;
         internal DbSet<T> _entities;
-        internal EmpleadosModel UsuarioLogueado;
         #endregion Fields
 
         #region Constructor
@@ -43,6 +42,19 @@ namespace Infrastructure.Repositories
                 return _entities;
             }
         }
+        
+        public EmpleadosModel UsuarioLogueado
+        {
+            get
+            {
+                return this.UsuarioLogueado;
+            }
+            set
+            {
+                this.UsuarioLogueado = value;
+            }
+        }
+
         #endregion Properties
 
         #region Methods
@@ -177,9 +189,9 @@ namespace Infrastructure.Repositories
             GC.SuppressFinalize(this);
         }
         
-        public void SetUserLogin(Usuario user)
+        public void SetUserLogin(EmpleadosModel empleadoLogin)
         {
-            UsuarioLogueado = user;
+            UsuarioLogueado = empleadoLogin;
         }
 
         #endregion Methods

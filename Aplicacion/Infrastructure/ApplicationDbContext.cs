@@ -67,13 +67,14 @@ namespace Infrastructure
         public override int SaveChanges()
         {
             //SetUpdateDateOnModifiedEntries();
-            
+            SetActiveOnDeleteEmployees();
             return base.SaveChanges();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             //SetUpdateDateOnModifiedEntries();
+            SetActiveOnDeleteEmployees();
             return base.SaveChangesAsync(cancellationToken);
         }
 
@@ -100,7 +101,8 @@ namespace Infrastructure
 
             foreach (var modifiedEntry in modifiedEntries)
             {
-                modifiedEntry.Property("Active").CurrentValue = false;
+                modifiedEntry.State = EntityState.Unchanged;
+                throw new Exception("No se puede eliminar un registro de la tabla Empleados");
             }
         }
 

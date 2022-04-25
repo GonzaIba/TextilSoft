@@ -8,6 +8,6 @@ namespace Contracts.Controllers
 {
     public interface IEmpleadosController
     {
-        public void LoginEmpleado(Usuario usuario);
+        //public void LoginEmpleado(Usuario usuario);
     }
 }

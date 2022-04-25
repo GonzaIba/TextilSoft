@@ -83,5 +83,7 @@ namespace Contracts.Repositories
         IQueryable<T> TableNoTracking { get; }
 
         void SetUserLogin(EmpleadosModel user);
+        
+        EmpleadosModel UsuarioLogueado { get; set; }
     }
 }

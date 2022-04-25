@@ -3,6 +3,7 @@ using Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using SL.Contracts;
 using SL.Domain.Entities;
+using SL.Domain.Enums;
 using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -75,7 +76,6 @@ namespace UI.TextilSoft.MainForm
             login.Contraseña = txtPassword.Text;
             string Result =_userController.LoginUser(login);
 
-
             Usuario user = new Usuario();
             IList<Componente> flia = null;
             //flia = 
@@ -92,9 +92,11 @@ namespace UI.TextilSoft.MainForm
 
             if (Result == "Ok")
             {
-                //_empleadosController
+                //var usuario = _userController.GetUser(login);
+                //_empleadosController.LoginEmpleado(usuario);
                 FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController);
                 fmTextilSoft.toolStrip1.Tag = login;
+                fmTextilSoft.btnPedidos.Enabled = false;
                 fmTextilSoft.Show();
             }
             else

@@ -25,14 +25,11 @@ namespace Business.Services
             try
             {
                 var result = _repository.GetDeleted().ToList();
-
-
-
+                    
                 var PedidoRepository = _unitOfWork.GetRepository<IPedidosRepository>();
 
                 //get LugarEmpresa
-
-
+                
 
                 //var result = MapperHelper.GetMapper().Map<ProveedoresEntity, ProveedoresModel>(proveedoresEntity);
 

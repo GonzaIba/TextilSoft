@@ -18,6 +18,5 @@ namespace Business.Services
         {
             _mapper = mapper;
         }
-
     }
 }

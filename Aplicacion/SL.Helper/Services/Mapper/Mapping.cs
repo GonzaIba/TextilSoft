@@ -19,18 +19,15 @@ namespace SL.Helper.Services.Mapper
             CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
             
             
-            //CreateMap<Usuario_PermisoModel, UsuarioModel>().ReverseMap();
-            //CreateMap<PermisoModel, Usuario_PermisoModel>().ReverseMap();
             CreateMap<PermisoModel, Patente>()
                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Permiso))
-               //.ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => src.Permiso))
                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Permiso))
                .ReverseMap();
-            //CreateMap<Usuario_PermisoModel, Patente>()
-            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PermisoModel.Id_Permiso))
-            //    .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => src.PermisoModel.Permiso))
-            //    .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.PermisoModel.Permiso))
-            //    .ReverseMap();
+            CreateMap<Usuario_PermisoModel, Componente>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PermisoModel.Id_Permiso))
+                .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => src.PermisoModel.Permiso))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.PermisoModel.Permiso))
+                .ReverseMap();
 
             CreateMap<UsuarioModel, Usuario>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))

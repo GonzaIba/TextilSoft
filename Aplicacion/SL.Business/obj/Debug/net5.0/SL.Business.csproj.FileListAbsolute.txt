@@ -14,4 +14,4 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\ref\
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Domain.pdb
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\ref\SL.Business.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\refint\SL.Business.dll

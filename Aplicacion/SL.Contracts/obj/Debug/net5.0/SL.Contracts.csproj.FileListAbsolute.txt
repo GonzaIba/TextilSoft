@@ -12,4 +12,4 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Domain.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.CopyComplete
-C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\ref\SL.Contracts.dll
+C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\refint\SL.Contracts.dll
