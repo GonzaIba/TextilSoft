@@ -30,7 +30,6 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
             this.cboFamilias.DataSource = _usuarioController.ObtenerFamilias();
             this.cboFamilias.DisplayMember = "Permiso";
-
         }
         
         private void btnConfigUsuario_Click_1(object sender, EventArgs e)

@@ -13,3 +13,18 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Domain.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.CopyComplete
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\refint\SL.Contracts.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Contracts.deps.json
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Contracts.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Contracts.pdb
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Domain.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Domain.pdb
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.AssemblyReference.cache
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.AssemblyInfoInputs.cache
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.AssemblyInfo.cs
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.CoreCompileInputs.cache
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.CopyComplete
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\refint\SL.Contracts.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.pdb
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\ref\SL.Contracts.dll

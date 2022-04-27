@@ -15,5 +15,7 @@ namespace SL.Domain.Enums
         PuedeHacerE,
         PuedeHacerF,
         PuedeHacerG,
+        EsFamilia,
+        SinPermisos
     }
 }

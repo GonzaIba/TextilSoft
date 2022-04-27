@@ -128,11 +128,12 @@ namespace SL.Helper.Controllers
         public IList<Familia> ObtenerFamilias()
         {
             var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos
+            var test = _mapper.Map<List<Patente>>(PermisosDto); //Convertimos los permisos a Patente
             var FamiliasDto = PermisosDto.Where(x => x.Permiso == null).ToList(); //Obtenemos las familias
             var PadreHijosDto = _permiso_PermisoService.Get().ToList(); //Obtenemos toda la tabla de relacion padre hijo
 
             List<Familia> FamiliasComposite = _mapper.Map<List<Familia>>(FamiliasDto); //Convertimos las familias a familias composite
-
+            
             foreach (var FamiliaComposite in FamiliasComposite) //Recorremos las familias para agregar agregar sus hijos...
             {
                 var PadreHijos = PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaComposite.Id).ToList(); //Obtenemos las relaciones del padre(familia) con los hijos

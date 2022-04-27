@@ -10,3 +10,15 @@ C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Dom
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\ref\SL.Domain.dll
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.pdb
 C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\SL.Domain\obj\Debug\net5.0\refint\SL.Domain.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\bin\Debug\net5.0\SL.Domain.deps.json
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\bin\Debug\net5.0\SL.Domain.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\bin\Debug\net5.0\SL.Domain.pdb
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.csproj.AssemblyReference.cache
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.AssemblyInfoInputs.cache
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.AssemblyInfo.cs
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.csproj.CoreCompileInputs.cache
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\refint\SL.Domain.dll
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\SL.Domain.pdb
+C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Domain\obj\Debug\net5.0\ref\SL.Domain.dll

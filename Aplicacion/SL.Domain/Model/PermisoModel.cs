@@ -10,6 +10,7 @@ namespace SL.Domain.Model
     {
         public int Id_Permiso { get; set; }
         public string Permiso { get; set; }
+        public string Nombre { get; set; }
         public ICollection<Usuario_PermisoModel> Usuario_Permisos { get; set; }
     }
 }

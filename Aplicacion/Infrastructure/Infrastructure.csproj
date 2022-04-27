@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj" />
-    <ProjectReference Include="..\ServiceLayer\SL.Helpers.csproj" />
+    <ProjectReference Include="..\SL.Helper\SL.Helper.csproj" />
     <ProjectReference Include="..\SL.Helper\SL.Helper.csproj" />
   </ItemGroup>
 
