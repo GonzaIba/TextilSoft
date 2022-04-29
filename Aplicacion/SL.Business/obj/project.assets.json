@@ -1743,23 +1743,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gonza\\.nuget\\packages\\": {},
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\SL.Business\\SL.Business.csproj",
+      "projectUniqueName": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Business\\SL.Business.csproj",
       "projectName": "SL.Business",
-      "projectPath": "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\SL.Business\\SL.Business.csproj",
-      "packagesPath": "C:\\Users\\gonza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\SL.Business\\obj\\",
+      "projectPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Business\\SL.Business.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Business\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\gonza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -1774,8 +1774,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj": {
-              "projectPath": "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj"
+            "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj": {
+              "projectPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\SL.Contracts\\SL.Contracts.csproj"
             }
           }
         }
@@ -1810,7 +1810,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   },

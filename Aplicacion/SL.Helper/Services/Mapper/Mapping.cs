@@ -19,13 +19,19 @@ namespace SL.Helper.Services.Mapper
             CreateMap<ProveedoresModel, ProveedoresEntity>().ReverseMap();
             CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
 
+
+
             CreateMap<PermisoModel, Patente>()
                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Permiso))
                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
                .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => ConvertToTipoPermiso(src.Permiso)))
                .ReverseMap();
 
-
+            CreateMap<Patente, Familia>()
+               .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))
+               .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+               .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => src.Permiso))
+               .ReverseMap();
 
             //CreateMap<Usuario_PermisoModel, Componente>()
             //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PermisoModel.Id_Permiso))

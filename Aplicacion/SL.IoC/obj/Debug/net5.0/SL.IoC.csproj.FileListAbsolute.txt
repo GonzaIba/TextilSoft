@@ -52,3 +52,30 @@ C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.IoC\obj\De
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.IoC\obj\Debug\net5.0\refint\SL.IoC.dll
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.pdb
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.IoC\obj\Debug\net5.0\ref\SL.IoC.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\log4net.config
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.IoC.deps.json
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.IoC.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.IoC.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Helper.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Infrastructure.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Business.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Contracts.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Infrastructure.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Helper.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\bin\Debug\net5.0\SL.Helper.dll.config
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.csproj.AssemblyReference.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.AssemblyInfoInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.AssemblyInfo.cs
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.csproj.CoreCompileInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.csproj.CopyComplete
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\refint\SL.IoC.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\SL.IoC.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.IoC\obj\Debug\net5.0\ref\SL.IoC.dll

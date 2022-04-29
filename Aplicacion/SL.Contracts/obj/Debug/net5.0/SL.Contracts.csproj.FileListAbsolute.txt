@@ -28,3 +28,18 @@ C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\refint\SL.Contracts.dll
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.pdb
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\ref\SL.Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Contracts.deps.json
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Contracts.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\bin\Debug\net5.0\SL.Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.AssemblyReference.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.AssemblyInfoInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.AssemblyInfo.cs
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.CoreCompileInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.csproj.CopyComplete
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\refint\SL.Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\SL.Contracts.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Contracts\obj\Debug\net5.0\ref\SL.Contracts.dll

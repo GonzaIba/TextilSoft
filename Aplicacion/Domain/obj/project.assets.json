@@ -5910,23 +5910,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\gonza\\.nuget\\packages\\": {},
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\Domain\\Domain.csproj",
+      "projectUniqueName": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\Domain\\Domain.csproj",
       "projectName": "Domain",
-      "projectPath": "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\Domain\\Domain.csproj",
-      "packagesPath": "C:\\Users\\gonza\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\gonza\\Desktop\\Repositorios Smartgit\\Textilsoft\\Aplicacion\\Domain\\obj\\",
+      "projectPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\Domain\\Domain.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "D:\\Repositorios-SmartGit\\TextilSoft\\Aplicacion\\Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\gonza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -6005,7 +6005,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }

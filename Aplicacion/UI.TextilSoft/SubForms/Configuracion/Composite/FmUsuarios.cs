@@ -29,7 +29,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             this.cboUsuarios.DisplayMember = "Nombre";
 
             this.cboFamilias.DataSource = _usuarioController.ObtenerFamilias();
-            this.cboFamilias.DisplayMember = "Permiso";
+            this.cboFamilias.DisplayMember = "Nombre";
         }
         
         private void btnConfigUsuario_Click_1(object sender, EventArgs e)

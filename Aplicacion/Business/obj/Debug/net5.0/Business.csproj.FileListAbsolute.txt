@@ -102,3 +102,25 @@ C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\Business\obj\
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\Business\obj\Debug\net5.0\Business.pdb
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\Business\obj\Debug\net5.0\Business.genruntimeconfig.cache
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\Business\obj\Debug\net5.0\ref\Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Business.deps.json
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Business.runtimeconfig.json
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Business.runtimeconfig.dev.json
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Business.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\SL.Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Contracts.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\bin\Debug\net5.0\SL.Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.csproj.AssemblyReference.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.AssemblyInfoInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.AssemblyInfo.cs
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.csproj.CoreCompileInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.csproj.CopyComplete
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\refint\Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\Business.genruntimeconfig.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\Business\obj\Debug\net5.0\ref\Business.dll

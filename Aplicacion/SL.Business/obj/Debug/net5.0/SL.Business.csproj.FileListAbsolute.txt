@@ -32,3 +32,20 @@ C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Business\o
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Business\obj\Debug\net5.0\refint\SL.Business.dll
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.pdb
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Business\obj\Debug\net5.0\ref\SL.Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Business.deps.json
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Business.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Contracts.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\bin\Debug\net5.0\SL.Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.csproj.AssemblyReference.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.AssemblyInfoInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.AssemblyInfo.cs
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.csproj.CoreCompileInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.csproj.CopyComplete
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\refint\SL.Business.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\SL.Business.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Business\obj\Debug\net5.0\ref\SL.Business.dll

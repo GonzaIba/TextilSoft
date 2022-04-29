@@ -127,13 +127,60 @@ namespace SL.Helper.Controllers
         
         public IList<Familia> ObtenerFamilias()
         {
-            var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos
-            var test = _mapper.Map<List<Patente>>(PermisosDto); //Convertimos los permisos a Patente
-            var FamiliasDto = PermisosDto.Where(x => x.Permiso == null).ToList(); //Obtenemos las familias
-            var PadreHijosDto = _permiso_PermisoService.Get().ToList(); //Obtenemos toda la tabla de relacion padre hijo
+            //var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos
+            //var test = _mapper.Map<List<Patente>>(PermisosDto); //Convertimos los permisos a Patente
+            //var FamiliasDto = PermisosDto.Where(x => x.Permiso == null).ToList(); //Obtenemos las familias
+            //var PadreHijosDto = _permiso_PermisoService.Get().ToList(); //Obtenemos toda la tabla de relacion padre hijo
 
-            List<Familia> FamiliasComposite = _mapper.Map<List<Familia>>(FamiliasDto); //Convertimos las familias a familias composite
-            
+            //List<Familia> FamiliasComposite = _mapper.Map<List<Familia>>(FamiliasDto); //Convertimos las familias a familias composite
+
+            //foreach (var FamiliaComposite in FamiliasComposite) //Recorremos las familias para agregar agregar sus hijos...
+            //{
+            //    var PadreHijos = PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaComposite.Id).ToList(); //Obtenemos las relaciones del padre(familia) con los hijos
+            //    foreach (var item in PadreHijos) //Recorremos los permisos de la familia y se los agregamos
+            //    {
+            //        var PermisosDeLaFamilia = PermisosDto.Where(x => x.Id_Permiso == item.Id_Permiso_Hijo && x.Permiso != null).ToList(); //Obt
+            //        foreach (var Permiso in PermisosDeLaFamilia) //Recorremos los permisos de la familia y se lo agregamos
+            //        {
+            //            FamiliaComposite.AgregarHijo(new Patente
+            //            {
+            //                Id = Permiso.Id_Permiso,
+            //                Nombre = Permiso.Permiso
+            //            });
+            //        }
+            //    }
+            //}
+
+            ////Una vez llegado acá, tenemos una lista de familias con sus permisos, y ahora vamos a agregar familia a otra familia sin que exista dependencia circular
+            //int Contador = 0;
+            //foreach (var item in PadreHijosDto)
+            //{
+            //    var FamiliaHijaDto = PermisosDto.Where(x => x.Id_Permiso == item.Id_Permiso_Hijo && x.Permiso == null).FirstOrDefault(); //A través del id del hijo obtenemos la familia (hija)
+            //    if (FamiliaHijaDto == null)
+            //        continue;
+            //    foreach (var FamiliaPadre in FamiliasComposite.Where(x => x.Id == item.Id_Permiso_Padre))//A través del id del padre obtenemos la familia (padre)
+            //    {
+            //        if (PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaPadre.Id).Any() && Contador > 0) //No puede haber dependencia circular entre familias...
+            //        {
+            //            Contador = 0;
+            //            break;
+            //        }
+            //        var FamiliaHija = FamiliasComposite.Where(x => x.Id == FamiliaHijaDto.Id_Permiso).FirstOrDefault();
+            //        FamiliaPadre.AgregarHijo(FamiliaHija);
+            //        Contador++;
+            //    }
+            //}
+
+            //return FamiliasComposite;
+
+
+            var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos
+            var Permisos = _mapper.Map<List<Patente>>(PermisosDto); //Convertimos los permisos a Patente
+            var FamiliasSinCastear = Permisos.Where(x => x.Permiso == TipoPermiso.EsFamilia).ToList(); //
+            List<Familia> FamiliasComposite = FamiliasSinCastear.Select(x => new Familia{Id = x.Id,Nombre = x.Nombre,Permiso = x.Permiso}).ToList(); //Convertimos la lista de patentes a lista de familias
+            var PadreHijosDto = _permiso_PermisoService.Get().ToList(); //Obtenemos toda la tabla de relacion padre hijo
+            //Convertimos las familias a familias composite
+
             foreach (var FamiliaComposite in FamiliasComposite) //Recorremos las familias para agregar agregar sus hijos...
             {
                 var PadreHijos = PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaComposite.Id).ToList(); //Obtenemos las relaciones del padre(familia) con los hijos

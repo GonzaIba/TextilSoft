@@ -44,3 +44,26 @@ C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Infrastruc
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\refint\SL.Infrastructure.dll
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.pdb
 C:\Users\gonza\Desktop\Repositorios Smartgit\Textilsoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\ref\SL.Infrastructure.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\log4net.config
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Infrastructure.deps.json
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Infrastructure.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Infrastructure.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Contracts.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Domain.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Helper.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Contracts.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Helper.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\SL.Helper.dll.config
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\bin\Debug\net5.0\Domain.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.csproj.AssemblyReference.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.AssemblyInfoInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.AssemblyInfo.cs
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.csproj.CopyComplete
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\refint\SL.Infrastructure.dll
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\SL.Infrastructure.pdb
+D:\Repositorios-SmartGit\TextilSoft\Aplicacion\SL.Infrastructure\obj\Debug\net5.0\ref\SL.Infrastructure.dll
