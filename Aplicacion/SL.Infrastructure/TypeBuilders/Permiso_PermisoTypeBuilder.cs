@@ -16,11 +16,11 @@ namespace SL.Infrastructure.TypeBuilders
             builder.HasKey(p => p.Id_Permiso_Permiso);
 
             builder.Property(p => p.Id_Permiso_Hijo)
-                .IsRequired(true)
+                .IsRequired(false)
                 .HasColumnType("int");
 
             builder.Property(p => p.Id_Permiso_Padre)
-                .IsRequired(true)
+                .IsRequired(false)
                 .HasColumnType("int");
 
             builder.ToTable("permiso_permiso");

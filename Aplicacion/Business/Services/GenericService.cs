@@ -43,7 +43,7 @@ namespace Business.Services
             _unitOfWork.Save();
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", bool ignoreQueryFilters = false, bool tracking = true)
+        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", bool ignoreQueryFilters = false, bool tracking = false)
         {
             var result = _repository.Get(filter, orderBy, includeProperties, ignoreQueryFilters, tracking);
             return result;

@@ -20,7 +20,7 @@ namespace SL.Domain.Model
         public int DNI { get; set; }
         public int AccesFailed { get; set; }
         public bool EmailConfirmado { get; set; }
-        public DateTime DateTimeEmail { get; set; }
+        public DateTime? DateTimeEmail { get; set; }
         public string NumeroTeléfono { get; set; }
         public ICollection<Usuario_PermisoModel> Usuario_Permisos { get; set; }
     }

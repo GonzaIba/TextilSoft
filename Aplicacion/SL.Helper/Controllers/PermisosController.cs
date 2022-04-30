@@ -3,6 +3,7 @@ using SL.Contracts;
 using SL.Contracts.Services;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
+using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,11 +34,22 @@ namespace SL.Helper.Controllers
             var PermisosDto = _permisoService.ObtenerPermisos();
             List<Patente> Patentes = _mapper.Map<List<Patente>>(PermisosDto);
             //Removemos los permisos que no esten en el enum
-            Patentes.RemoveAll(x => x.Permiso == TipoPermiso.SinPermisos);
+            Patentes.RemoveAll(x => x.Permiso == TipoPermiso.SinPermisos || x.Permiso == TipoPermiso.EsFamilia);
             //IMPORTANTE: La idea es que los SinPermisos se puedan modificar en la interfaz del usuario (Los SinPermisos pueden traer conflictos)
             
 
             return Patentes;
+        }
+
+        public void CrearPermiso(Patente patente)
+        {
+            if(_permisoService.Get(x =>x.Nombre == patente.Nombre).Any())
+                throw new Exception("El permiso ya existe");
+            else if(String.IsNullOrEmpty(patente.Nombre))
+                throw new Exception("El el permiso debe tener un nombre");
+
+            var PermisoDto = _mapper.Map<PermisoModel>(patente);
+            _permisoService.Insertar(PermisoDto);
         }
     }
 }

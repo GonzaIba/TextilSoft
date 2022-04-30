@@ -28,6 +28,6 @@ namespace SL.Contracts
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "",
             bool ignoreQueryFilters = false,
-            bool tracking = true);
+            bool tracking = false);
     }
 }

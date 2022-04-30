@@ -22,7 +22,7 @@ namespace SL.Business
         public virtual void Insertar(T entities)
         {
             _repository.Insert(entities);
-            //_unitOfWork.Save();
+            _unitOfWork.Save();
         }
 
         public void Actualizar(T entities)
@@ -42,7 +42,7 @@ namespace SL.Business
             _unitOfWork.Save();
         }
 
-        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", bool ignoreQueryFilters = false, bool tracking = true)
+        public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", bool ignoreQueryFilters = false, bool tracking = false)
         {
             var result = _repository.Get(filter, orderBy, includeProperties, ignoreQueryFilters, tracking);
             return result;

@@ -10,5 +10,6 @@ namespace SL.Contracts
     public interface IPermisosController
     {
         List<Patente> ObtenerPermisos(); //Devuelve la lista de patentes (que no sean null)
+        void CrearPermiso(Patente patente); //Agrega una patente a la lista de patentes
     }
 }

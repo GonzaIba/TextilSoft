@@ -1,0 +1,11 @@
+Problema:
+Cuando hago el segundo get no funciona todo bien:
+Quiero implementar un poco de hilos / asincronismo en c#. Cada cierto tiempo
+ejecuto un evento (timer) que actualiza los combobox (patentes y familias) y
+Cuando hace el primer get me trae la info actualizada, pero al hacer la segunda no
+(los dos gets apuntan a la misma tabla solo q uno lo hace mediante el service)
+
+EDIT 17:52 30/4/2022:
+Por algún motivo empezó a funcionar como debería (hay algun mapeo o type builder mal hecho?...)
+
+

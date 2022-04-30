@@ -19,6 +19,34 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(true)
                 .HasColumnType("varchar(100)");
 
+            builder.Property(p => p.Contraseña)
+                .IsRequired(true)
+                .HasColumnType("varchar(200)");
+
+            builder.Property(p => p.Email)
+                .IsRequired(false)
+                .HasColumnType("varchar(200)");
+            
+            builder.Property(p => p.DNI)
+                .IsRequired(true)
+                .HasColumnType("int");
+
+            builder.Property(p => p.AccesFailed)
+                .IsRequired(true)
+                .HasColumnType("int");
+
+            builder.Property(p => p.EmailConfirmado)
+                .IsRequired(true)
+                .HasColumnType("bit");
+
+            builder.Property(p => p.DateTimeEmail)
+                .IsRequired(false)
+                .HasColumnType("datetime");
+
+            builder.Property(p => p.NumeroTeléfono)
+                .IsRequired(false)
+                .HasColumnType("varchar(50)");
+
             builder.ToTable("usuarios");
         }
     }
