@@ -9,6 +9,10 @@ namespace SL.Contracts.Services
 {
     public interface IPermisoService : IGenericService<PermisoModel>
     {
-        
+        /// <summary>
+        /// Devuelve los permisos
+        /// </summary>
+        /// <returns></returns>
+        List<PermisoModel> ObtenerPermisos();
     }
 }

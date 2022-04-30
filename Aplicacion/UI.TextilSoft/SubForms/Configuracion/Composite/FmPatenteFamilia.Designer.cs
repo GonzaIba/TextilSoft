@@ -33,16 +33,17 @@
             this.btnCrearFamilia = new FontAwesome.Sharp.IconButton();
             this.cboFamilias = new System.Windows.Forms.ComboBox();
             this.cboPatentes = new System.Windows.Forms.ComboBox();
-            this.cboUsuarios = new System.Windows.Forms.ComboBox();
+            this.cboPermisos = new System.Windows.Forms.ComboBox();
             this.lblPatentes = new System.Windows.Forms.Label();
             this.lblFamilias = new System.Windows.Forms.Label();
             this.lblUsuarios = new System.Windows.Forms.Label();
-            this.iconButton2 = new FontAwesome.Sharp.IconButton();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.btnConfigurarFamilia = new FontAwesome.Sharp.IconButton();
+            this.treeConfigurarFamilia = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.lblCrearPatente = new System.Windows.Forms.Label();
             this.btnCrearPatente = new FontAwesome.Sharp.IconButton();
+            this.btnGuardarConfiguracion = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // btnAgregarFamilia
@@ -106,13 +107,13 @@
             this.cboPatentes.Size = new System.Drawing.Size(191, 23);
             this.cboPatentes.TabIndex = 15;
             // 
-            // cboUsuarios
+            // cboPermisos
             // 
-            this.cboUsuarios.FormattingEnabled = true;
-            this.cboUsuarios.Location = new System.Drawing.Point(260, 215);
-            this.cboUsuarios.Name = "cboUsuarios";
-            this.cboUsuarios.Size = new System.Drawing.Size(121, 23);
-            this.cboUsuarios.TabIndex = 14;
+            this.cboPermisos.FormattingEnabled = true;
+            this.cboPermisos.Location = new System.Drawing.Point(260, 215);
+            this.cboPermisos.Name = "cboPermisos";
+            this.cboPermisos.Size = new System.Drawing.Size(152, 23);
+            this.cboPermisos.TabIndex = 14;
             // 
             // lblPatentes
             // 
@@ -144,27 +145,28 @@
             this.lblUsuarios.TabIndex = 11;
             this.lblUsuarios.Text = "Crear Familia";
             // 
-            // iconButton2
+            // btnConfigurarFamilia
             // 
-            this.iconButton2.FlatAppearance.BorderSize = 0;
-            this.iconButton2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton2.ForeColor = System.Drawing.Color.White;
-            this.iconButton2.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton2.IconColor = System.Drawing.Color.Black;
-            this.iconButton2.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton2.Location = new System.Drawing.Point(108, 108);
-            this.iconButton2.Name = "iconButton2";
-            this.iconButton2.Size = new System.Drawing.Size(75, 23);
-            this.iconButton2.TabIndex = 20;
-            this.iconButton2.Text = "Configurar";
-            this.iconButton2.UseVisualStyleBackColor = true;
+            this.btnConfigurarFamilia.FlatAppearance.BorderSize = 0;
+            this.btnConfigurarFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfigurarFamilia.ForeColor = System.Drawing.Color.White;
+            this.btnConfigurarFamilia.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnConfigurarFamilia.IconColor = System.Drawing.Color.Black;
+            this.btnConfigurarFamilia.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnConfigurarFamilia.Location = new System.Drawing.Point(108, 108);
+            this.btnConfigurarFamilia.Name = "btnConfigurarFamilia";
+            this.btnConfigurarFamilia.Size = new System.Drawing.Size(75, 23);
+            this.btnConfigurarFamilia.TabIndex = 20;
+            this.btnConfigurarFamilia.Text = "Configurar";
+            this.btnConfigurarFamilia.UseVisualStyleBackColor = true;
+            this.btnConfigurarFamilia.Click += new System.EventHandler(this.iconButton2_Click);
             // 
-            // treeView1
+            // treeConfigurarFamilia
             // 
-            this.treeView1.Location = new System.Drawing.Point(491, 51);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(363, 251);
-            this.treeView1.TabIndex = 21;
+            this.treeConfigurarFamilia.Location = new System.Drawing.Point(491, 51);
+            this.treeConfigurarFamilia.Name = "treeConfigurarFamilia";
+            this.treeConfigurarFamilia.Size = new System.Drawing.Size(363, 251);
+            this.treeConfigurarFamilia.TabIndex = 21;
             // 
             // label1
             // 
@@ -208,29 +210,46 @@
             this.btnCrearPatente.Text = "Crear";
             this.btnCrearPatente.UseVisualStyleBackColor = true;
             // 
+            // btnGuardarConfiguracion
+            // 
+            this.btnGuardarConfiguracion.FlatAppearance.BorderSize = 0;
+            this.btnGuardarConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGuardarConfiguracion.ForeColor = System.Drawing.Color.White;
+            this.btnGuardarConfiguracion.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnGuardarConfiguracion.IconColor = System.Drawing.Color.Black;
+            this.btnGuardarConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnGuardarConfiguracion.Location = new System.Drawing.Point(600, 306);
+            this.btnGuardarConfiguracion.Name = "btnGuardarConfiguracion";
+            this.btnGuardarConfiguracion.Size = new System.Drawing.Size(144, 44);
+            this.btnGuardarConfiguracion.TabIndex = 26;
+            this.btnGuardarConfiguracion.Text = "Guardar Configuracion";
+            this.btnGuardarConfiguracion.UseVisualStyleBackColor = true;
+            // 
             // FmPatenteFamilia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.btnGuardarConfiguracion);
             this.Controls.Add(this.btnCrearPatente);
             this.Controls.Add(this.lblCrearPatente);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.iconButton2);
+            this.Controls.Add(this.treeConfigurarFamilia);
+            this.Controls.Add(this.btnConfigurarFamilia);
             this.Controls.Add(this.btnAgregarFamilia);
             this.Controls.Add(this.btnAgregarPatentes);
             this.Controls.Add(this.btnCrearFamilia);
             this.Controls.Add(this.cboFamilias);
             this.Controls.Add(this.cboPatentes);
-            this.Controls.Add(this.cboUsuarios);
+            this.Controls.Add(this.cboPermisos);
             this.Controls.Add(this.lblPatentes);
             this.Controls.Add(this.lblFamilias);
             this.Controls.Add(this.lblUsuarios);
             this.Name = "FmPatenteFamilia";
             this.Text = "FmPatenteFamilia";
+            this.Load += new System.EventHandler(this.FmPatenteFamilia_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -243,15 +262,16 @@
         private FontAwesome.Sharp.IconButton btnCrearFamilia;
         private System.Windows.Forms.ComboBox cboFamilias;
         private System.Windows.Forms.ComboBox cboPatentes;
-        private System.Windows.Forms.ComboBox cboUsuarios;
+        private System.Windows.Forms.ComboBox cboPermisos;
         private System.Windows.Forms.Label lblPatentes;
         private System.Windows.Forms.Label lblFamilias;
         private System.Windows.Forms.Label lblUsuarios;
-        private FontAwesome.Sharp.IconButton iconButton2;
-        private System.Windows.Forms.TreeView treeView1;
+        private FontAwesome.Sharp.IconButton btnConfigurarFamilia;
+        private System.Windows.Forms.TreeView treeConfigurarFamilia;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label lblCrearPatente;
         private FontAwesome.Sharp.IconButton btnCrearPatente;
+        private FontAwesome.Sharp.IconButton btnGuardarConfiguracion;
     }
 }

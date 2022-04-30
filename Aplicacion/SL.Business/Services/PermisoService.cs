@@ -17,5 +17,10 @@ namespace SL.Business.Services
         {
         }
 
+        public List<PermisoModel> ObtenerPermisos()
+        {
+            var Permisos = Get(x => x.Permiso != null).ToList();
+            return Permisos;
+        }
     }
 }
