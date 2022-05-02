@@ -11,14 +11,19 @@ using System.Text;
 using System.Threading.Tasks;
 using UI.TextilSoft.Tools.ExtensionsControls;
 using System.Windows.Forms;
+using UI.TextilSoft.Tools;
 
 namespace UI.TextilSoft.SubForms.Configuracion.Composite
 {
     public partial class FmPatenteFamilia : Form
     {
         #region Properties, Lists and DI
+        
         private List<Patente> ListaPatentes;
         private List<Familia> ListaFamilias;
+        private int SeleccionCboPatentes;
+        private int SeleccionCboFamilias;
+
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
         Familia seleccion;
@@ -30,27 +35,19 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             _usuarioController = usuarioController;
             _permisosController = permisosController;
             CheckForIllegalCrossThreadCalls = false;
-            //var timer = new System.Timers.Timer(TimeSpan.FromMinutes(1).TotalMilliseconds); // Se ejecutara cada 10 minutos
-            //timer.Elapsed += async (sender, e) =>
-            //{
-            //    LoadForm();
-            //};
-            //timer.tick += new EventHandler(timer_Tick);
-            //timer.Start();
 
             //Se carga las listas
             CargarListasEnMemoria();
 
             //Este timer se ejecuta cada cierto tiempo
-            System.Windows.Forms.Timer timer1 = new System.Windows.Forms.Timer();
-            timer1.Interval = 30000;//20 secs
+            Timer timer1 = new Timer();
+            timer1.Interval = 8000;//20 secs
             timer1.Tick += new System.EventHandler(timer_Tick);
             timer1.Start();
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
-            //refresh here...
             RotateBtn();
             //LoadForm();
             Refresh();
@@ -59,6 +56,9 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private void FmPatenteFamilia_Load(object sender, EventArgs e)
         {
+            //var user = _usuarioController.ObtenerUsuariosCompletos();
+
+            
             LoadForm();
             btnRefresh.Visible = false;
             lblRefresh.Visible = false;
@@ -66,11 +66,9 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private void iconButton2_Click(object sender, EventArgs e)
         {
-            var tmp = (Familia)this.cboFamilias.SelectedItem;
+            var tmp = (Familia)this.cboFamilias.SelectedItem ?? ListaFamilias?.GetRange(cboFamilias.SelectedIndex == -1 ? 0 : cboFamilias.SelectedIndex, ListaFamilias.Count)?.FirstOrDefault() ?? throw new Exception("Ocurrió un error...");
             seleccion = tmp;
             MostrarFamilia();
-
-
         }
 
 
@@ -105,12 +103,25 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                 {
                     MostrarEnTreeView(n, item);
                 }
-
         }
 
         private void btnAgregarPatentes_Click(object sender, EventArgs e)
         {
-
+            if (seleccion != null)
+            {
+                var patente = (Patente)cboPatentes.SelectedItem;
+                if (patente != null)
+                {
+                    var esta = _permisosController.Existe(seleccion, patente.Id);
+                    if (esta)
+                        MessageBox.Show("ya exsite la patente indicada");
+                    else
+                    {
+                        seleccion.AgregarHijo(patente);
+                        MostrarFamilia(false);
+                    }
+                }
+            }
         }
 
         private void btnCrearPatente_Click(object sender, EventArgs e)
@@ -133,17 +144,10 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
 
 
-        
+
 
         private void LoadForm()
         {
-            //this.cboPatentes.DataSource = ListaPatentes;
-            //this.cboPatentes.DisplayMember = "Nombre";
-
-            //this.cboFamilias.DataSource = ListaFamilias;
-            //this.cboFamilias.DisplayMember = "Nombre";
-
-            //this.cboPermisos.DataSource = GetAllPermission();
             cboFamilias.Items.Clear();
             cboPatentes.Items.Clear();
 
@@ -159,6 +163,12 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             this.cboFamilias.DisplayMember = "Nombre";
 
             this.cboPermisos.DataSource = GetAllPermission();
+
+            cboFamilias.SelectedIndex = SeleccionCboFamilias;
+            cboPatentes.SelectedIndex = SeleccionCboPatentes;
+
+            //seleccion = ListaFamilias?.GetRange(SeleccionCboFamilias == -1?0: SeleccionCboFamilias, ListaFamilias.Count)?.FirstOrDefault();
+            //seleccion = ListaFamilias?.GetRange(cboFamilias.SelectedIndex == -1 ? 0 : cboFamilias.SelectedIndex, ListaFamilias.Count)?.FirstOrDefault() ?? throw new Exception("Ocurrió un error...");
         }
 
 
@@ -178,16 +188,32 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         {
             btnRefresh.Visible = true;
             lblRefresh.Visible = true;
+            Refresh();
+            FmTools fmTools = new FmTools(Size.Width, Size.Height, Color.Blue, Location);
             await Task.Run(() =>
             {
+                // Usamos BeginInvoke para evitar el bloqueo y excepción de subprocesos cruzados ilegales
+                this.BeginInvoke(new Action(() =>
+                {
+                    fmTools.ShowDialog();
+                }));
+
+
+                //fmTools.Show();
                 CargarListasEnMemoria(); //Cargamos en memoria (Listas) los datos y mostramos la animación del botón
                 for (int i = 0; i < 1000; i=i+5)
                 {
                     this.btnRefresh.Rotation = i;
                     System.Threading.Thread.Sleep(1);
                 }
+                
                 LoadForm(); //Los datos en memoria los pasamos a los combobox
-            });
+            }).ContinueWith(new Action<Task>(task =>
+            {
+                // No es necesario usar BeginInvoke aca
+                // porque se llamó a ContinueWith con TaskScheduler.FromCurrentSynchronizationContext()
+                fmTools.Close();
+            }), TaskScheduler.FromCurrentSynchronizationContext()); ;
             Refresh();
             btnRefresh.Visible = false;
             lblRefresh.Visible = false;
@@ -199,7 +225,15 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         {
             ListaFamilias = _usuarioController.ObtenerFamilias().ToList();
             ListaPatentes = _permisosController.ObtenerPermisos().ToList();
+            
+            //Guardamos en una variable la ubicacion int del combobox
+            SeleccionCboFamilias = this.cboFamilias.SelectedIndex;
+            SeleccionCboPatentes = this.cboPatentes.SelectedIndex;
         }
         
+        private void btnAgregarFamilia_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

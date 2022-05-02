@@ -51,5 +51,22 @@ namespace SL.Helper.Controllers
             var PermisoDto = _mapper.Map<PermisoModel>(patente);
             _permisoService.Insertar(PermisoDto);
         }
+
+        public bool Existe(Componente c, int id)
+        {
+            bool existe = false;
+
+            if (c.Id.Equals(id))
+                existe = true;
+            else
+                foreach (var item in c.Hijos)
+                {
+
+                    existe = Existe(item, id);
+                    if (existe) return true;
+                }
+
+            return existe;
+        }
     }
 }
