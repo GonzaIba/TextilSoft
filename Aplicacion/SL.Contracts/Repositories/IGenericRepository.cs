@@ -28,6 +28,12 @@ namespace SL.Contracts
         void Delete(T entities);
 
         /// <summary>
+        /// Elimina La lista de clases especificada
+        /// </summary>
+        /// <param name="entities"></param>
+        void Delete(List<T> entities);
+
+        /// <summary>
         /// En caso de que falle una operacion a la base de datos se llamaria a este metodo.
         /// Recomendacion: Utilizarlo en un try catch
         /// </summary>

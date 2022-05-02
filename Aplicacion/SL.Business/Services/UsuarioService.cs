@@ -90,7 +90,7 @@ namespace SL.Business
 
         #endregion
 
-
+        #region Composite
         public void GuardarPermisos(Usuario usuario)
         {
             try
@@ -120,7 +120,8 @@ namespace SL.Business
                 throw ex;
             }    
         }
-
+        
+        #endregion
 
         #region Email
         public void SendPasswordChangedMail(string email)

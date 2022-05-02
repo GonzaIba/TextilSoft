@@ -15,6 +15,8 @@ namespace SL.Contracts
 
         void Eliminar(T entities);
 
+        void Eliminar(List<T> entities);
+
         IEnumerable<T> GetAll();
 
         T GetById(object id);

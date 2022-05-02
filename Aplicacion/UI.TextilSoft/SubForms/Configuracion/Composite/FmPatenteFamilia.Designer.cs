@@ -47,6 +47,7 @@
             this.txtCrearPatente = new System.Windows.Forms.TextBox();
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.lblRefresh = new System.Windows.Forms.Label();
+            this.txtPatente = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnAgregarFamilia
@@ -73,9 +74,9 @@
             this.btnAgregarPatentes.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnAgregarPatentes.IconColor = System.Drawing.Color.Black;
             this.btnAgregarPatentes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarPatentes.Location = new System.Drawing.Point(260, 124);
+            this.btnAgregarPatentes.Location = new System.Drawing.Point(260, 149);
             this.btnAgregarPatentes.Name = "btnAgregarPatentes";
-            this.btnAgregarPatentes.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarPatentes.Size = new System.Drawing.Size(62, 23);
             this.btnAgregarPatentes.TabIndex = 18;
             this.btnAgregarPatentes.Text = "Agregar";
             this.btnAgregarPatentes.UseVisualStyleBackColor = true;
@@ -89,7 +90,7 @@
             this.btnCrearFamilia.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCrearFamilia.IconColor = System.Drawing.Color.Black;
             this.btnCrearFamilia.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCrearFamilia.Location = new System.Drawing.Point(13, 257);
+            this.btnCrearFamilia.Location = new System.Drawing.Point(13, 275);
             this.btnCrearFamilia.Name = "btnCrearFamilia";
             this.btnCrearFamilia.Size = new System.Drawing.Size(55, 23);
             this.btnCrearFamilia.TabIndex = 17;
@@ -111,11 +112,12 @@
             this.cboPatentes.Name = "cboPatentes";
             this.cboPatentes.Size = new System.Drawing.Size(175, 23);
             this.cboPatentes.TabIndex = 15;
+            this.cboPatentes.SelectedIndexChanged += new System.EventHandler(this.cboPatentes_SelectedIndexChanged);
             // 
             // cboPermisos
             // 
             this.cboPermisos.FormattingEnabled = true;
-            this.cboPermisos.Location = new System.Drawing.Point(260, 231);
+            this.cboPermisos.Location = new System.Drawing.Point(260, 249);
             this.cboPermisos.Name = "cboPermisos";
             this.cboPermisos.Size = new System.Drawing.Size(175, 23);
             this.cboPermisos.TabIndex = 14;
@@ -144,7 +146,7 @@
             // 
             this.lblUsuarios.AutoSize = true;
             this.lblUsuarios.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarios.Location = new System.Drawing.Point(13, 201);
+            this.lblUsuarios.Location = new System.Drawing.Point(13, 219);
             this.lblUsuarios.Name = "lblUsuarios";
             this.lblUsuarios.Size = new System.Drawing.Size(76, 15);
             this.lblUsuarios.TabIndex = 11;
@@ -170,7 +172,7 @@
             // 
             this.treeConfigurarFamilia.Location = new System.Drawing.Point(491, 67);
             this.treeConfigurarFamilia.Name = "treeConfigurarFamilia";
-            this.treeConfigurarFamilia.Size = new System.Drawing.Size(363, 251);
+            this.treeConfigurarFamilia.Size = new System.Drawing.Size(382, 260);
             this.treeConfigurarFamilia.TabIndex = 21;
             // 
             // label1
@@ -185,7 +187,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 231);
+            this.textBox1.Location = new System.Drawing.Point(13, 249);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(170, 23);
             this.textBox1.TabIndex = 23;
@@ -194,7 +196,7 @@
             // 
             this.lblCrearPatente.AutoSize = true;
             this.lblCrearPatente.ForeColor = System.Drawing.Color.White;
-            this.lblCrearPatente.Location = new System.Drawing.Point(260, 201);
+            this.lblCrearPatente.Location = new System.Drawing.Point(260, 219);
             this.lblCrearPatente.Name = "lblCrearPatente";
             this.lblCrearPatente.Size = new System.Drawing.Size(78, 15);
             this.lblCrearPatente.TabIndex = 24;
@@ -208,7 +210,7 @@
             this.btnCrearPatente.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCrearPatente.IconColor = System.Drawing.Color.Black;
             this.btnCrearPatente.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCrearPatente.Location = new System.Drawing.Point(257, 305);
+            this.btnCrearPatente.Location = new System.Drawing.Point(257, 323);
             this.btnCrearPatente.Name = "btnCrearPatente";
             this.btnCrearPatente.Size = new System.Drawing.Size(55, 23);
             this.btnCrearPatente.TabIndex = 25;
@@ -224,16 +226,17 @@
             this.btnGuardarConfiguracion.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnGuardarConfiguracion.IconColor = System.Drawing.Color.Black;
             this.btnGuardarConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnGuardarConfiguracion.Location = new System.Drawing.Point(600, 322);
+            this.btnGuardarConfiguracion.Location = new System.Drawing.Point(600, 333);
             this.btnGuardarConfiguracion.Name = "btnGuardarConfiguracion";
-            this.btnGuardarConfiguracion.Size = new System.Drawing.Size(144, 44);
+            this.btnGuardarConfiguracion.Size = new System.Drawing.Size(144, 30);
             this.btnGuardarConfiguracion.TabIndex = 26;
             this.btnGuardarConfiguracion.Text = "Guardar Configuracion";
             this.btnGuardarConfiguracion.UseVisualStyleBackColor = true;
+            this.btnGuardarConfiguracion.Click += new System.EventHandler(this.btnGuardarConfiguracion_Click);
             // 
             // txtCrearPatente
             // 
-            this.txtCrearPatente.Location = new System.Drawing.Point(260, 276);
+            this.txtCrearPatente.Location = new System.Drawing.Point(260, 294);
             this.txtCrearPatente.Name = "txtCrearPatente";
             this.txtCrearPatente.Size = new System.Drawing.Size(175, 23);
             this.txtCrearPatente.TabIndex = 27;
@@ -264,12 +267,21 @@
             this.lblRefresh.TabIndex = 29;
             this.lblRefresh.Text = "Aguarde un momento, estamos actualizando los datos";
             // 
+            // txtPatente
+            // 
+            this.txtPatente.Location = new System.Drawing.Point(260, 120);
+            this.txtPatente.Name = "txtPatente";
+            this.txtPatente.ReadOnly = true;
+            this.txtPatente.Size = new System.Drawing.Size(175, 23);
+            this.txtPatente.TabIndex = 30;
+            // 
             // FmPatenteFamilia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.txtPatente);
             this.Controls.Add(this.lblRefresh);
             this.Controls.Add(this.btnRefresh);
             this.Controls.Add(this.txtCrearPatente);
@@ -318,5 +330,6 @@
         private System.Windows.Forms.TextBox txtCrearPatente;
         private FontAwesome.Sharp.IconButton btnRefresh;
         private System.Windows.Forms.Label lblRefresh;
+        private System.Windows.Forms.TextBox txtPatente;
     }
 }

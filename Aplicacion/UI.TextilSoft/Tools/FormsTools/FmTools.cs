@@ -16,7 +16,7 @@ namespace UI.TextilSoft.Tools
         {
             InitializeComponent();
             Size = new Size(SizeWidth, SizeHeight);
-            Opacity = 0.1;
+            Opacity = 0.05;
             TransparencyKey = color;
             Location = new Point(location.X,location.Y);
         }

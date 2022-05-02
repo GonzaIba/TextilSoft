@@ -12,5 +12,6 @@ namespace SL.Contracts
         List<Patente> ObtenerPermisos(); //Devuelve la lista de patentes (que no sean null)
         void CrearPermiso(Patente patente); //Agrega una patente a la lista de patentes
         bool Existe(Componente c, int id);
+        void GuardarFamilia(Familia c);
     }
 }

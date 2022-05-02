@@ -1,4 +1,5 @@
-﻿using SL.Domain.Model;
+﻿using SL.Domain.Entities;
+using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,5 +15,6 @@ namespace SL.Contracts.Services
         /// </summary>
         /// <returns></returns>
         List<PermisoModel> ObtenerPermisos();
+        void GuardarFamilia(Familia c);
     }
 }

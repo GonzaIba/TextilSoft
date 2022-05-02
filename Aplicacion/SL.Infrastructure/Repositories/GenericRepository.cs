@@ -67,6 +67,11 @@ namespace SL.Infrastructure.Repositories
             this._context.Entry(entities).State = EntityState.Deleted;
         }
 
+        public void Delete(List<T> entities)
+        {
+            this._context.Entry(entities).State = EntityState.Deleted;
+        }
+
         public virtual IEnumerable<T> Get(
                 Expression<Func<T, bool>> filter = null,
                 Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,

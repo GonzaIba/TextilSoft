@@ -33,11 +33,9 @@ namespace SL.Helper.Services.Mapper
                .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => src.Permiso))
                .ReverseMap();
 
-            //CreateMap<Usuario_PermisoModel, Componente>()
-            //    .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.PermisoModel.Id_Permiso))
-            //    .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => src.PermisoModel.Nombre))
-            //    .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.PermisoModel.Permiso))
-            //    .ReverseMap();
+            CreateMap<Permiso_PermisoModel, Familia>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Permiso_Padre))
+                .ReverseMap();
 
             CreateMap<PermisoModel, Familia>()
                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Permiso))
@@ -48,7 +46,7 @@ namespace SL.Helper.Services.Mapper
             CreateMap<UsuarioModel, Usuario>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))
                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
-                ;
+                .ReverseMap();
                 //.ForMember(dest => dest.Permisos.ForEach(x =>x.AgregarHijo(opt)), opt => opt.MapFrom(src => new List<Usuario_PermisoModel>()));
         }
         public TipoPermiso ConvertToTipoPermiso(string src)

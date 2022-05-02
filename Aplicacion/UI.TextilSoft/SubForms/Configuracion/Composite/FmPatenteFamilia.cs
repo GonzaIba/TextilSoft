@@ -21,13 +21,14 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         
         private List<Patente> ListaPatentes;
         private List<Familia> ListaFamilias;
+
+        //Utilizo estas propiedades porque cuando actualizo los combobox tengo que seleccionar como estaba previamente...
         private int SeleccionCboPatentes;
         private int SeleccionCboFamilias;
 
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
         Familia seleccion;
-        Usuario tmp;
 
         public FmPatenteFamilia(IUsuarioController usuarioController, IPermisosController permisosController)
         {
@@ -130,15 +131,53 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             {
                 Nombre = this.txtCrearPatente.Text,
                 Permiso = (TipoPermiso)this.cboPermisos.SelectedItem
-
             };
 
             _permisosController.CrearPermiso(p);
         }
 
+        private void btnAgregarFamilia_Click(object sender, EventArgs e)
+        {
+            if (seleccion != null)
+            {
+                var familia = (Familia)cboFamilias.SelectedItem;
+                if (familia != null)
+                {
+                    var esta = _permisosController.Existe(seleccion, familia.Id);
+                    if (esta)
+                        MessageBox.Show("ya exsite la familia indicada");
+                    else
+                    {
+                        //repo.FillFamilyComponents(familia);
+                        seleccion.AgregarHijo(familia);
+                        MostrarFamilia(false);
+                    }
 
 
+                }
+            }
+        }
 
+        private void cboPatentes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var Patente = (Patente)this.cboPatentes.SelectedItem;
+            txtPatente.Text = Patente.Permiso.ToString();
+        }
+
+        private void btnGuardarConfiguracion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var test = seleccion ?? throw new Exception("No hay familia seleccionada");
+                _permisosController.GuardarFamilia(seleccion);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        
 
 
 
@@ -166,9 +205,6 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
             cboFamilias.SelectedIndex = SeleccionCboFamilias;
             cboPatentes.SelectedIndex = SeleccionCboPatentes;
-
-            //seleccion = ListaFamilias?.GetRange(SeleccionCboFamilias == -1?0: SeleccionCboFamilias, ListaFamilias.Count)?.FirstOrDefault();
-            //seleccion = ListaFamilias?.GetRange(cboFamilias.SelectedIndex == -1 ? 0 : cboFamilias.SelectedIndex, ListaFamilias.Count)?.FirstOrDefault() ?? throw new Exception("Ocurrió un error...");
         }
 
 
@@ -190,6 +226,8 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             lblRefresh.Visible = true;
             Refresh();
             FmTools fmTools = new FmTools(Size.Width, Size.Height, Color.Blue, Location);
+
+            
             await Task.Run(() =>
             {
                 // Usamos BeginInvoke para evitar el bloqueo y excepción de subprocesos cruzados ilegales
@@ -199,21 +237,22 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                 }));
 
 
-                //fmTools.Show();
                 CargarListasEnMemoria(); //Cargamos en memoria (Listas) los datos y mostramos la animación del botón
                 for (int i = 0; i < 1000; i=i+5)
                 {
                     this.btnRefresh.Rotation = i;
                     System.Threading.Thread.Sleep(1);
                 }
-                
                 LoadForm(); //Los datos en memoria los pasamos a los combobox
+                
             }).ContinueWith(new Action<Task>(task =>
             {
                 // No es necesario usar BeginInvoke aca
                 // porque se llamó a ContinueWith con TaskScheduler.FromCurrentSynchronizationContext()
                 fmTools.Close();
             }), TaskScheduler.FromCurrentSynchronizationContext()); ;
+
+            
             Refresh();
             btnRefresh.Visible = false;
             lblRefresh.Visible = false;
@@ -229,11 +268,6 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             //Guardamos en una variable la ubicacion int del combobox
             SeleccionCboFamilias = this.cboFamilias.SelectedIndex;
             SeleccionCboPatentes = this.cboPatentes.SelectedIndex;
-        }
-        
-        private void btnAgregarFamilia_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

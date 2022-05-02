@@ -61,12 +61,27 @@ namespace SL.Helper.Controllers
             else
                 foreach (var item in c.Hijos)
                 {
-
                     existe = Existe(item, id);
                     if (existe) return true;
                 }
 
             return existe;
+        }
+
+        public void GuardarFamilia(Familia c)
+        {
+            try
+            {
+                var PermisoPermiso = _mapper.Map<Permiso_PermisoModel>(c);
+                var test = _permiso_PermisoService.Get(x => x.Id_Permiso_Padre == c.Id).ToList();
+                _permiso_PermisoService.Eliminar(test);//Eliminamos todas las relaciones que tenia la familia
+
+                var test2 = _permiso_PermisoService.Get(x => x.Id_Permiso_Padre == c.Id).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

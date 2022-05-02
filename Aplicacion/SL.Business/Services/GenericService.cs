@@ -39,9 +39,14 @@ namespace SL.Business
         public void Eliminar(T entities)
         {
             _repository.Delete(entities);
-            _unitOfWork.Save();
+            //_unitOfWork.Save();
         }
 
+        public void Eliminar(List<T> entities)
+        {
+            _repository.Delete(entities);
+        }
+        
         public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", bool ignoreQueryFilters = false, bool tracking = false)
         {
             var result = _repository.Get(filter, orderBy, includeProperties, ignoreQueryFilters, tracking);
@@ -65,6 +70,5 @@ namespace SL.Business
 
             return result;
         }
-
     }
 }

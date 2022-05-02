@@ -34,7 +34,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 460);
+            this.ClientSize = new System.Drawing.Size(207, 175);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FmTools";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
