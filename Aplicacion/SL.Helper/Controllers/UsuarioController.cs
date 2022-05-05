@@ -56,6 +56,19 @@ namespace SL.Helper.Controllers
             }
         }
 
+        public Usuario GetUser(Login login)
+        {
+            var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña).FirstOrDefault();
+            
+        }
+
+
+
+
+
+
+
+        #region Composite
         public void GuardarPermisos(Usuario usuario)
         {
             try
@@ -96,12 +109,12 @@ namespace SL.Helper.Controllers
                 //var UsuariosPermisos = UsuariosCompletosDto.SelectMany(x => x.Usuario_Permisos).Where(x => x.Id_Usuario == usuario.Id).ToList();
                 var Permisos = UsuariosPermisos.Where(x => x.Id_Usuario == usuario.Id).ToList();
 
-                usuario?.Permisos?.AddRange(Permisos.Select(x => new Patente
+                usuario?.Permisos?.AddRange(Permisos.Where(x => x.PermisoModel.Permiso != null).Select(x => new Patente
                 {
                     Id = x.PermisoModel.Id_Permiso,
-                    Nombre = x.PermisoModel.Permiso
+                    Nombre = x.PermisoModel.Nombre,
+                    Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), x.PermisoModel.Permiso)
                 }));
-
             }
             return Usuarios;
         }
@@ -118,6 +131,10 @@ namespace SL.Helper.Controllers
                     {
                         //Si entro a este if es porque es una familia y pertenece a este usuario...
                         Familia family = Familias.Where(x => x.Id == Permisos.Id_Permiso).FirstOrDefault();
+
+                        //Eliminamos la familia del usuario porque esta incompleta y la reemplazamos por la nueva
+                        usuario.Permisos.RemoveAll(x => x.Id == family.Id);
+
                         usuario.Permisos.Add(family);
                     }
                 }
@@ -147,8 +164,9 @@ namespace SL.Helper.Controllers
                         FamiliaComposite.AgregarHijo(new Patente
                         {
                             Id = Permiso.Id_Permiso,
-                            Nombre = Permiso.Permiso
-                        });
+                            Nombre = Permiso.Nombre,
+                            Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), Permiso.Permiso)
+                    });
                     }
                 }
             }
@@ -175,9 +193,7 @@ namespace SL.Helper.Controllers
 
             return FamiliasComposite;
         }
-
-
-
+        #endregion
     }
 }
 

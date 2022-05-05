@@ -20,9 +20,10 @@ namespace SL.Business.Services
             _permiso_PermisoRepository = permiso_PermisoRepository;
         }
 
-        public void GuardarFamilia(Familia c)
+        public void CrearPermiso(PermisoModel permiso)
         {
-            //
+            Insertar(permiso);
+            _unitOfWork.Save();
         }
 
         public List<PermisoModel> ObtenerPermisos()

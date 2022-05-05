@@ -19,5 +19,17 @@ namespace SL.Business.Services
         {
             _configuration = configuration;
         }
+
+        public void GuardarPermisos(Usuario_PermisoModel usuario, List<Usuario_PermisoModel> permisos)
+        {
+            var PermisosDelUsuario = Get(x => x.Id_Usuario == usuario.Id_Usuario).ToList();
+            Eliminar(PermisosDelUsuario);
+
+            foreach (var permiso in permisos)
+            {
+                Insertar(permiso);
+            }
+            _unitOfWork.Save();
+        }
     }
 }

@@ -15,7 +15,21 @@ namespace SL.Business.Services
         public Permiso_PermisoService(IUnitOfWork unitOfWork)
         : base(unitOfWork, unitOfWork.GetRepository<IPermiso_PermisoRepository>())
         {
+            
         }
 
+        public void GuardarFamilia(Permiso_PermisoModel Padre, List<Permiso_PermisoModel> Hijos)
+        {
+            var HijosDelPadre = Get(x => x.Id_Permiso_Padre == Padre.Id_Permiso_Padre).ToList();
+            Eliminar(HijosDelPadre);//Eliminamos todas las relaciones que tenia la familia
+
+            //Recorremos hijos e insertamos con el id del padre
+            foreach (var hijo in Hijos)
+            {
+                hijo.Id_Permiso_Padre = Padre.Id_Permiso_Padre;
+                Insertar(hijo);
+            }
+            _unitOfWork.Save();
+        }
     }
 }

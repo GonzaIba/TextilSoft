@@ -40,7 +40,7 @@
             this.btnConfigurarFamilia = new FontAwesome.Sharp.IconButton();
             this.treeConfigurarFamilia = new System.Windows.Forms.TreeView();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtCrearFamilia = new System.Windows.Forms.TextBox();
             this.lblCrearPatente = new System.Windows.Forms.Label();
             this.btnCrearPatente = new FontAwesome.Sharp.IconButton();
             this.btnGuardarConfiguracion = new FontAwesome.Sharp.IconButton();
@@ -48,6 +48,7 @@
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.lblRefresh = new System.Windows.Forms.Label();
             this.txtPatente = new System.Windows.Forms.TextBox();
+            this.btnEliminar = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // btnAgregarFamilia
@@ -96,6 +97,7 @@
             this.btnCrearFamilia.TabIndex = 17;
             this.btnCrearFamilia.Text = "Crear";
             this.btnCrearFamilia.UseVisualStyleBackColor = true;
+            this.btnCrearFamilia.Click += new System.EventHandler(this.btnCrearFamilia_Click);
             // 
             // cboFamilias
             // 
@@ -174,6 +176,7 @@
             this.treeConfigurarFamilia.Name = "treeConfigurarFamilia";
             this.treeConfigurarFamilia.Size = new System.Drawing.Size(382, 260);
             this.treeConfigurarFamilia.TabIndex = 21;
+            this.treeConfigurarFamilia.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeConfigurarFamilia_MouseClick);
             // 
             // label1
             // 
@@ -185,12 +188,12 @@
             this.label1.TabIndex = 22;
             this.label1.Text = "Interfaz de Personalización";
             // 
-            // textBox1
+            // txtCrearFamilia
             // 
-            this.textBox1.Location = new System.Drawing.Point(13, 249);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(170, 23);
-            this.textBox1.TabIndex = 23;
+            this.txtCrearFamilia.Location = new System.Drawing.Point(13, 249);
+            this.txtCrearFamilia.Name = "txtCrearFamilia";
+            this.txtCrearFamilia.Size = new System.Drawing.Size(170, 23);
+            this.txtCrearFamilia.TabIndex = 23;
             // 
             // lblCrearPatente
             // 
@@ -275,12 +278,28 @@
             this.txtPatente.Size = new System.Drawing.Size(175, 23);
             this.txtPatente.TabIndex = 30;
             // 
+            // btnEliminar
+            // 
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEliminar.IconColor = System.Drawing.Color.Black;
+            this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEliminar.Location = new System.Drawing.Point(430, 179);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(59, 23);
+            this.btnEliminar.TabIndex = 31;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            // 
             // FmPatenteFamilia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.txtPatente);
             this.Controls.Add(this.lblRefresh);
             this.Controls.Add(this.btnRefresh);
@@ -288,7 +307,7 @@
             this.Controls.Add(this.btnGuardarConfiguracion);
             this.Controls.Add(this.btnCrearPatente);
             this.Controls.Add(this.lblCrearPatente);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtCrearFamilia);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.treeConfigurarFamilia);
             this.Controls.Add(this.btnConfigurarFamilia);
@@ -326,10 +345,11 @@
         private System.Windows.Forms.Label lblCrearPatente;
         private FontAwesome.Sharp.IconButton btnCrearPatente;
         private FontAwesome.Sharp.IconButton btnGuardarConfiguracion;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtCrearFamilia;
         private System.Windows.Forms.TextBox txtCrearPatente;
         private FontAwesome.Sharp.IconButton btnRefresh;
         private System.Windows.Forms.Label lblRefresh;
         private System.Windows.Forms.TextBox txtPatente;
+        private FontAwesome.Sharp.IconButton btnEliminar;
     }
 }

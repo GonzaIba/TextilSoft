@@ -42,7 +42,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
             //Este timer se ejecuta cada cierto tiempo
             Timer timer1 = new Timer();
-            timer1.Interval = 8000;//20 secs
+            timer1.Interval = 800000;//20 secs
             timer1.Tick += new System.EventHandler(timer_Tick);
             timer1.Start();
         }
@@ -138,23 +138,30 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private void btnAgregarFamilia_Click(object sender, EventArgs e)
         {
-            if (seleccion != null)
+            try
             {
-                var familia = (Familia)cboFamilias.SelectedItem;
-                if (familia != null)
+                if (seleccion != null)
                 {
-                    var esta = _permisosController.Existe(seleccion, familia.Id);
-                    if (esta)
-                        MessageBox.Show("ya exsite la familia indicada");
-                    else
+                    var familia = (Familia)cboFamilias.SelectedItem;
+                    if (familia != null)
                     {
-                        //repo.FillFamilyComponents(familia);
-                        seleccion.AgregarHijo(familia);
-                        MostrarFamilia(false);
+                        var esta = _permisosController.Existe(seleccion, familia.Id);
+                        if (esta)
+                            MessageBox.Show("ya existe la familia indicada");
+                        else
+                        {
+                            //repo.FillFamilyComponents(familia);
+                            seleccion.AgregarHijo(familia);
+                            MostrarFamilia(false);
+                        }
+
+
                     }
-
-
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -268,6 +275,47 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             //Guardamos en una variable la ubicacion int del combobox
             SeleccionCboFamilias = this.cboFamilias.SelectedIndex;
             SeleccionCboPatentes = this.cboPatentes.SelectedIndex;
+        }
+
+        private void btnCrearFamilia_Click(object sender, EventArgs e)
+        {
+            Familia p = new Familia()
+            {
+                Nombre = this.txtCrearFamilia.Text,
+                Permiso = TipoPermiso.EsFamilia
+            };
+
+            _permisosController.CrearPermiso(p);
+            CargarListasEnMemoria();
+            LoadForm();
+        }
+
+        private void treeConfigurarFamilia_MouseClick(object sender, MouseEventArgs e)
+        {
+            ContextMenuStrip my_menu = new ContextMenuStrip();
+            int position_xy_mouse_row = Convert.ToInt32(treeConfigurarFamilia.HitTest(e.X, e.Y).Location);
+                if (e.Button == MouseButtons.Right)
+                {
+                    if (position_xy_mouse_row >= 0)
+                    {
+                        my_menu.Items.Add("Agregar").Name = "Crear";
+                        my_menu.Items.Add("Eliminar").Name = "Eliminar";
+                    }
+                    my_menu.Show(treeConfigurarFamilia, new Point(e.X, e.Y));
+
+                    my_menu.ItemClicked += new ToolStripItemClickedEventHandler(my_menu_ItemClicked);
+                }
+        }
+
+        private void my_menu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name.ToString())
+            {
+                case "Eliminar":
+                    break;
+                case "Crear":
+                    break;
+            }
         }
     }
 }

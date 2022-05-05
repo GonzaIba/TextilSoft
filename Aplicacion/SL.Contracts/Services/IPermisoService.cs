@@ -15,6 +15,6 @@ namespace SL.Contracts.Services
         /// </summary>
         /// <returns></returns>
         List<PermisoModel> ObtenerPermisos();
-        void GuardarFamilia(Familia c);
+        void CrearPermiso(PermisoModel permiso);
     }
 }

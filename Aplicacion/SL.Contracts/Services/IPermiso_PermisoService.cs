@@ -9,6 +9,6 @@ namespace SL.Contracts.Services
 {
     public interface IPermiso_PermisoService : IGenericService<Permiso_PermisoModel>
     {
-        
+        void GuardarFamilia(Permiso_PermisoModel Padre,List<Permiso_PermisoModel> Hijos);
     }
 }

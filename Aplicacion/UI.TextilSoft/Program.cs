@@ -40,7 +40,7 @@ namespace UI.TextilSoft
                 .Build();
 
             var services = host.Services;
-            var mainForm = services.GetRequiredService<FmPatenteFamilia>();
+            var mainForm = services.GetRequiredService<FmUsuarios>();
             Application.Run(mainForm);
         }
 
@@ -60,12 +60,12 @@ namespace UI.TextilSoft
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory)
             );
-            services.AddSingleton<FmPatenteFamilia>();
+            services.AddSingleton<FmUsuarios>();
 
             
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
 
-            services.AddAutoMapper(typeof(FmPatenteFamilia));
+            services.AddAutoMapper(typeof(FmUsuarios));
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new Mapping());

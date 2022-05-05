@@ -19,5 +19,6 @@ namespace SL.Contracts
         IList<Usuario> ObtenerUsuarios();
         IList<Familia> ObtenerFamilias();
         void GuardarPermisos(Usuario usuario);
+        Usuario GetUser(Login login);
     }
 }

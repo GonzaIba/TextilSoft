@@ -15,21 +15,27 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
     public partial class FmUsuarios : Form
     {
         private readonly IUsuarioController _usuarioController;
+        private readonly IPermisosController _permisosController;
         Usuario seleccion;
         Usuario tmp;
-        public FmUsuarios(IUsuarioController usuarioController)
+        public FmUsuarios(IUsuarioController usuarioController, IPermisosController permisosController)
         {
             InitializeComponent();
             _usuarioController = usuarioController;
+            _permisosController = permisosController;
         }
 
         private void FmUsuarios_Load(object sender, EventArgs e)
         {
-            this.cboUsuarios.DataSource = _usuarioController.ObtenerUsuarios();
+            this.cboUsuarios.DataSource = _usuarioController.ObtenerUsuariosCompletos();
             this.cboUsuarios.DisplayMember = "Nombre";
 
             this.cboFamilias.DataSource = _usuarioController.ObtenerFamilias();
             this.cboFamilias.DisplayMember = "Nombre";
+
+            this.cboPatentes.DataSource = _permisosController.ObtenerPermisos();
+            this.cboPatentes.DisplayMember = "Nombre";
+
         }
         
         private void btnConfigUsuario_Click_1(object sender, EventArgs e)
@@ -40,7 +46,85 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             tmp = new Usuario();
             tmp.Id = seleccion.Id;
             tmp.Nombre = seleccion.Nombre;
+            tmp.Permisos.AddRange(seleccion.Permisos);
+            
+            MostrarPermisos(tmp);
+        }
 
+
+        void MostrarPermisos(Usuario u)
+        {
+            this.treeViewUsuarios.Nodes.Clear();
+            TreeNode root = new TreeNode(u.Nombre);
+
+            foreach (var item in u.Permisos)
+            {
+                LlenarTreeView(root, item);
+            }
+
+            this.treeViewUsuarios.Nodes.Add(root);
+            this.treeViewUsuarios.ExpandAll();
+        }
+        void LlenarTreeView(TreeNode padre, Componente c)
+        {
+            TreeNode hijo = new TreeNode(c.Nombre);
+            hijo.Tag = c;
+            padre.Nodes.Add(hijo);
+
+            foreach (var item in c.Hijos)
+            {
+                LlenarTreeView(hijo, item);
+            }
+        }
+
+        private void btnAgregarPatente_Click(object sender, EventArgs e)
+        {
+            if (tmp != null)
+            {
+                var patente = (Patente)cboPatentes.SelectedItem;
+                if (patente != null)
+                {
+                    var esta = false;
+
+                    foreach (var item in tmp.Permisos)
+                    {
+                        if (_permisosController.Existe(item, patente.Id) || patente.Permiso == item.Permiso)
+                        {
+                            esta = true;
+                            break;
+                        }
+                    }
+                    if (esta)
+                        MessageBox.Show("El usuario ya tiene la patente indicada");
+                    else
+                    {
+                        tmp.Permisos.Add(patente);
+                        MostrarPermisos(tmp);
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Seleccione un usuario");
+        }
+
+        private void cboPatentes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var Patente = (Patente)this.cboPatentes.SelectedItem;
+            txtPatente.Text = Patente.Permiso.ToString();
+        }
+
+        private void btnGuardarConfiguracion_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _permisosController.GuardarPermisos(tmp);
+                MessageBox.Show("Usuario guardado correctamente");
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Error al guardar el usuario");
+            }
         }
     }
 }

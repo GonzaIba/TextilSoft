@@ -47,8 +47,31 @@ namespace SL.Helper.Services.Mapper
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))
                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
                 .ReverseMap();
-                //.ForMember(dest => dest.Permisos.ForEach(x =>x.AgregarHijo(opt)), opt => opt.MapFrom(src => new List<Usuario_PermisoModel>()));
+            
+
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
         public TipoPermiso ConvertToTipoPermiso(string src)
         {
             TipoPermiso permiso;

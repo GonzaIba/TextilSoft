@@ -92,7 +92,7 @@ namespace UI.TextilSoft.MainForm
 
             if (Result == "Ok")
             {
-                //var usuario = _userController.GetUser(login);
+                var usuario = _userController.GetUser(login);
                 //_empleadosController.LoginEmpleado(usuario);
                 FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController);
                 fmTextilSoft.toolStrip1.Tag = login;
