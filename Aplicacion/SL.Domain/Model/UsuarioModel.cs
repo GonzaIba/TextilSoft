@@ -8,11 +8,11 @@ namespace SL.Domain.Model
 {
     public class UsuarioModel
     {
-        //public UsuarioModel()
-        //{
-        //    Usuario_Permisos = new List<Usuario_PermisoModel>();
-        //}
-            
+        public UsuarioModel()
+        {
+            Usuario_Permisos = new List<Usuario_PermisoModel>();
+        }
+
         public int Id_Usuario { get; set; }
         public string Nombre { get; set; }
         public string Contraseña { get; set; }
@@ -22,6 +22,8 @@ namespace SL.Domain.Model
         public bool EmailConfirmado { get; set; }
         public DateTime? DateTimeEmail { get; set; }
         public string NumeroTeléfono { get; set; }
+        public bool Active { get; set; }
+        public DateTime? DateDisabledUser { get; set; }
         public ICollection<Usuario_PermisoModel> Usuario_Permisos { get; set; }
     }
 }

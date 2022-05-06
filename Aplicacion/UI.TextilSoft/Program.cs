@@ -40,7 +40,7 @@ namespace UI.TextilSoft
                 .Build();
 
             var services = host.Services;
-            var mainForm = services.GetRequiredService<FmUsuarios>();
+            var mainForm = services.GetRequiredService<FmTextilSoft>();
             Application.Run(mainForm);
         }
 
@@ -60,12 +60,12 @@ namespace UI.TextilSoft
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory)
             );
-            services.AddSingleton<FmUsuarios>();
+            services.AddSingleton<FmTextilSoft>();
 
             
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
 
-            services.AddAutoMapper(typeof(FmUsuarios));
+            services.AddAutoMapper(typeof(FmTextilSoft));
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new Mapping());

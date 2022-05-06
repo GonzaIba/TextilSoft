@@ -59,12 +59,13 @@ namespace SL.Helper.Controllers
         public Usuario GetUser(Login login)
         {
             var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña).FirstOrDefault();
-            
+            var Usuario = _mapper.Map<Usuario>(UsuarioDto);
+            return Usuario;
         }
 
 
 
-
+        
 
 
 

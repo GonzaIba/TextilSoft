@@ -98,7 +98,7 @@ namespace UI.TextilSoft.MainForm
                 toolStrip1.Renderer = new ToolStripRenderCustom();
                 timer1.Start();
                 timer2.Start();
-                toolStripLabel1.Text = "Hola " + _userId.UserName + "!";
+                ///////////////////////////////////////////////////////////////////////toolStripLabel1.Text = "Hola " + _userId.UserName + "!";
                 //this.TraducirFormulario();
             }
             catch (Exception ex)
