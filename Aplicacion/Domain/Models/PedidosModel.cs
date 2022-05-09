@@ -30,5 +30,7 @@ namespace Domain.Models
         public virtual ICollection<FacturasModel> Factura { get; set; }
         public virtual ICollection<OrdenDeTrabajoModel> OrdenDeTrabajo { get; set; }
         public virtual EstadoPedidoModel EstadoPedido { get; set; }
+
+        //Aca hubo un tema al generar la migration. (HELP: ForeingKeys.txt)
     }
 }

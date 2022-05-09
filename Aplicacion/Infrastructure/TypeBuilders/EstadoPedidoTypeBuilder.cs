@@ -19,6 +19,9 @@ namespace Infrastructure.TypeBuilders
                 .IsRequired()
                 .HasColumnType("varchar(50)");
 
+            builder.Ignore(e => e.UpdateDate); //Las filas van a ser fijas asi que no se actualizan...
+            builder.Ignore(e => e.CreateDate);
+
             builder.ToTable("EstadoPedido");
         }
     }

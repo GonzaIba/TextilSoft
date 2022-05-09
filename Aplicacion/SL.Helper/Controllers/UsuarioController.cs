@@ -105,24 +105,58 @@ namespace SL.Helper.Controllers
         {
             //Aca Llenamos la lista de usuarios con sus permisos
             var UsuariosPermisos = _usuario_PermisoService.Get(includeProperties: "PermisoModel").ToList();
-            foreach (var usuario in Usuarios)
-            {
-                //var UsuariosPermisos = UsuariosCompletosDto.SelectMany(x => x.Usuario_Permisos).Where(x => x.Id_Usuario == usuario.Id).ToList();
-                var Permisos = UsuariosPermisos.Where(x => x.Id_Usuario == usuario.Id).ToList();
 
-                usuario?.Permisos?.AddRange(Permisos.Where(x => x.PermisoModel.Permiso != null).Select(x => new Patente
+            Usuarios.ForEach(x =>
+            {
+                var Permisos = UsuariosPermisos.Where(z => z.Id_Usuario == x.Id).ToList();
+                x?.Permisos?.AddRange(Permisos.Where(x => x.PermisoModel.Permiso != null).Select(x => new Patente
                 {
                     Id = x.PermisoModel.Id_Permiso,
                     Nombre = x.PermisoModel.Nombre,
                     Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), x.PermisoModel.Permiso)
                 }));
-            }
+            });
+
+            ////Vaciamos para ver si el foreach de arriba es igual al de abajo
+            ////Usuarios.ForEach(x => x.Permisos.ForEach(y => y.VaciarHijos()));
+            //Usuarios.ForEach(x => x.Permisos.Clear());
+            //foreach (var usuario in Usuarios)
+            //{
+            //    //var UsuariosPermisos = UsuariosCompletosDto.SelectMany(x => x.Usuario_Permisos).Where(x => x.Id_Usuario == usuario.Id).ToList();
+            //    var Permisos = UsuariosPermisos.Where(x => x.Id_Usuario == usuario.Id).ToList();
+
+            //    usuario?.Permisos?.AddRange(Permisos.Where(x => x.PermisoModel.Permiso != null).Select(x => new Patente
+            //    {
+            //        Id = x.PermisoModel.Id_Permiso,
+            //        Nombre = x.PermisoModel.Nombre,
+            //        Permiso = (TipoPermiso)Enum.Parse(typeof(TipoPermiso), x.PermisoModel.Permiso)
+            //    }));
+            //}
             return Usuarios;
         }
 
         private List<Usuario> UsuariosCompletos(List<Usuario> Usuarios, List<Familia> Familias)
         {
             var PermisosDto = _usuario_PermisoService.Get().ToList();
+
+            Usuarios.ForEach(x =>
+            {
+                Familias.ForEach(z =>
+                {
+                    var Permisos = PermisosDto.Where(y => y.Id_Permiso == z.Id && y.Id_Usuario == x.Id).FirstOrDefault();
+                    if (Permisos != null)
+                    {
+                        //Si entro a este if es porque es una familia y pertenece a este usuario...
+                        Familia family = Familias.Where(x => x.Id == Permisos.Id_Permiso).FirstOrDefault();
+                        //Eliminamos la familia del usuario porque esta incompleta y la reemplazamos por la nueva
+                        x.Permisos.RemoveAll(x => x.Id == family.Id);
+                        x.Permisos.Add(family);
+                    }
+                });
+            });
+
+            ///////////////////////
+
             foreach (var usuario in Usuarios)
             {
                 foreach (var familia in Familias)
@@ -142,7 +176,7 @@ namespace SL.Helper.Controllers
             }
             return Usuarios;
         }
-        
+
         public IList<Familia> ObtenerFamilias()
         {
             var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos //Por algún motivo no me traia la bdd actualizada...

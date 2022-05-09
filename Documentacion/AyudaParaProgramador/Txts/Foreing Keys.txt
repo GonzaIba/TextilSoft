@@ -1,0 +1,13 @@
+En la tabla pedidos tenia el problema al generar la migration a la bdd
+Generalmente se hace la relación con un int y el nombre del id tabla
+Con entity framework, si agregamos una clase de la relación a este
+(por ejemplo ClientesModel de pedido) al hacer un get ya nos rellena
+los datos a esa propiedad clase sin tener q implementar linq de ambas
+tablas (revisar lazyloading). En el type builder tenemos configurado
+la fk del id int y generaba problemas ya que por defecto EF Core 6
+ya agrega la fk con esa propiedad clase. La solución a este tema es
+simplemente ignorar la propiedad clase en el typebuilder o la prop int.
+
+EDIT:
+Si no uso la propiedad en el type builder ya sea para relacion n a n
+EF no lo configura como uno aparte. Pero si no los uso si los aplica.

@@ -36,13 +36,22 @@ namespace Infrastructure.TypeBuilders
                 .WithOne(x => x.Pedidos)
                 .HasForeignKey(d => d.ID_DetallePedido);
 
-            //builder.HasMany(p => p.Factura) //Mal configurado, revisar...
-            //    .WithOne(x => x.Pedidos)
-            //    .HasForeignKey(d => d.ID_Factura);
+            builder.HasMany(p => p.Factura) //No tiene sentido la relacion de muchos a uno
+                .WithOne(x => x.Pedidos)    //Pero por algún motivo me generaba una columna rara... revisar
+                .HasForeignKey(d => d.ID_Factura);
+            //Edit: estaba bien esta relación.
 
             builder.HasOne(p => p.EstadoPedido)
                 .WithMany(x => x.Pedidos)
                 .HasForeignKey(d => d.ID_EstadoPedido);
+
+            builder.HasOne(p => p.Cliente)
+                .WithMany(x => x.Pedidos)
+                .HasForeignKey(d => d.ID_Cliente);
+
+            builder.HasOne(p => p.Empleados)
+                .WithMany(x => x.Pedidos)
+                .HasForeignKey(d => d.ID_Empleados);
 
             builder.ToTable("Pedidos");
         }
