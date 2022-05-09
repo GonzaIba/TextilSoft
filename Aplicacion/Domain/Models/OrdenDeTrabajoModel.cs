@@ -15,6 +15,7 @@ namespace Domain.Models
         public string EstadoOrden { get; set; }
         public Nullable<System.DateTime> FechaCerrado { get; set; }
         public Nullable<bool> EsPedido { get; set; }
+        public Guid CreateUser { get; set; }
 
         public virtual PedidosModel Pedidos { get; set; }
         public virtual SectorModel Sector { get; set; }

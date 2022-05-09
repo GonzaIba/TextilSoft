@@ -23,13 +23,13 @@ namespace Business.Services
         public virtual void Insertar(T entities)
         {
             _repository.Insert(entities);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public void Actualizar(T entities)
         {
             _repository.Update(entities);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public void CancelChanges(T entity)
@@ -40,7 +40,7 @@ namespace Business.Services
         public void Eliminar(T entities)
         {
             _repository.Delete(entities);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public IEnumerable<T> Get(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = "", bool ignoreQueryFilters = false, bool tracking = false)

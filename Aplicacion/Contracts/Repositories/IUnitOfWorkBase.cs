@@ -11,7 +11,7 @@ namespace Contracts.Repositories
     {
         DbContext Context { get; }
 
-        int Save();
+        int SaveChanges();
 
     }
 }

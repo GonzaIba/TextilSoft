@@ -15,7 +15,7 @@ namespace Infrastructure.TypeBuilders
         public void Configure(EntityTypeBuilder<ClientesModel> builder)
         {
             builder.HasKey(p => p.ID_Cliente);
-
+            
             builder.Property(p => p.DNI)
                 .IsRequired(true)
                 .HasColumnType("varchar(50)");

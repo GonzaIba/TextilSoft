@@ -249,8 +249,6 @@ namespace UI.TextilSoft.MainForm
         #region Timers
         private async void timer1_Tick_1(object sender, EventArgs e)
         {
-            //FadeIn();
-            //lblBienvenido.SetBounds(x, y, 1, 1);
             await Task.Run(() =>
             {
                 this.Refresh();
@@ -318,17 +316,6 @@ namespace UI.TextilSoft.MainForm
                     th1.Start();
                 }
             }
-            //while (this.panel1.Width < 200)
-            //{
-            //    this.panel1.Width += 6;
-            //    this.Refresh();
-            //}
-            //btnInstagram.Visible = true;
-            //if(BotonPresionado == true)
-            //{
-            //    MoveIconRight();
-            //}
-            //timer3.Stop();
         }
         private void timer4_Tick(object sender, EventArgs e)
         {
@@ -343,17 +330,6 @@ namespace UI.TextilSoft.MainForm
                     th2.Start();
                 }
             }
-            //while (this.panel1.Width > 43)
-            //{
-            //    this.panel1.Width -=6;
-            //    this.Refresh();
-            //}
-            //btnInstagram.Visible = false;
-            //if (BotonPresionado == true)
-            //{
-            //    MoveIconLeft();
-            //}
-            //timer4.Stop();
         }
         #endregion
 

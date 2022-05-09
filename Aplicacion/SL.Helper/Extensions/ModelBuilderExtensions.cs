@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -81,5 +82,31 @@ namespace SL.Helper.Extensions
             }
             return builder;
         }
+
+        /// <summary>
+        /// Convierte las claves primarias en identity column autoincremental
+        /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
+        public static ModelBuilder SetAutoIncrementPK(this ModelBuilder builder)
+        {
+            foreach (var entityType in builder.Model.GetEntityTypes().Where(e => e.FindPrimaryKey() != null)) //Primero obtenemos la clase que tenga una PK
+            {
+                var PK = entityType.FindPrimaryKey(); //Obtenemos la PK de la clase
+
+                //Si PK no es int continuar el foreach (Por ejemplo, ID_Empleados no pasa este if...)
+                if (PK.Properties.First().ClrType != typeof(int)) continue;
+
+                builder.Model.FindEntityType(entityType.ClrType)
+                             .FindProperty(PK.Properties.First().Name)
+                             .SetAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+            }
+
+            return builder;
+
+            //if (PK.Properties.First().ClrType != typeof(int)) continue;
+        }
+
+
     }
 }

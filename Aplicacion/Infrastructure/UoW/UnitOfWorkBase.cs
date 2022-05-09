@@ -20,7 +20,7 @@ namespace Infrastructure.UoW
 
         public DbContext Context => _context;
 
-        public int Save()
+        public int SaveChanges()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace Infrastructure.UoW
             }
         }
 
-        public async Task<int> SaveAsync()
+        public async Task<int> SaveChangesAsync()
         {
             try
             {

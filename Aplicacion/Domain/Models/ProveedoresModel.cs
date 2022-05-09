@@ -19,6 +19,7 @@ namespace Domain.Models
         public string LugarEmpresa { get; set; }
         public string Mail { get; set; }
         public string Nombre { get; set; }
+        public Guid CreateUser { get; set; }
         public virtual ICollection<ProductosProveedorModel> ProductoProveedor { get; set; }
 
     }

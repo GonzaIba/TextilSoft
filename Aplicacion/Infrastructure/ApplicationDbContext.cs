@@ -26,11 +26,11 @@ namespace Infrastructure
         /// 
         /// </summary>
         /// <param name="dbContextOptions"></param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
-            : base(dbContextOptions)
-        {
+        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
+        //    : base(dbContextOptions)
+        //{
 
-        }
+        //}
 
         //protected override void OnConfiguring(DbContextOptionsBuilder options)
         //{
@@ -50,11 +50,16 @@ namespace Infrastructure
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly)
                         .SetPropertyDefaultSqlValue("CreateDate", "getdate()")
                         .SetPropertyDefaultValue<bool>("Active", true)
-                        .SetPropertyQueryFilter("Active", true);
+                        .SetPropertyQueryFilter("Active", true)
+                        .SetAutoIncrementPK();
+
+            //base.OnConfiguring(modelBuilder);//Aca podemos configurar el warning (por ej) de ef
+
+
 
             //A la propiedad Active setearle por defecto el valor true
             //modelBuilder.SetPropertyDefaultValue<bool>("Active", true);
-        
+
 
 
 
