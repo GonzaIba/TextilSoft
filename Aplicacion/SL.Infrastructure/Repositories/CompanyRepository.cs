@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace SL.Infrastructure.Repositories
 {
-    public class Permiso_PermisoRepository : GenericRepository<Permiso_PermisoModel>, IPermiso_PermisoRepository
+    public class CompanyRepository : GenericRepository<CompanyModel>, ICompanyRepository
     {
-        public Permiso_PermisoRepository(ServiceLayerDbContext context) : base(context)
+        public CompanyRepository(ServiceLayerDbContext context) : base(context)
         {
-            
+
         }
     }
 }

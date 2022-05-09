@@ -43,17 +43,17 @@ namespace Infrastructure.Repositories
             }
         }
         
-        public EmpleadosModel UsuarioLogueado
-        {
-            get
-            {
-                return this.UsuarioLogueado;
-            }
-            set
-            {
-                this.UsuarioLogueado = value;
-            }
-        }
+        //public EmpleadosEntity UsuarioLogueado
+        //{
+        //    get
+        //    {
+        //        return this.UsuarioLogueado;
+        //    }
+        //    set
+        //    {
+        //        this.UsuarioLogueado = value;
+        //    }
+        //}
 
         #endregion Properties
 
@@ -189,10 +189,10 @@ namespace Infrastructure.Repositories
             GC.SuppressFinalize(this);
         }
         
-        public void SetUserLogin(EmpleadosModel empleadoLogin)
-        {
-            UsuarioLogueado = empleadoLogin;
-        }
+        //public void SetUserLogin(EmpleadosModel empleadoLogin)
+        //{
+        //    UsuarioLogueado = empleadoLogin;
+        //}
 
         #endregion Methods
 

@@ -17,10 +17,6 @@ namespace Infrastructure.TypeBuilders
 
             builder.Property(p => p.NumeroPedido);
 
-            builder.Property(p => p.EstadoPedido)
-                .IsRequired(true)
-                .HasColumnType("varchar(50)");
-
             builder.Property(p => p.TotalPago)
                 .IsRequired(false)
                 .HasColumnType("decimal(18,0)");
@@ -40,10 +36,14 @@ namespace Infrastructure.TypeBuilders
                 .WithOne(x => x.Pedidos)
                 .HasForeignKey(d => d.ID_DetallePedido);
 
-            builder.HasMany(p => p.Factura)
-                .WithOne(x => x.Pedidos)
-                .HasForeignKey(d => d.ID_Factura);
-            
+            //builder.HasMany(p => p.Factura) //Mal configurado, revisar...
+            //    .WithOne(x => x.Pedidos)
+            //    .HasForeignKey(d => d.ID_Factura);
+
+            builder.HasOne(p => p.EstadoPedido)
+                .WithMany(x => x.Pedidos)
+                .HasForeignKey(d => d.ID_EstadoPedido);
+
             builder.ToTable("Pedidos");
         }
     }

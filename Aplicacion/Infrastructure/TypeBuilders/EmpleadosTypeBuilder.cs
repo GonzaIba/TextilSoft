@@ -13,7 +13,8 @@ namespace Infrastructure.TypeBuilders
     {
         public void Configure(EntityTypeBuilder<EmpleadosModel> builder)
         {
-            builder.HasKey(p => p.ID_Empleados);
+            builder.Property(p => p.ID_Empleados)
+                .HasDefaultValueSql("NEWID()");
 
             builder.Property(p => p.DNI)
                 .IsRequired(true)

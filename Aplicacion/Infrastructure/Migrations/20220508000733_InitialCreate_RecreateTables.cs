@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Infrastructure.Migrations
 {
-    public partial class InitialMigrationRecreateTables : Migration
+    public partial class InitialCreate_RecreateTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,8 +34,7 @@ namespace Infrastructure.Migrations
                 name: "Empleados",
                 columns: table => new
                 {
-                    ID_Empleados = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ID_Empleados = table.Column<Guid>(type: "uniqueidentifier", nullable: false, defaultValueSql: "NEWID()"),
                     Apellido = table.Column<string>(type: "varchar(50)", nullable: true),
                     Nombre = table.Column<string>(type: "varchar(50)", nullable: true),
                     Residencia = table.Column<string>(type: "varchar(50)", nullable: true),
@@ -122,10 +121,10 @@ namespace Infrastructure.Migrations
                     TotalPago = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: true),
                     ID_Cliente = table.Column<int>(type: "int", nullable: false),
-                    ID_Empleados = table.Column<int>(type: "int", nullable: false),
+                    ID_Empleados = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Seña = table.Column<decimal>(type: "decimal(18,0)", nullable: true),
                     ClienteID_Cliente = table.Column<int>(type: "int", nullable: true),
-                    EmpleadosID_Empleados = table.Column<int>(type: "int", nullable: true),
+                    EmpleadosID_Empleados = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -185,7 +184,6 @@ namespace Infrastructure.Migrations
                     MarcaTela = table.Column<string>(type: "varchar(50)", nullable: true),
                     Precio = table.Column<string>(type: "varchar(50)", nullable: true),
                     ID_Proveedor = table.Column<int>(type: "int", nullable: false),
-                    EmpleadosModelID_Empleados = table.Column<int>(type: "int", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "getdate()"),
                     UpdateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Active = table.Column<bool>(type: "bit", nullable: false, defaultValue: true)
@@ -193,12 +191,6 @@ namespace Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ProductoProveedor", x => x.ID_ProductoProveedor);
-                    table.ForeignKey(
-                        name: "FK_ProductoProveedor_Empleados_EmpleadosModelID_Empleados",
-                        column: x => x.EmpleadosModelID_Empleados,
-                        principalTable: "Empleados",
-                        principalColumn: "ID_Empleados",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ProductoProveedor_Proveedor_ID_Proveedor",
                         column: x => x.ID_Proveedor,
@@ -308,11 +300,6 @@ namespace Infrastructure.Migrations
                 name: "IX_Pedidos_EmpleadosID_Empleados",
                 table: "Pedidos",
                 column: "EmpleadosID_Empleados");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductoProveedor_EmpleadosModelID_Empleados",
-                table: "ProductoProveedor",
-                column: "EmpleadosModelID_Empleados");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductoProveedor_ID_Proveedor",

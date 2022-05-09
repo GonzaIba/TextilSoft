@@ -1,6 +1,7 @@
 ﻿using Contracts.Controllers;
 using FontAwesome.Sharp;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,7 +49,8 @@ namespace UI.TextilSoft.MainForm
         private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
         private readonly IEmpleadosController _empleadosController;
         private readonly IFacturasController _facturasController;
-
+        private readonly IConfiguration _configuration;
+            
         public FmTextilSoft(IProveedoresController proveedoresController,
                              IClientesController clientesController,
                              IPedidosController pedidosController,
@@ -58,7 +60,8 @@ namespace UI.TextilSoft.MainForm
                              IVentasController ventasController,
                              IOrdenDeTrabajoController ordenDeTrabajoController,
                              IProductoProveedorController productoProveedorController,
-                             IProductosController productosController)
+                             IProductosController productosController,
+                             IConfiguration configuration)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
@@ -77,6 +80,7 @@ namespace UI.TextilSoft.MainForm
             _productosController = productosController;
             _productoProveedorController = productoProveedorController;
             _pedidosController = pedidosController;
+            _configuration = configuration;
         }
         #endregion
 
@@ -143,14 +147,17 @@ namespace UI.TextilSoft.MainForm
         #endregion
 
         #region AbrirFormularios
-        private void AbrirAnimator()
+        private async void AbrirAnimator()
         {
             //LogoAnimator.Hide(labelBienvenida);
-            panelContenedor.Visible = false;
-            PanelAnimator.ShowSync(panelContenedor);
+            await Task.Run(() =>
+            {
+                panelContenedor.Visible = false;
+                PanelAnimator.ShowSync(panelContenedor,true);
+            });
         }
 
-        private void AbrirFormHija(Form formhija)
+        private async void AbrirFormHija(Form formhija)
         {
             if (activeForm != null)
             {
@@ -166,7 +173,9 @@ namespace UI.TextilSoft.MainForm
                 formhija.BringToFront();
                 formhija.Show();
 
-                AbrirAnimator();
+                //Si EnabledAnimator esta en true ejecutar el metodo
+                if (Convert.ToBoolean(_configuration["Application:Performance:EnabledAnimator"]))
+                    AbrirAnimator();
 
                 timer1.Dispose();
                 timer2.Dispose();
@@ -182,9 +191,10 @@ namespace UI.TextilSoft.MainForm
                 panelContenedor.Controls.Add(formhija);
                 panelContenedor.Tag = formhija;
                 formhija.BringToFront();
-                formhija.Show();
+                //formhija.Show();
 
-                AbrirAnimator();
+                if (Convert.ToBoolean(_configuration["Application:Performance:EnabledAnimator"]))
+                    AbrirAnimator();
 
                 timer1.Dispose();
                 timer2.Dispose();
@@ -237,17 +247,20 @@ namespace UI.TextilSoft.MainForm
         #endregion
 
         #region Timers
-        private void timer1_Tick_1(object sender, EventArgs e)
+        private async void timer1_Tick_1(object sender, EventArgs e)
         {
             //FadeIn();
             //lblBienvenido.SetBounds(x, y, 1, 1);
-            this.Refresh();
-            x++;
-            if (x >= 200)
+            await Task.Run(() =>
             {
-                x = 1;
-                timer1.Stop();
-            }
+                this.Refresh();
+                x++;
+                if (x >= 200)
+                {
+                    x = 1;
+                    timer1.Stop();
+                }
+            });
         }
         private void timer2_Tick_1(object sender, EventArgs e)
         {
@@ -294,13 +307,16 @@ namespace UI.TextilSoft.MainForm
         }
         private void timer3_Tick(object sender, EventArgs e)
         {
-            if (ThreadActivated == false)
+            if (Convert.ToBoolean(_configuration["Application:Performance:EnabledSliceButtonsPanel"]))
             {
-                ThreadActivated = true;
-                Thread th1 = new Thread(ExpandirPanel);
-                th1.Name = "ExpandirPanel";
-                th1.Priority = ThreadPriority.Normal;
-                th1.Start();
+                if (ThreadActivated == false)
+                {
+                    ThreadActivated = true;
+                    Thread th1 = new Thread(ExpandirPanel);
+                    th1.Name = "ExpandirPanel";
+                    th1.Priority = ThreadPriority.Normal;
+                    th1.Start();
+                }
             }
             //while (this.panel1.Width < 200)
             //{
@@ -316,13 +332,16 @@ namespace UI.TextilSoft.MainForm
         }
         private void timer4_Tick(object sender, EventArgs e)
         {
-            if (ThreadActivated == false)
+            if (Convert.ToBoolean(_configuration["Application:Performance:EnabledSliceButtonsPanel"]))
             {
-                ThreadActivated = true;
-                Thread th2 = new Thread(ExtraerPanel);
-                th2.Name = "ExtraerPanel";
-                th2.Priority = ThreadPriority.Normal;
-                th2.Start();
+                if (ThreadActivated == false)
+                {
+                    ThreadActivated = true;
+                    Thread th2 = new Thread(ExtraerPanel);
+                    th2.Name = "ExtraerPanel";
+                    th2.Priority = ThreadPriority.Normal;
+                    th2.Start();
+                }
             }
             //while (this.panel1.Width > 43)
             //{
@@ -512,29 +531,32 @@ namespace UI.TextilSoft.MainForm
         #endregion
 
         #region Activar Colores
-        private void ActivateButton(object senderBtn)
+        private async void ActivateButton(object senderBtn)
         {
-            if (senderBtn != null)
+            await Task.Run(() =>
             {
-                //Button
-                DisableButton();
-                Color color = SelectThemeColor();
-                currentBtn = (IconButton)senderBtn;
-                currentBtn.BackColor = Color.FromArgb(37, 36, 81);
-                currentBtn.ForeColor = color;
-                currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-                currentBtn.IconColor = color;
-                currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
-                currentBtn.ImageAlign = ContentAlignment.MiddleRight;
-                btnBloquear.IconColor = color;
-                //Left border button
-                leftBorderBtn.BackColor = color;
-                leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
-                leftBorderBtn.Visible = true;
-                leftBorderBtn.BringToFront();
-
-            }
+                if (senderBtn != null)
+                {
+                    //Button
+                    DisableButton();
+                    Color color = SelectThemeColor();
+                    currentBtn = (IconButton)senderBtn;
+                    currentBtn.BackColor = Color.FromArgb(37, 36, 81);
+                    currentBtn.ForeColor = color;
+                    currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                    currentBtn.IconColor = color;
+                    currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                    currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+                    btnBloquear.IconColor = color;
+                    //Left border button
+                    leftBorderBtn.BackColor = color;
+                    leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
+                    leftBorderBtn.Visible = true;
+                    leftBorderBtn.BringToFront();
+                }
+            });
         }
+        
         private void DisableButton()
         {
             if (currentBtn != null)
@@ -548,6 +570,7 @@ namespace UI.TextilSoft.MainForm
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
+        
         private Color SelectThemeColor()
         {
             int index = random.Next(Tools.ColorTheme.ColorList.Count);

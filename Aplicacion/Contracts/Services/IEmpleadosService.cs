@@ -9,6 +9,7 @@ namespace Contracts.Services
 {
     public interface IEmpleadosService : IGenericService<EmpleadosModel>
     {
-
+        public EmpleadosModel EmpleadoLogueado { get; set; }
+        public void LoginEmpleado(EmpleadosModel empleadosModel);
     }
 }

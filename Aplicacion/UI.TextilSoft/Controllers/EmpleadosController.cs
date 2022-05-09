@@ -1,4 +1,5 @@
 ﻿using Contracts.Controllers;
+using Contracts.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,15 @@ namespace UI.TextilSoft.Controllers
 {
     public class EmpleadosController : IEmpleadosController
     {
-
+        private readonly IEmpleadosService _empleadosService;
+        public EmpleadosController(IEmpleadosService empleadosService)
+        {
+            _empleadosService = empleadosService;
+        }
+        
+        public bool UserLogged()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

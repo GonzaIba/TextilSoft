@@ -106,10 +106,10 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.EmpleadosModel", b =>
                 {
-                    b.Property<int>("ID_Empleados")
+                    b.Property<Guid>("ID_Empleados")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
@@ -248,8 +248,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<int?>("EmpleadosID_Empleados")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("EmpleadosID_Empleados")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EstadoPedido")
                         .IsRequired()
@@ -261,8 +261,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ID_Cliente")
                         .HasColumnType("int");
 
-                    b.Property<int>("ID_Empleados")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ID_Empleados")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("NumeroPedido")
                         .HasColumnType("int");

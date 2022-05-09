@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220330234038_InitialMigrationRecreateTables")]
-    partial class InitialMigrationRecreateTables
+    [Migration("20220508000733_InitialCreate_RecreateTables")]
+    partial class InitialCreate_RecreateTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,10 +108,10 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.EmpleadosModel", b =>
                 {
-                    b.Property<int>("ID_Empleados")
+                    b.Property<Guid>("ID_Empleados")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
@@ -250,8 +250,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<int?>("EmpleadosID_Empleados")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("EmpleadosID_Empleados")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("EstadoPedido")
                         .IsRequired()
@@ -263,8 +263,8 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ID_Cliente")
                         .HasColumnType("int");
 
-                    b.Property<int>("ID_Empleados")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ID_Empleados")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("NumeroPedido")
                         .HasColumnType("int");
@@ -362,9 +362,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
 
-                    b.Property<int?>("EmpleadosModelID_Empleados")
-                        .HasColumnType("int");
-
                     b.Property<int>("ID_Proveedor")
                         .HasColumnType("int");
 
@@ -384,8 +381,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("ID_ProductoProveedor");
-
-                    b.HasIndex("EmpleadosModelID_Empleados");
 
                     b.HasIndex("ID_Proveedor");
 
@@ -570,10 +565,6 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Models.ProductosProveedorModel", b =>
                 {
-                    b.HasOne("Domain.Models.EmpleadosModel", null)
-                        .WithMany("ProductoProveedor")
-                        .HasForeignKey("EmpleadosModelID_Empleados");
-
                     b.HasOne("Domain.Models.ProveedoresModel", "Proveedor")
                         .WithMany("ProductoProveedor")
                         .HasForeignKey("ID_Proveedor")
@@ -602,8 +593,6 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.EmpleadosModel", b =>
                 {
                     b.Navigation("Pedidos");
-
-                    b.Navigation("ProductoProveedor");
                 });
 
             modelBuilder.Entity("Domain.Models.PedidosModel", b =>

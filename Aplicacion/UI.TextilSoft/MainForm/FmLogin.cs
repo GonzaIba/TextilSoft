@@ -1,6 +1,7 @@
 ﻿using Contracts.Controllers;
 using Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Extensions.Configuration;
 using SL.Contracts;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
@@ -31,6 +32,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IFacturasController _facturasController;
         private readonly IVentasController _ventasController;
         private readonly IEmpleadosController _empleadosController;
+        private readonly IConfiguration _configuration;
 
         public FmLogin( IUsuarioController userController,
                         IProveedoresController proveedoresController,
@@ -42,7 +44,8 @@ namespace UI.TextilSoft.MainForm
                         IVentasController ventasController,
                         IOrdenDeTrabajoController ordenDeTrabajoController,
                         IProductoProveedorController productoProveedorController,
-                        IProductosController productosController)
+                        IProductosController productosController,
+                        IConfiguration configuration)
         {
             InitializeComponent();
             _userController = userController;
@@ -56,7 +59,7 @@ namespace UI.TextilSoft.MainForm
             _productosController = productosController;
             _productoProveedorController = productoProveedorController;
             _pedidosController = pedidosController;
-
+            _configuration = configuration;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -94,7 +97,7 @@ namespace UI.TextilSoft.MainForm
             {
                 var usuario = _userController.GetUser(login);
                 //_empleadosController.LoginEmpleado(usuario);
-                FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController);
+                FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController,_configuration);
                 fmTextilSoft.toolStrip1.Tag = login;
                 fmTextilSoft.btnPedidos.Enabled = false;
                 fmTextilSoft.Show();
