@@ -23,6 +23,7 @@ namespace Domain.Models
         public int ID_Cliente { get; set; }
         public Guid ID_Empleados { get; set; }
         public int ID_EstadoPedido { get; set; }
+        public Guid CreateUser { get; set; }
 
         public virtual ClientesModel Cliente { get; set; }
         public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }
