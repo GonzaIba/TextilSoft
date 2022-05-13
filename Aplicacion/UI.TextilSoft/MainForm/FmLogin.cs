@@ -63,17 +63,7 @@ namespace UI.TextilSoft.MainForm
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
-        {
-            //IdentityUser identityUser = new IdentityUser();
-            //identityUser.Email = "gonza10";
-            //identityUser.UserName = "Gonzalo";
-
-            //ProveedoresEntity proveedoresEntity = new ProveedoresEntity();
-            //proveedoresEntity.Nombre = "Aadsda";
-            //proveedoresEntity.DNI = "12325678";
-            //proveedoresEntity.Mail = "Bdd21e";
-            //_proveedoresController.ObtenerProveedor(proveedoresEntity.DNI);
-            
+        {           
             Login login = new Login();
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
@@ -81,17 +71,6 @@ namespace UI.TextilSoft.MainForm
 
             Usuario user = new Usuario();
             IList<Componente> flia = null;
-            //flia = 
-            //user.Permisos.
-            //user.Id = 2;
-            //user.Permisos.Add
-            //    (
-            //        new Componente()
-            //        {
-            //            Id = 1,
-            //            Nombre = "Pedidos"
-            //        }
-            //    ); ;
 
             if (Result == "Ok")
             {
