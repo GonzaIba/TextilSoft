@@ -143,6 +143,7 @@
             this.btnAgregarFamilia.TabIndex = 10;
             this.btnAgregarFamilia.Text = "Agregar";
             this.btnAgregarFamilia.UseVisualStyleBackColor = true;
+            this.btnAgregarFamilia.Click += new System.EventHandler(this.btnAgregarFamilia_Click);
             // 
             // treeViewUsuarios
             // 

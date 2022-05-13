@@ -126,5 +126,39 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                 MessageBox.Show("Error al guardar el usuario");
             }
         }
+
+        private void btnAgregarFamilia_Click(object sender, EventArgs e)
+        {
+            if (tmp != null)
+            {
+                var flia = (Familia)cboFamilias.SelectedItem;
+                if (flia != null)
+                {
+                    var esta = false;
+                    //verifico que ya no tenga el permiso. TODO: Esto debe ser parte de otra capa.
+                    foreach (var item in tmp.Permisos)
+                    {
+                        if (_permisosController.Existe(item, flia.Id))
+                        {
+                            esta = true;
+                        }
+                    }
+
+                    if (esta)
+                        MessageBox.Show("El usuario ya tiene la familia indicada");
+                    else
+                    {
+                        {
+                            //permisosRepo.FillFamilyComponents(flia);
+
+                            tmp.Permisos.Add(flia);
+                            MostrarPermisos(tmp);
+                        }
+                    }
+                }
+            }
+            else
+                MessageBox.Show("Seleccione un usuario");
+        }
     }
 }

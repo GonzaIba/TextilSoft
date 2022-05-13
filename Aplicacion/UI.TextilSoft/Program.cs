@@ -54,8 +54,9 @@ namespace UI.TextilSoft
             services.AddDbContext<ApplicationDbContext>
             (
                 options => options
-                .UseSqlServer(GetConnectionString()) //Al contexto le agrego la conexion de la base de datos
-
+                .UseSqlServer(GetConnectionString(),builder =>
+                    builder.EnableRetryOnFailure(5,TimeSpan.FromSeconds(10),null)) //Al contexto le agrego la conexion de la base de datos
+                
                 //En esta parte configuramos el entity framework para ver los querys en consola (IMPORTANTE: desactivarlo en produccion)
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory)
