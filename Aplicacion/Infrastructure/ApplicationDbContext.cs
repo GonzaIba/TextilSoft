@@ -32,13 +32,13 @@ namespace Infrastructure
 
         //}
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //{
-        //    if (!options.IsConfigured)
-        //    {
-        //        options.UseSqlServer("Data Source=localhost;Initial Catalog=DBProyectoTextil;User ID=testUser2;Password=1234;");
-        //    }
-        //}
+        protected override void OnConfiguring(DbContextOptionsBuilder options)
+        {
+            if (!options.IsConfigured)
+            {
+                options.UseSqlServer("Data Source=localhost;Initial Catalog=DBProyectoTextil;User ID=testUser2;Password=1234;");
+            }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -50,8 +50,8 @@ namespace Infrastructure
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly)
                         .SetPropertyDefaultSqlValue("CreateDate", "getdate()")
                         .SetPropertyDefaultValue<bool>("Active", true)
-                        .SetPropertyQueryFilter("Active", true)
-                        .SetAutoIncrementPK();
+                        .SetPropertyQueryFilter("Active", true);
+                        //.SetAutoIncrementPK();
 
             //base.OnConfiguring(modelBuilder);//Aca podemos configurar el warning (por ej) de ef
 

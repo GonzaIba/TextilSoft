@@ -203,7 +203,8 @@ namespace Infrastructure.Migrations
                 name: "DetallePedido",
                 columns: table => new
                 {
-                    ID_DetallePedido = table.Column<int>(type: "int", nullable: false),
+                    ID_DetallePedido = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ID_Pedido = table.Column<int>(type: "int", nullable: false),
                     ID_Producto = table.Column<int>(type: "int", nullable: false),
                     Cantidad = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
@@ -219,7 +220,7 @@ namespace Infrastructure.Migrations
                         column: x => x.ID_DetallePedido,
                         principalTable: "Pedidos",
                         principalColumn: "ID_Pedido",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_DetallePedido_Producto_ID_Producto",
                         column: x => x.ID_Producto,
@@ -232,7 +233,8 @@ namespace Infrastructure.Migrations
                 name: "Factura",
                 columns: table => new
                 {
-                    ID_Factura = table.Column<int>(type: "int", nullable: false),
+                    ID_Factura = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     NumeroFactura = table.Column<int>(type: "int", nullable: true),
                     NumeroPedido = table.Column<int>(type: "int", nullable: true),
                     Fecha = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -251,14 +253,15 @@ namespace Infrastructure.Migrations
                         column: x => x.ID_Factura,
                         principalTable: "Pedidos",
                         principalColumn: "ID_Pedido",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "OrdenDeTrabajo",
                 columns: table => new
                 {
-                    ID_OrdenDeTrabajo = table.Column<int>(type: "int", nullable: false),
+                    ID_OrdenDeTrabajo = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FechaInicio = table.Column<DateTime>(type: "datetime2", nullable: false),
                     ID_Pedido = table.Column<int>(type: "int", nullable: false),
                     ID_Sector = table.Column<int>(type: "int", nullable: false),
@@ -277,13 +280,13 @@ namespace Infrastructure.Migrations
                         column: x => x.ID_OrdenDeTrabajo,
                         principalTable: "Pedidos",
                         principalColumn: "ID_Pedido",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_OrdenDeTrabajo_Sector_ID_OrdenDeTrabajo",
                         column: x => x.ID_OrdenDeTrabajo,
                         principalTable: "Sector",
                         principalColumn: "ID_Sector",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

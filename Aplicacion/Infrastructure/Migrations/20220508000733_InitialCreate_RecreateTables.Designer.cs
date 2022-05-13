@@ -74,7 +74,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.DetallePedidosModel", b =>
                 {
                     b.Property<int>("ID_DetallePedido")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
@@ -150,7 +152,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.FacturasModel", b =>
                 {
                     b.Property<int>("ID_Factura")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
@@ -191,7 +195,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.OrdenDeTrabajoModel", b =>
                 {
                     b.Property<int>("ID_OrdenDeTrabajo")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("Active")
                         .ValueGeneratedOnAdd()
@@ -442,7 +448,7 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
-
+                    
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -479,7 +485,7 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
                         .HasDefaultValueSql("getdate()");
-
+                    
                     b.Property<string>("Descripcion")
                         .HasColumnType("varchar(50)");
 
@@ -504,7 +510,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.PedidosModel", "Pedidos")
                         .WithMany("DetallePedido")
                         .HasForeignKey("ID_DetallePedido")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Models.ProductosModel", "Producto")
@@ -523,7 +529,7 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.PedidosModel", "Pedidos")
                         .WithMany("Factura")
                         .HasForeignKey("ID_Factura")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Pedidos");
@@ -534,13 +540,13 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Models.PedidosModel", "Pedidos")
                         .WithMany("OrdenDeTrabajo")
                         .HasForeignKey("ID_OrdenDeTrabajo")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Models.SectorModel", "Sector")
                         .WithMany("OrdenDeTrabajo")
                         .HasForeignKey("ID_OrdenDeTrabajo")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Pedidos");
