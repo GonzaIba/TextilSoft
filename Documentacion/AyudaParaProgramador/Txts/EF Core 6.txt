@@ -1,0 +1,7 @@
+SetAutoIncrementPK
+
+Utilicé este método para arreglar el tema de las claves primarias que no estaban seteadas como identity column y no eran autoincrementales
+Quedaron defectos en el tema del borrado, se cambio el cascada por el restrict (nose si se va a llegar a utilizar porque utilizamos el borrado lógico)
+Basicamente cuando se ejecuta una migración, este va a buscar el archivo SNAPSHOT y ahi genera la migracion con los cambios correspondientes.
+El SNAPSHOT se va modificando a medida que se agrega una migración. Cuando ejecutamos el comando update-database este recorre todos las migraciones
+exceptuando el archivo SNAPSHOT.
