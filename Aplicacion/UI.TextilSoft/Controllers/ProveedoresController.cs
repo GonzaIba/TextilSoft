@@ -4,6 +4,7 @@ using Contracts.Repositories;
 using Contracts.Services;
 using Domain.Entities;
 using Domain.Models;
+using SL.Helper.Services.Log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,78 +62,118 @@ namespace UI.TextilSoft.Controllers
 
         public void EliminarProveedor(ProveedoresEntity proveedoresEntity)
         {
-            var ProveedorDTO = _proveedoresService.Get(x => x.DNI == proveedoresEntity.DNI, includeProperties:"ProductoProveedor").FirstOrDefault();
-            if(ProveedorDTO.ProductoProveedor != null && ProveedorDTO.ProductoProveedor.Count > 0)
+            try
             {
-                var ProductosProveedorDTO = _productosProveedorService.Get(x=>x.ID_Proveedor == ProveedorDTO.ID_Proveedor).FirstOrDefault();
-                _productosProveedorService.Eliminar(ProductosProveedorDTO);
+                _proveedoresService.EliminarProveedor(proveedoresEntity);
             }
-            _proveedoresService.Eliminar(ProveedorDTO);
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
         }
 
         public List<ProveedoresEntity> LlenarGrillaProveedores()
         {
-            var ListaProveedoresDTO = _proveedoresService.GetAll();
-            List<ProveedoresEntity> ListaProveedoresEntity = _mapper.Map<List<ProveedoresEntity>>(ListaProveedoresDTO);
-            return ListaProveedoresEntity;
+            try
+            {
+                var ListaProveedoresDTO = _proveedoresService.GetAll();
+                List<ProveedoresEntity> ListaProveedoresEntity = _mapper.Map<List<ProveedoresEntity>>(ListaProveedoresDTO);
+                return ListaProveedoresEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.GenerateInfo("Ocurrió un error en LlenarGrillaProveedores controller Proveedores, Excepción: " + ex.Message);
+                throw ex;
+            }
         }
 
         public void ActualizarProveedoresPorGrilla(List<ProveedoresEntity> listaProveedores)
         {
-            foreach(var Proveedor in listaProveedores)
+            try
             {
-                var ProveedorDTO = _proveedoresService.Get(x=>x.DNI == Proveedor.DNI).FirstOrDefault();
-                if(Proveedor == _mapper.Map<ProveedoresEntity>(ProveedorDTO)) 
+                foreach (var Proveedor in listaProveedores)
                 {
-                    // Si no hice ningun cambio no hago nada...
+                    var ProveedorDTO = _proveedoresService.Get(x => x.DNI == Proveedor.DNI).FirstOrDefault();
+                    if (Proveedor == _mapper.Map<ProveedoresEntity>(ProveedorDTO) || ProveedorDTO == null)
+                        break;
+                    else
+                    {
+                        ProveedorDTO.FechaNac = Proveedor.FechaNac;
+                        ProveedorDTO.Mail = Proveedor.Mail;
+                        ProveedorDTO.Nombre = Proveedor.Nombre;
+                        ProveedorDTO.LugarEmpresa = Proveedor.LugarEmpresa;
+                        _proveedoresService.Actualizar(ProveedorDTO);
+                    }
                 }
-                else
-                {
-                    ProveedorDTO.FechaNac = Proveedor.FechaNac;
-                    ProveedorDTO.Mail = Proveedor.Mail;
-                    ProveedorDTO.Nombre = Proveedor.Nombre;
-                    ProveedorDTO.LugarEmpresa = Proveedor.LugarEmpresa;
-                    _proveedoresService.Actualizar(ProveedorDTO);
-                }
+            }
+            catch (Exception ex)
+            {
+                Logger.GenerateInfo("Ocurrió un error en ActualizarProveedoresPorGrilla controller Proveedores, Excepción: " + ex.Message);
+                throw ex;
             }
         }
 
         public List<string> VerificarCambios(List<ProveedoresEntity> listaProveedores)
         {
-            List<string> ListaCambios = new List<string>();
-            foreach (var Proveedor in listaProveedores)
+            try
             {
-                var ProveedorDTO = _proveedoresService.Get(x => x.DNI == Proveedor.DNI, tracking: false).FirstOrDefault();
-                var ProveedorEntityMapeado = _mapper.Map<ProveedoresEntity>(ProveedorDTO);
-                if (!(Proveedor.DNI == ProveedorEntityMapeado.DNI && Proveedor.FechaNac == ProveedorEntityMapeado.FechaNac && Proveedor.LugarEmpresa == ProveedorEntityMapeado.LugarEmpresa && Proveedor.Nombre == ProveedorEntityMapeado.Nombre))
+                List<string> ListaCambios = new List<string>();
+                foreach (var Proveedor in listaProveedores)
                 {
-                    ListaCambios.Add($"El Proveedor con el DNI: {Proveedor.DNI}");
+                    var ProveedorDTO = _proveedoresService.Get(x => x.DNI == Proveedor.DNI, tracking: false).FirstOrDefault();
+                    var ProveedorEntityMapeado = _mapper.Map<ProveedoresEntity>(ProveedorDTO);
+                    if (!(Proveedor.DNI == ProveedorEntityMapeado.DNI && Proveedor.FechaNac == ProveedorEntityMapeado.FechaNac && Proveedor.LugarEmpresa == ProveedorEntityMapeado.LugarEmpresa && Proveedor.Nombre == ProveedorEntityMapeado.Nombre))
+                    {
+                        ListaCambios.Add($"El Proveedor con el DNI: {Proveedor.DNI}");
+                    }
                 }
+                return ListaCambios;
             }
-            return ListaCambios;
+            catch (Exception ex)
+            {
+                Logger.GenerateInfo("Ocurrió un error en VerificarCambios controller Proveedores, Excepción: " + ex.Message);
+                throw ex;
+            }
         }
 
         public List<ProveedoresEntity> DetectarCambios(List<ProveedoresEntity> listaProveedores)
         {
-            List<ProveedoresEntity> listaProveedoresAcambiar = new List<ProveedoresEntity>();
-            foreach (var Proveedor in listaProveedores)
+            try
             {
-                var ProveedorDTO = _proveedoresService.Get(x => x.DNI == Proveedor.DNI, tracking: false).FirstOrDefault();
-                var ProveedorEntityMapeado = _mapper.Map<ProveedoresEntity>(ProveedorDTO);
-                if (!(Proveedor.DNI == ProveedorEntityMapeado.DNI && Proveedor.FechaNac == ProveedorEntityMapeado.FechaNac && Proveedor.LugarEmpresa == ProveedorEntityMapeado.LugarEmpresa && Proveedor.Nombre == ProveedorEntityMapeado.Nombre))
+                List<ProveedoresEntity> listaProveedoresAcambiar = new List<ProveedoresEntity>();
+                foreach (var Proveedor in listaProveedores)
                 {
-                    listaProveedoresAcambiar.Add(Proveedor);
+                    var ProveedorDTO = _proveedoresService.Get(x => x.DNI == Proveedor.DNI, tracking: false).FirstOrDefault();
+                    var ProveedorEntityMapeado = _mapper.Map<ProveedoresEntity>(ProveedorDTO);
+                    if (!(Proveedor.DNI == ProveedorEntityMapeado.DNI && Proveedor.FechaNac == ProveedorEntityMapeado.FechaNac && Proveedor.LugarEmpresa == ProveedorEntityMapeado.LugarEmpresa && Proveedor.Nombre == ProveedorEntityMapeado.Nombre && Proveedor.Mail == ProveedorEntityMapeado.Mail))
+                    {
+                        listaProveedoresAcambiar.Add(Proveedor);
+                    }
                 }
+                return listaProveedoresAcambiar;
             }
-            return listaProveedoresAcambiar;
+            catch (Exception ex)
+            {
+                Logger.GenerateInfo("Ocurrió un error en DetectarCambios controller Proveedores, Excepción: " + ex.Message);
+                throw ex;
+            }
         }
 
         public ProveedoresEntity ObtenerProveedor(string DNI)
         {
-            var ProveedorDTO1 = _proveedoresService.Get(x => x.DNI == DNI,includeProperties:"All").FirstOrDefault();
-            _proveedoresService.CrearFactura(ProveedorDTO1);
-            var ProveedoresEntity = _mapper.Map<ProveedoresEntity>(ProveedorDTO1);
-           return ProveedoresEntity;
+            try
+            {
+                var ProveedorDTO1 = _proveedoresService.Get(x => x.DNI == DNI).FirstOrDefault();
+                //_proveedoresService.CrearFactura(ProveedorDTO1);
+                var ProveedoresEntity = _mapper.Map<ProveedoresEntity>(ProveedorDTO1);
+                return ProveedoresEntity;
+            }
+            catch (Exception ex)
+            {
+                Logger.GenerateInfo("Ocurrió un error al obtener el proveedor, Excepción: "+ ex.Message);
+                throw ex;
+            }
         }
     }
 }

@@ -13,6 +13,7 @@ using System;
 using System.IO;
 using System.Windows.Forms;
 using UI.TextilSoft.MainForm;
+using UI.TextilSoft.Mapeo;
 using UI.TextilSoft.SubForms.Configuracion.Composite;
 
 namespace UI.TextilSoft
@@ -69,7 +70,8 @@ namespace UI.TextilSoft
             services.AddAutoMapper(typeof(FmTextilSoft));
             var mappingConfig = new MapperConfiguration(mc =>
             {
-                mc.AddProfile(new Mapping());
+                mc.AddProfile(new Mapping()); //Para la SL
+                mc.AddProfile(new BusinessMapping()); // Para la APP
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper); // Singleton al Mapper para los controllers (ahi se haria el traspaso de clases)

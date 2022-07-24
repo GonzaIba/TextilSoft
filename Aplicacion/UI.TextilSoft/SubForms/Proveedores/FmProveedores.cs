@@ -8,7 +8,6 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -123,6 +122,8 @@ namespace UI.TextilSoft.SubForms.Proveedores
                                 proveedor.Add(Proveedor);
                                 _proveedoresController.EliminarProveedor(Proveedor);
                             }
+                            else
+                                MessageBox.Show("El proveedor que desea eliminar no existe, por favor refresque la grilla");
                         }
                     }
                     LLenarGridView();
@@ -184,7 +185,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
                         {
                             //Si llegamos a este punto es porque el valor que tenemos en la celda coincide con el de la bdd
                             //Por ende tenemos que dejarlo con estilo normal asi no confunde al usuario
-                            Font negritas = new Font("Segoe UI", 9);
+                            Font negritas = new Font("Segoe UI", 10);
                             Color color = Color.White;
 
                             GrillaProveedores.Rows[row].Cells[column].Style.Font = negritas;
@@ -251,7 +252,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
         {
             LLenandoGrilla = true;
             ProveedoresEntity proveedor = new ProveedoresEntity();
-            foreach (var NombreColumna in proveedor.GetType().GetProperties()) //Recorremos las propiedades del objeto y las agregamos como columnas usando reflection
+            foreach (var NombreColumna in proveedor.GetType().GetProperties()) //Recorremos las propiedades del objeto y las agregamos como columnas
                 GrillaProveedores.Columns.Add(NombreColumna.Name, NombreColumna.Name);
 
             int Fila = 0;
@@ -479,6 +480,17 @@ namespace UI.TextilSoft.SubForms.Proveedores
                 AbrirAnimator();
             }
         }
+
+        private void GrillaProveedores_DataSourceChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        //private void GrillaProveedores_RowErrorTextChanged(object sender, DataGridViewRowEventArgs e)
+        //{
+
+        //}
     }
 }
 

@@ -121,6 +121,7 @@
             this.GrillaProveedores.RowTemplate.Height = 25;
             this.GrillaProveedores.Size = new System.Drawing.Size(812, 285);
             this.GrillaProveedores.TabIndex = 3;
+            this.GrillaProveedores.DataSourceChanged += new System.EventHandler(this.GrillaProveedores_DataSourceChanged);
             this.GrillaProveedores.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.GrillaProveedores_CellBeginEdit);
             this.GrillaProveedores.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrillaProveedores_CellContentClick);
             this.GrillaProveedores.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.GrillaProveedores_CellDoubleClick);

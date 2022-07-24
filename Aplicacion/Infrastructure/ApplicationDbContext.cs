@@ -26,11 +26,11 @@ namespace Infrastructure
         /// 
         /// </summary>
         /// <param name="dbContextOptions"></param>
-        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
-        //    : base(dbContextOptions)
-        //{
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
+            : base(dbContextOptions)
+        {
 
-        //}
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

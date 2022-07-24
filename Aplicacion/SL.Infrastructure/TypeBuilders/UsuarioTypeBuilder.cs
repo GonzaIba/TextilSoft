@@ -47,6 +47,10 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(false)
                 .HasColumnType("varchar(50)");
 
+            builder.HasOne(p => p.Company)
+                .WithMany(p => p.Usuarios)
+                .HasForeignKey(p => p.CompanyId);
+                
             builder.ToTable("usuarios");
         }
     }

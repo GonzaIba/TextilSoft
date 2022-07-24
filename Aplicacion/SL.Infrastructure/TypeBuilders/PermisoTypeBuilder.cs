@@ -15,13 +15,18 @@ namespace SL.Infrastructure.TypeBuilders
         {
             builder.HasKey(p => p.Id_Permiso);
 
-            builder.Property(p => p.Permiso)
-                .IsRequired(false)
-                .HasColumnType("varchar(100)");
+            builder.HasOne(p => p.Company)
+                .WithMany(p => p.Permisos)
+                .HasForeignKey(p => p.CompanyId)
+                .OnDelete(DeleteBehavior.NoAction);
 
             builder.Property(p => p.Permiso)
                 .IsRequired(false)
-                .HasColumnType("varchar(50)");
+                .HasColumnType("varchar(100)");
+            
+            builder.Property(p => p.Nombre)
+                .IsRequired(true)
+                .HasColumnType("varchar(100)");
 
             builder.ToTable("permiso");
         }

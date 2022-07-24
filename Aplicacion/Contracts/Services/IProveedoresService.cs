@@ -18,5 +18,7 @@ namespace Contracts.Services
 
         void Test(IEnumerable<ProveedoresModel> listita);
 
+        void EliminarProveedor(ProveedoresEntity proveedoresEntity);
+
     }
 }

@@ -77,6 +77,18 @@ namespace Business.Services
             }
         }
 
+        public void EliminarProveedor(ProveedoresEntity proveedoresEntity)
+        {
+            var _productosProveedorRepository = _unitOfWork.GetRepository<IProductosProveedorRepository>();
+            var ProveedorDTO = _repository.Get(x => x.DNI == proveedoresEntity.DNI, includeProperties: "ProductoProveedor").FirstOrDefault();
+            if (ProveedorDTO.ProductoProveedor != null && ProveedorDTO.ProductoProveedor.Count > 0)
+            {
+                var ProductosProveedorDTO = _productosProveedorRepository.Get(x => x.ID_Proveedor == ProveedorDTO.ID_Proveedor).FirstOrDefault();
+                _productosProveedorRepository.Delete(ProductosProveedorDTO);
+            }
+            _repository.Delete(ProveedorDTO);
+        }
+
         public void Test(IEnumerable<ProveedoresModel> listita)
         {
             var resultado = _mapper.Map<IEnumerable<ProveedoresEntity>>(listita);
