@@ -14,9 +14,11 @@ namespace SL.Domain.Model
         public string CompanyPhone { get; set; }
         public string CompanyMail { get; set; }
         public string CompanyLocation { get; set; }
+        public string CompanyApiKey { get; set; }
         public bool Active { get; set; }
         
         public ICollection<UsuarioModel> Usuarios { get; set; }
         public ICollection<PermisoModel> Permisos { get; set; }
+        public CompanyCustomizeModel CompanyCustomize { get; set; }
     }
 }

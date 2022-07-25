@@ -13,14 +13,19 @@ namespace SL.Business.Services
 {
     public class CompanyService : GenericService<CompanyModel>, ICompanyService
     {
-        private readonly IConfiguration _configuration;
-        public CompanyService(IUnitOfWork unitOfWork,IConfiguration configuration)
+        public CompanyService(IUnitOfWork unitOfWork)
         : base(unitOfWork, unitOfWork.GetRepository<ICompanyRepository>())
         {
-            _configuration = configuration;
+            
         }
 
-        public int CompanyId => Convert.ToInt32(_configuration["Company:CompanyId"]);
-
+        public bool ExistCompany(int companyId, string companyApiKey)
+        {
+            var Result =_repository.Get(x => x.CompanyId == companyId && x.CompanyApiKey == companyApiKey).FirstOrDefault();
+            if (Result == null)
+                return false;
+            else
+                return true;
+        }
     }
 }

@@ -4,12 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SL.Contracts
+namespace SL.Contracts.Repositories
 {
-    public interface ICompanyController
+    public interface ICompanyCustomizeRepository
     {
-        bool VerifyCompany();
-
-        string GetCompanyLogo();
     }
 }

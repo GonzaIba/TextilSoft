@@ -90,8 +90,14 @@ namespace Infrastructure.Repositories
 
         public void Delete(T entities)
         {
-            entities.Active = false;
-            this._context.Entry(entities).State = EntityState.Modified;
+            if (entities.GetType().GetProperty("Active") != null)
+            {
+                entities.Active = false;
+                this._context.Entry(entities).State = EntityState.Modified;
+            }
+            else
+                this._context.Entry(entities).State = EntityState.Deleted; // Puede ser una tabla intermedia..
+
         }
 
         public virtual IEnumerable<T> Get(

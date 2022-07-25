@@ -6,12 +6,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SL.Helper.Configurations;
+using SL.Helper.Extensions;
 using SL.Helper.Services.Mapper;
 using SL.Infrastructure;
 using SL.IoC;
 using System;
 using System.IO;
 using System.Windows.Forms;
+//using UI.TextilSoft.Configurations;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
 using UI.TextilSoft.SubForms.Configuracion.Composite;
@@ -41,7 +44,7 @@ namespace UI.TextilSoft
                 .Build();
 
             var services = host.Services;
-            var mainForm = services.GetRequiredService<FmTextilSoft>();
+            var mainForm = services.GetRequiredService<FmLogin>();
             Application.Run(mainForm);
         }
 
@@ -62,12 +65,16 @@ namespace UI.TextilSoft
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory)
             );
-            services.AddSingleton<FmTextilSoft>();
+            services.AddSingleton<FmLogin>();
 
-            
+
+            services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
+
+
+
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
 
-            services.AddAutoMapper(typeof(FmTextilSoft));
+            services.AddAutoMapper(typeof(FmLogin));
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new Mapping()); //Para la SL

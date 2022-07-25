@@ -9,6 +9,6 @@ namespace SL.Contracts.Services
 {
     public interface ICompanyService : IGenericService<CompanyModel>
     {
-        public int CompanyId {get;}
+        public bool ExistCompany(int companyId, string companyApiKey);
     }
 }

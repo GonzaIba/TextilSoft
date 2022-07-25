@@ -35,6 +35,10 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
+            builder.Property(p => p.CompanyApiKey)
+                .IsRequired(true)
+                .HasColumnType("varchar(64)");
+
             builder.ToTable("Company");
         }
     }
