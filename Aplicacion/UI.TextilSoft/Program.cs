@@ -14,6 +14,7 @@ using SL.IoC;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations.Authentication;
 //using UI.TextilSoft.Configurations;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
@@ -66,10 +67,11 @@ namespace UI.TextilSoft
                 .UseLoggerFactory(_loggerFactory)
             );
             services.AddSingleton<FmLogin>();
-
+            
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
-
+            //services.AddConfig<AuthenticationConfig>(Configuration, nameof(AuthenticationConfig));
+            //services.AddConfig<AuthenticationConfig>(Configuration, typeof(AuthenticationConfig));
 
 
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas

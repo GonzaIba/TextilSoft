@@ -16,6 +16,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations.Authentication;
 using UI.TextilSoft.Controllers;
 
 namespace UI.TextilSoft.MainForm
@@ -36,6 +37,8 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
+
+        //private readonly PasswordConfig _passwordConfig;
 
         public FmLogin(IUsuarioController userController,
                         IProveedoresController proveedoresController,
@@ -68,6 +71,7 @@ namespace UI.TextilSoft.MainForm
             
             _userController = userController;
             _companyController = companyController;
+            //_passwordConfig = passwordConfig;
         }
         #endregion
 
@@ -135,10 +139,14 @@ namespace UI.TextilSoft.MainForm
         {
             try
             {
-                pnlPasswordError.Visible = false;
-                pnlUserNameError.Visible = false;
-                txtPassword.ForeColor = Color.White;
-                txtPassword.PasswordChar = '*';
+                if(txtPassword.Text != txtPasswordTextBase)
+                {
+                    //txtPassword.Text = "";
+                    pnlPasswordError.Visible = false;
+                    pnlUserNameError.Visible = false;
+                    txtPassword.ForeColor = Color.White;
+                    txtPassword.PasswordChar = '*';
+                }
             }
             catch (Exception ex)
             {
@@ -158,45 +166,71 @@ namespace UI.TextilSoft.MainForm
                 txtPassword.Text = "";
         }
 
+        private void FmLogin_Load(object sender, EventArgs e)
+        {
+            bool ExistCompany = _companyController.VerifyCompany();
+
+            if (!ExistCompany)
+                MessageBox.Show("No existe la compañía");
+            else
+            {
+                try
+                {
+                    txtUserNameTextBase = txtUser.Text;
+                    txtPasswordTextBase = txtPassword.Text;
+                    pnlPasswordError.Visible = false;
+                    pnlUserNameError.Visible = false;
+                    CompanyCustomizeEntity company = _companyController.GetCustomizeCompany();
+                    lblCompanyName.Text = company.Name;
+                    //Convert Logo to Image
+                    byte[] imageBytes = Convert.FromBase64String(company.Logo);
+                    MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                    ms.Write(imageBytes, 0, imageBytes.Length);
+                    Image image = Image.FromStream(ms, true);
+                    picCompanyLogo.Image = image;
+                    //picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                    //picCompanyLogo.BorderStyle = BorderStyle.Fixed3D;
+                    //picCompanyLogo.Size = new Size(200, 200);
+                    //picCompanyLogo.Location = new Point(10, 10);
+                    //picCompanyLogo.BackColor = Color.Transparent;
+                    //picCompanyLogo.Visible = true;
+                    //picCompanyLogo.BringToFront();
+                    //picCompanyLogo.SendToBack();
+                    //picCompanyLogo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+                    //picCompanyLogo.Dock = DockStyle.Fill;
+                    //picCompanyLogo.Padding = new Padding(10);
+                    //picCompanyLogo.Margin = new Padding(10);
+                }
+                catch (Exception ex)
+                {
+                    
+                }            
+            }
+                
+        }
+
+        private void txtUser_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtUser.Text.ToString()))
+            {
+                txtUser.Text = txtUserNameTextBase;
+                txtUser.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtPassword.Text.ToString()))
+            {
+                txtPassword.PasswordChar = '\0';
+                txtPassword.Text = txtPasswordTextBase;
+                txtPassword.ForeColor = Color.Gray;
+            }
+        }
+
         private void pnlLogin_Paint(object sender, PaintEventArgs e)
         {
 
         }
-
-        private void FmLogin_Load(object sender, EventArgs e)
-        {
-            bool ExistCompany = _companyController.VerifyCompany();
-            if (!ExistCompany)
-                MessageBox.Show("No existe la compañía");
-
-            
-            string Logo = _companyController.GetCompanyLogo();
-            //Convert Logo to Image
-            byte[] imageBytes = Convert.FromBase64String(Logo);
-            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-            ms.Write(imageBytes, 0, imageBytes.Length);
-            Image image = Image.FromStream(ms, true);
-            //Set Image to PictureBox
-            picCompanyLogo.Image = image;
-            //picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
-            //picCompanyLogo.BorderStyle = BorderStyle.Fixed3D;
-            //picCompanyLogo.Size = new Size(200, 200);
-            //picCompanyLogo.Location = new Point(10, 10);
-            //picCompanyLogo.BackColor = Color.Transparent;
-            //picCompanyLogo.Visible = true;
-            //picCompanyLogo.BringToFront();
-            //picCompanyLogo.SendToBack();
-            //picCompanyLogo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
-            //picCompanyLogo.Dock = DockStyle.Fill;
-            //picCompanyLogo.Padding = new Padding(10);
-            //picCompanyLogo.Margin = new Padding(10);
-            
-
-            txtUserNameTextBase = txtUser.Text;
-            txtPasswordTextBase = txtPassword.Text;
-            pnlPasswordError.Visible = false;
-            pnlUserNameError.Visible = false;
-        }
-
     }
 }

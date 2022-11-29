@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using SL.Helper.Configurations;
 using SL.Contracts;
 using SL.Contracts.Services;
+using SL.Domain.Entities;
+using AutoMapper;
 
 namespace SL.Helper.Controllers
 {
@@ -13,14 +15,17 @@ namespace SL.Helper.Controllers
     {
         private readonly ICompanyService _companyService;
         private readonly CompanyConfiguration _companyConfiguration;
+        private readonly IMapper _mapper;
 
         public CompanyController(
             CompanyConfiguration companyConfiguration,
-            ICompanyService companyService
+            ICompanyService companyService,
+            IMapper mapper
             )
         {
             _companyConfiguration = companyConfiguration;
             _companyService = companyService;
+            _mapper = mapper;
         }
 
         public string GetCompanyLogo()
@@ -31,6 +36,17 @@ namespace SL.Helper.Controllers
                 return CompanyCustomize.CompanyCustomize.CompanyLogo;
             }
             return "No se pudo obtener el logo de la companñia";
+        }
+
+        public CompanyCustomizeEntity GetCustomizeCompany()
+        {
+            var CompanyCustomize = _companyService.Get(x => x.CompanyId == _companyConfiguration.CompanyId && x.CompanyApiKey == _companyConfiguration.CompanyApiKey, includeProperties: "CompanyCustomize").FirstOrDefault();
+            if (CompanyCustomize != null)
+            {
+                CompanyCustomizeEntity companyCustomizeEntity = _mapper.Map<CompanyCustomizeEntity>(CompanyCustomize);
+                return companyCustomizeEntity;
+            }
+            throw new Exception("No se pudo obtener el logo de la companñia");
         }
 
         public bool VerifyCompany()

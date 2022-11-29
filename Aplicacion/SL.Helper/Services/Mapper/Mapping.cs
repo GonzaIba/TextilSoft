@@ -47,8 +47,13 @@ namespace SL.Helper.Services.Mapper
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))
                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
                 .ReverseMap();
-            
 
+            CreateMap<CompanyModel, CompanyCustomizeEntity>()
+                .ForMember(dest => dest.CompanyId, opt => opt.MapFrom(src => src.CompanyId))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.CompanyName))
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyColor))
+                .ForMember(dest => dest.Logo, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyLogo))
+                .ReverseMap();
         }
 
 

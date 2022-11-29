@@ -33,6 +33,7 @@ namespace UI.TextilSoft.MainForm
             this.lblLogin = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlCompanyLogo = new System.Windows.Forms.Panel();
+            this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlTimeNow = new System.Windows.Forms.Panel();
             this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.pnlLogin = new System.Windows.Forms.Panel();
@@ -54,7 +55,6 @@ namespace UI.TextilSoft.MainForm
             this.pnlUserNameText = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlCompanyLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             this.pnlLogin.SuspendLayout();
@@ -81,6 +81,7 @@ namespace UI.TextilSoft.MainForm
             this.txtUser.Text = "Ingrese un Usuario";
             this.txtUser.Click += new System.EventHandler(this.txtUser_Click);
             this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+            this.txtUser.Leave += new System.EventHandler(this.txtUser_Leave);
             // 
             // lblLogin
             // 
@@ -103,6 +104,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // pnlCompanyLogo
             // 
+            this.pnlCompanyLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlCompanyLogo.Controls.Add(this.lblCompanyName);
             this.pnlCompanyLogo.Controls.Add(this.pnlTimeNow);
             this.pnlCompanyLogo.Controls.Add(this.picCompanyLogo);
@@ -112,24 +114,36 @@ namespace UI.TextilSoft.MainForm
             this.pnlCompanyLogo.Size = new System.Drawing.Size(255, 469);
             this.pnlCompanyLogo.TabIndex = 5;
             // 
+            // lblCompanyName
+            // 
+            this.lblCompanyName.AutoSize = true;
+            this.lblCompanyName.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblCompanyName.ForeColor = System.Drawing.Color.White;
+            this.lblCompanyName.Location = new System.Drawing.Point(11, 8);
+            this.lblCompanyName.Name = "lblCompanyName";
+            this.lblCompanyName.Size = new System.Drawing.Size(122, 32);
+            this.lblCompanyName.TabIndex = 2;
+            this.lblCompanyName.Text = "Compañia";
+            // 
             // pnlTimeNow
             // 
             this.pnlTimeNow.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTimeNow.Location = new System.Drawing.Point(0, 369);
+            this.pnlTimeNow.Location = new System.Drawing.Point(0, 367);
             this.pnlTimeNow.Name = "pnlTimeNow";
-            this.pnlTimeNow.Size = new System.Drawing.Size(255, 100);
+            this.pnlTimeNow.Size = new System.Drawing.Size(253, 100);
             this.pnlTimeNow.TabIndex = 1;
             // 
             // picCompanyLogo
             // 
-            this.picCompanyLogo.Location = new System.Drawing.Point(0, 44);
+            this.picCompanyLogo.Location = new System.Drawing.Point(0, 53);
             this.picCompanyLogo.Name = "picCompanyLogo";
-            this.picCompanyLogo.Size = new System.Drawing.Size(255, 134);
+            this.picCompanyLogo.Size = new System.Drawing.Size(255, 193);
             this.picCompanyLogo.TabIndex = 0;
             this.picCompanyLogo.TabStop = false;
             // 
             // pnlLogin
             // 
+            this.pnlLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlLogin.Controls.Add(this.linkLabel2);
             this.pnlLogin.Controls.Add(this.linkLabel1);
             this.pnlLogin.Controls.Add(this.btnLogin);
@@ -273,6 +287,7 @@ namespace UI.TextilSoft.MainForm
             this.txtPassword.Text = "Ingrese una Contraseña";
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // label3
             // 
@@ -343,17 +358,6 @@ namespace UI.TextilSoft.MainForm
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
             // 
-            // lblCompanyName
-            // 
-            this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCompanyName.ForeColor = System.Drawing.Color.White;
-            this.lblCompanyName.Location = new System.Drawing.Point(11, 8);
-            this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(98, 25);
-            this.lblCompanyName.TabIndex = 2;
-            this.lblCompanyName.Text = "Compañia";
-            // 
             // FmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -363,6 +367,7 @@ namespace UI.TextilSoft.MainForm
             this.Controls.Add(this.pnlCompanyLogo);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pnlLogin);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FmLogin";
             this.Padding = new System.Windows.Forms.Padding(5);
