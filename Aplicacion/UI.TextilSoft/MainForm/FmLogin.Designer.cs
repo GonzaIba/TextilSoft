@@ -29,6 +29,7 @@ namespace UI.TextilSoft.MainForm
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -37,6 +38,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlTimeNow = new System.Windows.Forms.Panel();
             this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.lblLoginError = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnLogin = new FontAwesome.Sharp.IconButton();
@@ -55,6 +57,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlUserNameText = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.pnlCompanyLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             this.pnlLogin.SuspendLayout();
@@ -96,22 +99,24 @@ namespace UI.TextilSoft.MainForm
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(5, 5);
+            this.panel1.Location = new System.Drawing.Point(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(873, 52);
+            this.panel1.Size = new System.Drawing.Size(881, 52);
             this.panel1.TabIndex = 4;
             // 
             // pnlCompanyLogo
             // 
+            this.pnlCompanyLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.pnlCompanyLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlCompanyLogo.Controls.Add(this.lblCompanyName);
             this.pnlCompanyLogo.Controls.Add(this.pnlTimeNow);
             this.pnlCompanyLogo.Controls.Add(this.picCompanyLogo);
             this.pnlCompanyLogo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlCompanyLogo.Location = new System.Drawing.Point(5, 57);
+            this.pnlCompanyLogo.Location = new System.Drawing.Point(1, 53);
             this.pnlCompanyLogo.Name = "pnlCompanyLogo";
-            this.pnlCompanyLogo.Size = new System.Drawing.Size(255, 469);
+            this.pnlCompanyLogo.Size = new System.Drawing.Size(255, 477);
             this.pnlCompanyLogo.TabIndex = 5;
             // 
             // lblCompanyName
@@ -128,7 +133,7 @@ namespace UI.TextilSoft.MainForm
             // pnlTimeNow
             // 
             this.pnlTimeNow.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTimeNow.Location = new System.Drawing.Point(0, 367);
+            this.pnlTimeNow.Location = new System.Drawing.Point(0, 375);
             this.pnlTimeNow.Name = "pnlTimeNow";
             this.pnlTimeNow.Size = new System.Drawing.Size(253, 100);
             this.pnlTimeNow.TabIndex = 1;
@@ -143,7 +148,9 @@ namespace UI.TextilSoft.MainForm
             // 
             // pnlLogin
             // 
+            this.pnlLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.pnlLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLogin.Controls.Add(this.lblLoginError);
             this.pnlLogin.Controls.Add(this.linkLabel2);
             this.pnlLogin.Controls.Add(this.linkLabel1);
             this.pnlLogin.Controls.Add(this.btnLogin);
@@ -155,28 +162,40 @@ namespace UI.TextilSoft.MainForm
             this.pnlLogin.Controls.Add(this.lblLogin);
             this.pnlLogin.Controls.Add(this.lblUsuario);
             this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLogin.Location = new System.Drawing.Point(5, 5);
+            this.pnlLogin.Location = new System.Drawing.Point(1, 1);
             this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(873, 521);
+            this.pnlLogin.Size = new System.Drawing.Size(881, 529);
             this.pnlLogin.TabIndex = 6;
             this.pnlLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogin_Paint);
+            // 
+            // lblLoginError
+            // 
+            this.lblLoginError.AutoSize = true;
+            this.lblLoginError.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblLoginError.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.lblLoginError.Location = new System.Drawing.Point(503, 357);
+            this.lblLoginError.Name = "lblLoginError";
+            this.lblLoginError.Size = new System.Drawing.Size(208, 19);
+            this.lblLoginError.TabIndex = 9;
+            this.lblLoginError.Text = "Usuario y/o contraseña inválidos";
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
             this.linkLabel2.LinkColor = System.Drawing.Color.White;
-            this.linkLabel2.Location = new System.Drawing.Point(569, 476);
+            this.linkLabel2.Location = new System.Drawing.Point(569, 502);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(76, 15);
             this.linkLabel2.TabIndex = 14;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Crear Cuenta";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(540, 368);
+            this.linkLabel1.Location = new System.Drawing.Point(540, 394);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(136, 15);
             this.linkLabel1.TabIndex = 13;
@@ -192,7 +211,7 @@ namespace UI.TextilSoft.MainForm
             this.btnLogin.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
             this.btnLogin.IconColor = System.Drawing.Color.White;
             this.btnLogin.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLogin.Location = new System.Drawing.Point(488, 396);
+            this.btnLogin.Location = new System.Drawing.Point(488, 422);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(227, 67);
             this.btnLogin.TabIndex = 12;
@@ -358,11 +377,16 @@ namespace UI.TextilSoft.MainForm
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // FmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(883, 531);
             this.Controls.Add(this.pnlCompanyLogo);
             this.Controls.Add(this.panel1);
@@ -370,7 +394,7 @@ namespace UI.TextilSoft.MainForm
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FmLogin";
-            this.Padding = new System.Windows.Forms.Padding(5);
+            this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "FmLogin";
             this.Load += new System.EventHandler(this.FmLogin_Load);
             this.pnlCompanyLogo.ResumeLayout(false);
@@ -422,5 +446,7 @@ namespace UI.TextilSoft.MainForm
         private System.Windows.Forms.Panel pnlTimeNow;
         private System.Windows.Forms.PictureBox picCompanyLogo;
         private System.Windows.Forms.Label lblCompanyName;
+        private System.Windows.Forms.Label lblLoginError;
+        private System.Windows.Forms.Timer timer1;
     }
 }

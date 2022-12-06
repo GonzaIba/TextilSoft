@@ -8,5 +8,9 @@ namespace SL.Domain.Entities
 {
     public class Register
     {
+        public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string Password { get; set; }
+        public string ConfirmPassword { get; set; }
     }
 }

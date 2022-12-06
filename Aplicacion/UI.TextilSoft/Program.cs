@@ -37,6 +37,12 @@ namespace UI.TextilSoft
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            //High DPI
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                SetProcessDPIAware();
+            }
+
             var host = Host.CreateDefaultBuilder()
                 .ConfigureServices((services) =>
                 {
@@ -48,6 +54,8 @@ namespace UI.TextilSoft
             var mainForm = services.GetRequiredService<FmLogin>();
             Application.Run(mainForm);
         }
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        private static extern bool SetProcessDPIAware();
 
         /// <summary>
         /// Configuracion de Inyeccion de dependencia

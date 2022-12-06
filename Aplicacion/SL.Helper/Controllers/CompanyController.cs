@@ -38,6 +38,11 @@ namespace SL.Helper.Controllers
             return "No se pudo obtener el logo de la companñia";
         }
 
+        public int GetCurrentCompany()
+        {
+            return _companyConfiguration.CompanyId;
+        }
+
         public CompanyCustomizeEntity GetCustomizeCompany()
         {
             var CompanyCustomize = _companyService.Get(x => x.CompanyId == _companyConfiguration.CompanyId && x.CompanyApiKey == _companyConfiguration.CompanyApiKey, includeProperties: "CompanyCustomize").FirstOrDefault();

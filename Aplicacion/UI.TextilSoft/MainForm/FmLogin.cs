@@ -14,6 +14,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Configurations.Authentication;
@@ -24,6 +25,7 @@ namespace UI.TextilSoft.MainForm
     public partial class FmLogin : Form
     {
         #region Inyection
+        private int cont = 0;
         private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
         private readonly IProductosController _productosController;
         private readonly IUsuarioController _userController;
@@ -71,7 +73,7 @@ namespace UI.TextilSoft.MainForm
             
             _userController = userController;
             _companyController = companyController;
-            //_passwordConfig = passwordConfig;
+            CheckForIllegalCrossThreadCalls = false;
         }
         #endregion
 
@@ -117,8 +119,16 @@ namespace UI.TextilSoft.MainForm
             }
             else
             {
-                MessageBox.Show(Result);
+                ShowLoginError();
+                //MessageBox.Show(Result);
             }
+        }
+        public void ShowLoginError()
+        {
+            //this.Opacity = 0;
+            lblLoginError.Visible = true;
+            timer1.Start();
+            //timer2.Start();
         }
 
         private void txtUser_TextChanged(object sender, EventArgs e)
@@ -168,6 +178,8 @@ namespace UI.TextilSoft.MainForm
 
         private void FmLogin_Load(object sender, EventArgs e)
         {
+            lblLoginError.Visible = false;
+            lblLoginError.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
             bool ExistCompany = _companyController.VerifyCompany();
 
             if (!ExistCompany)
@@ -229,6 +241,62 @@ namespace UI.TextilSoft.MainForm
         }
 
         private void pnlLogin_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FmRegistrarse fmRecoveryPassword = new FmRegistrarse(_userController, _companyController);
+            fmRecoveryPassword.Show();
+            //this.Close();
+        }
+
+        #region Fade in Labels
+        int[] targetColor = { 255, 255, 255 };
+        int[] fadeRGB = new int[3];
+
+        void FadeIn()
+        {
+            fadeRGB[0] = lblLoginError.ForeColor.R;
+            fadeRGB[1] = lblLoginError.ForeColor.G;
+            fadeRGB[2] = lblLoginError.ForeColor.B;
+            if (fadeRGB[0] > targetColor[0])
+                fadeRGB[0]--;
+            else if (fadeRGB[0] < targetColor[0])
+                fadeRGB[0]++;
+            if (fadeRGB[1] > targetColor[1])
+                fadeRGB[1]--;
+            else if (fadeRGB[1] < targetColor[1])
+                fadeRGB[1]++;
+            if (fadeRGB[2] > targetColor[2])
+                fadeRGB[2]--;
+            else if (fadeRGB[2] < targetColor[2])
+                fadeRGB[2]++;
+            if (fadeRGB[0] == targetColor[0] && fadeRGB[1] == this.BackColor.G && fadeRGB[2] == this.BackColor.B)
+            {
+                //timer1.Stop();
+                //timer2.Stop();
+            }
+            lblLoginError.ForeColor = Color.FromArgb(fadeRGB[0], fadeRGB[1], fadeRGB[2]);
+        }
+        #endregion
+        //int fadingSpeed = 3;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            int fadingSpeed = 3;
+            lblLoginError.ForeColor = Color.Black;
+            lblLoginError.ForeColor = Color.FromArgb(lblLoginError.ForeColor.R + fadingSpeed, lblLoginError.ForeColor.G + fadingSpeed, lblLoginError.ForeColor.B + fadingSpeed);
+            //if (lblLoginError.ForeColor.R >= this.BackColor.R)
+            //{
+            lblLoginError.ForeColor = this.BackColor;
+            timer1.Stop();
+            //}
+            //FadeIn();
+            //this.Refresh();
+        }
+
+        private async void FadeIn2()
         {
 
         }

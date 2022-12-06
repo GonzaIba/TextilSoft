@@ -31,11 +31,13 @@ namespace SL.Helper.Controllers
             _mapper = mapper;
         }
 
-        public void CreateUser(UsuarioModel usuarioModel)
+        public bool CreateUser(Register register, int CompanyId)
         {
             try
             {
-
+                var usuario = _mapper.Map<UsuarioModel>(register);
+                usuario.CompanyId = CompanyId;
+                return _usuarioService.Register(usuario);
             }
             catch (Exception ex)
             {

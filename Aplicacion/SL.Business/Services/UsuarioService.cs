@@ -88,6 +88,20 @@ namespace SL.Business
             return LoginMessage;
         }
 
+        public bool Register(UsuarioModel usuarioModel)
+        {
+            try
+            {
+                _repository.Insert(usuarioModel);
+                _unitOfWork.Save();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         #endregion
 
         #region Composite

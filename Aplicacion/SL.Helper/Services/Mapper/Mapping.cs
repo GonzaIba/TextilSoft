@@ -54,29 +54,14 @@ namespace SL.Helper.Services.Mapper
                 .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyColor))
                 .ForMember(dest => dest.Logo, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyLogo))
                 .ReverseMap();
+
+            CreateMap<Register, UsuarioModel>()
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Contraseña, opt => opt.MapFrom(src => src.Password))
+                .ForMember(dest => dest.Active, opt => opt.MapFrom(src => true));
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         public TipoPermiso ConvertToTipoPermiso(string src)
         {
             TipoPermiso permiso;
