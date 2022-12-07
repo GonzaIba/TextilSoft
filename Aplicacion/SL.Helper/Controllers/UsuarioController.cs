@@ -62,6 +62,7 @@ namespace SL.Helper.Controllers
         {
             var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña).FirstOrDefault();
             var Usuario = _mapper.Map<Usuario>(UsuarioDto);
+            Usuario = ObtenerPermisosDeUsuario(Usuario);
             return Usuario;
         }
 
@@ -84,6 +85,21 @@ namespace SL.Helper.Controllers
             }
         }
 
+        public Usuario ObtenerPermisosDeUsuario(Usuario usuario)
+        {
+            try
+            {
+                //En vez de crear un método, simplemente reutilizamos el de listas
+                List<Usuario> Usuarios = new List<Usuario>();
+                Usuarios.Add(usuario);
+                return UsuariosConPermisos(Usuarios).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+            
         public List<Usuario> ObtenerUsuariosCompletos()
         {
             var Familias = ObtenerFamilias();

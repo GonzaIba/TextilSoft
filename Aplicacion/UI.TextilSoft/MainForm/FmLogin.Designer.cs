@@ -166,7 +166,6 @@ namespace UI.TextilSoft.MainForm
             this.pnlLogin.Name = "pnlLogin";
             this.pnlLogin.Size = new System.Drawing.Size(881, 529);
             this.pnlLogin.TabIndex = 6;
-            this.pnlLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogin_Paint);
             // 
             // lblLoginError
             // 

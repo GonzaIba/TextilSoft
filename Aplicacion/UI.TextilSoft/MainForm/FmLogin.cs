@@ -110,17 +110,17 @@ namespace UI.TextilSoft.MainForm
 
             if (Result == "Ok")
             {
+                //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
                 var usuario = _userController.GetUser(login);
                 //_empleadosController.LoginEmpleado(usuario);
                 FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration);
-                fmTextilSoft.toolStrip1.Tag = login;
+                fmTextilSoft.toolStrip1.Tag = usuario;
                 fmTextilSoft.btnPedidos.Enabled = false;
                 fmTextilSoft.Show();
             }
             else
             {
                 ShowLoginError();
-                //MessageBox.Show(Result);
             }
         }
         public void ShowLoginError()
@@ -240,11 +240,6 @@ namespace UI.TextilSoft.MainForm
             }
         }
 
-        private void pnlLogin_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FmRegistrarse fmRecoveryPassword = new FmRegistrarse(_userController, _companyController);
@@ -294,11 +289,6 @@ namespace UI.TextilSoft.MainForm
             //}
             //FadeIn();
             //this.Refresh();
-        }
-
-        private async void FadeIn2()
-        {
-
         }
     }
 }
