@@ -27,6 +27,10 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(false)
                 .HasColumnType("varchar(50)"); //Puede ser texto, un hexadecimal (30;30;30) o (#303030). Se valida con REGEX
 
+            builder.Property(x => x.CanUseLoginAndRegister)
+                .IsRequired()
+                .HasColumnType("bit");
+
             //builder.Property(x => x.CreatedAt).IsRequired();
             //builder.Property(x => x.UpdatedAt).IsRequired();
             //builder.Property(x => x.CreatedBy).IsRequired();

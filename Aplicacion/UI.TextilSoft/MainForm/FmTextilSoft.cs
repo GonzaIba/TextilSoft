@@ -2,6 +2,7 @@
 using FontAwesome.Sharp;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Configuration;
+using SL.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -84,12 +85,12 @@ namespace UI.TextilSoft.MainForm
         }
         #endregion
 
-        private IdentityUser _userId
+        private Usuario _user
         {
             get
             {
                 //Aca tendria que llamar al controller de user y hacer un get pasandole por parametros toolstrip1.tag
-                IdentityUser data = (IdentityUser)toolStrip1.Tag;
+                Usuario data = (Usuario)toolStrip1.Tag;
                 return data;
             }
         }
@@ -102,7 +103,7 @@ namespace UI.TextilSoft.MainForm
                 toolStrip1.Renderer = new ToolStripRenderCustom();
                 timer1.Start();
                 timer2.Start();
-                toolStripLabel1.Text = "Hola " + _userId. + "!";
+                toolStripLabel1.Text = "Hola " + _user.Nombre + "!";
                 //this.TraducirFormulario();
             }
             catch (Exception ex)

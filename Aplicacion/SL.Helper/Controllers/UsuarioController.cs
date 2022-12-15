@@ -6,6 +6,7 @@ using SL.Contracts.Services;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
 using SL.Domain.Model;
+using SL.Helper.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +21,23 @@ namespace SL.Helper.Controllers
         private readonly IUsuario_PermisoService _usuario_PermisoService;
         private readonly IPermisoService _permisoService;
         private readonly IPermiso_PermisoService _permiso_PermisoService;
+        private readonly CompanyConfiguration _companyConfiguration;
         private readonly IMapper _mapper;
 
-        public UsuarioController(IUsuarioService usuarioService, IUsuario_PermisoService usuario_PermisoService, IPermisoService permisoService, IPermiso_PermisoService permiso_PermisoService, IMapper mapper)
+        public UsuarioController(IUsuarioService usuarioService,
+            IUsuario_PermisoService usuario_PermisoService,
+            IPermisoService permisoService,
+            IPermiso_PermisoService permiso_PermisoService,
+            IMapper mapper,
+            CompanyConfiguration companyConfiguration
+            )
         {
             _usuarioService = usuarioService;
             _usuario_PermisoService = usuario_PermisoService;
             _permisoService = permisoService;
             _permiso_PermisoService = permiso_PermisoService;
             _mapper = mapper;
+            _companyConfiguration = companyConfiguration;
         }
 
         public bool CreateUser(Register register, int CompanyId)
@@ -60,9 +69,12 @@ namespace SL.Helper.Controllers
 
         public Usuario GetUser(Login login)
         {
-            var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña).FirstOrDefault();
+            var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña, tracking: false).FirstOrDefault();
             var Usuario = _mapper.Map<Usuario>(UsuarioDto);
-            Usuario = ObtenerPermisosDeUsuario(Usuario);
+
+            var Familias = ObtenerFamilias();
+            var UsuarioConPermisos = ObtenerPermisosDeUsuario(Usuario);
+            Usuario = UsuariosCompletos(UsuarioConPermisos, Familias.ToList()).FirstOrDefault();
             return Usuario;
         }
 
@@ -85,14 +97,14 @@ namespace SL.Helper.Controllers
             }
         }
 
-        public Usuario ObtenerPermisosDeUsuario(Usuario usuario)
+        public List<Usuario> ObtenerPermisosDeUsuario(Usuario usuario)
         {
             try
             {
                 //En vez de crear un método, simplemente reutilizamos el de listas
                 List<Usuario> Usuarios = new List<Usuario>();
                 Usuarios.Add(usuario);
-                return UsuariosConPermisos(Usuarios).FirstOrDefault();
+                return UsuariosConPermisos(Usuarios);
             }
             catch (Exception ex)
             {
@@ -197,7 +209,7 @@ namespace SL.Helper.Controllers
 
         public IList<Familia> ObtenerFamilias()
         {
-            var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos //Por algún motivo no me traia la bdd actualizada...
+            var PermisosDto = _permisoService.Get(x => x.CompanyId == _companyConfiguration.CompanyId).ToList(); //Obtenemos toda la tabla de permisos //Por algún motivo no me traia la bdd actualizada...
             //var PermisosDto = _permisoService.ObtenerPermisos(); //Obtenemos toda la tabla de permisos
 
             var Permisos = _mapper.Map<List<Patente>>(PermisosDto); //Convertimos los permisos a Patente

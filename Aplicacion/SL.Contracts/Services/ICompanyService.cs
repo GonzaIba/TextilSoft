@@ -10,5 +10,7 @@ namespace SL.Contracts.Services
     public interface ICompanyService : IGenericService<CompanyModel>
     {
         public bool ExistCompany(int companyId, string companyApiKey);
+
+        public bool CanUseLoginAndRegister(int companyId);
     }
 }

@@ -135,6 +135,7 @@ namespace UI.TextilSoft.MainForm
             // btnConfiguracion
             // 
             this.PanelAnimator.SetDecoration(this.btnConfiguracion, AnimatorNS.DecorationType.None);
+            this.btnConfiguracion.Enabled = false;
             this.btnConfiguracion.FlatAppearance.BorderSize = 0;
             this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -161,6 +162,7 @@ namespace UI.TextilSoft.MainForm
             // btnVentas
             // 
             this.PanelAnimator.SetDecoration(this.btnVentas, AnimatorNS.DecorationType.None);
+            this.btnVentas.Enabled = false;
             this.btnVentas.FlatAppearance.BorderSize = 0;
             this.btnVentas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVentas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -187,6 +189,7 @@ namespace UI.TextilSoft.MainForm
             // btnFacturas
             // 
             this.PanelAnimator.SetDecoration(this.btnFacturas, AnimatorNS.DecorationType.None);
+            this.btnFacturas.Enabled = false;
             this.btnFacturas.FlatAppearance.BorderSize = 0;
             this.btnFacturas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFacturas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -213,6 +216,7 @@ namespace UI.TextilSoft.MainForm
             // btnProduccion
             // 
             this.PanelAnimator.SetDecoration(this.btnProduccion, AnimatorNS.DecorationType.None);
+            this.btnProduccion.Enabled = false;
             this.btnProduccion.FlatAppearance.BorderSize = 0;
             this.btnProduccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProduccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -239,6 +243,7 @@ namespace UI.TextilSoft.MainForm
             // btnProveedores
             // 
             this.PanelAnimator.SetDecoration(this.btnProveedores, AnimatorNS.DecorationType.None);
+            this.btnProveedores.Enabled = false;
             this.btnProveedores.FlatAppearance.BorderSize = 0;
             this.btnProveedores.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnProveedores.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -265,6 +270,7 @@ namespace UI.TextilSoft.MainForm
             // btnReportes
             // 
             this.PanelAnimator.SetDecoration(this.btnReportes, AnimatorNS.DecorationType.None);
+            this.btnReportes.Enabled = false;
             this.btnReportes.FlatAppearance.BorderSize = 0;
             this.btnReportes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -291,6 +297,7 @@ namespace UI.TextilSoft.MainForm
             // btnPedidos
             // 
             this.PanelAnimator.SetDecoration(this.btnPedidos, AnimatorNS.DecorationType.None);
+            this.btnPedidos.Enabled = false;
             this.btnPedidos.FlatAppearance.BorderSize = 0;
             this.btnPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -414,12 +421,6 @@ namespace UI.TextilSoft.MainForm
 
         private System.Windows.Forms.Panel panelBotones;
         private System.Windows.Forms.Panel panelContenedor;
-        private FontAwesome.Sharp.IconButton btnVentas;
-        private FontAwesome.Sharp.IconButton btnFacturas;
-        private FontAwesome.Sharp.IconButton btnProduccion;
-        private FontAwesome.Sharp.IconButton btnProveedores;
-        private FontAwesome.Sharp.IconButton btnReportes;
-        private FontAwesome.Sharp.IconButton btnConfiguracion;
         private FontAwesome.Sharp.IconButton btnBloquear;
         private System.Windows.Forms.Label labelBienvenida;
         private System.Windows.Forms.Timer timer1;
@@ -430,5 +431,11 @@ namespace UI.TextilSoft.MainForm
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         public System.Windows.Forms.ToolStrip toolStrip1;
         public FontAwesome.Sharp.IconButton btnPedidos;
+        public FontAwesome.Sharp.IconButton btnVentas;
+        public FontAwesome.Sharp.IconButton btnFacturas;
+        public FontAwesome.Sharp.IconButton btnProduccion;
+        public FontAwesome.Sharp.IconButton btnProveedores;
+        public FontAwesome.Sharp.IconButton btnReportes;
+        public FontAwesome.Sharp.IconButton btnConfiguracion;
     }
 }

@@ -66,15 +66,15 @@ namespace SL.Business
             UsuarioModel Usuario;
             
             if (MailRequerido)
-                Usuario = Get(x => x.Nombre == usuarioLogin.Usuario && x.Contraseña == usuarioLogin.Contraseña && x.EmailConfirmado).FirstOrDefault();
+                Usuario = Get(x => x.Nombre == usuarioLogin.Usuario && x.Contraseña == usuarioLogin.Contraseña && x.EmailConfirmado, tracking: true).FirstOrDefault();
             else
-                Usuario = Get(x => x.Nombre == usuarioLogin.Usuario && x.Contraseña == usuarioLogin.Contraseña).FirstOrDefault();
+                Usuario = Get(x => x.Nombre == usuarioLogin.Usuario && x.Contraseña == usuarioLogin.Contraseña, tracking: true).FirstOrDefault();
 
 
             if (Usuario is null)
             {
                 LoginResult = false;
-                Usuario = Get(x => x.Nombre == usuarioLogin.Usuario).FirstOrDefault();
+                Usuario = Get(x => x.Nombre == usuarioLogin.Usuario, tracking: true).FirstOrDefault();
                 if (Usuario is null)
                     return LoginMessage = "Usuario o Contraseña incorrecto/s";
 

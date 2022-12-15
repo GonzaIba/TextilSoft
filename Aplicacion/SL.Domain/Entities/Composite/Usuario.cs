@@ -16,6 +16,8 @@ namespace SL.Domain.Entities
         List<Componente> _permisos;
         public int Id { get; set; }
         public string Nombre { get; set; }
+        public string Email { get; set; }
+        public string DNI { get; set; }        
 
         public List<Componente> Permisos
         {

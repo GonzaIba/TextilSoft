@@ -76,7 +76,7 @@ namespace SL.Helper.Services.Mapper
             }
             catch (ArgumentException ex)
             {
-                //Si entra a este if es porque no se encontro el permiso en el enum (Esto se puede hacer a la inversa tambien... depende de cada uno como lo quiere manejar
+                //Si entra a este if es porque no se encontro el permiso en el enum (Esto se puede hacer a la inversa tambien... depende de cada uno como lo quiere manejar)
                 permiso = TipoPermiso.SinPermisos;
             }
             return permiso;

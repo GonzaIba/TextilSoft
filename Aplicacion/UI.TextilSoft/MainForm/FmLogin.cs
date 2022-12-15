@@ -115,7 +115,7 @@ namespace UI.TextilSoft.MainForm
                 //_empleadosController.LoginEmpleado(usuario);
                 FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration);
                 fmTextilSoft.toolStrip1.Tag = usuario;
-                fmTextilSoft.btnPedidos.Enabled = false;
+                AplicandoPermisos(usuario, fmTextilSoft);
                 fmTextilSoft.Show();
             }
             else
@@ -180,45 +180,38 @@ namespace UI.TextilSoft.MainForm
         {
             lblLoginError.Visible = false;
             lblLoginError.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-            bool ExistCompany = _companyController.VerifyCompany();
 
-            if (!ExistCompany)
-                MessageBox.Show("No existe la compañía");
-            else
+            try
             {
-                try
-                {
-                    txtUserNameTextBase = txtUser.Text;
-                    txtPasswordTextBase = txtPassword.Text;
-                    pnlPasswordError.Visible = false;
-                    pnlUserNameError.Visible = false;
-                    CompanyCustomizeEntity company = _companyController.GetCustomizeCompany();
-                    lblCompanyName.Text = company.Name;
-                    //Convert Logo to Image
-                    byte[] imageBytes = Convert.FromBase64String(company.Logo);
-                    MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
-                    ms.Write(imageBytes, 0, imageBytes.Length);
-                    Image image = Image.FromStream(ms, true);
-                    picCompanyLogo.Image = image;
-                    //picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
-                    //picCompanyLogo.BorderStyle = BorderStyle.Fixed3D;
-                    //picCompanyLogo.Size = new Size(200, 200);
-                    //picCompanyLogo.Location = new Point(10, 10);
-                    //picCompanyLogo.BackColor = Color.Transparent;
-                    //picCompanyLogo.Visible = true;
-                    //picCompanyLogo.BringToFront();
-                    //picCompanyLogo.SendToBack();
-                    //picCompanyLogo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
-                    //picCompanyLogo.Dock = DockStyle.Fill;
-                    //picCompanyLogo.Padding = new Padding(10);
-                    //picCompanyLogo.Margin = new Padding(10);
-                }
-                catch (Exception ex)
-                {
-                    
-                }            
+                txtUserNameTextBase = txtUser.Text;
+                txtPasswordTextBase = txtPassword.Text;
+                pnlPasswordError.Visible = false;
+                pnlUserNameError.Visible = false;
+                CompanyCustomizeEntity company = _companyController.GetCustomizeCompany();
+                lblCompanyName.Text = company.Name;
+                //Convert Logo to Image
+                byte[] imageBytes = Convert.FromBase64String(company.Logo);
+                MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+                ms.Write(imageBytes, 0, imageBytes.Length);
+                Image image = Image.FromStream(ms, true);
+                picCompanyLogo.Image = image;
+                //picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+                //picCompanyLogo.BorderStyle = BorderStyle.Fixed3D;
+                //picCompanyLogo.Size = new Size(200, 200);
+                //picCompanyLogo.Location = new Point(10, 10);
+                //picCompanyLogo.BackColor = Color.Transparent;
+                //picCompanyLogo.Visible = true;
+                //picCompanyLogo.BringToFront();
+                //picCompanyLogo.SendToBack();
+                //picCompanyLogo.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+                //picCompanyLogo.Dock = DockStyle.Fill;
+                //picCompanyLogo.Padding = new Padding(10);
+                //picCompanyLogo.Margin = new Padding(10);
             }
-                
+            catch (Exception ex)
+            {
+                    
+            }                         
         }
 
         private void txtUser_Leave(object sender, EventArgs e)
@@ -290,5 +283,118 @@ namespace UI.TextilSoft.MainForm
             //FadeIn();
             //this.Refresh();
         }
+
+
+
+        private bool PuedeUsarPedidos = false;
+        private bool PuedeUsarVentas = false;
+        private bool PuedeUsarFacturas = false;
+        private bool PuedeUsarInformes = false;
+        private bool PuedeUsarProduccion = false;
+        private bool PuedeUsarProveedores = false;
+        private bool PuedeUsarConfiguracion = false;
+
+        #region AplicarComposite
+        private void AplicandoPermisos(Usuario usuario, FmTextilSoft fmTextilSoft)
+        {
+            //Recorrer las familias si contiene
+            //Primero separo patenes y familias (Siempre hablando en el nivel 0) (Especificar txt)
+            List<Patente> patentes = new List<Patente>();
+            List<Familia> familias = new List<Familia>();
+            patentes = usuario.Permisos.OfType<Patente>().ToList();
+            familias = usuario.Permisos.OfType<Familia>().ToList();
+            RecorrerPatentes(patentes);
+            RecorrerFamilias(familias);
+            if (PuedeUsarProduccion)
+            {
+                fmTextilSoft.btnProduccion.Enabled = true;
+            }
+            if (PuedeUsarPedidos)
+            {
+                fmTextilSoft.btnPedidos.Enabled = true;
+            }
+            if (PuedeUsarVentas)
+            {
+                fmTextilSoft.btnVentas.Enabled = true;
+            }
+            if (PuedeUsarFacturas)
+            {
+                fmTextilSoft.btnFacturas.Enabled = true;
+            }
+            if (PuedeUsarInformes)
+            {
+                fmTextilSoft.btnReportes.Enabled = true;
+            }
+            if (PuedeUsarProveedores)
+            {
+                fmTextilSoft.btnProveedores.Enabled = true;
+            }
+            if (PuedeUsarConfiguracion)
+            {
+                fmTextilSoft.btnConfiguracion.Enabled = true;
+            }
+        }
+
+        private void RecorrerFamilias(List<Familia> Listafamilias)
+        {
+            //Este método será recursivo siempre y cuando alguno de sus hijos sea otra familia.
+            //En esta instancia no puede haber dependencia circular ya que es validado previamente en la pantalla de configuración (de admin)
+            foreach (var Familias in Listafamilias)
+            {
+                foreach (var componente in Familias.Hijos)
+                {
+                    if (componente is Patente)
+                    {
+                        RecorrerPatentes(new List<Patente>() { (Patente)componente });
+                    }
+                    else
+                    {
+                        RecorrerFamilias(new List<Familia>() { (Familia)componente });
+                    }
+                }
+            }
+        }
+
+        private void RecorrerPatentes(List<Patente> patentes)
+        {
+            foreach (Patente patente in patentes)
+            {
+                //Si es admín que use todo
+                //if (componente.Permiso == TipoPermiso.IsAdmin)
+                //{
+                //    EsAdmin = true;
+                //}
+                if (patente.Permiso == TipoPermiso.PuedeUsarProduccion)
+                {
+                    PuedeUsarProduccion = true;
+                }
+                if (patente.Permiso == TipoPermiso.PuedeUsarPedidos)
+                {
+                    PuedeUsarPedidos = true;
+                }
+                if (patente.Permiso == TipoPermiso.PuedeUsarVentas)
+                {
+                    PuedeUsarVentas = true;
+                }
+                if (patente.Permiso == TipoPermiso.PuedeUsarFacturas)
+                {
+                    PuedeUsarFacturas = true;
+                }
+                if (patente.Permiso == TipoPermiso.PuedeUsarInformes)
+                {
+                    PuedeUsarInformes = true;
+                }
+                if (patente.Permiso == TipoPermiso.PuedeUsarProveedores)
+                {
+                    PuedeUsarProveedores = true;
+                }
+                if (patente.Permiso == TipoPermiso.PuedeUsarConfiguracion)
+                {
+                    PuedeUsarConfiguracion = true;
+                }
+            }
+        }
+
+        #endregion
     }
 }
