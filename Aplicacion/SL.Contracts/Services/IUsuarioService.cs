@@ -18,6 +18,6 @@ namespace SL.Contracts
         //string Delete(UsuarioModel usuarioModel);
         void GuardarPermisos(Usuario usuarioModel);
         void EnviarConfirmacionDeEmail(string nombre, string email);
-        void RecuperarContraseñaEmail(string email);
+        void RecuperarContraseñaEmail(string nombre,string email);
     }
 }

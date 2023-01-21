@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.lblTitle = new System.Windows.Forms.Label();
-            this.btnAceptar = new FontAwesome.Sharp.IconButton();
+            this.btnAccion1 = new FontAwesome.Sharp.IconButton();
             this.txt1 = new System.Windows.Forms.TextBox();
             this.txt2 = new System.Windows.Forms.TextBox();
             this.lblInput1 = new System.Windows.Forms.Label();
@@ -39,25 +39,29 @@
             // lblTitle
             // 
             this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(141, 9);
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(148, 10);
             this.lblTitle.Name = "lblTitle";
             this.lblTitle.Size = new System.Drawing.Size(37, 15);
             this.lblTitle.TabIndex = 2;
             this.lblTitle.Text = "Titulo";
             // 
-            // btnAceptar
+            // btnAccion1
             // 
-            this.btnAceptar.FlatAppearance.BorderSize = 0;
-            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAceptar.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnAceptar.IconColor = System.Drawing.Color.Black;
-            this.btnAceptar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAceptar.Location = new System.Drawing.Point(115, 110);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(75, 35);
-            this.btnAceptar.TabIndex = 3;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAccion1.BackColor = System.Drawing.Color.SlateBlue;
+            this.btnAccion1.FlatAppearance.BorderSize = 0;
+            this.btnAccion1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAccion1.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnAccion1.IconColor = System.Drawing.Color.Black;
+            this.btnAccion1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnAccion1.Location = new System.Drawing.Point(133, 110);
+            this.btnAccion1.Name = "btnAccion1";
+            this.btnAccion1.Size = new System.Drawing.Size(75, 35);
+            this.btnAccion1.TabIndex = 3;
+            this.btnAccion1.Text = "Aceptar";
+            this.btnAccion1.UseVisualStyleBackColor = false;
+            this.btnAccion1.Click += new System.EventHandler(this.btnAccion1_Click);
             // 
             // txt1
             // 
@@ -76,6 +80,8 @@
             // lblInput1
             // 
             this.lblInput1.AutoSize = true;
+            this.lblInput1.BackColor = System.Drawing.Color.Transparent;
+            this.lblInput1.ForeColor = System.Drawing.Color.White;
             this.lblInput1.Location = new System.Drawing.Point(40, 45);
             this.lblInput1.Name = "lblInput1";
             this.lblInput1.Size = new System.Drawing.Size(38, 15);
@@ -85,6 +91,8 @@
             // lblInput2
             // 
             this.lblInput2.AutoSize = true;
+            this.lblInput2.BackColor = System.Drawing.Color.Transparent;
+            this.lblInput2.ForeColor = System.Drawing.Color.White;
             this.lblInput2.Location = new System.Drawing.Point(40, 81);
             this.lblInput2.Name = "lblInput2";
             this.lblInput2.Size = new System.Drawing.Size(38, 15);
@@ -100,9 +108,9 @@
             this.Controls.Add(this.lblInput1);
             this.Controls.Add(this.txt2);
             this.Controls.Add(this.txt1);
-            this.Controls.Add(this.btnAceptar);
+            this.Controls.Add(this.btnAccion1);
             this.Controls.Add(this.lblTitle);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "FmInput";
             this.Text = "FmInput";
             this.Load += new System.EventHandler(this.FmInput_Load);
@@ -114,7 +122,7 @@
         #endregion
 
         private System.Windows.Forms.Label lblTitle;
-        private FontAwesome.Sharp.IconButton btnAceptar;
+        private FontAwesome.Sharp.IconButton btnAccion1;
         private System.Windows.Forms.TextBox txt1;
         private System.Windows.Forms.TextBox txt2;
         private System.Windows.Forms.Label lblInput1;

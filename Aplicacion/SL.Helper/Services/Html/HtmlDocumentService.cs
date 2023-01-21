@@ -13,7 +13,7 @@ namespace SL.Helper.Services.Html
         {
             string body = string.Empty;
             //string pathTemplates = Path.Combine(ServerInfoHelper.MapPath(RootPath), "Templates");
-            using (StreamReader sr = new StreamReader(Path.Combine(Path.Combine((string)AppDomain.CurrentDomain.GetData("InfraestructuraRootPath"), htmlName))))
+            using (StreamReader sr = new StreamReader(Path.Combine(((string)AppDomain.CurrentDomain.GetData("InfraestructuraRootPath")) + "\\Templates\\", htmlName)))
             {
                 body = sr.ReadToEnd();
             }

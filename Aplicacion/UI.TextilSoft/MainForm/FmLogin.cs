@@ -108,8 +108,6 @@ namespace UI.TextilSoft.MainForm
                 return;
             }
 
-
-
             Login login = new Login();
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
@@ -125,28 +123,28 @@ namespace UI.TextilSoft.MainForm
             else if (Result.LoginResultEnum == LoginResultEnum.MaximoIntentosAlcanzados)
             {
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Máximos intentos alcanzados", Result.Message, centerPosition);
-                fmMessageBox.Show();
+                fmMessageBox.ShowDialog();
             }
             else if (Result.LoginResultEnum == LoginResultEnum.UsuarioBloqueado || Result.LoginResultEnum ==  LoginResultEnum.UsuarioNoExiste)
             {
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Usuario Bloqueado", Result.Message, centerPosition);
-                fmMessageBox.Show();
+                fmMessageBox.ShowDialog();
             }
             else if (Result.LoginResultEnum == LoginResultEnum.UsuarioContraseñaIncorrecto)
             {
                 //Get center position for this form
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Login Error", Result.Message, centerPosition);
-                fmMessageBox.Show();
+                fmMessageBox.ShowDialog();
             }
             else if (Result.LoginResultEnum == LoginResultEnum.ErrorDeAplicacion)
             {
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de aplicación", Result.Message, centerPosition);
-                fmMessageBox.Show();
+                fmMessageBox.ShowDialog();
             }
             else if (Result.LoginResultEnum == LoginResultEnum.MailSinConfirmar)
             {
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Mail sin confirmar", Result.Message, centerPosition);
-                fmMessageBox.Show();
+                fmMessageBox.ShowDialog();
                 ActivarODesactivarCodigo(true);
                 EmailCodigo = _userController.ObtenerUsuario(login).Email;
             }
@@ -300,7 +298,7 @@ namespace UI.TextilSoft.MainForm
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             FmRegistrarse fmRegistrarse = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _authenticationConfig);
-            fmRegistrarse.Show();
+            fmRegistrarse.ShowDialog();
             //pnlLogin.BringToFront();
             //AbrirFormHija(fmRegistrarse);
         }
@@ -476,7 +474,17 @@ namespace UI.TextilSoft.MainForm
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //_userController.RecuperarContraseña()
+            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+            FmInput fmInput = new FmInput("Ingrese su usuario y email para recuperar su contraseña",
+                                            Color.Black,
+                                            centerPosition,
+                                            null,
+                                            _userController.RecuperarContraseña,
+                                            "Usuario",
+                                            "Email",
+                                            "Recuperar"
+                                            ) ;
+            fmInput.ShowDialog();
         }
 
         private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)

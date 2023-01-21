@@ -228,13 +228,13 @@ namespace SL.Business
             }
         }
 
-        public void RecuperarContraseñaEmail(string email)
+        public void RecuperarContraseñaEmail(string nombreUsuario,string email)
         {
             try
             {
-                var userModel = _repository.Get(x => x.Email == email).FirstOrDefault();
+                var userModel = _repository.Get(x => x.Nombre == nombreUsuario && x.Email == email, tracking: true).FirstOrDefault();
                 if (userModel is null)
-                    throw new Exception("No existe este email");
+                    throw new Exception("No existe el usuario");
 
                 userModel.Contraseña = GeneratePassword();
                 _repository.Update(userModel);

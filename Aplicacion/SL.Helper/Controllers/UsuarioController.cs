@@ -149,7 +149,7 @@ namespace SL.Helper.Controllers
         {
             try
             {
-                _usuarioService.EnviarConfirmacionDeEmail(nombre, email);
+                _usuarioService.RecuperarContraseñaEmail(nombre, email);
             }
             catch (Exception ex)
             {
