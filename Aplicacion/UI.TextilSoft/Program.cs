@@ -6,8 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using SL.Business.Services;
 using SL.Contracts.Repositories;
 using SL.Contracts.Services;
+using SL.EmailHelper.Configurations;
 using SL.Helper.Configurations;
 using SL.Helper.Extensions;
 using SL.Helper.Services.Mapper;
@@ -16,8 +18,6 @@ using SL.IoC;
 using System;
 using System.IO;
 using System.Windows.Forms;
-using UI.TextilSoft.Configurations.Authentication;
-//using UI.TextilSoft.Configurations;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
 using UI.TextilSoft.SubForms.Configuracion.Composite;
@@ -56,14 +56,14 @@ namespace UI.TextilSoft
             var services = host.Services;
 
             Configuration = services.GetRequiredService<IConfiguration>();
-            bool UseLoginAndRegister = Convert.ToBoolean(Configuration.GetSection("Application:Security:UseLoginAndRegister").Value);
+            //bool UseLoginAndRegister = Convert.ToBoolean(Configuration.GetSection("Application:Security:UseLoginAndRegister").Value);
             int CompanyId = Convert.ToInt32(Configuration.GetSection("CompanyConfiguration:CompanyId").Value);
             string CompanyApiKey = Configuration.GetSection("CompanyConfiguration:CompanyApiKey")?.Value?.ToString() ?? "";
             var CompanyService = services.GetRequiredService<ICompanyService>();
             Form mainForm = null;
             if (CompanyService.ExistCompany(CompanyId, CompanyApiKey))
             {
-                if (UseLoginAndRegister && CompanyService.CanUseLoginAndRegister(CompanyId))
+                if (/*UseLoginAndRegister &&*/ CompanyService.CanUseLoginAndRegister(CompanyId))
                     mainForm = services.GetRequiredService<FmLogin>();
                 else
                     mainForm = services.GetRequiredService<FmTextilSoft>();
@@ -87,9 +87,9 @@ namespace UI.TextilSoft
             services.AddDbContext<ApplicationDbContext>
             (
                 options => options
-                .UseSqlServer(GetConnectionString(),builder =>
-                    builder.EnableRetryOnFailure(5,TimeSpan.FromSeconds(10),null)) //Al contexto le agrego la conexion de la base de datos
-                
+                .UseSqlServer(GetConnectionString(), builder =>
+                    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)) //Al contexto le agrego la conexion de la base de datos
+
                 //En esta parte configuramos el entity framework para ver los querys en consola (IMPORTANTE: desactivarlo en produccion)
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory)
@@ -99,7 +99,7 @@ namespace UI.TextilSoft
             services.AddSingleton<FmTextilSoft>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
-
+            //services.AddConfig<AuthenticationConfig>(Configuration, nameof(AuthenticationConfig));
 
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
             services.AddAutoMapper(typeof(FmLogin));
@@ -113,6 +113,12 @@ namespace UI.TextilSoft
             services.AddSingleton(mapper); // Singleton al Mapper para los controllers (ahi se haria el traspaso de clases)
             services.ConfigureIoC(Configuration); //LLamo a la clase de IoCRegister que contiene IServiceCollection 
             services.ConfigureIoCSL(Configuration); //LLamo a la clase de IoCRegister que contiene IServiceCollection de la capa de servicios
+
+            string result = services.GetType().Assembly.Location;
+            FileInfo file = new FileInfo(result);
+            var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
+            
+            AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
         }
 
 

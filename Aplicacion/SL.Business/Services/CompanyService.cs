@@ -2,6 +2,7 @@
 using SL.Contracts;
 using SL.Contracts.Repositories;
 using SL.Contracts.Services;
+using SL.Domain.Entities;
 using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,11 @@ namespace SL.Business.Services
 {
     public class CompanyService : GenericService<CompanyModel>, ICompanyService
     {
-        private readonly ICompanyCustomizeRepository _companyCustomizeRepository;
-        public CompanyService(IUnitOfWork unitOfWork, ICompanyCustomizeRepository companyCustomizeRepository)
+        private readonly ICompanyAuthenticationRepository _companyAuthenticationRepository;
+        public CompanyService(IUnitOfWork unitOfWork)
         : base(unitOfWork, unitOfWork.GetRepository<ICompanyRepository>())
         {
-            _companyCustomizeRepository = companyCustomizeRepository;
+            _companyAuthenticationRepository = unitOfWork.GetRepository<ICompanyAuthenticationRepository>();
         }
 
         public bool ExistCompany(int companyId, string companyApiKey)
@@ -29,6 +30,8 @@ namespace SL.Business.Services
                 return true;
         }
         
-        public bool CanUseLoginAndRegister(int companyId) => _companyCustomizeRepository.Get(x => x.CompanyId == companyId).FirstOrDefault().CanUseLoginAndRegister;
+        public bool CanUseLoginAndRegister(int companyId) => _companyAuthenticationRepository.Get(x => x.CompanyId == companyId).FirstOrDefault().CanUseLoginAndRegister;
+
+        public CompanyAuthenticationModel ObtenerConfigAutenticacion(int companyId) => _companyAuthenticationRepository.Get(x => x.CompanyId == companyId,includeProperties: "CompanyPasswordConfig").FirstOrDefault();
     }
 }

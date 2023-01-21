@@ -1,4 +1,5 @@
-﻿using SL.Domain.Model;
+﻿using SL.Domain.Entities;
+using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,10 @@ namespace SL.Contracts.Services
 {
     public interface ICompanyService : IGenericService<CompanyModel>
     {
-        public bool ExistCompany(int companyId, string companyApiKey);
+         bool ExistCompany(int companyId, string companyApiKey);
 
-        public bool CanUseLoginAndRegister(int companyId);
+         bool CanUseLoginAndRegister(int companyId);
+
+        CompanyAuthenticationModel ObtenerConfigAutenticacion(int companyId);
     }
 }

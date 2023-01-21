@@ -151,6 +151,7 @@
             this.treeViewUsuarios.Name = "treeViewUsuarios";
             this.treeViewUsuarios.Size = new System.Drawing.Size(494, 351);
             this.treeViewUsuarios.TabIndex = 11;
+            this.treeViewUsuarios.MouseClick += new System.Windows.Forms.MouseEventHandler(this.treeViewUsuarios_MouseClick);
             // 
             // txtPatente
             // 

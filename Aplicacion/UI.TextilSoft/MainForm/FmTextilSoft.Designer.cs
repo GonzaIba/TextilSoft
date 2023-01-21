@@ -406,6 +406,7 @@ namespace UI.TextilSoft.MainForm
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.Name = "FmTextilSoft";
             this.Text = "TextilSoft";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmTextilSoft_FormClosing);
             this.Load += new System.EventHandler(this.FmTextilSoft_Load);
             this.panelBotones.ResumeLayout(false);
             this.panelBotones.PerformLayout();

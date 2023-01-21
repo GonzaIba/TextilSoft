@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SL.Contracts\SL.Contracts.csproj" />
+    <ProjectReference Include="..\SL.EmailHelper\SL.EmailHelper.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,12 +13,14 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using UI.TextilSoft.Configurations.Authentication;
 using UI.TextilSoft.Controllers;
+using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
@@ -26,6 +28,7 @@ namespace UI.TextilSoft.MainForm
     {
         #region Inyection
         private int cont = 0;
+        private readonly IPermisosController _permisoController;
         private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
         private readonly IProductosController _productosController;
         private readonly IUsuarioController _userController;
@@ -39,10 +42,14 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
+        private readonly AuthenticationConfig _authenticationConfig;
+        private string EmailCodigo;
+        public Form Activeform = null;
 
         //private readonly PasswordConfig _passwordConfig;
 
-        public FmLogin(IUsuarioController userController,
+        public FmLogin(IPermisosController permisosController,
+                        IUsuarioController userController,
                         IProveedoresController proveedoresController,
                         IClientesController clientesController,
                         IPedidosController pedidosController,
@@ -58,6 +65,7 @@ namespace UI.TextilSoft.MainForm
                         )
         {
             InitializeComponent();
+            _permisoController = permisosController;
             _proveedoresController = proveedoresController;
             _clientesController = clientesController;
             _ventasController = ventasController;
@@ -69,8 +77,10 @@ namespace UI.TextilSoft.MainForm
             _productoProveedorController = productoProveedorController;
             _pedidosController = pedidosController;
             _configuration = configuration;
+            _companyController = companyController;
+            _authenticationConfig = _companyController.GetAuthenticationConfig();
 
-            
+
             _userController = userController;
             _companyController = companyController;
             CheckForIllegalCrossThreadCalls = false;
@@ -103,41 +113,90 @@ namespace UI.TextilSoft.MainForm
             Login login = new Login();
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
-            string Result = _userController.LoginUser(login);
+            var Result = _userController.LoginUser(login);
 
             Usuario user = new Usuario();
             IList<Componente> flia = null;
-
-            if (Result == "Ok")
+            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+            if (Result.LoginResultEnum == LoginResultEnum.Ok)
             {
-                //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
-                var usuario = _userController.GetUser(login);
-                //_empleadosController.LoginEmpleado(usuario);
-                FmTextilSoft fmTextilSoft = new FmTextilSoft(_proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration);
-                fmTextilSoft.toolStrip1.Tag = usuario;
-                AplicandoPermisos(usuario, fmTextilSoft);
-                fmTextilSoft.Show();
+                LoginAplication(login);
             }
-            else
+            else if (Result.LoginResultEnum == LoginResultEnum.MaximoIntentosAlcanzados)
             {
-                ShowLoginError();
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Máximos intentos alcanzados", Result.Message, centerPosition);
+                fmMessageBox.Show();
+            }
+            else if (Result.LoginResultEnum == LoginResultEnum.UsuarioBloqueado || Result.LoginResultEnum ==  LoginResultEnum.UsuarioNoExiste)
+            {
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Usuario Bloqueado", Result.Message, centerPosition);
+                fmMessageBox.Show();
+            }
+            else if (Result.LoginResultEnum == LoginResultEnum.UsuarioContraseñaIncorrecto)
+            {
+                //Get center position for this form
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Login Error", Result.Message, centerPosition);
+                fmMessageBox.Show();
+            }
+            else if (Result.LoginResultEnum == LoginResultEnum.ErrorDeAplicacion)
+            {
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de aplicación", Result.Message, centerPosition);
+                fmMessageBox.Show();
+            }
+            else if (Result.LoginResultEnum == LoginResultEnum.MailSinConfirmar)
+            {
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Mail sin confirmar", Result.Message, centerPosition);
+                fmMessageBox.Show();
+                ActivarODesactivarCodigo(true);
+                EmailCodigo = _userController.ObtenerUsuario(login).Email;
             }
         }
-        public void ShowLoginError()
+
+        private void ActivarODesactivarCodigo(bool estado)
         {
-            //this.Opacity = 0;
-            lblLoginError.Visible = true;
-            timer1.Start();
-            //timer2.Start();
+            txtCodigo.Visible = estado;
+            pnlCodigo.Visible = estado;
+            lblCodigo.Visible = estado;
+            btnValidarCodigo.Visible = estado;
+            lnklblCodigo.Visible = estado;
+            EmailCodigo = string.Empty;
+        }
+
+        private void LoginAplication(Login login)
+        {
+            //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
+            var usuario = _userController.ObtenerUsuarioConPermisos(login);
+            //_empleadosController.LoginEmpleado(usuario);
+            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration);
+            fmTextilSoft.toolStrip1.Tag = usuario;
+            if (usuario.IsAdmin)
+            {
+                fmTextilSoft.btnPedidos.Enabled = true;
+                fmTextilSoft.btnVentas.Enabled = true;
+                fmTextilSoft.btnFacturas.Enabled = true;
+                fmTextilSoft.btnReportes.Enabled = true;
+                fmTextilSoft.btnProduccion.Enabled = true;
+                fmTextilSoft.btnProveedores.Enabled = true;
+                fmTextilSoft.btnConfiguracion.Enabled = true;
+            }
+            else
+                AplicandoPermisos(usuario, fmTextilSoft);
+
+            ActivarODesactivarCodigo(false);
+
+            fmTextilSoft.Show();
         }
 
         private void txtUser_TextChanged(object sender, EventArgs e)
         {
             try
             {
+                ActivarODesactivarCodigo(false);
                 pnlPasswordError.Visible = false;
                 pnlUserNameError.Visible = false;
                 txtUser.ForeColor = Color.White;
+                if (lblLoginError.Visible)
+                    lblLoginError.Visible = false;
             }
             catch (Exception ex)
             {
@@ -149,13 +208,16 @@ namespace UI.TextilSoft.MainForm
         {
             try
             {
-                if(txtPassword.Text != txtPasswordTextBase)
+                ActivarODesactivarCodigo(false);
+                if (txtPassword.Text != txtPasswordTextBase)
                 {
                     //txtPassword.Text = "";
                     pnlPasswordError.Visible = false;
                     pnlUserNameError.Visible = false;
                     txtPassword.ForeColor = Color.White;
                     txtPassword.PasswordChar = '*';
+                    if (lblLoginError.Visible)
+                        lblLoginError.Visible = false;
                 }
             }
             catch (Exception ex)
@@ -180,6 +242,8 @@ namespace UI.TextilSoft.MainForm
         {
             lblLoginError.Visible = false;
             lblLoginError.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+
+            ActivarODesactivarCodigo(false);
 
             try
             {
@@ -235,10 +299,53 @@ namespace UI.TextilSoft.MainForm
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FmRegistrarse fmRecoveryPassword = new FmRegistrarse(_userController, _companyController);
-            fmRecoveryPassword.Show();
-            //this.Close();
+            FmRegistrarse fmRegistrarse = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _authenticationConfig);
+            fmRegistrarse.Show();
+            //pnlLogin.BringToFront();
+            //AbrirFormHija(fmRegistrarse);
         }
+        
+        #region AbrirForm
+        private void AbrirFormHija(Form formhija)
+        {
+            if (Activeform != null)
+            {
+                Activeform.Close();
+                Activeform = formhija;
+                formhija.Visible = false;
+                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.TopLevel = false;
+                formhija.FormBorderStyle = FormBorderStyle.None;
+                formhija.Dock = DockStyle.Fill;
+                pnlLogin.Controls.Add(formhija);
+                pnlLogin.Tag = formhija;
+                formhija.BringToFront();
+                formhija.Show();
+
+                AbrirAnimator();
+            }
+            else
+            {
+                Activeform = formhija;
+                formhija.Visible = false;
+                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.TopLevel = false;
+                formhija.FormBorderStyle = FormBorderStyle.None;
+                formhija.Dock = DockStyle.Fill;
+                pnlLogin.Controls.Add(formhija);
+                pnlLogin.Tag = formhija;
+                formhija.BringToFront();
+                formhija.Show();
+
+                AbrirAnimator();
+            }
+        }
+        private void AbrirAnimator()
+        {
+            pnlLogin.Visible = false;
+            LoginAnimator.ShowSync(pnlLogin);
+        }
+        #endregion
 
         #region Fade in Labels
         int[] targetColor = { 255, 255, 255 };
@@ -269,23 +376,8 @@ namespace UI.TextilSoft.MainForm
             lblLoginError.ForeColor = Color.FromArgb(fadeRGB[0], fadeRGB[1], fadeRGB[2]);
         }
         #endregion
-        //int fadingSpeed = 3;
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            int fadingSpeed = 3;
-            lblLoginError.ForeColor = Color.Black;
-            lblLoginError.ForeColor = Color.FromArgb(lblLoginError.ForeColor.R + fadingSpeed, lblLoginError.ForeColor.G + fadingSpeed, lblLoginError.ForeColor.B + fadingSpeed);
-            //if (lblLoginError.ForeColor.R >= this.BackColor.R)
-            //{
-            lblLoginError.ForeColor = this.BackColor;
-            timer1.Stop();
-            //}
-            //FadeIn();
-            //this.Refresh();
-        }
 
-
-
+        #region AplicarComposite
         private bool PuedeUsarPedidos = false;
         private bool PuedeUsarVentas = false;
         private bool PuedeUsarFacturas = false;
@@ -294,7 +386,6 @@ namespace UI.TextilSoft.MainForm
         private bool PuedeUsarProveedores = false;
         private bool PuedeUsarConfiguracion = false;
 
-        #region AplicarComposite
         private void AplicandoPermisos(Usuario usuario, FmTextilSoft fmTextilSoft)
         {
             //Recorrer las familias si contiene
@@ -306,33 +397,19 @@ namespace UI.TextilSoft.MainForm
             RecorrerPatentes(patentes);
             RecorrerFamilias(familias);
             if (PuedeUsarProduccion)
-            {
                 fmTextilSoft.btnProduccion.Enabled = true;
-            }
             if (PuedeUsarPedidos)
-            {
                 fmTextilSoft.btnPedidos.Enabled = true;
-            }
             if (PuedeUsarVentas)
-            {
                 fmTextilSoft.btnVentas.Enabled = true;
-            }
             if (PuedeUsarFacturas)
-            {
                 fmTextilSoft.btnFacturas.Enabled = true;
-            }
             if (PuedeUsarInformes)
-            {
                 fmTextilSoft.btnReportes.Enabled = true;
-            }
             if (PuedeUsarProveedores)
-            {
                 fmTextilSoft.btnProveedores.Enabled = true;
-            }
             if (PuedeUsarConfiguracion)
-            {
                 fmTextilSoft.btnConfiguracion.Enabled = true;
-            }
         }
 
         private void RecorrerFamilias(List<Familia> Listafamilias)
@@ -396,5 +473,77 @@ namespace UI.TextilSoft.MainForm
         }
 
         #endregion
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //_userController.RecuperarContraseña()
+        }
+
+        private void txtCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void btnValidarCodigo_Click(object sender, EventArgs e)
+        {
+            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+            try
+            {
+                if (!string.IsNullOrEmpty(txtCodigo.Text))
+                {
+                    Login login = new Login();
+                    login.Usuario = txtUser.Text;
+                    login.Contraseña = txtPassword.Text;
+                    var usuario = _userController.ObtenerUsuario(login);
+                    bool EstaVerificado = _userController.ValidarCodigoDeVerificacion(usuario, Convert.ToInt32(txtCodigo.Text));
+                    if (EstaVerificado)
+                    {
+                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Verificacion exitosa","Cuenta verificada! ya puede hacer uso del sistema con normalidad, bienvenido!", centerPosition);
+                        fmMessageBox.Show();
+                        LoginAplication(login);
+                    }
+                    else
+                    {
+                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Verificacion fallida", "El codigo ingresado no es correcto, por favor verifique o pida nuevamente un código", centerPosition);
+                        fmMessageBox.Show();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Aplicacion error", "Ocurrió un erorr en la aplicación y no se pudo enviar el código", centerPosition);
+                fmMessageBox.Show();
+            }
+        }
+
+        private void lnklblCodigo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+            try
+            {
+                _userController.EnviarConfirmacionEmail(EmailCodigo);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Codigo enviado", $"Se ha enviado un codigo de verificacion a su correo: {EmailCodigo}, por favor verifique su bandeja de entrada", centerPosition);
+                fmMessageBox.Show();
+            }
+            catch (Exception ex)
+            {
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Verificacion fallida", ex.Message, centerPosition);
+                fmMessageBox.Show();
+            }
+        }
+
+        private void pnlLogin_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

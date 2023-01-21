@@ -11,14 +11,20 @@ namespace SL.Contracts
 {
     public interface IUsuarioController
     {
-        bool CreateUser(Register appIdentityUser, int companyId);
-        string LoginUser(Login appIdentityUser);
+        bool Crearusuario(Register appIdentityUser, int companyId);
+        LoginResult LoginUser(Login appIdentityUser);
         //void UpdateUser(UsuarioModel appIdentityUser);
         //void DeleteUser(UsuarioModel appIdentityUser);
-        List<Usuario> ObtenerUsuariosCompletos();
+        List<Usuario> ObtenerTodosLosUsuarioConPermisos();
         IList<Usuario> ObtenerUsuarios();
         IList<Familia> ObtenerFamilias();
+        Usuario ObtenerUsuarioConPermisos(Login login);
+        Usuario ObtenerUsuario(Login login);
         void GuardarPermisos(Usuario usuario);
-        Usuario GetUser(Login login);
+        string QuitarPermiso(Usuario usuario, Componente c);
+        bool ExisteUsuario(string posibleUsuario);
+        void EnviarConfirmacionEmail(string email);
+        void RecuperarContraseña(string nombre, string email);
+        bool ValidarCodigoDeVerificacion(Usuario usuario,int numero);
     }
 }

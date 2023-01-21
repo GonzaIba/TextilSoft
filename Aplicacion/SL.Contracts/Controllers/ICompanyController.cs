@@ -14,7 +14,9 @@ namespace SL.Contracts
         string GetCompanyLogo();
 
         int GetCurrentCompany();
-
+        
         CompanyCustomizeEntity GetCustomizeCompany();
+
+        AuthenticationConfig GetAuthenticationConfig();
     }
 }

@@ -2,7 +2,9 @@
 using FontAwesome.Sharp;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Configuration;
+using SL.Contracts;
 using SL.Domain.Entities;
+using SL.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +16,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.SubForms.Configuracion;
 using UI.TextilSoft.SubForms.Pedidos;
 using UI.TextilSoft.SubForms.Proveedores;
 using UI.TextilSoft.Tools;
@@ -40,6 +43,8 @@ namespace UI.TextilSoft.MainForm
 
         #region DI
         //----------------------- DI -------------------
+        private readonly IUsuarioController _usuarioController;
+        private readonly IPermisosController _permisosController;
         private readonly IClientesController _clientesController;
         private readonly IProveedoresController _proveedoresController;
         private readonly IProductosController _productosController;
@@ -52,7 +57,9 @@ namespace UI.TextilSoft.MainForm
         private readonly IFacturasController _facturasController;
         private readonly IConfiguration _configuration;
             
-        public FmTextilSoft(IProveedoresController proveedoresController,
+        public FmTextilSoft(IUsuarioController usuarioController,
+                             IPermisosController permisosController,
+                             IProveedoresController proveedoresController,
                              IClientesController clientesController,
                              IPedidosController pedidosController,
                              ISectorController sectorController,
@@ -71,6 +78,8 @@ namespace UI.TextilSoft.MainForm
             leftBorderBtn.Size = new Size(7, 60);
             panelBotones.Controls.Add(leftBorderBtn);
 
+            _usuarioController = usuarioController;
+            _permisosController = permisosController;
             _proveedoresController = proveedoresController;
             _clientesController = clientesController;
             _ventasController = ventasController;
@@ -89,7 +98,6 @@ namespace UI.TextilSoft.MainForm
         {
             get
             {
-                //Aca tendria que llamar al controller de user y hacer un get pasandole por parametros toolstrip1.tag
                 Usuario data = (Usuario)toolStrip1.Tag;
                 return data;
             }
@@ -244,6 +252,10 @@ namespace UI.TextilSoft.MainForm
         {
             ActivateButton(sender);
             BotonPresionado = true;
+            if (_user.IsAdmin)
+                AbrirFormHija(new FmAdminConfig(_usuarioController, _permisosController));
+            else
+                AbrirFormHija(new FmConfiguracion());
         }
         #endregion
 
@@ -588,6 +600,14 @@ namespace UI.TextilSoft.MainForm
             }
         }
 
+        private void MoveIconRight()
+        {
+            currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+            currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+            currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+        }
+        #endregion
+
         private void toolStrip1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -598,12 +618,15 @@ namespace UI.TextilSoft.MainForm
 
         }
 
-        private void MoveIconRight()
+        private void FmTextilSoft_FormClosing(object sender, FormClosingEventArgs e)
         {
-            currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-            currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
-            currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+            btnPedidos.Enabled = false;
+            btnVentas.Enabled = false;
+            btnFacturas.Enabled = false;
+            btnReportes.Enabled = false;
+            btnProduccion.Enabled = false;
+            btnProveedores.Enabled = false;
+            btnConfiguracion.Enabled = false;
         }
-        #endregion
     }
 }

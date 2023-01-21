@@ -16,7 +16,8 @@ namespace UI.TextilSoft.Mapeo
             CreateMap<ProveedoresEntity, ProveedoresModel>()
                .ForMember(x => x.ID_Proveedor, opt => opt.Ignore())
                .ReverseMap();
-               
+
+            CreateMap<ProductosProveedorEntity, ProductosProveedorModel>().ReverseMap();
 
             CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
         }

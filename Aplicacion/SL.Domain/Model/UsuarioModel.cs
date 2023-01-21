@@ -17,14 +17,17 @@ namespace SL.Domain.Model
         public int CompanyId { get; set; }
         public string Nombre { get; set; }
         public string Contraseña { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
         public int DNI { get; set; }
         public int AccesFailed { get; set; }
         public bool EmailConfirmado { get; set; }
         public DateTime? DateTimeEmail { get; set; }
         public string NumeroTeléfono { get; set; }
+        public bool IsAdmin { get; set; }
         public bool Active { get; set; }
         public DateTime? DateDisabledUser { get; set; }
+        public Nullable<int> VerifyCode { get; set; }
+
         public CompanyModel Company { get; set; }
         public ICollection<Usuario_PermisoModel> Usuario_Permisos { get; set; }
     }

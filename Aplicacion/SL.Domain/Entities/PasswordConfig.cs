@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UI.TextilSoft.Configurations.Authentication
+namespace SL.Domain.Entities
 {
     public class PasswordConfig
     {
@@ -14,11 +14,5 @@ namespace UI.TextilSoft.Configurations.Authentication
         public bool RequireUppercase { get; set; }
         public bool RequireDigit { get; set; }
 
-        //public Tester Tester { get; set; }
-    }
-
-    public class Tester
-    {
-        public int test { get; set; }
     }
 }

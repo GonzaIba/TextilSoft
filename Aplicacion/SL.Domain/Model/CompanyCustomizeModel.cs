@@ -12,7 +12,6 @@ namespace SL.Domain.Model
         public int CompanyId { get; set; }
         public string CompanyLogo { get; set; }
         public string CompanyColor { get; set; }
-        public bool CanUseLoginAndRegister { get; set; }
 
         public CompanyModel Company { get; set; }
     }

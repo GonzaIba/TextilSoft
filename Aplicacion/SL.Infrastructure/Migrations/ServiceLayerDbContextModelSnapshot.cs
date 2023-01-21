@@ -19,6 +19,36 @@ namespace SL.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "5.0.11")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("SL.Domain.Model.CompanyAuthenticationModel", b =>
+                {
+                    b.Property<int>("CompanyAuthenticationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("CanUseLoginAndRegister")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MaxFailedAccessAttempts")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("SignInRequireConfirmedAccount")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("UserRequireUniqueEmail")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CompanyAuthenticationId");
+
+                    b.HasIndex("CompanyId")
+                        .IsUnique();
+
+                    b.ToTable("CompanyAuthentication");
+                });
+
             modelBuilder.Entity("SL.Domain.Model.CompanyCustomizeModel", b =>
                 {
                     b.Property<int>("CompanyCustomizeId")
@@ -82,6 +112,39 @@ namespace SL.Infrastructure.Migrations
                     b.HasKey("CompanyId");
 
                     b.ToTable("Company");
+                });
+
+            modelBuilder.Entity("SL.Domain.Model.CompanyPasswordConfigModel", b =>
+                {
+                    b.Property<int>("CompanyPasswordConfigId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyAuthenticationId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CountLength")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("RequireDigit")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("RequireLowercase")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("RequireNonAlphanumeric")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("RequireUppercase")
+                        .HasColumnType("bit");
+
+                    b.HasKey("CompanyPasswordConfigId");
+
+                    b.HasIndex("CompanyAuthenticationId")
+                        .IsUnique();
+
+                    b.ToTable("CompanyPasswordConfig");
                 });
 
             modelBuilder.Entity("SL.Domain.Model.PermisoModel", b =>
@@ -163,12 +226,18 @@ namespace SL.Infrastructure.Migrations
                     b.Property<bool>("EmailConfirmado")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsAdmin")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("NumeroTeléfono")
                         .HasColumnType("varchar(50)");
+
+                    b.Property<int?>("VerifyCode")
+                        .HasColumnType("int");
 
                     b.HasKey("Id_Usuario");
 
@@ -192,6 +261,17 @@ namespace SL.Infrastructure.Migrations
                     b.ToTable("usuarios_permisos");
                 });
 
+            modelBuilder.Entity("SL.Domain.Model.CompanyAuthenticationModel", b =>
+                {
+                    b.HasOne("SL.Domain.Model.CompanyModel", "Company")
+                        .WithOne("CompanyAuthentication")
+                        .HasForeignKey("SL.Domain.Model.CompanyAuthenticationModel", "CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
             modelBuilder.Entity("SL.Domain.Model.CompanyCustomizeModel", b =>
                 {
                     b.HasOne("SL.Domain.Model.CompanyModel", "Company")
@@ -201,6 +281,17 @@ namespace SL.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("SL.Domain.Model.CompanyPasswordConfigModel", b =>
+                {
+                    b.HasOne("SL.Domain.Model.CompanyAuthenticationModel", "CompanyAuthentication")
+                        .WithOne("CompanyPasswordConfig")
+                        .HasForeignKey("SL.Domain.Model.CompanyPasswordConfigModel", "CompanyAuthenticationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompanyAuthentication");
                 });
 
             modelBuilder.Entity("SL.Domain.Model.PermisoModel", b =>
@@ -244,8 +335,15 @@ namespace SL.Infrastructure.Migrations
                     b.Navigation("UsuarioModel");
                 });
 
+            modelBuilder.Entity("SL.Domain.Model.CompanyAuthenticationModel", b =>
+                {
+                    b.Navigation("CompanyPasswordConfig");
+                });
+
             modelBuilder.Entity("SL.Domain.Model.CompanyModel", b =>
                 {
+                    b.Navigation("CompanyAuthentication");
+
                     b.Navigation("CompanyCustomize");
 
                     b.Navigation("Permisos");

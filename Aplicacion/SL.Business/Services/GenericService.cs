@@ -22,16 +22,16 @@ namespace SL.Business
         public virtual void Insertar(T entities)
         {
             _repository.Insert(entities);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public void Actualizar(T entities)
         {
             _repository.Update(entities);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
-        public void CancelChanges(T entity)
+        public void CancelarCambios(T entity)
         {
             throw new NotImplementedException();
         }
@@ -54,17 +54,17 @@ namespace SL.Business
         }
 
 
-        public T GetById(object id)
+        public T ObtenerPorId(object id)
         {
            return _repository.GetById(id);
         }
 
-        public virtual IEnumerable<T> GetAll()
+        public virtual IEnumerable<T> ObtenerTodo()
         {
             return _repository.TableNoTracking.AsEnumerable<T>().ToList();
         }
 
-        public T GetByIdFunc(Expression<Func<T, bool>> func)
+        public T ObtenerPorFuncion(Expression<Func<T, bool>> func)
         {
             var result = _repository.Get(func).FirstOrDefault();
 

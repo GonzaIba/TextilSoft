@@ -55,32 +55,48 @@ namespace SL.Helper.Controllers
 
         public bool Existe(Componente c, int id)
         {
-            bool existe = false; 
-
-            if (c.Id.Equals(id))
-                existe = true;
-            else
+            try
             {
-                FamiliaDependenciaCircular(c, id);
-                foreach (var item in c.Hijos)
-                {
-                    existe = Existe(item, id);
-                    if (existe) return true;
-                }
-            }
+                bool existe = false;
 
-            return existe;
+                if (c.Id.Equals(id))
+                    existe = true;
+                else
+                {
+                    FamiliaDependenciaCircular(c, id);
+                    foreach (var item in c.Hijos)
+                    {
+                        existe = Existe(item, id);
+                        if (existe) return true;
+                    }
+                }
+                return existe;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         
         private void FamiliaDependenciaCircular(Componente f, int idPosiblePadre)
         {
-            if (_permiso_PermisoService.Get(x => x.Id_Permiso_Padre == idPosiblePadre && x.Id_Permiso_Hijo==f.Id).Any()) //No se que tan poco óptimo es esto...
-                throw new Exception("Esta familia no puede ser la hija porque genera dependencias circulares");
-            else
-                foreach (var hijo in f.Hijos)
+            try
+            {
+                if (_permisoService.Get(x => x.Id_Permiso == f.Id).FirstOrDefault()?.Permiso == null)
                 {
-                    FamiliaDependenciaCircular(hijo, idPosiblePadre);
+                    if (_permiso_PermisoService.Get(x => x.Id_Permiso_Padre == idPosiblePadre && x.Id_Permiso_Hijo == f.Id).Any()) //No se que tan poco óptimo es esto...
+                        throw new InvalidOperationException("Esta familia no puede ser la hija porque genera dependencias circulares");
+                    else
+                        foreach (var hijo in f.Hijos)
+                        {
+                            FamiliaDependenciaCircular(hijo, idPosiblePadre);
+                        }
                 }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         
@@ -120,6 +136,18 @@ namespace SL.Helper.Controllers
                     Hijos.Add(PermisoPermiso);
                 }
                 _usuario_PermisoService.GuardarPermisos(permisoPadre, Hijos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void EliminarPermiso(Componente c)
+        {
+            try
+            {
+                //_permisoService.Eliminar(c.Id);
             }
             catch (Exception ex)
             {

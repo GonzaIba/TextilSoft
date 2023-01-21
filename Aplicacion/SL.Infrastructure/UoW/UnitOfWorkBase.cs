@@ -18,7 +18,7 @@ namespace SL.Infrastructure.UoW
 
         public DbContext Context => _context;
 
-        public int Save()
+        public int SaveChanges()
         {
             try
             {

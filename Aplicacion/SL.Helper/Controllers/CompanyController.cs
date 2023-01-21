@@ -28,6 +28,13 @@ namespace SL.Helper.Controllers
             _mapper = mapper;
         }
 
+        public AuthenticationConfig GetAuthenticationConfig()
+        {
+            var companyAuthentication = _companyService.ObtenerConfigAutenticacion(_companyConfiguration.CompanyId);
+            var authenticationConfig = _mapper.Map<AuthenticationConfig>(companyAuthentication);
+            return authenticationConfig;
+        }
+
         public string GetCompanyLogo()
         {
             var CompanyCustomize = _companyService.Get(x => x.CompanyId == _companyConfiguration.CompanyId && x.CompanyApiKey == _companyConfiguration.CompanyApiKey, includeProperties: "CompanyCustomize").FirstOrDefault();
@@ -53,6 +60,17 @@ namespace SL.Helper.Controllers
             }
             throw new Exception("No se pudo obtener el logo de la companñia");
         }
+        
+        //public Config GetCustomizeCompany()
+        //{
+        //    var CompanyCustomize = _companyService.Get(x => x.CompanyId == _companyConfiguration.CompanyId && x.CompanyApiKey == _companyConfiguration.CompanyApiKey, includeProperties: "CompanyCustomize").FirstOrDefault();
+        //    if (CompanyCustomize != null)
+        //    {
+        //        CompanyCustomizeEntity companyCustomizeEntity = _mapper.Map<CompanyCustomizeEntity>(CompanyCustomize);
+        //        return companyCustomizeEntity;
+        //    }
+        //    throw new Exception("No se pudo obtener el logo de la companñia");
+        //}
 
         public bool VerifyCompany()
         {
