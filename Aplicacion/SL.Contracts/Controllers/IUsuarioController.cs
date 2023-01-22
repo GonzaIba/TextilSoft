@@ -23,6 +23,8 @@ namespace SL.Contracts
         void GuardarPermisos(Usuario usuario);
         string QuitarPermiso(Usuario usuario, Componente c);
         bool ExisteUsuario(string posibleUsuario);
+        bool ExisteEmail(string posibleEmail);
+        bool ExisteDNI(int posibleDNI);
         void EnviarConfirmacionEmail(string email);
         void RecuperarContraseña(string nombre, string email);
         bool ValidarCodigoDeVerificacion(Usuario usuario,int numero);

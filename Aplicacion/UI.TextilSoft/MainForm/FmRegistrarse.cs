@@ -79,8 +79,8 @@ namespace UI.TextilSoft.MainForm
 
             if(!authenticationConfig.PasswordConfig.RequireLowercase)
             {
-                lblMinimo.Visible = false;
-                minimo.Visible = false;
+                lblMinuscula.Visible = false;
+                minuscula.Visible = false;
             }
             if (!authenticationConfig.PasswordConfig.RequireUppercase)
             {
@@ -97,7 +97,10 @@ namespace UI.TextilSoft.MainForm
                 lblEspecial.Visible = false;
                 carespecial.Visible = false;
             }
-            
+            lblMinimo.Text = $"Minimo {authenticationConfig.PasswordConfig.CountLength} caracteres";
+            //Execute event MostrarContraseñaCB checked
+            MostrarContraseñaCB.Checked = false;
+            MostrarContraseñaCB_CheckedChanged(null, null);
 
 
         }
@@ -146,9 +149,20 @@ namespace UI.TextilSoft.MainForm
         private bool AlgoritmoContraseñaSegura(string password)
         {
             mayuscula.Checked = false; minuscula.Checked = false; numero.Checked = false; carespecial.Checked = false; minimo.Checked = false;
+
+            //Primero validamos la configuración de la compañía
+            if (!_authenticationConfig.PasswordConfig.RequireUppercase)
+                mayuscula.Checked = true;
+            if (!_authenticationConfig.PasswordConfig.RequireLowercase)
+                minuscula.Checked = true;
+            if (!_authenticationConfig.PasswordConfig.RequireDigit)
+                numero.Checked = true;
+            if (!_authenticationConfig.PasswordConfig.RequireNonAlphanumeric)
+                carespecial.Checked = true;
+            
             for (int i = 0; i < password.Length; i++)
             {
-                if (password.Length >= 8)
+                if (password.Length >= _authenticationConfig.PasswordConfig.CountLength)
                     minimo.Checked = true;
                 if (Char.IsUpper(password, i))
                     mayuscula.Checked = true;
@@ -159,7 +173,7 @@ namespace UI.TextilSoft.MainForm
                 else
                     carespecial.Checked = true;
             }
-            if (mayuscula.Checked && minuscula.Checked && numero.Checked && carespecial.Checked && password.Length >= 8)
+            if (mayuscula.Checked && minuscula.Checked && numero.Checked && carespecial.Checked && password.Length >= _authenticationConfig.PasswordConfig.CountLength)
                 return true;
             return false;
         }
@@ -179,10 +193,13 @@ namespace UI.TextilSoft.MainForm
             if (txtConfirmPassword.Text == txtPassword.Text)
             {
                 PasswordChecked = true;
+                pnlConfirmPassword.BackColor = Color.Green;
             }
             else
             {
                 PasswordChecked = false;
+                pnlConfirmPassword.BackColor = Color.Red;
+                toolTipError.Show("Las contraseñas no coinciden", txtConfirmPassword, 0, -20, 2000);
             }
             VerifyAllFieldsChecked();
         }
@@ -190,40 +207,71 @@ namespace UI.TextilSoft.MainForm
         private void txtPassword_TextChanged(object sender, EventArgs e)
         {
             if (AlgoritmoContraseñaSegura(txtPassword.Text))
+            {
                 VerifySamePassword();
+                pnlPassword.BackColor = Color.Green;
+            }
             else
+            {
+                pnlPassword.BackColor = Color.Red;
                 PasswordChecked = false;
+            }
+
 
             VerifyAllFieldsChecked();
         }
-        private void txtMail_TextChanged(object sender, EventArgs e)
+        private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
         {
+            VerifySamePassword();
             VerifyAllFieldsChecked();
-            
+        }
+
+        private void txtMail_TextChanged(object sender, EventArgs e)
+        {         
             if (System.Text.RegularExpressions.Regex.IsMatch(txtMail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
             {
-                pnlEmail.BackColor = Color.Green;
-                EmailChecked = true;
+                if (_userController.ExisteEmail(txtMail.Text))
+                {
+                    EmailChecked = false;
+                    pnlEmail.BackColor = Color.Red;
+                    toolTipError.Show("Ya existe un usuario asociado a este Email", txtMail, 0, -20, 2000);
+                }
+                else
+                {
+                    pnlEmail.BackColor = Color.Green;
+                    EmailChecked = true;
+                }
             }
             else
             {
                 EmailChecked = false;
                 pnlEmail.BackColor = Color.Red;
+                //toolTipError.Show("El email ya existe", txtMail, 0, -20, 2000);
             }
+            VerifyAllFieldsChecked();
         }
         private void txtDNI_TextChanged(object sender, EventArgs e)
         {
-            VerifyAllFieldsChecked();
             if (System.Text.RegularExpressions.Regex.IsMatch(txtDNI.Text, @"^[0-9]{7,8}$"))
             {
-                pnlDNI.BackColor = Color.Green;
-                DNIChecked = true;
+                if (_userController.ExisteDNI(Convert.ToInt32(txtDNI.Text)))
+                {
+                    pnlDNI.BackColor = Color.Red;
+                    DNIChecked = false;
+                    toolTipError.Show("Ya existe un usuario asociado a este DNI", txtDNI, 0, -20, 2000);
+                }
+                else
+                {
+                    pnlDNI.BackColor = Color.Green;
+                    DNIChecked = true;
+                }
             }
             else
             {
                 pnlDNI.BackColor = Color.Red;
                 DNIChecked = false;
             }
+            VerifyAllFieldsChecked();
         }
         private void txtNumeroTelefono_TextChanged(object sender, EventArgs e)
         {
@@ -241,17 +289,20 @@ namespace UI.TextilSoft.MainForm
         }
         private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
-            VerifyAllFieldsChecked();
             if (_userController.ExisteUsuario(txtUsuario.Text))
             {
                 pnlUsuario.BackColor = Color.Red;
                 UsuarioChecked = false;
+                //Show tooltip Error
+
+                toolTipError.Show("El nombre de usuario ya existe", txtUsuario, 0, -20, 2000);
             }
             else
             {
                 pnlUsuario.BackColor = Color.Green;
                 UsuarioChecked = true;
             }
+            VerifyAllFieldsChecked();
         }
         #endregion
 
@@ -262,11 +313,13 @@ namespace UI.TextilSoft.MainForm
             pnlDNI.BackColor = Color.FromArgb(30, 30, 30);
             pnlTelefono.BackColor = Color.FromArgb(30, 30, 30);
             pnlUsuario.BackColor = Color.FromArgb(30, 30, 30);
+            pnlPassword.BackColor = Color.FromArgb(30, 30, 30);
+            pnlConfirmPassword.BackColor = Color.FromArgb(30, 30, 30);
         }
 
         private void MostrarContraseñaCB_CheckedChanged(object sender, EventArgs e)
         {
-            if (MostrarContraseñaCB.Checked)
+            if (!MostrarContraseñaCB.Checked)
             {
                 txtPassword.UseSystemPasswordChar = false;
                 txtConfirmPassword.UseSystemPasswordChar = false;
@@ -329,12 +382,6 @@ namespace UI.TextilSoft.MainForm
             //LogoAnimator.Hide(labelBienvenida);
             pnlRegistrarse.Visible = false;
             RegistrarseAnimator.ShowSync(pnlRegistrarse);
-        }
-
-        private void txtConfirmPassword_TextChanged(object sender, EventArgs e)
-        {
-            VerifySamePassword();
-            VerifyAllFieldsChecked();
         }
 
         private void minimo_MouseClick(object sender, MouseEventArgs e)

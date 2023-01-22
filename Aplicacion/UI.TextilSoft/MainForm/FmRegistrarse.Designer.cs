@@ -61,6 +61,8 @@ namespace UI.TextilSoft.MainForm
             this.pnlDNI = new System.Windows.Forms.Panel();
             this.pnlTelefono = new System.Windows.Forms.Panel();
             this.pnlRegistrarse = new System.Windows.Forms.Panel();
+            this.pnlConfirmPassword = new System.Windows.Forms.Panel();
+            this.pnlPassword = new System.Windows.Forms.Panel();
             this.lblMayuscula = new System.Windows.Forms.Label();
             this.lblEspecial = new System.Windows.Forms.Label();
             this.lblNumero = new System.Windows.Forms.Label();
@@ -69,6 +71,7 @@ namespace UI.TextilSoft.MainForm
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.RegistrarseAnimator = new AnimatorNS.Animator(this.components);
             this.tipTelefono = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipError = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
             this.pnlRegistrarse.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -169,8 +172,6 @@ namespace UI.TextilSoft.MainForm
             // 
             this.MostrarContraseñaCB.AutoSize = true;
             this.MostrarContraseñaCB.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.MostrarContraseñaCB.Checked = true;
-            this.MostrarContraseñaCB.CheckState = System.Windows.Forms.CheckState.Checked;
             this.RegistrarseAnimator.SetDecoration(this.MostrarContraseñaCB, AnimatorNS.DecorationType.None);
             this.MostrarContraseñaCB.FlatAppearance.BorderSize = 0;
             this.MostrarContraseñaCB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -455,12 +456,32 @@ namespace UI.TextilSoft.MainForm
             this.pnlRegistrarse.Controls.Add(this.lblMinuscula);
             this.pnlRegistrarse.Controls.Add(this.lblMinimo);
             this.pnlRegistrarse.Controls.Add(this.iconPictureBox1);
+            this.pnlRegistrarse.Controls.Add(this.pnlConfirmPassword);
+            this.pnlRegistrarse.Controls.Add(this.pnlPassword);
             this.RegistrarseAnimator.SetDecoration(this.pnlRegistrarse, AnimatorNS.DecorationType.None);
             this.pnlRegistrarse.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRegistrarse.Location = new System.Drawing.Point(0, 0);
             this.pnlRegistrarse.Name = "pnlRegistrarse";
             this.pnlRegistrarse.Size = new System.Drawing.Size(661, 543);
             this.pnlRegistrarse.TabIndex = 38;
+            // 
+            // pnlConfirmPassword
+            // 
+            this.pnlConfirmPassword.BackColor = System.Drawing.Color.Red;
+            this.RegistrarseAnimator.SetDecoration(this.pnlConfirmPassword, AnimatorNS.DecorationType.None);
+            this.pnlConfirmPassword.Location = new System.Drawing.Point(277, 270);
+            this.pnlConfirmPassword.Name = "pnlConfirmPassword";
+            this.pnlConfirmPassword.Size = new System.Drawing.Size(222, 35);
+            this.pnlConfirmPassword.TabIndex = 37;
+            // 
+            // pnlPassword
+            // 
+            this.pnlPassword.BackColor = System.Drawing.Color.Red;
+            this.RegistrarseAnimator.SetDecoration(this.pnlPassword, AnimatorNS.DecorationType.None);
+            this.pnlPassword.Location = new System.Drawing.Point(38, 270);
+            this.pnlPassword.Name = "pnlPassword";
+            this.pnlPassword.Size = new System.Drawing.Size(222, 35);
+            this.pnlPassword.TabIndex = 36;
             // 
             // lblMayuscula
             // 
@@ -608,5 +629,8 @@ namespace UI.TextilSoft.MainForm
         private System.Windows.Forms.Label lblNumero;
         private System.Windows.Forms.Label lblMinuscula;
         private System.Windows.Forms.Label lblMinimo;
+        private System.Windows.Forms.ToolTip toolTipError;
+        private System.Windows.Forms.Panel pnlPassword;
+        private System.Windows.Forms.Panel pnlConfirmPassword;
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SL.Infrastructure.TypeBuilders
 {
-    internal class UsuarioTypeBuilder : IEntityTypeConfiguration<UsuarioModel>
+    public class UsuarioTypeBuilder : IEntityTypeConfiguration<UsuarioModel>
     {
         public void Configure(EntityTypeBuilder<UsuarioModel> builder)
         {

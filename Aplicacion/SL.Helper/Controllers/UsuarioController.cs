@@ -365,6 +365,31 @@ namespace SL.Helper.Controllers
                 throw ex;
             }
         }
+        public bool ExisteEmail(string posibleEmail)
+        {
+            try
+            {
+                var result = _usuarioService.Get(x => x.Email == posibleEmail && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).Any();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool ExisteDNI(int posibleDNI)
+        {
+            try
+            {
+                var result = _usuarioService.Get(x => x.DNI == posibleDNI && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).Any();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         #endregion
     }
 }
