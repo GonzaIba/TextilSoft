@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnConfigCompany = new FontAwesome.Sharp.IconButton();
             this.btnPatenteFamilia = new FontAwesome.Sharp.IconButton();
             this.btnUsuarios = new FontAwesome.Sharp.IconButton();
             this.panelContenedor = new System.Windows.Forms.Panel();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.iconButton1);
+            this.panel1.Controls.Add(this.btnConfigCompany);
             this.panel1.Controls.Add(this.btnPatenteFamilia);
             this.panel1.Controls.Add(this.btnUsuarios);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -46,6 +46,24 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(886, 47);
             this.panel1.TabIndex = 0;
+            // 
+            // btnConfigCompany
+            // 
+            this.btnConfigCompany.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnConfigCompany.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfigCompany.ForeColor = System.Drawing.Color.White;
+            this.btnConfigCompany.IconChar = FontAwesome.Sharp.IconChar.Building;
+            this.btnConfigCompany.IconColor = System.Drawing.Color.White;
+            this.btnConfigCompany.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnConfigCompany.IconSize = 35;
+            this.btnConfigCompany.Location = new System.Drawing.Point(748, 0);
+            this.btnConfigCompany.Name = "btnConfigCompany";
+            this.btnConfigCompany.Size = new System.Drawing.Size(137, 47);
+            this.btnConfigCompany.TabIndex = 2;
+            this.btnConfigCompany.Text = "Configuración de la compañía";
+            this.btnConfigCompany.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnConfigCompany.UseVisualStyleBackColor = true;
+            this.btnConfigCompany.Click += new System.EventHandler(this.btnConfigCompany_Click);
             // 
             // btnPatenteFamilia
             // 
@@ -89,22 +107,6 @@
             this.panelContenedor.Size = new System.Drawing.Size(886, 446);
             this.panelContenedor.TabIndex = 1;
             // 
-            // iconButton1
-            // 
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.ForeColor = System.Drawing.Color.White;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Building;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 35;
-            this.iconButton1.Location = new System.Drawing.Point(749, 1);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(137, 46);
-            this.iconButton1.TabIndex = 2;
-            this.iconButton1.Text = "Configuración de la compañía";
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = true;
-            // 
             // FmAdminConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -126,6 +128,6 @@
         private FontAwesome.Sharp.IconButton btnPatenteFamilia;
         private FontAwesome.Sharp.IconButton btnUsuarios;
         private System.Windows.Forms.Panel panelContenedor;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnConfigCompany;
     }
 }

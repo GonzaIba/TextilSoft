@@ -11,6 +11,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="SubForms\Configuracion\dvtpmdjg.z10~" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AltoControls" Version="1.0.1" />
     <PackageReference Include="Animator" Version="1.0.3" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
@@ -65,6 +69,7 @@
 
   <ItemGroup>
     <Folder Include="Configurations\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
 
 </Project>

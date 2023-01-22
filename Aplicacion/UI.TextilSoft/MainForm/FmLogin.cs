@@ -165,7 +165,7 @@ namespace UI.TextilSoft.MainForm
             //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
             var usuario = _userController.ObtenerUsuarioConPermisos(login);
             //_empleadosController.LoginEmpleado(usuario);
-            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration);
+            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration,_companyController);
             fmTextilSoft.toolStrip1.Tag = usuario;
             if (usuario.IsAdmin)
             {

@@ -56,7 +56,8 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IFacturasController _facturasController;
         private readonly IConfiguration _configuration;
-            
+        private readonly ICompanyController _companyController;
+
         public FmTextilSoft(IUsuarioController usuarioController,
                              IPermisosController permisosController,
                              IProveedoresController proveedoresController,
@@ -69,7 +70,9 @@ namespace UI.TextilSoft.MainForm
                              IOrdenDeTrabajoController ordenDeTrabajoController,
                              IProductoProveedorController productoProveedorController,
                              IProductosController productosController,
-                             IConfiguration configuration)
+                             IConfiguration configuration,
+                             ICompanyController companyController
+                             )
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
@@ -91,6 +94,7 @@ namespace UI.TextilSoft.MainForm
             _productoProveedorController = productoProveedorController;
             _pedidosController = pedidosController;
             _configuration = configuration;
+            _companyController = companyController;
         }
         #endregion
 
@@ -111,7 +115,7 @@ namespace UI.TextilSoft.MainForm
                 toolStrip1.Renderer = new ToolStripRenderCustom();
                 timer1.Start();
                 timer2.Start();
-                toolStripLabel1.Text = "Hola " + _user.Nombre + "!";
+                toolStripLabel1.Text = "Hola " + _user?.Nombre + "!";
                 //this.TraducirFormulario();
             }
             catch (Exception ex)
@@ -253,7 +257,7 @@ namespace UI.TextilSoft.MainForm
             ActivateButton(sender);
             BotonPresionado = true;
             if (_user.IsAdmin)
-                AbrirFormHija(new FmAdminConfig(_usuarioController, _permisosController));
+                AbrirFormHija(new FmAdminConfig(_usuarioController, _permisosController,_companyController));
             else
                 AbrirFormHija(new FmConfiguracion());
         }
