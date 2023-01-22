@@ -23,7 +23,7 @@ namespace SL.Business.Services
         public void CrearPermiso(PermisoModel permiso)
         {
             Insertar(permiso);
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
 
         public List<PermisoModel> ObtenerPermisos()

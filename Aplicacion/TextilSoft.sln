@@ -43,6 +43,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SL.Infrastructure", "SL.Inf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SL.Helper", "SL.Helper\SL.Helper.csproj", "{4344C9D3-D92F-465C-A452-C6CBD82330FD}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SL.EmailHelper", "SL.EmailHelper\SL.EmailHelper.csproj", "{7DDF14EE-8FD3-47A7-ACF6-D5A3E0E932C6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,10 @@ Global
 		{4344C9D3-D92F-465C-A452-C6CBD82330FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4344C9D3-D92F-465C-A452-C6CBD82330FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4344C9D3-D92F-465C-A452-C6CBD82330FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDF14EE-8FD3-47A7-ACF6-D5A3E0E932C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDF14EE-8FD3-47A7-ACF6-D5A3E0E932C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDF14EE-8FD3-47A7-ACF6-D5A3E0E932C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDF14EE-8FD3-47A7-ACF6-D5A3E0E932C6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{6D43CF2D-EC76-4F54-8E6C-8EB2F5D87ADE} = {2B191CB1-1167-451D-BAD7-73B9E7834802}
 		{500557ED-615A-4156-900C-7D70F7E0765B} = {42BCC04F-883D-4CEE-87A8-27E6360693F4}
 		{4344C9D3-D92F-465C-A452-C6CBD82330FD} = {6D43CF2D-EC76-4F54-8E6C-8EB2F5D87ADE}
+		{7DDF14EE-8FD3-47A7-ACF6-D5A3E0E932C6} = {6D43CF2D-EC76-4F54-8E6C-8EB2F5D87ADE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1E0C65AF-7065-4FE0-B7A5-BBA0699240EB}

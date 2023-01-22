@@ -87,6 +87,7 @@ namespace Business.Services
                 _productosProveedorRepository.Delete(ProductosProveedorDTO);
             }
             _repository.Delete(ProveedorDTO);
+            _unitOfWork.SaveChanges();
         }
 
         public void Test(IEnumerable<ProveedoresModel> listita)

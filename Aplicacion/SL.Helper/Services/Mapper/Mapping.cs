@@ -47,31 +47,42 @@ namespace SL.Helper.Services.Mapper
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))
                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
                 .ReverseMap();
-            
+
+            CreateMap<Usuario, Usuario_PermisoModel>()
+                .ForMember(dest => dest.Id_Usuario, opt => opt.MapFrom(src => src.Id))
+                .ReverseMap();
+
+            CreateMap<CompanyModel, CompanyCustomizeEntity>()
+                .ForMember(dest => dest.CompanyId, opt => opt.MapFrom(src => src.CompanyId))
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.CompanyName))
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyColor))
+                .ForMember(dest => dest.Logo, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyLogo))
+                .ReverseMap();
+
+            CreateMap<Register, UsuarioModel>()
+                .ForMember(dest => dest.Email, opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))
+                .ForMember(dest => dest.Contraseña, opt => opt.MapFrom(src => src.Password))
+                .ForMember(dest => dest.Active, opt => opt.MapFrom(src => true));
+
+            CreateMap<AuthenticationConfig, CompanyAuthenticationModel>()
+                .ForMember(dest => dest.SignInRequireConfirmedAccount, opt => opt.MapFrom(src => src.SignInRequireConfirmedAccount))
+                .ForMember(dest => dest.UserRequireUniqueEmail, opt => opt.MapFrom(src => src.UserRequireUniqueEmail))
+                .ForMember(dest => dest.MaxFailedAccessAttempts, opt => opt.MapFrom(src => src.MaxFailedAccessAttempts))
+                .ForMember(dest => dest.CompanyPasswordConfig, opt => opt.MapFrom(src => src.PasswordConfig))
+                .ReverseMap();
+
+            CreateMap<PasswordConfig, CompanyPasswordConfigModel>()
+                .ForMember(dest => dest.RequireNonAlphanumeric, opt => opt.MapFrom(src => src.RequireNonAlphanumeric))
+                .ForMember(dest => dest.RequireDigit, opt => opt.MapFrom(src => src.RequireDigit))
+                .ForMember(dest => dest.RequireLowercase, opt => opt.MapFrom(src => src.RequireLowercase))
+                .ForMember(dest => dest.RequireUppercase, opt => opt.MapFrom(src => src.RequireUppercase))
+                .ForMember(dest => dest.CountLength, opt => opt.MapFrom(src => src.CountLength))
+                .ReverseMap();
+
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
         public TipoPermiso ConvertToTipoPermiso(string src)
         {
             TipoPermiso permiso;
@@ -86,7 +97,7 @@ namespace SL.Helper.Services.Mapper
             }
             catch (ArgumentException ex)
             {
-                //Si entra a este if es porque no se encontro el permiso en el enum (Esto se puede hacer a la inversa tambien... depende de cada uno como lo quiere manejar
+                //Si entra a este if es porque no se encontro el permiso en el enum (Esto se puede hacer a la inversa tambien... depende de cada uno como lo quiere manejar)
                 permiso = TipoPermiso.SinPermisos;
             }
             return permiso;

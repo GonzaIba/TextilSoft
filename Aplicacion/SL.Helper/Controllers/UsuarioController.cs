@@ -6,6 +6,7 @@ using SL.Contracts.Services;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
 using SL.Domain.Model;
+using SL.Helper.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,22 +21,32 @@ namespace SL.Helper.Controllers
         private readonly IUsuario_PermisoService _usuario_PermisoService;
         private readonly IPermisoService _permisoService;
         private readonly IPermiso_PermisoService _permiso_PermisoService;
+        private readonly CompanyConfiguration _companyConfiguration;
         private readonly IMapper _mapper;
 
-        public UsuarioController(IUsuarioService usuarioService, IUsuario_PermisoService usuario_PermisoService, IPermisoService permisoService, IPermiso_PermisoService permiso_PermisoService, IMapper mapper)
+        public UsuarioController(IUsuarioService usuarioService,
+            IUsuario_PermisoService usuario_PermisoService,
+            IPermisoService permisoService,
+            IPermiso_PermisoService permiso_PermisoService,
+            IMapper mapper,
+            CompanyConfiguration companyConfiguration
+            )
         {
             _usuarioService = usuarioService;
             _usuario_PermisoService = usuario_PermisoService;
             _permisoService = permisoService;
             _permiso_PermisoService = permiso_PermisoService;
             _mapper = mapper;
+            _companyConfiguration = companyConfiguration;
         }
 
-        public void CreateUser(UsuarioModel usuarioModel)
+        public bool Crearusuario(Register register, int CompanyId)
         {
             try
             {
-
+                var usuario = _mapper.Map<UsuarioModel>(register);
+                usuario.CompanyId = CompanyId;
+                return _usuarioService.Register(usuario);
             }
             catch (Exception ex)
             {
@@ -43,11 +54,11 @@ namespace SL.Helper.Controllers
             }
         }
 
-        public string LoginUser(Login usuarioLogin)
+        public LoginResult LoginUser(Login usuarioLogin)
         {
             try
             {
-                string ResultadoLogin = _usuarioService.Login(usuarioLogin);
+                var ResultadoLogin = _usuarioService.Login(usuarioLogin);
                 return ResultadoLogin;
             }
             catch (Exception ex)
@@ -56,17 +67,115 @@ namespace SL.Helper.Controllers
             }
         }
 
-        public Usuario GetUser(Login login)
+        public Usuario ObtenerUsuarioConPermisos(Login login)
         {
-            var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña).FirstOrDefault();
+            var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
             var Usuario = _mapper.Map<Usuario>(UsuarioDto);
+
+            var Familias = ObtenerFamilias();
+            var UsuarioConPermisos = ObtenerPermisosDeUsuario(Usuario);
+            Usuario = UsuariosCompletos(UsuarioConPermisos, Familias.ToList()).FirstOrDefault();
             return Usuario;
         }
 
 
+        public Usuario ObtenerUsuario(Login login)
+        {
+            try
+            {
+                var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
+                if(UsuarioDto is null)
+                    UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
+                
+                var Usuario = _mapper.Map<Usuario>(UsuarioDto);
+                return Usuario;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        
+        public string QuitarPermiso(Usuario usuario, Componente c)
+        {
+            try
+            {
+                var Usuario = _usuarioService.Get(x => x.Id_Usuario == usuario.Id && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
+                if (Usuario != null)
+                {
+                    var permiso = _permisoService.Get(x => x.Id_Permiso == c.Id && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
+                    if (permiso != null)
+                    {
+                        var usuario_Permiso = _usuario_PermisoService.Get(x => x.Id_Usuario == usuario.Id && x.Id_Permiso == permiso.Id_Permiso, tracking: true).FirstOrDefault();
+                        if (usuario_Permiso != null)
+                        {
+                            _usuario_PermisoService.EliminarPermisoDeUsuario(usuario_Permiso);
+                            return "Ok";
+                        }
+                        else
+                            return "No se puede quitar un permiso que depende de un nivel superior";
+                    }
+                    else
+                        return "No se encontró el permiso, contacte con el soporte o refresque la ventana";
+                }
+                else
+                    return "No se encontró el usuario, contacte con el soporte o refresque la ventana";
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
+
+        public void EnviarConfirmacionEmail(string email)
+        {
+            try
+            {
+                var user = _usuarioService.Get(x => x.Email == email && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
+                if(user !=null)
+                    _usuarioService.EnviarConfirmacionDeEmail(user.Nombre, email);
+                else
+                    throw new Exception("No se encontró el usuario");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void RecuperarContraseña(string nombre, string email)
+        {
+            try
+            {
+                _usuarioService.RecuperarContraseñaEmail(nombre, email);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public bool ValidarCodigoDeVerificacion(Usuario usuario, int codigoVerificacion)
+        {
+            try
+            {
+                var Usuario = _usuarioService.Get(x => x.Id_Usuario == usuario.Id && x.CompanyId == _companyConfiguration.CompanyId, tracking: true).FirstOrDefault();
+                if(Usuario.VerifyCode == codigoVerificacion)
+                {
+                    Usuario.EmailConfirmado = true;
+                    _usuarioService.Actualizar(Usuario);
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
         #region Composite
@@ -82,7 +191,22 @@ namespace SL.Helper.Controllers
             }
         }
 
-        public List<Usuario> ObtenerUsuariosCompletos()
+        public List<Usuario> ObtenerPermisosDeUsuario(Usuario usuario)
+        {
+            try
+            {
+                //En vez de crear un método, simplemente reutilizamos el de listas
+                List<Usuario> Usuarios = new List<Usuario>();
+                Usuarios.Add(usuario);
+                return UsuariosConPermisos(Usuarios);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+            
+        public List<Usuario> ObtenerTodosLosUsuarioConPermisos()
         {
             var Familias = ObtenerFamilias();
             var Usuarios = ObtenerUsuarios();
@@ -94,8 +218,8 @@ namespace SL.Helper.Controllers
 
         public IList<Usuario> ObtenerUsuarios() /*=> _mapper.Map<List<Usuario>>(_usuarioService.Get().ToList());*/
         {
-            //Aca Llenamos la lista de usuarios con sus permisos
-            var UsuariosCompletosDto = _usuarioService.Get().ToList();
+            //Aca Llenamos la lista de usuarios con sus permisos. Solo obtenemos los que no son administrador ya que es inútil agregarle patentes ya que tiene el nivel mas superior.
+            var UsuariosCompletosDto = _usuarioService.Get(x => !x.IsAdmin && x.CompanyId == _companyConfiguration.CompanyId).ToList();
             List<Usuario> Usuarios = new List<Usuario>();
             Usuarios.AddRange(_mapper.Map<List<Usuario>>(UsuariosCompletosDto));
             return Usuarios;
@@ -179,13 +303,13 @@ namespace SL.Helper.Controllers
 
         public IList<Familia> ObtenerFamilias()
         {
-            var PermisosDto = _permisoService.Get().ToList(); //Obtenemos toda la tabla de permisos //Por algún motivo no me traia la bdd actualizada...
+            var PermisosDto = _permisoService.Get(x => x.CompanyId == _companyConfiguration.CompanyId, tracking: true).ToList(); //Obtenemos toda la tabla de permisos //Por algún motivo no me traia la bdd actualizada...
             //var PermisosDto = _permisoService.ObtenerPermisos(); //Obtenemos toda la tabla de permisos
 
             var Permisos = _mapper.Map<List<Patente>>(PermisosDto); //Convertimos los permisos a Patente
             var FamiliasSinCastear = Permisos.Where(x => x.Permiso == TipoPermiso.EsFamilia).ToList(); //
             List<Familia> FamiliasComposite = FamiliasSinCastear.Select(x => new Familia{Id = x.Id,Nombre = x.Nombre,Permiso = x.Permiso}).ToList(); //Convertimos la lista de patentes a lista de familias
-            var PadreHijosDto = _permiso_PermisoService.Get().ToList(); //Obtenemos toda la tabla de relacion padre hijo
+            var PadreHijosDto = _permiso_PermisoService.Get(tracking:true).ToList(); //Obtenemos toda la tabla de relacion padre hijo
             //Convertimos las familias a familias composite
 
             foreach (var FamiliaComposite in FamiliasComposite) //Recorremos las familias para agregar agregar sus hijos...
@@ -227,6 +351,44 @@ namespace SL.Helper.Controllers
             }
 
             return FamiliasComposite;
+        }
+
+        public bool ExisteUsuario(string posibleUsuario)
+        {
+            try
+            {
+                var result = _usuarioService.Get(x => x.Nombre == posibleUsuario && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).Any();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool ExisteEmail(string posibleEmail)
+        {
+            try
+            {
+                var result = _usuarioService.Get(x => x.Email == posibleEmail && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).Any();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool ExisteDNI(int posibleDNI)
+        {
+            try
+            {
+                var result = _usuarioService.Get(x => x.DNI == posibleDNI && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).Any();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         #endregion
     }

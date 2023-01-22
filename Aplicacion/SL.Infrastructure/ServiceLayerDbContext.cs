@@ -17,17 +17,17 @@ namespace SL.Infrastructure
 
         //}
 
-        //public ServiceLayerDbContext(DbContextOptions<ServiceLayerDbContext> dbContextOptions)
-        //    : base(dbContextOptions)
-        //{
+        public ServiceLayerDbContext(DbContextOptions<ServiceLayerDbContext> dbContextOptions)
+            : base(dbContextOptions)
+        {
 
-        //}
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlServer("Data Source=localhost;Initial Catalog=upf2;User ID=testuser;Password=1234;");
+                options.UseSqlServer("Data Source=localhost;Initial Catalog=upf;User ID=testUser2;Password=1234;");
             }
         }
 

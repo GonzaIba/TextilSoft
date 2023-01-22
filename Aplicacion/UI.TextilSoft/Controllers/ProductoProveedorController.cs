@@ -50,7 +50,7 @@ namespace UI.TextilSoft.Controllers
 
         public List<ProductosProveedorEntity> LlenarGrillaProveedores()
         {
-            var ListaProdProveedoresDTO = _productosProveedorService.GetAll();
+            var ListaProdProveedoresDTO = _productosProveedorService.GetAll().ToList();
             List<ProductosProveedorEntity> ListaProdProveedoresEntity = _mapper.Map<List<ProductosProveedorEntity>>(ListaProdProveedoresDTO);
             return ListaProdProveedoresEntity;
         }

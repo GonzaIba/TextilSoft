@@ -11,7 +11,7 @@ namespace SL.Contracts
     {
         DbContext Context { get; }
 
-        int Save();
+        int SaveChanges();
 
     }
 }

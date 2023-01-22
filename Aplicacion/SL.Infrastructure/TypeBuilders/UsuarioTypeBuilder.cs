@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SL.Infrastructure.TypeBuilders
 {
-    internal class UsuarioTypeBuilder : IEntityTypeConfiguration<UsuarioModel>
+    public class UsuarioTypeBuilder : IEntityTypeConfiguration<UsuarioModel>
     {
         public void Configure(EntityTypeBuilder<UsuarioModel> builder)
         {
@@ -46,11 +46,19 @@ namespace SL.Infrastructure.TypeBuilders
             builder.Property(p => p.NumeroTeléfono)
                 .IsRequired(false)
                 .HasColumnType("varchar(50)");
+            
+            builder.Property(p => p.IsAdmin)
+                .IsRequired(true)
+                .HasColumnType("bit");
+
+            builder.Property(p => p.VerifyCode)
+                .IsRequired(false)
+                .HasColumnType("int");
 
             builder.HasOne(p => p.Company)
                 .WithMany(p => p.Usuarios)
                 .HasForeignKey(p => p.CompanyId);
-                
+
             builder.ToTable("usuarios");
         }
     }

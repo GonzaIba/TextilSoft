@@ -20,5 +20,6 @@ namespace SL.Domain.Model
         public ICollection<UsuarioModel> Usuarios { get; set; }
         public ICollection<PermisoModel> Permisos { get; set; }
         public CompanyCustomizeModel CompanyCustomize { get; set; }
+        public CompanyAuthenticationModel CompanyAuthentication { get; set; }
     }
 }

@@ -14,5 +14,6 @@ namespace SL.Contracts
         bool Existe(Componente c, int id);
         void GuardarFamilia(Familia c);
         void GuardarPermisos(Usuario u);
+        void EliminarPermiso(Componente c);
     }
 }

@@ -69,7 +69,7 @@ namespace SL.Infrastructure.Repositories
 
         public void Delete(List<T> entities)
         {
-            this._context.Entry(entities).State = EntityState.Deleted;
+            this._context.RemoveRange(entities);
         }
 
         public virtual IEnumerable<T> Get(

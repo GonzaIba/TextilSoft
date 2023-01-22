@@ -39,10 +39,10 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
             //Se carga las listas
             CargarListasEnMemoria();
-
+            //10000000
             //Este timer se ejecuta cada cierto tiempo
             Timer timer1 = new Timer();
-            timer1.Interval = 800000;//20 secs
+            timer1.Interval = 10000000;
             timer1.Tick += new System.EventHandler(timer_Tick);
             timer1.Start();
         }
@@ -108,20 +108,26 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private void btnAgregarPatentes_Click(object sender, EventArgs e)
         {
-            if (seleccion != null)
+            try
             {
-                var patente = (Patente)cboPatentes.SelectedItem;
-                if (patente != null)
+                if (seleccion != null)
                 {
-                    var esta = _permisosController.Existe(seleccion, patente.Id);
-                    if (esta)
-                        MessageBox.Show("ya exsite la patente indicada");
-                    else
+                    var patente = (Patente)cboPatentes.SelectedItem;
+                    if (patente != null)
                     {
-                        seleccion.AgregarHijo(patente);
-                        MostrarFamilia(false);
+                        var esta = _permisosController.Existe(seleccion, patente.Id);
+                        if (esta)
+                            MessageBox.Show("ya exsite la patente indicada");
+                        else
+                        {
+                            seleccion.AgregarHijo(patente);
+                            MostrarFamilia(false);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
             }
         }
 

@@ -10,5 +10,6 @@ namespace SL.Contracts.Services
     public interface IUsuario_PermisoService : IGenericService<Usuario_PermisoModel>
     {
         void GuardarPermisos(Usuario_PermisoModel usuario,List<Usuario_PermisoModel> permisos);
+        void EliminarPermisoDeUsuario(Usuario_PermisoModel usuario);
     }
 }

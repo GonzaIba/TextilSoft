@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SL.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,5 +12,11 @@ namespace SL.Contracts
         bool VerifyCompany();
 
         string GetCompanyLogo();
+
+        int GetCurrentCompany();
+        
+        CompanyCustomizeEntity GetCustomizeCompany();
+
+        AuthenticationConfig GetAuthenticationConfig();
     }
 }

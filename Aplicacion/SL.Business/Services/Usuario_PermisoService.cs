@@ -20,16 +20,29 @@ namespace SL.Business.Services
             _configuration = configuration;
         }
 
+        public void EliminarPermisoDeUsuario(Usuario_PermisoModel usuarioPermiso)
+        {
+            try
+            {
+                _repository.Delete(usuarioPermiso);
+                _unitOfWork.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public void GuardarPermisos(Usuario_PermisoModel usuario, List<Usuario_PermisoModel> permisos)
         {
-            var PermisosDelUsuario = Get(x => x.Id_Usuario == usuario.Id_Usuario).ToList();
+            var PermisosDelUsuario = Get(x => x.Id_Usuario == usuario.Id_Usuario, tracking: true).ToList();
             Eliminar(PermisosDelUsuario);
 
             foreach (var permiso in permisos)
             {
                 Insertar(permiso);
             }
-            _unitOfWork.Save();
+            _unitOfWork.SaveChanges();
         }
     }
 }

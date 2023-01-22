@@ -8,13 +8,13 @@ namespace SL.Domain.Enums
 {
     public enum TipoPermiso
     {
-        PuedeHacerA,
-        PuedeHacerB,
-        PuedeHacerC,
-        PuedeHacerD,
-        PuedeHacerE,
-        PuedeHacerF,
-        PuedeHacerG,
+        PuedeUsarPedidos,
+        PuedeUsarVentas,
+        PuedeUsarFacturas,
+        PuedeUsarInformes,
+        PuedeUsarProduccion,
+        PuedeUsarProveedores,
+        PuedeUsarConfiguracion,
         EsFamilia,
         SinPermisos
     }

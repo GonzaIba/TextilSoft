@@ -17,13 +17,13 @@ namespace SL.Contracts
 
         void Eliminar(List<T> entities);
 
-        IEnumerable<T> GetAll();
+        IEnumerable<T> ObtenerTodo();
 
-        T GetById(object id);
+        T ObtenerPorId(object id);
 
-        T GetByIdFunc(Expression<Func<T, bool>> func);
+        T ObtenerPorFuncion(Expression<Func<T, bool>> func);
 
-        void CancelChanges(T entity);
+        void CancelarCambios(T entity);
 
         IEnumerable<T> Get(
             Expression<Func<T, bool>> filter = null,

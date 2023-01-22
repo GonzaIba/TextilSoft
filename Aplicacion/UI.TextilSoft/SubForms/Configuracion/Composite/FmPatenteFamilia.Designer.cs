@@ -48,7 +48,6 @@
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.lblRefresh = new System.Windows.Forms.Label();
             this.txtPatente = new System.Windows.Forms.TextBox();
-            this.btnEliminar = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // btnAgregarFamilia
@@ -278,28 +277,12 @@
             this.txtPatente.Size = new System.Drawing.Size(175, 23);
             this.txtPatente.TabIndex = 30;
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.FlatAppearance.BorderSize = 0;
-            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnEliminar.IconColor = System.Drawing.Color.Black;
-            this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEliminar.Location = new System.Drawing.Point(430, 179);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(59, 23);
-            this.btnEliminar.TabIndex = 31;
-            this.btnEliminar.Text = "Eliminar";
-            this.btnEliminar.UseVisualStyleBackColor = true;
-            // 
             // FmPatenteFamilia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(878, 450);
-            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.txtPatente);
             this.Controls.Add(this.lblRefresh);
             this.Controls.Add(this.btnRefresh);
@@ -350,6 +333,5 @@
         private FontAwesome.Sharp.IconButton btnRefresh;
         private System.Windows.Forms.Label lblRefresh;
         private System.Windows.Forms.TextBox txtPatente;
-        private FontAwesome.Sharp.IconButton btnEliminar;
     }
 }
