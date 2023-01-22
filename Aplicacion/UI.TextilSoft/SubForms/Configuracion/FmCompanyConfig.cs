@@ -38,6 +38,8 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 tgBtnMinuscula.Checked = _authenticationConfig.PasswordConfig.RequireLowercase;
                 tgBtnNumero.Checked = _authenticationConfig.PasswordConfig.RequireDigit;
                 txtCarMinimo.Text = _authenticationConfig.PasswordConfig.CountLength.ToString();
+                txtMaxFail.Text = _authenticationConfig.MaxFailedAccessAttempts.ToString();
+                tgBtnEmailConfirmed.Checked = _authenticationConfig.SignInRequireConfirmedAccount;
 
                 _companyCustomizeEntity = _companyController.GetCustomizeCompany();
 
@@ -70,16 +72,26 @@ namespace UI.TextilSoft.SubForms.Configuracion
         {
             try
             {
-                PasswordConfig passwordConfig = new PasswordConfig();
-                passwordConfig.RequireUppercase = tgBtnMayus.Checked;
-                passwordConfig.RequireLowercase = tgBtnMinuscula.Checked;
-                passwordConfig.RequireDigit = tgBtnNumero.Checked;
-                passwordConfig.RequireNonAlphanumeric = tgBtnEspecial.Checked;
-                passwordConfig.CountLength = Convert.ToInt32(txtCarMinimo.Text);
-                _companyController.SavePasswordConfig(passwordConfig);
-                var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó las preferencias de la contraseñas correctamente!", centerPosition);
-                fmMessageBox.ShowDialog();
+                if(txtCarMinimo.Text.Length >= 0)
+                {
+                    PasswordConfig passwordConfig = new PasswordConfig();
+                    passwordConfig.RequireUppercase = tgBtnMayus.Checked;
+                    passwordConfig.RequireLowercase = tgBtnMinuscula.Checked;
+                    passwordConfig.RequireDigit = tgBtnNumero.Checked;
+                    passwordConfig.RequireNonAlphanumeric = tgBtnEspecial.Checked;
+                    passwordConfig.CountLength = Convert.ToInt32(txtCarMinimo.Text);
+                    _companyController.SavePasswordConfig(passwordConfig);
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó las preferencias de la contraseñas correctamente!", centerPosition);
+                    fmMessageBox.ShowDialog();
+                }
+                else
+                {
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Formato inválido", "El mínimo de caracteres para la contraseña deben ser mayor a 0", centerPosition);
+                    fmMessageBox.ShowDialog();
+                }
+
             }
             catch (Exception ex)
             {
@@ -188,6 +200,27 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 toolTipError.Show("Por favor, solo ingrese números", txtMaxFail, 0, -20, 2000);
                 txtMaxFail.Text = txtMaxFail.Text.Remove(txtMaxFail.Text.Length - 1);
             }
+        }
+
+        private void btnSavePrefAuth_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AuthenticationConfig authenticationConfig = new();
+                authenticationConfig.SignInRequireConfirmedAccount = tgBtnEmailConfirmed.Checked;
+                authenticationConfig.MaxFailedAccessAttempts = Convert.ToInt32(txtMaxFail.Text);
+                _companyController.SaveAuthenticationConfig(authenticationConfig);
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó las preferencias de autenticación correctamente!", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de guardado", ex.Message, centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+
         }
     }
 }

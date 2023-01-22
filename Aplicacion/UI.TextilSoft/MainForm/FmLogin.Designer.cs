@@ -31,11 +31,11 @@ namespace UI.TextilSoft.MainForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation2 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmLogin));
             this.txtUser = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlUp = new System.Windows.Forms.Panel();
             this.pnlCompanyLogo = new System.Windows.Forms.Panel();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlTimeNow = new System.Windows.Forms.Panel();
@@ -107,15 +107,15 @@ namespace UI.TextilSoft.MainForm
             this.lblLogin.TabIndex = 3;
             this.lblLogin.Text = "Iniciar Sesión";
             // 
-            // panel1
+            // pnlUp
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.LoginAnimator.SetDecoration(this.panel1, AnimatorNS.DecorationType.None);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(1, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(977, 52);
-            this.panel1.TabIndex = 4;
+            this.pnlUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.LoginAnimator.SetDecoration(this.pnlUp, AnimatorNS.DecorationType.None);
+            this.pnlUp.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlUp.Location = new System.Drawing.Point(1, 1);
+            this.pnlUp.Name = "pnlUp";
+            this.pnlUp.Size = new System.Drawing.Size(977, 52);
+            this.pnlUp.TabIndex = 4;
             // 
             // pnlCompanyLogo
             // 
@@ -492,22 +492,22 @@ namespace UI.TextilSoft.MainForm
             // 
             this.LoginAnimator.AnimationType = AnimatorNS.AnimationType.HorizSlide;
             this.LoginAnimator.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            this.LoginAnimator.DefaultAnimation = animation1;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.LoginAnimator.DefaultAnimation = animation2;
             this.LoginAnimator.TimeStep = 0.01F;
             // 
             // FmLogin
@@ -517,7 +517,7 @@ namespace UI.TextilSoft.MainForm
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(979, 558);
             this.Controls.Add(this.pnlCompanyLogo);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlUp);
             this.Controls.Add(this.pnlLogin);
             this.LoginAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
             this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -551,7 +551,7 @@ namespace UI.TextilSoft.MainForm
 
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Label lblLogin;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlUp;
         private System.Windows.Forms.Panel pnlCompanyLogo;
         private System.Windows.Forms.Panel pnlLogin;
         private System.Windows.Forms.Label lblUsuario;

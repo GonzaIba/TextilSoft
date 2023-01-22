@@ -33,7 +33,7 @@
             this.lblMaxFail = new System.Windows.Forms.Label();
             this.lblCompanyTitle = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.toggleButton1 = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
+            this.tgBtnEmailConfirmed = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
             this.lblMailConfirmNo = new System.Windows.Forms.Label();
             this.lblConfirmMailSi = new System.Windows.Forms.Label();
             this.tgBtnMinuscula = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
@@ -113,22 +113,22 @@
             this.label1.TabIndex = 7;
             this.label1.Text = "Mail confirmado para ingresar";
             // 
-            // toggleButton1
+            // tgBtnEmailConfirmed
             // 
-            this.toggleButton1.Checked = true;
-            this.toggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toggleButton1.Location = new System.Drawing.Point(483, 229);
-            this.toggleButton1.MinimumSize = new System.Drawing.Size(45, 22);
-            this.toggleButton1.Name = "toggleButton1";
-            this.toggleButton1.OffBackColor = System.Drawing.Color.Gray;
-            this.toggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.toggleButton1.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.toggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.toggleButton1.Size = new System.Drawing.Size(55, 22);
-            this.toggleButton1.TabIndex = 8;
-            this.toggleButton1.Text = "toggleButton1";
-            this.toggleButton1.UseVisualStyleBackColor = true;
-            this.toggleButton1.CheckedChanged += new System.EventHandler(this.toggleButton1_CheckedChanged);
+            this.tgBtnEmailConfirmed.Checked = true;
+            this.tgBtnEmailConfirmed.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tgBtnEmailConfirmed.Location = new System.Drawing.Point(483, 229);
+            this.tgBtnEmailConfirmed.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tgBtnEmailConfirmed.Name = "tgBtnEmailConfirmed";
+            this.tgBtnEmailConfirmed.OffBackColor = System.Drawing.Color.Gray;
+            this.tgBtnEmailConfirmed.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tgBtnEmailConfirmed.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tgBtnEmailConfirmed.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tgBtnEmailConfirmed.Size = new System.Drawing.Size(55, 22);
+            this.tgBtnEmailConfirmed.TabIndex = 8;
+            this.tgBtnEmailConfirmed.Text = "toggleButton1";
+            this.tgBtnEmailConfirmed.UseVisualStyleBackColor = true;
+            this.tgBtnEmailConfirmed.CheckedChanged += new System.EventHandler(this.toggleButton1_CheckedChanged);
             // 
             // lblMailConfirmNo
             // 
@@ -411,6 +411,7 @@
             this.btnSavePrefAuth.Text = "Guardar";
             this.btnSavePrefAuth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSavePrefAuth.UseVisualStyleBackColor = true;
+            this.btnSavePrefAuth.Click += new System.EventHandler(this.btnSavePrefAuth_Click);
             // 
             // lblAuth
             // 
@@ -563,7 +564,7 @@
             this.Controls.Add(this.lblMinusculaSi);
             this.Controls.Add(this.lblMinusculaNo);
             this.Controls.Add(this.lblMinuscula);
-            this.Controls.Add(this.toggleButton1);
+            this.Controls.Add(this.tgBtnEmailConfirmed);
             this.Controls.Add(this.lblConfirmMailSi);
             this.Controls.Add(this.lblMailConfirmNo);
             this.Controls.Add(this.label1);
@@ -584,7 +585,7 @@
         private System.Windows.Forms.Label lblMaxFail;
         private System.Windows.Forms.Label lblCompanyTitle;
         private System.Windows.Forms.Label label1;
-        private Tools.FormsTools.ToggleButton toggleButton1;
+        private Tools.FormsTools.ToggleButton tgBtnEmailConfirmed;
         private System.Windows.Forms.Label lblMailConfirmNo;
         private System.Windows.Forms.Label lblConfirmMailSi;
         private Tools.FormsTools.ToggleButton tgBtnMinuscula;

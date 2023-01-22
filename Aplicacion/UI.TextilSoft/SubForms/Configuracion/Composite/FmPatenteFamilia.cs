@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using UI.TextilSoft.Tools.ExtensionsControls;
 using System.Windows.Forms;
 using UI.TextilSoft.Tools;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Configuracion.Composite
 {
@@ -62,7 +63,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             
             LoadForm();
             btnRefresh.Visible = false;
-            lblRefresh.Visible = false;
+            lblRefresh.Visible = false;       
         }
 
         private void iconButton2_Click(object sender, EventArgs e)
@@ -88,9 +89,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             {
                 MostrarEnTreeView(root, item);
             }
-
-
-
+            
             treeConfigurarFamilia.ExpandAll();
         }
 
@@ -125,21 +124,37 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                         }
                     }
                 }
+                else
+                {
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación inválida", "Debe agregar una familia previamente", centerPosition);
+                    fmMessageBox.ShowDialog();
+                }
             }
             catch (Exception ex)
             {
+                
             }
         }
 
         private void btnCrearPatente_Click(object sender, EventArgs e)
         {
-            Patente p = new Patente()
+            try
             {
-                Nombre = this.txtCrearPatente.Text,
-                Permiso = (TipoPermiso)this.cboPermisos.SelectedItem
-            };
+                Patente p = new Patente()
+                {
+                    Nombre = this.txtCrearPatente.Text,
+                    Permiso = (TipoPermiso)this.cboPermisos.SelectedItem
+                };
 
-            _permisosController.CrearPermiso(p);
+                _permisosController.CrearPermiso(p);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
         }
 
         private void btnAgregarFamilia_Click(object sender, EventArgs e)
@@ -163,6 +178,12 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
 
                     }
+                }
+                else
+                {
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación inválida", "Debe agregar una familia previamente", centerPosition);
+                    fmMessageBox.ShowDialog();
                 }
             }
             catch (Exception ex)
@@ -285,15 +306,23 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private void btnCrearFamilia_Click(object sender, EventArgs e)
         {
-            Familia p = new Familia()
+            if(txtCrearFamilia.Text != null && !String.IsNullOrEmpty(txtCrearFamilia.Text))
             {
-                Nombre = this.txtCrearFamilia.Text,
-                Permiso = TipoPermiso.EsFamilia
-            };
+                Familia p = new Familia()
+                {
+                    Nombre = this.txtCrearFamilia.Text,
+                    Permiso = TipoPermiso.EsFamilia
+                };
 
-            _permisosController.CrearPermiso(p);
-            CargarListasEnMemoria();
-            LoadForm();
+                _permisosController.CrearPermiso(p);
+                CargarListasEnMemoria();
+                LoadForm();
+            }
+            else
+            {
+                txtCrearFamilia.Focus();
+                toolTipError.Show("Por favor ingrese un nombre",txtCrearFamilia, 0, -20, 2000);
+            }
         }
 
         private void treeConfigurarFamilia_MouseClick(object sender, MouseEventArgs e)

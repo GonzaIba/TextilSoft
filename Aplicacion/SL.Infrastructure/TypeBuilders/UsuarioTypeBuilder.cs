@@ -51,6 +51,10 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(true)
                 .HasColumnType("bit");
 
+            //builder.Property(p => p.IsOwner)
+            //    .IsRequired(true)
+            //    .HasColumnType("bit");
+
             builder.Property(p => p.VerifyCode)
                 .IsRequired(false)
                 .HasColumnType("int");

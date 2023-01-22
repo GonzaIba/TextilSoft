@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnAgregarFamilia = new FontAwesome.Sharp.IconButton();
             this.btnAgregarPatentes = new FontAwesome.Sharp.IconButton();
             this.btnCrearFamilia = new FontAwesome.Sharp.IconButton();
@@ -48,6 +49,7 @@
             this.btnRefresh = new FontAwesome.Sharp.IconButton();
             this.lblRefresh = new System.Windows.Forms.Label();
             this.txtPatente = new System.Windows.Forms.TextBox();
+            this.toolTipError = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // btnAgregarFamilia
@@ -100,6 +102,8 @@
             // 
             // cboFamilias
             // 
+            this.cboFamilias.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboFamilias.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboFamilias.FormattingEnabled = true;
             this.cboFamilias.Location = new System.Drawing.Point(8, 94);
             this.cboFamilias.Name = "cboFamilias";
@@ -108,6 +112,7 @@
             // 
             // cboPatentes
             // 
+            this.cboPatentes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPatentes.FormattingEnabled = true;
             this.cboPatentes.Location = new System.Drawing.Point(260, 95);
             this.cboPatentes.Name = "cboPatentes";
@@ -117,6 +122,7 @@
             // 
             // cboPermisos
             // 
+            this.cboPermisos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboPermisos.FormattingEnabled = true;
             this.cboPermisos.Location = new System.Drawing.Point(260, 249);
             this.cboPermisos.Name = "cboPermisos";
@@ -333,5 +339,6 @@
         private FontAwesome.Sharp.IconButton btnRefresh;
         private System.Windows.Forms.Label lblRefresh;
         private System.Windows.Forms.TextBox txtPatente;
+        private System.Windows.Forms.ToolTip toolTipError;
     }
 }

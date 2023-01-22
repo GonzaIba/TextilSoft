@@ -76,6 +76,19 @@ namespace SL.Helper.Controllers
             return companyCustomizeEntity;
         }
 
+        public void SaveAuthenticationConfig(AuthenticationConfig authenticationConfig)
+        {
+            //var companyAuthenticationModel = _mapper.Map<CompanyAuthenticationModel>(authenticationConfig);
+            var companyAuthenticationModel = _companyAuthenticationService.Get(x => x.CompanyId == _companyConfiguration.CompanyId, tracking: true).FirstOrDefault();
+            if (companyAuthenticationModel == null)
+                throw new Exception("No se pudo guardar las preferencias de authenticación de la compañía");
+
+            companyAuthenticationModel.SignInRequireConfirmedAccount = authenticationConfig.SignInRequireConfirmedAccount;
+            companyAuthenticationModel.MaxFailedAccessAttempts = authenticationConfig.MaxFailedAccessAttempts;
+            _companyAuthenticationService.Actualizar(companyAuthenticationModel);
+
+        }
+
         public void SaveCustomizeCompany(CompanyCustomizeEntity companyCustomizeEntity)
         {
             var CompanyCustomizeModel = _companyCustomizeService.Get(x => x.CompanyId == _companyConfiguration.CompanyId, tracking:true).FirstOrDefault();

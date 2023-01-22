@@ -250,8 +250,10 @@ namespace UI.TextilSoft.MainForm
                 pnlPasswordError.Visible = false;
                 pnlUserNameError.Visible = false;
                 CompanyCustomizeEntity company = _companyController.GetCustomizeCompany();
-                lblCompanyName.Text = company.Name;
+
+                lblCompanyName.Text = company.Name;             
                 pnlCompanyLogo.BackColor = company.Color;
+                pnlUp.BackColor = company.Color;
                 //Convert Logo to Image
                 byte[] imageBytes = Convert.FromBase64String(company.Logo);
                 MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
