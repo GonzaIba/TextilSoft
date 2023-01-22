@@ -21,14 +21,16 @@ namespace UI.TextilSoft.SubForms.Configuracion
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
         private readonly ICompanyController _companyController;
+        private readonly Size _sizeFmTextilSoft;
         private readonly Usuario _usuario;
-        public FmAdminConfig(IUsuarioController usuarioController, IPermisosController permisosController, ICompanyController companyController, Usuario usuario)
+        public FmAdminConfig(IUsuarioController usuarioController, IPermisosController permisosController, ICompanyController companyController, Usuario usuario, Size sizeFmTextilSoft)
         {
             InitializeComponent();
             _usuarioController = usuarioController;
             _permisosController = permisosController;
             _companyController = companyController;
             _usuario = usuario;
+            _sizeFmTextilSoft = sizeFmTextilSoft;
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
@@ -37,7 +39,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
         }
         private void btnPatenteFamilia_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmPatenteFamilia(_usuarioController, _permisosController));
+            AbrirFormHija(new FmPatenteFamilia(_usuarioController, _permisosController, _sizeFmTextilSoft));
         }
 
         private void AbrirFormHija(Form formhija)

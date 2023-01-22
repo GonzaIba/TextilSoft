@@ -29,9 +29,10 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
+        private readonly Size _sizeFmTextilSoft;
         Familia seleccion;
 
-        public FmPatenteFamilia(IUsuarioController usuarioController, IPermisosController permisosController)
+        public FmPatenteFamilia(IUsuarioController usuarioController, IPermisosController permisosController, Size sizeFmTextilSoft)
         {
             InitializeComponent();
             _usuarioController = usuarioController;
@@ -43,7 +44,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             //10000000
             //Este timer se ejecuta cada cierto tiempo
             Timer timer1 = new Timer();
-            timer1.Interval = 10000000;
+            timer1.Interval = 5000;
             timer1.Tick += new System.EventHandler(timer_Tick);
             timer1.Start();
         }
@@ -213,16 +214,11 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         
 
-
-
-
-
-
-
         private void LoadForm()
         {
             cboFamilias.Items.Clear();
             cboPatentes.Items.Clear();
+
 
             foreach (var item in ListaFamilias)
             {
@@ -256,40 +252,48 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private async void RotateBtn()
         {
-            btnRefresh.Visible = true;
-            lblRefresh.Visible = true;
-            Refresh();
-            FmTools fmTools = new FmTools(Size.Width, Size.Height, Color.Blue, Location);
-
-            
-            await Task.Run(() =>
+            try
             {
-                // Usamos BeginInvoke para evitar el bloqueo y excepción de subprocesos cruzados ilegales
-                this.BeginInvoke(new Action(() =>
-                {
-                    fmTools.ShowDialog();
-                }));
+                btnRefresh.Visible = true;
+                lblRefresh.Visible = true;
+                Refresh();
+                FmTools fmTools = new FmTools(_sizeFmTextilSoft.Width, _sizeFmTextilSoft.Height, Color.Blue, Location);
 
 
-                CargarListasEnMemoria(); //Cargamos en memoria (Listas) los datos y mostramos la animación del botón
-                for (int i = 0; i < 1000; i=i+5)
+                await Task.Run(() =>
                 {
-                    this.btnRefresh.Rotation = i;
-                    System.Threading.Thread.Sleep(1);
-                }
-                LoadForm(); //Los datos en memoria los pasamos a los combobox
-                
-            }).ContinueWith(new Action<Task>(task =>
+                    // Usamos BeginInvoke para evitar el bloqueo y excepción de subprocesos cruzados ilegales
+                    this.BeginInvoke(new Action(() =>
+                    {
+                        fmTools.ShowDialog();
+                    }));
+
+
+                    CargarListasEnMemoria(); //Cargamos en memoria (Listas) los datos y mostramos la animación del botón
+                    for (int i = 0; i < 1000; i = i + 5)
+                    {
+                        this.btnRefresh.Rotation = i;
+                        System.Threading.Thread.Sleep(1);
+                    }
+                    LoadForm(); //Los datos en memoria los pasamos a los combobox
+
+                }).ContinueWith(new Action<Task>(task =>
+                {
+                    // No es necesario usar BeginInvoke aca
+                    // porque se llamó a ContinueWith con TaskScheduler.FromCurrentSynchronizationContext()
+                    fmTools.Close();
+                }), TaskScheduler.FromCurrentSynchronizationContext()); ;
+
+                Refresh();
+                btnRefresh.Visible = false;
+                lblRefresh.Visible = false;
+            }
+            catch (Exception ex)
             {
-                // No es necesario usar BeginInvoke aca
-                // porque se llamó a ContinueWith con TaskScheduler.FromCurrentSynchronizationContext()
-                fmTools.Close();
-            }), TaskScheduler.FromCurrentSynchronizationContext()); ;
 
-            
-            Refresh();
-            btnRefresh.Visible = false;
-            lblRefresh.Visible = false;
+                throw;
+            }
+
         }
 
 

@@ -15,6 +15,8 @@ namespace UI.TextilSoft.Tools
         public FmTools(int SizeWidth, int SizeHeight, Color color, Point location)
         {
             InitializeComponent();
+            WindowState = FormWindowState.Normal;
+            StartPosition = FormStartPosition.Manual;
             Size = new Size(SizeWidth, SizeHeight);
             Opacity = 0.05;
             TransparencyKey = color;

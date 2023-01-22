@@ -102,8 +102,6 @@
             // 
             // cboFamilias
             // 
-            this.cboFamilias.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboFamilias.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboFamilias.FormattingEnabled = true;
             this.cboFamilias.Location = new System.Drawing.Point(8, 94);
             this.cboFamilias.Name = "cboFamilias";
