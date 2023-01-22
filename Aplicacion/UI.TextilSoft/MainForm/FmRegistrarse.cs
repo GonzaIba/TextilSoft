@@ -32,7 +32,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
-        private readonly AuthenticationConfig _authenticationConfig;
+        private AuthenticationConfig _authenticationConfig;
         private Form Activeform = null;
         private bool UsuarioChecked;
         private bool EmailChecked;
@@ -53,8 +53,7 @@ namespace UI.TextilSoft.MainForm
                         IProductoProveedorController productoProveedorController,
                         IProductosController productosController,
                         IConfiguration configuration,
-                        ICompanyController companyController,
-                        AuthenticationConfig authenticationConfig
+                        ICompanyController companyController
                         )
         {
             InitializeComponent();
@@ -70,34 +69,34 @@ namespace UI.TextilSoft.MainForm
             _productoProveedorController = productoProveedorController;
             _pedidosController = pedidosController;
             _configuration = configuration;
-            _authenticationConfig = authenticationConfig;
-
-
             _userController = userController;
             _companyController = companyController;
+            
+            _authenticationConfig = _companyController.GetAuthenticationConfig();
+
             CheckForIllegalCrossThreadCalls = false;
 
-            if(!authenticationConfig.PasswordConfig.RequireLowercase)
+            if(!_authenticationConfig.PasswordConfig.RequireLowercase)
             {
                 lblMinuscula.Visible = false;
                 minuscula.Visible = false;
             }
-            if (!authenticationConfig.PasswordConfig.RequireUppercase)
+            if (!_authenticationConfig.PasswordConfig.RequireUppercase)
             {
                 lblMayuscula.Visible = false;
                 mayuscula.Visible = false;
             }
-            if (!authenticationConfig.PasswordConfig.RequireDigit)
+            if (!_authenticationConfig.PasswordConfig.RequireDigit)
             {
                 lblNumero.Visible = false;
                 numero.Visible = false;
             }
-            if (!authenticationConfig.PasswordConfig.RequireNonAlphanumeric)
+            if (!_authenticationConfig.PasswordConfig.RequireNonAlphanumeric)
             {
                 lblEspecial.Visible = false;
                 carespecial.Visible = false;
             }
-            lblMinimo.Text = $"Minimo {authenticationConfig.PasswordConfig.CountLength} caracteres";
+            lblMinimo.Text = $"Minimo {_authenticationConfig.PasswordConfig.CountLength} caracteres";
             //Execute event MostrarContraseñaCB checked
             MostrarContraseñaCB.Checked = false;
             MostrarContraseñaCB_CheckedChanged(null, null);
@@ -252,6 +251,12 @@ namespace UI.TextilSoft.MainForm
         }
         private void txtDNI_TextChanged(object sender, EventArgs e)
         {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtDNI.Text, "[^0-9]"))
+            {
+                toolTipError.Show("Por favor, solo ingrese números", txtDNI, 0, -20, 2000);
+                txtDNI.Text = txtDNI.Text.Remove(txtDNI.Text.Length - 1);
+            }
+            
             if (System.Text.RegularExpressions.Regex.IsMatch(txtDNI.Text, @"^[0-9]{7,8}$"))
             {
                 if (_userController.ExisteDNI(Convert.ToInt32(txtDNI.Text)))
@@ -392,6 +397,16 @@ namespace UI.TextilSoft.MainForm
         private void carespecial_CheckedChanged(object sender, EventArgs e)
         {
             minimo.Checked = minimo.Checked;
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            txtUsuario.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            txtConfirmPassword.Text = string.Empty;
+            txtMail.Text = string.Empty;
+            txtDNI.Text = string.Empty;
+            txtNumeroTelefono.Text = string.Empty;          
         }
     }
 }

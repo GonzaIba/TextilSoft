@@ -6,6 +6,7 @@ using SL.Domain.Enums;
 using SL.Domain.Model;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,8 +17,8 @@ namespace SL.Helper.Services.Mapper
     {
         public Mapping()
         {
-            CreateMap<ProveedoresModel, ProveedoresEntity>().ReverseMap();
-            CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
+            //CreateMap<ProveedoresModel, ProveedoresEntity>().ReverseMap();
+            //CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
 
 
 
@@ -55,7 +56,7 @@ namespace SL.Helper.Services.Mapper
             CreateMap<CompanyModel, CompanyCustomizeEntity>()
                 .ForMember(dest => dest.CompanyId, opt => opt.MapFrom(src => src.CompanyId))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.CompanyName))
-                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyColor))
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => ConvertToColor(src.CompanyCustomize.CompanyColor)))
                 .ForMember(dest => dest.Logo, opt => opt.MapFrom(src => src.CompanyCustomize.CompanyLogo))
                 .ReverseMap();
 
@@ -101,6 +102,23 @@ namespace SL.Helper.Services.Mapper
                 permiso = TipoPermiso.SinPermisos;
             }
             return permiso;
-        }        
+        }
+        
+        public Color ConvertToColor(string color)
+        {
+            try
+            {
+                if (color.Length == 7)
+                    return ColorTranslator.FromHtml(color);
+                else
+                    return Color.FromName(color);
+            }
+            catch (Exception ex)
+            {
+                return Color.White;
+            }
+        }
+
+
     }
 }

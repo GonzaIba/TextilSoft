@@ -42,7 +42,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
-        private readonly AuthenticationConfig _authenticationConfig;
+        private AuthenticationConfig _authenticationConfig;
         private string EmailCodigo;
         public Form Activeform = null;
 
@@ -251,6 +251,7 @@ namespace UI.TextilSoft.MainForm
                 pnlUserNameError.Visible = false;
                 CompanyCustomizeEntity company = _companyController.GetCustomizeCompany();
                 lblCompanyName.Text = company.Name;
+                pnlCompanyLogo.BackColor = company.Color;
                 //Convert Logo to Image
                 byte[] imageBytes = Convert.FromBase64String(company.Logo);
                 MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
@@ -297,7 +298,7 @@ namespace UI.TextilSoft.MainForm
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FmRegistrarse fmRegistrarse = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _authenticationConfig);
+            FmRegistrarse fmRegistrarse = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController);
             fmRegistrarse.ShowDialog();
             //pnlLogin.BringToFront();
             //AbrirFormHija(fmRegistrarse);

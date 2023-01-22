@@ -18,5 +18,9 @@ namespace SL.Contracts
         CompanyCustomizeEntity GetCustomizeCompany();
 
         AuthenticationConfig GetAuthenticationConfig();
+
+        void SavePasswordConfig(PasswordConfig passwordConfig);
+        void SaveCustomizeCompany(CompanyCustomizeEntity passwordConfig);
+        bool CanUseLoginAndRegister();
     }
 }

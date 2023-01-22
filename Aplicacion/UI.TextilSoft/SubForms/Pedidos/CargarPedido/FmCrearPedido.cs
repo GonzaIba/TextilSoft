@@ -89,5 +89,13 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                 }
             }
         }
+
+        private void txtDNI_Click(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtDNI.Text, "[^0-9]"))
+            {
+                txtDNI.Text = txtDNI.Text.Remove(txtDNI.Text.Length - 1);
+            }
+        }
     }
 }

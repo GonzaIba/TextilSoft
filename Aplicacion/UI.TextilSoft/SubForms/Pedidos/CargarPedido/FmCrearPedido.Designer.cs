@@ -204,6 +204,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             this.txtDNI.Size = new System.Drawing.Size(122, 29);
             this.txtDNI.TabIndex = 3;
             this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
+            this.txtDNI.Click += new System.EventHandler(this.txtDNI_Click);
             // 
             // label2
             // 

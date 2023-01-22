@@ -158,6 +158,7 @@ namespace UI.TextilSoft.MainForm
             this.picCompanyLogo.Location = new System.Drawing.Point(0, 53);
             this.picCompanyLogo.Name = "picCompanyLogo";
             this.picCompanyLogo.Size = new System.Drawing.Size(255, 193);
+            this.picCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picCompanyLogo.TabIndex = 0;
             this.picCompanyLogo.TabStop = false;
             // 

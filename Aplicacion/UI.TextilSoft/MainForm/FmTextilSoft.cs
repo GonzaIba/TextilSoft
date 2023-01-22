@@ -257,7 +257,7 @@ namespace UI.TextilSoft.MainForm
             ActivateButton(sender);
             BotonPresionado = true;
             if (_user.IsAdmin)
-                AbrirFormHija(new FmAdminConfig(_usuarioController, _permisosController,_companyController));
+                AbrirFormHija(new FmAdminConfig(_usuarioController, _permisosController,_companyController,_user));
             else
                 AbrirFormHija(new FmConfiguracion());
         }

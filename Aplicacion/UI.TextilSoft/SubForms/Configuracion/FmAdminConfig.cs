@@ -1,4 +1,5 @@
 ﻿using SL.Contracts;
+using SL.Domain.Entities;
 using SL.Helper.Controllers;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.SubForms.Configuracion.Composite;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Configuracion
 {
@@ -19,12 +21,14 @@ namespace UI.TextilSoft.SubForms.Configuracion
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
         private readonly ICompanyController _companyController;
-        public FmAdminConfig(IUsuarioController usuarioController, IPermisosController permisosController, ICompanyController companyController)
+        private readonly Usuario _usuario;
+        public FmAdminConfig(IUsuarioController usuarioController, IPermisosController permisosController, ICompanyController companyController, Usuario usuario)
         {
             InitializeComponent();
             _usuarioController = usuarioController;
             _permisosController = permisosController;
             _companyController = companyController;
+            _usuario = usuario;
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
@@ -75,7 +79,15 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void btnConfigCompany_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmCompanyConfig(_companyController));
+            if (_usuario.IsAdmin)
+                AbrirFormHija(new FmCompanyConfig(_companyController));
+            else
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Error de acceso", "Usted no tiene permiso para acceder a esta pantalla", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+            
         }
     }
 }

@@ -31,7 +31,7 @@ namespace UI.TextilSoft.MainForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AnimatorNS.Animation animation2 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmRegistrarse));
             this.label5 = new System.Windows.Forms.Label();
             this.lblIniciarSesion = new System.Windows.Forms.Label();
@@ -61,14 +61,14 @@ namespace UI.TextilSoft.MainForm
             this.pnlDNI = new System.Windows.Forms.Panel();
             this.pnlTelefono = new System.Windows.Forms.Panel();
             this.pnlRegistrarse = new System.Windows.Forms.Panel();
-            this.pnlConfirmPassword = new System.Windows.Forms.Panel();
-            this.pnlPassword = new System.Windows.Forms.Panel();
             this.lblMayuscula = new System.Windows.Forms.Label();
             this.lblEspecial = new System.Windows.Forms.Label();
             this.lblNumero = new System.Windows.Forms.Label();
             this.lblMinuscula = new System.Windows.Forms.Label();
             this.lblMinimo = new System.Windows.Forms.Label();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            this.pnlConfirmPassword = new System.Windows.Forms.Panel();
+            this.pnlPassword = new System.Windows.Forms.Panel();
             this.RegistrarseAnimator = new AnimatorNS.Animator(this.components);
             this.tipTelefono = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipError = new System.Windows.Forms.ToolTip(this.components);
@@ -215,6 +215,7 @@ namespace UI.TextilSoft.MainForm
             this.btnLimpiar.TabIndex = 23;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // panel1
             // 
@@ -465,24 +466,6 @@ namespace UI.TextilSoft.MainForm
             this.pnlRegistrarse.Size = new System.Drawing.Size(661, 543);
             this.pnlRegistrarse.TabIndex = 38;
             // 
-            // pnlConfirmPassword
-            // 
-            this.pnlConfirmPassword.BackColor = System.Drawing.Color.Red;
-            this.RegistrarseAnimator.SetDecoration(this.pnlConfirmPassword, AnimatorNS.DecorationType.None);
-            this.pnlConfirmPassword.Location = new System.Drawing.Point(277, 270);
-            this.pnlConfirmPassword.Name = "pnlConfirmPassword";
-            this.pnlConfirmPassword.Size = new System.Drawing.Size(222, 35);
-            this.pnlConfirmPassword.TabIndex = 37;
-            // 
-            // pnlPassword
-            // 
-            this.pnlPassword.BackColor = System.Drawing.Color.Red;
-            this.RegistrarseAnimator.SetDecoration(this.pnlPassword, AnimatorNS.DecorationType.None);
-            this.pnlPassword.Location = new System.Drawing.Point(38, 270);
-            this.pnlPassword.Name = "pnlPassword";
-            this.pnlPassword.Size = new System.Drawing.Size(222, 35);
-            this.pnlPassword.TabIndex = 36;
-            // 
             // lblMayuscula
             // 
             this.lblMayuscula.AutoSize = true;
@@ -549,26 +532,44 @@ namespace UI.TextilSoft.MainForm
             this.iconPictureBox1.TabStop = false;
             this.tipTelefono.SetToolTip(this.iconPictureBox1, "+54 X XX XXXX-XXXX | +54 9 11 6666-6666");
             // 
+            // pnlConfirmPassword
+            // 
+            this.pnlConfirmPassword.BackColor = System.Drawing.Color.Red;
+            this.RegistrarseAnimator.SetDecoration(this.pnlConfirmPassword, AnimatorNS.DecorationType.None);
+            this.pnlConfirmPassword.Location = new System.Drawing.Point(277, 270);
+            this.pnlConfirmPassword.Name = "pnlConfirmPassword";
+            this.pnlConfirmPassword.Size = new System.Drawing.Size(222, 35);
+            this.pnlConfirmPassword.TabIndex = 37;
+            // 
+            // pnlPassword
+            // 
+            this.pnlPassword.BackColor = System.Drawing.Color.Red;
+            this.RegistrarseAnimator.SetDecoration(this.pnlPassword, AnimatorNS.DecorationType.None);
+            this.pnlPassword.Location = new System.Drawing.Point(38, 270);
+            this.pnlPassword.Name = "pnlPassword";
+            this.pnlPassword.Size = new System.Drawing.Size(222, 35);
+            this.pnlPassword.TabIndex = 36;
+            // 
             // RegistrarseAnimator
             // 
             this.RegistrarseAnimator.AnimationType = AnimatorNS.AnimationType.VertSlide;
             this.RegistrarseAnimator.Cursor = null;
-            animation2.AnimateOnlyDifferences = true;
-            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
-            animation2.LeafCoeff = 0F;
-            animation2.MaxTime = 1F;
-            animation2.MinTime = 0F;
-            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
-            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
-            animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0);
-            animation2.RotateCoeff = 0F;
-            animation2.RotateLimit = 0F;
-            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
-            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
-            animation2.TimeCoeff = 0F;
-            animation2.TransparencyCoeff = 0F;
-            this.RegistrarseAnimator.DefaultAnimation = animation2;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.RegistrarseAnimator.DefaultAnimation = animation1;
             // 
             // FmRegistrarse
             // 
