@@ -47,7 +47,7 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(false)
                 .HasColumnType("varchar(50)");
             
-            builder.Property(p => p.IsAdmin)
+            builder.Property(p => p.IsOwner)
                 .IsRequired(true)
                 .HasColumnType("bit");
 

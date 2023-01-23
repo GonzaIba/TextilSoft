@@ -219,7 +219,7 @@ namespace SL.Helper.Controllers
         public IList<Usuario> ObtenerUsuarios() /*=> _mapper.Map<List<Usuario>>(_usuarioService.Get().ToList());*/
         {
             //Aca Llenamos la lista de usuarios con sus permisos. Solo obtenemos los que no son administrador ya que es inútil agregarle patentes ya que tiene el nivel mas superior.
-            var UsuariosCompletosDto = _usuarioService.Get(x => !x.IsAdmin && x.CompanyId == _companyConfiguration.CompanyId).ToList();
+            var UsuariosCompletosDto = _usuarioService.Get(x => !x.IsOwner && x.CompanyId == _companyConfiguration.CompanyId).ToList();
             List<Usuario> Usuarios = new List<Usuario>();
             Usuarios.AddRange(_mapper.Map<List<Usuario>>(UsuariosCompletosDto));
             return Usuarios;
@@ -339,9 +339,11 @@ namespace SL.Helper.Controllers
                     continue;
                 foreach (var FamiliaPadre in FamiliasComposite.Where(x => x.Id == item.Id_Permiso_Padre))//A través del id del padre obtenemos la familia (padre)
                 {
-                    if (PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaPadre.Id).Any() && Contador > 0) //No puede haber dependencia circular entre familias...
+                    if (PadreHijosDto.Where(x => x.Id_Permiso_Padre == FamiliaPadre.Id).Any()) //No puede haber dependencia circular entre familias...
                     {
                         Contador = 0;
+                        var FamiliaHija2 = FamiliasComposite.Where(x => x.Id == FamiliaHijaDto.Id_Permiso).FirstOrDefault();
+                        FamiliaPadre.AgregarHijo(FamiliaHija2);
                         break;
                     }
                     var FamiliaHija = FamiliasComposite.Where(x => x.Id == FamiliaHijaDto.Id_Permiso).FirstOrDefault();

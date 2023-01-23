@@ -167,7 +167,7 @@ namespace UI.TextilSoft.MainForm
             //_empleadosController.LoginEmpleado(usuario);
             FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration,_companyController);
             fmTextilSoft.toolStrip1.Tag = usuario;
-            if (usuario.IsAdmin)
+            if (usuario.IsOwner)
             {
                 fmTextilSoft.btnPedidos.Enabled = true;
                 fmTextilSoft.btnVentas.Enabled = true;

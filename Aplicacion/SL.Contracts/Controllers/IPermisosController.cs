@@ -1,4 +1,5 @@
 ﻿using SL.Domain.Entities;
+using SL.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace SL.Contracts
         void GuardarFamilia(Familia c);
         void GuardarPermisos(Usuario u);
         void EliminarPermiso(Componente c);
+        bool ValidarPermisosRepetidos(Familia familiaCompleta, Familia familiaAgregar);
     }
 }

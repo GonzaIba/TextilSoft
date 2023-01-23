@@ -16,6 +16,7 @@ namespace SL.Domain.Entities
         public abstract void AgregarHijo(Componente c);
         public abstract void AgregarHijos(IEnumerable<Componente> c);
         public abstract void VaciarHijos();
+        public abstract void EliminarHijo(Componente c);
         public TipoPermiso Permiso { get; set; }
 
         public override string ToString()

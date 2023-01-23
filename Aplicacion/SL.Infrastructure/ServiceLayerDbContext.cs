@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using SL.Domain.Model;
 using SL.Helper.Extensions;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,10 @@ namespace SL.Infrastructure
 {
     public class ServiceLayerDbContext : DbContext
     {
-        //public ServiceLayerDbContext()
-        //{
+        public ServiceLayerDbContext()
+        {
 
-        //}
+        }
 
         public ServiceLayerDbContext(DbContextOptions<ServiceLayerDbContext> dbContextOptions)
             : base(dbContextOptions)
@@ -43,12 +44,14 @@ namespace SL.Infrastructure
         public override int SaveChanges()
         {
             SetUpdateDateOnModifiedEntries();
+            SetDeletePermisoEntries();
             return base.SaveChanges();
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             SetUpdateDateOnModifiedEntries();
+            SetDeletePermisoEntries();
             return base.SaveChangesAsync(cancellationToken);
         }
 
@@ -60,8 +63,19 @@ namespace SL.Infrastructure
                             e.State == EntityState.Modified);
 
             foreach (var modifiedEntry in modifiedEntries)
-            {
                 modifiedEntry.Property("UpdateDate").CurrentValue = DateTime.Now;
+        }
+        private void SetDeletePermisoEntries()
+        {
+            var modifiedEntries = ChangeTracker
+                .Entries()
+                .Where(e => e.Metadata.FindProperty("nombre") != null && e.Entity is PermisoModel &&
+                            e.State == EntityState.Modified);
+
+            foreach (var modifiedEntry in modifiedEntries)
+            {
+                if(modifiedEntry.Property("nombre").CurrentValue.ToString() == "Administrador")
+                    throw new Exception("No se puede eliminar un permiso base del sistema");
             }
         }
     }

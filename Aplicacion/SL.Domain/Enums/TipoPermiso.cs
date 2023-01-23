@@ -15,6 +15,7 @@ namespace SL.Domain.Enums
         PuedeUsarProduccion,
         PuedeUsarProveedores,
         PuedeUsarConfiguracion,
+        EsAdmin,
         EsFamilia,
         SinPermisos
     }

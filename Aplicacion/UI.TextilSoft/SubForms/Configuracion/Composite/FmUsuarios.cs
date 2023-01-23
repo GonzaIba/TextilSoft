@@ -1,6 +1,7 @@
 ﻿using Domain.Entities;
 using SL.Contracts;
 using SL.Domain.Entities;
+using SL.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Configuracion.Composite
 {
@@ -17,13 +19,15 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
     {
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
+        private readonly Usuario _usuario;
         Usuario seleccion;
         Usuario tmp;
-        public FmUsuarios(IUsuarioController usuarioController, IPermisosController permisosController)
+        public FmUsuarios(IUsuarioController usuarioController, IPermisosController permisosController, Usuario usuario)
         {
             InitializeComponent();
             _usuarioController = usuarioController;
             _permisosController = permisosController;
+            _usuario = usuario;
         }
 
         private void FmUsuarios_Load(object sender, EventArgs e)
@@ -49,7 +53,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             tmp.Nombre = seleccion.Nombre;
             tmp.Email = seleccion.Email;
             tmp.DNI = seleccion.DNI;
-            tmp.IsAdmin= seleccion.IsAdmin;
+            tmp.IsOwner= seleccion.IsOwner;
             tmp.Permisos.AddRange(seleccion.Permisos);
             
             MostrarPermisos(tmp);
@@ -99,16 +103,34 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                         }
                     }
                     if (esta)
-                        MessageBox.Show("El usuario ya tiene la patente indicada");
+                    {
+                        var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "El usuario ya tiene la patente indicada", centerPosition);
+                        fmMessageBox.ShowDialog();
+                    }
                     else
                     {
-                        tmp.Permisos.Add(patente);
+                        if (patente.Permiso == TipoPermiso.EsAdmin && _usuario.IsOwner)
+                            tmp.Permisos.Add(patente);
+                        else if (patente.Permiso == TipoPermiso.EsAdmin && !_usuario.IsOwner)
+                        {
+                            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "Usted no tiene permisos para asignar rol Administrador", centerPosition);
+                            fmMessageBox.ShowDialog();
+                        }
+                        else
+                            tmp.Permisos.Add(patente);
+
                         MostrarPermisos(tmp);
                     }
                 }
             }
             else
-                MessageBox.Show("Seleccione un usuario");
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "Por favor seleccione el usuario", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
         }
 
         private void cboPatentes_SelectedIndexChanged(object sender, EventArgs e)
@@ -122,12 +144,15 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             try
             {
                 _permisosController.GuardarPermisos(tmp);
-                MessageBox.Show("Usuario guardado correctamente");
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó el usuario correctamente", centerPosition);
+                fmMessageBox.ShowDialog();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                MessageBox.Show("Error al guardar el usuario");
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Error del sistema", ex.Message, centerPosition);
+                fmMessageBox.ShowDialog();
             }
         }
 
@@ -149,7 +174,11 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                     }
 
                     if (esta)
-                        MessageBox.Show("El usuario ya tiene la familia indicada");
+                    {
+                        var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "El usuario ya tiene la familia indicada", centerPosition);
+                        fmMessageBox.ShowDialog();
+                    }
                     else
                     {
                         {
@@ -162,7 +191,11 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                 }
             }
             else
-                MessageBox.Show("Seleccione un usuario");
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "Por favor seleccione el usuario", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
         }
 
         private void treeViewUsuarios_MouseClick(object sender, MouseEventArgs e)
@@ -197,27 +230,33 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                         var nodo = treeViewUsuarios.SelectedNode;
                         var componente = (Componente)nodo.Tag;
                         if (nodo.Parent.Tag is Familia && componente is not Familia) //Si es una patente adentro de una familia no podemos eliminarla.
-                            MessageBox.Show("No puedes quitar un permiso de una familia. Si usted desea eso vaya al apartado de Patentes/Familias");
+                        {
+                            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error validación", "No puedes quitar un permiso de una familia. Si usted desea eso vaya al apartado de Patentes/Familias", centerPosition);
+                            fmMessageBox.ShowDialog();
+                        }
                         else
                         {
-                            //Primero lo eliminamos de la base
-                            string Result = _usuarioController.QuitarPermiso(tmp, componente);
-                            if (Result == "Ok")
-                            {
-                                //Eliminamos el objeto de la lista
+                            ////Primero lo eliminamos de la base
+                            //string Result = _usuarioController.QuitarPermiso(tmp, componente);
+                            //if (Result == "Ok")
+                            //{
+                            //    //Eliminamos el objeto de la lista
                                 tmp.Permisos.Remove(componente);
                                 //Lo eliminamos de la vista treenode
                                 treeViewUsuarios.Nodes.Remove(nodo);
-                            }
-                            else
-                                MessageBox.Show(Result);
+                            //}
+                            //else
+                            //    MessageBox.Show(Result);
                         }
                     break;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ups... Ocurrió un error");
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error del sistema", ex.Message, centerPosition);
+                fmMessageBox.ShowDialog();
             }
 
         }

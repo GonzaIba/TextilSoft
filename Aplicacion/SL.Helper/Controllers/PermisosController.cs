@@ -4,6 +4,7 @@ using SL.Contracts.Services;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
 using SL.Domain.Model;
+using SL.Helper.Configurations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,13 +20,15 @@ namespace SL.Helper.Controllers
         private readonly IPermisoService _permisoService;
         private readonly IPermiso_PermisoService _permiso_PermisoService;
         private readonly IMapper _mapper;
-
-        public PermisosController(IUsuarioService usuarioService, IUsuario_PermisoService usuario_PermisoService, IPermisoService permisoService, IPermiso_PermisoService permiso_PermisoService, IMapper mapper)
+        private readonly CompanyConfiguration _companyConfiguration;
+        
+        public PermisosController(IUsuarioService usuarioService, IUsuario_PermisoService usuario_PermisoService, IPermisoService permisoService, IPermiso_PermisoService permiso_PermisoService, CompanyConfiguration companyConfiguration, IMapper mapper)
         {
             _usuarioService = usuarioService;
             _usuario_PermisoService = usuario_PermisoService;
             _permisoService = permisoService;
             _permiso_PermisoService = permiso_PermisoService;
+            _companyConfiguration = companyConfiguration;
             _mapper = mapper;
         }
 
@@ -82,15 +85,13 @@ namespace SL.Helper.Controllers
         {
             try
             {
-                if (_permisoService.Get(x => x.Id_Permiso == f.Id).FirstOrDefault()?.Permiso == null)
+                if (_permisoService.Get(x => x.Id_Permiso == f.Id && x.CompanyId == _companyConfiguration.CompanyId).FirstOrDefault()?.Permiso == null)
                 {
                     if (_permiso_PermisoService.Get(x => x.Id_Permiso_Padre == idPosiblePadre && x.Id_Permiso_Hijo == f.Id).Any()) //No se que tan poco óptimo es esto...
                         throw new InvalidOperationException("Esta familia no puede ser la hija porque genera dependencias circulares");
                     else
                         foreach (var hijo in f.Hijos)
-                        {
                             FamiliaDependenciaCircular(hijo, idPosiblePadre);
-                        }
                 }
             }
             catch (Exception ex)
@@ -98,8 +99,6 @@ namespace SL.Helper.Controllers
                 throw new Exception(ex.Message);
             }
         }
-
-        
 
         public void GuardarFamilia(Familia c)
         {
@@ -147,12 +146,92 @@ namespace SL.Helper.Controllers
         {
             try
             {
+                //if (_permisoService.Get(x => x.Id_Permiso == c.Id).FirstOrDefault()?.Permiso == null)
+                //{
+                //    _permiso_PermisoService.EliminarPermiso(c.Id);
+                //}
+                //else
+                //{
+                //    _usuario_PermisoService.EliminarPermiso(c.Id);
+                //}
                 //_permisoService.Eliminar(c.Id);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+        }
+
+        public bool ValidarPermisosRepetidos(Familia familiaActual, Familia familiaAgregar)
+        {
+            try
+            {
+                bool EstaRepetido = false;
+                foreach (var componente in familiaAgregar.Hijos)
+                {
+                    if(componente is Familia)
+                        EstaRepetido = SepararFamilia(componente, familiaActual.Hijos.ToList());
+                    else
+                        EstaRepetido = BuscarPermiso(familiaActual.Hijos.ToList(), componente.Permiso);
+                    if (EstaRepetido)
+                        return true;
+                }
+         
+                return EstaRepetido;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        private bool SepararFamilia(Componente c, List<Componente> Permisos)
+        {
+            foreach (var patente in c.Hijos)
+            {               
+                return BuscarPermiso(Permisos, patente.Permiso);
+            }
+            return false;
+        }
+
+
+        private bool BuscarPermiso(List<Componente> Permisos, TipoPermiso tipoPermiso)
+        {
+            List<Patente> patentes = new List<Patente>();
+            List<Familia> familias = new List<Familia>();
+            patentes = Permisos.OfType<Patente>().ToList();
+            familias = Permisos.OfType<Familia>().ToList();
+            bool Result = false;
+            Result = RecorrerPatentes(patentes, tipoPermiso);
+            if (!Result)
+                Result = RecorrerFamilias(familias, tipoPermiso);
+            return Result;
+        }
+
+        private bool RecorrerFamilias(List<Familia> Listafamilias, TipoPermiso tipoPermiso)
+        {
+            bool Result = false;
+            foreach (var Familias in Listafamilias)
+            {
+                foreach (var componente in Familias.Hijos)
+                {
+                    if (componente is Patente)
+                        Result = RecorrerPatentes(new List<Patente>() { (Patente)componente }, tipoPermiso);
+                    else
+                        RecorrerFamilias(new List<Familia>() { (Familia)componente }, tipoPermiso);
+                }
+            }
+            return Result;
+        }
+
+        private bool RecorrerPatentes(List<Patente> patentes, TipoPermiso tipoPermiso)
+        {
+            foreach (Patente patente in patentes)
+            {
+                if(patente.Permiso == tipoPermiso)
+                    return true;
+                
+            }
+            return false;
         }
     }
 }

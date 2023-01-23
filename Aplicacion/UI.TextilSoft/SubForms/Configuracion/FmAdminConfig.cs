@@ -35,11 +35,11 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmUsuarios(_usuarioController, _permisosController));
+            AbrirFormHija(new FmUsuarios(_usuarioController, _permisosController, _usuario));
         }
         private void btnPatenteFamilia_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmPatenteFamilia(_usuarioController, _permisosController, _sizeFmTextilSoft));
+            AbrirFormHija(new FmPatenteFamilia(_usuarioController, _permisosController, _sizeFmTextilSoft,_usuario));
         }
 
         private void AbrirFormHija(Form formhija)
@@ -81,7 +81,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void btnConfigCompany_Click(object sender, EventArgs e)
         {
-            if (_usuario.IsAdmin)
+            if (_usuario.IsOwner)
                 AbrirFormHija(new FmCompanyConfig(_companyController));
             else
             {

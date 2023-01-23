@@ -19,7 +19,7 @@ namespace SL.Domain.Entities
         public string Nombre { get; set; }
         public string Email { get; set; }
         public string DNI { get; set; }
-        public bool IsAdmin { get; set; }
+        public bool IsOwner { get; set; }
 
         public List<Componente> Permisos
         {
@@ -27,6 +27,18 @@ namespace SL.Domain.Entities
             {
                 return _permisos;
             }
+        }
+        public bool EsAdmin()
+        {
+            List<Patente> patentes = new List<Patente>();
+            List<Familia> familias = new List<Familia>();
+            patentes = Permisos.OfType<Patente>().ToList();
+            familias = Permisos.OfType<Familia>().ToList();
+            bool Result = false;
+            Result = RecorrerPatentes(patentes, TipoPermiso.EsAdmin);
+            if (!Result)
+                Result = RecorrerFamilias(familias, TipoPermiso.EsAdmin);
+            return Result;
         }
         
         public bool BuscarPermiso(TipoPermiso tipoPermiso)

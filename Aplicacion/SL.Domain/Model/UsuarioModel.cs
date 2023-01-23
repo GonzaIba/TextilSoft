@@ -23,7 +23,7 @@ namespace SL.Domain.Model
         public bool EmailConfirmado { get; set; }
         public DateTime? DateTimeEmail { get; set; }
         public string NumeroTeléfono { get; set; }
-        public bool IsAdmin { get; set; }
+        public bool IsOwner { get; set; }
         public bool Active { get; set; }
         public DateTime? DateDisabledUser { get; set; }
         public Nullable<int> VerifyCode { get; set; }

@@ -30,13 +30,16 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
         private readonly Size _sizeFmTextilSoft;
+        private readonly Usuario _usuario;
         Familia seleccion;
 
-        public FmPatenteFamilia(IUsuarioController usuarioController, IPermisosController permisosController, Size sizeFmTextilSoft)
+        public FmPatenteFamilia(IUsuarioController usuarioController, IPermisosController permisosController, Size sizeFmTextilSoft, Usuario usuario)
         {
             InitializeComponent();
             _usuarioController = usuarioController;
             _permisosController = permisosController;
+            _sizeFmTextilSoft = sizeFmTextilSoft;
+            _usuario = usuario;
             CheckForIllegalCrossThreadCalls = false;
 
             //Se carga las listas
@@ -44,7 +47,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             //10000000
             //Este timer se ejecuta cada cierto tiempo
             Timer timer1 = new Timer();
-            timer1.Interval = 5000;
+            timer1.Interval = 1000000;
             timer1.Tick += new System.EventHandler(timer_Tick);
             timer1.Start();
         }
@@ -97,7 +100,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         private void MostrarEnTreeView(TreeNode tn, Componente c)
         {
             TreeNode n = new TreeNode(c.Nombre);
-            tn.Tag = c;
+            n.Tag = c;
             tn.Nodes.Add(n);
             if (c.Hijos != null)
                 foreach (var item in c.Hijos) //Si el Componente que ingresa es una familia recorremos una recursividad hasta que no tenga mas hijos 
@@ -117,10 +120,24 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                     {
                         var esta = _permisosController.Existe(seleccion, patente.Id);
                         if (esta)
-                            MessageBox.Show("ya exsite la patente indicada");
+                        {
+                            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación inválida", "Ya existe la patente indicada", centerPosition);
+                            fmMessageBox.ShowDialog();
+                        }
                         else
                         {
-                            seleccion.AgregarHijo(patente);
+                            if(patente.Permiso == TipoPermiso.EsAdmin && _usuario.IsOwner)
+                                seleccion.AgregarHijo(patente);
+                            else if(patente.Permiso == TipoPermiso.EsAdmin && !_usuario.IsOwner)
+                            {
+                                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "Usted no tiene permisos para asignar rol Administrador", centerPosition);
+                                fmMessageBox.ShowDialog();
+                            }
+                            else
+                                seleccion.AgregarHijo(patente);
+                            
                             MostrarFamilia(false);
                         }
                     }
@@ -158,6 +175,18 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         }
 
+        private bool ValidarSiExistePermiso(Familia componente)
+        {
+            foreach (var hijo in componente.Hijos)
+            {
+                if (hijo is Familia)
+                    return ValidarSiExistePermiso((Familia)hijo);
+
+                return false;
+            }
+            return false;
+        }
+
         private void btnAgregarFamilia_Click(object sender, EventArgs e)
         {
             try
@@ -172,8 +201,15 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                             MessageBox.Show("ya existe la familia indicada");
                         else
                         {
+                            if (!_permisosController.ValidarPermisosRepetidos(seleccion, familia))
+                                seleccion.AgregarHijo(familia);
+                            else
+                            {
+                                
+                            }
+
                             //repo.FillFamilyComponents(familia);
-                            seleccion.AgregarHijo(familia);
+
                             MostrarFamilia(false);
                         }
 
@@ -243,7 +279,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             List<TipoPermiso> Permisos = new List<TipoPermiso>();
             var PermisosArray = Enum.GetValues(typeof(TipoPermiso));
             Permisos.AddRange(PermisosArray.Cast<TipoPermiso>());
-            Permisos.RemoveAll(x => x == TipoPermiso.SinPermisos || x == TipoPermiso.EsFamilia);
+            Permisos.RemoveAll(x => x == TipoPermiso.SinPermisos || x == TipoPermiso.EsFamilia || x == TipoPermiso.EsAdmin);
             return Permisos;
             //Removemos SinPermisos porque no puede setearle ese permiso a una patente, en realidad es un filtro de la bdd...
             //Removemos EsFamilia porque ya hay una solapa donde se puede crear y modificar...
@@ -267,7 +303,6 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                     {
                         fmTools.ShowDialog();
                     }));
-
 
                     CargarListasEnMemoria(); //Cargamos en memoria (Listas) los datos y mostramos la animación del botón
                     for (int i = 0; i < 1000; i = i + 5)
@@ -302,7 +337,8 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         {
             ListaFamilias = _usuarioController.ObtenerFamilias().ToList();
             ListaPatentes = _permisosController.ObtenerPermisos().ToList();
-            
+            ListaPatentes.RemoveAll(x => x.Permiso == TipoPermiso.EsAdmin);
+
             //Guardamos en una variable la ubicacion int del combobox
             SeleccionCboFamilias = this.cboFamilias.SelectedIndex;
             SeleccionCboPatentes = this.cboPatentes.SelectedIndex;
@@ -337,7 +373,6 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                 {
                     if (position_xy_mouse_row >= 0)
                     {
-                        my_menu.Items.Add("Agregar").Name = "Crear";
                         my_menu.Items.Add("Eliminar").Name = "Eliminar";
                     }
                     my_menu.Show(treeConfigurarFamilia, new Point(e.X, e.Y));
@@ -351,8 +386,9 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             switch (e.ClickedItem.Name.ToString())
             {
                 case "Eliminar":
-                    break;
-                case "Crear":
+                    Componente c = (Componente)treeConfigurarFamilia.SelectedNode.Tag;
+                    seleccion.EliminarHijo(c);
+                    treeConfigurarFamilia.Nodes.Remove(treeConfigurarFamilia.SelectedNode);
                     break;
             }
         }

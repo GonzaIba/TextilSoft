@@ -27,6 +27,11 @@ namespace SL.Domain.Entities
 
         }
 
+        public override void EliminarHijo(Componente c)
+        {
+            
+        }
+
         public override void VaciarHijos()
         {
 
