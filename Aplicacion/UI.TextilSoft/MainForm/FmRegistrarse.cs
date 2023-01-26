@@ -74,7 +74,7 @@ namespace UI.TextilSoft.MainForm
             
             _authenticationConfig = _companyController.GetAuthenticationConfig();
 
-            CheckForIllegalCrossThreadCalls = false;
+            //CheckForIllegalCrossThreadCalls = false;
 
             if(!_authenticationConfig.PasswordConfig.RequireLowercase)
             {
@@ -406,7 +406,18 @@ namespace UI.TextilSoft.MainForm
             txtConfirmPassword.Text = string.Empty;
             txtMail.Text = string.Empty;
             txtDNI.Text = string.Empty;
-            txtNumeroTelefono.Text = string.Empty;          
+            txtNumeroTelefono.Text = string.Empty;
+            ChangeColorAllPanels();
+        }
+
+        private void ChangeColorAllPanels()
+        {
+            pnlEmail.BackColor = Color.FromArgb(30, 30, 30);
+            pnlDNI.BackColor = Color.FromArgb(30, 30, 30);
+            pnlTelefono.BackColor = Color.FromArgb(30, 30, 30);
+            pnlUsuario.BackColor = Color.FromArgb(30, 30, 30);
+            pnlPassword.BackColor = Color.FromArgb(30, 30, 30);
+            pnlConfirmPassword.BackColor = Color.FromArgb(30, 30, 30);
         }
     }
 }

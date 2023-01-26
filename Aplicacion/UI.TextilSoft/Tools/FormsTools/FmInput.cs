@@ -14,6 +14,7 @@ namespace UI.TextilSoft.Tools.FormsTools
     {
         Action<string> _funcion;
         Action<string,string> _funcion2;
+        Point location;
         public FmInput(string titulo, Color BackColor,Point Location,Action<string> funcion = null, Action<string,string> funcion2 = null,string lbl1 = "", string lbl2 = "", string nombreboton = "")
         {
             InitializeComponent();
@@ -22,15 +23,12 @@ namespace UI.TextilSoft.Tools.FormsTools
             StartPosition = FormStartPosition.Manual;
             BringToFront();
             Location = new Point(Location.X, Location.Y);
+            location = Location;
             this.Location = Location;
             if (funcion == null)
-            {
                 _funcion2 = funcion2;
-            }
             else
-            {
                 _funcion = funcion;
-            }
             if (BackColor.R < 50 && BackColor.G < 50 && BackColor.B < 50)
             {
                 lblTitle.ForeColor = Color.White;
@@ -38,8 +36,8 @@ namespace UI.TextilSoft.Tools.FormsTools
                 lblInput2.ForeColor = Color.White;
                 btnAccion1.ForeColor = Color.White;
                 //btnCancelar.ForeColor = Color.Black;
-                txt1.ForeColor = Color.White;
-                txt2.ForeColor = Color.White;
+                txt1.BackColor = Color.White;
+                txt2.BackColor = Color.White;
             }
 
             lblTitle.Text = titulo;
@@ -88,7 +86,10 @@ namespace UI.TextilSoft.Tools.FormsTools
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //CenterPosition
+                Point CenterPosition = new Point(lblTitle.Width / 2, lblTitle.Height / 2) ;
+                FmMessageBox fmMessage = new FmMessageBox(MessageBoxType.Error,"Datos incorrectos","El usuario o el mail es incorrecto", CenterPosition);
+                fmMessage.ShowDialog();
             }
         }
     }

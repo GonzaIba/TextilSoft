@@ -32,7 +32,6 @@
             this.btnAgregarFamilia = new FontAwesome.Sharp.IconButton();
             this.btnAgregarPatentes = new FontAwesome.Sharp.IconButton();
             this.btnCrearFamilia = new FontAwesome.Sharp.IconButton();
-            this.cboFamilias = new System.Windows.Forms.ComboBox();
             this.cboPatentes = new System.Windows.Forms.ComboBox();
             this.cboPermisos = new System.Windows.Forms.ComboBox();
             this.lblPatentes = new System.Windows.Forms.Label();
@@ -50,6 +49,8 @@
             this.lblRefresh = new System.Windows.Forms.Label();
             this.txtPatente = new System.Windows.Forms.TextBox();
             this.toolTipError = new System.Windows.Forms.ToolTip(this.components);
+            this.cboFamilias = new UI.TextilSoft.Tools.FormsTools.FmCombobox();
+            this.btnEliminar = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // btnAgregarFamilia
@@ -57,14 +58,17 @@
             this.btnAgregarFamilia.FlatAppearance.BorderSize = 0;
             this.btnAgregarFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAgregarFamilia.ForeColor = System.Drawing.Color.White;
-            this.btnAgregarFamilia.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnAgregarFamilia.IconColor = System.Drawing.Color.Black;
+            this.btnAgregarFamilia.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
+            this.btnAgregarFamilia.IconColor = System.Drawing.Color.White;
             this.btnAgregarFamilia.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnAgregarFamilia.Location = new System.Drawing.Point(13, 123);
+            this.btnAgregarFamilia.IconSize = 20;
+            this.btnAgregarFamilia.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAgregarFamilia.Location = new System.Drawing.Point(21, 118);
             this.btnAgregarFamilia.Name = "btnAgregarFamilia";
-            this.btnAgregarFamilia.Size = new System.Drawing.Size(75, 23);
+            this.btnAgregarFamilia.Size = new System.Drawing.Size(83, 40);
             this.btnAgregarFamilia.TabIndex = 19;
             this.btnAgregarFamilia.Text = "Agregar";
+            this.btnAgregarFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnAgregarFamilia.UseVisualStyleBackColor = true;
             this.btnAgregarFamilia.Click += new System.EventHandler(this.btnAgregarFamilia_Click);
             // 
@@ -92,21 +96,14 @@
             this.btnCrearFamilia.IconChar = FontAwesome.Sharp.IconChar.None;
             this.btnCrearFamilia.IconColor = System.Drawing.Color.Black;
             this.btnCrearFamilia.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCrearFamilia.Location = new System.Drawing.Point(13, 275);
+            this.btnCrearFamilia.Location = new System.Drawing.Point(28, 278);
             this.btnCrearFamilia.Name = "btnCrearFamilia";
-            this.btnCrearFamilia.Size = new System.Drawing.Size(55, 23);
+            this.btnCrearFamilia.Size = new System.Drawing.Size(50, 23);
             this.btnCrearFamilia.TabIndex = 17;
             this.btnCrearFamilia.Text = "Crear";
+            this.btnCrearFamilia.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCrearFamilia.UseVisualStyleBackColor = true;
             this.btnCrearFamilia.Click += new System.EventHandler(this.btnCrearFamilia_Click);
-            // 
-            // cboFamilias
-            // 
-            this.cboFamilias.FormattingEnabled = true;
-            this.cboFamilias.Location = new System.Drawing.Point(8, 94);
-            this.cboFamilias.Name = "cboFamilias";
-            this.cboFamilias.Size = new System.Drawing.Size(175, 23);
-            this.cboFamilias.TabIndex = 16;
             // 
             // cboPatentes
             // 
@@ -141,7 +138,7 @@
             // 
             this.lblFamilias.AutoSize = true;
             this.lblFamilias.ForeColor = System.Drawing.Color.White;
-            this.lblFamilias.Location = new System.Drawing.Point(38, 67);
+            this.lblFamilias.Location = new System.Drawing.Point(28, 67);
             this.lblFamilias.Name = "lblFamilias";
             this.lblFamilias.Size = new System.Drawing.Size(50, 15);
             this.lblFamilias.TabIndex = 12;
@@ -151,7 +148,7 @@
             // 
             this.lblUsuarios.AutoSize = true;
             this.lblUsuarios.ForeColor = System.Drawing.Color.White;
-            this.lblUsuarios.Location = new System.Drawing.Point(13, 219);
+            this.lblUsuarios.Location = new System.Drawing.Point(28, 219);
             this.lblUsuarios.Name = "lblUsuarios";
             this.lblUsuarios.Size = new System.Drawing.Size(76, 15);
             this.lblUsuarios.TabIndex = 11;
@@ -162,14 +159,16 @@
             this.btnConfigurarFamilia.FlatAppearance.BorderSize = 0;
             this.btnConfigurarFamilia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfigurarFamilia.ForeColor = System.Drawing.Color.White;
-            this.btnConfigurarFamilia.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btnConfigurarFamilia.IconColor = System.Drawing.Color.Black;
+            this.btnConfigurarFamilia.IconChar = FontAwesome.Sharp.IconChar.Cog;
+            this.btnConfigurarFamilia.IconColor = System.Drawing.Color.White;
             this.btnConfigurarFamilia.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnConfigurarFamilia.Location = new System.Drawing.Point(108, 124);
+            this.btnConfigurarFamilia.IconSize = 20;
+            this.btnConfigurarFamilia.Location = new System.Drawing.Point(97, 120);
             this.btnConfigurarFamilia.Name = "btnConfigurarFamilia";
-            this.btnConfigurarFamilia.Size = new System.Drawing.Size(75, 23);
+            this.btnConfigurarFamilia.Size = new System.Drawing.Size(95, 38);
             this.btnConfigurarFamilia.TabIndex = 20;
             this.btnConfigurarFamilia.Text = "Configurar";
+            this.btnConfigurarFamilia.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnConfigurarFamilia.UseVisualStyleBackColor = true;
             this.btnConfigurarFamilia.Click += new System.EventHandler(this.iconButton2_Click);
             // 
@@ -193,7 +192,7 @@
             // 
             // txtCrearFamilia
             // 
-            this.txtCrearFamilia.Location = new System.Drawing.Point(13, 249);
+            this.txtCrearFamilia.Location = new System.Drawing.Point(28, 249);
             this.txtCrearFamilia.Name = "txtCrearFamilia";
             this.txtCrearFamilia.Size = new System.Drawing.Size(170, 23);
             this.txtCrearFamilia.TabIndex = 23;
@@ -281,12 +280,49 @@
             this.txtPatente.Size = new System.Drawing.Size(175, 23);
             this.txtPatente.TabIndex = 30;
             // 
+            // cboFamilias
+            // 
+            this.cboFamilias.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.cboFamilias.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            this.cboFamilias.BorderSize = 1;
+            this.cboFamilias.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.cboFamilias.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cboFamilias.ForeColor = System.Drawing.Color.DimGray;
+            this.cboFamilias.IconColor = System.Drawing.Color.MediumSlateBlue;
+            this.cboFamilias.ListBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(228)))), ((int)(((byte)(245)))));
+            this.cboFamilias.ListTextColor = System.Drawing.Color.DimGray;
+            this.cboFamilias.Location = new System.Drawing.Point(28, 88);
+            this.cboFamilias.Name = "cboFamilias";
+            this.cboFamilias.Padding = new System.Windows.Forms.Padding(1);
+            this.cboFamilias.Size = new System.Drawing.Size(155, 30);
+            this.cboFamilias.TabIndex = 32;
+            this.cboFamilias.Texts = "";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.FlatAppearance.BorderSize = 0;
+            this.btnEliminar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btnEliminar.IconColor = System.Drawing.Color.Black;
+            this.btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnEliminar.Location = new System.Drawing.Point(373, 149);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(62, 23);
+            this.btnEliminar.TabIndex = 33;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
+            // 
             // FmPatenteFamilia
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
             this.ClientSize = new System.Drawing.Size(878, 450);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnConfigurarFamilia);
+            this.Controls.Add(this.cboFamilias);
             this.Controls.Add(this.txtPatente);
             this.Controls.Add(this.lblRefresh);
             this.Controls.Add(this.btnRefresh);
@@ -297,11 +333,9 @@
             this.Controls.Add(this.txtCrearFamilia);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.treeConfigurarFamilia);
-            this.Controls.Add(this.btnConfigurarFamilia);
             this.Controls.Add(this.btnAgregarFamilia);
             this.Controls.Add(this.btnAgregarPatentes);
             this.Controls.Add(this.btnCrearFamilia);
-            this.Controls.Add(this.cboFamilias);
             this.Controls.Add(this.cboPatentes);
             this.Controls.Add(this.cboPermisos);
             this.Controls.Add(this.lblPatentes);
@@ -320,7 +354,6 @@
         private FontAwesome.Sharp.IconButton btnAgregarFamilia;
         private FontAwesome.Sharp.IconButton btnAgregarPatentes;
         private FontAwesome.Sharp.IconButton btnCrearFamilia;
-        private System.Windows.Forms.ComboBox cboFamilias;
         private System.Windows.Forms.ComboBox cboPatentes;
         private System.Windows.Forms.ComboBox cboPermisos;
         private System.Windows.Forms.Label lblPatentes;
@@ -338,5 +371,7 @@
         private System.Windows.Forms.Label lblRefresh;
         private System.Windows.Forms.TextBox txtPatente;
         private System.Windows.Forms.ToolTip toolTipError;
+        private Tools.FormsTools.FmCombobox cboFamilias;
+        private FontAwesome.Sharp.IconButton btnEliminar;
     }
 }

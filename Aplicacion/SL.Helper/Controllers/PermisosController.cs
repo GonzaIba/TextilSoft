@@ -187,8 +187,11 @@ namespace SL.Helper.Controllers
         private bool SepararFamilia(Componente c, List<Componente> Permisos)
         {
             foreach (var patente in c.Hijos)
-            {               
-                return BuscarPermiso(Permisos, patente.Permiso);
+            {
+                bool EstaRepetido = false;
+                EstaRepetido = BuscarPermiso(Permisos, patente.Permiso);
+                if (EstaRepetido)
+                    return true;
             }
             return false;
         }
@@ -229,7 +232,6 @@ namespace SL.Helper.Controllers
             {
                 if(patente.Permiso == tipoPermiso)
                     return true;
-                
             }
             return false;
         }

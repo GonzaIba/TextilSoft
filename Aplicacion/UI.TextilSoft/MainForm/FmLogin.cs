@@ -18,6 +18,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Controllers;
 using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
 using UI.TextilSoft.Tools.FormsTools;
@@ -45,8 +46,6 @@ namespace UI.TextilSoft.MainForm
         private AuthenticationConfig _authenticationConfig;
         private string EmailCodigo;
         public Form Activeform = null;
-
-        //private readonly PasswordConfig _passwordConfig;
 
         public FmLogin(IPermisosController permisosController,
                         IUsuarioController userController,
@@ -165,7 +164,7 @@ namespace UI.TextilSoft.MainForm
             //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
             var usuario = _userController.ObtenerUsuarioConPermisos(login);
             //_empleadosController.LoginEmpleado(usuario);
-            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration,_companyController);
+            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration,_companyController,this);
             fmTextilSoft.toolStrip1.Tag = usuario;
             if (usuario.IsOwner)
             {
@@ -300,10 +299,11 @@ namespace UI.TextilSoft.MainForm
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FmRegistrarse fmRegistrarse = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController);
-            fmRegistrarse.ShowDialog();
+            //pnlLogin.Visible = false;
             //pnlLogin.BringToFront();
-            //AbrirFormHija(fmRegistrarse);
+            var r = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController);
+            r.ShowDialog();
+            //AbrirFormHija(new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
         }
         
         #region AbrirForm
@@ -314,7 +314,7 @@ namespace UI.TextilSoft.MainForm
                 Activeform.Close();
                 Activeform = formhija;
                 formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.BackColor = Color.FromArgb(30, 30, 30);
                 formhija.TopLevel = false;
                 formhija.FormBorderStyle = FormBorderStyle.None;
                 formhija.Dock = DockStyle.Fill;
@@ -322,14 +322,14 @@ namespace UI.TextilSoft.MainForm
                 pnlLogin.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-
-                AbrirAnimator();
+                if(PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
             else
             {
                 Activeform = formhija;
                 formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.BackColor = Color.FromArgb(30, 30, 30);
                 formhija.TopLevel = false;
                 formhija.FormBorderStyle = FormBorderStyle.None;
                 formhija.Dock = DockStyle.Fill;
@@ -337,14 +337,17 @@ namespace UI.TextilSoft.MainForm
                 pnlLogin.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-
-                AbrirAnimator();
+                if(PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
         }
-        private void AbrirAnimator()
+        private async void AbrirAnimator()
         {
-            pnlLogin.Visible = false;
-            LoginAnimator.ShowSync(pnlLogin);
+            await Task.Run(() =>
+            {
+                pnlLogin.Visible = false;
+                LoginAnimator.ShowSync(pnlLogin,true);
+            });
         }
         #endregion
 
@@ -554,6 +557,30 @@ namespace UI.TextilSoft.MainForm
 
         private void pnlLogin_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void txtUser_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Si es enter o tab que lo envie al txt de contraseña
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                txtPassword.Focus();
+            }
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                //btnLogin_Click_1
+                btnLogin_Click_1(sender, e);
+            }
+        }
+
+        private void btnBackLogin_Click(object sender, EventArgs e)
+        {
+            
 
         }
     }

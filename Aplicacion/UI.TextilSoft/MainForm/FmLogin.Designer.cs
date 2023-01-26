@@ -31,7 +31,7 @@ namespace UI.TextilSoft.MainForm
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AnimatorNS.Animation animation2 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmLogin));
             this.txtUser = new System.Windows.Forms.TextBox();
             this.lblLogin = new System.Windows.Forms.Label();
@@ -39,8 +39,10 @@ namespace UI.TextilSoft.MainForm
             this.pnlCompanyLogo = new System.Windows.Forms.Panel();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.pnlTimeNow = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.picCompanyLogo = new System.Windows.Forms.PictureBox();
             this.pnlLogin = new System.Windows.Forms.Panel();
+            this.btnBackLogin = new FontAwesome.Sharp.IconButton();
             this.btnValidarCodigo = new FontAwesome.Sharp.IconButton();
             this.lnklblCodigo = new System.Windows.Forms.LinkLabel();
             this.pnlCodigo = new System.Windows.Forms.Panel();
@@ -65,8 +67,10 @@ namespace UI.TextilSoft.MainForm
             this.pnlUserNameText = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblUsuario = new System.Windows.Forms.Label();
+            this.panelRegresar = new System.Windows.Forms.Panel();
             this.LoginAnimator = new AnimatorNS.Animator(this.components);
             this.pnlCompanyLogo.SuspendLayout();
+            this.pnlTimeNow.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
             this.pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
@@ -93,6 +97,7 @@ namespace UI.TextilSoft.MainForm
             this.txtUser.Text = "Ingrese un Usuario";
             this.txtUser.Click += new System.EventHandler(this.txtUser_Click);
             this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+            this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
             this.txtUser.Leave += new System.EventHandler(this.txtUser_Leave);
             // 
             // lblLogin
@@ -120,7 +125,6 @@ namespace UI.TextilSoft.MainForm
             // pnlCompanyLogo
             // 
             this.pnlCompanyLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.pnlCompanyLogo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlCompanyLogo.Controls.Add(this.lblCompanyName);
             this.pnlCompanyLogo.Controls.Add(this.pnlTimeNow);
             this.pnlCompanyLogo.Controls.Add(this.picCompanyLogo);
@@ -145,12 +149,21 @@ namespace UI.TextilSoft.MainForm
             // 
             // pnlTimeNow
             // 
+            this.pnlTimeNow.Controls.Add(this.panel1);
             this.LoginAnimator.SetDecoration(this.pnlTimeNow, AnimatorNS.DecorationType.None);
             this.pnlTimeNow.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTimeNow.Location = new System.Drawing.Point(0, 402);
+            this.pnlTimeNow.Location = new System.Drawing.Point(0, 404);
             this.pnlTimeNow.Name = "pnlTimeNow";
-            this.pnlTimeNow.Size = new System.Drawing.Size(253, 100);
+            this.pnlTimeNow.Size = new System.Drawing.Size(255, 100);
             this.pnlTimeNow.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.LoginAnimator.SetDecoration(this.panel1, AnimatorNS.DecorationType.None);
+            this.panel1.Location = new System.Drawing.Point(254, 28);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(101, 72);
+            this.panel1.TabIndex = 19;
             // 
             // picCompanyLogo
             // 
@@ -165,7 +178,7 @@ namespace UI.TextilSoft.MainForm
             // pnlLogin
             // 
             this.pnlLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.pnlLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlLogin.Controls.Add(this.btnBackLogin);
             this.pnlLogin.Controls.Add(this.btnValidarCodigo);
             this.pnlLogin.Controls.Add(this.lnklblCodigo);
             this.pnlLogin.Controls.Add(this.pnlCodigo);
@@ -182,6 +195,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlLogin.Controls.Add(this.panel4);
             this.pnlLogin.Controls.Add(this.lblLogin);
             this.pnlLogin.Controls.Add(this.lblUsuario);
+            this.pnlLogin.Controls.Add(this.panelRegresar);
             this.LoginAnimator.SetDecoration(this.pnlLogin, AnimatorNS.DecorationType.None);
             this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLogin.Location = new System.Drawing.Point(1, 1);
@@ -189,6 +203,26 @@ namespace UI.TextilSoft.MainForm
             this.pnlLogin.Size = new System.Drawing.Size(977, 556);
             this.pnlLogin.TabIndex = 6;
             this.pnlLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogin_Paint);
+            // 
+            // btnBackLogin
+            // 
+            this.LoginAnimator.SetDecoration(this.btnBackLogin, AnimatorNS.DecorationType.None);
+            this.btnBackLogin.FlatAppearance.BorderSize = 0;
+            this.btnBackLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBackLogin.ForeColor = System.Drawing.Color.White;
+            this.btnBackLogin.IconChar = FontAwesome.Sharp.IconChar.ArrowLeft;
+            this.btnBackLogin.IconColor = System.Drawing.Color.White;
+            this.btnBackLogin.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnBackLogin.IconSize = 37;
+            this.btnBackLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBackLogin.Location = new System.Drawing.Point(253, 511);
+            this.btnBackLogin.Name = "btnBackLogin";
+            this.btnBackLogin.Size = new System.Drawing.Size(119, 44);
+            this.btnBackLogin.TabIndex = 38;
+            this.btnBackLogin.Text = "Volver a login";
+            this.btnBackLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnBackLogin.UseVisualStyleBackColor = true;
+            this.btnBackLogin.Click += new System.EventHandler(this.btnBackLogin_Click);
             // 
             // btnValidarCodigo
             // 
@@ -410,6 +444,7 @@ namespace UI.TextilSoft.MainForm
             this.txtPassword.Text = "Ingrese una Contraseña";
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // label3
@@ -488,33 +523,41 @@ namespace UI.TextilSoft.MainForm
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
             // 
+            // panelRegresar
+            // 
+            this.LoginAnimator.SetDecoration(this.panelRegresar, AnimatorNS.DecorationType.None);
+            this.panelRegresar.Location = new System.Drawing.Point(253, 502);
+            this.panelRegresar.Name = "panelRegresar";
+            this.panelRegresar.Size = new System.Drawing.Size(124, 49);
+            this.panelRegresar.TabIndex = 39;
+            // 
             // LoginAnimator
             // 
-            this.LoginAnimator.AnimationType = AnimatorNS.AnimationType.HorizSlide;
+            this.LoginAnimator.AnimationType = AnimatorNS.AnimationType.HorizBlind;
             this.LoginAnimator.Cursor = null;
-            animation2.AnimateOnlyDifferences = true;
-            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
-            animation2.LeafCoeff = 0F;
-            animation2.MaxTime = 1F;
-            animation2.MinTime = 0F;
-            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
-            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
-            animation2.MosaicSize = 0;
-            animation2.Padding = new System.Windows.Forms.Padding(0);
-            animation2.RotateCoeff = 0F;
-            animation2.RotateLimit = 0F;
-            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
-            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
-            animation2.TimeCoeff = 0F;
-            animation2.TransparencyCoeff = 0F;
-            this.LoginAnimator.DefaultAnimation = animation2;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
+            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
+            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            this.LoginAnimator.DefaultAnimation = animation1;
             this.LoginAnimator.TimeStep = 0.01F;
             // 
             // FmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(979, 558);
             this.Controls.Add(this.pnlCompanyLogo);
             this.Controls.Add(this.pnlUp);
@@ -528,6 +571,7 @@ namespace UI.TextilSoft.MainForm
             this.Load += new System.EventHandler(this.FmLogin_Load);
             this.pnlCompanyLogo.ResumeLayout(false);
             this.pnlCompanyLogo.PerformLayout();
+            this.pnlTimeNow.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
             this.pnlLogin.ResumeLayout(false);
             this.pnlLogin.PerformLayout();
@@ -582,5 +626,8 @@ namespace UI.TextilSoft.MainForm
         private System.Windows.Forms.TextBox txtCodigo;
         private System.Windows.Forms.LinkLabel lnklblCodigo;
         private FontAwesome.Sharp.IconButton btnValidarCodigo;
+        private System.Windows.Forms.Panel panel1;
+        private FontAwesome.Sharp.IconButton btnBackLogin;
+        private System.Windows.Forms.Panel panelRegresar;
     }
 }

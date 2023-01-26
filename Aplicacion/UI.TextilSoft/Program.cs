@@ -18,6 +18,7 @@ using SL.IoC;
 using System;
 using System.IO;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
 using UI.TextilSoft.SubForms.Configuracion.Composite;
@@ -27,7 +28,7 @@ namespace UI.TextilSoft
 {
     static class Program
     {
-        private static IConfiguration Configuration;
+        public static IConfiguration Configuration;
         private static readonly ILoggerFactory _loggerFactory = LoggerFactory.Create(builder => builder.AddConsole().AddDebug());
 
         /// <summary>
@@ -99,7 +100,6 @@ namespace UI.TextilSoft
             services.AddSingleton<FmTextilSoft>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
-            //services.AddConfig<AuthenticationConfig>(Configuration, nameof(AuthenticationConfig));
 
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
             services.AddAutoMapper(typeof(FmLogin));
@@ -119,6 +119,7 @@ namespace UI.TextilSoft
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
             
             AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
+
         }
 
 

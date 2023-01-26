@@ -10,6 +10,6 @@ namespace Domain.Enum
     {
         EnProduccion = 0,
         Entregado
-
+            
     }
 }

@@ -10,7 +10,7 @@ namespace Domain.Models
     public abstract class GenericEntity : IGenericEntity
     {
         public DateTime CreateDate { get; set; }
-        public DateTime UpdateDate { get; set; }
+        public Nullable<DateTime> UpdateDate { get; set; }
         public bool Active { get; set; }
     }
 }

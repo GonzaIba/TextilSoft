@@ -16,27 +16,27 @@ namespace Infrastructure
     {
         //Este constructor se utiliza para hacer una migracion a la base de datos
         //Se utiliza code first
-        //public ApplicationDbContext()
-        //{
+        public ApplicationDbContext()
+        {
 
-        //}
+        }
 
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dbContextOptions"></param>
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
-            : base(dbContextOptions)
-        {
+        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
+        //    : base(dbContextOptions)
+        //{
 
-        }
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlServer("Data Source=localhost;Initial Catalog=DBProyectoTextil;User ID=testUser2;Password=1234;");
+                options.UseSqlServer("Data Source=localhost;Initial Catalog=DBProyectoTextil2;User ID=testUser2;Password=1234;");
             }
         }
 
@@ -50,8 +50,8 @@ namespace Infrastructure
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly)
                         .SetPropertyDefaultSqlValue("CreateDate", "getdate()")
                         .SetPropertyDefaultValue<bool>("Active", true)
-                        .SetPropertyQueryFilter("Active", true);
-                        //.SetAutoIncrementPK();
+                        .SetPropertyQueryFilter("Active", true)
+                        .ConfigureGenericProperties();
 
             //base.OnConfiguring(modelBuilder);//Aca podemos configurar el warning (por ej) de ef
 

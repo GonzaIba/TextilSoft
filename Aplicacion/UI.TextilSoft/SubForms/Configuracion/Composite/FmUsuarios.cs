@@ -20,6 +20,8 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         private readonly IUsuarioController _usuarioController;
         private readonly IPermisosController _permisosController;
         private readonly Usuario _usuario;
+        //UserList
+        private List<Usuario> ListaUsuarios;
         Usuario seleccion;
         Usuario tmp;
         public FmUsuarios(IUsuarioController usuarioController, IPermisosController permisosController, Usuario usuario)
@@ -34,6 +36,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         {
             this.cboUsuarios.DataSource = _usuarioController.ObtenerTodosLosUsuarioConPermisos();
             this.cboUsuarios.DisplayMember = "Nombre";
+            ListaUsuarios = (List<Usuario>)this.cboUsuarios.DataSource;
 
             this.cboFamilias.DataSource = _usuarioController.ObtenerFamilias();
             this.cboFamilias.DisplayMember = "Nombre";
@@ -45,18 +48,27 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         
         private void btnConfigUsuario_Click_1(object sender, EventArgs e)
         {
-            seleccion = (Usuario)this.cboUsuarios.SelectedItem;
+            if (ListaUsuarios.Count == 0)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "No hay usuarios para configurar!", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+            else
+            {
+                seleccion = (Usuario)this.cboUsuarios.SelectedItem ?? ListaUsuarios?.GetRange(cboUsuarios.SelectedIndex == -1 ? 0 : cboUsuarios.SelectedIndex, ListaUsuarios.Count)?.FirstOrDefault() ?? throw new Exception("Ocurrió un error...");
 
-            //hago una copia del objeto para no modificr el que esta en el combo.
-            tmp = new Usuario();
-            tmp.Id = seleccion.Id;
-            tmp.Nombre = seleccion.Nombre;
-            tmp.Email = seleccion.Email;
-            tmp.DNI = seleccion.DNI;
-            tmp.IsOwner= seleccion.IsOwner;
-            tmp.Permisos.AddRange(seleccion.Permisos);
-            
-            MostrarPermisos(tmp);
+                //hago una copia del objeto para no modificr el que esta en el combo.
+                tmp = new Usuario();
+                tmp.Id = seleccion.Id;
+                tmp.Nombre = seleccion.Nombre;
+                tmp.Email = seleccion.Email;
+                tmp.DNI = seleccion.DNI;
+                tmp.IsOwner = seleccion.IsOwner;
+                tmp.Permisos.AddRange(seleccion.Permisos);
+
+                MostrarPermisos(tmp);
+            }
         }
 
 
@@ -87,50 +99,59 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private void btnAgregarPatente_Click(object sender, EventArgs e)
         {
-            if (tmp != null)
+            if (ListaUsuarios.Count == 0)
             {
-                var patente = (Patente)cboPatentes.SelectedItem;
-                if (patente != null)
-                {
-                    var esta = false;
-
-                    foreach (var item in tmp.Permisos)
-                    {
-                        if (_permisosController.Existe(item, patente.Id) || patente.Permiso == item.Permiso)
-                        {
-                            esta = true;
-                            break;
-                        }
-                    }
-                    if (esta)
-                    {
-                        var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "El usuario ya tiene la patente indicada", centerPosition);
-                        fmMessageBox.ShowDialog();
-                    }
-                    else
-                    {
-                        if (patente.Permiso == TipoPermiso.EsAdmin && _usuario.IsOwner)
-                            tmp.Permisos.Add(patente);
-                        else if (patente.Permiso == TipoPermiso.EsAdmin && !_usuario.IsOwner)
-                        {
-                            var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "Usted no tiene permisos para asignar rol Administrador", centerPosition);
-                            fmMessageBox.ShowDialog();
-                        }
-                        else
-                            tmp.Permisos.Add(patente);
-
-                        MostrarPermisos(tmp);
-                    }
-                }
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "No hay usuarios para configurar!", centerPosition);
+                fmMessageBox.ShowDialog();
             }
             else
             {
-                var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "Por favor seleccione el usuario", centerPosition);
-                fmMessageBox.ShowDialog();
-            }
+                if (tmp != null)
+                {
+                    var patente = (Patente)cboPatentes.SelectedItem;
+                    if (patente != null)
+                    {
+                        var esta = false;
+
+                        foreach (var item in tmp.Permisos)
+                        {
+                            if (_permisosController.Existe(item, patente.Id) || patente.Permiso == item.Permiso)
+                            {
+                                esta = true;
+                                break;
+                            }
+                        }
+                        if (esta)
+                        {
+                            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "El usuario ya tiene la patente indicada", centerPosition);
+                            fmMessageBox.ShowDialog();
+                        }
+                        else
+                        {
+                            if (patente.Permiso == TipoPermiso.EsAdmin && _usuario.IsOwner)
+                                tmp.Permisos.Add(patente);
+                            else if (patente.Permiso == TipoPermiso.EsAdmin && !_usuario.IsOwner)
+                            {
+                                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "Usted no tiene permisos para asignar rol Administrador", centerPosition);
+                                fmMessageBox.ShowDialog();
+                            }
+                            else
+                                tmp.Permisos.Add(patente);
+
+                            MostrarPermisos(tmp);
+                        }
+                    }
+                }
+                else
+                {
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "Por favor seleccione el usuario", centerPosition);
+                    fmMessageBox.ShowDialog();
+                }
+            }        
         }
 
         private void cboPatentes_SelectedIndexChanged(object sender, EventArgs e)
@@ -158,44 +179,53 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
         private void btnAgregarFamilia_Click(object sender, EventArgs e)
         {
-            if (tmp != null)
+            if (ListaUsuarios.Count == 0)
             {
-                var flia = (Familia)cboFamilias.SelectedItem;
-                if (flia != null)
-                {
-                    var esta = false;
-                    //verifico que ya no tenga el permiso. TODO: Esto debe ser parte de otra capa.
-                    foreach (var item in tmp.Permisos)
-                    {
-                        if (_permisosController.Existe(item, flia.Id))
-                        {
-                            esta = true;
-                        }
-                    }
-
-                    if (esta)
-                    {
-                        var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "El usuario ya tiene la familia indicada", centerPosition);
-                        fmMessageBox.ShowDialog();
-                    }
-                    else
-                    {
-                        {
-                            //permisosRepo.FillFamilyComponents(flia);
-
-                            tmp.Permisos.Add(flia);
-                            MostrarPermisos(tmp);
-                        }
-                    }
-                }
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "No hay usuarios para configurar!", centerPosition);
+                fmMessageBox.ShowDialog();
             }
             else
             {
-                var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "Por favor seleccione el usuario", centerPosition);
-                fmMessageBox.ShowDialog();
-            }
+                if (tmp != null)
+                {
+                    var flia = (Familia)cboFamilias.SelectedItem;
+                    if (flia != null)
+                    {
+                        var esta = false;
+                        //verifico que ya no tenga el permiso. TODO: Esto debe ser parte de otra capa.
+                        foreach (var item in tmp.Permisos)
+                        {
+                            if (_permisosController.Existe(item, flia.Id))
+                            {
+                                esta = true;
+                            }
+                        }
+
+                        if (esta)
+                        {
+                            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "El usuario ya tiene la familia indicada", centerPosition);
+                            fmMessageBox.ShowDialog();
+                        }
+                        else
+                        {
+                            {
+                                //permisosRepo.FillFamilyComponents(flia);
+
+                                tmp.Permisos.Add(flia);
+                                MostrarPermisos(tmp);
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación Inválida", "Por favor seleccione el usuario", centerPosition);
+                    fmMessageBox.ShowDialog();
+                }
+            }        
         }
 
         private void treeViewUsuarios_MouseClick(object sender, MouseEventArgs e)

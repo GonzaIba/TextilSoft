@@ -48,16 +48,15 @@ namespace SL.Helper.Extensions
             return builder;
         }
 
-        public static ModelBuilder ConfigureBasicProperties(this ModelBuilder builder)
+        public static ModelBuilder ConfigureGenericProperties(this ModelBuilder builder)
         {
             foreach (var entityType in builder.Model.GetEntityTypes())
             {
-                builder.Entity(entityType.ClrType).Property("Active").HasColumnType("varchar(50)");
-                builder.Entity(entityType.ClrType).Property("CreateDate").HasColumnType("datetime");
-                builder.Entity(entityType.ClrType).Property("UpdateDate").IsRequired(true);
+                builder.Entity(entityType.ClrType).Property("Active").HasColumnType("bit").IsRequired(true);
+                builder.Entity(entityType.ClrType).Property("CreateDate").HasColumnType("datetime").IsRequired(true);
+                builder.Entity(entityType.ClrType).Property("UpdateDate").HasColumnType("datetime").IsRequired(false);
             }
             return builder;
-            //}
         }
 
 

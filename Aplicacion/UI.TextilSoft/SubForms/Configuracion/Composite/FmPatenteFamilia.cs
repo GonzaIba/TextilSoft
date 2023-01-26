@@ -47,7 +47,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
             //10000000
             //Este timer se ejecuta cada cierto tiempo
             Timer timer1 = new Timer();
-            timer1.Interval = 1000000;
+            timer1.Interval = 5000000;
             timer1.Tick += new System.EventHandler(timer_Tick);
             timer1.Start();
         }
@@ -132,7 +132,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                             else if(patente.Permiso == TipoPermiso.EsAdmin && !_usuario.IsOwner)
                             {
                                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Operación inválida", "Usted no tiene permisos para asignar rol Administrador", centerPosition);
+                                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de authorización", "Usted no tiene permisos para asignar rol Administrador", centerPosition);
                                 fmMessageBox.ShowDialog();
                             }
                             else
@@ -198,14 +198,20 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                     {
                         var esta = _permisosController.Existe(seleccion, familia.Id);
                         if (esta)
-                            MessageBox.Show("ya existe la familia indicada");
+                        {
+                            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Operación inválida", "Ya existe la familia indicada", centerPosition);
+                            fmMessageBox.ShowDialog();
+                        }
                         else
                         {
                             if (!_permisosController.ValidarPermisosRepetidos(seleccion, familia))
                                 seleccion.AgregarHijo(familia);
                             else
                             {
-                                
+                                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de aplicación", "No puede agregar un permiso que ya existe", centerPosition);
+                                fmMessageBox.ShowDialog();
                             }
 
                             //repo.FillFamilyComponents(familia);
@@ -390,6 +396,19 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                     seleccion.EliminarHijo(c);
                     treeConfigurarFamilia.Nodes.Remove(treeConfigurarFamilia.SelectedNode);
                     break;
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Aviso", "Estas seguro de eliminar este permiso?", centerPosition);
+            fmMessageBox.ShowDialog();
+            if (fmMessageBox.DialogResult == DialogResult.OK)
+            {
+                _permisosController.EliminarPermiso(seleccion);
+                CargarListasEnMemoria();
+                LoadForm();
             }
         }
     }

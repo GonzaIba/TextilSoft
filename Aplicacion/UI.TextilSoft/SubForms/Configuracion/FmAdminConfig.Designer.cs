@@ -86,7 +86,7 @@
             // 
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarios.ForeColor = System.Drawing.Color.White;
-            this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.Users;
+            this.btnUsuarios.IconChar = FontAwesome.Sharp.IconChar.AddressCard;
             this.btnUsuarios.IconColor = System.Drawing.Color.White;
             this.btnUsuarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnUsuarios.IconSize = 35;

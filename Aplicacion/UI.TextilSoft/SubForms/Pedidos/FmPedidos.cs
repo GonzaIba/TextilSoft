@@ -8,8 +8,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations;
 using UI.TextilSoft.SubForms.Pedidos.AdministrarPedido;
 using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
+using UI.TextilSoft.SubForms.Pedidos.ListarPedidos;
 
 namespace UI.TextilSoft.SubForms.Pedidos
 {
@@ -42,7 +44,8 @@ namespace UI.TextilSoft.SubForms.Pedidos
                 panelContenedor.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-                //AbrirAnimator(panelContenedor);
+                if(PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
             else
             {
@@ -56,18 +59,44 @@ namespace UI.TextilSoft.SubForms.Pedidos
                 panelContenedor.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-                //AbrirAnimator(panelContenedor);
+                if (PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
         }
 
-        private void btnCrearPedido_Click(object sender, EventArgs e)
+        private async void AbrirAnimator()
         {
-            AbrirFormHija(new FmCrearPedido(_pedidosController, _clientesController, _productosController));
+            //LogoAnimator.Hide(labelBienvenida);
+            await Task.Run(() =>
+            {
+                panelContenedor.Visible = false;
+                PanelAnimator.ShowSync(panelContenedor, true);
+            });
         }
 
         private void btnAdministrarPedido_Click(object sender, EventArgs e)
         {
             AbrirFormHija(new FmAdministrarPedido());
+        }
+
+        private void btnCrearPedido_Click_1(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmCrearPedido(_pedidosController, _clientesController, _productosController));
+        }
+
+        private void lblPrincipal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPresupuesto_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnListarPedidos_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmListarPedidos(_pedidosController));
         }
     }
 }

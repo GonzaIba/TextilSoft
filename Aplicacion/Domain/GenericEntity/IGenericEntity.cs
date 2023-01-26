@@ -9,7 +9,7 @@ namespace Contracts.Entities
     public interface IGenericEntity
     {
         DateTime CreateDate { get; set; }
-        DateTime UpdateDate { get; set; }
+        Nullable<DateTime> UpdateDate { get; set; }
         bool Active { get; set; }
     }
 }

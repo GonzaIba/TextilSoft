@@ -16,10 +16,12 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations;
 using UI.TextilSoft.SubForms.Configuracion;
 using UI.TextilSoft.SubForms.Pedidos;
 using UI.TextilSoft.SubForms.Proveedores;
 using UI.TextilSoft.Tools;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
@@ -57,6 +59,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IFacturasController _facturasController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
+        private readonly FmLogin _fmLogin;
 
         public FmTextilSoft(IUsuarioController usuarioController,
                              IPermisosController permisosController,
@@ -71,7 +74,8 @@ namespace UI.TextilSoft.MainForm
                              IProductoProveedorController productoProveedorController,
                              IProductosController productosController,
                              IConfiguration configuration,
-                             ICompanyController companyController
+                             ICompanyController companyController,
+                             FmLogin fmLogin
                              )
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -95,6 +99,7 @@ namespace UI.TextilSoft.MainForm
             _pedidosController = pedidosController;
             _configuration = configuration;
             _companyController = companyController;
+            _fmLogin = fmLogin;
         }
         #endregion
 
@@ -112,6 +117,8 @@ namespace UI.TextilSoft.MainForm
         {
             try
             {
+                _fmLogin.Hide();
+                AbrirFormHija(new FmVacio());
                 toolStrip1.Renderer = new ToolStripRenderCustom();
                 timer1.Start();
                 timer2.Start();
@@ -187,7 +194,7 @@ namespace UI.TextilSoft.MainForm
                 formhija.Show();
 
                 //Si EnabledAnimator esta en true ejecutar el metodo
-                if (Convert.ToBoolean(_configuration["Application:Performance:EnabledAnimator"]))
+                if (PerformanceConfiguration.EnabledAnimator)
                     AbrirAnimator();
 
                 timer1.Dispose();
@@ -206,7 +213,7 @@ namespace UI.TextilSoft.MainForm
                 formhija.BringToFront();
                 //formhija.Show();
 
-                if (Convert.ToBoolean(_configuration["Application:Performance:EnabledAnimator"]))
+                if (PerformanceConfiguration.EnabledAnimator)
                     AbrirAnimator();
 
                 timer1.Dispose();
@@ -217,7 +224,6 @@ namespace UI.TextilSoft.MainForm
         {
             AbrirFormHija(new FmPedidos(_pedidosController,_clientesController,_productosController));
             BotonPresionado = true;
-            btnPedidos.Enabled = false;
             ActivateButton(sender);
         }
 
@@ -322,7 +328,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void timer3_Tick(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(_configuration["Application:Performance:EnabledSliceButtonsPanel"]))
+            if (PerformanceConfiguration.EnabledSliceButtonsPanel)
             {
                 if (ThreadActivated == false)
                 {
@@ -336,7 +342,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void timer4_Tick(object sender, EventArgs e)
         {
-            if (Convert.ToBoolean(_configuration["Application:Performance:EnabledSliceButtonsPanel"]))
+            if (PerformanceConfiguration.EnabledSliceButtonsPanel)
             {
                 if (ThreadActivated == false)
                 {
@@ -612,6 +618,7 @@ namespace UI.TextilSoft.MainForm
         }
         #endregion
 
+        #region Extras
         private void toolStrip1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -631,6 +638,8 @@ namespace UI.TextilSoft.MainForm
             btnProduccion.Enabled = false;
             btnProveedores.Enabled = false;
             btnConfiguracion.Enabled = false;
+            _fmLogin.Show();
         }
+        #endregion
     }
 }
