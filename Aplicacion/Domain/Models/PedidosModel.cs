@@ -25,7 +25,7 @@ namespace Domain.Models
         public int ID_EstadoPedido { get; set; }
         public Guid CreateUser { get; set; }
 
-        public virtual ClientesModel Cliente { get; set; }
+        public virtual ClientesModel Clientes { get; set; }
         public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }
         public virtual EmpleadosModel Empleados { get; set; }
         public virtual ICollection<FacturasModel> Factura { get; set; }

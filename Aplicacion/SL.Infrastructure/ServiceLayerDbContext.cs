@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.Extensions.Configuration;
 using SL.Domain.Model;
 using SL.Helper.Extensions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,10 +15,10 @@ namespace SL.Infrastructure
 {
     public class ServiceLayerDbContext : DbContext
     {
-        public ServiceLayerDbContext()
-        {
+        //public ServiceLayerDbContext()
+        //{
 
-        }
+        //}
 
         public ServiceLayerDbContext(DbContextOptions<ServiceLayerDbContext> dbContextOptions)
             : base(dbContextOptions)
@@ -28,7 +30,12 @@ namespace SL.Infrastructure
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlServer("Data Source=localhost;Initial Catalog=upf;User ID=testUser2;Password=1234;");
+                var config = new ConfigurationBuilder()
+                  .SetBasePath(Directory.GetCurrentDirectory())
+                  .AddJsonFile("appsettings.json")
+                  .Build();
+
+                options.UseSqlServer(config.GetConnectionString("SqlConnectionServiceLayer"));
             }
         }
 

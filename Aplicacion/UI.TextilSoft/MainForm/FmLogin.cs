@@ -21,6 +21,7 @@ using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Controllers;
 using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
+using UI.TextilSoft.Tools.ExtensionsControls;
 using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
@@ -226,13 +227,13 @@ namespace UI.TextilSoft.MainForm
         private void txtUser_Click(object sender, EventArgs e)
         {
             if (txtUser.Text == txtUserNameTextBase)
-                txtUser.Text = "";
+                txtUser.LimpiarTextbox();
         }
 
         private void txtPassword_Click(object sender, EventArgs e)
         {
             if (txtPassword.Text == txtPasswordTextBase)
-                txtPassword.Text = "";
+                txtPassword.LimpiarTextbox();
         }
 
         private void FmLogin_Load(object sender, EventArgs e)

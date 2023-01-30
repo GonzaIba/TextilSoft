@@ -45,7 +45,7 @@ namespace Infrastructure.TypeBuilders
                 .WithMany(x => x.Pedidos)
                 .HasForeignKey(d => d.ID_EstadoPedido);
 
-            builder.HasOne(p => p.Cliente)
+            builder.HasOne(p => p.Clientes)
                 .WithMany(x => x.Pedidos)
                 .HasForeignKey(d => d.ID_Cliente);
 

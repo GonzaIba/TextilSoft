@@ -9,7 +9,7 @@ namespace Contracts.Controllers
 {
     public interface IPedidosController
     {
-        public List<PedidosEntity> ObtenerPedidos();
+        public List<ListarPedidosEntity> ObtenerPedidos();
 
     }
 }

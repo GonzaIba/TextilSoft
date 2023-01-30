@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class PedidosEntity
+    public class ListarPedidosEntity
     {
         public int ID_Pedido { get; set; }
         public int NumeroPedido { get; set; }
         public decimal TotalPago { get; set; }
         public DateTime Fecha { get; set; }
         public decimal Seña { get; set; }
-        public int ID_Cliente { get; set; }
-        public Guid ID_Empleados { get; set; }
+        public string Cliente { get; set; }
+        //public Guid ID_Empleados { get; set; }
         public EstadoPedidosEnum EstadoPedido { get; set; }
-        public Guid CreateUser { get; set; }
+        public string AtendidoPor { get; set; }
 
         //public virtual ClientesModel Cliente { get; set; }
         //public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }

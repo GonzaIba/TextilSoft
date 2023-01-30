@@ -119,7 +119,6 @@ namespace UI.TextilSoft
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
             
             AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
-
         }
 
 

@@ -23,10 +23,13 @@ namespace UI.TextilSoft.Mapeo
 
             CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
 
-            CreateMap<PedidosModel, PedidosEntity>()
+            CreateMap<PedidosModel, ListarPedidosEntity>()
                 .ForMember(x => x.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
+                .ForMember(x => x.AtendidoPor, opt => opt.MapFrom(src => src.Empleados.Nombre + " " + src.Empleados.Apellido))
+                .ForMember(x => x.Cliente, opt => opt.MapFrom(src => src.Clientes.Nombre + " " + src.Clientes.Apellido))
                 .ReverseMap();
         }
+        
         public EstadoPedidosEnum ConvertToEstadoPedido(int src)
         {
             EstadoPedidosEnum permiso;

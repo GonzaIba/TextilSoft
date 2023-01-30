@@ -9,6 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using SL.Helper.Extensions;
 using Domain.Models;
+using System.Configuration;
+using Microsoft.Extensions.Options;
+using System.IO;
 
 namespace Infrastructure
 {
@@ -16,27 +19,32 @@ namespace Infrastructure
     {
         //Este constructor se utiliza para hacer una migracion a la base de datos
         //Se utiliza code first
-        public ApplicationDbContext()
-        {
+        //public ApplicationDbContext()
+        //{
 
-        }
+        //}
 
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dbContextOptions"></param>
-        //public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
-        //    : base(dbContextOptions)
-        //{
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> dbContextOptions)
+            : base(dbContextOptions)
+        {
 
-        //}
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             if (!options.IsConfigured)
             {
-                options.UseSqlServer("Data Source=localhost;Initial Catalog=DBProyectoTextil2;User ID=testUser2;Password=1234;");
+                var config = new ConfigurationBuilder()
+                  .SetBasePath(Directory.GetCurrentDirectory())
+                  .AddJsonFile("appsettings.json")
+                  .Build();
+
+                options.UseSqlServer(config.GetConnectionString("SqlConnection"));
             }
         }
 

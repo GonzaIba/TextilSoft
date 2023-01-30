@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Tools.ExtensionsControls;
 
 namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
 {
@@ -42,7 +43,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                 if (Cliente is null)
                 {
                     MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");
-                    txtDNI.Text = "";
+                    txtDNI.LimpiarTextbox();
                 }
                 else
                 {
@@ -55,11 +56,11 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             }
             else
             {
-                txtNombre.Text = "";
-                txtResidencia.Text = "";
-                txtApellido.Text = "";
-                txtMail.Text = "";
-                txtTelefono.Text = "";
+                txtNombre.LimpiarTextbox();
+                txtResidencia.LimpiarTextbox();
+                txtApellido.LimpiarTextbox();
+                txtMail.LimpiarTextbox();
+                txtTelefono.LimpiarTextbox();
             }
         }
 
@@ -77,7 +78,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                 if (Producto is null)
                 {
                     MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");
-                    txtDNI.Text = "";
+                    txtDNI.LimpiarTextbox();
                 }
                 else
                 {

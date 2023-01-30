@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.PanelProveedores = new System.Windows.Forms.Panel();
             this.GrillaPedidos = new System.Windows.Forms.DataGridView();
+            this.lblPedidos = new System.Windows.Forms.Label();
+            this.lblDateDesde = new System.Windows.Forms.Label();
+            this.lblDateHasta = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.GrillaPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,50 +57,88 @@
             this.GrillaPedidos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.GrillaPedidos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.GrillaPedidos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrillaPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GrillaPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.GrillaPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.GrillaPedidos.EnableHeadersVisualStyles = false;
             this.GrillaPedidos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.GrillaPedidos.Location = new System.Drawing.Point(4, 125);
             this.GrillaPedidos.Name = "GrillaPedidos";
+            this.GrillaPedidos.ReadOnly = true;
             this.GrillaPedidos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrillaPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.GrillaPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.GrillaPedidos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
-            this.GrillaPedidos.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
+            this.GrillaPedidos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.GrillaPedidos.RowTemplate.Height = 25;
-            this.GrillaPedidos.Size = new System.Drawing.Size(812, 285);
+            this.GrillaPedidos.Size = new System.Drawing.Size(876, 285);
             this.GrillaPedidos.TabIndex = 4;
+            // 
+            // lblPedidos
+            // 
+            this.lblPedidos.AutoSize = true;
+            this.lblPedidos.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPedidos.ForeColor = System.Drawing.Color.White;
+            this.lblPedidos.Location = new System.Drawing.Point(333, 21);
+            this.lblPedidos.Name = "lblPedidos";
+            this.lblPedidos.Size = new System.Drawing.Size(187, 32);
+            this.lblPedidos.TabIndex = 5;
+            this.lblPedidos.Text = "Lista de pedidos";
+            // 
+            // lblDateDesde
+            // 
+            this.lblDateDesde.AutoSize = true;
+            this.lblDateDesde.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDateDesde.ForeColor = System.Drawing.Color.White;
+            this.lblDateDesde.Location = new System.Drawing.Point(80, 99);
+            this.lblDateDesde.Name = "lblDateDesde";
+            this.lblDateDesde.Size = new System.Drawing.Size(64, 25);
+            this.lblDateDesde.TabIndex = 6;
+            this.lblDateDesde.Text = "Desde";
+            // 
+            // lblDateHasta
+            // 
+            this.lblDateHasta.AutoSize = true;
+            this.lblDateHasta.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblDateHasta.ForeColor = System.Drawing.Color.White;
+            this.lblDateHasta.Location = new System.Drawing.Point(310, 99);
+            this.lblDateHasta.Name = "lblDateHasta";
+            this.lblDateHasta.Size = new System.Drawing.Size(59, 25);
+            this.lblDateHasta.TabIndex = 8;
+            this.lblDateHasta.Text = "Hasta";
             // 
             // FmListarPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(826, 450);
+            this.ClientSize = new System.Drawing.Size(892, 522);
+            this.Controls.Add(this.lblDateHasta);
+            this.Controls.Add(this.lblDateDesde);
+            this.Controls.Add(this.lblPedidos);
             this.Controls.Add(this.GrillaPedidos);
             this.Name = "FmListarPedidos";
             this.Text = "FmListarPedidos";
             this.Load += new System.EventHandler(this.FmListarPedidos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.GrillaPedidos)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -105,5 +146,8 @@
 
         private System.Windows.Forms.Panel PanelProveedores;
         private System.Windows.Forms.DataGridView GrillaPedidos;
+        private System.Windows.Forms.Label lblPedidos;
+        private System.Windows.Forms.Label lblDateDesde;
+        private System.Windows.Forms.Label lblDateHasta;
     }
 }

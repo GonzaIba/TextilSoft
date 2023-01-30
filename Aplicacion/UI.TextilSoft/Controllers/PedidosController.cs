@@ -19,13 +19,13 @@ namespace UI.TextilSoft.Controllers
             _pedidosService = pedidosService;
             _mapper = mapper;
         }
-        public List<PedidosEntity> ObtenerPedidos()
+        public List<ListarPedidosEntity> ObtenerPedidos()
         {
-            var ListaPedidosModel = _pedidosService.Get().ToList();
-            var ListaPedidosEntity = new List<PedidosEntity>();
+            var ListaPedidosModel = _pedidosService.Get(includeProperties:"Empleados,Clientes").ToList();
+            var ListaPedidosEntity = new List<ListarPedidosEntity>();
             foreach (var item in ListaPedidosModel)
             {
-                ListaPedidosEntity.Add(_mapper.Map<PedidosEntity>(item));
+                ListaPedidosEntity.Add(_mapper.Map<ListarPedidosEntity>(item));
             }
             return ListaPedidosEntity;
         }
