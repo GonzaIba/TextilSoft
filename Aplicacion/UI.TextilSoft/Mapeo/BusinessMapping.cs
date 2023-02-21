@@ -30,6 +30,14 @@ namespace UI.TextilSoft.Mapeo
                 .ForMember(x => x.Cliente, opt => opt.MapFrom(src => src.Clientes.Nombre + " " + src.Clientes.Apellido))
                 .ReverseMap();
 
+            //CreateMap<PedidosModel, ListarPedidosEntity>()
+            //    .ForMember(x => x.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
+            //    .ReverseMap();
+
+            //CreateMap<ListarPedidosEntity, PedidosModel>()
+            //    .ForMember(x => x.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido)))
+            //    .ReverseMap();
+
             //map Expression<Func<PedidosModel, bool>> to Expression<Func<PedidosModel, bool>>>
             //CreateMap<Expression<Func<PedidosModel, bool>>, Expression<Func<ListarPedidosEntity, bool>>>()
             //    .ConvertUsing<ExpressionConverter<PedidosModel, ListarPedidosEntity>>();

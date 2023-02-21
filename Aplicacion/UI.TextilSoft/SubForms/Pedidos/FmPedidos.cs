@@ -76,7 +76,7 @@ namespace UI.TextilSoft.SubForms.Pedidos
 
         private void btnAdministrarPedido_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmAdministrarPedido());
+            AbrirFormHija(new FmAdministrarPedido(_pedidosController,_clientesController));
         }
 
         private void btnCrearPedido_Click_1(object sender, EventArgs e)

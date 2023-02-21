@@ -1,4 +1,6 @@
-﻿using FontAwesome.Sharp;
+﻿using Contracts.Controllers;
+using Domain.Enum;
+using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
 {
@@ -18,9 +21,15 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         private bool txtDniCliChecked, txtNOChecked;
         private int StartHeightPanels = 0, CountHeightPanels = 1, MaxHeightPanels = 50;
         private bool StatusLoadFinished;
-        public FmAdministrarPedido()
+        private IClientesController _clientesController;
+        private IPedidosController _pedidosController;
+        private EstadoPedidosEnum EstadoDelPedido;
+        
+        public FmAdministrarPedido(IPedidosController pedidosController, IClientesController clientesController)
         {
             InitializeComponent();
+            _pedidosController = pedidosController;
+            _clientesController = clientesController;
         }
 
         private void FmAdministrarPedido_Load(object sender, EventArgs e)
@@ -80,6 +89,20 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         private void btnVerEstado_Click(object sender, EventArgs e)
         {
             tmLbl.Start();
+            //Validate if exist client
+            var cliente = _clientesController.ObtenerCliente(txtDNIcli.Text);
+            if (cliente != null)
+            {
+                var Pedido =_pedidosController.ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente);
+                EstadoDelPedido = Pedido.EstadoPedido;
+                ValidarEstadoDelPedido();
+            }
+            else
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de existencia", "El cliente no existe", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
         }
 
         private void txtNO_TextChanged(object sender, EventArgs e)
@@ -124,103 +147,89 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
                 btnVerEstado.Enabled = false;
         }
 
+        private void ValidarEstadoDelPedido()
+        {
+            if(EstadoDelPedido == EstadoPedidosEnum.SinAsignar)
+            {
+                IbEP.IconChar = IconChar.Circle;
+                IbED.IconChar = IconChar.Circle;
+                IbE.IconChar = IconChar.Circle;              
+            }
+            else if (EstadoDelPedido == EstadoPedidosEnum.EnProducción)
+            {
+                IbED.IconChar = IconChar.Circle;
+                IbE.IconChar = IconChar.Circle;
+            }
+            else if (EstadoDelPedido == EstadoPedidosEnum.EnDepósito)
+            {
+                IbE.IconChar = IconChar.Circle;
+            }
+        }
+
         #region timers
         private void tmLbl_Tick(object sender, EventArgs e)
         {
-            if (x >= 387 && pnlSA.Size.Height >= MaxHeightPanels)
-            {
-                x = 200;
-                CountHeightPanels = 1;
-                tmLbl.Stop();
-                tmLblEP.Start();
-            }
-            else if (x >= 387 && pnlSA.Size.Height <= MaxHeightPanels)
-            {
-                CountHeightPanels++;
-                pnlSA.Size = new Size(pnlSA.Size.Width, CountHeightPanels);
-                this.Refresh();
-            }
-            else
-            {
-                FadeIn(lblEstadoSA, targetColorWhite);
-                FadeIn(IbSA, targetColorLimeGreen);
-                lblEstadoSA.SetBounds(x, ySA, 1, 1);
-                this.Refresh();
-                x += xCount;
-                CountHeightPanels++;
-                pnlSA.Size = new Size(pnlSA.Size.Width, CountHeightPanels);
-                
-            }
+            ExecuteTimer(tmLbl, tmLblEP, lblEstadoSA, targetColorWhite, targetColorLimeGreen,ySA, pnlSA,IbSA);
         }
 
         private void tmLblEP_Tick(object sender, EventArgs e)
         {
-            if (x >= 387 && pnlEP.Size.Height >= MaxHeightPanels)
-            {
-                x = 200;
-                CountHeightPanels = 1;
-                tmLblEP.Stop();
-                tmLblED.Start();
-            }
-            else if (x >= 387 && pnlEP.Size.Height <= MaxHeightPanels)
-            {
-                CountHeightPanels++;
-                pnlEP.Size = new Size(pnlEP.Size.Width, CountHeightPanels);
-                this.Refresh();
-            }
-            else
-            {
-                FadeIn(lblEstadoEP, targetColorWhite);
-                FadeIn(IbEP, targetColorLimeGreen);
-                lblEstadoEP.SetBounds(x, yEP, 1, 1);
-                this.Refresh();
-                x += xCount;
-                CountHeightPanels++;
-                pnlEP.Size = new Size(pnlEP.Size.Width, CountHeightPanels);
-            }
+            ExecuteTimer(tmLblEP, tmLblED, lblEstadoEP, targetColorWhite, targetColorLimeGreen, yEP, pnlEP, IbEP);
         }
 
         private void tmLblED_Tick(object sender, EventArgs e)
         {
-
-            if (x >= 387 && pnlED.Size.Height >= MaxHeightPanels)
-            {
-                x = 200;
-                CountHeightPanels = 1;
-                tmLblED.Stop();
-                tmLblE.Start();
-            }
-            else if (x >= 387 && pnlED.Size.Height <= MaxHeightPanels)
-            {
-                CountHeightPanels++;
-                pnlED.Size = new Size(pnlED.Size.Width, CountHeightPanels);
-                this.Refresh();
-            }
-            else
-            {
-                FadeIn(lblEstadoED, targetColorWhite);
-                FadeIn(IbED, targetColorLimeGreen);
-                lblEstadoED.SetBounds(x, yED, 1, 1);
-                this.Refresh();
-                x += xCount;
-                CountHeightPanels++;
-                pnlED.Size = new Size(pnlED.Size.Width, CountHeightPanels);
-            }
+            ExecuteTimer(tmLblED, tmLblE, lblEstadoED, targetColorWhite, targetColorLimeGreen, yED, pnlED, IbED);
         }
 
         private void tmLblE_Tick(object sender, EventArgs e)
         {
-            FadeIn(lblEstadoE, targetColorWhite);
-            FadeIn(IbE, targetColorLimeGreen);
-            lblEstadoE.SetBounds(x, yE, 1, 1);
-            this.Refresh();
-            x += xCount;
-            if (x >= 387)
+            ExecuteTimer(tmLblE, tmLblE, lblEstadoE, targetColorWhite, targetColorLimeGreen, yE, null, IbE);
+        }
+        
+        private void ExecuteTimer(Timer actualTimer,Timer nextTimer,Label labelEstado, int[] targetColorLabel, int[] targetColorIconButton,int Y,Panel panel, IconButton iconButton)
+        {
+            if(panel is null) //Significa que es el último timer
             {
-                x = 200;
-                StatusLoadFinished = true;
-                tmLblE.Stop();
+                FadeIn(labelEstado, targetColorLabel);
+                FadeIn(iconButton, targetColorIconButton);
+                labelEstado.SetBounds(x, Y, 1, 1);
+                this.Refresh();
+                x += xCount;
+                if (x >= 387)
+                {
+                    x = 200;
+                    StatusLoadFinished = true;
+                    actualTimer.Stop();
+                }
             }
+            else
+            {
+                if (x >= 387 && panel.Size.Height >= MaxHeightPanels)
+                {
+                    x = 200;
+                    CountHeightPanels = 1;
+                    actualTimer.Stop();
+                    nextTimer.Start();
+                }
+                else if (x >= 387 && panel.Size.Height <= MaxHeightPanels)
+                {
+                    CountHeightPanels++;
+                    panel.Size = new Size(panel.Size.Width, CountHeightPanels);
+                    this.Refresh();
+                }
+                else
+                {
+                    FadeIn(labelEstado, targetColorLabel);
+                    FadeIn(iconButton, targetColorIconButton);
+                    labelEstado.SetBounds(x, Y, 1, 1);
+                    this.Refresh();
+                    x += xCount;
+                    CountHeightPanels++;
+                    panel.Size = new Size(panel.Size.Width, CountHeightPanels);
+                }
+            }
+
         }
         #endregion
         

@@ -52,14 +52,14 @@ namespace Infrastructure
         {
             modelBuilder.Ignore<GenericEntity>(); //Ignoramos la entidad generica para que no se guarde en la bdd
 
-
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.ApplyConfigurationsFromAssembly(GetType().Assembly)
                         .SetPropertyDefaultSqlValue("CreateDate", "getdate()")
                         .SetPropertyDefaultValue<bool>("Active", true)
-                        .SetPropertyQueryFilter("Active", true)
-                        .ConfigureGenericProperties();
+                        .SetPropertyQueryFilter("Active", true);
+                        //.ConfigureGenericProperties();
+
+            base.OnModelCreating(modelBuilder);
+
 
             //base.OnConfiguring(modelBuilder);//Aca podemos configurar el warning (por ej) de ef
 

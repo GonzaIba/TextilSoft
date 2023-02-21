@@ -29,6 +29,23 @@ namespace UI.TextilSoft.Controllers
             _empleadosService = empleadosService;
             _mapper = mapper;
         }
+
+        public ListarPedidosEntity ObtenerPedido(int Numeropedido, ClientesEntity clienteEntity)
+        {
+            ListarPedidosEntity pedidoEntity = new();
+            try
+            {
+                var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI)).FirstOrDefault();
+                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == Numeropedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties:"EstadoPedido").FirstOrDefault();
+                pedidoEntity = _mapper.Map<ListarPedidosEntity>(pedidoModel);
+                return pedidoEntity;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<ListarPedidosEntity> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<ListarPedidosEntity, bool>> filterExpression, string orderBy, bool ascending)
         {
             //Expression<Func<ListarPedidosEntity, dynamic>> orderByExpression = orderBy switch

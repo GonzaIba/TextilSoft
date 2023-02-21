@@ -115,10 +115,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             // 
             // btnVerEstado
             // 
-            this.btnVerEstado.BackColor = System.Drawing.Color.Transparent;
+            this.btnVerEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.btnVerEstado.FlatAppearance.BorderSize = 0;
             this.btnVerEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerEstado.ForeColor = System.Drawing.Color.Transparent;
+            this.btnVerEstado.ForeColor = System.Drawing.Color.White;
             this.btnVerEstado.IconChar = FontAwesome.Sharp.IconChar.MoneyCheck;
             this.btnVerEstado.IconColor = System.Drawing.Color.White;
             this.btnVerEstado.IconFont = FontAwesome.Sharp.IconFont.Auto;

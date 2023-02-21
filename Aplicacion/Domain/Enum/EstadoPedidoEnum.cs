@@ -8,8 +8,10 @@ namespace Domain.Enum
 {
     public enum EstadoPedidosEnum
     {
-        EnProduccion = 0,
-        Entregado
-            
+        SinAsignar = 1,
+        EnProducción,
+        EnDepósito,
+        Entregado,
+        Cancelado
     }
 }

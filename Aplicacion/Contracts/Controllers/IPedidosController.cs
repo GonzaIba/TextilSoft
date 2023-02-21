@@ -12,5 +12,6 @@ namespace Contracts.Controllers
     public interface IPedidosController
     {
         public List<ListarPedidosEntity> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<ListarPedidosEntity, bool>> filterExpression, string orderBy, bool ascending);
+        public ListarPedidosEntity ObtenerPedido(int NumeroOrden, ClientesEntity clienteEntity);
     }
 }
