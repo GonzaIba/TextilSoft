@@ -1,6 +1,7 @@
 ﻿using Contracts.Entities;
 using Contracts.Repositories;
 using Domain.Enum;
+using Domain.GenericEntity;
 using Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -163,6 +164,64 @@ namespace Infrastructure.Repositories
         {
             var result = Get(x => x.Active == false, null,includeProperties);
             return result;
+        }
+
+        public virtual PaginatedList<T> GetPagedElements<S>(int pageIndex, int pageCount,
+            Expression<Func<T, S>> orderByExpression, bool ascending,
+            Expression<Func<T, bool>> filter = null, string includeProperties = "")
+        {
+            //Verificar los argumentos para esta consulta
+            if (pageIndex < 0)
+            {
+                throw new ArgumentException(
+                    //Resources.Messages.exception_InvalidPageIndex,
+                    "pageIndex");
+            }
+
+            if (pageCount <= 0)
+            {
+                throw new ArgumentException(
+                    //Resources.Messages.exception_InvalidPageCount,
+                    "pageCount");
+            }
+
+            if (orderByExpression == null)
+            {
+                throw new ArgumentNullException(nameof(orderByExpression)
+                        //, Resources.Messages.exception_OrderByExpressionCannotBeNull
+                        );
+            }
+
+            IQueryable<T> query = this.Entities;
+
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (!String.IsNullOrEmpty(includeProperties))
+            {
+                foreach (string includeProperty in includeProperties.Split
+                    (new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProperty);
+                }
+            }
+
+            return new PaginatedList<T>
+            {
+                TotalCount = query.Count(),
+                TotalPages = (int)Math.Ceiling(query.Count() / (double)pageCount),
+                List = (ascending)
+                            ?
+                        query.OrderBy(orderByExpression)
+                            .Skip((pageIndex - 1) * pageCount)
+                            .Take(pageCount)
+                            :
+                        query.OrderByDescending(orderByExpression)
+                            .Skip((pageIndex - 1) * pageCount)
+                            .Take(pageCount)
+            };
         }
 
         public virtual void CancelChanges(T entity)

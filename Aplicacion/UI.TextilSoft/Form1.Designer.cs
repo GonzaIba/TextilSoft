@@ -43,6 +43,7 @@ namespace UI.TextilSoft
             this.button6 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button7 = new System.Windows.Forms.Button();
+            this.fmDateTime1 = new UI.TextilSoft.Tools.FormsTools.FmDateTime();
             ((System.ComponentModel.ISupportInitialize)(this.TablaTest)).BeginInit();
             this.SuspendLayout();
             // 
@@ -170,11 +171,25 @@ namespace UI.TextilSoft
             this.button7.UseVisualStyleBackColor = true;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
+            // fmDateTime1
+            // 
+            this.fmDateTime1.BorderColor = System.Drawing.Color.PaleVioletRed;
+            this.fmDateTime1.BorderSize = 0;
+            this.fmDateTime1.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.fmDateTime1.Location = new System.Drawing.Point(161, 24);
+            this.fmDateTime1.MinimumSize = new System.Drawing.Size(0, 35);
+            this.fmDateTime1.Name = "fmDateTime1";
+            this.fmDateTime1.Size = new System.Drawing.Size(220, 35);
+            this.fmDateTime1.SkinColor = System.Drawing.Color.MediumSlateBlue;
+            this.fmDateTime1.TabIndex = 14;
+            this.fmDateTime1.TextColor = System.Drawing.Color.White;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.fmDateTime1);
             this.Controls.Add(this.button7);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.button6);
@@ -216,6 +231,7 @@ namespace UI.TextilSoft
         private System.Windows.Forms.Button button6;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button button7;
+        private Tools.FormsTools.FmDateTime fmDateTime1;
     }
 }
 

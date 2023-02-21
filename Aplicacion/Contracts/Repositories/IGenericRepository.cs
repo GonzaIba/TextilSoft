@@ -1,4 +1,5 @@
-﻿using Domain.Models;
+﻿using Domain.GenericEntity;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -75,6 +76,10 @@ namespace Contracts.Repositories
             Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null,
             string includeProperties = "",
             bool ignoreQueryFilters = false);
+
+        PaginatedList<T> GetPagedElements<S>(int pageIndex, int pageCount,
+            Expression<Func<T, S>> orderByExpression, bool ascending,
+            Expression<Func<T, bool>> filter = null, string includeProperties = "");
 
         IEnumerable<T> GetDeleted(string includeProperties = "");
 

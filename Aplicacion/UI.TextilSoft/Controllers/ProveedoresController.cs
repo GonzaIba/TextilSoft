@@ -147,9 +147,7 @@ namespace UI.TextilSoft.Controllers
                     var ProveedorDTO = _proveedoresService.Get(x => x.DNI == Proveedor.DNI, tracking: false).FirstOrDefault();
                     var ProveedorEntityMapeado = _mapper.Map<ProveedoresEntity>(ProveedorDTO);
                     if (!(Proveedor.DNI == ProveedorEntityMapeado.DNI && Proveedor.FechaNac == ProveedorEntityMapeado.FechaNac && Proveedor.LugarEmpresa == ProveedorEntityMapeado.LugarEmpresa && Proveedor.Nombre == ProveedorEntityMapeado.Nombre && Proveedor.Mail == ProveedorEntityMapeado.Mail))
-                    {
                         listaProveedoresAcambiar.Add(Proveedor);
-                    }
                 }
                 return listaProveedoresAcambiar;
             }
@@ -165,7 +163,6 @@ namespace UI.TextilSoft.Controllers
             try
             {
                 var ProveedorDTO1 = _proveedoresService.Get(x => x.DNI == DNI).FirstOrDefault();
-                //_proveedoresService.CrearFactura(ProveedorDTO1);
                 var ProveedoresEntity = _mapper.Map<ProveedoresEntity>(ProveedorDTO1);
                 return ProveedoresEntity;
             }

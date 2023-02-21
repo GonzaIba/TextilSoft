@@ -12,9 +12,9 @@ namespace Domain.Entities
     {
         public int ID_Pedido { get; set; }
         public int NumeroPedido { get; set; }
-        public decimal TotalPago { get; set; }
-        public DateTime Fecha { get; set; }
-        public decimal Seña { get; set; }
+        public Nullable<decimal> TotalPago { get; set; }
+        public Nullable<DateTime> Fecha { get; set; }
+        public Nullable<decimal> Seña { get; set; }
         public string Cliente { get; set; }
         //public Guid ID_Empleados { get; set; }
         public EstadoPedidosEnum EstadoPedido { get; set; }

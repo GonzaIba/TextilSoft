@@ -30,7 +30,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            AnimatorNS.Animation animation5 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation2 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmPedidos));
             this.lblPrincipal = new System.Windows.Forms.Label();
             this.panelContenedor = new System.Windows.Forms.Panel();
@@ -38,9 +38,9 @@
             this.btnCrearPedido = new FontAwesome.Sharp.IconButton();
             this.PanelAnimator = new AnimatorNS.Animator(this.components);
             this.panelTop = new System.Windows.Forms.Panel();
-            this.btnCancelarPedido = new FontAwesome.Sharp.IconButton();
-            this.btnListarPedidos = new FontAwesome.Sharp.IconButton();
             this.btnPresupuesto = new FontAwesome.Sharp.IconButton();
+            this.btnListarPedidos = new FontAwesome.Sharp.IconButton();
+            this.btnCancelarPedido = new FontAwesome.Sharp.IconButton();
             this.panelTop.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -109,22 +109,22 @@
             // 
             this.PanelAnimator.AnimationType = AnimatorNS.AnimationType.VertBlind;
             this.PanelAnimator.Cursor = null;
-            animation5.AnimateOnlyDifferences = true;
-            animation5.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.BlindCoeff")));
-            animation5.LeafCoeff = 0F;
-            animation5.MaxTime = 1F;
-            animation5.MinTime = 0F;
-            animation5.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicCoeff")));
-            animation5.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation5.MosaicShift")));
-            animation5.MosaicSize = 0;
-            animation5.Padding = new System.Windows.Forms.Padding(0);
-            animation5.RotateCoeff = 0F;
-            animation5.RotateLimit = 0F;
-            animation5.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.ScaleCoeff")));
-            animation5.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation5.SlideCoeff")));
-            animation5.TimeCoeff = 0F;
-            animation5.TransparencyCoeff = 0F;
-            this.PanelAnimator.DefaultAnimation = animation5;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.BlindCoeff")));
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicCoeff")));
+            animation2.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation2.MosaicShift")));
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.ScaleCoeff")));
+            animation2.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation2.SlideCoeff")));
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            this.PanelAnimator.DefaultAnimation = animation2;
             this.PanelAnimator.TimeStep = 0.01F;
             // 
             // panelTop
@@ -141,43 +141,6 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(800, 120);
             this.panelTop.TabIndex = 7;
-            // 
-            // btnCancelarPedido
-            // 
-            this.PanelAnimator.SetDecoration(this.btnCancelarPedido, AnimatorNS.DecorationType.None);
-            this.btnCancelarPedido.FlatAppearance.BorderSize = 0;
-            this.btnCancelarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelarPedido.ForeColor = System.Drawing.Color.White;
-            this.btnCancelarPedido.IconChar = FontAwesome.Sharp.IconChar.Ban;
-            this.btnCancelarPedido.IconColor = System.Drawing.Color.White;
-            this.btnCancelarPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCancelarPedido.IconSize = 35;
-            this.btnCancelarPedido.Location = new System.Drawing.Point(313, 74);
-            this.btnCancelarPedido.Name = "btnCancelarPedido";
-            this.btnCancelarPedido.Size = new System.Drawing.Size(150, 46);
-            this.btnCancelarPedido.TabIndex = 7;
-            this.btnCancelarPedido.Text = "Cancelar Pedido";
-            this.btnCancelarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCancelarPedido.UseVisualStyleBackColor = true;
-            // 
-            // btnListarPedidos
-            // 
-            this.PanelAnimator.SetDecoration(this.btnListarPedidos, AnimatorNS.DecorationType.None);
-            this.btnListarPedidos.FlatAppearance.BorderSize = 0;
-            this.btnListarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnListarPedidos.ForeColor = System.Drawing.Color.White;
-            this.btnListarPedidos.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
-            this.btnListarPedidos.IconColor = System.Drawing.Color.White;
-            this.btnListarPedidos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnListarPedidos.IconSize = 35;
-            this.btnListarPedidos.Location = new System.Drawing.Point(469, 74);
-            this.btnListarPedidos.Name = "btnListarPedidos";
-            this.btnListarPedidos.Size = new System.Drawing.Size(150, 46);
-            this.btnListarPedidos.TabIndex = 8;
-            this.btnListarPedidos.Text = "Listar Pedidos";
-            this.btnListarPedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnListarPedidos.UseVisualStyleBackColor = true;
-            this.btnListarPedidos.Click += new System.EventHandler(this.btnListarPedidos_Click);
             // 
             // btnPresupuesto
             // 
@@ -197,6 +160,44 @@
             this.btnPresupuesto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPresupuesto.UseVisualStyleBackColor = true;
             this.btnPresupuesto.Click += new System.EventHandler(this.btnPresupuesto_Click);
+            // 
+            // btnListarPedidos
+            // 
+            this.PanelAnimator.SetDecoration(this.btnListarPedidos, AnimatorNS.DecorationType.None);
+            this.btnListarPedidos.FlatAppearance.BorderSize = 0;
+            this.btnListarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnListarPedidos.ForeColor = System.Drawing.Color.White;
+            this.btnListarPedidos.IconChar = FontAwesome.Sharp.IconChar.ListAlt;
+            this.btnListarPedidos.IconColor = System.Drawing.Color.White;
+            this.btnListarPedidos.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnListarPedidos.IconSize = 35;
+            this.btnListarPedidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnListarPedidos.Location = new System.Drawing.Point(469, 74);
+            this.btnListarPedidos.Name = "btnListarPedidos";
+            this.btnListarPedidos.Size = new System.Drawing.Size(150, 46);
+            this.btnListarPedidos.TabIndex = 8;
+            this.btnListarPedidos.Text = "Listar Pedidos";
+            this.btnListarPedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnListarPedidos.UseVisualStyleBackColor = true;
+            this.btnListarPedidos.Click += new System.EventHandler(this.btnListarPedidos_Click);
+            // 
+            // btnCancelarPedido
+            // 
+            this.PanelAnimator.SetDecoration(this.btnCancelarPedido, AnimatorNS.DecorationType.None);
+            this.btnCancelarPedido.FlatAppearance.BorderSize = 0;
+            this.btnCancelarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelarPedido.ForeColor = System.Drawing.Color.White;
+            this.btnCancelarPedido.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            this.btnCancelarPedido.IconColor = System.Drawing.Color.White;
+            this.btnCancelarPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCancelarPedido.IconSize = 35;
+            this.btnCancelarPedido.Location = new System.Drawing.Point(313, 74);
+            this.btnCancelarPedido.Name = "btnCancelarPedido";
+            this.btnCancelarPedido.Size = new System.Drawing.Size(150, 46);
+            this.btnCancelarPedido.TabIndex = 7;
+            this.btnCancelarPedido.Text = "Cancelar Pedido";
+            this.btnCancelarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCancelarPedido.UseVisualStyleBackColor = true;
             // 
             // FmPedidos
             // 
