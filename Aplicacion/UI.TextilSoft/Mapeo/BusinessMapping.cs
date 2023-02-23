@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
+using AutoMapper.Internal;
 using Domain.Entities;
 using Domain.Enum;
+using Domain.GenericEntity;
 using Domain.Models;
 using SL.Domain.Enums;
 using System;
@@ -29,6 +31,15 @@ namespace UI.TextilSoft.Mapeo
                 .ForMember(x => x.AtendidoPor, opt => opt.MapFrom(src => src.Empleados.Nombre + " " + src.Empleados.Apellido))
                 .ForMember(x => x.Cliente, opt => opt.MapFrom(src => src.Clientes.Nombre + " " + src.Clientes.Apellido))
                 .ReverseMap();
+
+            //CreateMap<List<PedidosModel>, List<ListarPedidosEntity>>()
+            //    .ReverseMap();
+
+            //CreateMap<PaginatedList<PedidosModel>, PaginatedList<ListarPedidosEntity>> ()
+            //    .ForMember(x => x.TotalPages, opt => opt.MapFrom(src => src.TotalPages))
+            //    .ForMember(x => x.TotalCount, opt => opt.MapFrom(src => src.TotalPages))
+            //    .ForMember(x => x.List.ForAll(x => x.EstadoPedido = ConvertToEstadoPedido(x.EstadoPedido.ID_EstadoPedido)))
+            //    .ReverseMap();
 
             //CreateMap<PedidosModel, ListarPedidosEntity>()
             //    .ForMember(x => x.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))

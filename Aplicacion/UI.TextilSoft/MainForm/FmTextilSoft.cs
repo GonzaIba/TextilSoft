@@ -25,7 +25,7 @@ using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
-    public partial class FmTextilSoft : Form
+    public partial class FmTextilSoft : FmForm
     {
         #region Variables
         private Form activeForm = null;
@@ -627,6 +627,11 @@ namespace UI.TextilSoft.MainForm
         private void toolStrip1_RendererChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void panelContenedor_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.Control_MouseDown(sender, e);
         }
 
         private void FmTextilSoft_FormClosing(object sender, FormClosingEventArgs e)

@@ -111,6 +111,7 @@ namespace UI.TextilSoft.MainForm
             this.lblLogin.Size = new System.Drawing.Size(126, 28);
             this.lblLogin.TabIndex = 3;
             this.lblLogin.Text = "Iniciar Sesión";
+            this.lblLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // pnlUp
             // 
@@ -121,6 +122,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlUp.Name = "pnlUp";
             this.pnlUp.Size = new System.Drawing.Size(977, 52);
             this.pnlUp.TabIndex = 4;
+            this.pnlUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // pnlCompanyLogo
             // 
@@ -134,6 +136,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlCompanyLogo.Name = "pnlCompanyLogo";
             this.pnlCompanyLogo.Size = new System.Drawing.Size(255, 504);
             this.pnlCompanyLogo.TabIndex = 5;
+            this.pnlCompanyLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // lblCompanyName
             // 
@@ -146,6 +149,7 @@ namespace UI.TextilSoft.MainForm
             this.lblCompanyName.Size = new System.Drawing.Size(122, 32);
             this.lblCompanyName.TabIndex = 2;
             this.lblCompanyName.Text = "Compañia";
+            this.lblCompanyName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // pnlTimeNow
             // 
@@ -156,6 +160,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlTimeNow.Name = "pnlTimeNow";
             this.pnlTimeNow.Size = new System.Drawing.Size(255, 100);
             this.pnlTimeNow.TabIndex = 1;
+            this.pnlTimeNow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // panel1
             // 
@@ -174,6 +179,7 @@ namespace UI.TextilSoft.MainForm
             this.picCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.picCompanyLogo.TabIndex = 0;
             this.picCompanyLogo.TabStop = false;
+            this.picCompanyLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picCompanyLogo_MouseDown);
             // 
             // pnlLogin
             // 
@@ -203,6 +209,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlLogin.Size = new System.Drawing.Size(977, 556);
             this.pnlLogin.TabIndex = 6;
             this.pnlLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogin_Paint);
+            this.pnlLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // btnBackLogin
             // 
@@ -291,6 +298,7 @@ namespace UI.TextilSoft.MainForm
             this.lblCodigo.Size = new System.Drawing.Size(113, 19);
             this.lblCodigo.TabIndex = 16;
             this.lblCodigo.Text = "Ingrese el código";
+            this.lblCodigo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // lblLoginError
             // 
@@ -304,6 +312,7 @@ namespace UI.TextilSoft.MainForm
             this.lblLoginError.Size = new System.Drawing.Size(208, 19);
             this.lblLoginError.TabIndex = 9;
             this.lblLoginError.Text = "Usuario y/o contraseña inválidos";
+            this.lblLoginError.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // linkLabel2
             // 
@@ -363,6 +372,7 @@ namespace UI.TextilSoft.MainForm
             this.iconPictureBox1.Size = new System.Drawing.Size(64, 64);
             this.iconPictureBox1.TabIndex = 11;
             this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // iconUserName
             // 
@@ -377,6 +387,7 @@ namespace UI.TextilSoft.MainForm
             this.iconUserName.Size = new System.Drawing.Size(64, 64);
             this.iconUserName.TabIndex = 8;
             this.iconUserName.TabStop = false;
+            this.iconUserName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // panel2
             // 
@@ -409,6 +420,7 @@ namespace UI.TextilSoft.MainForm
             this.lblPasswordError.Size = new System.Drawing.Size(130, 19);
             this.lblPasswordError.TabIndex = 8;
             this.lblPasswordError.Text = "Contraseña inválido";
+            this.lblPasswordError.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // panel6
             // 
@@ -458,6 +470,7 @@ namespace UI.TextilSoft.MainForm
             this.label3.Size = new System.Drawing.Size(79, 19);
             this.label3.TabIndex = 9;
             this.label3.Text = "Contraseña";
+            this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // panel4
             // 
@@ -490,6 +503,7 @@ namespace UI.TextilSoft.MainForm
             this.lblUserNameError.Size = new System.Drawing.Size(107, 19);
             this.lblUserNameError.TabIndex = 8;
             this.lblUserNameError.Text = "Usuario inválido";
+            this.lblUserNameError.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // pnlUserNameText
             // 
@@ -522,6 +536,7 @@ namespace UI.TextilSoft.MainForm
             this.lblUsuario.Size = new System.Drawing.Size(56, 19);
             this.lblUsuario.TabIndex = 4;
             this.lblUsuario.Text = "Usuario";
+            this.lblUsuario.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // panelRegresar
             // 
@@ -543,7 +558,7 @@ namespace UI.TextilSoft.MainForm
             animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
             animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
             animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
+            animation1.Padding = new System.Windows.Forms.Padding(0);
             animation1.RotateCoeff = 0F;
             animation1.RotateLimit = 0F;
             animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
@@ -569,6 +584,7 @@ namespace UI.TextilSoft.MainForm
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "FmLogin";
             this.Load += new System.EventHandler(this.FmLogin_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             this.pnlCompanyLogo.ResumeLayout(false);
             this.pnlCompanyLogo.PerformLayout();
             this.pnlTimeNow.ResumeLayout(false);

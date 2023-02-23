@@ -23,7 +23,7 @@ namespace Infrastructure
         //{
 
         //}
-
+        public DbSet<PedidosModel> Pedidos { get; set; }
 
         /// <summary>
         /// 
@@ -60,7 +60,7 @@ namespace Infrastructure
 
             base.OnModelCreating(modelBuilder);
 
-
+            //modelBuilder.Model.
             //base.OnConfiguring(modelBuilder);//Aca podemos configurar el warning (por ej) de ef
 
 

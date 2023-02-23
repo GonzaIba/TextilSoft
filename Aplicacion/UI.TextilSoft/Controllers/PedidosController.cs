@@ -4,6 +4,7 @@ using Business.Services;
 using Contracts.Controllers;
 using Contracts.Services;
 using Domain.Entities;
+using Domain.GenericEntity;
 using Domain.Models;
 using log4net.Core;
 using SL.Helper.Extensions;
@@ -35,8 +36,8 @@ namespace UI.TextilSoft.Controllers
             ListarPedidosEntity pedidoEntity = new();
             try
             {
-                var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI)).FirstOrDefault();
-                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == Numeropedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties:"EstadoPedido").FirstOrDefault();
+                var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI), tracking: false).FirstOrDefault();
+                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == Numeropedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido", tracking: false).FirstOrDefault();
                 pedidoEntity = _mapper.Map<ListarPedidosEntity>(pedidoModel);
                 return pedidoEntity;
             }
@@ -46,7 +47,7 @@ namespace UI.TextilSoft.Controllers
             }
         }
 
-        public List<ListarPedidosEntity> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<ListarPedidosEntity, bool>> filterExpression, string orderBy, bool ascending)
+        public PaginatedList<ListarPedidosEntity> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<ListarPedidosEntity, bool>> filterExpression, string orderBy, bool ascending)
         {
             //Expression<Func<ListarPedidosEntity, dynamic>> orderByExpression = orderBy switch
             //{
@@ -72,8 +73,11 @@ namespace UI.TextilSoft.Controllers
             //var orderByExpressionPedidosModel = orderByExpression.ReplaceParameter<ListarPedidosEntity, PedidosModel>();
             var filterExpressionPedidosModel = filterExpression.ReplaceParameter<ListarPedidosEntity, PedidosModel>();
             var ListaPedidosModel = _pedidosService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, filterExpressionPedidosModel, orderBy, ascending);
-            var ListaPedidosEntity = new List<ListarPedidosEntity>();
-            ListaPedidosModel.List.ToList().ForEach(job => ListaPedidosEntity.Add(_mapper.Map<ListarPedidosEntity>(job)));
+            var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
+            ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
+            ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+            ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+            //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
             return ListaPedidosEntity;
         }
     }

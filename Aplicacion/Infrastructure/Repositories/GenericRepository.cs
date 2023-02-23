@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public abstract class GenericRepository<T> : IGenericRepository<T> where T : class, IGenericEntity
+    public class GenericRepository<T> : IGenericRepository<T> where T : class, IGenericEntity
     {
         #region Fields
         internal ApplicationDbContext _context;
@@ -42,6 +42,14 @@ namespace Infrastructure.Repositories
                 }
                 return _entities;
             }
+        }
+
+        public void UpdateContext()
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
+            this._context = new ApplicationDbContext(optionsBuilder.Options);
+            _entities = null;
+            _entities = _context.Set<T>();
         }
         
         //public EmpleadosEntity UsuarioLogueado

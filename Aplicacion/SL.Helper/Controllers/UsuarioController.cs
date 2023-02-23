@@ -7,6 +7,7 @@ using SL.Domain.Entities;
 using SL.Domain.Enums;
 using SL.Domain.Model;
 using SL.Helper.Configurations;
+using SL.Helper.Services.Log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,6 +60,7 @@ namespace SL.Helper.Controllers
             try
             {
                 var ResultadoLogin = _usuarioService.Login(usuarioLogin);
+                Logger.GenerateInfo($"El usuario {usuarioLogin.Usuario} se logueo correctamente");
                 return ResultadoLogin;
             }
             catch (Exception ex)

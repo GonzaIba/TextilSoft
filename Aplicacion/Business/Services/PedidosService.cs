@@ -26,7 +26,7 @@ namespace Business.Services
             PaginatedList<PedidosModel> ListapedidosModel = new();
             try
             {
-                ListapedidosModel = _repository.GetPagedElements(pageIndex, pageCount, orderByExpression, ascending, filterExpression, "Empleados,Clientes");
+                ListapedidosModel = _repository.GetPagedElements(pageIndex, pageCount, orderByExpression, ascending, filterExpression, "Empleados,Clientes,EstadoPedido");
                 return ListapedidosModel;
             }
             catch (Exception ex)

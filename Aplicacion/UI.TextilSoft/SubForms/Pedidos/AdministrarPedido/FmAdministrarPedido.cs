@@ -61,41 +61,26 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             StatusLoadFinished = false;
         }
 
-        private void DisableStatus()
-        {
-            if (StatusLoadFinished)
-            {
-                lblEstadoSA.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-                lblEstadoEP.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-                lblEstadoED.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-                lblEstadoE.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-                IbSA.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-                IbEP.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-                IbED.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-                IbE.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
-
-                ySA = lblEstadoSA.Location.Y;
-                yEP = lblEstadoEP.Location.Y;
-                yED = lblEstadoED.Location.Y;
-                yE = lblEstadoE.Location.Y;
-
-                pnlSA.Size = new Size(pnlSA.Size.Width, StartHeightPanels);
-                pnlEP.Size = new Size(pnlEP.Size.Width, StartHeightPanels);
-                pnlED.Size = new Size(pnlED.Size.Width, StartHeightPanels);
-                StatusLoadFinished = false;
-            }
-        }
-
         private void btnVerEstado_Click(object sender, EventArgs e)
         {
-            tmLbl.Start();
+            DisableStatus();
             //Validate if exist client
             var cliente = _clientesController.ObtenerCliente(txtDNIcli.Text);
             if (cliente != null)
             {
                 var Pedido =_pedidosController.ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente);
-                EstadoDelPedido = Pedido.EstadoPedido;
-                ValidarEstadoDelPedido();
+                if(Pedido != null)
+                {
+                    tmLbl.Start();
+                    EstadoDelPedido = Pedido.EstadoPedido;
+                    ValidarEstadoDelPedido();
+                }
+                else
+                {
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de existencia", "No existe ningún pedido con este número de orden", centerPosition);
+                    fmMessageBox.ShowDialog();
+                }
             }
             else
             {
@@ -139,6 +124,32 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             ActivatedButton();
         }
 
+        #region Helpers
+        private void DisableStatus()
+        {
+            if (StatusLoadFinished)
+            {
+                lblEstadoSA.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                lblEstadoEP.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                lblEstadoED.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                lblEstadoE.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                IbSA.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                IbEP.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                IbED.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                IbE.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+
+                ySA = lblEstadoSA.Location.Y;
+                yEP = lblEstadoEP.Location.Y;
+                yED = lblEstadoED.Location.Y;
+                yE = lblEstadoE.Location.Y;
+
+                pnlSA.Size = new Size(pnlSA.Size.Width, StartHeightPanels);
+                pnlEP.Size = new Size(pnlEP.Size.Width, StartHeightPanels);
+                pnlED.Size = new Size(pnlED.Size.Width, StartHeightPanels);
+                StatusLoadFinished = false;
+            }
+        }
+
         private void ActivatedButton()
         {
             if (txtDniCliChecked && txtNOChecked)
@@ -165,6 +176,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
                 IbE.IconChar = IconChar.Circle;
             }
         }
+
+        #endregion
 
         #region timers
         private void tmLbl_Tick(object sender, EventArgs e)

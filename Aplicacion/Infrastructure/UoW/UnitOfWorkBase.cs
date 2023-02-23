@@ -11,7 +11,7 @@ namespace Infrastructure.UoW
 {
     public class UnitOfWorkBase : IUnitOfWorkBase
     {
-        public readonly ApplicationDbContext _context;
+        public ApplicationDbContext _context;
 
         public UnitOfWorkBase(ApplicationDbContext context)
         {

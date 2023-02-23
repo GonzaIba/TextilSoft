@@ -1,5 +1,6 @@
 ﻿using Domain.GenericEntity;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -87,8 +88,10 @@ namespace Contracts.Repositories
 
         IQueryable<T> TableNoTracking { get; }
 
+        void UpdateContext();
+
         //void SetUserLogin(EmpleadosModel user);
-        
+
         //EmpleadosModel UsuarioLogueado { get; set; }
     }
 }

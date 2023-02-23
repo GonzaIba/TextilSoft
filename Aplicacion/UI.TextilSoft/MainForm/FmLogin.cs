@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using SL.Contracts;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
@@ -18,6 +19,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Background;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Controllers;
 using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
@@ -26,7 +28,7 @@ using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
-    public partial class FmLogin : Form
+    public partial class FmLogin : FmForm
     {
         #region Inyection
         private int cont = 0;
@@ -47,6 +49,7 @@ namespace UI.TextilSoft.MainForm
         private AuthenticationConfig _authenticationConfig;
         private string EmailCodigo;
         public Form Activeform = null;
+        private TaskResolver _taskResolver;
 
         public FmLogin(IPermisosController permisosController,
                         IUsuarioController userController,
@@ -61,7 +64,8 @@ namespace UI.TextilSoft.MainForm
                         IProductoProveedorController productoProveedorController,
                         IProductosController productosController,
                         IConfiguration configuration,
-                        ICompanyController companyController
+                        ICompanyController companyController,
+                        IServiceProvider serviceProvider
                         )
         {
             InitializeComponent();
@@ -79,13 +83,28 @@ namespace UI.TextilSoft.MainForm
             _configuration = configuration;
             _companyController = companyController;
             _authenticationConfig = _companyController.GetAuthenticationConfig();
-
+            _taskResolver = new TaskResolver(serviceProvider);
+            InitTaskResolver();
 
             _userController = userController;
             _companyController = companyController;
             CheckForIllegalCrossThreadCalls = false;
+
+            Activeform = new FmVacio();
         }
         #endregion
+
+        private async void InitTaskResolver()
+        {
+            await Task.Run(() =>
+            {
+                //Not priority
+                _taskResolver.StartAsync(new CancellationToken());
+
+            }).ContinueWith((t) =>
+            {
+            },TaskScheduler.FromCurrentSynchronizationContext());
+        }
 
         private string txtUserNameTextBase;
         private string txtPasswordTextBase;
@@ -112,7 +131,6 @@ namespace UI.TextilSoft.MainForm
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
             var Result = _userController.LoginUser(login);
-
             Usuario user = new Usuario();
             IList<Componente> flia = null;
             var centerPosition = new Point(this.Width / 2, this.Height / 2);
@@ -302,13 +320,14 @@ namespace UI.TextilSoft.MainForm
         {
             //pnlLogin.Visible = false;
             //pnlLogin.BringToFront();
-            var r = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController);
-            r.ShowDialog();
-            //AbrirFormHija(new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
+            
+            //var r = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController);
+            //r.ShowDialog();
+            AbrirFormHija(new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
         }
         
         #region AbrirForm
-        private void AbrirFormHija(Form formhija)
+        private async void AbrirFormHija(Form formhija)
         {
             if (Activeform != null)
             {
@@ -337,7 +356,6 @@ namespace UI.TextilSoft.MainForm
                 pnlLogin.Controls.Add(formhija);
                 pnlLogin.Tag = formhija;
                 formhija.BringToFront();
-                formhija.Show();
                 if(PerformanceConfiguration.EnabledAnimator)
                     AbrirAnimator();
             }
@@ -583,6 +601,21 @@ namespace UI.TextilSoft.MainForm
         {
             
 
+        }
+
+        private void iconPictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.Control_MouseDown(sender,e);
+        }
+
+        private void lblCompanyName_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.Control_MouseDown(sender, e);
+        }
+
+        private void picCompanyLogo_MouseDown(object sender, MouseEventArgs e)
+        {
+            base.Control_MouseDown(sender, e);
         }
     }
 }

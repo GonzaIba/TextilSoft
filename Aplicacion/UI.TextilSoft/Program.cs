@@ -1,5 +1,8 @@
 using AutoMapper;
+using Contracts.Repositories;
+using Domain.Models;
 using Infrastructure;
+using Infrastructure.Repositories;
 using IoCRegister;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -16,19 +19,23 @@ using SL.Helper.Services.Mapper;
 using SL.Infrastructure;
 using SL.IoC;
 using System;
+using System.Data.Entity;
 using System.IO;
+using System.Security.Policy;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using UI.TextilSoft.Configurations;
+using System.Xml;
+using UI.TextilSoft.Background;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
-using UI.TextilSoft.SubForms.Configuracion.Composite;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace UI.TextilSoft
 {
     static class Program
     {
         public static IConfiguration Configuration;
+        public static IServiceCollection _services;
         private static readonly ILoggerFactory _loggerFactory = LoggerFactory.Create(builder => builder.AddConsole().AddDebug());
 
         /// <summary>
@@ -57,6 +64,9 @@ namespace UI.TextilSoft
             var services = host.Services;
 
             Configuration = services.GetRequiredService<IConfiguration>();
+            var taskresolver = new TaskResolver(services);
+            InitTaskResolver(taskresolver);
+
             //bool UseLoginAndRegister = Convert.ToBoolean(Configuration.GetSection("Application:Security:UseLoginAndRegister").Value);
             int CompanyId = Convert.ToInt32(Configuration.GetSection("CompanyConfiguration:CompanyId").Value);
             string CompanyApiKey = Configuration.GetSection("CompanyConfiguration:CompanyApiKey")?.Value?.ToString() ?? "";
@@ -74,7 +84,17 @@ namespace UI.TextilSoft
             else
                 Application.Exit();
         }
-        
+
+        private static async void InitTaskResolver(TaskResolver taskResolver)
+        {
+            await Task.Run(async () =>
+            {
+                //Not priority
+                await taskResolver.StartAsync(new CancellationToken());
+
+            });
+        }
+
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
 
@@ -82,19 +102,20 @@ namespace UI.TextilSoft
         /// Configuracion de Inyeccion de dependencia
         /// </summary>
         /// <param name="services"></param>
-        private static void ConfigureServices(IServiceCollection services) // Aca configuramos la inyeccion de dependencia
+        public static void ConfigureServices(IServiceCollection services) // Aca configuramos la inyeccion de dependencia
         {
+            _services = services;
             ConfigurationBuild();
             services.AddDbContext<ApplicationDbContext>
             (
                 options => options
                 .UseSqlServer(GetConnectionString(), builder =>
                     builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)) //Al contexto le agrego la conexion de la base de datos
-
                 //En esta parte configuramos el entity framework para ver los querys en consola (IMPORTANTE: desactivarlo en produccion)
                 .EnableSensitiveDataLogging()
-                .UseLoggerFactory(_loggerFactory)
-            );
+                .UseLoggerFactory(_loggerFactory), ServiceLifetime.Transient
+            ); ;
+            
             //Hacemos un singleton a ambas aplicaciones por si desea usar login o no.
             services.AddSingleton<FmLogin>();
             services.AddSingleton<FmTextilSoft>();
@@ -102,6 +123,7 @@ namespace UI.TextilSoft
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
+            services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddAutoMapper(typeof(FmLogin));
             services.AddAutoMapper(typeof(FmTextilSoft));
             var mappingConfig = new MapperConfiguration(mc =>
@@ -119,6 +141,8 @@ namespace UI.TextilSoft
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
             
             AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
+
+            services.AddHostedService<TaskResolver>();
         }
 
 

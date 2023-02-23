@@ -91,8 +91,9 @@ namespace UI.TextilSoft.MainForm
             this.panelBotones.MaximumSize = new System.Drawing.Size(200, 593);
             this.panelBotones.MinimumSize = new System.Drawing.Size(43, 200);
             this.panelBotones.Name = "panelBotones";
-            this.panelBotones.Size = new System.Drawing.Size(200, 511);
+            this.panelBotones.Size = new System.Drawing.Size(200, 550);
             this.panelBotones.TabIndex = 0;
+            this.panelBotones.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelContenedor_MouseDown);
             this.panelBotones.MouseEnter += new System.EventHandler(this.panelBotones_MouseEnter);
             this.panelBotones.MouseLeave += new System.EventHandler(this.panelBotones_MouseLeave);
             // 
@@ -129,6 +130,7 @@ namespace UI.TextilSoft.MainForm
             this.labelBienvenida.Size = new System.Drawing.Size(110, 26);
             this.labelBienvenida.TabIndex = 7;
             this.labelBienvenida.Text = "TextilSoft";
+            this.labelBienvenida.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelContenedor_MouseDown);
             this.labelBienvenida.MouseEnter += new System.EventHandler(this.label1_MouseEnter);
             this.labelBienvenida.MouseLeave += new System.EventHandler(this.labelBienvenida_MouseLeave);
             // 
@@ -329,8 +331,9 @@ namespace UI.TextilSoft.MainForm
             this.panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContenedor.Location = new System.Drawing.Point(200, 0);
             this.panelContenedor.Name = "panelContenedor";
-            this.panelContenedor.Size = new System.Drawing.Size(687, 511);
+            this.panelContenedor.Size = new System.Drawing.Size(762, 550);
             this.panelContenedor.TabIndex = 1;
+            this.panelContenedor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelContenedor_MouseDown);
             // 
             // toolStrip1
             // 
@@ -341,7 +344,7 @@ namespace UI.TextilSoft.MainForm
             this.toolStripLabel1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(687, 26);
+            this.toolStrip1.Size = new System.Drawing.Size(762, 26);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             this.toolStrip1.RendererChanged += new System.EventHandler(this.toolStrip1_RendererChanged);
@@ -354,6 +357,7 @@ namespace UI.TextilSoft.MainForm
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(51, 23);
             this.toolStripLabel1.Text = "Hola";
+            this.toolStripLabel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelContenedor_MouseDown);
             // 
             // timer1
             // 
@@ -398,7 +402,7 @@ namespace UI.TextilSoft.MainForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(887, 511);
+            this.ClientSize = new System.Drawing.Size(962, 550);
             this.Controls.Add(this.panelContenedor);
             this.Controls.Add(this.panelBotones);
             this.PanelAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
