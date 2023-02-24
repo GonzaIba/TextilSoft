@@ -1,4 +1,6 @@
-﻿using Contracts.Controllers;
+﻿using AnimatorNS;
+using Contracts.Controllers;
+using EllipticCurve.Utils;
 using Microsoft.Extensions.Configuration;
 using SL.Contracts;
 using SL.Domain.Entities;
@@ -11,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations;
 using UI.TextilSoft.SubForms.Proveedores;
 
 namespace UI.TextilSoft.MainForm
@@ -56,6 +59,7 @@ namespace UI.TextilSoft.MainForm
                         ICompanyController companyController
                         )
         {
+            CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             _permisoController = permisosController;
             _proveedoresController = proveedoresController;
@@ -75,6 +79,7 @@ namespace UI.TextilSoft.MainForm
             _authenticationConfig = _companyController.GetAuthenticationConfig();
 
             //CheckForIllegalCrossThreadCalls = false;
+            pnlRegistrarse.Visible = false;
 
             if(!_authenticationConfig.PasswordConfig.RequireLowercase)
             {
@@ -100,8 +105,6 @@ namespace UI.TextilSoft.MainForm
             //Execute event MostrarContraseñaCB checked
             MostrarContraseñaCB.Checked = false;
             MostrarContraseñaCB_CheckedChanged(null, null);
-
-
         }
         #endregion
         private void BtnRegistrarse_Click(object sender, EventArgs e)
@@ -122,6 +125,8 @@ namespace UI.TextilSoft.MainForm
                         {
                             _userController.EnviarConfirmacionEmail(register.Email);
                             MessageBox.Show("Se ha enviado un correo de confirmación a su casilla de correo");
+                            pnlRegistrarse.BringToFront();
+                            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
                         }
                         catch (Exception ex)
                         {
@@ -302,6 +307,11 @@ namespace UI.TextilSoft.MainForm
 
                 toolTipError.Show("El nombre de usuario ya existe", txtUsuario, 0, -20, 2000);
             }
+            else if(string.IsNullOrEmpty(txtUsuario.Text))
+            {
+                pnlUsuario.BackColor = Color.Red;
+                UsuarioChecked = false;
+            }
             else
             {
                 pnlUsuario.BackColor = Color.Green;
@@ -320,6 +330,7 @@ namespace UI.TextilSoft.MainForm
             pnlUsuario.BackColor = Color.FromArgb(30, 30, 30);
             pnlPassword.BackColor = Color.FromArgb(30, 30, 30);
             pnlConfirmPassword.BackColor = Color.FromArgb(30, 30, 30);
+            pnlRegistrarse.Visible = false;
         }
 
         private void MostrarContraseñaCB_CheckedChanged(object sender, EventArgs e)
@@ -340,22 +351,14 @@ namespace UI.TextilSoft.MainForm
             }
         }
 
-        private void btnBackLogin_Click(object sender, EventArgs e)
-        {
-            //FmLogin fmLogin = new FmLogin(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController);
-            //fmLogin.Show();
-            this.Close();
-            //pnlRegistrarse.BringToFront();
-            //AbrirFormHija(fmLogin);
-        }
-        private void AbrirFormHija(Form formhija)
+        private async void AbrirFormHija(Form formhija)
         {
             if (Activeform != null)
             {
                 Activeform.Close();
                 Activeform = formhija;
                 formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.BackColor = Color.FromArgb(30, 30, 30);
                 formhija.TopLevel = false;
                 formhija.FormBorderStyle = FormBorderStyle.None;
                 formhija.Dock = DockStyle.Fill;
@@ -363,14 +366,14 @@ namespace UI.TextilSoft.MainForm
                 pnlRegistrarse.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-
-                AbrirAnimator();
+                if (PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
             else
             {
                 Activeform = formhija;
                 formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.BackColor = Color.FromArgb(30, 30, 30);
                 formhija.TopLevel = false;
                 formhija.FormBorderStyle = FormBorderStyle.None;
                 formhija.Dock = DockStyle.Fill;
@@ -378,15 +381,21 @@ namespace UI.TextilSoft.MainForm
                 pnlRegistrarse.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-
-                AbrirAnimator();
+                if (PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
         }
-        private void AbrirAnimator()
+        private async void AbrirAnimator()
         {
             //LogoAnimator.Hide(labelBienvenida);
-            pnlRegistrarse.Visible = false;
-            RegistrarseAnimator.ShowSync(pnlRegistrarse);
+            await Task.Run(() =>
+            {
+                pnlRegistrarse.Visible = false;
+                RegistrarseAnimator.AnimationType = AnimationType.HorizSlide;
+                //Set decoration
+                RegistrarseAnimator.SetDecoration(pnlRegistrarse, DecorationType.BottomMirror);
+                RegistrarseAnimator.ShowSync(pnlRegistrarse);
+            });
         }
 
         private void minimo_MouseClick(object sender, MouseEventArgs e)
@@ -418,6 +427,17 @@ namespace UI.TextilSoft.MainForm
             pnlUsuario.BackColor = Color.FromArgb(30, 30, 30);
             pnlPassword.BackColor = Color.FromArgb(30, 30, 30);
             pnlConfirmPassword.BackColor = Color.FromArgb(30, 30, 30);
+        }
+
+        private void pnlRegistrarse_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void btnBackLogin_Click_1(object sender, EventArgs e)
+        {
+            pnlRegistrarse.BringToFront();
+            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
         }
     }
 }

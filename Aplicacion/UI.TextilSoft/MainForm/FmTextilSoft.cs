@@ -59,7 +59,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IFacturasController _facturasController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
-        private readonly FmLogin _fmLogin;
+        private readonly FmIniciarSesion _fmLogin;
 
         public FmTextilSoft(IUsuarioController usuarioController,
                              IPermisosController permisosController,
@@ -75,7 +75,7 @@ namespace UI.TextilSoft.MainForm
                              IProductosController productosController,
                              IConfiguration configuration,
                              ICompanyController companyController,
-                             FmLogin fmLogin
+                             FmIniciarSesion fmLogin
                              )
         {
             CheckForIllegalCrossThreadCalls = false;

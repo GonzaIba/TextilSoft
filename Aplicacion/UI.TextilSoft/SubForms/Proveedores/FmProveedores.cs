@@ -12,6 +12,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Configurations;
 using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
 using UI.TextilSoft.Tools.RegexPatterns;
 
@@ -462,7 +463,8 @@ namespace UI.TextilSoft.SubForms.Proveedores
                 formhija.BringToFront();
                 formhija.Show();
 
-                AbrirAnimator();
+                if (PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
             else
             {
@@ -477,7 +479,8 @@ namespace UI.TextilSoft.SubForms.Proveedores
                 formhija.BringToFront();
                 formhija.Show();
 
-                AbrirAnimator();
+                if (PerformanceConfiguration.EnabledAnimator)
+                    AbrirAnimator();
             }
         }
 

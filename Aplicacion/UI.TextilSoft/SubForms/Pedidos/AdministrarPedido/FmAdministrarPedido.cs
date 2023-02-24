@@ -1,6 +1,8 @@
 ﻿using Contracts.Controllers;
 using Domain.Enum;
 using FontAwesome.Sharp;
+using LiveCharts.Wpf;
+using LiveCharts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -59,6 +61,39 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             //pnlE.Size = new Size(pnlE.Size.Width, HeightPanels);
 
             StatusLoadFinished = false;
+            // Crear una colección de series para el gráfico de tipo "Pie"
+            SeriesCollection seriesCollection = new SeriesCollection
+            {
+                new PieSeries
+                {
+                    Title = "Valor 1",
+                    Values = new ChartValues<double> {20},
+                    DataLabels = true,
+                },
+                new PieSeries
+                {
+                    Title = "Valor 2",
+                    Values = new ChartValues<double> {30},
+                    DataLabels = true,
+                },
+                new PieSeries
+                {
+                    Title = "Valor 3",
+                    Values = new ChartValues<double> {50},
+                    DataLabels = true,
+                }
+            };
+
+            // Agregar la colección de series al gráfico
+            cartesianChart1.Series = seriesCollection;
+
+            //// Configurar la ubicación de la leyenda
+            //cartesianChart1.LegendLocation = LegendLocation.Right;
+
+            //// Ajustar el tamaño del gráfico
+            //cartesianChart1.Dock = DockStyle.Fill;
+
+
         }
 
         private void btnVerEstado_Click(object sender, EventArgs e)
@@ -142,11 +177,16 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
                 yEP = lblEstadoEP.Location.Y;
                 yED = lblEstadoED.Location.Y;
                 yE = lblEstadoE.Location.Y;
-
+                
                 pnlSA.Size = new Size(pnlSA.Size.Width, StartHeightPanels);
                 pnlEP.Size = new Size(pnlEP.Size.Width, StartHeightPanels);
                 pnlED.Size = new Size(pnlED.Size.Width, StartHeightPanels);
                 StatusLoadFinished = false;
+
+                IbSA.IconChar = IconChar.CheckCircle;
+                IbEP.IconChar = IconChar.CheckCircle;
+                IbED.IconChar = IconChar.CheckCircle;
+                IbE.IconChar = IconChar.CheckCircle;
             }
         }
 
@@ -193,6 +233,11 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         private void tmLblED_Tick(object sender, EventArgs e)
         {
             ExecuteTimer(tmLblED, tmLblE, lblEstadoED, targetColorWhite, targetColorLimeGreen, yED, pnlED, IbED);
+        }
+
+        private void geoMap1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
+        {
+
         }
 
         private void tmLblE_Tick(object sender, EventArgs e)

@@ -75,9 +75,9 @@ namespace UI.TextilSoft
             if (CompanyService.ExistCompany(CompanyId, CompanyApiKey))
             {
                 if (/*UseLoginAndRegister &&*/ CompanyService.CanUseLoginAndRegister(CompanyId))
-                    mainForm = services.GetRequiredService<FmLogin>();
+                    mainForm = services.GetRequiredService<Inicio>();
                 else
-                    mainForm = services.GetRequiredService<FmTextilSoft>();
+                    mainForm = services.GetRequiredService<Inicio>();
 
                 Application.Run(mainForm);
             }
@@ -117,15 +117,17 @@ namespace UI.TextilSoft
             ); ;
             
             //Hacemos un singleton a ambas aplicaciones por si desea usar login o no.
-            services.AddSingleton<FmLogin>();
+            services.AddSingleton<FmLobby>();
             services.AddSingleton<FmTextilSoft>();
+            services.AddSingleton<Inicio>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
             services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-            services.AddAutoMapper(typeof(FmLogin));
+            services.AddAutoMapper(typeof(FmLobby));
             services.AddAutoMapper(typeof(FmTextilSoft));
+            services.AddAutoMapper(typeof(Inicio));
             var mappingConfig = new MapperConfiguration(mc =>
             {
                 mc.AddProfile(new Mapping()); //Para la SL

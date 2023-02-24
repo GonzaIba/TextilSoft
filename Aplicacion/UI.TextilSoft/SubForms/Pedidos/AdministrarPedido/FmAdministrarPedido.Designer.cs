@@ -54,6 +54,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             this.tmLblED = new System.Windows.Forms.Timer(this.components);
             this.tmLblE = new System.Windows.Forms.Timer(this.components);
             this.toolTipError = new System.Windows.Forms.ToolTip(this.components);
+            this.cartesianChart1 = new LiveCharts.WinForms.CartesianChart();
             this.pnlEP.SuspendLayout();
             this.pnlED.SuspendLayout();
             this.SuspendLayout();
@@ -312,12 +313,21 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             this.tmLblE.Interval = 10;
             this.tmLblE.Tick += new System.EventHandler(this.tmLblE_Tick);
             // 
+            // cartesianChart1
+            // 
+            this.cartesianChart1.Location = new System.Drawing.Point(544, 175);
+            this.cartesianChart1.Name = "cartesianChart1";
+            this.cartesianChart1.Size = new System.Drawing.Size(200, 100);
+            this.cartesianChart1.TabIndex = 21;
+            this.cartesianChart1.Text = "cartesianChart1";
+            // 
             // FmAdministrarPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.cartesianChart1);
             this.Controls.Add(this.lblEstadoE);
             this.Controls.Add(this.IbE);
             this.Controls.Add(this.pnlED);
@@ -371,5 +381,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         private System.Windows.Forms.Timer tmLblED;
         private System.Windows.Forms.Timer tmLblE;
         private System.Windows.Forms.ToolTip toolTipError;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
     }
 }

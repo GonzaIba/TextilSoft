@@ -1,7 +1,6 @@
-﻿
-namespace UI.TextilSoft.MainForm
+﻿namespace UI.TextilSoft.MainForm
 {
-    partial class FmLogin
+    partial class FmIniciarSesion
     {
         /// <summary>
         /// Required designer variable.
@@ -32,17 +31,7 @@ namespace UI.TextilSoft.MainForm
         {
             this.components = new System.ComponentModel.Container();
             AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmLogin));
-            this.txtUser = new System.Windows.Forms.TextBox();
-            this.lblLogin = new System.Windows.Forms.Label();
-            this.pnlUp = new System.Windows.Forms.Panel();
-            this.pnlCompanyLogo = new System.Windows.Forms.Panel();
-            this.lblCompanyName = new System.Windows.Forms.Label();
-            this.pnlTimeNow = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.picCompanyLogo = new System.Windows.Forms.PictureBox();
-            this.pnlLogin = new System.Windows.Forms.Panel();
-            this.btnBackLogin = new FontAwesome.Sharp.IconButton();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmIniciarSesion));
             this.btnValidarCodigo = new FontAwesome.Sharp.IconButton();
             this.lnklblCodigo = new System.Windows.Forms.LinkLabel();
             this.pnlCodigo = new System.Windows.Forms.Panel();
@@ -66,13 +55,11 @@ namespace UI.TextilSoft.MainForm
             this.lblUserNameError = new System.Windows.Forms.Label();
             this.pnlUserNameText = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtUser = new System.Windows.Forms.TextBox();
+            this.lblLogin = new System.Windows.Forms.Label();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.panelRegresar = new System.Windows.Forms.Panel();
+            this.pnlLogin = new System.Windows.Forms.Panel();
             this.LoginAnimator = new AnimatorNS.Animator(this.components);
-            this.pnlCompanyLogo.SuspendLayout();
-            this.pnlTimeNow.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).BeginInit();
-            this.pnlLogin.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUserName)).BeginInit();
             this.panel2.SuspendLayout();
@@ -82,154 +69,6 @@ namespace UI.TextilSoft.MainForm
             this.pnlUserNameError.SuspendLayout();
             this.pnlUserNameText.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // txtUser
-            // 
-            this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.LoginAnimator.SetDecoration(this.txtUser, AnimatorNS.DecorationType.None);
-            this.txtUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtUser.ForeColor = System.Drawing.Color.Gray;
-            this.txtUser.Location = new System.Drawing.Point(13, 12);
-            this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(335, 22);
-            this.txtUser.TabIndex = 0;
-            this.txtUser.Text = "Ingrese un Usuario";
-            this.txtUser.Click += new System.EventHandler(this.txtUser_Click);
-            this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
-            this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
-            this.txtUser.Leave += new System.EventHandler(this.txtUser_Leave);
-            // 
-            // lblLogin
-            // 
-            this.lblLogin.AutoSize = true;
-            this.LoginAnimator.SetDecoration(this.lblLogin, AnimatorNS.DecorationType.None);
-            this.lblLogin.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblLogin.ForeColor = System.Drawing.Color.White;
-            this.lblLogin.Location = new System.Drawing.Point(503, 77);
-            this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(126, 28);
-            this.lblLogin.TabIndex = 3;
-            this.lblLogin.Text = "Iniciar Sesión";
-            this.lblLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
-            // 
-            // pnlUp
-            // 
-            this.pnlUp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.LoginAnimator.SetDecoration(this.pnlUp, AnimatorNS.DecorationType.None);
-            this.pnlUp.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlUp.Location = new System.Drawing.Point(1, 1);
-            this.pnlUp.Name = "pnlUp";
-            this.pnlUp.Size = new System.Drawing.Size(977, 52);
-            this.pnlUp.TabIndex = 4;
-            this.pnlUp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
-            // 
-            // pnlCompanyLogo
-            // 
-            this.pnlCompanyLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.pnlCompanyLogo.Controls.Add(this.lblCompanyName);
-            this.pnlCompanyLogo.Controls.Add(this.pnlTimeNow);
-            this.pnlCompanyLogo.Controls.Add(this.picCompanyLogo);
-            this.LoginAnimator.SetDecoration(this.pnlCompanyLogo, AnimatorNS.DecorationType.None);
-            this.pnlCompanyLogo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlCompanyLogo.Location = new System.Drawing.Point(1, 53);
-            this.pnlCompanyLogo.Name = "pnlCompanyLogo";
-            this.pnlCompanyLogo.Size = new System.Drawing.Size(255, 504);
-            this.pnlCompanyLogo.TabIndex = 5;
-            this.pnlCompanyLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
-            // 
-            // lblCompanyName
-            // 
-            this.lblCompanyName.AutoSize = true;
-            this.LoginAnimator.SetDecoration(this.lblCompanyName, AnimatorNS.DecorationType.None);
-            this.lblCompanyName.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCompanyName.ForeColor = System.Drawing.Color.White;
-            this.lblCompanyName.Location = new System.Drawing.Point(11, 8);
-            this.lblCompanyName.Name = "lblCompanyName";
-            this.lblCompanyName.Size = new System.Drawing.Size(122, 32);
-            this.lblCompanyName.TabIndex = 2;
-            this.lblCompanyName.Text = "Compañia";
-            this.lblCompanyName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
-            // 
-            // pnlTimeNow
-            // 
-            this.pnlTimeNow.Controls.Add(this.panel1);
-            this.LoginAnimator.SetDecoration(this.pnlTimeNow, AnimatorNS.DecorationType.None);
-            this.pnlTimeNow.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTimeNow.Location = new System.Drawing.Point(0, 404);
-            this.pnlTimeNow.Name = "pnlTimeNow";
-            this.pnlTimeNow.Size = new System.Drawing.Size(255, 100);
-            this.pnlTimeNow.TabIndex = 1;
-            this.pnlTimeNow.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
-            // 
-            // panel1
-            // 
-            this.LoginAnimator.SetDecoration(this.panel1, AnimatorNS.DecorationType.None);
-            this.panel1.Location = new System.Drawing.Point(254, 28);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(101, 72);
-            this.panel1.TabIndex = 19;
-            // 
-            // picCompanyLogo
-            // 
-            this.LoginAnimator.SetDecoration(this.picCompanyLogo, AnimatorNS.DecorationType.None);
-            this.picCompanyLogo.Location = new System.Drawing.Point(0, 53);
-            this.picCompanyLogo.Name = "picCompanyLogo";
-            this.picCompanyLogo.Size = new System.Drawing.Size(255, 193);
-            this.picCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picCompanyLogo.TabIndex = 0;
-            this.picCompanyLogo.TabStop = false;
-            this.picCompanyLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picCompanyLogo_MouseDown);
-            // 
-            // pnlLogin
-            // 
-            this.pnlLogin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.pnlLogin.Controls.Add(this.btnBackLogin);
-            this.pnlLogin.Controls.Add(this.btnValidarCodigo);
-            this.pnlLogin.Controls.Add(this.lnklblCodigo);
-            this.pnlLogin.Controls.Add(this.pnlCodigo);
-            this.pnlLogin.Controls.Add(this.txtCodigo);
-            this.pnlLogin.Controls.Add(this.lblCodigo);
-            this.pnlLogin.Controls.Add(this.lblLoginError);
-            this.pnlLogin.Controls.Add(this.linkLabel2);
-            this.pnlLogin.Controls.Add(this.linkLabel1);
-            this.pnlLogin.Controls.Add(this.btnLogin);
-            this.pnlLogin.Controls.Add(this.iconPictureBox1);
-            this.pnlLogin.Controls.Add(this.iconUserName);
-            this.pnlLogin.Controls.Add(this.panel2);
-            this.pnlLogin.Controls.Add(this.label3);
-            this.pnlLogin.Controls.Add(this.panel4);
-            this.pnlLogin.Controls.Add(this.lblLogin);
-            this.pnlLogin.Controls.Add(this.lblUsuario);
-            this.pnlLogin.Controls.Add(this.panelRegresar);
-            this.LoginAnimator.SetDecoration(this.pnlLogin, AnimatorNS.DecorationType.None);
-            this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlLogin.Location = new System.Drawing.Point(1, 1);
-            this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(977, 556);
-            this.pnlLogin.TabIndex = 6;
-            this.pnlLogin.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlLogin_Paint);
-            this.pnlLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
-            // 
-            // btnBackLogin
-            // 
-            this.LoginAnimator.SetDecoration(this.btnBackLogin, AnimatorNS.DecorationType.None);
-            this.btnBackLogin.FlatAppearance.BorderSize = 0;
-            this.btnBackLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBackLogin.ForeColor = System.Drawing.Color.White;
-            this.btnBackLogin.IconChar = FontAwesome.Sharp.IconChar.ArrowLeft;
-            this.btnBackLogin.IconColor = System.Drawing.Color.White;
-            this.btnBackLogin.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnBackLogin.IconSize = 37;
-            this.btnBackLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBackLogin.Location = new System.Drawing.Point(253, 511);
-            this.btnBackLogin.Name = "btnBackLogin";
-            this.btnBackLogin.Size = new System.Drawing.Size(119, 44);
-            this.btnBackLogin.TabIndex = 38;
-            this.btnBackLogin.Text = "Volver a login";
-            this.btnBackLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnBackLogin.UseVisualStyleBackColor = true;
-            this.btnBackLogin.Click += new System.EventHandler(this.btnBackLogin_Click);
             // 
             // btnValidarCodigo
             // 
@@ -243,10 +82,10 @@ namespace UI.TextilSoft.MainForm
             this.btnValidarCodigo.IconColor = System.Drawing.Color.White;
             this.btnValidarCodigo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnValidarCodigo.IconSize = 30;
-            this.btnValidarCodigo.Location = new System.Drawing.Point(830, 347);
+            this.btnValidarCodigo.Location = new System.Drawing.Point(622, 275);
             this.btnValidarCodigo.Name = "btnValidarCodigo";
             this.btnValidarCodigo.Size = new System.Drawing.Size(100, 31);
-            this.btnValidarCodigo.TabIndex = 18;
+            this.btnValidarCodigo.TabIndex = 34;
             this.btnValidarCodigo.Text = "Validar";
             this.btnValidarCodigo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnValidarCodigo.UseVisualStyleBackColor = true;
@@ -257,10 +96,10 @@ namespace UI.TextilSoft.MainForm
             this.lnklblCodigo.AutoSize = true;
             this.LoginAnimator.SetDecoration(this.lnklblCodigo, AnimatorNS.DecorationType.None);
             this.lnklblCodigo.LinkColor = System.Drawing.Color.White;
-            this.lnklblCodigo.Location = new System.Drawing.Point(817, 386);
+            this.lnklblCodigo.Location = new System.Drawing.Point(609, 314);
             this.lnklblCodigo.Name = "lnklblCodigo";
             this.lnklblCodigo.Size = new System.Drawing.Size(127, 15);
-            this.lnklblCodigo.TabIndex = 17;
+            this.lnklblCodigo.TabIndex = 33;
             this.lnklblCodigo.TabStop = true;
             this.lnklblCodigo.Text = "No recibiste el código?";
             this.lnklblCodigo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnklblCodigo_LinkClicked);
@@ -269,10 +108,10 @@ namespace UI.TextilSoft.MainForm
             // 
             this.pnlCodigo.BackColor = System.Drawing.Color.White;
             this.LoginAnimator.SetDecoration(this.pnlCodigo, AnimatorNS.DecorationType.None);
-            this.pnlCodigo.Location = new System.Drawing.Point(824, 337);
+            this.pnlCodigo.Location = new System.Drawing.Point(616, 265);
             this.pnlCodigo.Name = "pnlCodigo";
             this.pnlCodigo.Size = new System.Drawing.Size(115, 1);
-            this.pnlCodigo.TabIndex = 8;
+            this.pnlCodigo.TabIndex = 22;
             // 
             // txtCodigo
             // 
@@ -281,10 +120,10 @@ namespace UI.TextilSoft.MainForm
             this.LoginAnimator.SetDecoration(this.txtCodigo, AnimatorNS.DecorationType.None);
             this.txtCodigo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCodigo.ForeColor = System.Drawing.Color.Gray;
-            this.txtCodigo.Location = new System.Drawing.Point(824, 309);
+            this.txtCodigo.Location = new System.Drawing.Point(616, 237);
             this.txtCodigo.Name = "txtCodigo";
             this.txtCodigo.Size = new System.Drawing.Size(113, 22);
-            this.txtCodigo.TabIndex = 8;
+            this.txtCodigo.TabIndex = 23;
             this.txtCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCodigo_KeyPress);
             // 
             // lblCodigo
@@ -293,12 +132,11 @@ namespace UI.TextilSoft.MainForm
             this.LoginAnimator.SetDecoration(this.lblCodigo, AnimatorNS.DecorationType.None);
             this.lblCodigo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblCodigo.ForeColor = System.Drawing.Color.White;
-            this.lblCodigo.Location = new System.Drawing.Point(823, 281);
+            this.lblCodigo.Location = new System.Drawing.Point(615, 209);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(113, 19);
-            this.lblCodigo.TabIndex = 16;
+            this.lblCodigo.TabIndex = 32;
             this.lblCodigo.Text = "Ingrese el código";
-            this.lblCodigo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // lblLoginError
             // 
@@ -307,22 +145,21 @@ namespace UI.TextilSoft.MainForm
             this.LoginAnimator.SetDecoration(this.lblLoginError, AnimatorNS.DecorationType.None);
             this.lblLoginError.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblLoginError.ForeColor = System.Drawing.Color.Red;
-            this.lblLoginError.Location = new System.Drawing.Point(502, 364);
+            this.lblLoginError.Location = new System.Drawing.Point(294, 292);
             this.lblLoginError.Name = "lblLoginError";
             this.lblLoginError.Size = new System.Drawing.Size(208, 19);
-            this.lblLoginError.TabIndex = 9;
+            this.lblLoginError.TabIndex = 25;
             this.lblLoginError.Text = "Usuario y/o contraseña inválidos";
-            this.lblLoginError.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // linkLabel2
             // 
             this.linkLabel2.AutoSize = true;
             this.LoginAnimator.SetDecoration(this.linkLabel2, AnimatorNS.DecorationType.None);
             this.linkLabel2.LinkColor = System.Drawing.Color.White;
-            this.linkLabel2.Location = new System.Drawing.Point(569, 502);
+            this.linkLabel2.Location = new System.Drawing.Point(361, 430);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(76, 15);
-            this.linkLabel2.TabIndex = 14;
+            this.linkLabel2.TabIndex = 31;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "Crear Cuenta";
             this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
@@ -332,10 +169,10 @@ namespace UI.TextilSoft.MainForm
             this.linkLabel1.AutoSize = true;
             this.LoginAnimator.SetDecoration(this.linkLabel1, AnimatorNS.DecorationType.None);
             this.linkLabel1.LinkColor = System.Drawing.Color.White;
-            this.linkLabel1.Location = new System.Drawing.Point(540, 394);
+            this.linkLabel1.Location = new System.Drawing.Point(332, 322);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(136, 15);
-            this.linkLabel1.TabIndex = 13;
+            this.linkLabel1.TabIndex = 30;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Olvidaste tu contraseña?";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
@@ -350,14 +187,14 @@ namespace UI.TextilSoft.MainForm
             this.btnLogin.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
             this.btnLogin.IconColor = System.Drawing.Color.White;
             this.btnLogin.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLogin.Location = new System.Drawing.Point(488, 422);
+            this.btnLogin.Location = new System.Drawing.Point(280, 350);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(227, 67);
-            this.btnLogin.TabIndex = 12;
+            this.btnLogin.TabIndex = 29;
             this.btnLogin.Text = "Ingresar";
             this.btnLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // iconPictureBox1
             // 
@@ -367,12 +204,11 @@ namespace UI.TextilSoft.MainForm
             this.iconPictureBox1.IconColor = System.Drawing.Color.White;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 64;
-            this.iconPictureBox1.Location = new System.Drawing.Point(272, 257);
+            this.iconPictureBox1.Location = new System.Drawing.Point(64, 185);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(64, 64);
-            this.iconPictureBox1.TabIndex = 11;
+            this.iconPictureBox1.TabIndex = 28;
             this.iconPictureBox1.TabStop = false;
-            this.iconPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // iconUserName
             // 
@@ -382,22 +218,21 @@ namespace UI.TextilSoft.MainForm
             this.iconUserName.IconColor = System.Drawing.Color.White;
             this.iconUserName.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconUserName.IconSize = 64;
-            this.iconUserName.Location = new System.Drawing.Point(272, 131);
+            this.iconUserName.Location = new System.Drawing.Point(64, 59);
             this.iconUserName.Name = "iconUserName";
             this.iconUserName.Size = new System.Drawing.Size(64, 64);
-            this.iconUserName.TabIndex = 8;
+            this.iconUserName.TabIndex = 24;
             this.iconUserName.TabStop = false;
-            this.iconUserName.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.pnlPasswordError);
             this.panel2.Controls.Add(this.panel6);
             this.LoginAnimator.SetDecoration(this.panel2, AnimatorNS.DecorationType.None);
-            this.panel2.Location = new System.Drawing.Point(429, 258);
+            this.panel2.Location = new System.Drawing.Point(221, 186);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(368, 96);
-            this.panel2.TabIndex = 10;
+            this.panel2.TabIndex = 27;
             // 
             // pnlPasswordError
             // 
@@ -420,7 +255,6 @@ namespace UI.TextilSoft.MainForm
             this.lblPasswordError.Size = new System.Drawing.Size(130, 19);
             this.lblPasswordError.TabIndex = 8;
             this.lblPasswordError.Text = "Contraseña inválido";
-            this.lblPasswordError.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // panel6
             // 
@@ -456,7 +290,6 @@ namespace UI.TextilSoft.MainForm
             this.txtPassword.Text = "Ingrese una Contraseña";
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
-            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // label3
@@ -465,22 +298,21 @@ namespace UI.TextilSoft.MainForm
             this.LoginAnimator.SetDecoration(this.label3, AnimatorNS.DecorationType.None);
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(342, 270);
+            this.label3.Location = new System.Drawing.Point(134, 198);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(79, 19);
-            this.label3.TabIndex = 9;
+            this.label3.TabIndex = 26;
             this.label3.Text = "Contraseña";
-            this.label3.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
             // panel4
             // 
             this.panel4.Controls.Add(this.pnlUserNameError);
             this.panel4.Controls.Add(this.pnlUserNameText);
             this.LoginAnimator.SetDecoration(this.panel4, AnimatorNS.DecorationType.None);
-            this.panel4.Location = new System.Drawing.Point(429, 132);
+            this.panel4.Location = new System.Drawing.Point(221, 60);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(368, 96);
-            this.panel4.TabIndex = 7;
+            this.panel4.TabIndex = 21;
             // 
             // pnlUserNameError
             // 
@@ -503,7 +335,6 @@ namespace UI.TextilSoft.MainForm
             this.lblUserNameError.Size = new System.Drawing.Size(107, 19);
             this.lblUserNameError.TabIndex = 8;
             this.lblUserNameError.Text = "Usuario inválido";
-            this.lblUserNameError.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // pnlUserNameText
             // 
@@ -525,34 +356,63 @@ namespace UI.TextilSoft.MainForm
             this.panel3.Size = new System.Drawing.Size(335, 1);
             this.panel3.TabIndex = 7;
             // 
+            // txtUser
+            // 
+            this.txtUser.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.LoginAnimator.SetDecoration(this.txtUser, AnimatorNS.DecorationType.None);
+            this.txtUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtUser.ForeColor = System.Drawing.Color.Gray;
+            this.txtUser.Location = new System.Drawing.Point(13, 12);
+            this.txtUser.Name = "txtUser";
+            this.txtUser.Size = new System.Drawing.Size(335, 22);
+            this.txtUser.TabIndex = 0;
+            this.txtUser.Text = "Ingrese un Usuario";
+            this.txtUser.Click += new System.EventHandler(this.txtUser_Click);
+            this.txtUser.TextChanged += new System.EventHandler(this.txtUser_TextChanged);
+            this.txtUser.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUser_KeyPress);
+            this.txtUser.Leave += new System.EventHandler(this.txtUser_Leave);
+            // 
+            // lblLogin
+            // 
+            this.lblLogin.AutoSize = true;
+            this.LoginAnimator.SetDecoration(this.lblLogin, AnimatorNS.DecorationType.None);
+            this.lblLogin.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblLogin.ForeColor = System.Drawing.Color.White;
+            this.lblLogin.Location = new System.Drawing.Point(295, 5);
+            this.lblLogin.Name = "lblLogin";
+            this.lblLogin.Size = new System.Drawing.Size(126, 28);
+            this.lblLogin.TabIndex = 19;
+            this.lblLogin.Text = "Iniciar Sesión";
+            // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
             this.LoginAnimator.SetDecoration(this.lblUsuario, AnimatorNS.DecorationType.None);
             this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblUsuario.ForeColor = System.Drawing.Color.White;
-            this.lblUsuario.Location = new System.Drawing.Point(342, 144);
+            this.lblUsuario.Location = new System.Drawing.Point(134, 72);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(56, 19);
-            this.lblUsuario.TabIndex = 4;
+            this.lblUsuario.TabIndex = 20;
             this.lblUsuario.Text = "Usuario";
-            this.lblUsuario.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
-            // panelRegresar
+            // pnlLogin
             // 
-            this.LoginAnimator.SetDecoration(this.panelRegresar, AnimatorNS.DecorationType.None);
-            this.panelRegresar.Location = new System.Drawing.Point(253, 502);
-            this.panelRegresar.Name = "panelRegresar";
-            this.panelRegresar.Size = new System.Drawing.Size(124, 49);
-            this.panelRegresar.TabIndex = 39;
+            this.LoginAnimator.SetDecoration(this.pnlLogin, AnimatorNS.DecorationType.None);
+            this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlLogin.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogin.Name = "pnlLogin";
+            this.pnlLogin.Size = new System.Drawing.Size(800, 570);
+            this.pnlLogin.TabIndex = 35;
             // 
             // LoginAnimator
             // 
-            this.LoginAnimator.AnimationType = AnimatorNS.AnimationType.HorizBlind;
+            this.LoginAnimator.AnimationType = AnimatorNS.AnimationType.Leaf;
             this.LoginAnimator.Cursor = null;
             animation1.AnimateOnlyDifferences = true;
             animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
-            animation1.LeafCoeff = 0F;
+            animation1.LeafCoeff = 1F;
             animation1.MaxTime = 1F;
             animation1.MinTime = 0F;
             animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
@@ -566,31 +426,36 @@ namespace UI.TextilSoft.MainForm
             animation1.TimeCoeff = 0F;
             animation1.TransparencyCoeff = 0F;
             this.LoginAnimator.DefaultAnimation = animation1;
+            this.LoginAnimator.Interval = 14;
             this.LoginAnimator.TimeStep = 0.01F;
             // 
-            // FmLogin
+            // FmIniciarSesion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(979, 558);
-            this.Controls.Add(this.pnlCompanyLogo);
-            this.Controls.Add(this.pnlUp);
+            this.ClientSize = new System.Drawing.Size(800, 570);
+            this.Controls.Add(this.btnValidarCodigo);
+            this.Controls.Add(this.lnklblCodigo);
+            this.Controls.Add(this.pnlCodigo);
+            this.Controls.Add(this.txtCodigo);
+            this.Controls.Add(this.lblCodigo);
+            this.Controls.Add(this.lblLoginError);
+            this.Controls.Add(this.linkLabel2);
+            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.iconPictureBox1);
+            this.Controls.Add(this.iconUserName);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.lblLogin);
+            this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.pnlLogin);
             this.LoginAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
-            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "FmLogin";
-            this.Padding = new System.Windows.Forms.Padding(1);
-            this.Text = "FmLogin";
-            this.Load += new System.EventHandler(this.FmLogin_Load);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
-            this.pnlCompanyLogo.ResumeLayout(false);
-            this.pnlCompanyLogo.PerformLayout();
-            this.pnlTimeNow.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picCompanyLogo)).EndInit();
-            this.pnlLogin.ResumeLayout(false);
-            this.pnlLogin.PerformLayout();
+            this.Name = "FmIniciarSesion";
+            this.Text = "FmIniciarSesion";
+            this.Load += new System.EventHandler(this.FmIniciarSesion_Load);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUserName)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -604,24 +469,23 @@ namespace UI.TextilSoft.MainForm
             this.pnlUserNameText.ResumeLayout(false);
             this.pnlUserNameText.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtUser;
-        private System.Windows.Forms.Label lblLogin;
-        private System.Windows.Forms.Panel pnlUp;
-        private System.Windows.Forms.Panel pnlCompanyLogo;
-        private System.Windows.Forms.Panel pnlLogin;
-        private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.Panel pnlUserNameText;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel pnlUserNameError;
-        private System.Windows.Forms.Label lblUserNameError;
-        private FontAwesome.Sharp.IconPictureBox iconUserName;
+        private FontAwesome.Sharp.IconButton btnValidarCodigo;
+        private System.Windows.Forms.LinkLabel lnklblCodigo;
+        private System.Windows.Forms.Panel pnlCodigo;
+        private System.Windows.Forms.TextBox txtCodigo;
+        private System.Windows.Forms.Label lblCodigo;
+        private System.Windows.Forms.Label lblLoginError;
+        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel linkLabel1;
+        private FontAwesome.Sharp.IconButton btnLogin;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
+        private FontAwesome.Sharp.IconPictureBox iconUserName;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlPasswordError;
         private System.Windows.Forms.Label lblPasswordError;
@@ -629,21 +493,15 @@ namespace UI.TextilSoft.MainForm
         private System.Windows.Forms.Panel pnlDownPasswordtxt;
         private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label3;
-        private FontAwesome.Sharp.IconButton btnLogin;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Panel pnlTimeNow;
-        private System.Windows.Forms.PictureBox picCompanyLogo;
-        private System.Windows.Forms.Label lblCompanyName;
-        private System.Windows.Forms.Label lblLoginError;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel pnlUserNameError;
+        private System.Windows.Forms.Label lblUserNameError;
+        private System.Windows.Forms.Panel pnlUserNameText;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.Label lblLogin;
+        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Panel pnlLogin;
         private AnimatorNS.Animator LoginAnimator;
-        private System.Windows.Forms.Label lblCodigo;
-        private System.Windows.Forms.Panel pnlCodigo;
-        private System.Windows.Forms.TextBox txtCodigo;
-        private System.Windows.Forms.LinkLabel lnklblCodigo;
-        private FontAwesome.Sharp.IconButton btnValidarCodigo;
-        private System.Windows.Forms.Panel panel1;
-        private FontAwesome.Sharp.IconButton btnBackLogin;
-        private System.Windows.Forms.Panel panelRegresar;
     }
 }
