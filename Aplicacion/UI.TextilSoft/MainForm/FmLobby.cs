@@ -28,7 +28,7 @@ using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
-    public partial class FmLobby : FmForm
+    public partial class FmLobby : FmBaseForm
     {
         #region Inyection
         private int cont = 0;

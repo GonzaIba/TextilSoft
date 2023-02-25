@@ -27,6 +27,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using UI.TextilSoft.Background;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
 
@@ -120,6 +121,7 @@ namespace UI.TextilSoft
             services.AddSingleton<FmLobby>();
             services.AddSingleton<FmTextilSoft>();
             services.AddSingleton<Inicio>();
+            services.AddSingleton<IControllerFactory,ControllerFactory>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 

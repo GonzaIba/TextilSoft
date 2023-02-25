@@ -43,8 +43,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Contracts\Contracts.csproj" />
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
     <ProjectReference Include="..\IoCRegister\IoCRegister.csproj" />
+    <ProjectReference Include="..\SL.Contracts\SL.Contracts.csproj" />
+    <ProjectReference Include="..\SL.Helper\SL.Helper.csproj" />
     <ProjectReference Include="..\SL.Infrastructure\SL.Infrastructure.csproj" />
     <ProjectReference Include="..\SL.IoC\SL.IoC.csproj" />
   </ItemGroup>

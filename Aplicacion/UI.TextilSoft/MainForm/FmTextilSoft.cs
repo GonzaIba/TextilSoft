@@ -27,7 +27,7 @@ using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
-    public partial class FmTextilSoft : FmForm
+    public partial class FmTextilSoft : FmBaseForm
     {
         #region Variables
         private Form activeForm = null;

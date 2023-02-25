@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UI.TextilSoft.Tools.FormsTools
+namespace UI.TextilSoft.MainForm
 {
-    public class FmForm : Form
+    public class FmBaseForm : Form
     {
         [DllImport("user32.DLL", EntryPoint = "ReleaseCapture")]
         protected extern static void ReleaseCapture();
@@ -19,6 +19,10 @@ namespace UI.TextilSoft.Tools.FormsTools
         {
             ReleaseCapture();
             SendMessage(this.Handle, 0x112, 0xf012, 0);
+        }
+        public FmBaseForm()
+        {
+            
         }
     }
 }

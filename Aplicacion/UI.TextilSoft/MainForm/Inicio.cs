@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SL.Contracts;
 using SL.Domain.Entities;
+using SL.Helper.Controllers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
-    public partial class Inicio : Form
+    public partial class Inicio : FmBaseForm
     {
         private readonly IPermisosController _permisoController;
         private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
@@ -34,7 +36,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
-        private readonly IHostApplicationLifetime _hostApplicationLifetime;
+        private readonly IControllerFactory _controllerFactory;
         private AuthenticationConfig _authenticationConfig;
         public Form Activeform = null;
         public Inicio(IPermisosController permisosController,
@@ -51,7 +53,7 @@ namespace UI.TextilSoft.MainForm
                         IProductosController productosController,
                         IConfiguration configuration,
                         ICompanyController companyController,
-                        IHostApplicationLifetime hostApplicationLifetime
+                        IControllerFactory controllerFactory
                         )
         {
             InitializeComponent();
@@ -68,8 +70,16 @@ namespace UI.TextilSoft.MainForm
             _pedidosController = pedidosController;
             _configuration = configuration;
             _companyController = companyController;
-            _hostApplicationLifetime = hostApplicationLifetime;
             _authenticationConfig = _companyController.GetAuthenticationConfig();
+            _controllerFactory = controllerFactory;
+
+            var result = _controllerFactory.GetController<ICompanyController>();
+            var result2 = _controllerFactory.GetController<ICompanyController>();
+            var r = result2.GetAuthenticationConfig();
+            if(r.PasswordConfig.CountLength == 9)
+            {
+                
+            }
 
             _userController = userController;
             _companyController = companyController;
