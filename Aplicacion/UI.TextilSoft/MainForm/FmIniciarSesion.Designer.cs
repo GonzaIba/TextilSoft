@@ -290,6 +290,7 @@
             this.txtPassword.Text = "Ingrese una Contraseña";
             this.txtPassword.Click += new System.EventHandler(this.txtPassword_Click);
             this.txtPassword.TextChanged += new System.EventHandler(this.txtPassword_TextChanged);
+            this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             this.txtPassword.Leave += new System.EventHandler(this.txtPassword_Leave);
             // 
             // label3
@@ -403,7 +404,7 @@
             this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLogin.Location = new System.Drawing.Point(0, 0);
             this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(800, 570);
+            this.pnlLogin.Size = new System.Drawing.Size(800, 482);
             this.pnlLogin.TabIndex = 35;
             // 
             // LoginAnimator
@@ -434,7 +435,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(800, 570);
+            this.ClientSize = new System.Drawing.Size(800, 482);
             this.Controls.Add(this.btnValidarCodigo);
             this.Controls.Add(this.lnklblCodigo);
             this.Controls.Add(this.pnlCodigo);
@@ -455,7 +456,9 @@
             this.LoginAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
             this.Name = "FmIniciarSesion";
             this.Text = "FmIniciarSesion";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmIniciarSesion_FormClosing);
             this.Load += new System.EventHandler(this.FmIniciarSesion_Load);
+            this.Click += new System.EventHandler(this.FmIniciarSesion_Click);
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconUserName)).EndInit();
             this.panel2.ResumeLayout(false);

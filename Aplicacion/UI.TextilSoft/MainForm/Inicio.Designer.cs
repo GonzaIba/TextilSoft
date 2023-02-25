@@ -16,6 +16,7 @@ namespace UI.TextilSoft.MainForm
         {
             if (disposing && (components != null))
             {
+                components.Remove(LoginAnimator);
                 components.Dispose();
             }
             base.Dispose(disposing);

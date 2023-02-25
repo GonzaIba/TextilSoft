@@ -96,6 +96,7 @@ namespace UI.TextilSoft.MainForm
             this.panelBotones.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelContenedor_MouseDown);
             this.panelBotones.MouseEnter += new System.EventHandler(this.panelBotones_MouseEnter);
             this.panelBotones.MouseLeave += new System.EventHandler(this.panelBotones_MouseLeave);
+            this.panelBotones.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnBloquear
             // 
@@ -117,6 +118,7 @@ namespace UI.TextilSoft.MainForm
             this.btnBloquear.UseVisualStyleBackColor = true;
             this.btnBloquear.Click += new System.EventHandler(this.btnBloquear_Click);
             this.btnBloquear.MouseEnter += new System.EventHandler(this.btnBloquear_MouseEnter);
+            this.btnBloquear.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // labelBienvenida
             // 
@@ -133,6 +135,7 @@ namespace UI.TextilSoft.MainForm
             this.labelBienvenida.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelContenedor_MouseDown);
             this.labelBienvenida.MouseEnter += new System.EventHandler(this.label1_MouseEnter);
             this.labelBienvenida.MouseLeave += new System.EventHandler(this.labelBienvenida_MouseLeave);
+            this.labelBienvenida.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnConfiguracion
             // 
@@ -160,6 +163,7 @@ namespace UI.TextilSoft.MainForm
             this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             this.btnConfiguracion.MouseEnter += new System.EventHandler(this.btnConfiguracion_MouseEnter);
             this.btnConfiguracion.MouseLeave += new System.EventHandler(this.btnConfiguracion_MouseLeave);
+            this.btnConfiguracion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnVentas
             // 
@@ -187,6 +191,7 @@ namespace UI.TextilSoft.MainForm
             this.btnVentas.Click += new System.EventHandler(this.btnVentas_Click);
             this.btnVentas.MouseEnter += new System.EventHandler(this.btnVentas_MouseEnter);
             this.btnVentas.MouseLeave += new System.EventHandler(this.btnVentas_MouseLeave);
+            this.btnVentas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnFacturas
             // 
@@ -214,6 +219,7 @@ namespace UI.TextilSoft.MainForm
             this.btnFacturas.Click += new System.EventHandler(this.btnFacturas_Click);
             this.btnFacturas.MouseEnter += new System.EventHandler(this.btnFacturas_MouseEnter);
             this.btnFacturas.MouseLeave += new System.EventHandler(this.btnFacturas_MouseLeave);
+            this.btnFacturas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnProduccion
             // 
@@ -241,6 +247,7 @@ namespace UI.TextilSoft.MainForm
             this.btnProduccion.Click += new System.EventHandler(this.btnProduccion_Click);
             this.btnProduccion.MouseEnter += new System.EventHandler(this.btnProduccion_MouseEnter);
             this.btnProduccion.MouseLeave += new System.EventHandler(this.btnProduccion_MouseLeave);
+            this.btnProduccion.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnProveedores
             // 
@@ -268,6 +275,7 @@ namespace UI.TextilSoft.MainForm
             this.btnProveedores.Click += new System.EventHandler(this.btnProveedores_Click);
             this.btnProveedores.MouseEnter += new System.EventHandler(this.btnProveedores_MouseEnter);
             this.btnProveedores.MouseLeave += new System.EventHandler(this.btnProveedores_MouseLeave);
+            this.btnProveedores.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnReportes
             // 
@@ -295,6 +303,7 @@ namespace UI.TextilSoft.MainForm
             this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
             this.btnReportes.MouseEnter += new System.EventHandler(this.btnReportes_MouseEnter);
             this.btnReportes.MouseLeave += new System.EventHandler(this.btnReportes_MouseLeave);
+            this.btnReportes.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // btnPedidos
             // 
@@ -322,6 +331,7 @@ namespace UI.TextilSoft.MainForm
             this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             this.btnPedidos.MouseEnter += new System.EventHandler(this.btnPedidos_MouseEnter);
             this.btnPedidos.MouseLeave += new System.EventHandler(this.btnPedidos_MouseLeave);
+            this.btnPedidos.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btnBloquear_MouseMove);
             // 
             // panelContenedor
             // 

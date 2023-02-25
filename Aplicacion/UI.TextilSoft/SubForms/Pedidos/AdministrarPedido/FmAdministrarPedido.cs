@@ -61,39 +61,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             //pnlE.Size = new Size(pnlE.Size.Width, HeightPanels);
 
             StatusLoadFinished = false;
-            // Crear una colección de series para el gráfico de tipo "Pie"
-            SeriesCollection seriesCollection = new SeriesCollection
-            {
-                new PieSeries
-                {
-                    Title = "Valor 1",
-                    Values = new ChartValues<double> {20},
-                    DataLabels = true,
-                },
-                new PieSeries
-                {
-                    Title = "Valor 2",
-                    Values = new ChartValues<double> {30},
-                    DataLabels = true,
-                },
-                new PieSeries
-                {
-                    Title = "Valor 3",
-                    Values = new ChartValues<double> {50},
-                    DataLabels = true,
-                }
-            };
-
-            // Agregar la colección de series al gráfico
-            cartesianChart1.Series = seriesCollection;
-
-            //// Configurar la ubicación de la leyenda
-            //cartesianChart1.LegendLocation = LegendLocation.Right;
-
-            //// Ajustar el tamaño del gráfico
-            //cartesianChart1.Dock = DockStyle.Fill;
-
-
         }
 
         private void btnVerEstado_Click(object sender, EventArgs e)

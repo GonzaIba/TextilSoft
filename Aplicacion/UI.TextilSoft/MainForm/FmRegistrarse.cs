@@ -35,6 +35,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
+        private readonly FmLobby _fmLobby;
         private AuthenticationConfig _authenticationConfig;
         private Form Activeform = null;
         private bool UsuarioChecked;
@@ -56,7 +57,8 @@ namespace UI.TextilSoft.MainForm
                         IProductoProveedorController productoProveedorController,
                         IProductosController productosController,
                         IConfiguration configuration,
-                        ICompanyController companyController
+                        ICompanyController companyController,
+                        FmLobby fmLobby
                         )
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -75,7 +77,8 @@ namespace UI.TextilSoft.MainForm
             _configuration = configuration;
             _userController = userController;
             _companyController = companyController;
-            
+            _fmLobby = fmLobby;
+
             _authenticationConfig = _companyController.GetAuthenticationConfig();
 
             //CheckForIllegalCrossThreadCalls = false;
@@ -126,7 +129,7 @@ namespace UI.TextilSoft.MainForm
                             _userController.EnviarConfirmacionEmail(register.Email);
                             MessageBox.Show("Se ha enviado un correo de confirmación a su casilla de correo");
                             pnlRegistrarse.BringToFront();
-                            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
+                            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby));
                         }
                         catch (Exception ex)
                         {
@@ -410,6 +413,11 @@ namespace UI.TextilSoft.MainForm
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
+            LimpiarControler();
+        }
+
+        private void LimpiarControler()
+        {
             txtUsuario.Text = string.Empty;
             txtPassword.Text = string.Empty;
             txtConfirmPassword.Text = string.Empty;
@@ -436,8 +444,9 @@ namespace UI.TextilSoft.MainForm
 
         private void btnBackLogin_Click_1(object sender, EventArgs e)
         {
+            LimpiarControler();
             pnlRegistrarse.BringToFront();
-            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
+            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby));
         }
     }
 }

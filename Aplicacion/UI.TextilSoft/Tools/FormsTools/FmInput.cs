@@ -15,16 +15,15 @@ namespace UI.TextilSoft.Tools.FormsTools
         Action<string> _funcion;
         Action<string,string> _funcion2;
         Point location;
-        public FmInput(string titulo, Color BackColor,Point Location,Action<string> funcion = null, Action<string,string> funcion2 = null,string lbl1 = "", string lbl2 = "", string nombreboton = "")
+        public FmInput(string titulo, Color BackColor,Point LocationOld,Action<string> funcion = null, Action<string,string> funcion2 = null,string lbl1 = "", string lbl2 = "", string nombreboton = "")
         {
-            InitializeComponent();
-            this.Text = string.Empty;
             WindowState = FormWindowState.Normal;
             StartPosition = FormStartPosition.Manual;
             BringToFront();
-            Location = new Point(Location.X, Location.Y);
-            location = Location;
-            this.Location = Location;
+            Location = new Point(LocationOld.X, LocationOld.Y);
+            this.Refresh();
+            this.Text = string.Empty;
+            InitializeComponent();
             if (funcion == null)
                 _funcion2 = funcion2;
             else

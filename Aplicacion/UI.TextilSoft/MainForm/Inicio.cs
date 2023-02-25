@@ -1,6 +1,7 @@
 ﻿using Contracts.Controllers;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using SL.Contracts;
 using SL.Domain.Entities;
 using System;
@@ -33,6 +34,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
+        private readonly IHostApplicationLifetime _hostApplicationLifetime;
         private AuthenticationConfig _authenticationConfig;
         public Form Activeform = null;
         public Inicio(IPermisosController permisosController,
@@ -48,7 +50,8 @@ namespace UI.TextilSoft.MainForm
                         IProductoProveedorController productoProveedorController,
                         IProductosController productosController,
                         IConfiguration configuration,
-                        ICompanyController companyController
+                        ICompanyController companyController,
+                        IHostApplicationLifetime hostApplicationLifetime
                         )
         {
             InitializeComponent();
@@ -65,6 +68,7 @@ namespace UI.TextilSoft.MainForm
             _pedidosController = pedidosController;
             _configuration = configuration;
             _companyController = companyController;
+            _hostApplicationLifetime = hostApplicationLifetime;
             _authenticationConfig = _companyController.GetAuthenticationConfig();
 
             _userController = userController;
@@ -83,33 +87,37 @@ namespace UI.TextilSoft.MainForm
             Start();
         }
 
-        private void Start()
+        private async Task Start()
         {
+            var fmlobby = new FmLobby(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, this);
+            AbrirFormHija(fmlobby);
             while (circularProgressBar1.Value < 2000)
             {
                 circularProgressBar1.Value++;
                 circularProgressBar1.Text = Convert.ToString(circularProgressBar1.Value / 20);
             }
-            AbrirFormHija(new FmLobby(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
+            circularProgressBar1.Visible = false;
+            if (PerformanceConfiguration.EnabledAnimator)
+                await AbrirAnimator(fmlobby);
+            else
+                fmlobby.Show();
+
+            this.Hide();
         }
 
         private void circularProgressBar1_Click(object sender, EventArgs e)
         {
 
         }
-
+        
         private async void AbrirFormHija(Form formhija)
         {
             Activeform = formhija;
             formhija.BackColor = Color.FromArgb(30, 30, 30);
             formhija.BringToFront();
-            circularProgressBar1.Visible = false;
-            if (PerformanceConfiguration.EnabledAnimator)
-                AbrirAnimator(formhija);
-            else
-                formhija.Show();
+            formhija.FormBorderStyle = FormBorderStyle.Fixed3D;
         }
-        private async void AbrirAnimator(Form formhija)
+        private async Task AbrirAnimator(Form formhija)
         {
             await Task.Run(() =>
             {

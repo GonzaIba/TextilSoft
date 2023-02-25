@@ -41,6 +41,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
+        private readonly FmLobby _fmLobby = null;
         private AuthenticationConfig _authenticationConfig;
         private string EmailCodigo;
         public Form Activeform = null;
@@ -60,7 +61,8 @@ namespace UI.TextilSoft.MainForm
                         IProductoProveedorController productoProveedorController,
                         IProductosController productosController,
                         IConfiguration configuration,
-                        ICompanyController companyController
+                        ICompanyController companyController,
+                        FmLobby fmLobby
                         )
         {
             InitializeComponent();
@@ -85,7 +87,8 @@ namespace UI.TextilSoft.MainForm
 
             Activeform = new FmVacio();
             pnlLogin.Visible = false;
-            this.Focus();
+            _fmLobby = fmLobby;
+            this.Click += FmIniciarSesion_Click;
         }
         #endregion
 
@@ -132,8 +135,6 @@ namespace UI.TextilSoft.MainForm
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
             var Result = _userController.LoginUser(login);
-            Usuario user = new Usuario();
-            IList<Componente> flia = null;
             var centerPosition = new Point(this.Width / 2, this.Height / 2);
             if (Result.LoginResultEnum == LoginResultEnum.Ok)
             {
@@ -241,12 +242,10 @@ namespace UI.TextilSoft.MainForm
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            //pnlLogin.Visible = false;
-            //pnlLogin.BringToFront();
             pnlLogin.BringToFront();
-            //var r = new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController);
-            //r.ShowDialog();
-            AbrirFormHija(new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
+            txtUser.Text = string.Empty;
+            txtPassword.Text = string.Empty;
+            AbrirFormHija(new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby));
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -352,7 +351,7 @@ namespace UI.TextilSoft.MainForm
             //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
             var usuario = _userController.ObtenerUsuarioConPermisos(login);
             //_empleadosController.LoginEmpleado(usuario);
-            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, this);
+            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby);
             fmTextilSoft.toolStrip1.Tag = usuario;
             if (usuario.IsOwner)
             {
@@ -370,6 +369,7 @@ namespace UI.TextilSoft.MainForm
             ActivarODesactivarCodigo(false);
 
             fmTextilSoft.Show();
+            _fmLobby.Hide();
         }
         #endregion
 
@@ -546,5 +546,24 @@ namespace UI.TextilSoft.MainForm
         }
 
         #endregion
+
+        private void FmIniciarSesion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            
+        }
+
+        private void FmIniciarSesion_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)Keys.Enter || e.KeyChar == (char)Keys.Tab)
+            {
+                //btnLogin_Click_1
+                btnLogin_Click(sender, e);
+            }
+        }
     }
 }

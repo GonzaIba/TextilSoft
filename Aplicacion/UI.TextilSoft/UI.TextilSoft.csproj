@@ -38,6 +38,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0-rc.2.21480.5" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="NAudio" Version="2.1.0" />
     <PackageReference Include="WinFormAnimation" Version="1.6.0.4" />
   </ItemGroup>
 

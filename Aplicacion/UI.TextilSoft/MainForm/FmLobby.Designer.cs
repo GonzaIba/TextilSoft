@@ -67,7 +67,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlCompanyLogo.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlCompanyLogo.Location = new System.Drawing.Point(1, 53);
             this.pnlCompanyLogo.Name = "pnlCompanyLogo";
-            this.pnlCompanyLogo.Size = new System.Drawing.Size(255, 649);
+            this.pnlCompanyLogo.Size = new System.Drawing.Size(255, 504);
             this.pnlCompanyLogo.TabIndex = 5;
             this.pnlCompanyLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblCompanyName_MouseDown);
             // 
@@ -89,7 +89,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlTimeNow.Controls.Add(this.panel1);
             this.LoginAnimator.SetDecoration(this.pnlTimeNow, AnimatorNS.DecorationType.None);
             this.pnlTimeNow.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlTimeNow.Location = new System.Drawing.Point(0, 549);
+            this.pnlTimeNow.Location = new System.Drawing.Point(0, 404);
             this.pnlTimeNow.Name = "pnlTimeNow";
             this.pnlTimeNow.Size = new System.Drawing.Size(255, 100);
             this.pnlTimeNow.TabIndex = 1;
@@ -142,7 +142,7 @@ namespace UI.TextilSoft.MainForm
             this.pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlLogin.Location = new System.Drawing.Point(256, 53);
             this.pnlLogin.Name = "pnlLogin";
-            this.pnlLogin.Size = new System.Drawing.Size(722, 649);
+            this.pnlLogin.Size = new System.Drawing.Size(722, 504);
             this.pnlLogin.TabIndex = 6;
             // 
             // FmLobby
@@ -150,7 +150,7 @@ namespace UI.TextilSoft.MainForm
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(979, 703);
+            this.ClientSize = new System.Drawing.Size(979, 558);
             this.Controls.Add(this.pnlLogin);
             this.Controls.Add(this.pnlCompanyLogo);
             this.Controls.Add(this.pnlUp);
@@ -160,6 +160,7 @@ namespace UI.TextilSoft.MainForm
             this.Name = "FmLobby";
             this.Padding = new System.Windows.Forms.Padding(1);
             this.Text = "FmLogin";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmLobby_FormClosing);
             this.Load += new System.EventHandler(this.FmLogin_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             this.pnlCompanyLogo.ResumeLayout(false);

@@ -2,6 +2,7 @@
 using FontAwesome.Sharp;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Configuration;
+using NAudio.Wave;
 using SL.Contracts;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
@@ -16,6 +17,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.SubForms.Configuracion;
 using UI.TextilSoft.SubForms.Pedidos;
@@ -39,8 +41,19 @@ namespace UI.TextilSoft.MainForm
         private bool ThreadActivated = false;
         //Posicion del label bienvenida
         private int x = -100, y = 76;
-        //Sonido Abrir Formulario
-        SoundPlayer player = new SoundPlayer();
+        private Point previousMousePosition;
+        private DateTime previousMouseMoveTime;
+        private double _speed;
+
+        private const int MaxMouseSpeed = 2000;
+        private Usuario _user
+        {
+            get
+            {
+                Usuario data = (Usuario)toolStrip1.Tag;
+                return data;
+            }
+        }
         #endregion
 
         #region DI
@@ -59,7 +72,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IFacturasController _facturasController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
-        private readonly FmIniciarSesion _fmLogin;
+        private readonly FmLobby _fmLobby;
 
         public FmTextilSoft(IUsuarioController usuarioController,
                              IPermisosController permisosController,
@@ -75,7 +88,7 @@ namespace UI.TextilSoft.MainForm
                              IProductosController productosController,
                              IConfiguration configuration,
                              ICompanyController companyController,
-                             FmIniciarSesion fmLogin
+                             FmLobby fmLobby
                              )
         {
             CheckForIllegalCrossThreadCalls = false;
@@ -99,25 +112,14 @@ namespace UI.TextilSoft.MainForm
             _pedidosController = pedidosController;
             _configuration = configuration;
             _companyController = companyController;
-            _fmLogin = fmLogin;
+            _fmLobby = fmLobby;
         }
-        #endregion
-
-        private Usuario _user
-        {
-            get
-            {
-                Usuario data = (Usuario)toolStrip1.Tag;
-                return data;
-            }
-        }
-
 
         private void FmTextilSoft_Load(object sender, EventArgs e)
         {
             try
             {
-                _fmLogin.Hide();
+                _fmLobby.Hide();
                 AbrirFormHija(new FmVacio());
                 toolStrip1.Renderer = new ToolStripRenderCustom();
                 timer1.Start();
@@ -130,47 +132,86 @@ namespace UI.TextilSoft.MainForm
                 MessageBox.Show(ex.Message);
             }
         }
+        #endregion
 
-        #region Sound Form
+        #region Sonidos
+
+        //private async Task SonidoForm()
+        //{
+        //    using (var audioFile = new AudioFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/AbrirFormulario.wav"))
+        //    using (var outputDevice = new WaveOutEvent())
+        //    {
+        //        outputDevice.Init(audioFile);
+        //        outputDevice.Play();
+        //        while (outputDevice.PlaybackState == PlaybackState.Playing)
+        //        {
+        //            await Task.Delay(2);
+        //        }
+        //    }
+        //}
+        //private async Task SonidoEnter()
+        //{
+        //    using (var audioFile = new AudioFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/MouseEnter.wav"))
+        //    using (var outputDevice = new WaveOutEvent())
+        //    {
+        //        outputDevice.Init(audioFile);
+        //        outputDevice.Play();
+        //        while (outputDevice.PlaybackState == PlaybackState.Playing)
+        //        {
+        //            await Task.Delay(2);
+        //        }
+        //    }
+        //}
+
         private void SonidoForm()
         {
-
+            Task.Run(() =>
+            {
+                using (var waveOut = new WaveOutEvent())
+                using (var fileStream = new WaveFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/AbrirFormulario.wav"))
+                {
+                    waveOut.Init(fileStream);
+                    waveOut.Volume = 1;
+                    waveOut.Play();
+                    while (waveOut.PlaybackState == PlaybackState.Playing)
+                    {
+                        System.Threading.Thread.Sleep(100);
+                    }
+                }
+            });
         }
+        
         private void SonidoEnter()
         {
-            //new System.Threading.Thread(() =>
-            //{
-            //    var c1 = new System.Windows.Media.MediaPlayer();
-            //    c1.Open(new System.Uri(@"" + ApplicationSettingsForm.GetInstance.MouseEnterSound));
-            //    c1.Play();
-            //    //Esto lo puedes utilizar si deseas que se repita infinitamente el sonido.
-            //    c1.MediaEnded += MediaPlayer_Loop;
-            //}).Start();
-
-            //new System.Threading.Thread(() =>
-            //{
-            //    var c2 = new System.Windows.Media.MediaPlayer();
-            //    c2.Open(new System.Uri(@"" + ApplicationSettingsForm.GetInstance.MouseEnterSound));
-            //    c2.Play();
-            //}).Start();
-
-            //void MediaPlayer_Loop(object sender, EventArgs e)
-            //{
-            //    MediaPlayer player = sender as MediaPlayer;
-            //    if (player == null)
-            //        return;
-
-            //    player.Position = new TimeSpan(0);
-            //    player.Play();
-            //}
+            if (_speed <= MaxMouseSpeed)
+            {
+                Task.Run(() =>
+                {
+                    using (var waveOut = new WaveOutEvent())
+                    using (var fileStream = new WaveFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/MouseEnter.wav"))
+                    {
+                        waveOut.Init(fileStream);
+                        waveOut.Volume = 1;
+                        waveOut.Play();
+                        while (waveOut.PlaybackState == PlaybackState.Playing)
+                        {
+                            System.Threading.Thread.Sleep(100);
+                        }
+                    }
+                });
+            }
+            else
+            {
+                
+            }
         }
         #endregion
 
         #region AbrirFormularios
-        private async void AbrirAnimator()
+        private void AbrirAnimator()
         {
             //LogoAnimator.Hide(labelBienvenida);
-            await Task.Run(() =>
+            Task.Run(() =>
             {
                 panelContenedor.Visible = false;
                 PanelAnimator.ShowSync(panelContenedor,true);
@@ -184,7 +225,7 @@ namespace UI.TextilSoft.MainForm
                 activeForm.Close();
                 activeForm = formhija;
                 formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
                 formhija.TopLevel = false;
                 formhija.FormBorderStyle = FormBorderStyle.None;
                 formhija.Dock = DockStyle.Fill;
@@ -204,7 +245,7 @@ namespace UI.TextilSoft.MainForm
             {
                 activeForm = formhija;
                 formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
+                formhija.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
                 formhija.TopLevel = false;
                 formhija.FormBorderStyle = FormBorderStyle.None;
                 formhija.Dock = DockStyle.Fill;
@@ -225,30 +266,35 @@ namespace UI.TextilSoft.MainForm
             AbrirFormHija(new FmPedidos(_pedidosController,_clientesController,_productosController));
             BotonPresionado = true;
             ActivateButton(sender);
+            SonidoForm();
         }
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
             BotonPresionado = true;
+            SonidoForm();
         }
 
         private void btnFacturas_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
             BotonPresionado = true;
+            SonidoForm();
         }
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
             BotonPresionado = true;
+            SonidoForm();
         }
 
         private void btnProduccion_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
             BotonPresionado = true;
+            SonidoForm();
         }
 
         private void btnProveedores_Click(object sender, EventArgs e)
@@ -256,12 +302,14 @@ namespace UI.TextilSoft.MainForm
             ActivateButton(sender);
             AbrirFormHija(new FmProveedores(_proveedoresController, _productoProveedorController));
             BotonPresionado = true;
+            SonidoForm();
         }
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
             BotonPresionado = true;
+            SonidoForm();
             if (_user.EsAdmin() || _user.IsOwner)
                 AbrirFormHija(new FmAdminConfig(_usuarioController, _permisosController,_companyController,_user,Size));
             else
@@ -357,7 +405,7 @@ namespace UI.TextilSoft.MainForm
         #endregion
 
         #region Mouse Enter
-        private void btnBloquear_MouseEnter(object sender, EventArgs e)
+        private async void btnBloquear_MouseEnter(object sender, EventArgs e)
         {
             SonidoEnter();
             if (btnBloquear.Location.X == 163)
@@ -371,7 +419,7 @@ namespace UI.TextilSoft.MainForm
                 timer4.Stop();
             }
         }
-        private void btnPedidos_MouseEnter(object sender, EventArgs e)
+        private async void btnPedidos_MouseEnter(object sender, EventArgs e)
         {
             SonidoEnter();
             if (FuePresionado == false)
@@ -380,54 +428,54 @@ namespace UI.TextilSoft.MainForm
                 timer4.Stop();
             }
         }
-        private void btnVentas_MouseEnter(object sender, EventArgs e)
+        private async void btnVentas_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+             SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
                 timer4.Stop();
             }
         }
-        private void btnFacturas_MouseEnter(object sender, EventArgs e)
+        private async void btnFacturas_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+             SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
                 timer4.Stop();
             }
         }
-        private void btnReportes_MouseEnter(object sender, EventArgs e)
+        private async void btnReportes_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+             SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
                 timer4.Stop();
             }
         }
-        private void btnProduccion_MouseEnter(object sender, EventArgs e)
+        private async void btnProduccion_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+             SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
                 timer4.Stop();
             }
         }
-        private void btnProveedores_MouseEnter(object sender, EventArgs e)
+        private async void btnProveedores_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+             SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
                 timer4.Stop();
             }
         }
-        private void btnConfiguracion_MouseEnter(object sender, EventArgs e)
+        private async void btnConfiguracion_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+             SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -436,7 +484,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void label1_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+            //SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -445,7 +493,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void panelBotones_MouseEnter(object sender, EventArgs e)
         {
-            SonidoEnter();
+            //SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -538,9 +586,9 @@ namespace UI.TextilSoft.MainForm
                 {
                     //Button
                     DisableButton();
-                    Color color = SelectThemeColor();
+                    System.Drawing.Color color = SelectThemeColor();
                     currentBtn = (IconButton)senderBtn;
-                    currentBtn.BackColor = Color.FromArgb(37, 36, 81);
+                    currentBtn.BackColor = System.Drawing.Color.FromArgb(37, 36, 81);
                     currentBtn.ForeColor = color;
                     currentBtn.TextAlign = ContentAlignment.MiddleCenter;
                     currentBtn.IconColor = color;
@@ -561,16 +609,16 @@ namespace UI.TextilSoft.MainForm
             if (currentBtn != null)
             {
                 currentBtn.Enabled = true;
-                currentBtn.BackColor = Color.FromName("Black");
-                currentBtn.ForeColor = Color.White;
+                currentBtn.BackColor = System.Drawing.Color.FromName("Black");
+                currentBtn.ForeColor = System.Drawing.Color.White;
                 currentBtn.TextAlign = ContentAlignment.MiddleLeft;
-                currentBtn.IconColor = Color.White;
+                currentBtn.IconColor = System.Drawing.Color.White;
                 currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
         
-        private Color SelectThemeColor()
+        private System.Drawing.Color SelectThemeColor()
         {
             int index = random.Next(Tools.ColorTheme.ColorList.Count);
             while (tempIndex == index)
@@ -634,6 +682,20 @@ namespace UI.TextilSoft.MainForm
             base.Control_MouseDown(sender, e);
         }
 
+        private void btnBloquear_MouseMove(object sender, MouseEventArgs e)
+        {
+            var currentMousePosition = e.Location;
+            var currentTime = DateTime.Now;
+            var timeDelta = (currentTime - previousMouseMoveTime).TotalMilliseconds;
+            var distance = Math.Sqrt(
+                (currentMousePosition.X - previousMousePosition.X) * (currentMousePosition.X - previousMousePosition.X) +
+                (currentMousePosition.Y - previousMousePosition.Y) * (currentMousePosition.Y - previousMousePosition.Y)
+            );
+            _speed = distance / timeDelta * 1000; // píxeles por segundo
+            previousMousePosition = currentMousePosition;
+            previousMouseMoveTime = currentTime;
+        }
+
         private void FmTextilSoft_FormClosing(object sender, FormClosingEventArgs e)
         {
             btnPedidos.Enabled = false;
@@ -643,7 +705,7 @@ namespace UI.TextilSoft.MainForm
             btnProduccion.Enabled = false;
             btnProveedores.Enabled = false;
             btnConfiguracion.Enabled = false;
-            _fmLogin.Show();
+            _fmLobby.Show();
         }
         #endregion
     }

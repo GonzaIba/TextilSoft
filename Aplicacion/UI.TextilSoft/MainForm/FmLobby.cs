@@ -46,6 +46,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IEmpleadosController _empleadosController;
         private readonly IConfiguration _configuration;
         private readonly ICompanyController _companyController;
+        private readonly Inicio _inicio;
         private AuthenticationConfig _authenticationConfig;
         private string EmailCodigo;
         public Form Activeform = null;
@@ -64,8 +65,8 @@ namespace UI.TextilSoft.MainForm
                         IProductoProveedorController productoProveedorController,
                         IProductosController productosController,
                         IConfiguration configuration,
-                        ICompanyController companyController
-                        )
+                        ICompanyController companyController,
+                        Inicio inicio)
         {
             InitializeComponent();
             _permisoController = permisosController;
@@ -85,6 +86,7 @@ namespace UI.TextilSoft.MainForm
 
             _userController = userController;
             _companyController = companyController;
+            _inicio = inicio;
             CheckForIllegalCrossThreadCalls = false;
 
             Activeform = new FmVacio();
@@ -110,7 +112,7 @@ namespace UI.TextilSoft.MainForm
                 ms.Write(imageBytes, 0, imageBytes.Length);
                 Image image = Image.FromStream(ms, true);
                 picCompanyLogo.Image = image;
-                AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController));
+                AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController,this));
                 //picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
                 //picCompanyLogo.BorderStyle = BorderStyle.Fixed3D;
                 //picCompanyLogo.Size = new Size(200, 200);
@@ -193,5 +195,10 @@ namespace UI.TextilSoft.MainForm
             });
         }
         #endregion
+
+        private void FmLobby_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
