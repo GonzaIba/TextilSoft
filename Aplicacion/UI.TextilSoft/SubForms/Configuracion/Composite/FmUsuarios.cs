@@ -11,37 +11,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Configuracion.Composite
 {
     public partial class FmUsuarios : Form
     {
-        private readonly IUsuarioController _usuarioController;
-        private readonly IPermisosController _permisosController;
+        private readonly IControllerFactory _factory;
         private readonly Usuario _usuario;
         //UserList
         private List<Usuario> ListaUsuarios;
         Usuario seleccion;
         Usuario tmp;
-        public FmUsuarios(IUsuarioController usuarioController, IPermisosController permisosController, Usuario usuario)
+        public FmUsuarios(IControllerFactory factory, Usuario usuario)
         {
             InitializeComponent();
-            _usuarioController = usuarioController;
-            _permisosController = permisosController;
+            _factory = factory;
             _usuario = usuario;
         }
 
         private void FmUsuarios_Load(object sender, EventArgs e)
         {
-            this.cboUsuarios.DataSource = _usuarioController.ObtenerTodosLosUsuarioConPermisos();
+            this.cboUsuarios.DataSource = _factory.Use<IUsuarioController>().ObtenerTodosLosUsuarioConPermisos();
             this.cboUsuarios.DisplayMember = "Nombre";
             ListaUsuarios = (List<Usuario>)this.cboUsuarios.DataSource;
 
-            this.cboFamilias.DataSource = _usuarioController.ObtenerFamilias();
+            this.cboFamilias.DataSource = _factory.Use<IUsuarioController>().ObtenerFamilias();
             this.cboFamilias.DisplayMember = "Nombre";
 
-            this.cboPatentes.DataSource = _permisosController.ObtenerPermisos();
+            this.cboPatentes.DataSource = _factory.Use<IPermisosController>().ObtenerPermisos();
             this.cboPatentes.DisplayMember = "Nombre";
 
         }
@@ -116,7 +115,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
 
                         foreach (var item in tmp.Permisos)
                         {
-                            if (_permisosController.Existe(item, patente.Id) || patente.Permiso == item.Permiso)
+                            if (_factory.Use<IPermisosController>().Existe(item, patente.Id) || patente.Permiso == item.Permiso)
                             {
                                 esta = true;
                                 break;
@@ -164,7 +163,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         {
             try
             {
-                _permisosController.GuardarPermisos(tmp);
+                _factory.Use<IPermisosController>().GuardarPermisos(tmp);
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó el usuario correctamente", centerPosition);
                 fmMessageBox.ShowDialog();
@@ -196,7 +195,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
                         //verifico que ya no tenga el permiso. TODO: Esto debe ser parte de otra capa.
                         foreach (var item in tmp.Permisos)
                         {
-                            if (_permisosController.Existe(item, flia.Id))
+                            if (_factory.Use<IPermisosController>().Existe(item, flia.Id))
                             {
                                 esta = true;
                             }

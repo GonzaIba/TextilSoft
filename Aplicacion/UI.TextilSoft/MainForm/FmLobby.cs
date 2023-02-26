@@ -22,6 +22,7 @@ using System.Windows.Forms;
 using UI.TextilSoft.Background;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Controllers;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
 using UI.TextilSoft.Tools.ExtensionsControls;
 using UI.TextilSoft.Tools.FormsTools;
@@ -32,60 +33,18 @@ namespace UI.TextilSoft.MainForm
     {
         #region Inyection
         private int cont = 0;
-        private readonly IPermisosController _permisoController;
-        private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
-        private readonly IProductosController _productosController;
-        private readonly IUsuarioController _userController;
-        private readonly IProveedoresController _proveedoresController;
-        private readonly IProductoProveedorController _productoProveedorController;
-        private readonly IPedidosController _pedidosController;
-        private readonly ISectorController _sectorController;
-        private readonly IClientesController _clientesController;
-        private readonly IFacturasController _facturasController;
-        private readonly IVentasController _ventasController;
-        private readonly IEmpleadosController _empleadosController;
-        private readonly IConfiguration _configuration;
-        private readonly ICompanyController _companyController;
+        private readonly IControllerFactory _factory;
         private readonly Inicio _inicio;
         private AuthenticationConfig _authenticationConfig;
         private string EmailCodigo;
         public Form Activeform = null;
         private TaskResolver _taskResolver;
 
-        public FmLobby(IPermisosController permisosController,
-                        IUsuarioController userController,
-                        IProveedoresController proveedoresController,
-                        IClientesController clientesController,
-                        IPedidosController pedidosController,
-                        ISectorController sectorController,
-                        IFacturasController facturasController,
-                        IEmpleadosController empleadosController,
-                        IVentasController ventasController,
-                        IOrdenDeTrabajoController ordenDeTrabajoController,
-                        IProductoProveedorController productoProveedorController,
-                        IProductosController productosController,
-                        IConfiguration configuration,
-                        ICompanyController companyController,
-                        Inicio inicio)
+        public FmLobby(IControllerFactory factory,Inicio inicio)
         {
             InitializeComponent();
-            _permisoController = permisosController;
-            _proveedoresController = proveedoresController;
-            _clientesController = clientesController;
-            _ventasController = ventasController;
-            _sectorController = sectorController;
-            _empleadosController = empleadosController;
-            _facturasController = facturasController;
-            _ordenDeTrabajoController = ordenDeTrabajoController;
-            _productosController = productosController;
-            _productoProveedorController = productoProveedorController;
-            _pedidosController = pedidosController;
-            _configuration = configuration;
-            _companyController = companyController;
-            _authenticationConfig = _companyController.GetAuthenticationConfig();
-
-            _userController = userController;
-            _companyController = companyController;
+            _factory = factory;
+            _authenticationConfig = _factory.Use<ICompanyController>().GetAuthenticationConfig();
             _inicio = inicio;
             CheckForIllegalCrossThreadCalls = false;
 
@@ -101,7 +60,7 @@ namespace UI.TextilSoft.MainForm
         {
             try
             {
-                CompanyCustomizeEntity company = _companyController.GetCustomizeCompany();
+                CompanyCustomizeEntity company = _factory.Use<ICompanyController>().GetCustomizeCompany();
 
                 lblCompanyName.Text = company.Name;             
                 pnlCompanyLogo.BackColor = company.Color;
@@ -112,7 +71,7 @@ namespace UI.TextilSoft.MainForm
                 ms.Write(imageBytes, 0, imageBytes.Length);
                 Image image = Image.FromStream(ms, true);
                 picCompanyLogo.Image = image;
-                AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController,this));
+                AbrirFormHija(new FmIniciarSesion(_factory, this));
                 //picCompanyLogo.SizeMode = PictureBoxSizeMode.StretchImage;
                 //picCompanyLogo.BorderStyle = BorderStyle.Fixed3D;
                 //picCompanyLogo.Size = new Size(200, 200);

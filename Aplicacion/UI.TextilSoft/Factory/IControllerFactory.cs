@@ -8,7 +8,7 @@ namespace UI.TextilSoft.Factory
 {
     public interface IControllerFactory
     {
-        T GetController<T>();
-        T GetNewController<T>();
+        T Use<T>();
+        T UseNew<T>();
     }
 }

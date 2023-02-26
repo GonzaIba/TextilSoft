@@ -22,67 +22,13 @@ namespace UI.TextilSoft.MainForm
 {
     public partial class Inicio : FmBaseForm
     {
-        private readonly IPermisosController _permisoController;
-        private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
-        private readonly IProductosController _productosController;
-        private readonly IUsuarioController _userController;
-        private readonly IProveedoresController _proveedoresController;
-        private readonly IProductoProveedorController _productoProveedorController;
-        private readonly IPedidosController _pedidosController;
-        private readonly ISectorController _sectorController;
-        private readonly IClientesController _clientesController;
-        private readonly IFacturasController _facturasController;
-        private readonly IVentasController _ventasController;
-        private readonly IEmpleadosController _empleadosController;
-        private readonly IConfiguration _configuration;
-        private readonly ICompanyController _companyController;
         private readonly IControllerFactory _controllerFactory;
         private AuthenticationConfig _authenticationConfig;
         public Form Activeform = null;
-        public Inicio(IPermisosController permisosController,
-                        IUsuarioController userController,
-                        IProveedoresController proveedoresController,
-                        IClientesController clientesController,
-                        IPedidosController pedidosController,
-                        ISectorController sectorController,
-                        IFacturasController facturasController,
-                        IEmpleadosController empleadosController,
-                        IVentasController ventasController,
-                        IOrdenDeTrabajoController ordenDeTrabajoController,
-                        IProductoProveedorController productoProveedorController,
-                        IProductosController productosController,
-                        IConfiguration configuration,
-                        ICompanyController companyController,
-                        IControllerFactory controllerFactory
-                        )
+        public Inicio(IControllerFactory controllerFactory)
         {
             InitializeComponent();
-            _permisoController = permisosController;
-            _proveedoresController = proveedoresController;
-            _clientesController = clientesController;
-            _ventasController = ventasController;
-            _sectorController = sectorController;
-            _empleadosController = empleadosController;
-            _facturasController = facturasController;
-            _ordenDeTrabajoController = ordenDeTrabajoController;
-            _productosController = productosController;
-            _productoProveedorController = productoProveedorController;
-            _pedidosController = pedidosController;
-            _configuration = configuration;
-            _companyController = companyController;
-            _authenticationConfig = _companyController.GetAuthenticationConfig();
             _controllerFactory = controllerFactory;
-
-            var result = _controllerFactory.GetController<ICompanyController>();
-            var result2 = _controllerFactory.GetController<ICompanyController>();
-            var r = result2.GetAuthenticationConfig();
-            if(r.PasswordConfig.CountLength == 9)
-            {
-                
-            }
-
-            _userController = userController;
-            _companyController = companyController;
             CheckForIllegalCrossThreadCalls = false;
             this.StartPosition = FormStartPosition.CenterScreen;
         }
@@ -97,9 +43,9 @@ namespace UI.TextilSoft.MainForm
             Start();
         }
 
-        private async Task Start()
+        private void Start()
         {
-            var fmlobby = new FmLobby(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, this);
+            var fmlobby = new FmLobby(_controllerFactory, this);
             AbrirFormHija(fmlobby);
             while (circularProgressBar1.Value < 2000)
             {
@@ -107,12 +53,11 @@ namespace UI.TextilSoft.MainForm
                 circularProgressBar1.Text = Convert.ToString(circularProgressBar1.Value / 20);
             }
             circularProgressBar1.Visible = false;
+            this.Hide();
             if (PerformanceConfiguration.EnabledAnimator)
-                await AbrirAnimator(fmlobby);
+                fmlobby.Show();
             else
                 fmlobby.Show();
-
-            this.Hide();
         }
 
         private void circularProgressBar1_Click(object sender, EventArgs e)

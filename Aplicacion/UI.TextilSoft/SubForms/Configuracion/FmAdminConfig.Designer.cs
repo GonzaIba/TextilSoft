@@ -33,11 +33,13 @@
             this.btnPatenteFamilia = new FontAwesome.Sharp.IconButton();
             this.btnUsuarios = new FontAwesome.Sharp.IconButton();
             this.panelContenedor = new System.Windows.Forms.Panel();
+            this.btnConfiguracion = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnConfiguracion);
             this.panel1.Controls.Add(this.btnConfigCompany);
             this.panel1.Controls.Add(this.btnPatenteFamilia);
             this.panel1.Controls.Add(this.btnUsuarios);
@@ -107,6 +109,23 @@
             this.panelContenedor.Size = new System.Drawing.Size(886, 446);
             this.panelContenedor.TabIndex = 1;
             // 
+            // btnConfiguracion
+            // 
+            this.btnConfiguracion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracion.ForeColor = System.Drawing.Color.White;
+            this.btnConfiguracion.IconChar = FontAwesome.Sharp.IconChar.UsersCog;
+            this.btnConfiguracion.IconColor = System.Drawing.Color.White;
+            this.btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnConfiguracion.IconSize = 35;
+            this.btnConfiguracion.Location = new System.Drawing.Point(617, 0);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Size = new System.Drawing.Size(130, 46);
+            this.btnConfiguracion.TabIndex = 3;
+            this.btnConfiguracion.Text = "Configuración";
+            this.btnConfiguracion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnConfiguracion.UseVisualStyleBackColor = true;
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
+            // 
             // FmAdminConfig
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -129,5 +148,6 @@
         private FontAwesome.Sharp.IconButton btnUsuarios;
         private System.Windows.Forms.Panel panelContenedor;
         private FontAwesome.Sharp.IconButton btnConfigCompany;
+        private FontAwesome.Sharp.IconButton btnConfiguracion;
     }
 }

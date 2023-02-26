@@ -1,6 +1,7 @@
 ﻿using Contracts.Controllers;
 using FontAwesome.Sharp;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.Extensions.Configuration;
 using NAudio.Wave;
 using SL.Contracts;
@@ -19,6 +20,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Media;
 using UI.TextilSoft.Configurations;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Configuracion;
 using UI.TextilSoft.SubForms.Pedidos;
 using UI.TextilSoft.SubForms.Proveedores;
@@ -31,6 +33,7 @@ namespace UI.TextilSoft.MainForm
     {
         #region Variables
         private Form activeForm = null;
+        public Form subForm = null;
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Random random;
@@ -58,38 +61,10 @@ namespace UI.TextilSoft.MainForm
 
         #region DI
         //----------------------- DI -------------------
-        private readonly IUsuarioController _usuarioController;
-        private readonly IPermisosController _permisosController;
-        private readonly IClientesController _clientesController;
-        private readonly IProveedoresController _proveedoresController;
-        private readonly IProductosController _productosController;
-        private readonly IProductoProveedorController _productoProveedorController;
-        private readonly IPedidosController _pedidosController;
-        private readonly IVentasController _ventasController;
-        private readonly ISectorController _sectorController;
-        private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
-        private readonly IEmpleadosController _empleadosController;
-        private readonly IFacturasController _facturasController;
-        private readonly IConfiguration _configuration;
-        private readonly ICompanyController _companyController;
+        private readonly IControllerFactory _factory;
         private readonly FmLobby _fmLobby;
 
-        public FmTextilSoft(IUsuarioController usuarioController,
-                             IPermisosController permisosController,
-                             IProveedoresController proveedoresController,
-                             IClientesController clientesController,
-                             IPedidosController pedidosController,
-                             ISectorController sectorController,
-                             IFacturasController facturasController,
-                             IEmpleadosController empleadosController,
-                             IVentasController ventasController,
-                             IOrdenDeTrabajoController ordenDeTrabajoController,
-                             IProductoProveedorController productoProveedorController,
-                             IProductosController productosController,
-                             IConfiguration configuration,
-                             ICompanyController companyController,
-                             FmLobby fmLobby
-                             )
+        public FmTextilSoft(IControllerFactory factory,FmLobby fmLobby)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
@@ -97,21 +72,7 @@ namespace UI.TextilSoft.MainForm
             leftBorderBtn = new Panel();
             leftBorderBtn.Size = new Size(7, 60);
             panelBotones.Controls.Add(leftBorderBtn);
-
-            _usuarioController = usuarioController;
-            _permisosController = permisosController;
-            _proveedoresController = proveedoresController;
-            _clientesController = clientesController;
-            _ventasController = ventasController;
-            _sectorController = sectorController;
-            _empleadosController = empleadosController;
-            _facturasController = facturasController;
-            _ordenDeTrabajoController = ordenDeTrabajoController;
-            _productosController = productosController;
-            _productoProveedorController = productoProveedorController;
-            _pedidosController = pedidosController;
-            _configuration = configuration;
-            _companyController = companyController;
+            _factory = factory;
             _fmLobby = fmLobby;
         }
 
@@ -220,6 +181,13 @@ namespace UI.TextilSoft.MainForm
 
         private async void AbrirFormHija(Form formhija)
         {
+            if (subForm != null)
+            {
+                subForm.Close();
+                subForm = null;
+            }
+
+
             if (activeForm != null)
             {
                 activeForm.Close();
@@ -263,7 +231,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void btnPedidos_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmPedidos(_pedidosController,_clientesController,_productosController));
+            AbrirFormHija(new FmPedidos(_factory));
             BotonPresionado = true;
             ActivateButton(sender);
             SonidoForm();
@@ -300,7 +268,7 @@ namespace UI.TextilSoft.MainForm
         private void btnProveedores_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
-            AbrirFormHija(new FmProveedores(_proveedoresController, _productoProveedorController));
+            AbrirFormHija(new FmProveedores(_factory));
             BotonPresionado = true;
             SonidoForm();
         }
@@ -311,7 +279,7 @@ namespace UI.TextilSoft.MainForm
             BotonPresionado = true;
             SonidoForm();
             if (_user.EsAdmin() || _user.IsOwner)
-                AbrirFormHija(new FmAdminConfig(_usuarioController, _permisosController,_companyController,_user,Size));
+                AbrirFormHija(new FmAdminConfig(_factory, _user,this));
             else
                 AbrirFormHija(new FmConfiguracion());
         }

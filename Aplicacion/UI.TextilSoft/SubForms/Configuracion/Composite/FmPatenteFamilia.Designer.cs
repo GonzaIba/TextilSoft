@@ -343,6 +343,8 @@
             this.Controls.Add(this.lblUsuarios);
             this.Name = "FmPatenteFamilia";
             this.Text = "FmPatenteFamilia";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FmPatenteFamilia_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FmPatenteFamilia_FormClosed);
             this.Load += new System.EventHandler(this.FmPatenteFamilia_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

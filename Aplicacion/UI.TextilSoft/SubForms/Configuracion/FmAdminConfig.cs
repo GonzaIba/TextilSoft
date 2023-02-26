@@ -10,6 +10,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Factory;
+using UI.TextilSoft.MainForm;
 using UI.TextilSoft.SubForms.Configuracion.Composite;
 using UI.TextilSoft.Tools.FormsTools;
 
@@ -18,32 +20,29 @@ namespace UI.TextilSoft.SubForms.Configuracion
     public partial class FmAdminConfig : Form
     {
         private Form activeForm = null;
-        private readonly IUsuarioController _usuarioController;
-        private readonly IPermisosController _permisosController;
-        private readonly ICompanyController _companyController;
-        private readonly Size _sizeFmTextilSoft;
+        private readonly IControllerFactory _factory;
+        private readonly FmTextilSoft _fmTextilSoft;
         private readonly Usuario _usuario;
-        public FmAdminConfig(IUsuarioController usuarioController, IPermisosController permisosController, ICompanyController companyController, Usuario usuario, Size sizeFmTextilSoft)
+        public FmAdminConfig(IControllerFactory factory, Usuario usuario, FmTextilSoft fmTextilSoft)
         {
             InitializeComponent();
-            _usuarioController = usuarioController;
-            _permisosController = permisosController;
-            _companyController = companyController;
+            _factory = factory;
             _usuario = usuario;
-            _sizeFmTextilSoft = sizeFmTextilSoft;
+            _fmTextilSoft = fmTextilSoft;
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmUsuarios(_usuarioController, _permisosController, _usuario));
+            AbrirFormHija(new FmUsuarios(_factory, _usuario));
         }
         private void btnPatenteFamilia_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmPatenteFamilia(_usuarioController, _permisosController, _sizeFmTextilSoft,_usuario));
+            AbrirFormHija(new FmPatenteFamilia(_factory, _usuario,_fmTextilSoft));
         }
 
         private void AbrirFormHija(Form formhija)
         {
+            _fmTextilSoft.subForm = formhija;
             if (activeForm != null)
             {
                 activeForm.Close();
@@ -82,7 +81,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
         private void btnConfigCompany_Click(object sender, EventArgs e)
         {
             if (_usuario.IsOwner)
-                AbrirFormHija(new FmCompanyConfig(_companyController));
+                AbrirFormHija(new FmCompanyConfig(_factory));
             else
             {
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
@@ -90,6 +89,11 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 fmMessageBox.ShowDialog();
             }
             
+        }
+
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmConfiguracion());
         }
     }
 }

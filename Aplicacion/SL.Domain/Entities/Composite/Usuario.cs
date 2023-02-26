@@ -20,6 +20,10 @@ namespace SL.Domain.Entities
         public string Email { get; set; }
         public string DNI { get; set; }
         public bool IsOwner { get; set; }
+        public bool EnableAnimators { get; set; }
+        public bool EnableSlicePanel { get; set; }
+        public bool EnableVolume { get; set; }
+        public bool Volume { get; set; }
 
         public List<Componente> Permisos
         {

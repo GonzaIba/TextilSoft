@@ -51,13 +51,33 @@ namespace SL.Infrastructure.TypeBuilders
                 .IsRequired(true)
                 .HasColumnType("bit");
 
-            //builder.Property(p => p.IsOwner)
-            //    .IsRequired(true)
-            //    .HasColumnType("bit");
+            //builder.Property(p => p.DateDisabledUser)
+            //    .IsRequired(false)
+            //    .HasColumnType("datetime");
 
             builder.Property(p => p.VerifyCode)
                 .IsRequired(false)
                 .HasColumnType("int");
+
+            builder.Property(p => p.EnableAnimators)
+                .IsRequired(true)
+                .HasColumnType("bit")
+                .HasDefaultValue(1);
+
+            builder.Property(p => p.EnableSlicePanel)
+                .IsRequired(true)
+                .HasColumnType("bit")
+                .HasDefaultValue(1);
+
+            builder.Property(p => p.EnableVolume)
+                .IsRequired(true)
+                .HasColumnType("bit")
+                .HasDefaultValue(1);
+
+            builder.Property(p => p.Volume)
+                .IsRequired(true)
+                .HasColumnType("int")
+                .HasDefaultValue(1);
 
             builder.HasOne(p => p.Company)
                 .WithMany(p => p.Usuarios)

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Pedidos.AdministrarPedido;
 using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 using UI.TextilSoft.SubForms.Pedidos.ListarPedidos;
@@ -18,15 +19,11 @@ namespace UI.TextilSoft.SubForms.Pedidos
     public partial class FmPedidos : Form
     {
         private Form activeForm = null;
-        private IPedidosController _pedidosController;
-        private IClientesController _clientesController;
-        private IProductosController _productosController;
-        public FmPedidos(IPedidosController pedidosController, IClientesController clientesController, IProductosController productosController)
+        private readonly IControllerFactory _factory;
+        public FmPedidos(IControllerFactory factory)
         {
             InitializeComponent();
-            _pedidosController = pedidosController;
-            _clientesController = clientesController;
-            _productosController = productosController;
+            _factory = factory;
         }
 
         private void AbrirFormHija(Form formhija)
@@ -76,12 +73,12 @@ namespace UI.TextilSoft.SubForms.Pedidos
 
         private void btnAdministrarPedido_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmAdministrarPedido(_pedidosController,_clientesController));
+            AbrirFormHija(new FmAdministrarPedido(_factory));
         }
 
         private void btnCrearPedido_Click_1(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmCrearPedido(_pedidosController, _clientesController, _productosController));
+            AbrirFormHija(new FmCrearPedido(_factory));
         }
 
         private void lblPrincipal_Click(object sender, EventArgs e)
@@ -96,7 +93,7 @@ namespace UI.TextilSoft.SubForms.Pedidos
 
         private void btnListarPedidos_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmListarPedidos(_pedidosController));
+            AbrirFormHija(new FmListarPedidos(_factory));
         }
     }
 }

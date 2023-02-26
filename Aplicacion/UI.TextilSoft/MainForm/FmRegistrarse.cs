@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Proveedores;
 
 namespace UI.TextilSoft.MainForm
@@ -21,20 +22,7 @@ namespace UI.TextilSoft.MainForm
     public partial class FmRegistrarse : Form
     {
         #region Constructor
-        private readonly IPermisosController _permisoController;
-        private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
-        private readonly IProductosController _productosController;
-        private readonly IUsuarioController _userController;
-        private readonly IProveedoresController _proveedoresController;
-        private readonly IProductoProveedorController _productoProveedorController;
-        private readonly IPedidosController _pedidosController;
-        private readonly ISectorController _sectorController;
-        private readonly IClientesController _clientesController;
-        private readonly IFacturasController _facturasController;
-        private readonly IVentasController _ventasController;
-        private readonly IEmpleadosController _empleadosController;
-        private readonly IConfiguration _configuration;
-        private readonly ICompanyController _companyController;
+        private readonly IControllerFactory _factory;
         private readonly FmLobby _fmLobby;
         private AuthenticationConfig _authenticationConfig;
         private Form Activeform = null;
@@ -44,42 +32,14 @@ namespace UI.TextilSoft.MainForm
         private bool DNIChecked;
         
 
-        public FmRegistrarse(IPermisosController permisosController,
-                        IUsuarioController userController,
-                        IProveedoresController proveedoresController,
-                        IClientesController clientesController,
-                        IPedidosController pedidosController,
-                        ISectorController sectorController,
-                        IFacturasController facturasController,
-                        IEmpleadosController empleadosController,
-                        IVentasController ventasController,
-                        IOrdenDeTrabajoController ordenDeTrabajoController,
-                        IProductoProveedorController productoProveedorController,
-                        IProductosController productosController,
-                        IConfiguration configuration,
-                        ICompanyController companyController,
-                        FmLobby fmLobby
-                        )
+        public FmRegistrarse(IControllerFactory factory,FmLobby fmLobby)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
-            _permisoController = permisosController;
-            _proveedoresController = proveedoresController;
-            _clientesController = clientesController;
-            _ventasController = ventasController;
-            _sectorController = sectorController;
-            _empleadosController = empleadosController;
-            _facturasController = facturasController;
-            _ordenDeTrabajoController = ordenDeTrabajoController;
-            _productosController = productosController;
-            _productoProveedorController = productoProveedorController;
-            _pedidosController = pedidosController;
-            _configuration = configuration;
-            _userController = userController;
-            _companyController = companyController;
+            _factory = factory;
             _fmLobby = fmLobby;
 
-            _authenticationConfig = _companyController.GetAuthenticationConfig();
+            _authenticationConfig = _factory.Use<ICompanyController>().GetAuthenticationConfig();
 
             //CheckForIllegalCrossThreadCalls = false;
             pnlRegistrarse.Visible = false;
@@ -120,16 +80,16 @@ namespace UI.TextilSoft.MainForm
 
             if (register.Password == register.ConfirmPassword)
             {
-                if (_userController.Crearusuario(register, _companyController.GetCurrentCompany()))
+                if (_factory.Use<IUsuarioController>().Crearusuario(register, _factory.Use<ICompanyController>().GetCurrentCompany()))
                 {
                     if (_authenticationConfig.SignInRequireConfirmedAccount)
                     {
                         try
                         {
-                            _userController.EnviarConfirmacionEmail(register.Email);
+                            _factory.Use<IUsuarioController>().EnviarConfirmacionEmail(register.Email);
                             MessageBox.Show("Se ha enviado un correo de confirmación a su casilla de correo");
                             pnlRegistrarse.BringToFront();
-                            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby));
+                            AbrirFormHija(new FmIniciarSesion(_factory, _fmLobby));
                         }
                         catch (Exception ex)
                         {
@@ -237,7 +197,7 @@ namespace UI.TextilSoft.MainForm
         {         
             if (System.Text.RegularExpressions.Regex.IsMatch(txtMail.Text, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$"))
             {
-                if (_userController.ExisteEmail(txtMail.Text))
+                if (_factory.Use<IUsuarioController>().ExisteEmail(txtMail.Text))
                 {
                     EmailChecked = false;
                     pnlEmail.BackColor = Color.Red;
@@ -267,7 +227,7 @@ namespace UI.TextilSoft.MainForm
             
             if (System.Text.RegularExpressions.Regex.IsMatch(txtDNI.Text, @"^[0-9]{7,8}$"))
             {
-                if (_userController.ExisteDNI(Convert.ToInt32(txtDNI.Text)))
+                if (_factory.Use<IUsuarioController>().ExisteDNI(Convert.ToInt32(txtDNI.Text)))
                 {
                     pnlDNI.BackColor = Color.Red;
                     DNIChecked = false;
@@ -302,7 +262,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void txtUsuario_TextChanged(object sender, EventArgs e)
         {
-            if (_userController.ExisteUsuario(txtUsuario.Text))
+            if (_factory.Use<IUsuarioController>().ExisteUsuario(txtUsuario.Text))
             {
                 pnlUsuario.BackColor = Color.Red;
                 UsuarioChecked = false;
@@ -446,7 +406,7 @@ namespace UI.TextilSoft.MainForm
         {
             LimpiarControler();
             pnlRegistrarse.BringToFront();
-            AbrirFormHija(new FmIniciarSesion(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby));
+            AbrirFormHija(new FmIniciarSesion(_factory, _fmLobby));
         }
     }
 }

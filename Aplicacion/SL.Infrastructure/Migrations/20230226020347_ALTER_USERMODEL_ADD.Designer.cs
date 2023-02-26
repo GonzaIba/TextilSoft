@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SL.Infrastructure;
 
 namespace SL.Infrastructure.Migrations
 {
     [DbContext(typeof(ServiceLayerDbContext))]
-    partial class ServiceLayerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230226020347_ALTER_USERMODEL_ADD")]
+    partial class ALTER_USERMODEL_ADD
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

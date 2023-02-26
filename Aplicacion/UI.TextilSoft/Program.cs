@@ -30,6 +30,7 @@ using UI.TextilSoft.Background;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
+using UI.TextilSoft.SubForms.Configuracion;
 
 namespace UI.TextilSoft
 {
@@ -76,9 +77,9 @@ namespace UI.TextilSoft
             if (CompanyService.ExistCompany(CompanyId, CompanyApiKey))
             {
                 if (/*UseLoginAndRegister &&*/ CompanyService.CanUseLoginAndRegister(CompanyId))
-                    mainForm = services.GetRequiredService<Inicio>();
+                    mainForm = services.GetRequiredService<FmConfiguracion>();
                 else
-                    mainForm = services.GetRequiredService<Inicio>();
+                    mainForm = services.GetRequiredService<FmConfiguracion>();
 
                 Application.Run(mainForm);
             }
@@ -120,7 +121,7 @@ namespace UI.TextilSoft
             //Hacemos un singleton a ambas aplicaciones por si desea usar login o no.
             services.AddSingleton<FmLobby>();
             services.AddSingleton<FmTextilSoft>();
-            services.AddSingleton<Inicio>();
+            services.AddSingleton<FmConfiguracion>();
             services.AddSingleton<IControllerFactory,ControllerFactory>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));

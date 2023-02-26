@@ -14,13 +14,14 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using UI.TextilSoft.Controllers;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
 {
     public partial class FmListarPedidos : Form
     {
-        private readonly IPedidosController _pedidosController;
+        private readonly IControllerFactory _factory;
         private bool IsPreviousActive;
         private string LastColumn;
         private int Pagecount, PageIndex, TotalPages;
@@ -28,10 +29,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
 
         private int IndexBtnPrimero, IndexBtnSegundo, IndexBtnTercero;
         
-        public FmListarPedidos(IPedidosController pedidosController)
+        public FmListarPedidos(IControllerFactory factory)
         {
-            _pedidosController = pedidosController;
             InitializeComponent();
+            _factory = factory;
         }
 
         private void FmListarPedidos_Load(object sender, EventArgs e)
@@ -48,7 +49,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
 
             string orderBy = "ID_Pedido";
             LastColumn = orderBy;
-            var PedidosPaginado = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, orderBy, IsPreviousActive);
+            var PedidosPaginado = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, orderBy, IsPreviousActive);
             //Set total pages to btnFinal
             btnFinal.Text = "..." + PedidosPaginado.TotalPages.ToString();
             TotalPages = PedidosPaginado.TotalPages;
@@ -93,7 +94,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                 IsPreviousActive = false;
 
             LastColumn = ColumnName;
-            GrillaPedidos.DataSource = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, orderBy, IsPreviousActive).List.ToList();
+            GrillaPedidos.DataSource = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, orderBy, IsPreviousActive).List.ToList();
         }
 
         private void fmDateDesde_ValueChanged(object sender, EventArgs e)
@@ -113,12 +114,12 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
         {
             //Use Expression func with date
             Expression<Func<ListarPedidosEntity, bool>> expression = x => x.Fecha >= fmDateDesde.Value && x.Fecha <= fmDateHasta.Value;
-            GrillaPedidos.DataSource = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, expression, LastColumn, IsPreviousActive).List.ToList();
+            GrillaPedidos.DataSource = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, expression, LastColumn, IsPreviousActive).List.ToList();
         }
 
         private void btnInicio_Click(object sender, EventArgs e)
         {
-            GrillaPedidos.DataSource = _pedidosController.ObtenerPedidos(1, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
+            GrillaPedidos.DataSource = _factory.Use<IPedidosController>().ObtenerPedidos(1, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
             PageIndex = 1;
             IndexBtnPrimero = 1;
             IndexBtnSegundo = 2;
@@ -128,7 +129,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
 
         private void btnFinal_Click(object sender, EventArgs e)
         {
-            GrillaPedidos.DataSource = _pedidosController.ObtenerPedidos(TotalPages, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
+            GrillaPedidos.DataSource = _factory.Use<IPedidosController>().ObtenerPedidos(TotalPages, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
             if(PageIndex != 1 && PageIndex != 2)
             {
                 PageIndex = TotalPages;
@@ -151,7 +152,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                     IndexBtnTercero++;
                 }
                 PageIndex++;
-                GrillaPedidos.DataSource = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
             }
             ActualizarBotones();
         }
@@ -167,7 +168,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                     IndexBtnTercero--;
                 }
                 PageIndex--;
-                GrillaPedidos.DataSource = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
             }
             ActualizarBotones();
         }
@@ -188,7 +189,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
             else
             {
                 Pagecount = Convert.ToInt32(cboxCantidadRegistros.SelectedItem);
-                var PedidosPaginado = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
+                var PedidosPaginado = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
                 TotalPages = PedidosPaginado.TotalPages;
                 btnFinal.Text = "..." + PedidosPaginado.TotalPages.ToString();
@@ -210,7 +211,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
             {
                 isFirstPage = true;
                 PageIndex = IndexBtnPrimero;
-                var PedidosPaginado = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
+                var PedidosPaginado = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
                 btnAnterior.Enabled = false;
             }
@@ -220,7 +221,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                 IndexBtnSegundo-=1;
                 IndexBtnTercero-=1;
                 PageIndex = IndexBtnPrimero;
-                var PedidosPaginado = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
+                var PedidosPaginado = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
                 btnAnterior.Enabled = true;
             }
@@ -230,7 +231,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
         private void btnSegundo_Click(object sender, EventArgs e)
         {
             PageIndex = IndexBtnSegundo;
-            GrillaPedidos.DataSource = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
+            GrillaPedidos.DataSource = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive).List.ToList();
             ActualizarBotones();
         }
         
@@ -240,7 +241,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
             {
                 isLastPage = true;
                 PageIndex = IndexBtnTercero;
-                var PedidosPaginado = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
+                var PedidosPaginado = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
             }
             if (!isLastPage)
@@ -249,7 +250,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                 IndexBtnSegundo = IndexBtnTercero;
                 IndexBtnTercero++;
                 PageIndex = IndexBtnTercero;
-                var PedidosPaginado = _pedidosController.ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
+                var PedidosPaginado = _factory.Use<IPedidosController>().ObtenerPedidos(PageIndex, Pagecount, null, LastColumn, IsPreviousActive);
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
             }
             ActualizarBotones();

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.FormsTools;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
@@ -18,16 +19,16 @@ namespace UI.TextilSoft.SubForms.Configuracion
 {
     public partial class FmCompanyConfig : Form
     {
-        private readonly ICompanyController _companyController;
+        private readonly IControllerFactory _factory;
         private readonly AuthenticationConfig _authenticationConfig;
         private OpenFileDialog _dialog;
         private CompanyCustomizeEntity _companyCustomizeEntity;
         private string file64;
-        public FmCompanyConfig(ICompanyController companyController)
+        public FmCompanyConfig(IControllerFactory factory)
         {
             InitializeComponent();
-            _companyController = companyController;
-            _authenticationConfig = _companyController.GetAuthenticationConfig();
+            _factory = factory;
+            _authenticationConfig = _factory.Use<ICompanyController>().GetAuthenticationConfig();
         }
         private void FmCompanyConfig_Load(object sender, EventArgs e)
         {
@@ -41,7 +42,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 txtMaxFail.Text = _authenticationConfig.MaxFailedAccessAttempts.ToString();
                 tgBtnEmailConfirmed.Checked = _authenticationConfig.SignInRequireConfirmedAccount;
 
-                _companyCustomizeEntity = _companyController.GetCustomizeCompany();
+                _companyCustomizeEntity = _factory.Use<ICompanyController>().GetCustomizeCompany();
 
                 txtColor.BackColor = _companyCustomizeEntity.Color;
 
@@ -80,7 +81,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
                     passwordConfig.RequireDigit = tgBtnNumero.Checked;
                     passwordConfig.RequireNonAlphanumeric = tgBtnEspecial.Checked;
                     passwordConfig.CountLength = Convert.ToInt32(txtCarMinimo.Text);
-                    _companyController.SavePasswordConfig(passwordConfig);
+                    _factory.Use<ICompanyController>().SavePasswordConfig(passwordConfig);
                     var centerPosition = new Point(this.Width / 2, this.Height / 2);
                     FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó las preferencias de la contraseñas correctamente!", centerPosition);
                     fmMessageBox.ShowDialog();
@@ -179,7 +180,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
                 companyCustomizeEntity.Color = txtColor.BackColor;
 
-                _companyController.SaveCustomizeCompany(companyCustomizeEntity);
+                _factory.Use<ICompanyController>().SaveCustomizeCompany(companyCustomizeEntity);
 
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó la personalización de la compañía correctamente!", centerPosition);
@@ -209,7 +210,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 AuthenticationConfig authenticationConfig = new();
                 authenticationConfig.SignInRequireConfirmedAccount = tgBtnEmailConfirmed.Checked;
                 authenticationConfig.MaxFailedAccessAttempts = Convert.ToInt32(txtMaxFail.Text);
-                _companyController.SaveAuthenticationConfig(authenticationConfig);
+                _factory.Use<ICompanyController>().SaveAuthenticationConfig(authenticationConfig);
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado con éxito", "Se guardó las preferencias de autenticación correctamente!", centerPosition);
                 fmMessageBox.ShowDialog();

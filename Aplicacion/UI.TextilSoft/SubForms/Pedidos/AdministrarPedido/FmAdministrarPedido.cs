@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Tools.FormsTools;
+using UI.TextilSoft.Factory;
 
 namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
 {
@@ -23,15 +24,13 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         private bool txtDniCliChecked, txtNOChecked;
         private int StartHeightPanels = 0, CountHeightPanels = 1, MaxHeightPanels = 50;
         private bool StatusLoadFinished;
-        private IClientesController _clientesController;
-        private IPedidosController _pedidosController;
+        private readonly IControllerFactory _factory;
         private EstadoPedidosEnum EstadoDelPedido;
         
-        public FmAdministrarPedido(IPedidosController pedidosController, IClientesController clientesController)
+        public FmAdministrarPedido(IControllerFactory factory)
         {
             InitializeComponent();
-            _pedidosController = pedidosController;
-            _clientesController = clientesController;
+            _factory = factory;
         }
 
         private void FmAdministrarPedido_Load(object sender, EventArgs e)
@@ -67,10 +66,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         {
             DisableStatus();
             //Validate if exist client
-            var cliente = _clientesController.ObtenerCliente(txtDNIcli.Text);
+            var cliente = _factory.Use<IClientesController>().ObtenerCliente(txtDNIcli.Text);
             if (cliente != null)
             {
-                var Pedido =_pedidosController.ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente);
+                var Pedido = _factory.Use<IPedidosController>().ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente);
                 if(Pedido != null)
                 {
                     tmLbl.Start();

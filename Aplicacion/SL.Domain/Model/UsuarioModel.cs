@@ -27,6 +27,10 @@ namespace SL.Domain.Model
         public bool Active { get; set; }
         public DateTime? DateDisabledUser { get; set; }
         public Nullable<int> VerifyCode { get; set; }
+        public bool EnableAnimators { get; set; }
+        public bool EnableSlicePanel { get; set; }
+        public bool EnableVolume { get; set; }
+        public bool Volume { get; set; }
 
         public CompanyModel Company { get; set; }
         public ICollection<Usuario_PermisoModel> Usuario_Permisos { get; set; }

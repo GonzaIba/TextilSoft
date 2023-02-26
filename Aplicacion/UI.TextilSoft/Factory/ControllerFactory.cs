@@ -21,7 +21,7 @@ namespace UI.TextilSoft.Factory
 
         private readonly Dictionary<Type, object> _controllerDictionary = new Dictionary<Type, object>();
 
-        public T GetController<T>()
+        public T Use<T>()
         {
             Type type = typeof(T);
 
@@ -35,9 +35,13 @@ namespace UI.TextilSoft.Factory
             return (T)_controllerDictionary[type];
         }
 
-        public T GetNewController<T>()
+        public T UseNew<T>()
         {
-            return (T)_serviceProvider.GetService(typeof(T));
+            Type type = typeof(T);
+            var Object = (T)_serviceProvider.GetService(typeof(T)); //Creamos la instancia del nuevo servicio solicitado
+            if (_controllerDictionary.ContainsKey(type))
+                _controllerDictionary[type] = Object; //Si esta en el diccionario lo agregamos ya que sino tendríamos dos instancias distintas y por ende puede haber datos deprecados
+            return Object;
         }
     }
 }

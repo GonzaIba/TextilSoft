@@ -18,6 +18,7 @@ using System.Windows.Forms;
 using UI.TextilSoft.Background;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Controllers;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.ExtensionsControls;
 using UI.TextilSoft.Tools.FormsTools;
 
@@ -27,20 +28,7 @@ namespace UI.TextilSoft.MainForm
     {
         #region DI
         private int cont = 0;
-        private readonly IPermisosController _permisoController;
-        private readonly IOrdenDeTrabajoController _ordenDeTrabajoController;
-        private readonly IProductosController _productosController;
-        private readonly IUsuarioController _userController;
-        private readonly IProveedoresController _proveedoresController;
-        private readonly IProductoProveedorController _productoProveedorController;
-        private readonly IPedidosController _pedidosController;
-        private readonly ISectorController _sectorController;
-        private readonly IClientesController _clientesController;
-        private readonly IFacturasController _facturasController;
-        private readonly IVentasController _ventasController;
-        private readonly IEmpleadosController _empleadosController;
-        private readonly IConfiguration _configuration;
-        private readonly ICompanyController _companyController;
+        private readonly IControllerFactory _factory;
         private readonly FmLobby _fmLobby = null;
         private AuthenticationConfig _authenticationConfig;
         private string EmailCodigo;
@@ -48,41 +36,11 @@ namespace UI.TextilSoft.MainForm
 
         private string txtUserNameTextBase;
         private string txtPasswordTextBase;
-        public FmIniciarSesion(IPermisosController permisosController,
-                        IUsuarioController userController,
-                        IProveedoresController proveedoresController,
-                        IClientesController clientesController,
-                        IPedidosController pedidosController,
-                        ISectorController sectorController,
-                        IFacturasController facturasController,
-                        IEmpleadosController empleadosController,
-                        IVentasController ventasController,
-                        IOrdenDeTrabajoController ordenDeTrabajoController,
-                        IProductoProveedorController productoProveedorController,
-                        IProductosController productosController,
-                        IConfiguration configuration,
-                        ICompanyController companyController,
-                        FmLobby fmLobby
-                        )
+        public FmIniciarSesion(IControllerFactory factory, FmLobby fmLobby)
         {
             InitializeComponent();
-            _permisoController = permisosController;
-            _proveedoresController = proveedoresController;
-            _clientesController = clientesController;
-            _ventasController = ventasController;
-            _sectorController = sectorController;
-            _empleadosController = empleadosController;
-            _facturasController = facturasController;
-            _ordenDeTrabajoController = ordenDeTrabajoController;
-            _productosController = productosController;
-            _productoProveedorController = productoProveedorController;
-            _pedidosController = pedidosController;
-            _configuration = configuration;
-            _companyController = companyController;
-            _authenticationConfig = _companyController.GetAuthenticationConfig();
-
-            _userController = userController;
-            _companyController = companyController;
+            _factory = factory;
+            _authenticationConfig = _factory.Use<ICompanyController>().GetAuthenticationConfig();
             CheckForIllegalCrossThreadCalls = false;
 
             Activeform = new FmVacio();
@@ -134,7 +92,7 @@ namespace UI.TextilSoft.MainForm
             Login login = new Login();
             login.Usuario = txtUser.Text;
             login.Contraseña = txtPassword.Text;
-            var Result = _userController.LoginUser(login);
+            var Result = _factory.UseNew<IUsuarioController>().LoginUser(login);
             var centerPosition = new Point(this.Width / 2, this.Height / 2);
             if (Result.LoginResultEnum == LoginResultEnum.Ok)
             {
@@ -166,7 +124,7 @@ namespace UI.TextilSoft.MainForm
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Mail sin confirmar", Result.Message, centerPosition);
                 fmMessageBox.ShowDialog();
                 ActivarODesactivarCodigo(true);
-                EmailCodigo = _userController.ObtenerUsuario(login).Email;
+                EmailCodigo = _factory.Use<IUsuarioController>().ObtenerUsuario(login).Email;
             }
         }
 
@@ -245,7 +203,7 @@ namespace UI.TextilSoft.MainForm
             pnlLogin.BringToFront();
             txtUser.Text = string.Empty;
             txtPassword.Text = string.Empty;
-            AbrirFormHija(new FmRegistrarse(_permisoController, _userController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby));
+            AbrirFormHija(new FmRegistrarse(_factory, _fmLobby));
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -255,7 +213,7 @@ namespace UI.TextilSoft.MainForm
                                             Color.Black,
                                             centerPosition,
                                             null,
-                                            _userController.RecuperarContraseña,
+                                            _factory.Use<IUsuarioController>().RecuperarContraseña,
                                             "Usuario",
                                             "Email",
                                             "Recuperar"
@@ -287,8 +245,8 @@ namespace UI.TextilSoft.MainForm
                     Login login = new Login();
                     login.Usuario = txtUser.Text;
                     login.Contraseña = txtPassword.Text;
-                    var usuario = _userController.ObtenerUsuario(login);
-                    bool EstaVerificado = _userController.ValidarCodigoDeVerificacion(usuario, Convert.ToInt32(txtCodigo.Text));
+                    var usuario = _factory.Use<IUsuarioController>().ObtenerUsuario(login);
+                    bool EstaVerificado = _factory.Use<IUsuarioController>().ValidarCodigoDeVerificacion(usuario, Convert.ToInt32(txtCodigo.Text));
                     if (EstaVerificado)
                     {
                         FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Verificacion exitosa", "Cuenta verificada! ya puede hacer uso del sistema con normalidad, bienvenido!", centerPosition);
@@ -314,7 +272,7 @@ namespace UI.TextilSoft.MainForm
             var centerPosition = new Point(this.Width / 2, this.Height / 2);
             try
             {
-                _userController.EnviarConfirmacionEmail(EmailCodigo);
+                _factory.Use<IUsuarioController>().EnviarConfirmacionEmail(EmailCodigo);
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Codigo enviado", $"Se ha enviado un codigo de verificacion a su correo: {EmailCodigo}, por favor verifique su bandeja de entrada", centerPosition);
                 fmMessageBox.Show();
             }
@@ -349,9 +307,9 @@ namespace UI.TextilSoft.MainForm
         private void LoginAplication(Login login)
         {
             //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
-            var usuario = _userController.ObtenerUsuarioConPermisos(login);
+            var usuario = _factory.Use<IUsuarioController>().ObtenerUsuarioConPermisos(login);
             //_empleadosController.LoginEmpleado(usuario);
-            FmTextilSoft fmTextilSoft = new FmTextilSoft(_userController, _permisoController, _proveedoresController, _clientesController, _pedidosController, _sectorController, _facturasController, _empleadosController, _ventasController, _ordenDeTrabajoController, _productoProveedorController, _productosController, _configuration, _companyController, _fmLobby);
+            FmTextilSoft fmTextilSoft = new FmTextilSoft(_factory, _fmLobby);
             fmTextilSoft.toolStrip1.Tag = usuario;
             if (usuario.IsOwner)
             {

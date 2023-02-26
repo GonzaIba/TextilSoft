@@ -1,6 +1,7 @@
 ﻿using Contracts.Controllers;
 using Domain.Entities;
 using Microsoft.Extensions.Configuration;
+using SL.Contracts;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
 using UI.TextilSoft.Tools.RegexPatterns;
 
@@ -20,19 +22,17 @@ namespace UI.TextilSoft.SubForms.Proveedores
 {
     public partial class FmProveedores : Form
     {
-        private readonly IProveedoresController _proveedoresController;
-        private readonly IProductoProveedorController _productoProveedorController;
+        private readonly IControllerFactory _factory;
         private List<ProveedoresEntity> proveedor;
         private bool LLenandoGrilla = false; //Esta propiedad nos ayuda a saber si se esta llenando la grilla para que no se ejecute un evento (el if)
         private bool CreandoProveedor = false;
         private dynamic ValorCelda;
         public Form Activeform = null;
 
-        public FmProveedores(IProveedoresController proveedoresController, IProductoProveedorController productoProveedorController )
+        public FmProveedores(IControllerFactory factory)
         {
             InitializeComponent();
-            _proveedoresController = proveedoresController;
-            _productoProveedorController = productoProveedorController;
+            _factory = factory;
         }
 
         private void FmProveedores_Load(object sender, EventArgs e)
@@ -45,12 +45,12 @@ namespace UI.TextilSoft.SubForms.Proveedores
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
             var ListaProveedores = ListaProveedoresDeGrilla();
-            var ListaAcambiar = _proveedoresController.DetectarCambios(ListaProveedores);
+            var ListaAcambiar = _factory.Use<IProveedoresController>().DetectarCambios(ListaProveedores);
             if (ListaAcambiar.Count == 0)
                 MessageBox.Show("No tiene cambios para guardar");
             else
             {
-                _proveedoresController.ActualizarProveedoresPorGrilla(ListaAcambiar);
+                _factory.Use<IProveedoresController>().ActualizarProveedoresPorGrilla(ListaAcambiar);
                 LLenarGridView();
             }
         }
@@ -58,7 +58,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
         private void btnRefresh_Click_1(object sender, EventArgs e)
         {
             var ListaProveedores = ListaProveedoresDeGrilla();
-            var ListaCambiado = _proveedoresController.VerificarCambios(ListaProveedores);
+            var ListaCambiado = _factory.Use<IProveedoresController>().VerificarCambios(ListaProveedores);
             if (ListaCambiado.Count == 0)
                 LLenarGridView();
             else
@@ -117,11 +117,11 @@ namespace UI.TextilSoft.SubForms.Proveedores
                         foreach (DataGridViewRow row in GrillaProveedores.SelectedRows)
                         {
                             string DNI = GrillaProveedores.Rows[row.Index].Cells[0].Value.ToString();
-                            var Proveedor = _proveedoresController.ObtenerProveedor(DNI);
+                            var Proveedor = _factory.Use<IProveedoresController>().ObtenerProveedor(DNI);
                             if (Proveedor != null)
                             {
                                 proveedor.Add(Proveedor);
-                                _proveedoresController.EliminarProveedor(Proveedor);
+                                _factory.Use<IProveedoresController>().EliminarProveedor(Proveedor);
                             }
                             else
                                 MessageBox.Show("El proveedor que desea eliminar no existe, por favor refresque la grilla");
@@ -149,7 +149,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
             {
                 foreach (var Proveedor in proveedor)
                 {
-                    _proveedoresController.CrearProveedor(Proveedor);
+                    _factory.Use<IProveedoresController>().CrearProveedor(Proveedor);
                 }
                 LLenarGridView();
                 proveedor = null;
@@ -176,7 +176,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
                         throw new Exception("No se permite celda vacia");
 
                     string DNI = GrillaProveedores.Rows[row].Cells[0].Value.ToString();
-                    var Proveedor = _proveedoresController.ObtenerProveedor(DNI);
+                    var Proveedor = _factory.Use<IProveedoresController>().ObtenerProveedor(DNI);
 
                     var ColumnName = GrillaProveedores.Rows[row].Cells[column].OwningColumn.Name; // Obtenemos el nombre de la columna de la posicion actual.
                     if (Proveedor.GetType().GetProperty(ColumnName) != null)//Preguntamos Si el nombre de la columna coincide con el nombre de propiedad (ojo por reflexion...).
@@ -319,7 +319,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
         private void LLenarGridView()
         {
             LimpiarGridView();
-            var ListaProveedores = _proveedoresController.LlenarGrillaProveedores();
+            var ListaProveedores = _factory.Use<IProveedoresController>().LlenarGrillaProveedores();
             GrillaProveedores.DataSource = ListaProveedores;
         }
 
@@ -356,7 +356,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
                         GrillaProveedores.CurrentCell = GrillaProveedores.Rows[GrillaProveedores.Rows.Count - 1].Cells[0];
                     }
                     DNI = DNI.ToString().Replace("-", "").Replace(" ", "");
-                    var Proveedor = _proveedoresController.ObtenerProveedor(DNI.ToString());
+                    var Proveedor = _factory.Use<IProveedoresController>().ObtenerProveedor(DNI.ToString());
                     if (Proveedor != null)
                     {
                         MessageBox.Show("Ese proveedor ya existe");
@@ -407,7 +407,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
                     proveedoresEntity.LugarEmpresa = LugarEmpresa.ToString();
                     proveedoresEntity.Nombre = Nombre.ToString();
                     proveedoresEntity.Mail = Mail.ToString();
-                    _proveedoresController.CrearProveedor(proveedoresEntity);
+                    _factory.Use<IProveedoresController>().CrearProveedor(proveedoresEntity);
                     ProveedorFinalizado();
                 }
                 #endregion
@@ -443,7 +443,7 @@ namespace UI.TextilSoft.SubForms.Proveedores
 
         private void btnProductoProveedor_Click(object sender, EventArgs e)
         {
-            FmProductoProveedor fmProductoProveedor = new FmProductoProveedor(_proveedoresController, _productoProveedorController);
+            FmProductoProveedor fmProductoProveedor = new FmProductoProveedor(_factory);
             PanelProveedores.BringToFront();
             AbrirFormHija(fmProductoProveedor);
         }

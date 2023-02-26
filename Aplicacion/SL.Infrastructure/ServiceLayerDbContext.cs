@@ -15,16 +15,16 @@ namespace SL.Infrastructure
 {
     public class ServiceLayerDbContext : DbContext
     {
-        //public ServiceLayerDbContext()
-        //{
-
-        //}
-
-        public ServiceLayerDbContext(DbContextOptions<ServiceLayerDbContext> dbContextOptions)
-            : base(dbContextOptions)
+        public ServiceLayerDbContext()
         {
 
         }
+
+        //public ServiceLayerDbContext(DbContextOptions<ServiceLayerDbContext> dbContextOptions)
+        //    : base(dbContextOptions)
+        //{
+
+        //}
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {

@@ -8,21 +8,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.ExtensionsControls;
 
 namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
 {
     public partial class FmCrearPedido : Form
     {
-        private IPedidosController _pedidosController;
-        private IClientesController _clientesController;
-        private IProductosController _productosController;
-        public FmCrearPedido(IPedidosController pedidosController, IClientesController clientesController, IProductosController productosController)
+        private IControllerFactory _factory;
+        public FmCrearPedido(IControllerFactory factory)
         {
             InitializeComponent();
-            _pedidosController = pedidosController;
-            _clientesController = clientesController;
-            _productosController = productosController;
+            _factory = factory;
         }
 
         private void FmCrearPedido_Load(object sender, EventArgs e)
@@ -39,7 +36,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             if (txtDNI.Text.Length == 8)
             {
                 string DNI = txtDNI.Text;
-                var Cliente = _clientesController.ObtenerCliente(DNI);
+                var Cliente = _factory.Use<IClientesController>().ObtenerCliente(DNI);
                 if (Cliente is null)
                 {
                     MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");
@@ -74,7 +71,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             if(txtCodigo.Text.Length >= 8)
             {
                 string CodigoProducto = txtCodigo.Text;
-                var Producto = _productosController.ObtenerProducto(CodigoProducto);
+                var Producto = _factory.Use<IProductosController>().ObtenerProducto(CodigoProducto);
                 if (Producto is null)
                 {
                     MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");

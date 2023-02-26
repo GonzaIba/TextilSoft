@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.TextilSoft.Factory;
 
 namespace UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores
 {
@@ -19,14 +20,12 @@ namespace UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores
         private bool LLenandoGrilla = false; //Esta propiedad nos ayuda a saber si se esta llenando la grilla para que no se ejecute un evento (el if)
         private bool CreandoProdProveedor = false;
         private dynamic ValorCelda;
-        private readonly IProveedoresController _proveedoresController;
-        private readonly IProductoProveedorController _productoProveedorController;
+        private readonly IControllerFactory _factory;
 
-        public FmProductoProveedor(IProveedoresController proveedoresController, IProductoProveedorController productoProveedorController)
+        public FmProductoProveedor(IControllerFactory factory)
         {
             InitializeComponent();
-            _proveedoresController = proveedoresController;
-            _productoProveedorController = productoProveedorController;
+            _factory = factory;
         }
         private void PanelProdProveedor_Paint(object sender, PaintEventArgs e)
         {
@@ -37,7 +36,7 @@ namespace UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores
 
         private void btnProductoProveedor_Click(object sender, EventArgs e)
         {
-            FmProveedores fmProveedores = new FmProveedores(_proveedoresController,_productoProveedorController);
+            FmProveedores fmProveedores = new FmProveedores(_factory);
             PanelProdProveedor.BringToFront();
             AbrirFormHija(fmProveedores);
         }
@@ -85,7 +84,7 @@ namespace UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores
         private void LLenarGridView()
         {
             LimpiarGridView();
-            var ListaProductoProveedor = _productoProveedorController.LlenarGrillaProveedores(); ////////
+            var ListaProductoProveedor = _factory.Use<IProductoProveedorController>().LlenarGrillaProveedores(); ////////
             GrillaProductoProveedores.DataSource = ListaProductoProveedor;
         }
         private void LimpiarGridView()
@@ -131,11 +130,11 @@ namespace UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores
                         foreach (DataGridViewRow row in GrillaProductoProveedores.SelectedRows)
                         {
                             string DNI = GrillaProductoProveedores.Rows[row.Index].Cells[0].Value.ToString();
-                            var ProdProveedor = _productoProveedorController.ObtenerProdProveedor(DNI);
+                            var ProdProveedor = _factory.Use<IProductoProveedorController>().ObtenerProdProveedor(DNI);
                             if (ProdProveedor != null)
                             {
                                 prodProveedor.Add(ProdProveedor);
-                                _productoProveedorController.EliminarProveedor(ProdProveedor);
+                                _factory.Use<IProductoProveedorController>().EliminarProveedor(ProdProveedor);
                             }
                         }
                     }
