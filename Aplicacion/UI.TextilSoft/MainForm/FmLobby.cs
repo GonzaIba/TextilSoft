@@ -1,5 +1,6 @@
 ﻿using Contracts.Controllers;
 using Domain.Entities;
+using log4net.Core;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -61,6 +62,7 @@ namespace UI.TextilSoft.MainForm
             try
             {
                 CompanyCustomizeEntity company = _factory.Use<ICompanyController>().GetCustomizeCompany();
+                _factory.Use<SL.Helper.Services.Log4net.ILogger>().GenerateInfo("aa");
 
                 lblCompanyName.Text = company.Name;             
                 pnlCompanyLogo.BackColor = company.Color;

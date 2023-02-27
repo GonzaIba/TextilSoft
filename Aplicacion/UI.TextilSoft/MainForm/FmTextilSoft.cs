@@ -281,7 +281,7 @@ namespace UI.TextilSoft.MainForm
             if (_user.EsAdmin() || _user.IsOwner)
                 AbrirFormHija(new FmAdminConfig(_factory, _user,this));
             else
-                AbrirFormHija(new FmConfiguracion());
+                AbrirFormHija(new FmConfiguracion(_factory, _user));
         }
         #endregion
 

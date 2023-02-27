@@ -83,7 +83,7 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                Logger.GenerateInfo("Ocurrió un error en LlenarGrillaProveedores controller Proveedores, Excepción: " + ex.Message);
+                //Logger.GenerateInfo("Ocurrió un error en LlenarGrillaProveedores controller Proveedores, Excepción: " + ex.Message);
                 throw ex;
             }
         }
@@ -109,7 +109,7 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                Logger.GenerateInfo("Ocurrió un error en ActualizarProveedoresPorGrilla controller Proveedores, Excepción: " + ex.Message);
+                //Logger.GenerateInfo("Ocurrió un error en ActualizarProveedoresPorGrilla controller Proveedores, Excepción: " + ex.Message);
                 throw ex;
             }
         }
@@ -132,7 +132,7 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                Logger.GenerateInfo("Ocurrió un error en VerificarCambios controller Proveedores, Excepción: " + ex.Message);
+                //Logger.GenerateInfo("Ocurrió un error en VerificarCambios controller Proveedores, Excepción: " + ex.Message);
                 throw ex;
             }
         }
@@ -153,7 +153,7 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                Logger.GenerateInfo("Ocurrió un error en DetectarCambios controller Proveedores, Excepción: " + ex.Message);
+                //Logger.GenerateInfo("Ocurrió un error en DetectarCambios controller Proveedores, Excepción: " + ex.Message);
                 throw ex;
             }
         }
@@ -168,7 +168,7 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                Logger.GenerateInfo("Ocurrió un error al obtener el proveedor, Excepción: "+ ex.Message);
+                //Logger.GenerateInfo("Ocurrió un error al obtener el proveedor, Excepción: "+ ex.Message);
                 throw ex;
             }
         }

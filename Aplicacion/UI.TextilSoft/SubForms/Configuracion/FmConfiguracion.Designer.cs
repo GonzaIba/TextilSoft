@@ -37,17 +37,17 @@
             this.btnSaveUserData = new FontAwesome.Sharp.IconButton();
             this.lblCompanyTitle = new System.Windows.Forms.Label();
             this.lblMaxFail = new System.Windows.Forms.Label();
-            this.toggleButton1 = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
+            this.tbAnimator = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.toggleButton2 = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
+            this.tbSlice = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.macTrackBar1 = new XComponent.SliderBar.MACTrackBar();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.toggleButton3 = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
+            this.tbSound = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -112,6 +112,7 @@
             this.btnSavePrefApp.Text = "Guardar";
             this.btnSavePrefApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSavePrefApp.UseVisualStyleBackColor = true;
+            this.btnSavePrefApp.Click += new System.EventHandler(this.btnSavePrefApp_Click);
             // 
             // btnSaveUserData
             // 
@@ -151,21 +152,21 @@
             this.lblMaxFail.TabIndex = 41;
             this.lblMaxFail.Text = "Nombre";
             // 
-            // toggleButton1
+            // tbAnimator
             // 
-            this.toggleButton1.Checked = true;
-            this.toggleButton1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toggleButton1.Location = new System.Drawing.Point(222, 185);
-            this.toggleButton1.MinimumSize = new System.Drawing.Size(45, 22);
-            this.toggleButton1.Name = "toggleButton1";
-            this.toggleButton1.OffBackColor = System.Drawing.Color.Gray;
-            this.toggleButton1.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.toggleButton1.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.toggleButton1.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.toggleButton1.Size = new System.Drawing.Size(55, 22);
-            this.toggleButton1.TabIndex = 79;
-            this.toggleButton1.Text = "toggleButton1";
-            this.toggleButton1.UseVisualStyleBackColor = true;
+            this.tbAnimator.Checked = true;
+            this.tbAnimator.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tbAnimator.Location = new System.Drawing.Point(222, 185);
+            this.tbAnimator.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tbAnimator.Name = "tbAnimator";
+            this.tbAnimator.OffBackColor = System.Drawing.Color.Gray;
+            this.tbAnimator.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tbAnimator.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tbAnimator.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tbAnimator.Size = new System.Drawing.Size(55, 22);
+            this.tbAnimator.TabIndex = 79;
+            this.tbAnimator.Text = "toggleButton1";
+            this.tbAnimator.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
@@ -199,21 +200,21 @@
             this.label6.TabIndex = 78;
             this.label6.Text = "Habilitar animaciones especiales";
             // 
-            // toggleButton2
+            // tbSlice
             // 
-            this.toggleButton2.Checked = true;
-            this.toggleButton2.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toggleButton2.Location = new System.Drawing.Point(222, 223);
-            this.toggleButton2.MinimumSize = new System.Drawing.Size(45, 22);
-            this.toggleButton2.Name = "toggleButton2";
-            this.toggleButton2.OffBackColor = System.Drawing.Color.Gray;
-            this.toggleButton2.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.toggleButton2.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.toggleButton2.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.toggleButton2.Size = new System.Drawing.Size(55, 22);
-            this.toggleButton2.TabIndex = 83;
-            this.toggleButton2.Text = "toggleButton2";
-            this.toggleButton2.UseVisualStyleBackColor = true;
+            this.tbSlice.Checked = true;
+            this.tbSlice.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tbSlice.Location = new System.Drawing.Point(222, 223);
+            this.tbSlice.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tbSlice.Name = "tbSlice";
+            this.tbSlice.OffBackColor = System.Drawing.Color.Gray;
+            this.tbSlice.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tbSlice.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tbSlice.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tbSlice.Size = new System.Drawing.Size(55, 22);
+            this.tbSlice.TabIndex = 83;
+            this.tbSlice.Text = "toggleButton2";
+            this.tbSlice.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
@@ -274,31 +275,31 @@
             // 
             // iconPictureBox1
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
+            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
             this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.VolumeUp;
             this.iconPictureBox1.IconColor = System.Drawing.Color.White;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.Location = new System.Drawing.Point(245, 290);
+            this.iconPictureBox1.Location = new System.Drawing.Point(244, 290);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(46, 32);
             this.iconPictureBox1.TabIndex = 88;
             this.iconPictureBox1.TabStop = false;
             // 
-            // toggleButton3
+            // tbSound
             // 
-            this.toggleButton3.Checked = true;
-            this.toggleButton3.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.toggleButton3.Location = new System.Drawing.Point(222, 260);
-            this.toggleButton3.MinimumSize = new System.Drawing.Size(45, 22);
-            this.toggleButton3.Name = "toggleButton3";
-            this.toggleButton3.OffBackColor = System.Drawing.Color.Gray;
-            this.toggleButton3.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.toggleButton3.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.toggleButton3.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.toggleButton3.Size = new System.Drawing.Size(55, 22);
-            this.toggleButton3.TabIndex = 90;
-            this.toggleButton3.Text = "toggleButton3";
-            this.toggleButton3.UseVisualStyleBackColor = true;
+            this.tbSound.Checked = true;
+            this.tbSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tbSound.Location = new System.Drawing.Point(222, 260);
+            this.tbSound.MinimumSize = new System.Drawing.Size(45, 22);
+            this.tbSound.Name = "tbSound";
+            this.tbSound.OffBackColor = System.Drawing.Color.Gray;
+            this.tbSound.OffToggleColor = System.Drawing.Color.Gainsboro;
+            this.tbSound.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            this.tbSound.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            this.tbSound.Size = new System.Drawing.Size(55, 22);
+            this.tbSound.TabIndex = 90;
+            this.tbSound.Text = "toggleButton3";
+            this.tbSound.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -431,16 +432,16 @@
             this.Controls.Add(this.label12);
             this.Controls.Add(this.altoTextBox1);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.toggleButton3);
+            this.Controls.Add(this.tbSound);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.macTrackBar1);
-            this.Controls.Add(this.toggleButton2);
+            this.Controls.Add(this.tbSlice);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
-            this.Controls.Add(this.toggleButton1);
+            this.Controls.Add(this.tbAnimator);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
@@ -471,17 +472,17 @@
         private FontAwesome.Sharp.IconButton btnSaveUserData;
         private System.Windows.Forms.Label lblCompanyTitle;
         private System.Windows.Forms.Label lblMaxFail;
-        private Tools.FormsTools.ToggleButton toggleButton1;
+        private Tools.FormsTools.ToggleButton tbAnimator;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private Tools.FormsTools.ToggleButton toggleButton2;
+        private Tools.FormsTools.ToggleButton tbSlice;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private XComponent.SliderBar.MACTrackBar macTrackBar1;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
-        private Tools.FormsTools.ToggleButton toggleButton3;
+        private Tools.FormsTools.ToggleButton tbSound;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label10;

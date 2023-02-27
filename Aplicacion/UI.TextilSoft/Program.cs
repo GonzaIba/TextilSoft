@@ -12,9 +12,11 @@ using Microsoft.Extensions.Logging;
 using SL.Business.Services;
 using SL.Contracts.Repositories;
 using SL.Contracts.Services;
+using SL.Domain.Entities;
 using SL.EmailHelper.Configurations;
 using SL.Helper.Configurations;
 using SL.Helper.Extensions;
+using SL.Helper.Services.Log4net;
 using SL.Helper.Services.Mapper;
 using SL.Infrastructure;
 using SL.IoC;
@@ -31,6 +33,7 @@ using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
 using UI.TextilSoft.SubForms.Configuracion;
+using ILogger = SL.Helper.Services.Log4net.ILogger;
 
 namespace UI.TextilSoft
 {
@@ -77,9 +80,9 @@ namespace UI.TextilSoft
             if (CompanyService.ExistCompany(CompanyId, CompanyApiKey))
             {
                 if (/*UseLoginAndRegister &&*/ CompanyService.CanUseLoginAndRegister(CompanyId))
-                    mainForm = services.GetRequiredService<FmConfiguracion>();
+                    mainForm = services.GetRequiredService<Inicio>();
                 else
-                    mainForm = services.GetRequiredService<FmConfiguracion>();
+                    mainForm = services.GetRequiredService<Inicio>();
 
                 Application.Run(mainForm);
             }
@@ -121,8 +124,10 @@ namespace UI.TextilSoft
             //Hacemos un singleton a ambas aplicaciones por si desea usar login o no.
             services.AddSingleton<FmLobby>();
             services.AddSingleton<FmTextilSoft>();
-            services.AddSingleton<FmConfiguracion>();
+            services.AddSingleton<Inicio>();
             services.AddSingleton<IControllerFactory,ControllerFactory>();
+            services.AddSingleton<ILogger, Logger>();
+            services.AddSingleton<Usuario, Logger>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 
@@ -144,8 +149,6 @@ namespace UI.TextilSoft
             string result = services.GetType().Assembly.Location;
             FileInfo file = new FileInfo(result);
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
-            
-            AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
 
             services.AddHostedService<TaskResolver>();
         }

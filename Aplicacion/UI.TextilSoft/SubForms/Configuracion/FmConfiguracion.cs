@@ -1,4 +1,6 @@
 ﻿using NAudio.Wave;
+using SL.Contracts;
+using SL.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,15 +11,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using UI.TextilSoft.Factory;
 
 namespace UI.TextilSoft.SubForms.Configuracion
 {
     public partial class FmConfiguracion : Form
     {
         private float volume, lastvalue;
-        public FmConfiguracion()
+        private IControllerFactory _factory;
+        private Usuario _usuario;
+        public FmConfiguracion(IControllerFactory factory,Usuario usuario)
         {
             InitializeComponent();
+            _factory = factory;
+            _usuario = usuario;
         }
 
         private async void macTrackBar1_ValueChanged(object sender, decimal value)
@@ -51,6 +58,15 @@ namespace UI.TextilSoft.SubForms.Configuracion
                     }
                 }
             });
+        }
+
+        private void btnSavePrefApp_Click(object sender, EventArgs e)
+        {
+            _usuario.EnableAnimators = tbAnimator.Checked;
+            _usuario.EnableSlicePanel = tbSlice.Checked;
+            _usuario.EnableVolume = tbSound.Checked;
+            _usuario.Volume = (int)volume;
+            _factory.Use<IUsuarioController>().Actualizarusuario(_usuario);
         }
 
         private void macTrackBar1_MouseUp(object sender, MouseEventArgs e)

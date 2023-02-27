@@ -109,7 +109,7 @@ namespace UI.TextilSoft
             }
             catch (Exception ex)
             {
-                Logger.GenerateFatalLog(ex.Message, ex);
+                //Logger.GenerateFatalLog(ex.Message, ex);
             }
         }
 

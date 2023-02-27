@@ -23,7 +23,7 @@ namespace SL.Domain.Entities
         public bool EnableAnimators { get; set; }
         public bool EnableSlicePanel { get; set; }
         public bool EnableVolume { get; set; }
-        public bool Volume { get; set; }
+        public int Volume { get; set; }
 
         public List<Componente> Permisos
         {

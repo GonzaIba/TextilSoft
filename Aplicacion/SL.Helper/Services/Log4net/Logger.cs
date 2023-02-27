@@ -1,13 +1,24 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using Microsoft.AspNetCore.Http;
+using SL.Domain.Entities;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 [assembly: log4net.Config.XmlConfigurator(ConfigFileExtension = "config")]
 namespace SL.Helper.Services.Log4net
 {
-    public static class Logger
+    public class Logger : ILogger
     {
+        private readonly Usuario _usuario;
+        public Logger(Usuario usuario)
+        {
+            _usuario = usuario;
+        }
         //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger("LogerManager");
         private static readonly log4net.ILog logPerformance = log4net.LogManager.GetLogger("Performance");
@@ -19,7 +30,7 @@ namespace SL.Helper.Services.Log4net
         /// <param name="mensaje">
         /// Mensaje a guardar en el archivo
         /// </param>
-        public static void GenerateLog(Exception ex)
+        public void GenerateLog(Exception ex)
         {
             try
             {
@@ -40,7 +51,7 @@ namespace SL.Helper.Services.Log4net
         /// <param name="mensaje">
         /// Mensaje a guardar en el archivo
         /// </param>
-        public static void GenerateInfo(string mensaje)
+        public void GenerateInfo(string mensaje)
         {
             try
             {
@@ -51,7 +62,7 @@ namespace SL.Helper.Services.Log4net
             }
         }
 
-        public static void GenerateLogPerformance(string mensaje)
+        public void GenerateLogPerformance(string mensaje)
         {
             try
             {
@@ -62,7 +73,7 @@ namespace SL.Helper.Services.Log4net
             }
         }
 
-        public static void GenerateFatalLog(string message, Exception ex)
+        public void GenerateFatalLog(string message, Exception ex)
         {
             try
             {
@@ -74,7 +85,7 @@ namespace SL.Helper.Services.Log4net
             }
         }
 
-        private static void SendFatalErrorEmail(string message)
+        private void SendFatalErrorEmail(string message)
         {
             //aca enviamos el mail, agregar formato html para encabezado del mail
 

@@ -30,7 +30,7 @@ namespace SL.Domain.Model
         public bool EnableAnimators { get; set; }
         public bool EnableSlicePanel { get; set; }
         public bool EnableVolume { get; set; }
-        public bool Volume { get; set; }
+        public int Volume { get; set; }
 
         public CompanyModel Company { get; set; }
         public ICollection<Usuario_PermisoModel> Usuario_Permisos { get; set; }

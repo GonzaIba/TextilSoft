@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNetCore.Http;
 using SL.Contracts;
 using SL.Contracts.Services;
 using SL.Domain.Entities;
@@ -10,7 +11,9 @@ using SL.Helper.Configurations;
 using SL.Helper.Services.Log4net;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -60,7 +63,7 @@ namespace SL.Helper.Controllers
             try
             {
                 var ResultadoLogin = _usuarioService.Login(usuarioLogin);
-                Logger.GenerateInfo($"El usuario {usuarioLogin.Usuario} se logueo correctamente");
+                //Logger.GenerateInfo($"El usuario {usuarioLogin.Usuario} se logueo correctamente");
                 return ResultadoLogin;
             }
             catch (Exception ex)
@@ -394,6 +397,26 @@ namespace SL.Helper.Controllers
                 throw ex;
             }
         }
+
+        public bool Actualizarusuario(Usuario usuario)
+        {
+            try
+            {
+                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == usuario.Id, tracking: false).FirstOrDefault();
+                usuarioDto.EnableAnimators = usuario.EnableAnimators;
+                usuarioDto.EnableSlicePanel = usuario.EnableSlicePanel;
+                usuarioDto.EnableVolume = usuario.EnableVolume;
+                usuarioDto.Volume = usuario.Volume;
+                _usuarioService.Actualizar(usuarioDto);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+       
         #endregion
     }
 }
