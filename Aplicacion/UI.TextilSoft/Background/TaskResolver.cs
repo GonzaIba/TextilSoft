@@ -23,15 +23,18 @@ using System.Xml;
 using Infrastructure.UoW;
 using Contracts.Services;
 using Contracts.Controllers;
+using UI.TextilSoft.Factory;
 
 namespace UI.TextilSoft.Background
 {
     public class TaskResolver : BackgroundService
     {
         private readonly IServiceProvider _serviceProvider;
-        public TaskResolver(IServiceProvider serviceProvider)
+        private readonly IControllerFactory _factory;
+        public TaskResolver(IServiceProvider serviceProvider,IControllerFactory factory)
         {
             _serviceProvider = serviceProvider;
+            _factory = factory;
         }
         private DateTime _lastExecution;
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -58,34 +61,7 @@ namespace UI.TextilSoft.Background
         
         private void UpdateContext()
         {
-            var ctx = _serviceProvider.GetRequiredService<ApplicationDbContext>();
-
-            var repository = _serviceProvider.GetRequiredService<IGenericRepository<PedidosModel>>();
-            var configuration = _serviceProvider.GetRequiredService<IConfiguration>();
-            //var entitiesList = ctx.ChangeTracker.Entries().ToList();
-            //foreach (var entity in entitiesList)
-            //{
-            //    entity.Reload();
-            //}
-            ctx.Dispose();
-            //ctx.Dispose();
-
-            // Crear un objeto DbContextOptionsBuilder
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-
-            // Especificar las opciones para el nuevo objeto DbContext
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("SqlConnection"));
-
-            var applicationDbContext = new ApplicationDbContext(optionsBuilder.Options);
-            repository.UpdateContext();
-            var UnitOfWork = _serviceProvider.GetRequiredService<IUnitOfWork>();
-            var repositorio = UnitOfWork.GetRepository<IPedidosRepository>();
-            repositorio = new PedidosRepository(applicationDbContext);
-
-            var repo = _serviceProvider.GetRequiredService<IPedidosRepository>();
-            repo = repositorio;
-            var r = repo.Get().FirstOrDefault();
-            //repository = new GenericRepository<PedidosModel>(applicationDbContext);
+            _factory.UpdateServices();
         }
     }
 }

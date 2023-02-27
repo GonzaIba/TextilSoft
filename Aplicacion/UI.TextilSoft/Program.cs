@@ -69,7 +69,8 @@ namespace UI.TextilSoft
             var services = host.Services;
 
             Configuration = services.GetRequiredService<IConfiguration>();
-            var taskresolver = new TaskResolver(services);
+            var factory = services.GetRequiredService<IControllerFactory>();
+            var taskresolver = new TaskResolver(services, factory);
             InitTaskResolver(taskresolver);
 
             //bool UseLoginAndRegister = Convert.ToBoolean(Configuration.GetSection("Application:Security:UseLoginAndRegister").Value);
@@ -127,7 +128,6 @@ namespace UI.TextilSoft
             services.AddSingleton<Inicio>();
             services.AddSingleton<IControllerFactory,ControllerFactory>();
             services.AddSingleton<ILogger, Logger>();
-            services.AddSingleton<Usuario, Logger>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 

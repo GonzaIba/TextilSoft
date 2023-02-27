@@ -27,12 +27,14 @@ namespace SL.Helper.Controllers
         private readonly IPermiso_PermisoService _permiso_PermisoService;
         private readonly CompanyConfiguration _companyConfiguration;
         private readonly IMapper _mapper;
+        private readonly ILogger _logger;
 
         public UsuarioController(IUsuarioService usuarioService,
             IUsuario_PermisoService usuario_PermisoService,
             IPermisoService permisoService,
             IPermiso_PermisoService permiso_PermisoService,
             IMapper mapper,
+            ILogger logger,
             CompanyConfiguration companyConfiguration
             )
         {
@@ -41,6 +43,7 @@ namespace SL.Helper.Controllers
             _permisoService = permisoService;
             _permiso_PermisoService = permiso_PermisoService;
             _mapper = mapper;
+            _logger = logger;
             _companyConfiguration = companyConfiguration;
         }
 
@@ -74,13 +77,25 @@ namespace SL.Helper.Controllers
 
         public Usuario ObtenerUsuarioConPermisos(Login login)
         {
-            var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
-            var Usuario = _mapper.Map<Usuario>(UsuarioDto);
+            try
+            {
+                var UsuarioDto = _usuarioService.Get(x => x.Nombre == login.Usuario && x.Contraseña == login.Contraseña && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
+                var Usuario = _mapper.Map<Usuario>(UsuarioDto);
 
-            var Familias = ObtenerFamilias();
-            var UsuarioConPermisos = ObtenerPermisosDeUsuario(Usuario);
-            Usuario = UsuariosCompletos(UsuarioConPermisos, Familias.ToList()).FirstOrDefault();
-            return Usuario;
+                var Familias = ObtenerFamilias();
+                var UsuarioConPermisos = ObtenerPermisosDeUsuario(Usuario);
+                Usuario = UsuariosCompletos(UsuarioConPermisos, Familias.ToList()).FirstOrDefault();
+                _logger.GenerateInfo("Logueo exitoso de: "+Usuario.Nombre);
+                _logger.SetUser(Usuario);
+
+                return Usuario;
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al obtener el usuario con sus permisos", ex);
+                throw ex;
+            }
+
         }
 
 
@@ -213,12 +228,21 @@ namespace SL.Helper.Controllers
             
         public List<Usuario> ObtenerTodosLosUsuarioConPermisos()
         {
-            var Familias = ObtenerFamilias();
-            var Usuarios = ObtenerUsuarios();
-            var UsuariosConPermiso = UsuariosConPermisos(Usuarios.ToList());
-            var Usuarioscompletos = UsuariosCompletos(UsuariosConPermiso, Familias.ToList());
+            try
+            {
+                var Familias = ObtenerFamilias();
+                var Usuarios = ObtenerUsuarios();
+                var UsuariosConPermiso = UsuariosConPermisos(Usuarios.ToList());
+                var Usuarioscompletos = UsuariosCompletos(UsuariosConPermiso, Familias.ToList());
 
-            return Usuarioscompletos;
+                return Usuarioscompletos;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
         }
 
         public IList<Usuario> ObtenerUsuarios() /*=> _mapper.Map<List<Usuario>>(_usuarioService.Get().ToList());*/
@@ -402,16 +426,18 @@ namespace SL.Helper.Controllers
         {
             try
             {
-                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == usuario.Id, tracking: false).FirstOrDefault();
+                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == usuario.Id, tracking: true).FirstOrDefault();
                 usuarioDto.EnableAnimators = usuario.EnableAnimators;
                 usuarioDto.EnableSlicePanel = usuario.EnableSlicePanel;
                 usuarioDto.EnableVolume = usuario.EnableVolume;
                 usuarioDto.Volume = usuario.Volume;
                 _usuarioService.Actualizar(usuarioDto);
+                _logger.GenerateInfo("Actualización de usuario exitoso");
                 return true;
             }
             catch (Exception ex)
             {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al actualizar el usuario",ex);
                 return false;
             }
         }

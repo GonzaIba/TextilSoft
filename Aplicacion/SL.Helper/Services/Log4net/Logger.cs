@@ -1,6 +1,7 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Http;
+using SL.Contracts.Services;
 using SL.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace SL.Helper.Services.Log4net
 {
     public class Logger : ILogger
     {
-        private readonly Usuario _usuario;
-        public Logger(Usuario usuario)
+        private readonly IEmailService _emailService;
+        private Usuario _usuario;
+        private bool ValueSeted;
+        public Logger(IEmailService emailService)
         {
-            _usuario = usuario;
+            _emailService = emailService;
         }
         //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger("LogerManager");
@@ -38,7 +41,7 @@ namespace SL.Helper.Services.Log4net
                 {
 
                 }
-                log.Error(ex);
+                log.Error($"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"}  ",ex);
             }
             catch
             {
@@ -55,7 +58,7 @@ namespace SL.Helper.Services.Log4net
         {
             try
             {
-                log.Info(mensaje);
+                log.Info($"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"} "+mensaje);
             }
             catch
             {
@@ -77,7 +80,7 @@ namespace SL.Helper.Services.Log4net
         {
             try
             {
-                FatalLog.Fatal(message, ex);
+                FatalLog.Fatal($"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"} " + message, ex);
                 SendFatalErrorEmail(message);
             }
             catch
@@ -90,9 +93,21 @@ namespace SL.Helper.Services.Log4net
             //aca enviamos el mail, agregar formato html para encabezado del mail
 
 
-
         }
 
+        public void SetUser(Usuario usuario)
+        {
+            if (!ValueSeted)
+            {
+                _usuario = usuario;
+                ValueSeted = true;
+            }
+        }
 
+        public void Logout()
+        {
+            _usuario = null;
+            ValueSeted = false;
+        }
     }
 }

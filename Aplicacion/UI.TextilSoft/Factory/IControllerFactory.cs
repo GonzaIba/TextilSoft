@@ -10,5 +10,6 @@ namespace UI.TextilSoft.Factory
     {
         T Use<T>();
         T UseNew<T>();
+        void UpdateServices();
     }
 }

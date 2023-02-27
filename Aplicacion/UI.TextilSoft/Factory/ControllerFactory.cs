@@ -1,5 +1,7 @@
 ﻿using Contracts.Controllers;
+using iTextSharp.text.log;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using SL.Contracts;
 using SL.Domain.Entities;
 using System;
@@ -39,9 +41,18 @@ namespace UI.TextilSoft.Factory
         {
             Type type = typeof(T);
             var Object = (T)_serviceProvider.GetService(typeof(T)); //Creamos la instancia del nuevo servicio solicitado
-            if (_controllerDictionary.ContainsKey(type))
-                _controllerDictionary[type] = Object; //Si esta en el diccionario lo agregamos ya que sino tendríamos dos instancias distintas y por ende puede haber datos deprecados
+            _controllerDictionary[type] = Object; //Agregamos el objeto por mas que no este en el diccionario
             return Object;
+        }
+
+        public void UpdateServices()
+        {
+            foreach (var service in _controllerDictionary)
+            {
+                var Object = _serviceProvider.GetService(service.Key);
+                if(Object.GetType().Name != "Logger")
+                    _controllerDictionary[service.Key] = Object;
+            }
         }
     }
 }

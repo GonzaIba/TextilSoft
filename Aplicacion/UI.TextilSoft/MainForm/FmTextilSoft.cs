@@ -1,5 +1,6 @@
 ﻿using Contracts.Controllers;
 using FontAwesome.Sharp;
+using iTextSharp.text.log;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.EntityFrameworkCore.Query.Internal;
 using Microsoft.Extensions.Configuration;
@@ -7,6 +8,7 @@ using NAudio.Wave;
 using SL.Contracts;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
+using SL.Helper.Services.Log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -26,6 +28,7 @@ using UI.TextilSoft.SubForms.Pedidos;
 using UI.TextilSoft.SubForms.Proveedores;
 using UI.TextilSoft.Tools;
 using UI.TextilSoft.Tools.FormsTools;
+using ILogger = SL.Helper.Services.Log4net.ILogger;
 
 namespace UI.TextilSoft.MainForm
 {
@@ -673,6 +676,8 @@ namespace UI.TextilSoft.MainForm
             btnProduccion.Enabled = false;
             btnProveedores.Enabled = false;
             btnConfiguracion.Enabled = false;
+
+            _factory.Use<ILogger>().Logout();
             _fmLobby.Show();
         }
         #endregion

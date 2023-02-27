@@ -307,7 +307,7 @@ namespace UI.TextilSoft.MainForm
         private void LoginAplication(Login login)
         {
             //Una vez logueamos solo devolvemos el usuario sin los detalles de la compañía, ya que no es parte del negocio interno de la empresa por así decirlo.
-            var usuario = _factory.Use<IUsuarioController>().ObtenerUsuarioConPermisos(login);
+            var usuario = _factory.UseNew<IUsuarioController>().ObtenerUsuarioConPermisos(login);
             //_empleadosController.LoginEmpleado(usuario);
             FmTextilSoft fmTextilSoft = new FmTextilSoft(_factory, _fmLobby);
             fmTextilSoft.toolStrip1.Tag = usuario;

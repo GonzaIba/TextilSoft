@@ -37,7 +37,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
         }
         private void btnPatenteFamilia_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmPatenteFamilia(_factory, _usuario,_fmTextilSoft));
+            AbrirFormHija(new FmPatenteFamilia(_factory, _usuario, _fmTextilSoft));
         }
 
         private void AbrirFormHija(Form formhija)
@@ -88,12 +88,22 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Error de acceso", "Usted no tiene permiso para acceder a esta pantalla", centerPosition);
                 fmMessageBox.ShowDialog();
             }
-            
+
         }
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmConfiguracion(_factory,_usuario));
+            AbrirFormHija(new FmConfiguracion(_factory, _usuario));
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnLogs_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmLogs(_factory, _usuario));
         }
     }
 }

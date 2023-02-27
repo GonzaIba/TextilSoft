@@ -3,6 +3,7 @@ using Contracts.Controllers;
 using Contracts.Services;
 using Domain.Entities;
 using Domain.Models;
+using SL.Helper.Services.Log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +17,30 @@ namespace UI.TextilSoft.Controllers
         private readonly IClientesService _clientesService;
         private readonly IProveedoresController _proveedoresController;
         private readonly IMapper _mapper;
-        public ClientesController(IClientesService clientesService, IMapper mapper, IProveedoresController proveedoresController)
+        private readonly ILogger _logger;
+        public ClientesController(IClientesService clientesService, IMapper mapper, IProveedoresController proveedoresController, ILogger logger)
         {
             _clientesService = clientesService;
             _proveedoresController = proveedoresController;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public void CrearCliente(ClientesEntity clientesEntity)
         {
-            var ClienteModel = _mapper.Map<ClientesModel>(clientesEntity);
-            ClienteModel.CreateDate = DateTime.Now;
-            _clientesService.Insertar(ClienteModel);
+            try
+            {
+                var ClienteModel = _mapper.Map<ClientesModel>(clientesEntity);
+                ClienteModel.CreateDate = DateTime.Now;
+                _clientesService.Insertar(ClienteModel);
+                _logger.GenerateInfo($"Se creó el cliente: {clientesEntity.Nombre} {clientesEntity.Apellido} con el DNI: {clientesEntity.DNI}");
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateLog(ex);
+                throw;
+            }
+
         }
 
         public List<ClientesEntity> LlenarGrillaClientes()
