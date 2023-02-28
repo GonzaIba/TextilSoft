@@ -93,7 +93,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void btnConfiguracion_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmConfiguracion(_factory, _usuario));
+            AbrirFormHija(new FmConfiguracion(_factory, _fmTextilSoft));
         }
 
         private void iconButton1_Click(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void btnLogs_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmLogs(_factory, _usuario));
+            AbrirFormHija(new FmLogs(_usuario, _factory));
         }
     }
 }

@@ -12,5 +12,6 @@ namespace Contracts.Services
     public interface IPedidosService : IGenericService<PedidosModel>
     {
         public PaginatedList<PedidosModel> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<PedidosModel, dynamic>> orderByExpression, Expression<Func<PedidosModel, bool>> filterExpression, string orderBy, bool ascending);
+        public PaginatedList<PedidosModel> ObtenerTodosLosPedidos(int pageCount);
     }
 }

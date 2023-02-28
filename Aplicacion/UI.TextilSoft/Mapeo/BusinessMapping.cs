@@ -27,11 +27,13 @@ namespace UI.TextilSoft.Mapeo
             CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
 
             CreateMap<PedidosModel, ListarPedidosEntity>()
-                .ForMember(x => x.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
-                .ForMember(x => x.AtendidoPor, opt => opt.MapFrom(src => src.Empleados.Nombre + " " + src.Empleados.Apellido))
-                .ForMember(x => x.Cliente, opt => opt.MapFrom(src => src.Clientes.Nombre + " " + src.Clientes.Apellido))
-                .ReverseMap();
-
+                .ForMember(dest => dest.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
+                .ForMember(dest => dest.AtendidoPor, opt => opt.MapFrom(src => src.Empleados.Nombre + " " + src.Empleados.Apellido))
+                .ForMember(dest => dest.Cliente, opt => opt.MapFrom(src => src.Clientes.Nombre + " " + src.Clientes.Apellido))
+                .ReverseMap()
+                .ForMember(dest => dest.Empleados, opt => opt.MapFrom(src => new EmpleadosModel { Nombre = StringSepare(src.AtendidoPor, " ", 0), Apellido = StringSepare(src.AtendidoPor, " ", 1) }))
+                .ForMember(dest => dest.Clientes, opt => opt.MapFrom(src => new ClientesModel { Nombre = StringSepare(src.Cliente, " ", 0), Apellido = StringSepare(src.Cliente, " ", 1) }));
+            
             //CreateMap<List<PedidosModel>, List<ListarPedidosEntity>>()
             //    .ReverseMap();
 
@@ -54,6 +56,20 @@ namespace UI.TextilSoft.Mapeo
             //    .ConvertUsing<ExpressionConverter<PedidosModel, ListarPedidosEntity>>();
 
 
+        }
+
+        public string StringSepare(string text,string separe, int index)
+        {
+            string textReplaced;
+            try
+            {
+                textReplaced = text.Split(separe.ToCharArray())[index];
+            }
+            catch (Exception ex) //Pongo primero ArgumentNullException porque ArgumentException es una subclase de ArgumentNullException
+            {
+                textReplaced = string.Empty;
+            }
+            return textReplaced;
         }
 
         public EstadoPedidosEnum ConvertToEstadoPedido(int src)

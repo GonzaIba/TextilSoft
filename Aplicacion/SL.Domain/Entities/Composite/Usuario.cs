@@ -34,11 +34,11 @@ namespace SL.Domain.Entities
         }
         public bool EsAdmin()
         {
-            List<Patente> patentes = new List<Patente>();
-            List<Familia> familias = new List<Familia>();
+            List<Patente> patentes = new ();
+            List<Familia> familias = new ();
             patentes = Permisos.OfType<Patente>().ToList();
             familias = Permisos.OfType<Familia>().ToList();
-            bool Result = false;
+            bool Result;
             Result = RecorrerPatentes(patentes, TipoPermiso.EsAdmin);
             if (!Result)
                 Result = RecorrerFamilias(familias, TipoPermiso.EsAdmin);

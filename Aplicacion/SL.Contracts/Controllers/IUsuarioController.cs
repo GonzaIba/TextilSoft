@@ -20,6 +20,7 @@ namespace SL.Contracts
         IList<Usuario> ObtenerUsuarios();
         IList<Familia> ObtenerFamilias();
         Usuario ObtenerUsuarioConPermisos(Login login);
+        Usuario ObtenerUsuarioConPermisos(int DNI);
         Usuario ObtenerUsuario(Login login);
         void GuardarPermisos(Usuario usuario);
         string QuitarPermiso(Usuario usuario, Componente c);

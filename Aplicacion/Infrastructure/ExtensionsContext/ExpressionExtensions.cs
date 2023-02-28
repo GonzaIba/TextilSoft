@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -32,8 +33,32 @@ namespace SL.Helper.Extensions
             {
                 if (node.Member.DeclaringType == typeof(TFrom) && node.Expression is ParameterExpression)
                 {
-                    return Expression.PropertyOrField(_parameter, node.Member.Name);
+                    var propertyName = node.Member.Name;
+
+                    if (propertyName == "Cliente")
+                    {
+                        var clientProperty = typeof(TTo).GetProperty("Clientes");
+                        if (clientProperty == null)
+                        {
+                            throw new ArgumentException("Property 'Clientes' not found in target type.");
+                        }
+
+                        var clientParameter = Expression.MakeMemberAccess(_parameter, clientProperty);
+
+                        var clientNameProperty = typeof(ClientesModel).GetProperty("Nombre");
+                        if (clientNameProperty == null)
+                        {
+                            throw new ArgumentException("Property 'Nombre' not found in target type.");
+                        }
+
+                        return Expression.MakeMemberAccess(clientParameter, clientNameProperty);
+                    }
+                    else
+                    {
+                        return Expression.PropertyOrField(_parameter, propertyName);
+                    }
                 }
+
                 return base.VisitMember(node);
             }
         }

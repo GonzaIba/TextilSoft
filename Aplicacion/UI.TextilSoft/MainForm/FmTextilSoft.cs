@@ -52,12 +52,16 @@ namespace UI.TextilSoft.MainForm
         private double _speed;
 
         private const int MaxMouseSpeed = 2000;
-        private Usuario _user
+        public Usuario _user
         {
             get
             {
                 Usuario data = (Usuario)toolStrip1.Tag;
                 return data;
+            }
+            set
+            {
+                toolStrip1.Tag = value;
             }
         }
         #endregion
@@ -129,33 +133,15 @@ namespace UI.TextilSoft.MainForm
 
         private void SonidoForm()
         {
-            Task.Run(() =>
-            {
-                using (var waveOut = new WaveOutEvent())
-                using (var fileStream = new WaveFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/AbrirFormulario.wav"))
-                {
-                    waveOut.Init(fileStream);
-                    waveOut.Volume = 1;
-                    waveOut.Play();
-                    while (waveOut.PlaybackState == PlaybackState.Playing)
-                    {
-                        System.Threading.Thread.Sleep(100);
-                    }
-                }
-            });
-        }
-        
-        private void SonidoEnter()
-        {
-            if (_speed <= MaxMouseSpeed)
+            if (_user.EnableVolume)
             {
                 Task.Run(() =>
                 {
                     using (var waveOut = new WaveOutEvent())
-                    using (var fileStream = new WaveFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/MouseEnter.wav"))
+                    using (var fileStream = new WaveFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/AbrirFormulario.wav"))
                     {
                         waveOut.Init(fileStream);
-                        waveOut.Volume = 1;
+                        waveOut.Volume = (((float)(_user.Volume)) / 10);
                         waveOut.Play();
                         while (waveOut.PlaybackState == PlaybackState.Playing)
                         {
@@ -164,9 +150,34 @@ namespace UI.TextilSoft.MainForm
                     }
                 });
             }
-            else
+
+        }
+        
+        private void SonidoEnter()
+        {
+            if (_user.EnableVolume)
             {
-                
+                if (_speed <= MaxMouseSpeed)
+                {
+                    Task.Run(() =>
+                    {
+                        using (var waveOut = new WaveOutEvent())
+                        using (var fileStream = new WaveFileReader("D:/Repositorios-SmartGit/TextilSoft/Aplicacion/UI.TextilSoft/bin/Debug/net5.0-windows/SoundForms/MouseEnter.wav"))
+                        {
+                            waveOut.Init(fileStream);
+                            waveOut.Volume = (((float)(_user.Volume)) / 10);
+                            waveOut.Play();
+                            while (waveOut.PlaybackState == PlaybackState.Playing)
+                            {
+                                System.Threading.Thread.Sleep(100);
+                            }
+                        }
+                    });
+                }
+                else
+                {
+
+                }
             }
         }
         #endregion
@@ -175,11 +186,14 @@ namespace UI.TextilSoft.MainForm
         private void AbrirAnimator()
         {
             //LogoAnimator.Hide(labelBienvenida);
-            Task.Run(() =>
+            if (_user.EnableAnimators)
             {
-                panelContenedor.Visible = false;
-                PanelAnimator.ShowSync(panelContenedor,true);
-            });
+                Task.Run(() =>
+                {
+                    panelContenedor.Visible = false;
+                    PanelAnimator.ShowSync(panelContenedor, true);
+                });
+            }
         }
 
         private async void AbrirFormHija(Form formhija)
@@ -284,7 +298,7 @@ namespace UI.TextilSoft.MainForm
             if (_user.EsAdmin() || _user.IsOwner)
                 AbrirFormHija(new FmAdminConfig(_factory, _user,this));
             else
-                AbrirFormHija(new FmConfiguracion(_factory, _user));
+                AbrirFormHija(new FmConfiguracion(_factory, this));
         }
         #endregion
 

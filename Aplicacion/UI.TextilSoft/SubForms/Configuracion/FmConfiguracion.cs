@@ -12,19 +12,23 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
+using UI.TextilSoft.MainForm;
 
 namespace UI.TextilSoft.SubForms.Configuracion
 {
     public partial class FmConfiguracion : Form
     {
         private float volume, lastvalue;
-        private IControllerFactory _factory;
-        private Usuario _usuario;
-        public FmConfiguracion(IControllerFactory factory,Usuario usuario)
+        private readonly IControllerFactory _factory;
+        private readonly Usuario _usuario;
+        private readonly FmTextilSoft _fmTextilSoft;
+        public FmConfiguracion(IControllerFactory factory, FmTextilSoft fmTextilSoft)
         {
             InitializeComponent();
             _factory = factory;
-            _usuario = usuario;
+            _fmTextilSoft = fmTextilSoft;
+            _usuario = _fmTextilSoft._user;
+            macTrackBar1.Value = _usuario.Volume == 0 ? 0 : _usuario.Volume / 10;
         }
 
         private async void macTrackBar1_ValueChanged(object sender, decimal value)
@@ -65,8 +69,9 @@ namespace UI.TextilSoft.SubForms.Configuracion
             _usuario.EnableAnimators = tbAnimator.Checked;
             _usuario.EnableSlicePanel = tbSlice.Checked;
             _usuario.EnableVolume = tbSound.Checked;
-            _usuario.Volume = (int)volume;
+            _usuario.Volume = (int)(volume * 10);
             _factory.Use<IUsuarioController>().Actualizarusuario(_usuario);
+            _fmTextilSoft._user = _factory.Use<IUsuarioController>().ObtenerUsuarioConPermisos(Convert.ToInt32(_fmTextilSoft._user.DNI));
         }
 
         private void macTrackBar1_MouseUp(object sender, MouseEventArgs e)

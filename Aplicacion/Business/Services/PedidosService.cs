@@ -9,6 +9,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Business.Services
 {
@@ -26,12 +27,31 @@ namespace Business.Services
             PaginatedList<PedidosModel> ListapedidosModel = new();
             try
             {
-                ListapedidosModel = _repository.GetPagedElements(pageIndex, pageCount, orderByExpression, ascending, filterExpression, "Empleados,Clientes,EstadoPedido");
+                ListapedidosModel = _repository.GetPagedElements(pageIndex, pageCount, orderByExpression, ascending, filterExpression, "Empleados,Clientes,EstadoPedido", tracking:false);
                 return ListapedidosModel;
             }
             catch (Exception ex)
             {
                 throw ex;
+            }
+        }
+
+        public PaginatedList<PedidosModel> ObtenerTodosLosPedidos(int pageCount)
+        {
+            try
+            {
+                var Pedidos = _repository.Get(includeProperties: "Empleados,Clientes,EstadoPedido", tracking: false).ToList();
+                return new PaginatedList<PedidosModel>
+                {
+                    TotalCount = Pedidos.Count(),
+                    TotalPages = (int)Math.Ceiling(Pedidos.Count() / (double)pageCount),
+                    List = Pedidos
+                };
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

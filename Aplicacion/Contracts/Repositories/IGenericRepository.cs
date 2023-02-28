@@ -80,7 +80,8 @@ namespace Contracts.Repositories
 
         PaginatedList<T> GetPagedElements<S>(int pageIndex, int pageCount,
             Expression<Func<T, S>> orderByExpression, bool ascending,
-            Expression<Func<T, bool>> filter = null, string includeProperties = "");
+            Expression<Func<T, bool>> filter = null, string includeProperties = "",
+            bool tracking = true);
 
         IEnumerable<T> GetDeleted(string includeProperties = "");
 

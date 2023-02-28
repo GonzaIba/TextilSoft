@@ -98,6 +98,26 @@ namespace SL.Helper.Controllers
 
         }
 
+        public Usuario ObtenerUsuarioConPermisos(int DNI)
+        {
+            try
+            {
+                _logger.GenerateLogPerformance("Init ObtenerUsuarioConPermisos");
+                var UsuarioDto = _usuarioService.Get(x => x.DNI == DNI && x.CompanyId == _companyConfiguration.CompanyId, tracking: false).FirstOrDefault();
+                var Usuario = _mapper.Map<Usuario>(UsuarioDto);
+
+                var Familias = ObtenerFamilias();
+                var UsuarioConPermisos = ObtenerPermisosDeUsuario(Usuario);
+                Usuario = UsuariosCompletos(UsuarioConPermisos, Familias.ToList()).FirstOrDefault();
+                _logger.GenerateLogPerformance("Finish ObtenerUsuarioConPermisos");
+                return Usuario;
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al obtener el usuario con sus permisos", ex);
+                throw ex;
+            }
+        }
 
         public Usuario ObtenerUsuario(Login login)
         {
@@ -441,8 +461,6 @@ namespace SL.Helper.Controllers
                 return false;
             }
         }
-
-       
         #endregion
     }
 }

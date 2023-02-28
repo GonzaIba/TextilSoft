@@ -3,3 +3,25 @@
 2022-03-20 21:13:50,426 [1] FATAL AdoNetAppender [(null)] 69 - Attempted to divide by zero.
 System.DivideByZeroException: Attempted to divide by zero.
    at UI.TextilSoft.Form1.button7_Click(Object sender, EventArgs e) in C:\Users\Usuario\Desktop\TextilSoft\Aplicacion\UI.TextilSoft\Form1.cs:line 108
+2023-02-28 17:10:49,003 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:10:49,160 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:10:57,929 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:10:58,074 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:24:26,132 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:24:26,291 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:25:58,656 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:25:58,806 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:26:07,299 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:26:07,451 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:27:24,640 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:27:24,791 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:28:01,247 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:28:01,401 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:28:04,105 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:28:04,252 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:30:23,418 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:30:23,578 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:30:29,377 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:30:29,523 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos
+2023-02-28 17:30:32,469 [1] INFO  Performance [(null)] 72 - Init ObtenerUsuarioConPermisos
+2023-02-28 17:30:32,614 [1] INFO  Performance [(null)] 72 - Finish ObtenerUsuarioConPermisos

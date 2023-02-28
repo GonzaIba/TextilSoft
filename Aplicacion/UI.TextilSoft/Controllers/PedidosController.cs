@@ -15,6 +15,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using Infrastructure;
 using ILogger = SL.Helper.Services.Log4net.ILogger;
 
 namespace UI.TextilSoft.Controllers
@@ -26,6 +27,7 @@ namespace UI.TextilSoft.Controllers
         private readonly IEmpleadosService _empleadosService;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
+        //private readonly IExpressionContext _expressionContext;
         public PedidosController(IPedidosService pedidosService, IClientesService clientesService, IEmpleadosService empleadosService, IMapper mapper, ILogger logger)
         {
             _pedidosService = pedidosService;
@@ -79,8 +81,26 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                _logger.GenerateFatalLog("Ocurrió un error fatal",ex);
+                _logger.GenerateFatalLog("Ocurrió un error fatal al obtener pedidos",ex);
                 throw;
+            }
+        }
+
+        public PaginatedList<ListarPedidosEntity> ObtenerListaPedidos(int pageCount)
+        {
+            try
+            {
+                var ListaPedidosModel = _pedidosService.ObtenerTodosLosPedidos(pageCount);
+                var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
+                ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
+                ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                return ListaPedidosEntity;
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al obtener todos los pedidos", ex);
+                throw ex;
             }
         }
     }

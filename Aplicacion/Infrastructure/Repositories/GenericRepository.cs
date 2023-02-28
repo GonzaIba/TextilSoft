@@ -176,7 +176,7 @@ namespace Infrastructure.Repositories
 
         public virtual PaginatedList<T> GetPagedElements<S>(int pageIndex, int pageCount,
             Expression<Func<T, S>> orderByExpression, bool ascending,
-            Expression<Func<T, bool>> filter = null, string includeProperties = "")
+            Expression<Func<T, bool>> filter = null, string includeProperties = "", bool tracking = false)
         {
             //Verificar los argumentos para esta consulta
             if (pageIndex < 0)
@@ -200,7 +200,7 @@ namespace Infrastructure.Repositories
                         );
             }
 
-            IQueryable<T> query = this.Entities;
+            IQueryable<T> query = tracking ? this.Entities : this.Entities.AsNoTracking();
 
             if (filter != null)
             {

@@ -19,12 +19,5 @@ namespace Domain.Entities
         //public Guid ID_Empleados { get; set; }
         public EstadoPedidosEnum EstadoPedido { get; set; }
         public string AtendidoPor { get; set; }
-
-        //public virtual ClientesModel Cliente { get; set; }
-        //public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }
-        //public virtual EmpleadosModel Empleados { get; set; }
-        //public virtual ICollection<FacturasModel> Factura { get; set; }
-        //public virtual ICollection<OrdenDeTrabajoModel> OrdenDeTrabajo { get; set; }
-        //public virtual EstadoPedidoModel EstadoPedido { get; set; }
     }
 }
