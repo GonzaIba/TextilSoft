@@ -12,10 +12,11 @@ namespace SL.Contracts
     public interface IUsuarioController
     {
         bool Crearusuario(Register appIdentityUser, int companyId);
-        bool Actualizarusuario(Usuario usuario);
+        bool ActualizarConfiguracionUsuario(UsuarioInformacion Usuarioinformacion);
         LoginResult LoginUser(Login appIdentityUser);
         //void UpdateUser(UsuarioModel appIdentityUser);
         //void DeleteUser(UsuarioModel appIdentityUser);
+        UsuarioInformacion ObtenerInformacionUsuario(Usuario usuario);
         List<Usuario> ObtenerTodosLosUsuarioConPermisos();
         IList<Usuario> ObtenerUsuarios();
         IList<Familia> ObtenerFamilias();
@@ -29,6 +30,7 @@ namespace SL.Contracts
         bool ExisteDNI(int posibleDNI);
         void EnviarConfirmacionEmail(string email);
         void RecuperarContraseña(string nombre, string email);
+        bool CambiarContraseña((int id,string oldPassword, string newPassword) parametros);
         bool ValidarCodigoDeVerificacion(Usuario usuario,int numero);
     }
 }

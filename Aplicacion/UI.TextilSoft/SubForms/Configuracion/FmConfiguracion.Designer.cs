@@ -28,444 +28,425 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.toolTipError = new System.Windows.Forms.ToolTip(this.components);
-            this.txtMaxFail = new AltoControls.AltoTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.lblAuth = new System.Windows.Forms.Label();
-            this.btnSavePrefApp = new FontAwesome.Sharp.IconButton();
-            this.btnSaveUserData = new FontAwesome.Sharp.IconButton();
-            this.lblCompanyTitle = new System.Windows.Forms.Label();
-            this.lblMaxFail = new System.Windows.Forms.Label();
-            this.tbAnimator = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbSlice = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.macTrackBar1 = new XComponent.SliderBar.MACTrackBar();
-            this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
-            this.tbSound = new UI.TextilSoft.Tools.FormsTools.ToggleButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.altoTextBox1 = new AltoControls.AltoTextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.altoTextBox2 = new AltoControls.AltoTextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.altoTextBox3 = new AltoControls.AltoTextBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.altoTextBox4 = new AltoControls.AltoTextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            toolTipError = new System.Windows.Forms.ToolTip(components);
+            txtNombre = new AltoControls.AltoTextBox();
+            label3 = new System.Windows.Forms.Label();
+            lblAuth = new System.Windows.Forms.Label();
+            btnSavePrefApp = new FontAwesome.Sharp.IconButton();
+            btnSaveUserData = new FontAwesome.Sharp.IconButton();
+            lblCompanyTitle = new System.Windows.Forms.Label();
+            lblMaxFail = new System.Windows.Forms.Label();
+            tbAnimator = new Tools.FormsTools.ToggleButton();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            tbSlice = new Tools.FormsTools.ToggleButton();
+            label7 = new System.Windows.Forms.Label();
+            label8 = new System.Windows.Forms.Label();
+            label9 = new System.Windows.Forms.Label();
+            macTrackBar1 = new XComponent.SliderBar.MACTrackBar();
+            iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
+            tbSound = new Tools.FormsTools.ToggleButton();
+            label1 = new System.Windows.Forms.Label();
+            label2 = new System.Windows.Forms.Label();
+            label10 = new System.Windows.Forms.Label();
+            txtEmail = new AltoControls.AltoTextBox();
+            label12 = new System.Windows.Forms.Label();
+            txtDNI = new AltoControls.AltoTextBox();
+            label13 = new System.Windows.Forms.Label();
+            txtCelular = new AltoControls.AltoTextBox();
+            label14 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
+            SuspendLayout();
             // 
-            // txtMaxFail
+            // txtNombre
             // 
-            this.txtMaxFail.BackColor = System.Drawing.Color.Transparent;
-            this.txtMaxFail.Br = System.Drawing.Color.MidnightBlue;
-            this.txtMaxFail.Enabled = false;
-            this.txtMaxFail.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMaxFail.ForeColor = System.Drawing.Color.White;
-            this.txtMaxFail.Location = new System.Drawing.Point(500, 184);
-            this.txtMaxFail.Name = "txtMaxFail";
-            this.txtMaxFail.Size = new System.Drawing.Size(136, 29);
-            this.txtMaxFail.TabIndex = 42;
+            txtNombre.BackColor = System.Drawing.Color.Transparent;
+            txtNombre.Br = System.Drawing.Color.MidnightBlue;
+            txtNombre.Enabled = false;
+            txtNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtNombre.ForeColor = System.Drawing.Color.White;
+            txtNombre.Location = new System.Drawing.Point(500, 184);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new System.Drawing.Size(136, 29);
+            txtNombre.TabIndex = 42;
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(12, 131);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(235, 25);
-            this.label3.TabIndex = 70;
-            this.label3.Text = "Preferencias de Aplicación";
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label3.ForeColor = System.Drawing.Color.White;
+            label3.Location = new System.Drawing.Point(12, 131);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(235, 25);
+            label3.TabIndex = 70;
+            label3.Text = "Preferencias de Aplicación";
             // 
             // lblAuth
             // 
-            this.lblAuth.AutoSize = true;
-            this.lblAuth.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblAuth.ForeColor = System.Drawing.Color.White;
-            this.lblAuth.Location = new System.Drawing.Point(417, 131);
-            this.lblAuth.Name = "lblAuth";
-            this.lblAuth.Size = new System.Drawing.Size(93, 25);
-            this.lblAuth.TabIndex = 69;
-            this.lblAuth.Text = "Mis datos";
+            lblAuth.AutoSize = true;
+            lblAuth.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblAuth.ForeColor = System.Drawing.Color.White;
+            lblAuth.Location = new System.Drawing.Point(483, 131);
+            lblAuth.Name = "lblAuth";
+            lblAuth.Size = new System.Drawing.Size(93, 25);
+            lblAuth.TabIndex = 69;
+            lblAuth.Text = "Mis datos";
             // 
             // btnSavePrefApp
             // 
-            this.btnSavePrefApp.FlatAppearance.BorderSize = 0;
-            this.btnSavePrefApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSavePrefApp.ForeColor = System.Drawing.Color.White;
-            this.btnSavePrefApp.IconChar = FontAwesome.Sharp.IconChar.Save;
-            this.btnSavePrefApp.IconColor = System.Drawing.Color.White;
-            this.btnSavePrefApp.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSavePrefApp.IconSize = 35;
-            this.btnSavePrefApp.Location = new System.Drawing.Point(83, 341);
-            this.btnSavePrefApp.Name = "btnSavePrefApp";
-            this.btnSavePrefApp.Size = new System.Drawing.Size(101, 42);
-            this.btnSavePrefApp.TabIndex = 68;
-            this.btnSavePrefApp.Text = "Guardar";
-            this.btnSavePrefApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSavePrefApp.UseVisualStyleBackColor = true;
-            this.btnSavePrefApp.Click += new System.EventHandler(this.btnSavePrefApp_Click);
+            btnSavePrefApp.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnSavePrefApp.FlatAppearance.BorderSize = 0;
+            btnSavePrefApp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSavePrefApp.ForeColor = System.Drawing.Color.White;
+            btnSavePrefApp.IconChar = FontAwesome.Sharp.IconChar.Save;
+            btnSavePrefApp.IconColor = System.Drawing.Color.White;
+            btnSavePrefApp.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSavePrefApp.IconSize = 35;
+            btnSavePrefApp.Location = new System.Drawing.Point(83, 341);
+            btnSavePrefApp.Name = "btnSavePrefApp";
+            btnSavePrefApp.Size = new System.Drawing.Size(101, 42);
+            btnSavePrefApp.TabIndex = 68;
+            btnSavePrefApp.Text = "Guardar";
+            btnSavePrefApp.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnSavePrefApp.UseVisualStyleBackColor = true;
+            btnSavePrefApp.Click += btnSavePrefApp_Click;
             // 
             // btnSaveUserData
             // 
-            this.btnSaveUserData.FlatAppearance.BorderSize = 0;
-            this.btnSaveUserData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSaveUserData.ForeColor = System.Drawing.Color.White;
-            this.btnSaveUserData.IconChar = FontAwesome.Sharp.IconChar.Save;
-            this.btnSaveUserData.IconColor = System.Drawing.Color.White;
-            this.btnSaveUserData.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnSaveUserData.IconSize = 35;
-            this.btnSaveUserData.Location = new System.Drawing.Point(475, 392);
-            this.btnSaveUserData.Name = "btnSaveUserData";
-            this.btnSaveUserData.Size = new System.Drawing.Size(101, 42);
-            this.btnSaveUserData.TabIndex = 67;
-            this.btnSaveUserData.Text = "Guardar";
-            this.btnSaveUserData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnSaveUserData.UseVisualStyleBackColor = true;
+            btnSaveUserData.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnSaveUserData.FlatAppearance.BorderSize = 0;
+            btnSaveUserData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSaveUserData.ForeColor = System.Drawing.Color.White;
+            btnSaveUserData.IconChar = FontAwesome.Sharp.IconChar.Save;
+            btnSaveUserData.IconColor = System.Drawing.Color.White;
+            btnSaveUserData.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSaveUserData.IconSize = 35;
+            btnSaveUserData.Location = new System.Drawing.Point(475, 354);
+            btnSaveUserData.Name = "btnSaveUserData";
+            btnSaveUserData.Size = new System.Drawing.Size(101, 42);
+            btnSaveUserData.TabIndex = 67;
+            btnSaveUserData.Text = "Guardar";
+            btnSaveUserData.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnSaveUserData.UseVisualStyleBackColor = true;
+            btnSaveUserData.Click += btnSaveUserData_Click;
             // 
             // lblCompanyTitle
             // 
-            this.lblCompanyTitle.AutoSize = true;
-            this.lblCompanyTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblCompanyTitle.ForeColor = System.Drawing.Color.White;
-            this.lblCompanyTitle.Location = new System.Drawing.Point(357, 25);
-            this.lblCompanyTitle.Name = "lblCompanyTitle";
-            this.lblCompanyTitle.Size = new System.Drawing.Size(219, 45);
-            this.lblCompanyTitle.TabIndex = 43;
-            this.lblCompanyTitle.Text = "Configuración";
+            lblCompanyTitle.AutoSize = true;
+            lblCompanyTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblCompanyTitle.ForeColor = System.Drawing.Color.White;
+            lblCompanyTitle.Location = new System.Drawing.Point(357, 25);
+            lblCompanyTitle.Name = "lblCompanyTitle";
+            lblCompanyTitle.Size = new System.Drawing.Size(219, 45);
+            lblCompanyTitle.TabIndex = 43;
+            lblCompanyTitle.Text = "Configuración";
             // 
             // lblMaxFail
             // 
-            this.lblMaxFail.AutoSize = true;
-            this.lblMaxFail.ForeColor = System.Drawing.Color.White;
-            this.lblMaxFail.Location = new System.Drawing.Point(428, 189);
-            this.lblMaxFail.Name = "lblMaxFail";
-            this.lblMaxFail.Size = new System.Drawing.Size(51, 15);
-            this.lblMaxFail.TabIndex = 41;
-            this.lblMaxFail.Text = "Nombre";
+            lblMaxFail.AutoSize = true;
+            lblMaxFail.ForeColor = System.Drawing.Color.White;
+            lblMaxFail.Location = new System.Drawing.Point(428, 189);
+            lblMaxFail.Name = "lblMaxFail";
+            lblMaxFail.Size = new System.Drawing.Size(51, 15);
+            lblMaxFail.TabIndex = 41;
+            lblMaxFail.Text = "Nombre";
             // 
             // tbAnimator
             // 
-            this.tbAnimator.Checked = true;
-            this.tbAnimator.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tbAnimator.Location = new System.Drawing.Point(222, 185);
-            this.tbAnimator.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tbAnimator.Name = "tbAnimator";
-            this.tbAnimator.OffBackColor = System.Drawing.Color.Gray;
-            this.tbAnimator.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.tbAnimator.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.tbAnimator.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.tbAnimator.Size = new System.Drawing.Size(55, 22);
-            this.tbAnimator.TabIndex = 79;
-            this.tbAnimator.Text = "toggleButton1";
-            this.tbAnimator.UseVisualStyleBackColor = true;
+            tbAnimator.Checked = true;
+            tbAnimator.CheckState = System.Windows.Forms.CheckState.Checked;
+            tbAnimator.Cursor = System.Windows.Forms.Cursors.Hand;
+            tbAnimator.Location = new System.Drawing.Point(222, 185);
+            tbAnimator.MinimumSize = new System.Drawing.Size(45, 22);
+            tbAnimator.Name = "tbAnimator";
+            tbAnimator.OffBackColor = System.Drawing.Color.Gray;
+            tbAnimator.OffToggleColor = System.Drawing.Color.Gainsboro;
+            tbAnimator.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            tbAnimator.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            tbAnimator.Size = new System.Drawing.Size(55, 22);
+            tbAnimator.TabIndex = 79;
+            tbAnimator.Text = "toggleButton1";
+            tbAnimator.UseVisualStyleBackColor = true;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(276, 185);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(23, 21);
-            this.label4.TabIndex = 81;
-            this.label4.Text = "Si";
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.ForeColor = System.Drawing.Color.White;
+            label4.Location = new System.Drawing.Point(276, 185);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(23, 21);
+            label4.TabIndex = 81;
+            label4.Text = "Si";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(194, 184);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(31, 21);
-            this.label5.TabIndex = 80;
-            this.label5.Text = "No";
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label5.ForeColor = System.Drawing.Color.White;
+            label5.Location = new System.Drawing.Point(194, 184);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(31, 21);
+            label5.TabIndex = 80;
+            label5.Text = "No";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(12, 187);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(178, 15);
-            this.label6.TabIndex = 78;
-            this.label6.Text = "Habilitar animaciones especiales";
+            label6.AutoSize = true;
+            label6.ForeColor = System.Drawing.Color.White;
+            label6.Location = new System.Drawing.Point(12, 187);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(178, 15);
+            label6.TabIndex = 78;
+            label6.Text = "Habilitar animaciones especiales";
             // 
             // tbSlice
             // 
-            this.tbSlice.Checked = true;
-            this.tbSlice.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tbSlice.Location = new System.Drawing.Point(222, 223);
-            this.tbSlice.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tbSlice.Name = "tbSlice";
-            this.tbSlice.OffBackColor = System.Drawing.Color.Gray;
-            this.tbSlice.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.tbSlice.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.tbSlice.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.tbSlice.Size = new System.Drawing.Size(55, 22);
-            this.tbSlice.TabIndex = 83;
-            this.tbSlice.Text = "toggleButton2";
-            this.tbSlice.UseVisualStyleBackColor = true;
+            tbSlice.Checked = true;
+            tbSlice.CheckState = System.Windows.Forms.CheckState.Checked;
+            tbSlice.Cursor = System.Windows.Forms.Cursors.Hand;
+            tbSlice.Location = new System.Drawing.Point(222, 223);
+            tbSlice.MinimumSize = new System.Drawing.Size(45, 22);
+            tbSlice.Name = "tbSlice";
+            tbSlice.OffBackColor = System.Drawing.Color.Gray;
+            tbSlice.OffToggleColor = System.Drawing.Color.Gainsboro;
+            tbSlice.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            tbSlice.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            tbSlice.Size = new System.Drawing.Size(55, 22);
+            tbSlice.TabIndex = 83;
+            tbSlice.Text = "toggleButton2";
+            tbSlice.UseVisualStyleBackColor = true;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(276, 223);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(23, 21);
-            this.label7.TabIndex = 85;
-            this.label7.Text = "Si";
+            label7.AutoSize = true;
+            label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label7.ForeColor = System.Drawing.Color.White;
+            label7.Location = new System.Drawing.Point(276, 223);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(23, 21);
+            label7.TabIndex = 85;
+            label7.Text = "Si";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(194, 222);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(31, 21);
-            this.label8.TabIndex = 84;
-            this.label8.Text = "No";
+            label8.AutoSize = true;
+            label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label8.ForeColor = System.Drawing.Color.White;
+            label8.Location = new System.Drawing.Point(194, 222);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(31, 21);
+            label8.TabIndex = 84;
+            label8.Text = "No";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.White;
-            this.label9.Location = new System.Drawing.Point(12, 226);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(178, 15);
-            this.label9.TabIndex = 82;
-            this.label9.Text = "Habilitar slice del panel principal";
+            label9.AutoSize = true;
+            label9.ForeColor = System.Drawing.Color.White;
+            label9.Location = new System.Drawing.Point(12, 226);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(178, 15);
+            label9.TabIndex = 82;
+            label9.Text = "Habilitar slice del panel principal";
             // 
             // macTrackBar1
             // 
-            this.macTrackBar1.BackColor = System.Drawing.Color.Transparent;
-            this.macTrackBar1.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.macTrackBar1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.macTrackBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(123)))), ((int)(((byte)(125)))), ((int)(((byte)(123)))));
-            this.macTrackBar1.IndentHeight = 6;
-            this.macTrackBar1.Location = new System.Drawing.Point(12, 288);
-            this.macTrackBar1.Maximum = 10;
-            this.macTrackBar1.Minimum = 0;
-            this.macTrackBar1.Name = "macTrackBar1";
-            this.macTrackBar1.Size = new System.Drawing.Size(235, 47);
-            this.macTrackBar1.TabIndex = 87;
-            this.macTrackBar1.Text = "macTrackBar1";
-            this.macTrackBar1.TickColor = System.Drawing.Color.FromArgb(((int)(((byte)(148)))), ((int)(((byte)(146)))), ((int)(((byte)(148)))));
-            this.macTrackBar1.TickHeight = 4;
-            this.macTrackBar1.TrackerColor = System.Drawing.Color.FromArgb(((int)(((byte)(24)))), ((int)(((byte)(130)))), ((int)(((byte)(198)))));
-            this.macTrackBar1.TrackerSize = new System.Drawing.Size(16, 16);
-            this.macTrackBar1.TrackLineColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
-            this.macTrackBar1.TrackLineHeight = 3;
-            this.macTrackBar1.TrackLineSelectedColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(93)))), ((int)(((byte)(90)))));
-            this.macTrackBar1.Value = 0;
-            this.macTrackBar1.ValueChanged += new XComponent.SliderBar.ValueChangedHandler(this.macTrackBar1_ValueChanged);
-            this.macTrackBar1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.macTrackBar1_MouseUp);
+            macTrackBar1.BackColor = System.Drawing.Color.Transparent;
+            macTrackBar1.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            macTrackBar1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            macTrackBar1.ForeColor = System.Drawing.Color.FromArgb(123, 125, 123);
+            macTrackBar1.IndentHeight = 6;
+            macTrackBar1.Location = new System.Drawing.Point(12, 288);
+            macTrackBar1.Maximum = 10;
+            macTrackBar1.Minimum = 0;
+            macTrackBar1.Name = "macTrackBar1";
+            macTrackBar1.Size = new System.Drawing.Size(235, 47);
+            macTrackBar1.TabIndex = 87;
+            macTrackBar1.Text = "macTrackBar1";
+            macTrackBar1.TickColor = System.Drawing.Color.FromArgb(148, 146, 148);
+            macTrackBar1.TickHeight = 4;
+            macTrackBar1.TrackerColor = System.Drawing.Color.FromArgb(24, 130, 198);
+            macTrackBar1.TrackerSize = new System.Drawing.Size(16, 16);
+            macTrackBar1.TrackLineColor = System.Drawing.Color.FromArgb(90, 93, 90);
+            macTrackBar1.TrackLineHeight = 3;
+            macTrackBar1.TrackLineSelectedColor = System.Drawing.Color.FromArgb(90, 93, 90);
+            macTrackBar1.Value = 0;
+            macTrackBar1.ValueChanged += macTrackBar1_ValueChanged;
+            macTrackBar1.MouseUp += macTrackBar1_MouseUp;
             // 
             // iconPictureBox1
             // 
-            this.iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.VolumeUp;
-            this.iconPictureBox1.IconColor = System.Drawing.Color.White;
-            this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox1.Location = new System.Drawing.Point(244, 290);
-            this.iconPictureBox1.Name = "iconPictureBox1";
-            this.iconPictureBox1.Size = new System.Drawing.Size(46, 32);
-            this.iconPictureBox1.TabIndex = 88;
-            this.iconPictureBox1.TabStop = false;
+            iconPictureBox1.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.VolumeUp;
+            iconPictureBox1.IconColor = System.Drawing.Color.White;
+            iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconPictureBox1.Location = new System.Drawing.Point(244, 290);
+            iconPictureBox1.Name = "iconPictureBox1";
+            iconPictureBox1.Size = new System.Drawing.Size(46, 32);
+            iconPictureBox1.TabIndex = 88;
+            iconPictureBox1.TabStop = false;
             // 
             // tbSound
             // 
-            this.tbSound.Checked = true;
-            this.tbSound.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tbSound.Location = new System.Drawing.Point(222, 260);
-            this.tbSound.MinimumSize = new System.Drawing.Size(45, 22);
-            this.tbSound.Name = "tbSound";
-            this.tbSound.OffBackColor = System.Drawing.Color.Gray;
-            this.tbSound.OffToggleColor = System.Drawing.Color.Gainsboro;
-            this.tbSound.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            this.tbSound.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            this.tbSound.Size = new System.Drawing.Size(55, 22);
-            this.tbSound.TabIndex = 90;
-            this.tbSound.Text = "toggleButton3";
-            this.tbSound.UseVisualStyleBackColor = true;
+            tbSound.Checked = true;
+            tbSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            tbSound.Cursor = System.Windows.Forms.Cursors.Hand;
+            tbSound.Location = new System.Drawing.Point(222, 260);
+            tbSound.MinimumSize = new System.Drawing.Size(45, 22);
+            tbSound.Name = "tbSound";
+            tbSound.OffBackColor = System.Drawing.Color.Gray;
+            tbSound.OffToggleColor = System.Drawing.Color.Gainsboro;
+            tbSound.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            tbSound.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            tbSound.Size = new System.Drawing.Size(55, 22);
+            tbSound.TabIndex = 90;
+            tbSound.Text = "toggleButton3";
+            tbSound.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(276, 260);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(23, 21);
-            this.label1.TabIndex = 92;
-            this.label1.Text = "Si";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(276, 260);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(23, 21);
+            label1.TabIndex = 92;
+            label1.Text = "Si";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(194, 259);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(31, 21);
-            this.label2.TabIndex = 91;
-            this.label2.Text = "No";
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label2.ForeColor = System.Drawing.Color.White;
+            label2.Location = new System.Drawing.Point(194, 259);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(31, 21);
+            label2.TabIndex = 91;
+            label2.Text = "No";
             // 
             // label10
             // 
-            this.label10.AutoSize = true;
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(12, 263);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(92, 15);
-            this.label10.TabIndex = 89;
-            this.label10.Text = "Sonido activado";
+            label10.AutoSize = true;
+            label10.ForeColor = System.Drawing.Color.White;
+            label10.Location = new System.Drawing.Point(12, 263);
+            label10.Name = "label10";
+            label10.Size = new System.Drawing.Size(92, 15);
+            label10.TabIndex = 89;
+            label10.Text = "Sonido activado";
             // 
-            // altoTextBox1
+            // txtEmail
             // 
-            this.altoTextBox1.BackColor = System.Drawing.Color.Transparent;
-            this.altoTextBox1.Br = System.Drawing.Color.MidnightBlue;
-            this.altoTextBox1.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.altoTextBox1.ForeColor = System.Drawing.Color.White;
-            this.altoTextBox1.Location = new System.Drawing.Point(500, 223);
-            this.altoTextBox1.Name = "altoTextBox1";
-            this.altoTextBox1.Size = new System.Drawing.Size(136, 29);
-            this.altoTextBox1.TabIndex = 94;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(428, 229);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(67, 15);
-            this.label11.TabIndex = 93;
-            this.label11.Text = "Contraseña";
-            // 
-            // altoTextBox2
-            // 
-            this.altoTextBox2.BackColor = System.Drawing.Color.Transparent;
-            this.altoTextBox2.Br = System.Drawing.Color.MidnightBlue;
-            this.altoTextBox2.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.altoTextBox2.ForeColor = System.Drawing.Color.White;
-            this.altoTextBox2.Location = new System.Drawing.Point(500, 263);
-            this.altoTextBox2.Name = "altoTextBox2";
-            this.altoTextBox2.Size = new System.Drawing.Size(136, 29);
-            this.altoTextBox2.TabIndex = 96;
+            txtEmail.BackColor = System.Drawing.Color.Transparent;
+            txtEmail.Br = System.Drawing.Color.MidnightBlue;
+            txtEmail.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtEmail.ForeColor = System.Drawing.Color.White;
+            txtEmail.Location = new System.Drawing.Point(500, 226);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new System.Drawing.Size(136, 29);
+            txtEmail.TabIndex = 96;
             // 
             // label12
             // 
-            this.label12.AutoSize = true;
-            this.label12.ForeColor = System.Drawing.Color.White;
-            this.label12.Location = new System.Drawing.Point(428, 271);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(36, 15);
-            this.label12.TabIndex = 95;
-            this.label12.Text = "Email";
+            label12.AutoSize = true;
+            label12.ForeColor = System.Drawing.Color.White;
+            label12.Location = new System.Drawing.Point(428, 234);
+            label12.Name = "label12";
+            label12.Size = new System.Drawing.Size(36, 15);
+            label12.TabIndex = 95;
+            label12.Text = "Email";
             // 
-            // altoTextBox3
+            // txtDNI
             // 
-            this.altoTextBox3.BackColor = System.Drawing.Color.Transparent;
-            this.altoTextBox3.Br = System.Drawing.Color.MidnightBlue;
-            this.altoTextBox3.Enabled = false;
-            this.altoTextBox3.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.altoTextBox3.ForeColor = System.Drawing.Color.White;
-            this.altoTextBox3.Location = new System.Drawing.Point(500, 302);
-            this.altoTextBox3.Name = "altoTextBox3";
-            this.altoTextBox3.Size = new System.Drawing.Size(136, 29);
-            this.altoTextBox3.TabIndex = 98;
+            txtDNI.BackColor = System.Drawing.Color.Transparent;
+            txtDNI.Br = System.Drawing.Color.MidnightBlue;
+            txtDNI.Enabled = false;
+            txtDNI.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtDNI.ForeColor = System.Drawing.Color.White;
+            txtDNI.Location = new System.Drawing.Point(500, 265);
+            txtDNI.Name = "txtDNI";
+            txtDNI.Size = new System.Drawing.Size(136, 29);
+            txtDNI.TabIndex = 98;
             // 
             // label13
             // 
-            this.label13.AutoSize = true;
-            this.label13.ForeColor = System.Drawing.Color.White;
-            this.label13.Location = new System.Drawing.Point(428, 309);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(27, 15);
-            this.label13.TabIndex = 97;
-            this.label13.Text = "DNI";
+            label13.AutoSize = true;
+            label13.ForeColor = System.Drawing.Color.White;
+            label13.Location = new System.Drawing.Point(428, 272);
+            label13.Name = "label13";
+            label13.Size = new System.Drawing.Size(27, 15);
+            label13.TabIndex = 97;
+            label13.Text = "DNI";
             // 
-            // altoTextBox4
+            // txtCelular
             // 
-            this.altoTextBox4.BackColor = System.Drawing.Color.Transparent;
-            this.altoTextBox4.Br = System.Drawing.Color.MidnightBlue;
-            this.altoTextBox4.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.altoTextBox4.ForeColor = System.Drawing.Color.White;
-            this.altoTextBox4.Location = new System.Drawing.Point(500, 342);
-            this.altoTextBox4.Name = "altoTextBox4";
-            this.altoTextBox4.Size = new System.Drawing.Size(136, 29);
-            this.altoTextBox4.TabIndex = 100;
+            txtCelular.BackColor = System.Drawing.Color.Transparent;
+            txtCelular.Br = System.Drawing.Color.MidnightBlue;
+            txtCelular.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtCelular.ForeColor = System.Drawing.Color.White;
+            txtCelular.Location = new System.Drawing.Point(500, 305);
+            txtCelular.Name = "txtCelular";
+            txtCelular.Size = new System.Drawing.Size(136, 29);
+            txtCelular.TabIndex = 100;
             // 
             // label14
             // 
-            this.label14.AutoSize = true;
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(428, 348);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(44, 15);
-            this.label14.TabIndex = 99;
-            this.label14.Text = "Celular";
+            label14.AutoSize = true;
+            label14.ForeColor = System.Drawing.Color.White;
+            label14.Location = new System.Drawing.Point(428, 311);
+            label14.Name = "label14";
+            label14.Size = new System.Drawing.Size(44, 15);
+            label14.TabIndex = 99;
+            label14.Text = "Celular";
             // 
             // FmConfiguracion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(23)))), ((int)(((byte)(21)))), ((int)(((byte)(32)))));
-            this.ClientSize = new System.Drawing.Size(964, 507);
-            this.Controls.Add(this.altoTextBox4);
-            this.Controls.Add(this.label14);
-            this.Controls.Add(this.altoTextBox3);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.altoTextBox2);
-            this.Controls.Add(this.label12);
-            this.Controls.Add(this.altoTextBox1);
-            this.Controls.Add(this.label11);
-            this.Controls.Add(this.tbSound);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.macTrackBar1);
-            this.Controls.Add(this.tbSlice);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.tbAnimator);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtMaxFail);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.lblAuth);
-            this.Controls.Add(this.btnSavePrefApp);
-            this.Controls.Add(this.btnSaveUserData);
-            this.Controls.Add(this.lblCompanyTitle);
-            this.Controls.Add(this.lblMaxFail);
-            this.Controls.Add(this.iconPictureBox1);
-            this.Name = "FmConfiguracion";
-            this.Text = "FmConfiguracion";
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.macTrackBar1_MouseUp);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(23, 21, 32);
+            ClientSize = new System.Drawing.Size(964, 507);
+            Controls.Add(txtCelular);
+            Controls.Add(label14);
+            Controls.Add(txtDNI);
+            Controls.Add(label13);
+            Controls.Add(txtEmail);
+            Controls.Add(label12);
+            Controls.Add(tbSound);
+            Controls.Add(label1);
+            Controls.Add(label2);
+            Controls.Add(label10);
+            Controls.Add(macTrackBar1);
+            Controls.Add(tbSlice);
+            Controls.Add(label7);
+            Controls.Add(label8);
+            Controls.Add(label9);
+            Controls.Add(tbAnimator);
+            Controls.Add(label4);
+            Controls.Add(label5);
+            Controls.Add(label6);
+            Controls.Add(txtNombre);
+            Controls.Add(label3);
+            Controls.Add(lblAuth);
+            Controls.Add(btnSavePrefApp);
+            Controls.Add(btnSaveUserData);
+            Controls.Add(lblCompanyTitle);
+            Controls.Add(lblMaxFail);
+            Controls.Add(iconPictureBox1);
+            Name = "FmConfiguracion";
+            Text = "FmConfiguracion";
+            Load += FmConfiguracion_Load;
+            MouseUp += macTrackBar1_MouseUp;
+            ((System.ComponentModel.ISupportInitialize)iconPictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.ToolTip toolTipError;
-        private AltoControls.AltoTextBox txtMaxFail;
+        private AltoControls.AltoTextBox txtNombre;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblAuth;
         private FontAwesome.Sharp.IconButton btnSavePrefApp;
@@ -486,13 +467,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label10;
-        private AltoControls.AltoTextBox altoTextBox1;
-        private System.Windows.Forms.Label label11;
-        private AltoControls.AltoTextBox altoTextBox2;
+        private AltoControls.AltoTextBox txtEmail;
         private System.Windows.Forms.Label label12;
-        private AltoControls.AltoTextBox altoTextBox3;
+        private AltoControls.AltoTextBox txtDNI;
         private System.Windows.Forms.Label label13;
-        private AltoControls.AltoTextBox altoTextBox4;
+        private AltoControls.AltoTextBox txtCelular;
         private System.Windows.Forms.Label label14;
     }
 }

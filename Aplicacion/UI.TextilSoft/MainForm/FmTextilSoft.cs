@@ -71,7 +71,7 @@ namespace UI.TextilSoft.MainForm
         private readonly IControllerFactory _factory;
         private readonly FmLobby _fmLobby;
 
-        public FmTextilSoft(IControllerFactory factory,FmLobby fmLobby)
+        public FmTextilSoft(IControllerFactory factory, FmLobby fmLobby)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
@@ -152,7 +152,7 @@ namespace UI.TextilSoft.MainForm
             }
 
         }
-        
+
         private void SonidoEnter()
         {
             if (_user.EnableVolume)
@@ -296,7 +296,7 @@ namespace UI.TextilSoft.MainForm
             BotonPresionado = true;
             SonidoForm();
             if (_user.EsAdmin() || _user.IsOwner)
-                AbrirFormHija(new FmAdminConfig(_factory, _user,this));
+                AbrirFormHija(new FmAdminConfig(_factory, _user, this));
             else
                 AbrirFormHija(new FmConfiguracion(_factory, this));
         }
@@ -415,7 +415,7 @@ namespace UI.TextilSoft.MainForm
         }
         private async void btnVentas_MouseEnter(object sender, EventArgs e)
         {
-             SonidoEnter();
+            SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -424,7 +424,7 @@ namespace UI.TextilSoft.MainForm
         }
         private async void btnFacturas_MouseEnter(object sender, EventArgs e)
         {
-             SonidoEnter();
+            SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -433,7 +433,7 @@ namespace UI.TextilSoft.MainForm
         }
         private async void btnReportes_MouseEnter(object sender, EventArgs e)
         {
-             SonidoEnter();
+            SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -442,7 +442,7 @@ namespace UI.TextilSoft.MainForm
         }
         private async void btnProduccion_MouseEnter(object sender, EventArgs e)
         {
-             SonidoEnter();
+            SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -451,7 +451,7 @@ namespace UI.TextilSoft.MainForm
         }
         private async void btnProveedores_MouseEnter(object sender, EventArgs e)
         {
-             SonidoEnter();
+            SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -460,7 +460,7 @@ namespace UI.TextilSoft.MainForm
         }
         private async void btnConfiguracion_MouseEnter(object sender, EventArgs e)
         {
-             SonidoEnter();
+            SonidoEnter();
             if (FuePresionado == false)
             {
                 timer3.Start();
@@ -588,7 +588,7 @@ namespace UI.TextilSoft.MainForm
                 }
             });
         }
-        
+
         private void DisableButton()
         {
             if (currentBtn != null)
@@ -602,7 +602,7 @@ namespace UI.TextilSoft.MainForm
                 currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
             }
         }
-        
+
         private System.Drawing.Color SelectThemeColor()
         {
             int index = random.Next(Tools.ColorTheme.ColorList.Count);

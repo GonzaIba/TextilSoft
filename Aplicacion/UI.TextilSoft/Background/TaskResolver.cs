@@ -43,12 +43,12 @@ namespace UI.TextilSoft.Background
             {
                 while (!stoppingToken.IsCancellationRequested)
                 {
-                    await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken); //Agregamos un delay para que no trabe todo el programa
-                    //if (DateTime.Now.Minute % 1 == 0 && _lastExecution.Minute != DateTime.Now.Minute)
+                    //await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken); //Agregamos un delay para que no trabe todo el programa
+                    //if (DateTime.Now.Minute % 10 == 0 && _lastExecution.Minute != DateTime.Now.Minute)
                     //{
                     //    //Cada 5 minutos ejecutamos las tareas
-                        _lastExecution = DateTime.Now;
-                        UpdateContext();
+                    //    _lastExecution = DateTime.Now;
+                    //    UpdateContext();
                     //}
                 }
             }

@@ -44,6 +44,11 @@ namespace SL.Helper.Services.Mapper
                .ForMember(dest => dest.Permiso, opt => opt.MapFrom(src => ConvertToTipoPermiso(src.Permiso)))
                .ReverseMap();
 
+            CreateMap<UsuarioModel, UsuarioInformacion>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))
+                .ForMember(dest => dest.Celular, opt => opt.MapFrom(src => src.NumeroTeléfono))
+                .ReverseMap();
+
             CreateMap<UsuarioModel, Usuario>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id_Usuario))
                 .ForMember(dest => dest.Nombre, opt => opt.MapFrom(src => src.Nombre))

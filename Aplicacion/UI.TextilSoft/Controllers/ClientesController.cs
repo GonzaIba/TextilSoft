@@ -37,7 +37,7 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                _logger.GenerateLog(ex);
+                _logger.GenerateLogError(ex);
                 throw;
             }
 

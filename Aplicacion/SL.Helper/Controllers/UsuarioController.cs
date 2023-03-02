@@ -217,6 +217,69 @@ namespace SL.Helper.Controllers
             }
         }
 
+        public bool ActualizarConfiguracionUsuario(UsuarioInformacion Usuarioinformacion)
+        {
+            try
+            {
+                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == Usuarioinformacion.Id, tracking: true).FirstOrDefault();
+                usuarioDto.Email = Usuarioinformacion.Email;
+                usuarioDto.NumeroTeléfono = Usuarioinformacion.Celular;
+                usuarioDto.EnableAnimators = Usuarioinformacion.EnableAnimators;
+                usuarioDto.EnableSlicePanel = Usuarioinformacion.EnableSlicePanel;
+                usuarioDto.EnableVolume = Usuarioinformacion.EnableVolume;
+                usuarioDto.Volume = Usuarioinformacion.Volume;
+                _usuarioService.Actualizar(usuarioDto);
+                _logger.GenerateInfo("Actualización de usuario exitoso");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al actualizar el usuario", ex);
+                throw ex;
+            }
+        }
+
+        public UsuarioInformacion ObtenerInformacionUsuario(Usuario usuario)
+        {
+            try
+            {
+                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == usuario.Id, tracking: true).FirstOrDefault();
+                UsuarioInformacion userInfo = _mapper.Map<UsuarioInformacion>(usuarioDto);
+                _logger.GenerateInfo("Actualización de usuario exitoso");
+                return userInfo;
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al actualizar el usuario", ex);
+                throw ex;
+            }
+        }
+        
+        public bool CambiarContraseña((int id,string oldPassword, string newPassword) parametros)
+        {
+            try
+            {
+
+                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == parametros.id, tracking: true).FirstOrDefault();
+                if (usuarioDto.Contraseña == parametros.oldPassword)
+                {
+                    usuarioDto.Contraseña = parametros.newPassword;
+                    _usuarioService.Actualizar(usuarioDto);
+                    _logger.GenerateInfo("Actualización de usuario exitoso");
+                    return true;
+                }
+                else
+                {
+                    _logger.GenerateInfo("Contraseña incorrecta");
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateLogError(ex);
+                throw;
+            }
+        }
 
         #region Composite
         public void GuardarPermisos(Usuario usuario)
@@ -439,26 +502,6 @@ namespace SL.Helper.Controllers
             catch (Exception ex)
             {
                 throw ex;
-            }
-        }
-
-        public bool Actualizarusuario(Usuario usuario)
-        {
-            try
-            {
-                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == usuario.Id, tracking: true).FirstOrDefault();
-                usuarioDto.EnableAnimators = usuario.EnableAnimators;
-                usuarioDto.EnableSlicePanel = usuario.EnableSlicePanel;
-                usuarioDto.EnableVolume = usuario.EnableVolume;
-                usuarioDto.Volume = usuario.Volume;
-                _usuarioService.Actualizar(usuarioDto);
-                _logger.GenerateInfo("Actualización de usuario exitoso");
-                return true;
-            }
-            catch (Exception ex)
-            {
-                _logger.GenerateFatalLog("Ocurrió un error fatal al actualizar el usuario",ex);
-                return false;
             }
         }
         #endregion

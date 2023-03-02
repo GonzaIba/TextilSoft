@@ -33,7 +33,7 @@ namespace SL.Helper.Services.Log4net
         /// <param name="mensaje">
         /// Mensaje a guardar en el archivo
         /// </param>
-        public void GenerateLog(Exception ex)
+        public void GenerateLogError(Exception ex)
         {
             try
             {

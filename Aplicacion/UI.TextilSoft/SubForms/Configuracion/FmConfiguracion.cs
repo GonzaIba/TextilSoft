@@ -13,6 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Configuracion
 {
@@ -21,6 +22,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
         private float volume, lastvalue;
         private readonly IControllerFactory _factory;
         private readonly Usuario _usuario;
+        private readonly UsuarioInformacion _usuarioInformacion;
         private readonly FmTextilSoft _fmTextilSoft;
         public FmConfiguracion(IControllerFactory factory, FmTextilSoft fmTextilSoft)
         {
@@ -28,6 +30,11 @@ namespace UI.TextilSoft.SubForms.Configuracion
             _factory = factory;
             _fmTextilSoft = fmTextilSoft;
             _usuario = _fmTextilSoft._user;
+            _usuarioInformacion = _factory.Use<IUsuarioController>().ObtenerInformacionUsuario(_usuario);
+            txtNombre.Text = _usuarioInformacion.Nombre;
+            txtEmail.Text = _usuarioInformacion.Email;
+            txtCelular.Text = _usuarioInformacion.Celular;
+            txtDNI.Text = _usuarioInformacion.DNI.ToString();
             macTrackBar1.Value = _usuario.Volume == 0 ? 0 : _usuario.Volume / 10;
         }
 
@@ -45,7 +52,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
             }
 
         }
-        
+
         private async Task SonidoForm()
         {
             await Task.Run(() =>
@@ -66,12 +73,32 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void btnSavePrefApp_Click(object sender, EventArgs e)
         {
-            _usuario.EnableAnimators = tbAnimator.Checked;
-            _usuario.EnableSlicePanel = tbSlice.Checked;
-            _usuario.EnableVolume = tbSound.Checked;
-            _usuario.Volume = (int)(volume * 10);
-            _factory.Use<IUsuarioController>().Actualizarusuario(_usuario);
-            _fmTextilSoft._user = _factory.Use<IUsuarioController>().ObtenerUsuarioConPermisos(Convert.ToInt32(_fmTextilSoft._user.DNI));
+            try
+            {
+                _usuario.EnableAnimators = tbAnimator.Checked;
+                _usuario.EnableSlicePanel = tbSlice.Checked;
+                _usuario.EnableVolume = tbSound.Checked;
+                _usuario.Volume = (int)(volume * 10);
+
+                UsuarioInformacion usuarioInformacion = new();
+                usuarioInformacion.Id = _usuario.Id;
+                usuarioInformacion.EnableAnimators = tbAnimator.Checked;
+                usuarioInformacion.EnableSlicePanel = tbSlice.Checked;
+                usuarioInformacion.EnableVolume = tbSound.Checked;
+                usuarioInformacion.Volume = (int)(volume * 10);
+
+                _factory.Use<IUsuarioController>().ActualizarConfiguracionUsuario(usuarioInformacion);
+                _fmTextilSoft._user = _factory.Use<IUsuarioController>().ObtenerUsuarioConPermisos(Convert.ToInt32(_fmTextilSoft._user.DNI));
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Guardado exitoso", "Se guardaron tus preferencias de aplicación correctamente", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+            catch (Exception)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de aplicación", "No pudo guardar las configuraciones, intente mas tarde o contacte con el soporte", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
         }
 
         private void macTrackBar1_MouseUp(object sender, MouseEventArgs e)
@@ -82,6 +109,34 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 // Ejecutar el sonido aquí
             }
             lastvalue = volume;
+        }
+
+        private void btnSaveUserData_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmInput fmInput = new FmInput("Ingrese su contraseña para guardar los cambios",
+                                                Color.Black,
+                                                centerPosition,
+                                                null,
+                                                _factory.Use<IUsuarioController>().CambiarContraseña,
+                                                "Contraseña",
+                                                "Guardar"
+                                                );
+                fmInput.ShowDialog();
+            }
+            catch (Exception)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de aplicación", "No pudo guardar las configuraciones, intente mas tarde o contacte con el soporte", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+        }
+
+        private void FmConfiguracion_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
