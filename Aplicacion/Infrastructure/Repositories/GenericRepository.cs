@@ -43,14 +43,6 @@ namespace Infrastructure.Repositories
                 return _entities;
             }
         }
-
-        public void UpdateContext()
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<ApplicationDbContext>();
-            this._context = new ApplicationDbContext(optionsBuilder.Options);
-            _entities = null;
-            _entities = _context.Set<T>();
-        }
         
         //public EmpleadosEntity UsuarioLogueado
         //{

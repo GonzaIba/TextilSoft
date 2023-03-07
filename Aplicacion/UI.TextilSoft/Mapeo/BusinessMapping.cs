@@ -7,6 +7,7 @@ using Domain.Models;
 using SL.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -28,6 +29,7 @@ namespace UI.TextilSoft.Mapeo
 
             CreateMap<ProductosModel, ProductosEntity>()
                 .ForMember(dest => dest.Codigo, opt => opt.MapFrom(src => src.CodigoProducto))
+                .ForMember(dest => dest.Color, opt => opt.MapFrom(src => ConvertToColor(src.Color)))
                 .ReverseMap();
 
             CreateMap<PedidosModel, ListarPedidosEntity>()
@@ -88,6 +90,21 @@ namespace UI.TextilSoft.Mapeo
                 permiso = EstadoPedidosEnum.Entregado;
             }
             return permiso;
+        }
+
+        public Color ConvertToColor(string color)
+        {
+            try
+            {
+                if (color.Length == 7)
+                    return ColorTranslator.FromHtml(color);
+                else
+                    return Color.FromName(color);
+            }
+            catch (Exception ex)
+            {
+                return Color.White;
+            }
         }
     }
 }

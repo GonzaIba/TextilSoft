@@ -15,7 +15,7 @@ namespace Domain.Models
         }
 
         public int ID_Producto { get; set; }
-        public string CodigoProducto { get; set; }
+        public Guid CodigoProducto { get; set; }
         public string Color { get; set; }
         public string Composicion { get; set; }
         public string Estampa { get; set; }

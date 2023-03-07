@@ -51,7 +51,7 @@ namespace UI.TextilSoft.Controllers
         {
             var ProveedorDTO = _mapper.Map<ProveedoresModel>(proveedoresEntity);
             //_proveedoresService.CrearFactura(resultado);
-            _proveedoresService.Insertar(ProveedorDTO);
+            _proveedoresService.Crear(ProveedorDTO);
             //ClientesModel clientesModel = new ClientesModel();
             //clientesModel.Apellido = "testunitofwork";
             //clientesModel.EstadoCliente = "Inactivo";

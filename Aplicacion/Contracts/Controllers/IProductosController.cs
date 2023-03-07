@@ -16,5 +16,6 @@ namespace Contracts.Controllers
         public PaginatedList<ProductosEntity> ObtenerListaProductos(int pageCount);
 
         public void EliminarProducto(int IdProducto);
+        public void CrearProducto(ProductosEntity productosEntity);
     }
 }

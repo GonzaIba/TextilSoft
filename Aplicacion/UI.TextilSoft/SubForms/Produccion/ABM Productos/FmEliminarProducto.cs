@@ -1,4 +1,5 @@
 ﻿using Contracts.Controllers;
+using SL.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,7 +37,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 toolTipError.Show("Por favor, solo ingrese números", txtCodigoProd, 0, -20, 2000);
                 txtCodigoProd.Text = txtCodigoProd.Text.Remove(txtCodigoProd.Text.Length - 1);
             }
-            if(IdProducto != 0)
+            if (IdProducto != 0)
             {
                 txtNombreProducto.Text = string.Empty;
                 txtTipoProducto.Text = string.Empty;
@@ -56,7 +57,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
             if (!string.IsNullOrEmpty(txtCodigoProd.Text))
             {
                 var producto = _factory.UseNew<IProductosController>().ObtenerProducto(txtCodigoProd.Text);
-                if(producto != null)
+                if (producto != null)
                 {
                     txtNombreProducto.Text = producto.NombreProducto;
                     txtTipoProducto.Text = producto.TipoProducto;
@@ -67,6 +68,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                     txtPrecio.Text = producto.Precio.ToString();
                     txtCantidad.Text = producto.Stock.ToString();
                     IdProducto = producto.ID_Producto;
+                    txtColor.BackColor = producto.Color;
                     btnEliminarProducto.Enabled = true;
                 }
                 else

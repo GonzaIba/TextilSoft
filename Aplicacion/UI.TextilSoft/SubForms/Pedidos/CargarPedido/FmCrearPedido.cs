@@ -70,8 +70,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         {
             if(txtCodigo.Text.Length >= 8)
             {
-                string CodigoProducto = txtCodigo.Text;
-                var Producto = _factory.Use<IProductosController>().ObtenerProducto(CodigoProducto);
+                var Producto = _factory.Use<IProductosController>().ObtenerProducto(txtCodigo.Text);
                 if (Producto is null)
                 {
                     MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");

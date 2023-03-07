@@ -4,6 +4,7 @@ using Domain.Models;
 using Infrastructure;
 using Infrastructure.Repositories;
 using IoCRegister;
+using LiveCharts.Wpf;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +22,10 @@ using SL.Helper.Services.Mapper;
 using SL.Infrastructure;
 using SL.IoC;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
+using System.Linq;
 using System.Security.Policy;
 using System.Threading;
 using System.Threading.Tasks;
@@ -84,6 +87,8 @@ namespace UI.TextilSoft
                     mainForm = services.GetRequiredService<Inicio>();
                 else
                     mainForm = services.GetRequiredService<Inicio>();
+
+                VerificarTablasPredeterminadas(services.GetRequiredService<ApplicationDbContext>(), services.GetRequiredService<IEstadoPedidoRepository>());
 
                 Application.Run(mainForm);
             }
@@ -185,6 +190,25 @@ namespace UI.TextilSoft
         {
             var connectionString = Configuration.GetConnectionString("SqlConnectionServiceLayer");
             return connectionString;
+        }
+
+        private static void VerificarTablasPredeterminadas(ApplicationDbContext dbContext,IEstadoPedidoRepository estadoPedidoRepository)
+        {
+            if (!estadoPedidoRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<EstadoPedidoModel>
+                {
+                    new EstadoPedidoModel { Estado = "Sin Asignar", Active = true },
+                    new EstadoPedidoModel { Estado = "En Producción", Active = true },
+                    new EstadoPedidoModel { Estado = "En Depósito", Active = true },
+                    new EstadoPedidoModel { Estado = "Entregado", Active = true },
+                    new EstadoPedidoModel { Estado = "Cancelado", Active = true },
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
         }
     }
 }

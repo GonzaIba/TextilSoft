@@ -51,6 +51,8 @@
             toolTipError = new System.Windows.Forms.ToolTip(components);
             btnEliminarProducto = new FontAwesome.Sharp.IconButton();
             btnBuscarProducto = new FontAwesome.Sharp.IconButton();
+            txtColor = new System.Windows.Forms.TextBox();
+            lblColor = new System.Windows.Forms.Label();
             SuspendLayout();
             // 
             // txtCantidad
@@ -272,7 +274,7 @@
             btnEliminarProducto.IconColor = System.Drawing.Color.White;
             btnEliminarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminarProducto.IconSize = 35;
-            btnEliminarProducto.Location = new System.Drawing.Point(280, 307);
+            btnEliminarProducto.Location = new System.Drawing.Point(315, 350);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.Size = new System.Drawing.Size(123, 46);
             btnEliminarProducto.TabIndex = 57;
@@ -299,12 +301,34 @@
             btnBuscarProducto.UseVisualStyleBackColor = true;
             btnBuscarProducto.Click += btnBuscarProducto_Click;
             // 
+            // txtColor
+            // 
+            txtColor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            txtColor.Location = new System.Drawing.Point(218, 299);
+            txtColor.Multiline = true;
+            txtColor.Name = "txtColor";
+            txtColor.ReadOnly = true;
+            txtColor.Size = new System.Drawing.Size(122, 23);
+            txtColor.TabIndex = 61;
+            // 
+            // lblColor
+            // 
+            lblColor.AutoSize = true;
+            lblColor.ForeColor = System.Drawing.Color.White;
+            lblColor.Location = new System.Drawing.Point(167, 299);
+            lblColor.Name = "lblColor";
+            lblColor.Size = new System.Drawing.Size(39, 15);
+            lblColor.TabIndex = 59;
+            lblColor.Text = "Color:";
+            // 
             // FmEliminarProducto
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(701, 382);
+            ClientSize = new System.Drawing.Size(701, 408);
+            Controls.Add(txtColor);
+            Controls.Add(lblColor);
             Controls.Add(btnBuscarProducto);
             Controls.Add(btnEliminarProducto);
             Controls.Add(txtNombreProducto);
@@ -358,5 +382,7 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.ToolTip toolTipError;
         private FontAwesome.Sharp.IconButton btnBuscarProducto;
+        private System.Windows.Forms.TextBox txtColor;
+        private System.Windows.Forms.Label lblColor;
     }
 }

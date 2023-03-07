@@ -17,7 +17,7 @@ namespace Infrastructure.TypeBuilders
 
             builder.Property(p => p.Color)
                 .IsRequired(true)
-                .HasColumnType("varchar(50)");
+                .HasColumnType("varchar(100)");
 
             builder.Property(p => p.Composicion)
                 .IsRequired(true)
@@ -25,7 +25,7 @@ namespace Infrastructure.TypeBuilders
 
             builder.Property(p => p.CodigoProducto)
                 .IsRequired(true)
-                .HasColumnType("varchar(50)");
+                .HasDefaultValueSql("NEWID()");
 
             builder.Property(p => p.Estampa)
                 .IsRequired(true)

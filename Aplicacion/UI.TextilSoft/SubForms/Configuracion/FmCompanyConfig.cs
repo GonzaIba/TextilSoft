@@ -73,7 +73,7 @@ namespace UI.TextilSoft.SubForms.Configuracion
         {
             try
             {
-                if(txtCarMinimo.Text.Length >= 0)
+                if (txtCarMinimo.Text.Length >= 0)
                 {
                     PasswordConfig passwordConfig = new PasswordConfig();
                     passwordConfig.RequireUppercase = tgBtnMayus.Checked;
@@ -222,6 +222,15 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 fmMessageBox.ShowDialog();
             }
 
+        }
+
+        private void txtColor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblColor_Click(object sender, EventArgs e)
+        {
         }
     }
 }

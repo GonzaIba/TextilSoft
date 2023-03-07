@@ -9,7 +9,7 @@ namespace Contracts.Services
 {
     public partial interface IGenericService<T> where T : class
     {
-        void Insertar(T entities);
+        void Crear(T entities);
 
         void Actualizar(T entities);
 

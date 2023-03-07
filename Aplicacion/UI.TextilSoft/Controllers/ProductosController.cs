@@ -27,10 +27,10 @@ namespace UI.TextilSoft.Controllers
             _mapper = mapper;
             _logger = logger;
         }
-
+        
         public ProductosEntity ObtenerProducto(string codigo)
         {
-            var ProductoDTO = _productoService.Get(x => x.CodigoProducto == codigo).FirstOrDefault();
+            var ProductoDTO = _productoService.Get(x => x.CodigoProducto == Guid.Parse(codigo)).FirstOrDefault();
             var ProductoEntity = _mapper.Map<ProductosEntity>(ProductoDTO);
             return ProductoEntity;
         }
@@ -42,7 +42,7 @@ namespace UI.TextilSoft.Controllers
                 Expression<Func<ProductosModel, dynamic>> orderByExpressionPedidosModel = orderBy switch
                 {
                     "ID_Producto" => entity => entity.ID_Producto,
-                    "CodigoProducto" => entity => entity.CodigoProducto,
+                    "CodigoProducto" => entity => entity.CodigoProducto.ToString(),
                     "Color" => entity => entity.Color,
                     "Composicion" => entity => entity.Composicion,
                     "Estampa" => entity => entity.Estampa,
@@ -103,6 +103,29 @@ namespace UI.TextilSoft.Controllers
                 throw ex;
             }
 
+        }
+
+        public void CrearProducto(ProductosEntity productosEntity)
+        {
+            try
+            {
+                var ProductoDTO = _productoService.Get(x => x.NombreProducto == productosEntity.NombreProducto).FirstOrDefault();
+                if (ProductoDTO != null)
+                {
+                    throw new Exception("El producto ya existe");
+                }
+                else
+                {
+                    var producto = _mapper.Map<ProductosModel>(productosEntity);
+                    //producto.CodigoProducto = null;
+                    _productoService.Crear(producto);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateLogError("Ocurrió un error al crear el producto con el nombre: " + productosEntity.NombreProducto, ex);
+                throw ex;
+            }
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Contracts.Controllers;
 using Domain.Entities;
 using FontAwesome.Sharp;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,8 +12,11 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
 using UI.TextilSoft.Factory;
+using UI.TextilSoft.Tools;
 using UI.TextilSoft.Tools.FormsTools;
+using static log4net.Appender.ColoredConsoleAppender;
 
 namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
 {
@@ -55,9 +59,9 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
             foreach (DataGridViewColumn item in GrillaProductos.Columns)
             {
                 IconButton button = new();
-                button.ForeColor = Color.White;
+                button.ForeColor = System.Drawing.Color.White;
                 button.IconChar = IconChar.Sort;
-                button.IconColor = Color.White;
+                button.IconColor = System.Drawing.Color.White;
                 button.FlatAppearance.BorderSize = 0;
                 button.FlatStyle = FlatStyle.Flat;
                 button.IconSize = 18;
@@ -78,7 +82,22 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
                 GrillaProductos.Controls.Add(button);
                 VerificarPaginas();
             }
+
             ActualizarBotones();
+
+            foreach (DataGridViewColumn item in GrillaProductos.Columns)
+            {
+                int index = item.Index;
+                if (item.ValueType.Name == "Color")
+                {
+                    foreach (DataGridViewRow row in GrillaProductos.Rows)
+                    {
+                        var cell = new DataGridViewCellColor();
+                        cell.Value = row.Cells[index].Value;
+                        row.Cells[index] = cell;
+                    }
+                }
+            }
         }
 
         public void ObtenerTodosLosProductosConFiltro(string searchValue)
@@ -87,8 +106,8 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
             {
                 var productos = _factory.Use<IProductosController>().ObtenerListaProductos(Pagecount).List;
                 var resultado = productos.Where(p =>
-                                p.Codigo.Contains(searchValue) ||
-                                p.Color.Contains(searchValue) ||
+                                p.Codigo.ToString().Contains(searchValue) ||
+                                //p.Color.Contains(searchValue) ||
                                 p.Composicion.Contains(searchValue) ||
                                 p.Estampa.Contains(searchValue) ||
                                 p.ID_Producto.ToString().Contains(searchValue) ||
@@ -132,24 +151,24 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
             if (LastColumn == ColumnName && !IsPreviousActive)
             {
                 IsPreviousActive = true;
-                if (button.IconColor == Color.MediumSlateBlue)
-                    button.IconColor = Color.White;
+                if (button.IconColor == System.Drawing.Color.MediumSlateBlue)
+                    button.IconColor = System.Drawing.Color.White;
                 else
-                    button.IconColor = Color.MediumSlateBlue;
+                    button.IconColor = System.Drawing.Color.MediumSlateBlue;
             }
             else
             {
                 if (LastColumn != ColumnName)
                 {
-                    button.IconColor = Color.MediumSlateBlue;
-                    if(LastIconButton != null)
-                        LastIconButton.IconColor = Color.White;
+                    button.IconColor = System.Drawing.Color.MediumSlateBlue;
+                    if (LastIconButton != null)
+                        LastIconButton.IconColor = System.Drawing.Color.White;
                     IsPreviousActive = false;
                 }
                 else
                 {
                     IsPreviousActive = false;
-                    button.IconColor = Color.White;
+                    button.IconColor = System.Drawing.Color.White;
                 }
             }
 
@@ -313,19 +332,19 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
                 btnAnterior.Enabled = true;
 
             if (btnPrimero.Text == PageIndex.ToString())
-                btnPrimero.BackColor = Color.FromArgb(40, 40, 40);
+                btnPrimero.BackColor = System.Drawing.Color.FromArgb(40, 40, 40);
             else
-                btnPrimero.BackColor = Color.FromArgb(32, 30, 45);
+                btnPrimero.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
 
             if (btnSegundo.Text == PageIndex.ToString())
-                btnSegundo.BackColor = Color.FromArgb(40, 40, 40);
+                btnSegundo.BackColor = System.Drawing.Color.FromArgb(40, 40, 40);
             else
-                btnSegundo.BackColor = Color.FromArgb(32, 30, 45);
+                btnSegundo.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
 
             if (btnTercero.Text == PageIndex.ToString())
-                btnTercero.BackColor = Color.FromArgb(40, 40, 40);
+                btnTercero.BackColor = System.Drawing.Color.FromArgb(40, 40, 40);
             else
-                btnTercero.BackColor = Color.FromArgb(32, 30, 45);
+                btnTercero.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
         }
 
 
@@ -354,5 +373,9 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
             ObtenerTodosLosProductosConFiltro(searchValue);
         }
 
+        private void GrillaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

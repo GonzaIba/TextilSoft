@@ -20,7 +20,7 @@ namespace Business.Services
             this._repository = repository;
         }
 
-        public virtual void Insertar(T entities)
+        public virtual void Crear(T entities)
         {
             _repository.Insert(entities);
             _unitOfWork.SaveChanges();

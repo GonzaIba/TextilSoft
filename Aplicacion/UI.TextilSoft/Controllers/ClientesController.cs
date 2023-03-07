@@ -32,7 +32,7 @@ namespace UI.TextilSoft.Controllers
             {
                 var ClienteModel = _mapper.Map<ClientesModel>(clientesEntity);
                 ClienteModel.CreateDate = DateTime.Now;
-                _clientesService.Insertar(ClienteModel);
+                _clientesService.Crear(ClienteModel);
                 _logger.GenerateInfo($"Se creó el cliente: {clientesEntity.Nombre} {clientesEntity.Apellido} con el DNI: {clientesEntity.DNI}");
             }
             catch (Exception ex)
