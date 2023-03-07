@@ -3,6 +3,7 @@ using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Http;
 using SL.Contracts.Services;
 using SL.Domain.Entities;
+using SL.Helper.Configurations;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,17 +16,23 @@ namespace SL.Helper.Services.Log4net
 {
     public class Logger : ILogger
     {
+        private readonly ILoggerService _loggerService;
         private readonly IEmailService _emailService;
+        private readonly ICompanyService _companyService;
+        private readonly CompanyConfiguration _companyConfiguration;
         private Usuario _usuario;
         private bool ValueSeted;
-        public Logger(IEmailService emailService)
+        public Logger(IEmailService emailService, CompanyConfiguration companyConfiguration, ICompanyService companyService, ILoggerService loggerService)
         {
             _emailService = emailService;
+            _companyConfiguration = companyConfiguration;
+            _companyService = companyService;
+            _loggerService = loggerService;
         }
-        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-        private static readonly log4net.ILog log = log4net.LogManager.GetLogger("LogerManager");
-        private static readonly log4net.ILog logPerformance = log4net.LogManager.GetLogger("Performance");
-        private static readonly log4net.ILog FatalLog = log4net.LogManager.GetLogger("AdoNetAppender");
+        private readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        //private static readonly log4net.ILog log = log4net.LogManager.GetLogger("LogerManager");
+        private readonly log4net.ILog logPerformance = log4net.LogManager.GetLogger("Performance");
+        private readonly log4net.ILog FatalLog = log4net.LogManager.GetLogger("AdoNetAppender");
 
         /// <summary>
         /// Agrega una linea al archivo de log
@@ -33,7 +40,7 @@ namespace SL.Helper.Services.Log4net
         /// <param name="mensaje">
         /// Mensaje a guardar en el archivo
         /// </param>
-        public void GenerateLogError(Exception ex)
+        public void GenerateLogError(string mensaje, Exception ex)
         {
             try
             {
@@ -41,7 +48,7 @@ namespace SL.Helper.Services.Log4net
                 {
 
                 }
-                log.Error($"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"}  ",ex);
+                log.Error($"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"}  "+ mensaje, ex);
             }
             catch
             {
@@ -65,6 +72,34 @@ namespace SL.Helper.Services.Log4net
             }
         }
 
+
+        /// <summary>
+        /// Agrega una linea al archivo de log cuando ocurre un error fatal. Este envia un mail automaticamente (en caso de que este activado) y lo inserta en la tabla
+        /// </summary>
+        /// <param name="mensaje">
+        /// Mensaje a guardar en el archivo (generalmente se usa el Init y el finish).
+        /// </param>
+        public void GenerateFatalLog(string message, Exception ex)
+        {
+            try
+            {
+                string MensajeUsuario = $"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"} " + message;
+                FatalLog.Fatal(MensajeUsuario, ex);
+                _loggerService.SaveLog(ex, MensajeUsuario);
+                SendFatalErrorEmail(message);
+            }
+            catch
+            {
+            }
+        }
+
+
+        /// <summary>
+        /// Agrega una linea al archivo de performance (Se utiliza para ver el rendimiento de ciertos metodos o funciones.
+        /// </summary>
+        /// <param name="mensaje">
+        /// Mensaje a guardar en el archivo (generalmente se usa el Init y el finish).
+        /// </param>
         public void GenerateLogPerformance(string mensaje)
         {
             try
@@ -76,23 +111,13 @@ namespace SL.Helper.Services.Log4net
             }
         }
 
-        public void GenerateFatalLog(string message, Exception ex)
-        {
-            try
-            {
-                FatalLog.Fatal($"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"} " + message, ex);
-                SendFatalErrorEmail(message);
-            }
-            catch
-            {
-            }
-        }
-
+        #region Extras
         private void SendFatalErrorEmail(string message)
         {
+            string mailCompany = _companyService.Get(x => x.CompanyId == _companyConfiguration.CompanyId).FirstOrDefault().CompanyMail;
             //aca enviamos el mail, agregar formato html para encabezado del mail
-
-
+            if(!string.IsNullOrEmpty(mailCompany))
+                _emailService.NotificateFatalError(mailCompany, message);
         }
 
         public void SetUser(Usuario usuario)
@@ -109,5 +134,6 @@ namespace SL.Helper.Services.Log4net
             _usuario = null;
             ValueSeted = false;
         }
+        #endregion
     }
 }

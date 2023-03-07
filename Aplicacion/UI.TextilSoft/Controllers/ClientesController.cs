@@ -37,7 +37,7 @@ namespace UI.TextilSoft.Controllers
             }
             catch (Exception ex)
             {
-                _logger.GenerateLogError(ex);
+                _logger.GenerateLogError("Ocurrió un error al crear un cliente.",ex);
                 throw;
             }
 

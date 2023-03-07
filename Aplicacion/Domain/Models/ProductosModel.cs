@@ -24,6 +24,7 @@ namespace Domain.Models
         public string Tejido { get; set; }
         public string TallePrenda { get; set; }
         public string TipoProducto { get; set; }
+        public int Stock { get; set; }
 
         public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }
         public virtual ICollection<VentasModel> Venta { get; set; }

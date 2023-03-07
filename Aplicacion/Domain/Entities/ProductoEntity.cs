@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class ProductoEntity
+    public class ProductosEntity
     {
+        public int ID_Producto { get; set; }
         public string Codigo { get; set; }
         public string Color { get; set; }
         public string Composicion { get; set; }
@@ -17,6 +18,6 @@ namespace Domain.Entities
         public string Tejido { get; set; }
         public string TallePrenda { get; set; }
         public string TipoProducto { get; set; }
-
+        public int Stock { get; set; }
     }
 }

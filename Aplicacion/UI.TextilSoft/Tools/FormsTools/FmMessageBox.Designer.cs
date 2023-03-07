@@ -28,88 +28,105 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblMessage = new System.Windows.Forms.Label();
-            this.lblTitle = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
-            this.iconMessageBoxType = new FontAwesome.Sharp.IconPictureBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.iconMessageBoxType)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.SuspendLayout();
+            lblMessage = new System.Windows.Forms.Label();
+            lblTitle = new System.Windows.Forms.Label();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
+            iconMessageBoxType = new FontAwesome.Sharp.IconPictureBox();
+            panel1 = new System.Windows.Forms.Panel();
+            btnCancelar = new FontAwesome.Sharp.IconButton();
+            ((System.ComponentModel.ISupportInitialize)iconMessageBoxType).BeginInit();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // lblMessage
             // 
-            this.lblMessage.AutoSize = true;
-            this.lblMessage.Location = new System.Drawing.Point(3, 2);
-            this.lblMessage.Name = "lblMessage";
-            this.lblMessage.Size = new System.Drawing.Size(51, 15);
-            this.lblMessage.TabIndex = 0;
-            this.lblMessage.Text = "Mensaje";
+            lblMessage.AutoSize = true;
+            lblMessage.Location = new System.Drawing.Point(3, 2);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new System.Drawing.Size(51, 15);
+            lblMessage.TabIndex = 0;
+            lblMessage.Text = "Mensaje";
             // 
             // lblTitle
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(123, 9);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(37, 15);
-            this.lblTitle.TabIndex = 1;
-            this.lblTitle.Text = "Titulo";
+            lblTitle.AutoSize = true;
+            lblTitle.Location = new System.Drawing.Point(123, 9);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new System.Drawing.Size(37, 15);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "Titulo";
             // 
             // iconButton1
             // 
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconButton1.IconColor = System.Drawing.Color.Black;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.Location = new System.Drawing.Point(134, 138);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Size = new System.Drawing.Size(75, 35);
-            this.iconButton1.TabIndex = 2;
-            this.iconButton1.Text = "Aceptar";
-            this.iconButton1.UseVisualStyleBackColor = true;
-            this.iconButton1.Click += new System.EventHandler(this.iconButton1_Click);
+            iconButton1.FlatAppearance.BorderSize = 0;
+            iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconButton1.IconColor = System.Drawing.Color.Black;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.Location = new System.Drawing.Point(134, 138);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new System.Drawing.Size(75, 35);
+            iconButton1.TabIndex = 2;
+            iconButton1.Text = "Aceptar";
+            iconButton1.UseVisualStyleBackColor = true;
+            iconButton1.Click += iconButton1_Click;
             // 
             // iconMessageBoxType
             // 
-            this.iconMessageBoxType.BackColor = System.Drawing.SystemColors.Control;
-            this.iconMessageBoxType.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.iconMessageBoxType.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.iconMessageBoxType.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconMessageBoxType.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconMessageBoxType.IconSize = 78;
-            this.iconMessageBoxType.Location = new System.Drawing.Point(12, 37);
-            this.iconMessageBoxType.Name = "iconMessageBoxType";
-            this.iconMessageBoxType.Size = new System.Drawing.Size(92, 78);
-            this.iconMessageBoxType.TabIndex = 3;
-            this.iconMessageBoxType.TabStop = false;
+            iconMessageBoxType.BackColor = System.Drawing.SystemColors.Control;
+            iconMessageBoxType.ForeColor = System.Drawing.SystemColors.ControlText;
+            iconMessageBoxType.IconChar = FontAwesome.Sharp.IconChar.None;
+            iconMessageBoxType.IconColor = System.Drawing.SystemColors.ControlText;
+            iconMessageBoxType.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconMessageBoxType.IconSize = 78;
+            iconMessageBoxType.Location = new System.Drawing.Point(12, 37);
+            iconMessageBoxType.Name = "iconMessageBoxType";
+            iconMessageBoxType.Size = new System.Drawing.Size(92, 78);
+            iconMessageBoxType.TabIndex = 3;
+            iconMessageBoxType.TabStop = false;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lblMessage);
-            this.panel1.Location = new System.Drawing.Point(121, 37);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(220, 95);
-            this.panel1.TabIndex = 4;
+            panel1.Controls.Add(lblMessage);
+            panel1.Location = new System.Drawing.Point(121, 37);
+            panel1.Name = "panel1";
+            panel1.Size = new System.Drawing.Size(220, 95);
+            panel1.TabIndex = 4;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnCancelar.IconChar = FontAwesome.Sharp.IconChar.None;
+            btnCancelar.IconColor = System.Drawing.Color.Black;
+            btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCancelar.Location = new System.Drawing.Point(215, 138);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new System.Drawing.Size(75, 35);
+            btnCancelar.TabIndex = 5;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Visible = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // FmMessageBox
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(353, 179);
-            this.Controls.Add(this.iconMessageBoxType);
-            this.Controls.Add(this.iconButton1);
-            this.Controls.Add(this.lblTitle);
-            this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FmMessageBox";
-            this.Text = "FmMessageBox";
-            ((System.ComponentModel.ISupportInitialize)(this.iconMessageBoxType)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(353, 179);
+            Controls.Add(btnCancelar);
+            Controls.Add(iconMessageBoxType);
+            Controls.Add(iconButton1);
+            Controls.Add(lblTitle);
+            Controls.Add(panel1);
+            FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            Name = "FmMessageBox";
+            Text = "FmMessageBox";
+            ((System.ComponentModel.ISupportInitialize)iconMessageBoxType).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -119,5 +136,6 @@
         private FontAwesome.Sharp.IconButton iconButton1;
         private FontAwesome.Sharp.IconPictureBox iconMessageBoxType;
         private System.Windows.Forms.Panel panel1;
+        private FontAwesome.Sharp.IconButton btnCancelar;
     }
 }

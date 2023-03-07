@@ -53,11 +53,11 @@ namespace UI.TextilSoft.MainForm
                 circularProgressBar1.Text = Convert.ToString(circularProgressBar1.Value / 20);
             }
             circularProgressBar1.Visible = false;
-            this.Hide();
             if (PerformanceConfiguration.EnabledAnimator)
                 fmlobby.Show();
             else
                 fmlobby.Show();
+
         }
 
         private void circularProgressBar1_Click(object sender, EventArgs e)

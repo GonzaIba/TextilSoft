@@ -9,7 +9,7 @@ namespace SL.Helper.Services.Log4net
 {
     public interface ILogger
     {
-        void GenerateLogError(Exception ex);
+        void GenerateLogError(string message, Exception ex);
         void GenerateInfo(string mensaje);
         void GenerateLogPerformance(string mensaje);
         void GenerateFatalLog(string message, Exception ex);

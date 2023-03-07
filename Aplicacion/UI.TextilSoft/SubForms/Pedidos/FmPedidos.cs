@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
+using UI.TextilSoft.MainForm;
 using UI.TextilSoft.SubForms.Pedidos.AdministrarPedido;
 using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 using UI.TextilSoft.SubForms.Pedidos.ListarPedidos;
@@ -20,10 +21,12 @@ namespace UI.TextilSoft.SubForms.Pedidos
     {
         private Form activeForm = null;
         private readonly IControllerFactory _factory;
-        public FmPedidos(IControllerFactory factory)
+        private readonly FmTextilSoft _fmTextilSoft;
+        public FmPedidos(IControllerFactory factory, FmTextilSoft fmTextilSoft)
         {
-            InitializeComponent();
             _factory = factory;
+            _fmTextilSoft = fmTextilSoft;
+            InitializeComponent();
         }
 
         private void AbrirFormHija(Form formhija)
@@ -41,7 +44,7 @@ namespace UI.TextilSoft.SubForms.Pedidos
                 panelContenedor.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-                if(PerformanceConfiguration.EnabledAnimator)
+                if(_fmTextilSoft._user.EnableAnimators)
                     AbrirAnimator();
             }
             else
@@ -56,7 +59,7 @@ namespace UI.TextilSoft.SubForms.Pedidos
                 panelContenedor.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-                if (PerformanceConfiguration.EnabledAnimator)
+                if (_fmTextilSoft._user.EnableAnimators)
                     AbrirAnimator();
             }
         }

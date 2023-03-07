@@ -57,6 +57,16 @@
             label13 = new System.Windows.Forms.Label();
             txtCelular = new AltoControls.AltoTextBox();
             label14 = new System.Windows.Forms.Label();
+            lblpassword = new System.Windows.Forms.Label();
+            txtOldPassword = new AltoControls.AltoTextBox();
+            lblNewPassword = new System.Windows.Forms.Label();
+            txtContraseñaSave = new AltoControls.AltoTextBox();
+            lblContraseñaSave = new System.Windows.Forms.Label();
+            txtNewPassword = new AltoControls.AltoTextBox();
+            label11 = new System.Windows.Forms.Label();
+            txtConfirmNewPassword = new AltoControls.AltoTextBox();
+            label15 = new System.Windows.Forms.Label();
+            btnSaveNewPassword = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)iconPictureBox1).BeginInit();
             SuspendLayout();
             // 
@@ -67,7 +77,7 @@
             txtNombre.Enabled = false;
             txtNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtNombre.ForeColor = System.Drawing.Color.White;
-            txtNombre.Location = new System.Drawing.Point(500, 184);
+            txtNombre.Location = new System.Drawing.Point(453, 184);
             txtNombre.Name = "txtNombre";
             txtNombre.Size = new System.Drawing.Size(136, 29);
             txtNombre.TabIndex = 42;
@@ -88,7 +98,7 @@
             lblAuth.AutoSize = true;
             lblAuth.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblAuth.ForeColor = System.Drawing.Color.White;
-            lblAuth.Location = new System.Drawing.Point(483, 131);
+            lblAuth.Location = new System.Drawing.Point(436, 131);
             lblAuth.Name = "lblAuth";
             lblAuth.Size = new System.Drawing.Size(93, 25);
             lblAuth.TabIndex = 69;
@@ -123,7 +133,7 @@
             btnSaveUserData.IconColor = System.Drawing.Color.White;
             btnSaveUserData.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSaveUserData.IconSize = 35;
-            btnSaveUserData.Location = new System.Drawing.Point(475, 354);
+            btnSaveUserData.Location = new System.Drawing.Point(428, 384);
             btnSaveUserData.Name = "btnSaveUserData";
             btnSaveUserData.Size = new System.Drawing.Size(101, 42);
             btnSaveUserData.TabIndex = 67;
@@ -147,7 +157,7 @@
             // 
             lblMaxFail.AutoSize = true;
             lblMaxFail.ForeColor = System.Drawing.Color.White;
-            lblMaxFail.Location = new System.Drawing.Point(428, 189);
+            lblMaxFail.Location = new System.Drawing.Point(381, 189);
             lblMaxFail.Name = "lblMaxFail";
             lblMaxFail.Size = new System.Drawing.Size(51, 15);
             lblMaxFail.TabIndex = 41;
@@ -255,6 +265,7 @@
             // 
             macTrackBar1.BackColor = System.Drawing.Color.Transparent;
             macTrackBar1.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            macTrackBar1.Cursor = System.Windows.Forms.Cursors.Hand;
             macTrackBar1.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             macTrackBar1.ForeColor = System.Drawing.Color.FromArgb(123, 125, 123);
             macTrackBar1.IndentHeight = 6;
@@ -343,7 +354,7 @@
             txtEmail.Br = System.Drawing.Color.MidnightBlue;
             txtEmail.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtEmail.ForeColor = System.Drawing.Color.White;
-            txtEmail.Location = new System.Drawing.Point(500, 226);
+            txtEmail.Location = new System.Drawing.Point(453, 226);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new System.Drawing.Size(136, 29);
             txtEmail.TabIndex = 96;
@@ -352,7 +363,7 @@
             // 
             label12.AutoSize = true;
             label12.ForeColor = System.Drawing.Color.White;
-            label12.Location = new System.Drawing.Point(428, 234);
+            label12.Location = new System.Drawing.Point(381, 234);
             label12.Name = "label12";
             label12.Size = new System.Drawing.Size(36, 15);
             label12.TabIndex = 95;
@@ -365,7 +376,7 @@
             txtDNI.Enabled = false;
             txtDNI.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtDNI.ForeColor = System.Drawing.Color.White;
-            txtDNI.Location = new System.Drawing.Point(500, 265);
+            txtDNI.Location = new System.Drawing.Point(453, 265);
             txtDNI.Name = "txtDNI";
             txtDNI.Size = new System.Drawing.Size(136, 29);
             txtDNI.TabIndex = 98;
@@ -374,7 +385,7 @@
             // 
             label13.AutoSize = true;
             label13.ForeColor = System.Drawing.Color.White;
-            label13.Location = new System.Drawing.Point(428, 272);
+            label13.Location = new System.Drawing.Point(381, 272);
             label13.Name = "label13";
             label13.Size = new System.Drawing.Size(27, 15);
             label13.TabIndex = 97;
@@ -386,7 +397,7 @@
             txtCelular.Br = System.Drawing.Color.MidnightBlue;
             txtCelular.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCelular.ForeColor = System.Drawing.Color.White;
-            txtCelular.Location = new System.Drawing.Point(500, 305);
+            txtCelular.Location = new System.Drawing.Point(453, 305);
             txtCelular.Name = "txtCelular";
             txtCelular.Size = new System.Drawing.Size(136, 29);
             txtCelular.TabIndex = 100;
@@ -395,11 +406,125 @@
             // 
             label14.AutoSize = true;
             label14.ForeColor = System.Drawing.Color.White;
-            label14.Location = new System.Drawing.Point(428, 311);
+            label14.Location = new System.Drawing.Point(381, 311);
             label14.Name = "label14";
             label14.Size = new System.Drawing.Size(44, 15);
             label14.TabIndex = 99;
             label14.Text = "Celular";
+            // 
+            // lblpassword
+            // 
+            lblpassword.AutoSize = true;
+            lblpassword.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblpassword.ForeColor = System.Drawing.Color.White;
+            lblpassword.Location = new System.Drawing.Point(765, 131);
+            lblpassword.Name = "lblpassword";
+            lblpassword.Size = new System.Drawing.Size(108, 25);
+            lblpassword.TabIndex = 101;
+            lblpassword.Text = "Contraseña";
+            // 
+            // txtOldPassword
+            // 
+            txtOldPassword.BackColor = System.Drawing.Color.Transparent;
+            txtOldPassword.Br = System.Drawing.Color.MidnightBlue;
+            txtOldPassword.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtOldPassword.ForeColor = System.Drawing.Color.White;
+            txtOldPassword.Location = new System.Drawing.Point(809, 185);
+            txtOldPassword.Name = "txtOldPassword";
+            txtOldPassword.Size = new System.Drawing.Size(136, 29);
+            txtOldPassword.TabIndex = 103;
+            // 
+            // lblNewPassword
+            // 
+            lblNewPassword.AutoSize = true;
+            lblNewPassword.ForeColor = System.Drawing.Color.White;
+            lblNewPassword.Location = new System.Drawing.Point(696, 189);
+            lblNewPassword.Name = "lblNewPassword";
+            lblNewPassword.Size = new System.Drawing.Size(95, 15);
+            lblNewPassword.TabIndex = 102;
+            lblNewPassword.Text = "Vieja Contraseña";
+            // 
+            // txtContraseñaSave
+            // 
+            txtContraseñaSave.BackColor = System.Drawing.Color.Transparent;
+            txtContraseñaSave.Br = System.Drawing.Color.MidnightBlue;
+            txtContraseñaSave.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtContraseñaSave.ForeColor = System.Drawing.Color.White;
+            txtContraseñaSave.Location = new System.Drawing.Point(453, 349);
+            txtContraseñaSave.Name = "txtContraseñaSave";
+            txtContraseñaSave.Size = new System.Drawing.Size(136, 29);
+            txtContraseñaSave.TabIndex = 105;
+            // 
+            // lblContraseñaSave
+            // 
+            lblContraseñaSave.AutoSize = true;
+            lblContraseñaSave.ForeColor = System.Drawing.Color.White;
+            lblContraseñaSave.Location = new System.Drawing.Point(381, 355);
+            lblContraseñaSave.Name = "lblContraseñaSave";
+            lblContraseñaSave.Size = new System.Drawing.Size(67, 15);
+            lblContraseñaSave.TabIndex = 104;
+            lblContraseñaSave.Text = "Contraseña";
+            // 
+            // txtNewPassword
+            // 
+            txtNewPassword.BackColor = System.Drawing.Color.Transparent;
+            txtNewPassword.Br = System.Drawing.Color.MidnightBlue;
+            txtNewPassword.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtNewPassword.ForeColor = System.Drawing.Color.White;
+            txtNewPassword.Location = new System.Drawing.Point(809, 234);
+            txtNewPassword.Name = "txtNewPassword";
+            txtNewPassword.Size = new System.Drawing.Size(136, 29);
+            txtNewPassword.TabIndex = 107;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.ForeColor = System.Drawing.Color.White;
+            label11.Location = new System.Drawing.Point(687, 240);
+            label11.Name = "label11";
+            label11.Size = new System.Drawing.Size(104, 15);
+            label11.TabIndex = 106;
+            label11.Text = "Nueva Contraseña";
+            // 
+            // txtConfirmNewPassword
+            // 
+            txtConfirmNewPassword.BackColor = System.Drawing.Color.Transparent;
+            txtConfirmNewPassword.Br = System.Drawing.Color.MidnightBlue;
+            txtConfirmNewPassword.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtConfirmNewPassword.ForeColor = System.Drawing.Color.White;
+            txtConfirmNewPassword.Location = new System.Drawing.Point(809, 285);
+            txtConfirmNewPassword.Name = "txtConfirmNewPassword";
+            txtConfirmNewPassword.Size = new System.Drawing.Size(136, 29);
+            txtConfirmNewPassword.TabIndex = 109;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.ForeColor = System.Drawing.Color.White;
+            label15.Location = new System.Drawing.Point(642, 291);
+            label15.Name = "label15";
+            label15.Size = new System.Drawing.Size(161, 15);
+            label15.TabIndex = 108;
+            label15.Text = "Confirmar Nueva Contraseña";
+            // 
+            // btnSaveNewPassword
+            // 
+            btnSaveNewPassword.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnSaveNewPassword.FlatAppearance.BorderSize = 0;
+            btnSaveNewPassword.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnSaveNewPassword.ForeColor = System.Drawing.Color.White;
+            btnSaveNewPassword.IconChar = FontAwesome.Sharp.IconChar.Save;
+            btnSaveNewPassword.IconColor = System.Drawing.Color.White;
+            btnSaveNewPassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnSaveNewPassword.IconSize = 35;
+            btnSaveNewPassword.Location = new System.Drawing.Point(772, 336);
+            btnSaveNewPassword.Name = "btnSaveNewPassword";
+            btnSaveNewPassword.Size = new System.Drawing.Size(101, 42);
+            btnSaveNewPassword.TabIndex = 110;
+            btnSaveNewPassword.Text = "Guardar";
+            btnSaveNewPassword.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnSaveNewPassword.UseVisualStyleBackColor = true;
+            btnSaveNewPassword.Click += btnSaveNewPassword_Click;
             // 
             // FmConfiguracion
             // 
@@ -407,6 +532,16 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(23, 21, 32);
             ClientSize = new System.Drawing.Size(964, 507);
+            Controls.Add(btnSaveNewPassword);
+            Controls.Add(txtConfirmNewPassword);
+            Controls.Add(label15);
+            Controls.Add(txtNewPassword);
+            Controls.Add(label11);
+            Controls.Add(txtContraseñaSave);
+            Controls.Add(lblContraseñaSave);
+            Controls.Add(txtOldPassword);
+            Controls.Add(lblNewPassword);
+            Controls.Add(lblpassword);
             Controls.Add(txtCelular);
             Controls.Add(label14);
             Controls.Add(txtDNI);
@@ -473,5 +608,15 @@
         private System.Windows.Forms.Label label13;
         private AltoControls.AltoTextBox txtCelular;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblpassword;
+        private AltoControls.AltoTextBox txtOldPassword;
+        private System.Windows.Forms.Label lblNewPassword;
+        private AltoControls.AltoTextBox txtContraseñaSave;
+        private System.Windows.Forms.Label lblContraseñaSave;
+        private AltoControls.AltoTextBox txtNewPassword;
+        private System.Windows.Forms.Label label11;
+        private AltoControls.AltoTextBox txtConfirmNewPassword;
+        private System.Windows.Forms.Label label15;
+        private FontAwesome.Sharp.IconButton btnSaveNewPassword;
     }
 }

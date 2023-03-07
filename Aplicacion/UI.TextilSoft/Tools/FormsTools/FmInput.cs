@@ -62,6 +62,14 @@ namespace UI.TextilSoft.Tools.FormsTools
             {
                 btnAccion1.Text = nombreboton;
             }
+            if (lbl1 == string.Empty && lbl2 == string.Empty)
+            {
+                lblInput1.Visible = false;
+                lblInput2.Visible = false;
+                txt1.Visible = false;
+                txt2.Visible = false;
+                btnAccion1.Location = new Point(txt1.Location.X, txt1.Location.Y);
+            }
         }
 
         private void FmInput_Load(object sender, EventArgs e)
@@ -77,10 +85,15 @@ namespace UI.TextilSoft.Tools.FormsTools
                 {
                     _funcion2(txt1.Text, txt2.Text);
                 }
+                else if(txt1.Visible == false && txt2.Visible == false)
+                {
+
+                }
                 else
                 {
                     _funcion(txt1.Text);
                 }
+                    
                 this.Close();
             }
             catch (Exception ex)

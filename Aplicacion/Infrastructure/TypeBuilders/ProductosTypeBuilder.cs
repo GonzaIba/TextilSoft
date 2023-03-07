@@ -16,40 +16,44 @@ namespace Infrastructure.TypeBuilders
             builder.HasKey(p => p.ID_Producto);
 
             builder.Property(p => p.Color)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.Composicion)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.CodigoProducto)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.Estampa)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.NombreProducto)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.Precio)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("decimal(18,0)");
 
             builder.Property(p => p.Tejido)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.TallePrenda)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
             builder.Property(p => p.TipoProducto)
-                .IsRequired(false)
+                .IsRequired(true)
                 .HasColumnType("varchar(50)");
+
+            builder.Property(p => p.Stock)
+                .IsRequired(true)
+                .HasDefaultValue(0);
 
             builder.ToTable("Producto");
         }

@@ -18,7 +18,7 @@ namespace SL.Contracts
         //void DeleteUser(UsuarioModel appIdentityUser);
         UsuarioInformacion ObtenerInformacionUsuario(Usuario usuario);
         List<Usuario> ObtenerTodosLosUsuarioConPermisos();
-        IList<Usuario> ObtenerUsuarios();
+        IList<Usuario> ObtenerUsuarios(bool IsOwner = false);
         IList<Familia> ObtenerFamilias();
         Usuario ObtenerUsuarioConPermisos(Login login);
         Usuario ObtenerUsuarioConPermisos(int DNI);
@@ -30,7 +30,7 @@ namespace SL.Contracts
         bool ExisteDNI(int posibleDNI);
         void EnviarConfirmacionEmail(string email);
         void RecuperarContraseña(string nombre, string email);
-        bool CambiarContraseña((int id,string oldPassword, string newPassword) parametros);
+        bool CambiarContraseña(int id,string oldPassword, string newPassword);
         bool ValidarCodigoDeVerificacion(Usuario usuario,int numero);
     }
 }

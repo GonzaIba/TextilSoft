@@ -149,6 +149,10 @@ namespace UI.TextilSoft
             string result = services.GetType().Assembly.Location;
             FileInfo file = new FileInfo(result);
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
+            if(!string.IsNullOrEmpty(Configuration.GetSection("TemphLog").Value.ToString()))
+                AppDomain.CurrentDomain.SetData("TemphLog", Configuration.GetSection("TemphLog").Value.ToString());
+            else
+                AppDomain.CurrentDomain.SetData("TemphLog", AppDomain.CurrentDomain.BaseDirectory + "/Logs");
 
             services.AddHostedService<TaskResolver>();
         }

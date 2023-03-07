@@ -61,8 +61,8 @@ namespace UI.TextilSoft.MainForm
         {
             try
             {
+                _inicio.Hide();
                 CompanyCustomizeEntity company = _factory.Use<ICompanyController>().GetCustomizeCompany();
-                _factory.Use<SL.Helper.Services.Log4net.ILogger>().GenerateInfo("aa");
 
                 lblCompanyName.Text = company.Name;             
                 pnlCompanyLogo.BackColor = company.Color;

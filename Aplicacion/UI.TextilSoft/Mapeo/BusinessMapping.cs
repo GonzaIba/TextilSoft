@@ -26,6 +26,10 @@ namespace UI.TextilSoft.Mapeo
 
             CreateMap<ClientesModel, ClientesEntity>().ReverseMap();
 
+            CreateMap<ProductosModel, ProductosEntity>()
+                .ForMember(dest => dest.Codigo, opt => opt.MapFrom(src => src.CodigoProducto))
+                .ReverseMap();
+
             CreateMap<PedidosModel, ListarPedidosEntity>()
                 .ForMember(dest => dest.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
                 .ForMember(dest => dest.AtendidoPor, opt => opt.MapFrom(src => src.Empleados.Nombre + " " + src.Empleados.Apellido))

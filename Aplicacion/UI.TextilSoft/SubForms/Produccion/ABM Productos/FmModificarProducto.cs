@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UI.TextilSoft.SubForms.Productos
+namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
 {
-    public partial class FmProductos : Form
+    public partial class FmModificarProducto : Form
     {
-        public FmProductos()
+        public FmModificarProducto()
         {
             InitializeComponent();
         }

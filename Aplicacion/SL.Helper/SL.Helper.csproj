@@ -18,10 +18,4 @@
     <ProjectReference Include="..\SL.Contracts\SL.Contracts.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="log4net.config">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

@@ -152,7 +152,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
             }
             else
             {
-                if(LastColumn != ColumnName)
+                if (LastColumn != ColumnName)
                 {
                     button.IconColor = Color.MediumSlateBlue;
                     LastIconButton.IconColor = Color.White;

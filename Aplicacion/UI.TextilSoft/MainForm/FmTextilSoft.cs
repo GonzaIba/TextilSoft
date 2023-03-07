@@ -25,6 +25,7 @@ using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Configuracion;
 using UI.TextilSoft.SubForms.Pedidos;
+using UI.TextilSoft.SubForms.Produccion;
 using UI.TextilSoft.SubForms.Proveedores;
 using UI.TextilSoft.Tools;
 using UI.TextilSoft.Tools.FormsTools;
@@ -70,6 +71,7 @@ namespace UI.TextilSoft.MainForm
         //----------------------- DI -------------------
         private readonly IControllerFactory _factory;
         private readonly FmLobby _fmLobby;
+        public UsuarioInformacion _usuarioInformacion;
 
         public FmTextilSoft(IControllerFactory factory, FmLobby fmLobby)
         {
@@ -93,6 +95,7 @@ namespace UI.TextilSoft.MainForm
                 timer1.Start();
                 timer2.Start();
                 toolStripLabel1.Text = "Hola " + _user?.Nombre + "!";
+                _usuarioInformacion = _factory.Use<IUsuarioController>().ObtenerInformacionUsuario(_user);
                 //this.TraducirFormulario();
             }
             catch (Exception ex)
@@ -248,7 +251,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void btnPedidos_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmPedidos(_factory));
+            AbrirFormHija(new FmPedidos(_factory, this));
             BotonPresionado = true;
             ActivateButton(sender);
             SonidoForm();
@@ -278,6 +281,7 @@ namespace UI.TextilSoft.MainForm
         private void btnProduccion_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
+            AbrirFormHija(new FmProduccion(_factory, this));
             BotonPresionado = true;
             SonidoForm();
         }
@@ -305,25 +309,31 @@ namespace UI.TextilSoft.MainForm
         #region Timers
         private async void timer1_Tick_1(object sender, EventArgs e)
         {
-            await Task.Run(() =>
+            if (_usuarioInformacion.EnableAnimators)
             {
-                this.Refresh();
-                x++;
-                if (x >= 200)
+                await Task.Run(() =>
                 {
-                    x = 1;
-                    timer1.Stop();
-                }
-            });
+                    this.Refresh();
+                    x++;
+                    if (x >= 200)
+                    {
+                        x = 1;
+                        timer1.Stop();
+                    }
+                });
+            }
         }
         private void timer2_Tick_1(object sender, EventArgs e)
         {
-            if (this.Opacity < 1) this.Opacity += 0.05;
-            this.Refresh();
-            cont += 1;
-            if (cont == 100)
+            if (_usuarioInformacion.EnableAnimators)
             {
-                timer2.Stop();
+                if (this.Opacity < 1) this.Opacity += 0.05;
+                this.Refresh();
+                cont += 1;
+                if (cont == 100)
+                {
+                    timer2.Stop();
+                }
             }
         }
         private void ExpandirPanel()
@@ -361,7 +371,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void timer3_Tick(object sender, EventArgs e)
         {
-            if (PerformanceConfiguration.EnabledSliceButtonsPanel)
+            if (_usuarioInformacion.EnableAnimators)
             {
                 if (ThreadActivated == false)
                 {
@@ -375,7 +385,7 @@ namespace UI.TextilSoft.MainForm
         }
         private void timer4_Tick(object sender, EventArgs e)
         {
-            if (PerformanceConfiguration.EnabledSliceButtonsPanel)
+            if (_usuarioInformacion.EnableAnimators)
             {
                 if (ThreadActivated == false)
                 {
@@ -618,9 +628,15 @@ namespace UI.TextilSoft.MainForm
         #region Mover Icono
         private void MoveIconLeft()
         {
-            currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-            currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
-            currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            try
+            {
+                currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                currentBtn.TextImageRelation = TextImageRelation.ImageBeforeText;
+                currentBtn.ImageAlign = ContentAlignment.MiddleLeft;
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void btnBloquear_Click(object sender, EventArgs e)

@@ -245,25 +245,27 @@ namespace SL.Helper.Controllers
             {
                 var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == usuario.Id, tracking: true).FirstOrDefault();
                 UsuarioInformacion userInfo = _mapper.Map<UsuarioInformacion>(usuarioDto);
-                _logger.GenerateInfo("Actualización de usuario exitoso");
                 return userInfo;
             }
             catch (Exception ex)
             {
-                _logger.GenerateFatalLog("Ocurrió un error fatal al actualizar el usuario", ex);
+                _logger.GenerateFatalLog("Ocurrió un error fatal al obtener el usuario", ex);
                 throw ex;
             }
         }
         
-        public bool CambiarContraseña((int id,string oldPassword, string newPassword) parametros)
+        public bool CambiarContraseña(int id,string oldPassword, string newPassword)
         {
             try
             {
 
-                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == parametros.id, tracking: true).FirstOrDefault();
-                if (usuarioDto.Contraseña == parametros.oldPassword)
+                var usuarioDto = _usuarioService.Get(x => x.Id_Usuario == id, tracking: true).FirstOrDefault();
+                if (usuarioDto.Contraseña == oldPassword)
                 {
-                    usuarioDto.Contraseña = parametros.newPassword;
+                    if (usuarioDto.Contraseña == newPassword)
+                        return false;
+
+                    usuarioDto.Contraseña = newPassword;
                     _usuarioService.Actualizar(usuarioDto);
                     _logger.GenerateInfo("Actualización de usuario exitoso");
                     return true;
@@ -276,7 +278,7 @@ namespace SL.Helper.Controllers
             }
             catch (Exception ex)
             {
-                _logger.GenerateLogError(ex);
+                _logger.GenerateLogError("Ocurrió un error al cambiar la contraseña",ex);
                 throw;
             }
         }
@@ -328,10 +330,15 @@ namespace SL.Helper.Controllers
 
         }
 
-        public IList<Usuario> ObtenerUsuarios() /*=> _mapper.Map<List<Usuario>>(_usuarioService.Get().ToList());*/
+        public IList<Usuario> ObtenerUsuarios(bool IsOwner = false) /*=> _mapper.Map<List<Usuario>>(_usuarioService.Get().ToList());*/
         {
             //Aca Llenamos la lista de usuarios con sus permisos. Solo obtenemos los que no son administrador ya que es inútil agregarle patentes ya que tiene el nivel mas superior.
-            var UsuariosCompletosDto = _usuarioService.Get(x => !x.IsOwner && x.CompanyId == _companyConfiguration.CompanyId).ToList();
+            dynamic UsuariosCompletosDto;
+            if (IsOwner)
+                UsuariosCompletosDto = _usuarioService.Get(x =>x.CompanyId == _companyConfiguration.CompanyId).ToList();
+            else
+                UsuariosCompletosDto = _usuarioService.Get(x => !x.IsOwner && x.CompanyId == _companyConfiguration.CompanyId).ToList();
+
             List<Usuario> Usuarios = new List<Usuario>();
             Usuarios.AddRange(_mapper.Map<List<Usuario>>(UsuariosCompletosDto));
             return Usuarios;

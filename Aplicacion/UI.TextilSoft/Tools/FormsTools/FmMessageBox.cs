@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FontAwesome.Sharp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,7 +13,8 @@ namespace UI.TextilSoft.Tools.FormsTools
 {
     public partial class FmMessageBox : Form
     {
-        public FmMessageBox(MessageBoxType messageBoxType, string title, string message, Point location)
+        public bool btnAceptar;
+        public FmMessageBox(MessageBoxType messageBoxType, string title, string message, Point location, bool btncancel = false)
         {
             WindowState = FormWindowState.Normal;
             StartPosition = FormStartPosition.Manual;
@@ -26,9 +28,15 @@ namespace UI.TextilSoft.Tools.FormsTools
             this.lblMessage.MaximumSize = new Size(this.panel1.Width - 10, 0);
             this.lblMessage.AutoSize = true;
             this.lblMessage.Refresh();
-            this.panel1.Refresh();          
+            this.panel1.Refresh();
             //this.lblTitle.Left = (this.Width - this.lblTitle.Width) / 2;
             this.lblMessage.Text = message;
+            if (btncancel)
+            {
+                btnCancelar.Visible = true;
+                btnCancelar.Location = new Point(btnCancelar.Location.X + 15, btnCancelar.Location.Y);
+                iconButton1.Location = new Point(iconButton1.Location.X - 15, iconButton1.Location.Y);
+            }
             switch (messageBoxType)
             {
                 case MessageBoxType.Error:
@@ -64,6 +72,13 @@ namespace UI.TextilSoft.Tools.FormsTools
 
         private void iconButton1_Click(object sender, EventArgs e)
         {
+            btnAceptar = true;
+            this.Close();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            btnAceptar = false;
             this.Close();
         }
     }

@@ -13,5 +13,7 @@ namespace SL.Contracts.Services
         void RegistrationEmail(UsuarioModel user, int codigoVerificacion);
 
         void ForgotPasswordSendEmail(UsuarioModel user, string newPassword);
+
+        void NotificateFatalError(string companyMail, string message);
     }
 }

@@ -42,7 +42,7 @@ namespace SL.Business.Services
                 );
 
                 string body = HtmlDocumentService.GetHtmlDocument("Register.html", null, new List<string> { Convert.ToString(CodigoVerificacion) });
-                message.Content = body;
+                message.Content += body;
                 SendEmail(message);
             }
             catch (Exception ex)
@@ -64,10 +64,25 @@ namespace SL.Business.Services
                 );
             
             string body = HtmlDocumentService.GetHtmlDocument("ForgotPassword.html", null);
-            message.Content = body;
+            message.Content += body;
             SendEmail(message);
         }
 
+        public void NotificateFatalError(string companyMail, string mensaje)
+        {
+            var message = new Message
+                (
+                    to: new string[] { companyMail },
+                    subject: "ERROR FATAL EN EL SISTEMA",
+                    content: "Ocurrió un error fatal en sus sistema, le adjuntamos los detalles: \n"+mensaje,
+                    emailFrom: _emailSendGridConfiguration.From,
+                    attachments: null
+                );
+
+            //string body = HtmlDocumentService.GetHtmlDocument("ForgotPassword.html", null);
+            //message.Content = body;
+            SendEmail(message);
+        }
 
         #region Helpers    
         private string SendEmail(Message message, string files = null)
@@ -75,7 +90,7 @@ namespace SL.Business.Services
             var EmailService = _genericEmailFactory.GetDefault();
             var result = EmailService.SendEmailAsync(message);
             return result.Data;
-        }   
+        }
         #endregion
     }
 }
