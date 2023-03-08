@@ -11,9 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using SL.Business.Services;
+using SL.Contracts;
 using SL.Contracts.Repositories;
 using SL.Contracts.Services;
 using SL.Domain.Entities;
+using SL.Domain.Model;
 using SL.EmailHelper.Configurations;
 using SL.Helper.Configurations;
 using SL.Helper.Extensions;
@@ -75,25 +77,34 @@ namespace UI.TextilSoft
             var factory = services.GetRequiredService<IControllerFactory>();
             var taskresolver = new TaskResolver(services, factory);
             InitTaskResolver(taskresolver);
-
-            //bool UseLoginAndRegister = Convert.ToBoolean(Configuration.GetSection("Application:Security:UseLoginAndRegister").Value);
+            bool IsDevelopment = Configuration.GetSection("Environment").Value.ToString() == "DEVELOPMENT" ? true : false;
             int CompanyId = Convert.ToInt32(Configuration.GetSection("CompanyConfiguration:CompanyId").Value);
             string CompanyApiKey = Configuration.GetSection("CompanyConfiguration:CompanyApiKey")?.Value?.ToString() ?? "";
             var CompanyService = services.GetRequiredService<ICompanyService>();
+            UpdateDatabases(services);
             Form mainForm = null;
             if (CompanyService.ExistCompany(CompanyId, CompanyApiKey))
             {
-                if (/*UseLoginAndRegister &&*/ CompanyService.CanUseLoginAndRegister(CompanyId))
+                if (CompanyService.CanUseLoginAndRegister(CompanyId))
                     mainForm = services.GetRequiredService<Inicio>();
                 else
-                    mainForm = services.GetRequiredService<Inicio>();
-
-                VerificarTablasPredeterminadas(services.GetRequiredService<ApplicationDbContext>(), services.GetRequiredService<IEstadoPedidoRepository>());
+                    mainForm = services.GetRequiredService<FmTextilSoft>();
 
                 Application.Run(mainForm);
             }
             else
-                Application.Exit();
+            {
+                if (IsDevelopment)
+                {
+                    GenerateCompany(services, ref CompanyId, CompanyApiKey);
+                    mainForm = services.GetRequiredService<Inicio>();
+                    Application.Run(mainForm);
+                }
+                else
+                {
+                    Application.Exit();
+                }
+            }
         }
 
         private static async void InitTaskResolver(TaskResolver taskResolver)
@@ -137,7 +148,7 @@ namespace UI.TextilSoft
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 
             services.AddDbContext<ServiceLayerDbContext>(options => options.UseSqlServer(GetServiceLayerConnectionString())); //Usamos dos contextos para dos bases de datos distintas
-            services.AddSingleton(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddSingleton(typeof(Contracts.Repositories.IGenericRepository<>), typeof(GenericRepository<>));
             services.AddAutoMapper(typeof(FmLobby));
             services.AddAutoMapper(typeof(FmTextilSoft));
             services.AddAutoMapper(typeof(Inicio));
@@ -192,8 +203,39 @@ namespace UI.TextilSoft
             return connectionString;
         }
 
-        private static void VerificarTablasPredeterminadas(ApplicationDbContext dbContext,IEstadoPedidoRepository estadoPedidoRepository)
+        private static void VerifyBusinessTables(IServiceProvider services,int companyId)
         {
+            var dbContext = services.GetRequiredService<ApplicationDbContext>();
+            var SLdbContext = services.GetRequiredService<ServiceLayerDbContext>();
+            //Service Layer
+            //Primero creamos un usuario admin por default
+            var UsuarioRepository = services.GetRequiredService<IUsuarioRepository>();
+            var PermisoRepository = services.GetRequiredService<IPermisoRepository>();
+
+            if (!PermisoRepository.Get(x => x.CompanyId == companyId).Where(x => x.Permiso.ToUpper() == "ADMINISTRADOR").Any())
+            {
+                //Si no hay un permiso Administrador en la tabla permiso lo crea
+                PermisoModel permisoModel = new PermisoModel
+                {
+                    CompanyId = companyId,
+                    Permiso = "ADMINISTRADOR",
+                    Nombre = "admin"
+                };
+                SLdbContext.Add(permisoModel);
+                try
+                {
+                    SLdbContext.SaveChanges();
+                }
+                catch (Exception)
+                {
+                }
+
+            }
+
+
+
+            //Negocio
+            var estadoPedidoRepository = services.GetRequiredService<IEstadoPedidoRepository>();
             if (!estadoPedidoRepository.TableNoTracking.Any())
             {
                 // Si no hay registros, insertar los valores por defecto
@@ -209,6 +251,30 @@ namespace UI.TextilSoft
                 dbContext.AddRange(estadosPedido);
                 dbContext.SaveChanges();
             }
+        }
+
+        private static void GenerateCompany(IServiceProvider services, ref int companyId, string companyApiKey)
+        {
+            var SLdbContext = services.GetRequiredService<ServiceLayerDbContext>();
+            CompanyModel companyModel = new CompanyModel();
+            companyModel.CompanyApiKey = companyApiKey;
+            companyModel.CompanyLocation = "Sarasa";
+            companyModel.CompanyName = "UAI-Diploma";
+            companyModel.CompanyCuil = "20428862784";
+            companyModel.CompanyMail = "Diploma@alumnos.UAI.edu.ar";
+            companyModel.CompanyPhone = "9999-9999";
+            SLdbContext.Add(companyModel);
+            SLdbContext.SaveChanges();
+            companyId = companyModel.CompanyId;
+        }
+
+        private static void UpdateDatabases(IServiceProvider services)
+        {
+            var dbContext = services.GetRequiredService<ApplicationDbContext>();
+            var SLdbContext = services.GetRequiredService<ServiceLayerDbContext>();
+
+            dbContext.Database.Migrate();
+            SLdbContext.Database.Migrate();
         }
     }
 }
