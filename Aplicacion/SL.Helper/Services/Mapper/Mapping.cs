@@ -1,6 +1,4 @@
 ﻿using AutoMapper;
-using Domain.Entities;
-using Domain.Models;
 using SL.Domain.Entities;
 using SL.Domain.Enums;
 using SL.Domain.Model;

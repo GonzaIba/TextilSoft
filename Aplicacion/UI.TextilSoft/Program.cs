@@ -90,6 +90,7 @@ namespace UI.TextilSoft
                 else
                     mainForm = services.GetRequiredService<FmTextilSoft>();
 
+                VerifyBusinessTables(services,CompanyId);
                 Application.Run(mainForm);
             }
             else
@@ -97,6 +98,7 @@ namespace UI.TextilSoft
                 if (IsDevelopment)
                 {
                     GenerateCompany(services, ref CompanyId, CompanyApiKey);
+                    VerifyBusinessTables(services, CompanyId);
                     mainForm = services.GetRequiredService<Inicio>();
                     Application.Run(mainForm);
                 }
@@ -206,33 +208,46 @@ namespace UI.TextilSoft
         private static void VerifyBusinessTables(IServiceProvider services,int companyId)
         {
             var dbContext = services.GetRequiredService<ApplicationDbContext>();
-            var SLdbContext = services.GetRequiredService<ServiceLayerDbContext>();
-            //Service Layer
-            //Primero creamos un usuario admin por default
-            var UsuarioRepository = services.GetRequiredService<IUsuarioRepository>();
-            var PermisoRepository = services.GetRequiredService<IPermisoRepository>();
+            var SldbContext = services.GetRequiredService<ServiceLayerDbContext>();
+            var usuarioRepository = services.GetRequiredService<IUsuarioRepository>();
+            var permisoRepository = services.GetRequiredService<IPermisoRepository>();
+            var usuario_PermisoRepository = services.GetRequiredService<IUsuario_PermisoRepository>();
 
-            if (!PermisoRepository.Get(x => x.CompanyId == companyId).Where(x => x.Permiso.ToUpper() == "ADMINISTRADOR").Any())
+            UsuarioModel usuario = new();
+            PermisoModel permisoModel = new();
+            if (!usuarioRepository.Get(x => x.Nombre.ToLower() == "admin").Any())
             {
-                //Si no hay un permiso Administrador en la tabla permiso lo crea
-                PermisoModel permisoModel = new PermisoModel
-                {
-                    CompanyId = companyId,
-                    Permiso = "ADMINISTRADOR",
-                    Nombre = "admin"
-                };
-                SLdbContext.Add(permisoModel);
-                try
-                {
-                    SLdbContext.SaveChanges();
-                }
-                catch (Exception)
-                {
-                }
-
+                usuario.Nombre = "admin";
+                usuario.Contraseña = "admin";
+                usuario.Email = "diploma@alumnos.UAI.edu.ar";
+                usuario.EmailConfirmado = true;
+                usuario.CompanyId = companyId;
+                usuarioRepository.Insert(usuario);
+                SldbContext.SaveChanges();
             }
+            else
+                usuario = usuarioRepository.Get(x => x.Nombre == "admin").FirstOrDefault();
 
+            if (!permisoRepository.Get(x => x.Permiso.ToLower() == "administrador").Any())
+            {
+                permisoModel.Nombre = "admin";
+                permisoModel.Permiso = "administrador";
+                permisoModel.CompanyId = companyId;
+                permisoRepository.Insert(permisoModel);
+                SldbContext.SaveChanges();
+            }
+            else
+                permisoModel = permisoRepository.Get(x => x.Permiso.ToLower() == "administrador").FirstOrDefault();
 
+            if (!usuario_PermisoRepository.Get(x => x.Id_Permiso == permisoModel.Id_Permiso && x.Id_Usuario == usuario.Id_Usuario).Any())
+            {
+                Usuario_PermisoModel usuario_PermisoModel = new();
+                usuario_PermisoModel.Id_Usuario = usuario.Id_Usuario;
+                usuario_PermisoModel.Id_Permiso = permisoModel.Id_Permiso;
+                usuario_PermisoRepository.Insert(usuario_PermisoModel);
+            }
+            
+            SldbContext.SaveChanges();
 
             //Negocio
             var estadoPedidoRepository = services.GetRequiredService<IEstadoPedidoRepository>();
@@ -271,10 +286,12 @@ namespace UI.TextilSoft
         private static void UpdateDatabases(IServiceProvider services)
         {
             var dbContext = services.GetRequiredService<ApplicationDbContext>();
-            var SLdbContext = services.GetRequiredService<ServiceLayerDbContext>();
+            var SldbContext = services.GetRequiredService<ServiceLayerDbContext>();
+            if (!dbContext.Database.CanConnect())
+                dbContext.Database.Migrate();
 
-            dbContext.Database.Migrate();
-            SLdbContext.Database.Migrate();
+            if (!SldbContext.Database.CanConnect())
+                SldbContext.Database.Migrate();
         }
     }
 }

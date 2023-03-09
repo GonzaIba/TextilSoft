@@ -92,9 +92,12 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
                 {
                     foreach (DataGridViewRow row in GrillaProductos.Rows)
                     {
-                        var cell = new DataGridViewCellColor();
-                        cell.Value = row.Cells[index].Value;
-                        row.Cells[index] = cell;
+                        var cell = row.Cells[index];
+                        if (cell.Value != null && cell.Value is System.Drawing.Color)
+                        {
+                            cell.Style.BackColor = (System.Drawing.Color)cell.Value;
+                            cell.Style.ForeColor = System.Drawing.Color.Black; // opcional
+                        }
                     }
                 }
             }
