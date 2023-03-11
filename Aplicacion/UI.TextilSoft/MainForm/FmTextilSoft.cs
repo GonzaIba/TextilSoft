@@ -707,8 +707,10 @@ namespace UI.TextilSoft.MainForm
             btnProveedores.Enabled = false;
             btnConfiguracion.Enabled = false;
 
-            _factory.Use<ILogger>().Logout();
-            _fmLobby.Show();
+            _factory?.Use<ILogger>().Logout();
+
+            if (!_fmLobby.IsDisposed)
+                _fmLobby?.Show();
         }
         #endregion
     }

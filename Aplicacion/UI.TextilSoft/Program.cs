@@ -5,6 +5,10 @@ using Infrastructure;
 using Infrastructure.Repositories;
 using IoCRegister;
 using LiveCharts.Wpf;
+using log4net.Appender;
+using log4net.Core;
+using log4net.Layout;
+using log4net;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -39,6 +43,13 @@ using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Mapeo;
 using UI.TextilSoft.SubForms.Configuracion;
 using ILogger = SL.Helper.Services.Log4net.ILogger;
+using log4net.Repository.Hierarchy;
+using Logger = SL.Helper.Services.Log4net.Logger;
+using Microsoft.Data.SqlClient;
+using NAudio.Gui;
+using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
+using SL.EmailHelper;
+using System.Windows.Media.Media3D;
 
 namespace UI.TextilSoft
 {
@@ -46,7 +57,7 @@ namespace UI.TextilSoft
     {
         public static IConfiguration Configuration;
         public static IServiceCollection _services;
-        private static readonly ILoggerFactory _loggerFactory = LoggerFactory.Create(builder => builder.AddConsole().AddDebug());
+        private static readonly Microsoft.Extensions.Logging.ILoggerFactory _loggerFactory = LoggerFactory.Create(builder => builder.AddConsole().AddDebug());
 
         /// <summary>
         ///  The main entry point for the application.
@@ -54,6 +65,12 @@ namespace UI.TextilSoft
         [STAThread]
         static void Main()
         {
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(CurrentDomain_UnhandledException);
+            // Aquí va el código para iniciar tu aplicación
+
+
+
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -73,6 +90,9 @@ namespace UI.TextilSoft
 
             var services = host.Services;
 
+            var XD = services.GetRequiredService<ILogger>();
+
+            
             Configuration = services.GetRequiredService<IConfiguration>();
             var factory = services.GetRequiredService<IControllerFactory>();
             var taskresolver = new TaskResolver(services, factory);
@@ -134,7 +154,7 @@ namespace UI.TextilSoft
             (
                 options => options
                 .UseSqlServer(GetConnectionString(), builder =>
-                    builder.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null)) //Al contexto le agrego la conexion de la base de datos
+                    builder.EnableRetryOnFailure(2, TimeSpan.FromSeconds(2), null)) //Al contexto le agrego la conexion de la base de datos
                 //En esta parte configuramos el entity framework para ver los querys en consola (IMPORTANTE: desactivarlo en produccion)
                 .EnableSensitiveDataLogging()
                 .UseLoggerFactory(_loggerFactory), ServiceLifetime.Transient
@@ -222,16 +242,18 @@ namespace UI.TextilSoft
                 usuario.Email = "diploma@alumnos.UAI.edu.ar";
                 usuario.EmailConfirmado = true;
                 usuario.CompanyId = companyId;
+                usuario.Active = true;
+                usuario.IsOwner = true;
                 usuarioRepository.Insert(usuario);
                 SldbContext.SaveChanges();
             }
             else
                 usuario = usuarioRepository.Get(x => x.Nombre == "admin").FirstOrDefault();
 
-            if (!permisoRepository.Get(x => x.Permiso.ToLower() == "administrador").Any())
+            if (!permisoRepository.Get(x => x.Permiso.ToLower() == "EsAdmin").Any())
             {
                 permisoModel.Nombre = "admin";
-                permisoModel.Permiso = "administrador";
+                permisoModel.Permiso = "EsAdmin";
                 permisoModel.CompanyId = companyId;
                 permisoRepository.Insert(permisoModel);
                 SldbContext.SaveChanges();
@@ -285,13 +307,65 @@ namespace UI.TextilSoft
 
         private static void UpdateDatabases(IServiceProvider services)
         {
-            var dbContext = services.GetRequiredService<ApplicationDbContext>();
-            var SldbContext = services.GetRequiredService<ServiceLayerDbContext>();
-            if (!dbContext.Database.CanConnect())
-                dbContext.Database.Migrate();
+            try
+            {
+                var dbContext = services.GetRequiredService<ApplicationDbContext>();
+                var SldbContext = services.GetRequiredService<ServiceLayerDbContext>();
+                if (!dbContext.Database.CanConnect())
+                    dbContext.Database.Migrate();
 
-            if (!SldbContext.Database.CanConnect())
-                SldbContext.Database.Migrate();
+                if (!SldbContext.Database.CanConnect())
+                    SldbContext.Database.Migrate();
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
+        {
+            // Crea una copia de la colección OpenForms
+            Form[] forms = Application.OpenForms.Cast<Form>().ToArray();
+
+            // Cierra todos los formularios abiertos
+            foreach (Form form in forms)
+            {
+                if(form is not FmError)
+                    form.Hide();
+            }
+            FmError fmError = new(Tools.TypeErrorEnum.Generic);
+            fmError.ShowDialog();
+            Application.Exit();
+        }
+
+        static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            // Crea una copia de la colección OpenForms
+            Form[] forms = Application.OpenForms.Cast<Form>().ToArray();
+
+            // Cierra todos los formularios abiertos
+            foreach (Form form in forms)
+            {
+                form.Close();
+            }
+
+            // Comprueba si la excepción es de SQL Server
+            if (e.ExceptionObject is SqlException)
+            {
+                SqlException sqlEx = e.ExceptionObject as SqlException;
+                // Aquí manejas la excepción de SQL Server
+                FmError fmError = new(Tools.TypeErrorEnum.SqlConnect);
+                fmError.ShowDialog();
+            }
+            else
+            {
+                FmError fmError = new(Tools.TypeErrorEnum.Generic);
+                fmError.ShowDialog();
+            }
         }
     }
 }

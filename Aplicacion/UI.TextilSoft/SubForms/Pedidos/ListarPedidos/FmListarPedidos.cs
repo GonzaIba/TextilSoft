@@ -55,7 +55,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                                 p.Cliente.Contains(searchValue) ||
                                 p.ID_Pedido.ToString().Contains(searchValue)
                                 ).ToList();
-                GrillaPedidos.DataSource = resultado;
+                GrillaPedidos.DataSource = resultado.Take(Pagecount).ToList();
                 TotalPages = (int)Math.Ceiling(resultado.Count() / (double)Pagecount);
                 btnFinal.Text = "..." + TotalPages.ToString();
                 PageIndex = 1;
@@ -443,6 +443,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+            if (txtSearch.Text.Length > 0 && !string.IsNullOrEmpty(txtSearch.Text))
+            {
+                panelPaginado.Visible = false;
+            }
+            else
+            {
+                panelPaginado.Visible = true;
+            }
             string searchValue = txtSearch.Text.Trim();
             ObtenerTodosLosPedidosConFiltro(searchValue);
         }

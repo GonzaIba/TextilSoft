@@ -9,6 +9,7 @@ using SL.Helper.Extensions;
 using SL.Helper.Services.Log4net;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -119,6 +120,38 @@ namespace UI.TextilSoft.Controllers
                     var producto = _mapper.Map<ProductosModel>(productosEntity);
                     //producto.CodigoProducto = null;
                     _productoService.Crear(producto);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateLogError("Ocurrió un error al crear el producto con el nombre: " + productosEntity.NombreProducto, ex);
+                throw ex;
+            }
+        }
+
+        public void ModificarProducto(ProductosEntity productosEntity)
+        {
+            try
+            {
+                var ProductoDTO = _productoService.Get(x => x.NombreProducto == productosEntity.NombreProducto).FirstOrDefault();
+                if (ProductoDTO == null)
+                {
+                    var producto = _mapper.Map<ProductosModel>(productosEntity);
+                    _productoService.Crear(producto);
+                }
+                else
+                {
+                    string color = _mapper.Map<ProductosModel>(productosEntity).Color;
+                    ProductoDTO.Color = color;
+                    ProductoDTO.Composicion = productosEntity.Composicion;
+                    ProductoDTO.Estampa = productosEntity.Estampa;
+                    ProductoDTO.NombreProducto = productosEntity.NombreProducto;
+                    ProductoDTO.Precio = productosEntity.Precio;
+                    ProductoDTO.TallePrenda = productosEntity.TallePrenda;
+                    ProductoDTO.Tejido = productosEntity.Tejido;
+                    ProductoDTO.TipoProducto = productosEntity.TipoProducto;
+                    ProductoDTO.Stock = productosEntity.Stock;
+                    _productoService.Actualizar(ProductoDTO);
                 }
             }
             catch (Exception ex)

@@ -22,7 +22,15 @@ namespace UI.TextilSoft.MainForm
         }
         public FmBaseForm()
         {
-            
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
         }
     }
 }

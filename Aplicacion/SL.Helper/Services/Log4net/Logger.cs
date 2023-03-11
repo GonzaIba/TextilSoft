@@ -1,5 +1,9 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using log4net.Appender;
+using log4net.Layout;
+using log4net.Repository.Hierarchy;
+using log4net;
 using Microsoft.AspNetCore.Http;
 using SL.Contracts.Services;
 using SL.Domain.Entities;
@@ -11,7 +15,7 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
-[assembly: log4net.Config.XmlConfigurator(ConfigFileExtension = "config")]
+
 namespace SL.Helper.Services.Log4net
 {
     public class Logger : ILogger
@@ -28,8 +32,9 @@ namespace SL.Helper.Services.Log4net
             _companyConfiguration = companyConfiguration;
             _companyService = companyService;
             _loggerService = loggerService;
+            InitializeLogger();
         }
-        private readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        private log4net.ILog log = log4net.LogManager.GetLogger("LoggerManager");
         //private static readonly log4net.ILog log = log4net.LogManager.GetLogger("LogerManager");
         private readonly log4net.ILog logPerformance = log4net.LogManager.GetLogger("Performance");
         private readonly log4net.ILog FatalLog = log4net.LogManager.GetLogger("AdoNetAppender");
@@ -65,6 +70,7 @@ namespace SL.Helper.Services.Log4net
         {
             try
             {
+                log = log4net.LogManager.GetLogger("HOJALDRE");
                 log.Info($"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"} "+mensaje);
             }
             catch
@@ -133,6 +139,35 @@ namespace SL.Helper.Services.Log4net
         {
             _usuario = null;
             ValueSeted = false;
+        }
+
+        private void InitializeLogger()
+        {
+            Hierarchy hierarchy = (Hierarchy)LogManager.GetRepository();
+
+            PatternLayout patternLayout = new PatternLayout();
+            patternLayout.ConversionPattern = "%date [%thread] %-5level %logger [%ndc] %line - %message%newline";
+            patternLayout.ActivateOptions();
+
+            RollingFileAppender roller = new RollingFileAppender();
+            roller.LockingModel = new FileAppender.MinimalLock();
+            roller.Name = "LoggerManager";
+            roller.AppendToFile = false;
+            roller.File = @"Logs\EventLog.txt";
+            roller.Layout = patternLayout;
+            roller.MaxSizeRollBackups = 5;
+            roller.MaximumFileSize = "10MB";
+            roller.RollingStyle = RollingFileAppender.RollingMode.Size;
+            roller.StaticLogFileName = true;
+            roller.ActivateOptions();
+            hierarchy.Root.AddAppender(roller);
+
+            MemoryAppender memory = new MemoryAppender();
+            memory.ActivateOptions();
+            hierarchy.Root.AddAppender(memory);
+
+            //hierarchy.Root.Level = Level.Info;
+            hierarchy.Configured = true;
         }
         #endregion
     }

@@ -73,7 +73,7 @@
             lblPrincipal.BackColor = System.Drawing.Color.Transparent;
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(280, 9);
+            lblPrincipal.Location = new System.Drawing.Point(271, 9);
             lblPrincipal.Name = "lblPrincipal";
             lblPrincipal.Size = new System.Drawing.Size(202, 32);
             lblPrincipal.TabIndex = 52;
@@ -274,7 +274,7 @@
             btnEliminarProducto.IconColor = System.Drawing.Color.White;
             btnEliminarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminarProducto.IconSize = 35;
-            btnEliminarProducto.Location = new System.Drawing.Point(315, 350);
+            btnEliminarProducto.Location = new System.Drawing.Point(306, 347);
             btnEliminarProducto.Name = "btnEliminarProducto";
             btnEliminarProducto.Size = new System.Drawing.Size(123, 46);
             btnEliminarProducto.TabIndex = 57;

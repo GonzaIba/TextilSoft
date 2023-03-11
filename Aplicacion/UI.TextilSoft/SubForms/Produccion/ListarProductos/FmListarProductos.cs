@@ -85,22 +85,15 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
 
             ActualizarBotones();
 
-            foreach (DataGridViewColumn item in GrillaProductos.Columns)
-            {
-                int index = item.Index;
-                if (item.ValueType.Name == "Color")
-                {
-                    foreach (DataGridViewRow row in GrillaProductos.Rows)
-                    {
-                        var cell = row.Cells[index];
-                        if (cell.Value != null && cell.Value is System.Drawing.Color)
-                        {
-                            cell.Style.BackColor = (System.Drawing.Color)cell.Value;
-                            cell.Style.ForeColor = System.Drawing.Color.Black; // opcional
-                        }
-                    }
-                }
-            }
+            //GrillaProductos.AutoGenerateColumns = false;
+
+            //// Crear la columna personalizada y agregarla a la grilla
+            //var colorColumn = new ColorColumn("Color");
+            //colorColumn.SetCellTemplate();
+            //GrillaProductos.Columns.Add(colorColumn);
+
+            //// Registrar el evento RowPostPaint
+            //GrillaProductos.RowPostPaint += GrillaProductos_RowPostPaint;
         }
 
         public void ObtenerTodosLosProductosConFiltro(string searchValue)
@@ -379,6 +372,47 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
         private void GrillaProductos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void GrillaProductos_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
+        {
+            // Establecer el valor de la celda en la columna de color
+            var row = GrillaProductos.Rows[e.RowIndex];
+            var value = row.Cells["Color"].Value;
+            if (value != null && value is System.Drawing.Color)
+            {
+                row.Cells["Color"].Style.BackColor = (System.Drawing.Color)value;
+            }
+        }
+
+        private void GrillaProductos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            //// Busca la columna que contiene valores de tipo Color
+            //foreach (DataGridViewColumn column in GrillaProductos.Columns)
+            //{
+            //    if (column.ValueType == typeof(System.Drawing.Color))
+            //    {
+            //        // Establece la plantilla de celda DataGridViewCellColor para la columna
+            //        var colorCellTemplate = new DataGridViewCellColor();
+            //        column.CellTemplate = colorCellTemplate;
+            //    }
+            //}
+        }
+    }
+
+    public class ColorColumn : DataGridViewColumn
+    {
+        public ColorColumn(string columnName)
+            : base(new DataGridViewCellColor())
+        {
+            this.Name = columnName;
+            this.HeaderText = columnName;
+            this.ValueType = typeof(System.Drawing.Color);
+        }
+
+        public void SetCellTemplate()
+        {
+            this.CellTemplate = new DataGridViewCellColor();
         }
     }
 }

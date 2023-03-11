@@ -93,6 +93,26 @@ namespace UI.TextilSoft.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap database_error {
+            get {
+                object obj = ResourceManager.GetObject("database-error", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ErrorGeneral {
+            get {
+                object obj = ResourceManager.GetObject("ErrorGeneral", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap toggle_off {
             get {
                 object obj = ResourceManager.GetObject("toggle-off", resourceCulture);

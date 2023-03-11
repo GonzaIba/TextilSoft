@@ -91,19 +91,19 @@ namespace Infrastructure
             return base.SaveChangesAsync(cancellationToken);
         }
 
-        //private void SetUpdateDateOnModifiedEntries()
-        //{
-        //    var modifiedEntries = ChangeTracker
-        //        .Entries()
-        //        .Where(e => e.Metadata.FindProperty("UpdateDate") != null &&
-        //                    e.State == EntityState.Modified); //Obtengo la propiedad UpdateDate con el estado modificado (Update) y le seteo la fecha y hora actual
+        private void SetActiveOnAddedEntries()
+        {
+            var modifiedEntries = ChangeTracker
+                .Entries()
+                .Where(e => e.Metadata.FindProperty("Active") != null &&
+                            e.State == EntityState.Added); //Obtengo la propiedad UpdateDate con el estado modificado (Update) y le seteo la fecha y hora actual
 
-        //    foreach (var modifiedEntry in modifiedEntries)
-        //    {
-        //        modifiedEntry.Property("UpdateDate").CurrentValue = DateTime.Now;
-        //    }
-        //}
-        
+            foreach (var modifiedEntry in modifiedEntries)
+            {
+                modifiedEntry.Property("Active").CurrentValue = true;
+            }
+        }
+
         //Aca prohibimos que elimine un registro de la tabla empleados... (Solo deberían usar Active)
         private void SetActiveOnDeleteEmployees()
         {

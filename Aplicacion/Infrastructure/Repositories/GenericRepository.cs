@@ -67,6 +67,10 @@ namespace Infrastructure.Repositories
         public void Insert(T entities)
         {
             entities.CreateDate = DateTime.Now;
+            if (entities.GetType().GetProperty("Active") != null)
+            {
+                entities.Active = true;
+            }
             this.Entities.Add(entities);
         }
         
