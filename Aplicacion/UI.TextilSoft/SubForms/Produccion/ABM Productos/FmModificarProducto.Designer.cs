@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             txtColor = new System.Windows.Forms.TextBox();
             lblColor = new System.Windows.Forms.Label();
             btnBuscarProducto = new FontAwesome.Sharp.IconButton();
@@ -52,6 +53,7 @@
             txtCodigoProd = new AltoControls.AltoTextBox();
             lblCodigo = new System.Windows.Forms.Label();
             btnChangeColor = new FontAwesome.Sharp.IconButton();
+            toolTipError = new System.Windows.Forms.ToolTip(components);
             SuspendLayout();
             // 
             // txtColor
@@ -397,5 +399,6 @@
         private AltoControls.AltoTextBox txtCodigoProd;
         private System.Windows.Forms.Label lblCodigo;
         private FontAwesome.Sharp.IconButton btnChangeColor;
+        private System.Windows.Forms.ToolTip toolTipError;
     }
 }

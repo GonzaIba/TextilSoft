@@ -6,16 +6,19 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.ExtensionsControls;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
 {
     public partial class FmCrearPedido : Form
     {
         private IControllerFactory _factory;
+        private int CantidadDisponible = 0;
         public FmCrearPedido(IControllerFactory factory)
         {
             InitializeComponent();
@@ -29,6 +32,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtResidencia.Enabled = false;
             txtMail.Enabled = false;
             txtTelefono.Enabled = false;
+            txtTotal.Text = "0";
+            txtSubtotal.Text = "0";
         }
 
         private void txtDNI_TextChanged(object sender, EventArgs e)
@@ -61,29 +66,36 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             }
         }
 
-        private void altoTextBox6_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtCodigo_TextChanged(object sender, EventArgs e)
         {
-            if(txtCodigo.Text.Length >= 8)
+            string guidPattern = @"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
+
+            if (Regex.IsMatch(txtCodigo.Text, guidPattern))
             {
                 var Producto = _factory.Use<IProductosController>().ObtenerProducto(txtCodigo.Text);
+                CantidadDisponible = Producto.Stock;
                 if (Producto is null)
                 {
-                    MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "No encontrado", "No se encontró el producto", centerPosition);
+                    fmMessageBox.ShowDialog();
+                    txtCantidad.Enabled = false;
+                    txtDescripcion.Enabled = false;
+                    btnAgregarProducto.Enabled = false;
                     txtDNI.LimpiarTextbox();
                 }
                 else
                 {
-                    //txtNombre.Text = Cliente.Nombre;
-                    //txtResidencia.Text = Cliente.Residencia;
-                    //txtApellido.Text = Cliente.Apellido;
-                    //txtMail.Text = Cliente.Mail;
-                    //txtTelefono.Text = Cliente.Telefono;
+                    txtCantidad.Enabled = true;
+                    txtDescripcion.Enabled = true;
+                    btnAgregarProducto.Enabled = true;
                 }
+            }
+            else
+            {
+                txtCantidad.Enabled = false;
+                txtDescripcion.Enabled = false;
+                btnAgregarProducto.Enabled = false;
             }
         }
 
@@ -93,6 +105,71 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             {
                 txtDNI.Text = txtDNI.Text.Remove(txtDNI.Text.Length - 1);
             }
+        }
+
+        private void btnAgregarProducto_Click(object sender, EventArgs e)
+        {
+            if (txtCodigo.Text == "" || txtCantidad.Text == "")
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Validaciones", "Por favor, complete los campos requeridos", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+            else
+            {
+                if (Convert.ToInt32(txtCantidad.Text) > CantidadDisponible)
+                {
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de cuentas", "No hay suficiente stock para esa cantidad, solo puede hasta: " + CantidadDisponible.ToString(), centerPosition);
+                    fmMessageBox.ShowDialog();
+                }
+                else
+                {
+                    var Producto = _factory.Use<IProductosController>().ObtenerProducto(txtCodigo.Text);
+                    var Cantidad = Convert.ToInt32(txtCantidad.Text);
+                    var Precio = Producto.Precio;
+                    var Subtotal = Cantidad * Precio;
+                    var Total = Subtotal + Convert.ToInt32(txtTotal.Text);
+                    txtTotal.Text = Total.ToString();
+                    txtTotal.Text = Subtotal.ToString();
+                    dgvProductos.Columns.Add("Codigo", "Codigo");
+                    dgvProductos.Columns.Add("NombreProducto", "Nombre del producto");
+                    dgvProductos.Columns.Add("Precio", "Precio");
+                    dgvProductos.Columns.Add("Cantidad", "Cantidad");
+                    dgvProductos.Rows.Add(Producto.Codigo, Producto.NombreProducto, Producto.Precio, Cantidad);
+                    txtCodigo.LimpiarTextbox();
+                    txtCantidad.LimpiarTextbox();
+                }
+            }
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(txtCantidad.Text, "[^0-9]"))
+            {
+                toolTipError.Show("Las contraseñas no coinciden", txtCantidad, 0, -20, 2000);
+                txtCantidad.Text = txtCantidad.Text.Remove(txtCantidad.Text.Length - 1);
+            }
+        }
+
+        private void tbMantenerFiltro_CheckedChanged(object sender, EventArgs e)
+        {
+            EsPedido_EsPedidoFabrica(tbMantenerFiltro.Checked);
+        }
+
+        private void EsPedido_EsPedidoFabrica(bool estado)
+        {
+            panelClientes.Enabled = estado;
+            txtSubtotal.Visible = estado;
+            txtTotal.Visible = estado;
+            lblSubTotal.Visible = estado;
+            lblTotal.Visible = estado;
+            //txtDNI.Enabled = estado;
+            //txtNombre.Enabled = estado;
+            //txtApellido.Enabled = estado;
+            //txtMail.Enabled = estado;
+            //txtTelefono.Enabled = estado;
+            //txtResidencia.Enabled = estado;
         }
     }
 }

@@ -18,17 +18,10 @@ namespace Infrastructure.TypeBuilders
             builder.Property(p => p.NumeroFactura)
                 .IsRequired(false);
 
-            builder.Property(p => p.NumeroPedido)
-                .IsRequired(false);
-
             builder.Property(p => p.Fecha)
                 .IsRequired(false);
 
-            builder.Property(p => p.TotalAbonado)
-                .IsRequired(false)
-                .HasColumnType("decimal(18,0)");
-
-            builder.Property(p => p.TotalAPagar)
+            builder.Property(p => p.TotalPago)
                 .IsRequired(false)
                 .HasColumnType("decimal(18,0)");
 

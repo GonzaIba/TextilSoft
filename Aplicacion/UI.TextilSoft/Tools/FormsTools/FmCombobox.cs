@@ -73,6 +73,12 @@ namespace UI.TextilSoft.Tools.FormsTools
             this.Font = new Font(this.Font.Name, 10F);
             base.BackColor = borderColor; //Border Color
             this.ResumeLayout();
+            //this.SizeChanged += new EventHandler(FmCombobox_SizeChanged);
+            AdjustComboBoxDimensions();
+        }
+
+        private void FmCombobox_SizeChanged(object sender, EventArgs e)
+        {
             AdjustComboBoxDimensions();
         }
 
@@ -82,7 +88,7 @@ namespace UI.TextilSoft.Tools.FormsTools
             cmbList.Width = lblText.Width;
             cmbList.Location = new Point()
             {
-                X = this.Width - this.Padding.Right - cmbList.Width,
+                X = lblText.Right - cmbList.Width,
                 Y = lblText.Bottom - cmbList.Height
             };
         }

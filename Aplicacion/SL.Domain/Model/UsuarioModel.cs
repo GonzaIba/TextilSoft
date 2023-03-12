@@ -31,6 +31,7 @@ namespace SL.Domain.Model
         public bool EnableSlicePanel { get; set; }
         public bool EnableVolume { get; set; }
         public int Volume { get; set; }
+        public string IdiomaSeleccionado { get; set; }
 
         public CompanyModel Company { get; set; }
         public ICollection<Usuario_PermisoModel> Usuario_Permisos { get; set; }

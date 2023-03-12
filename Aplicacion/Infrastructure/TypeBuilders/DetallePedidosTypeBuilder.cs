@@ -16,8 +16,7 @@ namespace Infrastructure.TypeBuilders
             builder.HasKey(p => p.ID_DetallePedido);
 
             builder.Property(p => p.Cantidad)
-                .IsRequired(false)
-                .HasMaxLength(50);
+                .IsRequired(true);
 
             builder.HasOne(p => p.Pedidos)//si yo selecciono una propiedad de otra clase, el siguiente metodo apunta a la otra clase
                 .WithMany(c=>c.DetallePedido)
@@ -26,6 +25,12 @@ namespace Infrastructure.TypeBuilders
             builder.HasOne(p => p.Producto)
                 .WithMany(c => c.DetallePedido)
                 .HasForeignKey(p => p.ID_Producto);
+
+            builder.Ignore(p => p.CreateDate);
+
+            builder.Ignore(p => p.UpdateDate);
+
+            builder.Ignore(p => p.Active);
 
             builder.ToTable("DetallePedido");
         }

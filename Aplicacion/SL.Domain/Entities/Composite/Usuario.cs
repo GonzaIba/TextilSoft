@@ -24,6 +24,7 @@ namespace SL.Domain.Entities
         public bool EnableSlicePanel { get; set; }
         public bool EnableVolume { get; set; }
         public int Volume { get; set; }
+        public string IdiomaSeleccionado { get; set; }
 
         public List<Componente> Permisos
         {

@@ -69,33 +69,40 @@ namespace Infrastructure.Migrations
                     b.ToTable("Cliente");
                 });
 
+            modelBuilder.Entity("Domain.Models.DetallePedidosFabricaModel", b =>
+                {
+                    b.Property<int>("ID_DetallePedidosFabrica")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID_PedidosFabrica")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID_Producto")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID_DetallePedidosFabrica");
+
+                    b.HasIndex("ID_Producto");
+
+                    b.ToTable("DetallePedidoFabricas");
+                });
+
             modelBuilder.Entity("Domain.Models.DetallePedidosModel", b =>
                 {
                     b.Property<int>("ID_DetallePedido")
                         .HasColumnType("int");
 
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Cantidad")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreateDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("getdate()");
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
 
                     b.Property<int>("ID_Pedido")
                         .HasColumnType("int");
 
                     b.Property<int>("ID_Producto")
                         .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdateDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("ID_DetallePedido");
 
@@ -190,13 +197,7 @@ namespace Infrastructure.Migrations
                     b.Property<int?>("NumeroFactura")
                         .HasColumnType("int");
 
-                    b.Property<int?>("NumeroPedido")
-                        .HasColumnType("int");
-
-                    b.Property<decimal?>("TotalAPagar")
-                        .HasColumnType("decimal(18,0)");
-
-                    b.Property<decimal?>("TotalAbonado")
+                    b.Property<decimal?>("TotalPago")
                         .HasColumnType("decimal(18,0)");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -205,6 +206,50 @@ namespace Infrastructure.Migrations
                     b.HasKey("ID_Factura");
 
                     b.ToTable("Factura");
+                });
+
+            modelBuilder.Entity("Domain.Models.OrdenDeTrabajoFabricaModel", b =>
+                {
+                    b.Property<int>("ID_OrdenDeTrabajoFabrica")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<Guid>("CreateUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("EstadoOrden")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("FechaCerrado")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("FechaInicio")
+                        .IsRequired()
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ID_PedidoFabrica")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID_Sector")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID_OrdenDeTrabajoFabrica");
+
+                    b.HasIndex("ID_Sector");
+
+                    b.ToTable("OrdenDeTrabajoFabrica");
                 });
 
             modelBuilder.Entity("Domain.Models.OrdenDeTrabajoModel", b =>
@@ -224,9 +269,6 @@ namespace Infrastructure.Migrations
 
                     b.Property<Guid>("CreateUser")
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool?>("EsPedido")
-                        .HasColumnType("bit");
 
                     b.Property<string>("EstadoOrden")
                         .HasColumnType("nvarchar(max)");
@@ -250,6 +292,42 @@ namespace Infrastructure.Migrations
                     b.HasKey("ID_OrdenDeTrabajo");
 
                     b.ToTable("OrdenDeTrabajo");
+                });
+
+            modelBuilder.Entity("Domain.Models.PedidosFabricaModel", b =>
+                {
+                    b.Property<int>("ID_PedidosFabrica")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<DateTime>("CreateDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("getdate()");
+
+                    b.Property<Guid>("CreateUser")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Detalle")
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<Guid>("ID_Empleados")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdateDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("ID_PedidosFabrica");
+
+                    b.HasIndex("ID_Empleados");
+
+                    b.ToTable("PedidosFabrica");
                 });
 
             modelBuilder.Entity("Domain.Models.PedidosModel", b =>
@@ -540,6 +618,25 @@ namespace Infrastructure.Migrations
                     b.ToTable("Venta");
                 });
 
+            modelBuilder.Entity("Domain.Models.DetallePedidosFabricaModel", b =>
+                {
+                    b.HasOne("Domain.Models.PedidosFabricaModel", "PedidosFabrica")
+                        .WithMany("DetallePedidosFabrica")
+                        .HasForeignKey("ID_DetallePedidosFabrica")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.ProductosModel", "Producto")
+                        .WithMany("DetallePedidosFabrica")
+                        .HasForeignKey("ID_Producto")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PedidosFabrica");
+
+                    b.Navigation("Producto");
+                });
+
             modelBuilder.Entity("Domain.Models.DetallePedidosModel", b =>
                 {
                     b.HasOne("Domain.Models.PedidosModel", "Pedidos")
@@ -570,6 +667,25 @@ namespace Infrastructure.Migrations
                     b.Navigation("Pedidos");
                 });
 
+            modelBuilder.Entity("Domain.Models.OrdenDeTrabajoFabricaModel", b =>
+                {
+                    b.HasOne("Domain.Models.PedidosFabricaModel", "PedidosFabrica")
+                        .WithMany("OrdenDeTrabajoFabrica")
+                        .HasForeignKey("ID_OrdenDeTrabajoFabrica")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Models.SectorModel", "Sector")
+                        .WithMany("OrdenDeTrabajoFabrica")
+                        .HasForeignKey("ID_Sector")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PedidosFabrica");
+
+                    b.Navigation("Sector");
+                });
+
             modelBuilder.Entity("Domain.Models.OrdenDeTrabajoModel", b =>
                 {
                     b.HasOne("Domain.Models.PedidosModel", "Pedidos")
@@ -587,6 +703,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("Pedidos");
 
                     b.Navigation("Sector");
+                });
+
+            modelBuilder.Entity("Domain.Models.PedidosFabricaModel", b =>
+                {
+                    b.HasOne("Domain.Models.EmpleadosModel", "Empleados")
+                        .WithMany("PedidosFabrica")
+                        .HasForeignKey("ID_Empleados")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empleados");
                 });
 
             modelBuilder.Entity("Domain.Models.PedidosModel", b =>
@@ -646,11 +773,20 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.EmpleadosModel", b =>
                 {
                     b.Navigation("Pedidos");
+
+                    b.Navigation("PedidosFabrica");
                 });
 
             modelBuilder.Entity("Domain.Models.EstadoPedidoModel", b =>
                 {
                     b.Navigation("Pedidos");
+                });
+
+            modelBuilder.Entity("Domain.Models.PedidosFabricaModel", b =>
+                {
+                    b.Navigation("DetallePedidosFabrica");
+
+                    b.Navigation("OrdenDeTrabajoFabrica");
                 });
 
             modelBuilder.Entity("Domain.Models.PedidosModel", b =>
@@ -666,6 +802,8 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("DetallePedido");
 
+                    b.Navigation("DetallePedidosFabrica");
+
                     b.Navigation("Venta");
                 });
 
@@ -677,6 +815,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.SectorModel", b =>
                 {
                     b.Navigation("OrdenDeTrabajo");
+
+                    b.Navigation("OrdenDeTrabajoFabrica");
                 });
 #pragma warning restore 612, 618
         }

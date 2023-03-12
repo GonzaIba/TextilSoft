@@ -341,7 +341,7 @@ namespace UI.TextilSoft.MainForm
             panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             panelContenedor.Location = new System.Drawing.Point(200, 0);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new System.Drawing.Size(868, 550);
+            panelContenedor.Size = new System.Drawing.Size(890, 550);
             panelContenedor.TabIndex = 1;
             panelContenedor.MouseDown += panelContenedor_MouseDown;
             // 
@@ -353,7 +353,7 @@ namespace UI.TextilSoft.MainForm
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripLabel1 });
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new System.Drawing.Size(868, 26);
+            toolStrip1.Size = new System.Drawing.Size(890, 26);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             toolStrip1.RendererChanged += toolStrip1_RendererChanged;
@@ -411,7 +411,7 @@ namespace UI.TextilSoft.MainForm
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.Black;
-            ClientSize = new System.Drawing.Size(1068, 550);
+            ClientSize = new System.Drawing.Size(1090, 550);
             Controls.Add(panelContenedor);
             Controls.Add(panelBotones);
             PanelAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);

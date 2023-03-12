@@ -21,9 +21,6 @@ namespace Infrastructure.TypeBuilders
             builder.Property(p => p.FechaCerrado)
                 .IsRequired(false);
 
-            builder.Property(p => p.EsPedido)
-                .IsRequired(false);
-
             builder.HasOne(p => p.Pedidos)
                 .WithMany(c => c.OrdenDeTrabajo)
                 .HasForeignKey(p => p.ID_Pedido);

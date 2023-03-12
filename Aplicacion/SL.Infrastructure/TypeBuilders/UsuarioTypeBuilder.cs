@@ -79,6 +79,10 @@ namespace SL.Infrastructure.TypeBuilders
                 .HasColumnType("int")
                 .HasDefaultValue(1);
 
+            builder.Property(p => p.IdiomaSeleccionado)
+                .IsRequired(false)
+                .HasColumnType("varchar(10)");
+
             builder.HasOne(p => p.Company)
                 .WithMany(p => p.Usuarios)
                 .HasForeignKey(p => p.CompanyId);

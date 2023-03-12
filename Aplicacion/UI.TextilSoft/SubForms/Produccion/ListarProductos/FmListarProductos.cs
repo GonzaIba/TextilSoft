@@ -398,21 +398,23 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
             //    }
             //}
         }
-    }
-
-    public class ColorColumn : DataGridViewColumn
-    {
-        public ColorColumn(string columnName)
-            : base(new DataGridViewCellColor())
+        private void Copy_Click(object sender, EventArgs e)
         {
-            this.Name = columnName;
-            this.HeaderText = columnName;
-            this.ValueType = typeof(System.Drawing.Color);
+            string value = GrillaProductos.CurrentCell.Value.ToString(); //Obtiene el valor de la celda seleccionada
+            Clipboard.SetText(value); //Copia el valor al portapapeles
         }
 
-        public void SetCellTemplate()
+        private void GrillaProductos_CellMouseClick_1(object sender, DataGridViewCellMouseEventArgs e)
         {
-            this.CellTemplate = new DataGridViewCellColor();
+            if (e.Button == MouseButtons.Right && e.RowIndex >= 0 && e.ColumnIndex == 1) //Verifica si se ha hecho clic derecho en la segunda columna
+            {
+                GrillaProductos.CurrentCell = GrillaProductos.Rows[e.RowIndex].Cells[e.ColumnIndex]; //Selecciona la celda actual
+                ContextMenuStrip menu = new ContextMenuStrip(); //Crea el menú contextual
+                ToolStripMenuItem item = new ToolStripMenuItem("Copiar"); //Crea la opción "Copiar"
+                item.Click += new EventHandler(Copy_Click); //Agrega un controlador de eventos para la opción "Copiar"
+                menu.Items.Add(item); //Agrega la opción "Copiar" al menú contextual
+                GrillaProductos.ContextMenuStrip = menu; //Muestra el menú contextual
+            }
         }
     }
 }

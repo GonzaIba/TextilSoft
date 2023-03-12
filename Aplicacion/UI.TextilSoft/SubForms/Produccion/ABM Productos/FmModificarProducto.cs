@@ -1,4 +1,5 @@
-﻿using Contracts.Controllers;
+﻿using AltoControls;
+using Contracts.Controllers;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
         {
             InitializeComponent();
             _factory = factory;
+            btnActualizarProducto.Enabled = false;
         }
 
         private void btnBuscarProducto_Click(object sender, EventArgs e)
@@ -31,6 +33,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 var producto = _factory.UseNew<IProductosController>().ObtenerProducto(txtCodigoProd.Text);
                 if (producto != null)
                 {
+                    btnActualizarProducto.Enabled = true;
                     txtNombreProducto.Text = producto.NombreProducto;
                     txtTipoProducto.Text = producto.TipoProducto;
                     txtEstampa.Text = producto.Estampa;
@@ -60,6 +63,19 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
         {
             try
             {
+                foreach (Control control in this.Controls)
+                {
+                    if (control.Name.Contains("txt") && control.Name != "txtColor")
+                    {
+                        AltoTextBox textBox = (AltoTextBox)control;
+                        if (string.IsNullOrWhiteSpace(textBox.Text) && string.IsNullOrEmpty(textBox.Text))
+                        {
+                            toolTipError.Show("Por favor, complete el campo", textBox, 0, -20, 2000);
+                            textBox.Focus();
+                            return;
+                        }
+                    }
+                }
                 ProductosEntity productosEntity = new ProductosEntity();
                 productosEntity.NombreProducto = txtNombreProducto.Text;
                 productosEntity.TipoProducto = txtTipoProducto.Text;

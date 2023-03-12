@@ -1,4 +1,5 @@
-﻿using Contracts.Controllers;
+﻿using AltoControls;
+using Contracts.Controllers;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -21,23 +22,41 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
         {
             _factory = factory;
             InitializeComponent();
+            cboxTalles.SelectedIndex = 0;
+            cboxTalles.AutoCompleteMode = AutoCompleteMode.None;
         }
 
         private void btnCrearProducto_Click(object sender, EventArgs e)
         {
             try
             {
+                foreach (Control control in this.Controls)
+                {
+                    if (control.Name.Contains("txt") && control.Name != "txtColor")
+                    {
+                        AltoTextBox textBox = (AltoTextBox)control;
+                        if (string.IsNullOrWhiteSpace(textBox.Text) && string.IsNullOrEmpty(textBox.Text))
+                        {
+                            toolTipError.Show("Por favor, complete el campo", textBox, 0, -20, 2000);
+                            textBox.Focus();
+                            return;
+                        }
+                    }
+                }
                 ProductosEntity productosEntity = new ProductosEntity();
                 productosEntity.NombreProducto = txtNombreProducto.Text;
                 productosEntity.TipoProducto = txtTipoProducto.Text;
                 productosEntity.Estampa = txtEstampa.Text;
                 productosEntity.Composicion = txtComposicion.Text;
-                productosEntity.TallePrenda = txtTalle.Text;
+                productosEntity.TallePrenda = cboxTalles.SelectedItem.ToString();
                 productosEntity.Tejido = txtTejido.Text;
                 productosEntity.Precio = Convert.ToDecimal(txtPrecio.Text);
                 productosEntity.Stock = Convert.ToInt32(txtCantidad.Text);
                 productosEntity.Color = txtColor.BackColor;
                 _factory.UseNew<IProductosController>().CrearProducto(productosEntity);
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Crear Producto", "Se creó el producto correctamente!", centerPosition);
+                fmMessageBox.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -56,7 +75,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
         {
             if (!string.IsNullOrEmpty(txtCantidad.Text))
             {
-                txtCantidad.Text = (Convert.ToInt32(txtCantidad.Text) - 1).ToString();
+                txtCantidad.Text = (Convert.ToInt32(txtCantidad.Text) + 1).ToString();
             }
         }
 

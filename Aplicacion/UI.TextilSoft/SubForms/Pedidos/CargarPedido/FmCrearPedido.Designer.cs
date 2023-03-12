@@ -29,329 +29,512 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtResidencia = new AltoControls.AltoTextBox();
-            this.txtTelefono = new AltoControls.AltoTextBox();
-            this.txtMail = new AltoControls.AltoTextBox();
-            this.txtApellido = new AltoControls.AltoTextBox();
-            this.txtNombre = new AltoControls.AltoTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtDNI = new AltoControls.AltoTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.btnCrearPedido = new FontAwesome.Sharp.IconButton();
-            this.txtCantidad = new AltoControls.AltoTextBox();
-            this.txtDescripcion = new AltoControls.AltoTextBox();
-            this.lblCantidad = new System.Windows.Forms.Label();
-            this.lblDescripcion = new System.Windows.Forms.Label();
-            this.txtCodigo = new AltoControls.AltoTextBox();
-            this.lblCodigo = new System.Windows.Forms.Label();
-            this.lblDatoProducto = new System.Windows.Forms.Label();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            label1 = new System.Windows.Forms.Label();
+            panelClientes = new System.Windows.Forms.Panel();
+            label7 = new System.Windows.Forms.Label();
+            label6 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
+            txtResidencia = new AltoControls.AltoTextBox();
+            txtTelefono = new AltoControls.AltoTextBox();
+            txtMail = new AltoControls.AltoTextBox();
+            txtApellido = new AltoControls.AltoTextBox();
+            txtNombre = new AltoControls.AltoTextBox();
+            label4 = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            txtDNI = new AltoControls.AltoTextBox();
+            label2 = new System.Windows.Forms.Label();
+            panelProductos = new System.Windows.Forms.Panel();
+            btnAgregarProducto = new FontAwesome.Sharp.IconButton();
+            txtCantidad = new AltoControls.AltoTextBox();
+            txtDescripcion = new AltoControls.AltoTextBox();
+            lblCantidad = new System.Windows.Forms.Label();
+            lblDescripcion = new System.Windows.Forms.Label();
+            txtCodigo = new AltoControls.AltoTextBox();
+            lblCodigo = new System.Windows.Forms.Label();
+            lblDatoProducto = new System.Windows.Forms.Label();
+            dgvProductos = new System.Windows.Forms.DataGridView();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
+            txtSubtotal = new AltoControls.AltoTextBox();
+            lblSubTotal = new System.Windows.Forms.Label();
+            txtTotal = new AltoControls.AltoTextBox();
+            lblTotal = new System.Windows.Forms.Label();
+            toolTipError = new System.Windows.Forms.ToolTip(components);
+            tbMantenerFiltro = new Tools.FormsTools.ToggleButton();
+            lblSi = new System.Windows.Forms.Label();
+            lblNo = new System.Windows.Forms.Label();
+            lblEsPedido = new System.Windows.Forms.Label();
+            panelClientes.SuspendLayout();
+            panelProductos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(12, 36);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Datos Del Cliente";
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label1.ForeColor = System.Drawing.Color.White;
+            label1.Location = new System.Drawing.Point(7, 5);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(142, 21);
+            label1.TabIndex = 0;
+            label1.Text = "Datos Del Cliente";
             // 
-            // panel1
+            // panelClientes
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.txtResidencia);
-            this.panel1.Controls.Add(this.txtTelefono);
-            this.panel1.Controls.Add(this.txtMail);
-            this.panel1.Controls.Add(this.txtApellido);
-            this.panel1.Controls.Add(this.txtNombre);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.txtDNI);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(12, 60);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(805, 138);
-            this.panel1.TabIndex = 1;
+            panelClientes.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelClientes.Controls.Add(label7);
+            panelClientes.Controls.Add(label6);
+            panelClientes.Controls.Add(label5);
+            panelClientes.Controls.Add(txtResidencia);
+            panelClientes.Controls.Add(txtTelefono);
+            panelClientes.Controls.Add(txtMail);
+            panelClientes.Controls.Add(txtApellido);
+            panelClientes.Controls.Add(txtNombre);
+            panelClientes.Controls.Add(label4);
+            panelClientes.Controls.Add(label3);
+            panelClientes.Controls.Add(txtDNI);
+            panelClientes.Controls.Add(label2);
+            panelClientes.Controls.Add(label1);
+            panelClientes.Location = new System.Drawing.Point(12, 54);
+            panelClientes.Name = "panelClientes";
+            panelClientes.Size = new System.Drawing.Size(805, 150);
+            panelClientes.TabIndex = 1;
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(286, 92);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(66, 15);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Residencia:";
+            label7.AutoSize = true;
+            label7.ForeColor = System.Drawing.Color.White;
+            label7.Location = new System.Drawing.Point(286, 111);
+            label7.Name = "label7";
+            label7.Size = new System.Drawing.Size(66, 15);
+            label7.TabIndex = 14;
+            label7.Text = "Residencia:";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(287, 58);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 15);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "Telefono:";
+            label6.AutoSize = true;
+            label6.ForeColor = System.Drawing.Color.White;
+            label6.Location = new System.Drawing.Point(287, 77);
+            label6.Name = "label6";
+            label6.Size = new System.Drawing.Size(55, 15);
+            label6.TabIndex = 13;
+            label6.Text = "Telefono:";
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(287, 20);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(33, 15);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "Mail:";
+            label5.AutoSize = true;
+            label5.ForeColor = System.Drawing.Color.White;
+            label5.Location = new System.Drawing.Point(287, 39);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(33, 15);
+            label5.TabIndex = 12;
+            label5.Text = "Mail:";
             // 
             // txtResidencia
             // 
-            this.txtResidencia.BackColor = System.Drawing.Color.Transparent;
-            this.txtResidencia.Br = System.Drawing.Color.MidnightBlue;
-            this.txtResidencia.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtResidencia.ForeColor = System.Drawing.Color.White;
-            this.txtResidencia.Location = new System.Drawing.Point(358, 86);
-            this.txtResidencia.Name = "txtResidencia";
-            this.txtResidencia.Size = new System.Drawing.Size(126, 29);
-            this.txtResidencia.TabIndex = 10;
+            txtResidencia.BackColor = System.Drawing.Color.Transparent;
+            txtResidencia.Br = System.Drawing.Color.MidnightBlue;
+            txtResidencia.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtResidencia.ForeColor = System.Drawing.Color.White;
+            txtResidencia.Location = new System.Drawing.Point(358, 105);
+            txtResidencia.Name = "txtResidencia";
+            txtResidencia.Size = new System.Drawing.Size(126, 29);
+            txtResidencia.TabIndex = 10;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.BackColor = System.Drawing.Color.Transparent;
-            this.txtTelefono.Br = System.Drawing.Color.MidnightBlue;
-            this.txtTelefono.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtTelefono.ForeColor = System.Drawing.Color.White;
-            this.txtTelefono.Location = new System.Drawing.Point(358, 51);
-            this.txtTelefono.Name = "txtTelefono";
-            this.txtTelefono.Size = new System.Drawing.Size(126, 29);
-            this.txtTelefono.TabIndex = 9;
+            txtTelefono.BackColor = System.Drawing.Color.Transparent;
+            txtTelefono.Br = System.Drawing.Color.MidnightBlue;
+            txtTelefono.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtTelefono.ForeColor = System.Drawing.Color.White;
+            txtTelefono.Location = new System.Drawing.Point(358, 70);
+            txtTelefono.Name = "txtTelefono";
+            txtTelefono.Size = new System.Drawing.Size(126, 29);
+            txtTelefono.TabIndex = 9;
             // 
             // txtMail
             // 
-            this.txtMail.BackColor = System.Drawing.Color.Transparent;
-            this.txtMail.Br = System.Drawing.Color.MidnightBlue;
-            this.txtMail.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtMail.ForeColor = System.Drawing.Color.White;
-            this.txtMail.Location = new System.Drawing.Point(358, 16);
-            this.txtMail.Name = "txtMail";
-            this.txtMail.Size = new System.Drawing.Size(126, 29);
-            this.txtMail.TabIndex = 8;
+            txtMail.BackColor = System.Drawing.Color.Transparent;
+            txtMail.Br = System.Drawing.Color.MidnightBlue;
+            txtMail.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtMail.ForeColor = System.Drawing.Color.White;
+            txtMail.Location = new System.Drawing.Point(358, 35);
+            txtMail.Name = "txtMail";
+            txtMail.Size = new System.Drawing.Size(126, 29);
+            txtMail.TabIndex = 8;
             // 
             // txtApellido
             // 
-            this.txtApellido.BackColor = System.Drawing.Color.Transparent;
-            this.txtApellido.Br = System.Drawing.Color.MidnightBlue;
-            this.txtApellido.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtApellido.ForeColor = System.Drawing.Color.White;
-            this.txtApellido.Location = new System.Drawing.Point(92, 88);
-            this.txtApellido.Name = "txtApellido";
-            this.txtApellido.Size = new System.Drawing.Size(123, 29);
-            this.txtApellido.TabIndex = 7;
+            txtApellido.BackColor = System.Drawing.Color.Transparent;
+            txtApellido.Br = System.Drawing.Color.MidnightBlue;
+            txtApellido.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtApellido.ForeColor = System.Drawing.Color.White;
+            txtApellido.Location = new System.Drawing.Point(92, 107);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new System.Drawing.Size(123, 29);
+            txtApellido.TabIndex = 7;
             // 
             // txtNombre
             // 
-            this.txtNombre.BackColor = System.Drawing.Color.Transparent;
-            this.txtNombre.Br = System.Drawing.Color.MidnightBlue;
-            this.txtNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtNombre.ForeColor = System.Drawing.Color.White;
-            this.txtNombre.Location = new System.Drawing.Point(92, 53);
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.Size = new System.Drawing.Size(123, 29);
-            this.txtNombre.TabIndex = 6;
+            txtNombre.BackColor = System.Drawing.Color.Transparent;
+            txtNombre.Br = System.Drawing.Color.MidnightBlue;
+            txtNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtNombre.ForeColor = System.Drawing.Color.White;
+            txtNombre.Location = new System.Drawing.Point(92, 72);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new System.Drawing.Size(123, 29);
+            txtNombre.TabIndex = 6;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(38, 92);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(54, 15);
-            this.label4.TabIndex = 5;
-            this.label4.Text = "Apellido:";
+            label4.AutoSize = true;
+            label4.ForeColor = System.Drawing.Color.White;
+            label4.Location = new System.Drawing.Point(38, 111);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(54, 15);
+            label4.TabIndex = 5;
+            label4.Text = "Apellido:";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(38, 58);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(54, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Nombre:";
+            label3.AutoSize = true;
+            label3.ForeColor = System.Drawing.Color.White;
+            label3.Location = new System.Drawing.Point(38, 77);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(54, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Nombre:";
             // 
             // txtDNI
             // 
-            this.txtDNI.BackColor = System.Drawing.Color.Transparent;
-            this.txtDNI.Br = System.Drawing.Color.MidnightBlue;
-            this.txtDNI.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDNI.ForeColor = System.Drawing.Color.White;
-            this.txtDNI.Location = new System.Drawing.Point(93, 16);
-            this.txtDNI.Name = "txtDNI";
-            this.txtDNI.Size = new System.Drawing.Size(122, 29);
-            this.txtDNI.TabIndex = 3;
-            this.txtDNI.TextChanged += new System.EventHandler(this.txtDNI_TextChanged);
-            this.txtDNI.Click += new System.EventHandler(this.txtDNI_Click);
+            txtDNI.BackColor = System.Drawing.Color.Transparent;
+            txtDNI.Br = System.Drawing.Color.MidnightBlue;
+            txtDNI.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtDNI.ForeColor = System.Drawing.Color.White;
+            txtDNI.Location = new System.Drawing.Point(93, 35);
+            txtDNI.Name = "txtDNI";
+            txtDNI.Size = new System.Drawing.Size(122, 29);
+            txtDNI.TabIndex = 3;
+            txtDNI.TextChanged += txtDNI_TextChanged;
+            txtDNI.Click += txtDNI_Click;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(49, 20);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "DNI:";
+            label2.AutoSize = true;
+            label2.ForeColor = System.Drawing.Color.White;
+            label2.Location = new System.Drawing.Point(49, 39);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(30, 15);
+            label2.TabIndex = 2;
+            label2.Text = "DNI:";
             // 
-            // panel2
+            // panelProductos
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.btnCrearPedido);
-            this.panel2.Controls.Add(this.txtCantidad);
-            this.panel2.Controls.Add(this.txtDescripcion);
-            this.panel2.Controls.Add(this.lblCantidad);
-            this.panel2.Controls.Add(this.lblDescripcion);
-            this.panel2.Controls.Add(this.txtCodigo);
-            this.panel2.Controls.Add(this.lblCodigo);
-            this.panel2.Location = new System.Drawing.Point(12, 222);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(805, 59);
-            this.panel2.TabIndex = 15;
+            panelProductos.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelProductos.Controls.Add(btnAgregarProducto);
+            panelProductos.Controls.Add(txtCantidad);
+            panelProductos.Controls.Add(txtDescripcion);
+            panelProductos.Controls.Add(lblCantidad);
+            panelProductos.Controls.Add(lblDescripcion);
+            panelProductos.Controls.Add(txtCodigo);
+            panelProductos.Controls.Add(lblCodigo);
+            panelProductos.Location = new System.Drawing.Point(12, 228);
+            panelProductos.Name = "panelProductos";
+            panelProductos.Size = new System.Drawing.Size(805, 59);
+            panelProductos.TabIndex = 15;
             // 
-            // btnCrearPedido
+            // btnAgregarProducto
             // 
-            this.btnCrearPedido.BackColor = System.Drawing.Color.Transparent;
-            this.btnCrearPedido.FlatAppearance.BorderSize = 0;
-            this.btnCrearPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCrearPedido.ForeColor = System.Drawing.Color.White;
-            this.btnCrearPedido.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
-            this.btnCrearPedido.IconColor = System.Drawing.Color.White;
-            this.btnCrearPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnCrearPedido.IconSize = 35;
-            this.btnCrearPedido.Location = new System.Drawing.Point(668, 3);
-            this.btnCrearPedido.Name = "btnCrearPedido";
-            this.btnCrearPedido.Size = new System.Drawing.Size(102, 52);
-            this.btnCrearPedido.TabIndex = 8;
-            this.btnCrearPedido.Text = "Agregar Producto";
-            this.btnCrearPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnCrearPedido.UseVisualStyleBackColor = false;
+            btnAgregarProducto.BackColor = System.Drawing.Color.DimGray;
+            btnAgregarProducto.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnAgregarProducto.Enabled = false;
+            btnAgregarProducto.FlatAppearance.BorderSize = 0;
+            btnAgregarProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnAgregarProducto.ForeColor = System.Drawing.Color.White;
+            btnAgregarProducto.IconChar = FontAwesome.Sharp.IconChar.CartPlus;
+            btnAgregarProducto.IconColor = System.Drawing.Color.White;
+            btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnAgregarProducto.IconSize = 35;
+            btnAgregarProducto.Location = new System.Drawing.Point(668, 3);
+            btnAgregarProducto.Name = "btnAgregarProducto";
+            btnAgregarProducto.Size = new System.Drawing.Size(102, 52);
+            btnAgregarProducto.TabIndex = 8;
+            btnAgregarProducto.Text = "Agregar Producto";
+            btnAgregarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnAgregarProducto.UseVisualStyleBackColor = false;
+            btnAgregarProducto.Click += btnAgregarProducto_Click;
             // 
             // txtCantidad
             // 
-            this.txtCantidad.BackColor = System.Drawing.Color.Transparent;
-            this.txtCantidad.Br = System.Drawing.Color.MidnightBlue;
-            this.txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCantidad.ForeColor = System.Drawing.Color.White;
-            this.txtCantidad.Location = new System.Drawing.Point(607, 15);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(61, 29);
-            this.txtCantidad.TabIndex = 7;
+            txtCantidad.BackColor = System.Drawing.Color.Transparent;
+            txtCantidad.Br = System.Drawing.Color.MidnightBlue;
+            txtCantidad.Enabled = false;
+            txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtCantidad.ForeColor = System.Drawing.Color.White;
+            txtCantidad.Location = new System.Drawing.Point(607, 15);
+            txtCantidad.Name = "txtCantidad";
+            txtCantidad.Size = new System.Drawing.Size(61, 29);
+            txtCantidad.TabIndex = 7;
+            txtCantidad.TextChanged += txtCantidad_TextChanged;
             // 
             // txtDescripcion
             // 
-            this.txtDescripcion.BackColor = System.Drawing.Color.Transparent;
-            this.txtDescripcion.Br = System.Drawing.Color.MidnightBlue;
-            this.txtDescripcion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDescripcion.ForeColor = System.Drawing.Color.White;
-            this.txtDescripcion.Location = new System.Drawing.Point(281, 15);
-            this.txtDescripcion.Name = "txtDescripcion";
-            this.txtDescripcion.Size = new System.Drawing.Size(256, 29);
-            this.txtDescripcion.TabIndex = 6;
+            txtDescripcion.BackColor = System.Drawing.Color.Transparent;
+            txtDescripcion.Br = System.Drawing.Color.MidnightBlue;
+            txtDescripcion.Enabled = false;
+            txtDescripcion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtDescripcion.ForeColor = System.Drawing.Color.White;
+            txtDescripcion.Location = new System.Drawing.Point(281, 15);
+            txtDescripcion.Name = "txtDescripcion";
+            txtDescripcion.Size = new System.Drawing.Size(256, 29);
+            txtDescripcion.TabIndex = 6;
             // 
             // lblCantidad
             // 
-            this.lblCantidad.AutoSize = true;
-            this.lblCantidad.ForeColor = System.Drawing.Color.White;
-            this.lblCantidad.Location = new System.Drawing.Point(543, 20);
-            this.lblCantidad.Name = "lblCantidad";
-            this.lblCantidad.Size = new System.Drawing.Size(58, 15);
-            this.lblCantidad.TabIndex = 5;
-            this.lblCantidad.Text = "Cantidad:";
+            lblCantidad.AutoSize = true;
+            lblCantidad.ForeColor = System.Drawing.Color.White;
+            lblCantidad.Location = new System.Drawing.Point(543, 20);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new System.Drawing.Size(58, 15);
+            lblCantidad.TabIndex = 5;
+            lblCantidad.Text = "Cantidad:";
             // 
             // lblDescripcion
             // 
-            this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.ForeColor = System.Drawing.Color.White;
-            this.lblDescripcion.Location = new System.Drawing.Point(208, 20);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(72, 15);
-            this.lblDescripcion.TabIndex = 4;
-            this.lblDescripcion.Text = "Descripcion:";
+            lblDescripcion.AutoSize = true;
+            lblDescripcion.ForeColor = System.Drawing.Color.White;
+            lblDescripcion.Location = new System.Drawing.Point(208, 20);
+            lblDescripcion.Name = "lblDescripcion";
+            lblDescripcion.Size = new System.Drawing.Size(72, 15);
+            lblDescripcion.TabIndex = 4;
+            lblDescripcion.Text = "Descripcion:";
             // 
             // txtCodigo
             // 
-            this.txtCodigo.BackColor = System.Drawing.Color.Transparent;
-            this.txtCodigo.Br = System.Drawing.Color.MidnightBlue;
-            this.txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtCodigo.ForeColor = System.Drawing.Color.White;
-            this.txtCodigo.Location = new System.Drawing.Point(54, 15);
-            this.txtCodigo.Name = "txtCodigo";
-            this.txtCodigo.Size = new System.Drawing.Size(146, 29);
-            this.txtCodigo.TabIndex = 3;
-            this.txtCodigo.TextChanged += new System.EventHandler(this.txtCodigo_TextChanged);
-            this.txtCodigo.Click += new System.EventHandler(this.altoTextBox6_Click);
+            txtCodigo.BackColor = System.Drawing.Color.Transparent;
+            txtCodigo.Br = System.Drawing.Color.MidnightBlue;
+            txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtCodigo.ForeColor = System.Drawing.Color.White;
+            txtCodigo.Location = new System.Drawing.Point(54, 15);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new System.Drawing.Size(146, 29);
+            txtCodigo.TabIndex = 3;
+            txtCodigo.TextChanged += txtCodigo_TextChanged;
             // 
             // lblCodigo
             // 
-            this.lblCodigo.AutoSize = true;
-            this.lblCodigo.ForeColor = System.Drawing.Color.White;
-            this.lblCodigo.Location = new System.Drawing.Point(1, 20);
-            this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(49, 15);
-            this.lblCodigo.TabIndex = 2;
-            this.lblCodigo.Text = "Codigo:";
+            lblCodigo.AutoSize = true;
+            lblCodigo.ForeColor = System.Drawing.Color.White;
+            lblCodigo.Location = new System.Drawing.Point(1, 20);
+            lblCodigo.Name = "lblCodigo";
+            lblCodigo.Size = new System.Drawing.Size(49, 15);
+            lblCodigo.TabIndex = 2;
+            lblCodigo.Text = "Codigo:";
             // 
             // lblDatoProducto
             // 
-            this.lblDatoProducto.AutoSize = true;
-            this.lblDatoProducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblDatoProducto.ForeColor = System.Drawing.Color.White;
-            this.lblDatoProducto.Location = new System.Drawing.Point(12, 201);
-            this.lblDatoProducto.Name = "lblDatoProducto";
-            this.lblDatoProducto.Size = new System.Drawing.Size(158, 21);
-            this.lblDatoProducto.TabIndex = 16;
-            this.lblDatoProducto.Text = "Datos Del Producto";
+            lblDatoProducto.AutoSize = true;
+            lblDatoProducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lblDatoProducto.ForeColor = System.Drawing.Color.White;
+            lblDatoProducto.Location = new System.Drawing.Point(12, 207);
+            lblDatoProducto.Name = "lblDatoProducto";
+            lblDatoProducto.Size = new System.Drawing.Size(158, 21);
+            lblDatoProducto.TabIndex = 16;
+            lblDatoProducto.Text = "Datos Del Producto";
+            // 
+            // dgvProductos
+            // 
+            dgvProductos.AllowUserToResizeColumns = false;
+            dgvProductos.AllowUserToResizeRows = false;
+            dgvProductos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dgvProductos.BackgroundColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dgvProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            dgvProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvProductos.EnableHeadersVisualStyles = false;
+            dgvProductos.GridColor = System.Drawing.Color.FromArgb(0, 80, 200);
+            dgvProductos.Location = new System.Drawing.Point(11, 293);
+            dgvProductos.Name = "dgvProductos";
+            dgvProductos.ReadOnly = true;
+            dgvProductos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
+            dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dgvProductos.RowTemplate.Height = 25;
+            dgvProductos.Size = new System.Drawing.Size(806, 183);
+            dgvProductos.TabIndex = 17;
+            // 
+            // iconButton1
+            // 
+            iconButton1.BackColor = System.Drawing.Color.DimGray;
+            iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            iconButton1.FlatAppearance.BorderSize = 0;
+            iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            iconButton1.ForeColor = System.Drawing.Color.White;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
+            iconButton1.IconColor = System.Drawing.Color.White;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.IconSize = 35;
+            iconButton1.Location = new System.Drawing.Point(11, 482);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new System.Drawing.Size(102, 52);
+            iconButton1.TabIndex = 9;
+            iconButton1.Text = "Generar Pedido";
+            iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            iconButton1.UseVisualStyleBackColor = false;
+            // 
+            // txtSubtotal
+            // 
+            txtSubtotal.BackColor = System.Drawing.Color.Transparent;
+            txtSubtotal.Br = System.Drawing.Color.MidnightBlue;
+            txtSubtotal.Enabled = false;
+            txtSubtotal.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtSubtotal.ForeColor = System.Drawing.Color.White;
+            txtSubtotal.Location = new System.Drawing.Point(264, 482);
+            txtSubtotal.Name = "txtSubtotal";
+            txtSubtotal.Size = new System.Drawing.Size(122, 29);
+            txtSubtotal.TabIndex = 19;
+            // 
+            // lblSubTotal
+            // 
+            lblSubTotal.AutoSize = true;
+            lblSubTotal.ForeColor = System.Drawing.Color.White;
+            lblSubTotal.Location = new System.Drawing.Point(204, 488);
+            lblSubTotal.Name = "lblSubTotal";
+            lblSubTotal.Size = new System.Drawing.Size(54, 15);
+            lblSubTotal.TabIndex = 18;
+            lblSubTotal.Text = "Subtotal:";
+            // 
+            // txtTotal
+            // 
+            txtTotal.BackColor = System.Drawing.Color.Transparent;
+            txtTotal.Br = System.Drawing.Color.MidnightBlue;
+            txtTotal.Enabled = false;
+            txtTotal.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtTotal.ForeColor = System.Drawing.Color.White;
+            txtTotal.Location = new System.Drawing.Point(443, 482);
+            txtTotal.Name = "txtTotal";
+            txtTotal.Size = new System.Drawing.Size(122, 29);
+            txtTotal.TabIndex = 21;
+            // 
+            // lblTotal
+            // 
+            lblTotal.AutoSize = true;
+            lblTotal.ForeColor = System.Drawing.Color.White;
+            lblTotal.Location = new System.Drawing.Point(399, 488);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new System.Drawing.Size(35, 15);
+            lblTotal.TabIndex = 20;
+            lblTotal.Text = "Total:";
+            // 
+            // tbMantenerFiltro
+            // 
+            tbMantenerFiltro.Checked = true;
+            tbMantenerFiltro.CheckState = System.Windows.Forms.CheckState.Checked;
+            tbMantenerFiltro.Location = new System.Drawing.Point(215, 30);
+            tbMantenerFiltro.MinimumSize = new System.Drawing.Size(45, 22);
+            tbMantenerFiltro.Name = "tbMantenerFiltro";
+            tbMantenerFiltro.OffBackColor = System.Drawing.Color.Gray;
+            tbMantenerFiltro.OffToggleColor = System.Drawing.Color.Gainsboro;
+            tbMantenerFiltro.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            tbMantenerFiltro.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            tbMantenerFiltro.Size = new System.Drawing.Size(55, 22);
+            tbMantenerFiltro.TabIndex = 87;
+            tbMantenerFiltro.Text = "toggleButton1";
+            tbMantenerFiltro.UseVisualStyleBackColor = true;
+            tbMantenerFiltro.CheckedChanged += tbMantenerFiltro_CheckedChanged;
+            // 
+            // lblSi
+            // 
+            lblSi.AutoSize = true;
+            lblSi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblSi.ForeColor = System.Drawing.Color.White;
+            lblSi.Location = new System.Drawing.Point(269, 31);
+            lblSi.Name = "lblSi";
+            lblSi.Size = new System.Drawing.Size(23, 21);
+            lblSi.TabIndex = 89;
+            lblSi.Text = "Si";
+            // 
+            // lblNo
+            // 
+            lblNo.AutoSize = true;
+            lblNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblNo.ForeColor = System.Drawing.Color.White;
+            lblNo.Location = new System.Drawing.Point(187, 30);
+            lblNo.Name = "lblNo";
+            lblNo.Size = new System.Drawing.Size(31, 21);
+            lblNo.TabIndex = 88;
+            lblNo.Text = "No";
+            // 
+            // lblEsPedido
+            // 
+            lblEsPedido.AutoSize = true;
+            lblEsPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblEsPedido.ForeColor = System.Drawing.Color.White;
+            lblEsPedido.Location = new System.Drawing.Point(200, 7);
+            lblEsPedido.Name = "lblEsPedido";
+            lblEsPedido.Size = new System.Drawing.Size(80, 20);
+            lblEsPedido.TabIndex = 86;
+            lblEsPedido.Text = "Es Pedido?";
             // 
             // FmCrearPedido
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(829, 482);
-            this.Controls.Add(this.lblDatoProducto);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.label1);
-            this.Name = "FmCrearPedido";
-            this.Text = "FmCrearPedido";
-            this.Load += new System.EventHandler(this.FmCrearPedido_Load);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.DimGray;
+            ClientSize = new System.Drawing.Size(829, 581);
+            Controls.Add(tbMantenerFiltro);
+            Controls.Add(lblSi);
+            Controls.Add(lblNo);
+            Controls.Add(lblEsPedido);
+            Controls.Add(txtTotal);
+            Controls.Add(lblTotal);
+            Controls.Add(txtSubtotal);
+            Controls.Add(lblSubTotal);
+            Controls.Add(iconButton1);
+            Controls.Add(dgvProductos);
+            Controls.Add(lblDatoProducto);
+            Controls.Add(panelProductos);
+            Controls.Add(panelClientes);
+            Name = "FmCrearPedido";
+            Text = "FmCrearPedido";
+            Load += FmCrearPedido_Load;
+            panelClientes.ResumeLayout(false);
+            panelClientes.PerformLayout();
+            panelProductos.ResumeLayout(false);
+            panelProductos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelClientes;
         private System.Windows.Forms.Label label2;
         private AltoControls.AltoTextBox txtDNI;
         private System.Windows.Forms.Label label4;
@@ -364,8 +547,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private AltoControls.AltoTextBox txtResidencia;
         private AltoControls.AltoTextBox txtTelefono;
         private AltoControls.AltoTextBox txtMail;
-        private System.Windows.Forms.Panel panel2;
-        private FontAwesome.Sharp.IconButton btnCrearPedido;
+        private System.Windows.Forms.Panel panelProductos;
+        private FontAwesome.Sharp.IconButton btnAgregarProducto;
         private AltoControls.AltoTextBox txtCantidad;
         private AltoControls.AltoTextBox txtDescripcion;
         private System.Windows.Forms.Label lblCantidad;
@@ -373,5 +556,16 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private AltoControls.AltoTextBox txtCodigo;
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.Label lblDatoProducto;
+        private System.Windows.Forms.DataGridView dgvProductos;
+        private FontAwesome.Sharp.IconButton iconButton1;
+        private AltoControls.AltoTextBox txtSubtotal;
+        private System.Windows.Forms.Label lblSubTotal;
+        private AltoControls.AltoTextBox txtTotal;
+        private System.Windows.Forms.Label lblTotal;
+        private System.Windows.Forms.ToolTip toolTipError;
+        private Tools.FormsTools.ToggleButton tbMantenerFiltro;
+        private System.Windows.Forms.Label lblSi;
+        private System.Windows.Forms.Label lblNo;
+        private System.Windows.Forms.Label lblEsPedido;
     }
 }

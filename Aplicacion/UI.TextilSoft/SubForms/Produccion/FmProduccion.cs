@@ -79,13 +79,13 @@ namespace UI.TextilSoft.SubForms.Produccion
 
         private void fmCombobox1_OnSelectedIndexChanged(object sender, EventArgs e)
         {
-            if(fmCombobox1.SelectedIndex == 0)
+            if (fmCombobox1.SelectedIndex == 0)
             {
                 AbrirFormHija(new FmCrearProducto(_factory));
             }
             else if (fmCombobox1.SelectedIndex == 1)
             {
-                //AbrirFormHija(new FmModificarProducto(_factory));
+                AbrirFormHija(new FmModificarProducto(_factory));
             }
             else
             {

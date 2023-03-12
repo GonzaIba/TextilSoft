@@ -32,11 +32,6 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
 
         private void txtCodigoProd_TextChanged(object sender, EventArgs e)
         {
-            if (System.Text.RegularExpressions.Regex.IsMatch(txtCodigoProd.Text, "[^0-9]"))
-            {
-                toolTipError.Show("Por favor, solo ingrese números", txtCodigoProd, 0, -20, 2000);
-                txtCodigoProd.Text = txtCodigoProd.Text.Remove(txtCodigoProd.Text.Length - 1);
-            }
             if (IdProducto != 0)
             {
                 txtNombreProducto.Text = string.Empty;

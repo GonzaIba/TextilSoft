@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,13 +17,13 @@ namespace Domain.Models
         }
 
         public int ID_Pedido { get; set; }
+        public int ID_Cliente { get; set; }
+        public Guid ID_Empleados { get; set; }
+        public int ID_EstadoPedido { get; set; }
         public int NumeroPedido { get; set; }
         public Nullable<decimal> TotalPago { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<decimal> Seña { get; set; }
-        public int ID_Cliente { get; set; }
-        public Guid ID_Empleados { get; set; }
-        public int ID_EstadoPedido { get; set; }
         public Guid CreateUser { get; set; }
 
         public virtual ClientesModel Clientes { get; set; }

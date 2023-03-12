@@ -13,6 +13,7 @@ using System.Drawing;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace UI.TextilSoft.Controllers
@@ -31,9 +32,16 @@ namespace UI.TextilSoft.Controllers
         
         public ProductosEntity ObtenerProducto(string codigo)
         {
-            var ProductoDTO = _productoService.Get(x => x.CodigoProducto == Guid.Parse(codigo)).FirstOrDefault();
-            var ProductoEntity = _mapper.Map<ProductosEntity>(ProductoDTO);
-            return ProductoEntity;
+            string guidPattern = @"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$";
+
+            bool isValidGuid = Regex.IsMatch(codigo, guidPattern);
+            if (isValidGuid)
+            {
+                var ProductoDTO = _productoService.Get(x => x.CodigoProducto == Guid.Parse(codigo)).FirstOrDefault();
+                var ProductoEntity = _mapper.Map<ProductosEntity>(ProductoDTO);
+                return ProductoEntity;
+            }
+            return null;
         }
 
         public PaginatedList<ProductosEntity> ObtenerProductos(int pageIndex, int pageCount, Expression<Func<ProductosEntity, bool>> filterExpression, string orderBy, bool ascending)

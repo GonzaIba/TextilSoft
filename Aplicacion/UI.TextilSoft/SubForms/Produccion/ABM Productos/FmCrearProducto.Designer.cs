@@ -34,7 +34,6 @@
             lblTalle = new System.Windows.Forms.Label();
             txtPrecio = new AltoControls.AltoTextBox();
             txtTejido = new AltoControls.AltoTextBox();
-            txtTalle = new AltoControls.AltoTextBox();
             txtEstampa = new AltoControls.AltoTextBox();
             txtTipoProducto = new AltoControls.AltoTextBox();
             lblEstampa = new System.Windows.Forms.Label();
@@ -53,6 +52,7 @@
             txtColor = new System.Windows.Forms.TextBox();
             btnChangeColor = new FontAwesome.Sharp.IconButton();
             lblColor = new System.Windows.Forms.Label();
+            cboxTalles = new Tools.FormsTools.FmCombobox();
             SuspendLayout();
             // 
             // lblPrecio
@@ -108,17 +108,6 @@
             txtTejido.Size = new System.Drawing.Size(126, 29);
             txtTejido.TabIndex = 22;
             txtTejido.TextChanged += txtNombreProducto_TextChanged;
-            // 
-            // txtTalle
-            // 
-            txtTalle.BackColor = System.Drawing.Color.Transparent;
-            txtTalle.Br = System.Drawing.Color.MidnightBlue;
-            txtTalle.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            txtTalle.ForeColor = System.Drawing.Color.White;
-            txtTalle.Location = new System.Drawing.Point(452, 83);
-            txtTalle.Name = "txtTalle";
-            txtTalle.Size = new System.Drawing.Size(126, 29);
-            txtTalle.TabIndex = 21;
             // 
             // txtEstampa
             // 
@@ -295,6 +284,7 @@
             // 
             // txtColor
             // 
+            txtColor.BackColor = System.Drawing.Color.White;
             txtColor.BorderStyle = System.Windows.Forms.BorderStyle.None;
             txtColor.Location = new System.Drawing.Point(211, 236);
             txtColor.Multiline = true;
@@ -330,12 +320,31 @@
             lblColor.TabIndex = 38;
             lblColor.Text = "Color:";
             // 
+            // cboxTalles
+            // 
+            cboxTalles.BackColor = System.Drawing.Color.WhiteSmoke;
+            cboxTalles.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            cboxTalles.BorderSize = 0;
+            cboxTalles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cboxTalles.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            cboxTalles.ForeColor = System.Drawing.Color.DimGray;
+            cboxTalles.IconColor = System.Drawing.Color.MediumSlateBlue;
+            cboxTalles.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
+            cboxTalles.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
+            cboxTalles.ListTextColor = System.Drawing.Color.DimGray;
+            cboxTalles.Location = new System.Drawing.Point(452, 84);
+            cboxTalles.Name = "cboxTalles";
+            cboxTalles.Size = new System.Drawing.Size(126, 20);
+            cboxTalles.TabIndex = 41;
+            cboxTalles.Texts = "";
+            // 
             // FmCrearProducto
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             ClientSize = new System.Drawing.Size(718, 443);
+            Controls.Add(cboxTalles);
             Controls.Add(txtColor);
             Controls.Add(btnChangeColor);
             Controls.Add(lblColor);
@@ -352,7 +361,6 @@
             Controls.Add(lblTalle);
             Controls.Add(txtPrecio);
             Controls.Add(txtTejido);
-            Controls.Add(txtTalle);
             Controls.Add(txtEstampa);
             Controls.Add(txtTipoProducto);
             Controls.Add(lblEstampa);
@@ -372,7 +380,6 @@
         private System.Windows.Forms.Label lblTalle;
         private AltoControls.AltoTextBox txtPrecio;
         private AltoControls.AltoTextBox txtTejido;
-        private AltoControls.AltoTextBox txtTalle;
         private AltoControls.AltoTextBox txtEstampa;
         private AltoControls.AltoTextBox txtTipoProducto;
         private System.Windows.Forms.Label lblEstampa;
@@ -391,5 +398,6 @@
         private System.Windows.Forms.TextBox txtColor;
         private FontAwesome.Sharp.IconButton btnChangeColor;
         private System.Windows.Forms.Label lblColor;
+        private Tools.FormsTools.FmCombobox cboxTalles;
     }
 }

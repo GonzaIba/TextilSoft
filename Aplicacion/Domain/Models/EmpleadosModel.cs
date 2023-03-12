@@ -12,6 +12,7 @@ namespace Domain.Models
         public EmpleadosModel()
         {
             this.Pedidos = new HashSet<PedidosModel>();
+            this.PedidosFabrica = new HashSet<PedidosFabricaModel>();
         }
         [Key]
         public Guid ID_Empleados { get; set; }
@@ -21,6 +22,7 @@ namespace Domain.Models
         public string Legajo { get; set; }
         public string DNI { get; set; }
         public virtual ICollection<PedidosModel> Pedidos { get; set; }
+        public virtual ICollection<PedidosFabricaModel> PedidosFabrica { get; set; }
         //public Usuario usuario { get; set; }
     }
 }

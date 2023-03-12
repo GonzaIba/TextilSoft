@@ -269,6 +269,7 @@
             GrillaProductos.Size = new System.Drawing.Size(881, 285);
             GrillaProductos.TabIndex = 88;
             GrillaProductos.CellContentClick += GrillaProductos_CellContentClick;
+            GrillaProductos.CellMouseClick += GrillaProductos_CellMouseClick_1;
             GrillaProductos.DataBindingComplete += GrillaProductos_DataBindingComplete;
             // 
             // PanelProduccion

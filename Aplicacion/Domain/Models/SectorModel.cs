@@ -11,11 +11,13 @@ namespace Domain.Models
         public SectorModel()
         {
             this.OrdenDeTrabajo = new HashSet<OrdenDeTrabajoModel>();
+            this.OrdenDeTrabajoFabrica = new HashSet<OrdenDeTrabajoFabricaModel>();
         }
 
         public int ID_Sector { get; set; }
         public string NombreSector { get; set; }
 
         public virtual ICollection<OrdenDeTrabajoModel> OrdenDeTrabajo { get; set; }
+        public virtual ICollection<OrdenDeTrabajoFabricaModel> OrdenDeTrabajoFabrica { get; set; }
     }
 }

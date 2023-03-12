@@ -259,7 +259,7 @@ namespace UI.TextilSoft
                 SldbContext.SaveChanges();
             }
             else
-                permisoModel = permisoRepository.Get(x => x.Permiso.ToLower() == "administrador").FirstOrDefault();
+                permisoModel = permisoRepository.Get(x => x.Permiso.ToLower() == "EsAdmin").FirstOrDefault();
 
             if (!usuario_PermisoRepository.Get(x => x.Id_Permiso == permisoModel.Id_Permiso && x.Id_Usuario == usuario.Id_Usuario).Any())
             {

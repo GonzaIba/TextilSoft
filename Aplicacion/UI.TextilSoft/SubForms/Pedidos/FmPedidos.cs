@@ -44,7 +44,7 @@ namespace UI.TextilSoft.SubForms.Pedidos
                 panelContenedor.Tag = formhija;
                 formhija.BringToFront();
                 formhija.Show();
-                if(_fmTextilSoft._user.EnableAnimators)
+                if (_fmTextilSoft._user.EnableAnimators)
                     AbrirAnimator();
             }
             else
