@@ -50,6 +50,7 @@ using NAudio.Gui;
 using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using SL.EmailHelper;
 using System.Windows.Media.Media3D;
+using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 
 namespace UI.TextilSoft
 {
@@ -106,9 +107,9 @@ namespace UI.TextilSoft
             if (CompanyService.ExistCompany(CompanyId, CompanyApiKey))
             {
                 if (CompanyService.CanUseLoginAndRegister(CompanyId))
-                    mainForm = services.GetRequiredService<Inicio>();
+                    mainForm = services.GetRequiredService<FmCrearPedido>();
                 else
-                    mainForm = services.GetRequiredService<FmTextilSoft>();
+                    mainForm = services.GetRequiredService<FmCrearPedido>();
 
                 VerifyBusinessTables(services,CompanyId);
                 Application.Run(mainForm);
@@ -119,7 +120,7 @@ namespace UI.TextilSoft
                 {
                     GenerateCompany(services, ref CompanyId, CompanyApiKey);
                     VerifyBusinessTables(services, CompanyId);
-                    mainForm = services.GetRequiredService<Inicio>();
+                    mainForm = services.GetRequiredService<FmCrearPedido>();
                     Application.Run(mainForm);
                 }
                 else
@@ -163,6 +164,7 @@ namespace UI.TextilSoft
             //Hacemos un singleton a ambas aplicaciones por si desea usar login o no.
             services.AddSingleton<FmLobby>();
             services.AddSingleton<FmTextilSoft>();
+            services.AddSingleton<FmCrearPedido>();
             services.AddSingleton<Inicio>();
             services.AddSingleton<IControllerFactory,ControllerFactory>();
             services.AddSingleton<ILogger, Logger>();

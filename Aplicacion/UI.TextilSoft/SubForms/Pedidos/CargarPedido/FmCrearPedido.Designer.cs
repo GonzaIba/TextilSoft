@@ -30,9 +30,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             label1 = new System.Windows.Forms.Label();
             panelClientes = new System.Windows.Forms.Panel();
             label7 = new System.Windows.Forms.Label();
@@ -49,15 +49,15 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             label2 = new System.Windows.Forms.Label();
             panelProductos = new System.Windows.Forms.Panel();
             btnAgregarProducto = new FontAwesome.Sharp.IconButton();
+            lblDatoProducto = new System.Windows.Forms.Label();
             txtCantidad = new AltoControls.AltoTextBox();
             txtDescripcion = new AltoControls.AltoTextBox();
             lblCantidad = new System.Windows.Forms.Label();
             lblDescripcion = new System.Windows.Forms.Label();
             txtCodigo = new AltoControls.AltoTextBox();
             lblCodigo = new System.Windows.Forms.Label();
-            lblDatoProducto = new System.Windows.Forms.Label();
             dgvProductos = new System.Windows.Forms.DataGridView();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
+            btnGenerarPedido = new FontAwesome.Sharp.IconButton();
             txtSubtotal = new AltoControls.AltoTextBox();
             lblSubTotal = new System.Windows.Forms.Label();
             txtTotal = new AltoControls.AltoTextBox();
@@ -67,9 +67,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblSi = new System.Windows.Forms.Label();
             lblNo = new System.Windows.Forms.Label();
             lblEsPedido = new System.Windows.Forms.Label();
+            panelProductoDetalle = new System.Windows.Forms.Panel();
+            timerSubir = new System.Windows.Forms.Timer(components);
+            timerBajar = new System.Windows.Forms.Timer(components);
+            btnCancelar = new FontAwesome.Sharp.IconButton();
             panelClientes.SuspendLayout();
             panelProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
+            panelProductoDetalle.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -101,7 +106,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelClientes.Controls.Add(label1);
             panelClientes.Location = new System.Drawing.Point(12, 54);
             panelClientes.Name = "panelClientes";
-            panelClientes.Size = new System.Drawing.Size(805, 150);
+            panelClientes.Size = new System.Drawing.Size(952, 150);
             panelClientes.TabIndex = 1;
             // 
             // label7
@@ -235,16 +240,18 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // panelProductos
             // 
             panelProductos.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelProductos.Controls.Add(btnCancelar);
             panelProductos.Controls.Add(btnAgregarProducto);
+            panelProductos.Controls.Add(lblDatoProducto);
             panelProductos.Controls.Add(txtCantidad);
             panelProductos.Controls.Add(txtDescripcion);
             panelProductos.Controls.Add(lblCantidad);
             panelProductos.Controls.Add(lblDescripcion);
             panelProductos.Controls.Add(txtCodigo);
             panelProductos.Controls.Add(lblCodigo);
-            panelProductos.Location = new System.Drawing.Point(12, 228);
+            panelProductos.Location = new System.Drawing.Point(5, 6);
             panelProductos.Name = "panelProductos";
-            panelProductos.Size = new System.Drawing.Size(805, 59);
+            panelProductos.Size = new System.Drawing.Size(940, 77);
             panelProductos.TabIndex = 15;
             // 
             // btnAgregarProducto
@@ -259,14 +266,25 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnAgregarProducto.IconColor = System.Drawing.Color.White;
             btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarProducto.IconSize = 35;
-            btnAgregarProducto.Location = new System.Drawing.Point(668, 3);
+            btnAgregarProducto.Location = new System.Drawing.Point(674, 19);
             btnAgregarProducto.Name = "btnAgregarProducto";
-            btnAgregarProducto.Size = new System.Drawing.Size(102, 52);
+            btnAgregarProducto.Size = new System.Drawing.Size(102, 47);
             btnAgregarProducto.TabIndex = 8;
             btnAgregarProducto.Text = "Agregar Producto";
             btnAgregarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnAgregarProducto.UseVisualStyleBackColor = false;
             btnAgregarProducto.Click += btnAgregarProducto_Click;
+            // 
+            // lblDatoProducto
+            // 
+            lblDatoProducto.AutoSize = true;
+            lblDatoProducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lblDatoProducto.ForeColor = System.Drawing.Color.White;
+            lblDatoProducto.Location = new System.Drawing.Point(3, 7);
+            lblDatoProducto.Name = "lblDatoProducto";
+            lblDatoProducto.Size = new System.Drawing.Size(158, 21);
+            lblDatoProducto.TabIndex = 16;
+            lblDatoProducto.Text = "Datos Del Producto";
             // 
             // txtCantidad
             // 
@@ -275,7 +293,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtCantidad.Enabled = false;
             txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCantidad.ForeColor = System.Drawing.Color.White;
-            txtCantidad.Location = new System.Drawing.Point(607, 15);
+            txtCantidad.Location = new System.Drawing.Point(607, 31);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new System.Drawing.Size(61, 29);
             txtCantidad.TabIndex = 7;
@@ -288,7 +306,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtDescripcion.Enabled = false;
             txtDescripcion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtDescripcion.ForeColor = System.Drawing.Color.White;
-            txtDescripcion.Location = new System.Drawing.Point(281, 15);
+            txtDescripcion.Location = new System.Drawing.Point(281, 31);
             txtDescripcion.Name = "txtDescripcion";
             txtDescripcion.Size = new System.Drawing.Size(256, 29);
             txtDescripcion.TabIndex = 6;
@@ -297,7 +315,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblCantidad.AutoSize = true;
             lblCantidad.ForeColor = System.Drawing.Color.White;
-            lblCantidad.Location = new System.Drawing.Point(543, 20);
+            lblCantidad.Location = new System.Drawing.Point(543, 36);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new System.Drawing.Size(58, 15);
             lblCantidad.TabIndex = 5;
@@ -307,7 +325,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.ForeColor = System.Drawing.Color.White;
-            lblDescripcion.Location = new System.Drawing.Point(208, 20);
+            lblDescripcion.Location = new System.Drawing.Point(207, 36);
             lblDescripcion.Name = "lblDescripcion";
             lblDescripcion.Size = new System.Drawing.Size(72, 15);
             lblDescripcion.TabIndex = 4;
@@ -319,7 +337,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtCodigo.Br = System.Drawing.Color.MidnightBlue;
             txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCodigo.ForeColor = System.Drawing.Color.White;
-            txtCodigo.Location = new System.Drawing.Point(54, 15);
+            txtCodigo.Location = new System.Drawing.Point(55, 31);
             txtCodigo.Name = "txtCodigo";
             txtCodigo.Size = new System.Drawing.Size(146, 29);
             txtCodigo.TabIndex = 3;
@@ -329,22 +347,11 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblCodigo.AutoSize = true;
             lblCodigo.ForeColor = System.Drawing.Color.White;
-            lblCodigo.Location = new System.Drawing.Point(1, 20);
+            lblCodigo.Location = new System.Drawing.Point(3, 36);
             lblCodigo.Name = "lblCodigo";
             lblCodigo.Size = new System.Drawing.Size(49, 15);
             lblCodigo.TabIndex = 2;
             lblCodigo.Text = "Codigo:";
-            // 
-            // lblDatoProducto
-            // 
-            lblDatoProducto.AutoSize = true;
-            lblDatoProducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            lblDatoProducto.ForeColor = System.Drawing.Color.White;
-            lblDatoProducto.Location = new System.Drawing.Point(12, 207);
-            lblDatoProducto.Name = "lblDatoProducto";
-            lblDatoProducto.Size = new System.Drawing.Size(158, 21);
-            lblDatoProducto.TabIndex = 16;
-            lblDatoProducto.Text = "Datos Del Producto";
             // 
             // dgvProductos
             // 
@@ -355,56 +362,57 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dgvProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dgvProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle19.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvProductos.EnableHeadersVisualStyles = false;
             dgvProductos.GridColor = System.Drawing.Color.FromArgb(0, 80, 200);
-            dgvProductos.Location = new System.Drawing.Point(11, 293);
+            dgvProductos.Location = new System.Drawing.Point(5, 88);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.ReadOnly = true;
             dgvProductos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle20;
-            dataGridViewCellStyle21.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
-            dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
+            dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle6;
             dgvProductos.RowTemplate.Height = 25;
-            dgvProductos.Size = new System.Drawing.Size(806, 183);
+            dgvProductos.Size = new System.Drawing.Size(940, 183);
             dgvProductos.TabIndex = 17;
             // 
-            // iconButton1
+            // btnGenerarPedido
             // 
-            iconButton1.BackColor = System.Drawing.Color.DimGray;
-            iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
-            iconButton1.FlatAppearance.BorderSize = 0;
-            iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            iconButton1.ForeColor = System.Drawing.Color.White;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
-            iconButton1.IconColor = System.Drawing.Color.White;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 35;
-            iconButton1.Location = new System.Drawing.Point(11, 482);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new System.Drawing.Size(102, 52);
-            iconButton1.TabIndex = 9;
-            iconButton1.Text = "Generar Pedido";
-            iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = false;
+            btnGenerarPedido.BackColor = System.Drawing.Color.DimGray;
+            btnGenerarPedido.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnGenerarPedido.FlatAppearance.BorderSize = 0;
+            btnGenerarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnGenerarPedido.ForeColor = System.Drawing.Color.White;
+            btnGenerarPedido.IconChar = FontAwesome.Sharp.IconChar.ClipboardList;
+            btnGenerarPedido.IconColor = System.Drawing.Color.White;
+            btnGenerarPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnGenerarPedido.IconSize = 35;
+            btnGenerarPedido.Location = new System.Drawing.Point(7, 275);
+            btnGenerarPedido.Name = "btnGenerarPedido";
+            btnGenerarPedido.Size = new System.Drawing.Size(102, 42);
+            btnGenerarPedido.TabIndex = 9;
+            btnGenerarPedido.Text = "Generar Pedido";
+            btnGenerarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnGenerarPedido.UseVisualStyleBackColor = false;
+            btnGenerarPedido.Click += btnGenerarPedido_Click;
             // 
             // txtSubtotal
             // 
@@ -413,7 +421,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtSubtotal.Enabled = false;
             txtSubtotal.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtSubtotal.ForeColor = System.Drawing.Color.White;
-            txtSubtotal.Location = new System.Drawing.Point(264, 482);
+            txtSubtotal.Location = new System.Drawing.Point(262, 275);
             txtSubtotal.Name = "txtSubtotal";
             txtSubtotal.Size = new System.Drawing.Size(122, 29);
             txtSubtotal.TabIndex = 19;
@@ -422,7 +430,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblSubTotal.AutoSize = true;
             lblSubTotal.ForeColor = System.Drawing.Color.White;
-            lblSubTotal.Location = new System.Drawing.Point(204, 488);
+            lblSubTotal.Location = new System.Drawing.Point(202, 281);
             lblSubTotal.Name = "lblSubTotal";
             lblSubTotal.Size = new System.Drawing.Size(54, 15);
             lblSubTotal.TabIndex = 18;
@@ -435,7 +443,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtTotal.Enabled = false;
             txtTotal.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtTotal.ForeColor = System.Drawing.Color.White;
-            txtTotal.Location = new System.Drawing.Point(443, 482);
+            txtTotal.Location = new System.Drawing.Point(441, 275);
             txtTotal.Name = "txtTotal";
             txtTotal.Size = new System.Drawing.Size(122, 29);
             txtTotal.TabIndex = 21;
@@ -444,7 +452,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblTotal.AutoSize = true;
             lblTotal.ForeColor = System.Drawing.Color.White;
-            lblTotal.Location = new System.Drawing.Point(399, 488);
+            lblTotal.Location = new System.Drawing.Point(397, 281);
             lblTotal.Name = "lblTotal";
             lblTotal.Size = new System.Drawing.Size(35, 15);
             lblTotal.TabIndex = 20;
@@ -454,6 +462,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             tbMantenerFiltro.Checked = true;
             tbMantenerFiltro.CheckState = System.Windows.Forms.CheckState.Checked;
+            tbMantenerFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
             tbMantenerFiltro.Location = new System.Drawing.Point(215, 30);
             tbMantenerFiltro.MinimumSize = new System.Drawing.Size(45, 22);
             tbMantenerFiltro.Name = "tbMantenerFiltro";
@@ -500,25 +509,62 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblEsPedido.TabIndex = 86;
             lblEsPedido.Text = "Es Pedido?";
             // 
+            // panelProductoDetalle
+            // 
+            panelProductoDetalle.Controls.Add(dgvProductos);
+            panelProductoDetalle.Controls.Add(btnGenerarPedido);
+            panelProductoDetalle.Controls.Add(lblSubTotal);
+            panelProductoDetalle.Controls.Add(panelProductos);
+            panelProductoDetalle.Controls.Add(txtTotal);
+            panelProductoDetalle.Controls.Add(txtSubtotal);
+            panelProductoDetalle.Controls.Add(lblTotal);
+            panelProductoDetalle.Location = new System.Drawing.Point(12, 210);
+            panelProductoDetalle.Name = "panelProductoDetalle";
+            panelProductoDetalle.Size = new System.Drawing.Size(952, 324);
+            panelProductoDetalle.TabIndex = 90;
+            // 
+            // timerSubir
+            // 
+            timerSubir.Interval = 1;
+            timerSubir.Tick += timerSubir_Tick;
+            // 
+            // timerBajar
+            // 
+            timerBajar.Interval = 1;
+            timerBajar.Tick += timerBajar_Tick;
+            // 
+            // btnCancelar
+            // 
+            btnCancelar.BackColor = System.Drawing.Color.DimGray;
+            btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnCancelar.Enabled = false;
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnCancelar.ForeColor = System.Drawing.Color.White;
+            btnCancelar.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            btnCancelar.IconColor = System.Drawing.Color.White;
+            btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCancelar.IconSize = 35;
+            btnCancelar.Location = new System.Drawing.Point(782, 20);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new System.Drawing.Size(102, 47);
+            btnCancelar.TabIndex = 17;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnCancelar.UseVisualStyleBackColor = false;
+            // 
             // FmCrearPedido
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.DimGray;
-            ClientSize = new System.Drawing.Size(829, 581);
+            ClientSize = new System.Drawing.Size(976, 581);
             Controls.Add(tbMantenerFiltro);
             Controls.Add(lblSi);
             Controls.Add(lblNo);
             Controls.Add(lblEsPedido);
-            Controls.Add(txtTotal);
-            Controls.Add(lblTotal);
-            Controls.Add(txtSubtotal);
-            Controls.Add(lblSubTotal);
-            Controls.Add(iconButton1);
-            Controls.Add(dgvProductos);
-            Controls.Add(lblDatoProducto);
-            Controls.Add(panelProductos);
             Controls.Add(panelClientes);
+            Controls.Add(panelProductoDetalle);
             Name = "FmCrearPedido";
             Text = "FmCrearPedido";
             Load += FmCrearPedido_Load;
@@ -527,6 +573,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelProductos.ResumeLayout(false);
             panelProductos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).EndInit();
+            panelProductoDetalle.ResumeLayout(false);
+            panelProductoDetalle.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -557,7 +605,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private System.Windows.Forms.Label lblCodigo;
         private System.Windows.Forms.Label lblDatoProducto;
         private System.Windows.Forms.DataGridView dgvProductos;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnGenerarPedido;
         private AltoControls.AltoTextBox txtSubtotal;
         private System.Windows.Forms.Label lblSubTotal;
         private AltoControls.AltoTextBox txtTotal;
@@ -567,5 +615,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private System.Windows.Forms.Label lblSi;
         private System.Windows.Forms.Label lblNo;
         private System.Windows.Forms.Label lblEsPedido;
+        private System.Windows.Forms.Panel panelProductoDetalle;
+        private System.Windows.Forms.Timer timerSubir;
+        private System.Windows.Forms.Timer timerBajar;
+        private FontAwesome.Sharp.IconButton btnCancelar;
     }
 }

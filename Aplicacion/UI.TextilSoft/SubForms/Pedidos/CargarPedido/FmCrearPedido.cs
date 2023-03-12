@@ -1,4 +1,6 @@
 ﻿using Contracts.Controllers;
+using FontAwesome.Sharp;
+using SL.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,9 +9,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
+using UI.TextilSoft.Tools;
 using UI.TextilSoft.Tools.ExtensionsControls;
 using UI.TextilSoft.Tools.FormsTools;
 
@@ -21,8 +25,11 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private int CantidadDisponible = 0;
         public FmCrearPedido(IControllerFactory factory)
         {
+            CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
             _factory = factory;
+            panelProductos.Enabled = false;
+            btnGenerarPedido.Enabled = false;
         }
 
         private void FmCrearPedido_Load(object sender, EventArgs e)
@@ -46,6 +53,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                 {
                     MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");
                     txtDNI.LimpiarTextbox();
+                    panelProductos.Enabled = false;
                 }
                 else
                 {
@@ -54,10 +62,12 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                     txtApellido.Text = Cliente.Apellido;
                     txtMail.Text = Cliente.Mail;
                     txtTelefono.Text = Cliente.Telefono;
+                    panelProductos.Enabled = true;
                 }
             }
             else
             {
+                panelProductos.Enabled = false;
                 txtNombre.LimpiarTextbox();
                 txtResidencia.LimpiarTextbox();
                 txtApellido.LimpiarTextbox();
@@ -139,6 +149,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                     dgvProductos.Rows.Add(Producto.Codigo, Producto.NombreProducto, Producto.Precio, Cantidad);
                     txtCodigo.LimpiarTextbox();
                     txtCantidad.LimpiarTextbox();
+                    btnGenerarPedido.Enabled = true;
                 }
             }
         }
@@ -155,7 +166,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private void tbMantenerFiltro_CheckedChanged(object sender, EventArgs e)
         {
             EsPedido_EsPedidoFabrica(tbMantenerFiltro.Checked);
+
         }
+
+        #region Helpers
 
         private void EsPedido_EsPedidoFabrica(bool estado)
         {
@@ -164,12 +178,39 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtTotal.Visible = estado;
             lblSubTotal.Visible = estado;
             lblTotal.Visible = estado;
-            //txtDNI.Enabled = estado;
-            //txtNombre.Enabled = estado;
-            //txtApellido.Enabled = estado;
-            //txtMail.Enabled = estado;
-            //txtTelefono.Enabled = estado;
-            //txtResidencia.Enabled = estado;
+            if (!estado)
+            {
+                panelClientes.Enabled = false;
+                panelProductos.Enabled = true;
+                //timerSubir.Start();
+                //y = Y_Inicial_pnlDetalleProducto;
+            }
+            else
+            {
+                panelClientes.Enabled = true;
+                if (txtApellido.Text != "")
+                    panelProductos.Enabled = true;
+                else
+                    panelProductos.Enabled = false;
+                //timerBajar.Start();
+                //y = Y_Inicial_pnlClientes;
+            }
+        }
+        #endregion
+
+        private void timerSubir_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private async void timerBajar_Tick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGenerarPedido_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
