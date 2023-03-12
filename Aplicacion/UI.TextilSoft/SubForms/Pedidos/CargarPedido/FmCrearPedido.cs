@@ -1,4 +1,5 @@
 ﻿using Contracts.Controllers;
+using Domain.Entities;
 using FontAwesome.Sharp;
 using SL.Domain.Entities;
 using System;
@@ -22,6 +23,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
     public partial class FmCrearPedido : Form
     {
         private IControllerFactory _factory;
+        private List<DetallePedidosYFabricaEntity> DetallePedidos;
         private int CantidadDisponible = 0;
         public FmCrearPedido(IControllerFactory factory)
         {
@@ -30,6 +32,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             _factory = factory;
             panelProductos.Enabled = false;
             btnGenerarPedido.Enabled = false;
+            DetallePedidos = new();
+            dgvProductos.DataSource = DetallePedidos.ToList();
+            dgvProductos.Columns.Add(new CustomButtonColumn("Acciones"));
+            //CustomButtonColumn customButtonColumn = new CustomButtonColumn();
+            //customButtonColumn.HeaderText = "Custom Button Column";
+            //customButtonColumn.Name = "customButtonColumn";
+            //dgvProductos.Columns.Add(customButtonColumn);
+            //dgvProductos.Columns.Add("hola","xd");
         }
 
         private void FmCrearPedido_Load(object sender, EventArgs e)
@@ -142,11 +152,18 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                     var Total = Subtotal + Convert.ToInt32(txtTotal.Text);
                     txtTotal.Text = Total.ToString();
                     txtTotal.Text = Subtotal.ToString();
-                    dgvProductos.Columns.Add("Codigo", "Codigo");
-                    dgvProductos.Columns.Add("NombreProducto", "Nombre del producto");
-                    dgvProductos.Columns.Add("Precio", "Precio");
-                    dgvProductos.Columns.Add("Cantidad", "Cantidad");
-                    dgvProductos.Rows.Add(Producto.Codigo, Producto.NombreProducto, Producto.Precio, Cantidad);
+
+                    DetallePedidos.Add(new DetallePedidosYFabricaEntity
+                    {
+                        Codigo = Producto.Codigo,
+                        Detalle = txtDescripcion.Text,
+                        Cantidad = Convert.ToInt32(txtCantidad.Text),
+                        PrecioProducto = Producto.Precio,
+                        NombreProducto = Producto.NombreProducto
+                    });
+
+                    dgvProductos.DataSource = DetallePedidos.ToList();
+
                     txtCodigo.LimpiarTextbox();
                     txtCantidad.LimpiarTextbox();
                     btnGenerarPedido.Enabled = true;
@@ -211,6 +228,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private void btnGenerarPedido_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgvProductos_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception is FormatException)
+            {
+                e.ThrowException = false;
+            }
         }
     }
 }

@@ -108,7 +108,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
                                 p.Estampa.Contains(searchValue) ||
                                 p.ID_Producto.ToString().Contains(searchValue) ||
                                 p.NombreProducto.Contains(searchValue) ||
-                                p.Precio.HasValue && p.Precio.Value.ToString().Contains(searchValue) ||
+                                p.Precio.ToString().Contains(searchValue) ||
                                 p.TallePrenda.Contains(searchValue) ||
                                 p.Tejido.Contains(searchValue) ||
                                 p.TipoProducto.Contains(searchValue)

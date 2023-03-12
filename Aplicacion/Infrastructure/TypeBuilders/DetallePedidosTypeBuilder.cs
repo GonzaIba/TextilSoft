@@ -15,6 +15,10 @@ namespace Infrastructure.TypeBuilders
         {
             builder.HasKey(p => p.ID_DetallePedido);
 
+            builder.Property(p => p.Detalle)
+                .HasColumnType("varchar(500)")
+                .IsRequired(false);
+
             builder.Property(p => p.Cantidad)
                 .IsRequired(true);
 
