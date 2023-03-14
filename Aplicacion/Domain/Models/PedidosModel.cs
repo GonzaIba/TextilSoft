@@ -21,8 +21,8 @@ namespace Domain.Models
         public Guid ID_Empleados { get; set; }
         public int ID_EstadoPedido { get; set; }
         public int NumeroPedido { get; set; }
-        public Nullable<decimal> TotalPago { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
+        public decimal SubTotal { get; set; }
+        public DateTime Fecha { get; set; }
         public Nullable<decimal> Seña { get; set; }
         public Guid CreateUser { get; set; }
 

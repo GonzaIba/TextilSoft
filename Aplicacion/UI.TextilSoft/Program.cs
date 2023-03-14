@@ -107,9 +107,9 @@ namespace UI.TextilSoft
             if (CompanyService.ExistCompany(CompanyId, CompanyApiKey))
             {
                 if (CompanyService.CanUseLoginAndRegister(CompanyId))
-                    mainForm = services.GetRequiredService<FmCrearPedido>();
+                    mainForm = services.GetRequiredService<Inicio>();
                 else
-                    mainForm = services.GetRequiredService<FmCrearPedido>();
+                    mainForm = services.GetRequiredService<Inicio>();
 
                 VerifyBusinessTables(services,CompanyId);
                 Application.Run(mainForm);
@@ -120,7 +120,7 @@ namespace UI.TextilSoft
                 {
                     GenerateCompany(services, ref CompanyId, CompanyApiKey);
                     VerifyBusinessTables(services, CompanyId);
-                    mainForm = services.GetRequiredService<FmCrearPedido>();
+                    mainForm = services.GetRequiredService<Inicio>();
                     Application.Run(mainForm);
                 }
                 else

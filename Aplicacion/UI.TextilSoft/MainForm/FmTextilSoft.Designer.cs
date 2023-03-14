@@ -91,7 +91,7 @@ namespace UI.TextilSoft.MainForm
             panelBotones.MaximumSize = new System.Drawing.Size(200, 593);
             panelBotones.MinimumSize = new System.Drawing.Size(43, 200);
             panelBotones.Name = "panelBotones";
-            panelBotones.Size = new System.Drawing.Size(200, 550);
+            panelBotones.Size = new System.Drawing.Size(200, 593);
             panelBotones.TabIndex = 0;
             panelBotones.MouseDown += panelContenedor_MouseDown;
             panelBotones.MouseEnter += panelBotones_MouseEnter;
@@ -341,7 +341,7 @@ namespace UI.TextilSoft.MainForm
             panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             panelContenedor.Location = new System.Drawing.Point(200, 0);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new System.Drawing.Size(890, 550);
+            panelContenedor.Size = new System.Drawing.Size(890, 603);
             panelContenedor.TabIndex = 1;
             panelContenedor.MouseDown += panelContenedor_MouseDown;
             // 
@@ -411,7 +411,7 @@ namespace UI.TextilSoft.MainForm
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.Black;
-            ClientSize = new System.Drawing.Size(1090, 550);
+            ClientSize = new System.Drawing.Size(1090, 603);
             Controls.Add(panelContenedor);
             Controls.Add(panelBotones);
             PanelAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);

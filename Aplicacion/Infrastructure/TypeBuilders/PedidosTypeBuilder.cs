@@ -17,12 +17,12 @@ namespace Infrastructure.TypeBuilders
 
             builder.Property(p => p.NumeroPedido);
 
-            builder.Property(p => p.TotalPago)
-                .IsRequired(false)
+            builder.Property(p => p.SubTotal)
+                .IsRequired(true)
                 .HasColumnType("decimal(18,0)");
 
             builder.Property(p => p.Fecha)
-                .IsRequired(false);
+                .IsRequired(true);
 
             builder.Property(p => p.Seña)
                 .IsRequired(false)

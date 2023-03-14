@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Contracts.Repositories;
 using Contracts.Services;
+using Domain.Enum;
 using Domain.GenericEntity;
 using Domain.Models;
 using System;
@@ -16,10 +17,56 @@ namespace Business.Services
     public class PedidosService : GenericService<PedidosModel>, IPedidosService
     {
         private readonly IMapper _mapper;
-        public PedidosService(IUnitOfWork unitOfWork, IMapper mapper)
+        private readonly IClientesService _clientesService;
+        private readonly IEmpleadosService _empleadosService;
+        public PedidosService(IUnitOfWork unitOfWork, IMapper mapper, IClientesService clientesService, IEmpleadosService empleadosService)
             : base(unitOfWork, unitOfWork.GetRepository<IPedidosRepository>())
         {
             _mapper = mapper;
+            _clientesService = clientesService;
+            _empleadosService = empleadosService;
+        }
+
+        public string CrearPedido(int DNICLiente, int DNIEmpleado, decimal subTotal, List<DetallePedidosModel> ListadetallePedidos)
+        {
+            PedidosModel pedidosModel = new();
+            try
+            {
+                var detallePedidoRepository = _unitOfWork.GetRepository<IDetallePedidosRepository>();
+
+                var cliente = _clientesService.Get(x => x.DNI == Convert.ToString(DNICLiente), tracking: false).FirstOrDefault();
+                if (cliente == null)
+                    return "El cliente no existe";
+
+                pedidosModel.ID_Cliente = cliente.ID_Cliente;
+
+                var empleado = _empleadosService.Get(x => x.DNI == DNIEmpleado, tracking: false).FirstOrDefault();
+                if (empleado == null)
+                    return "El empleado no existe";
+
+                pedidosModel.ID_Empleados = empleado.ID_Empleados;
+                pedidosModel.ID_EstadoPedido = (int)EstadoPedidosEnum.SinAsignar;
+                pedidosModel.Fecha = DateTime.Now;
+                pedidosModel.NumeroPedido = ObtenerUltimoNumeroPedido() + 1;
+                pedidosModel.SubTotal = subTotal;
+                pedidosModel.Seña = 0;
+                pedidosModel.CreateUser = empleado.ID_Empleados;
+
+                Crear(pedidosModel);
+
+                foreach (var detallePedido in ListadetallePedidos)
+                {
+                    detallePedido.ID_Pedido = pedidosModel.ID_Pedido;
+                    detallePedidoRepository.Insert(detallePedido);
+                    _unitOfWork.SaveChanges();
+                }
+                return "OK";
+            }
+            catch (Exception ex)
+            {
+                CancelChanges(pedidosModel);
+                throw;
+            }
         }
 
         public PaginatedList<PedidosModel> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<PedidosModel, dynamic>> orderByExpression, Expression<Func<PedidosModel, bool>> filterExpression, string orderBy, bool ascending)
@@ -47,6 +94,20 @@ namespace Business.Services
                     TotalPages = (int)Math.Ceiling(Pedidos.Count() / (double)pageCount),
                     List = Pedidos
                 };
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+
+        public int ObtenerUltimoNumeroPedido()
+        {
+            try
+            {
+                int? UltimoNumeroPedido = _repository.Get().Max(x => x.NumeroPedido);
+                return UltimoNumeroPedido == null ? 0 : (int)UltimoNumeroPedido;
             }
             catch (Exception ex)
             {

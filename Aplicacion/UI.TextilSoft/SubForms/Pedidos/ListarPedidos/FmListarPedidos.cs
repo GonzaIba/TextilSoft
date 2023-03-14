@@ -132,7 +132,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                 }
                 //Add event click
                 button.Click += new EventHandler((s, e) => OrdenarGrilla(s, e, item.Name, button));
-
                 GrillaPedidos.Controls.Add(button);
                 VerificarPaginas();
             }

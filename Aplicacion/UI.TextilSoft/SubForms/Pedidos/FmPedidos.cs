@@ -33,34 +33,110 @@ namespace UI.TextilSoft.SubForms.Pedidos
         {
             if (activeForm != null)
             {
-                activeForm.Close();
-                activeForm = formhija;
-                formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
-                formhija.TopLevel = false;
-                formhija.FormBorderStyle = FormBorderStyle.None;
-                formhija.Dock = DockStyle.Fill;
-                panelContenedor.Controls.Add(formhija);
-                panelContenedor.Tag = formhija;
-                formhija.BringToFront();
-                formhija.Show();
-                if (_fmTextilSoft._user.EnableAnimators)
-                    AbrirAnimator();
+                if (formhija is FmCrearPedido)
+                {
+                    if (_fmTextilSoft.formPedido != null)
+                    {
+                        _fmTextilSoft.formPedido.Visible = false;
+                        _fmTextilSoft.formPedido.BackColor = Color.FromArgb(32, 30, 45);
+                        _fmTextilSoft.formPedido.TopLevel = false;
+                        _fmTextilSoft.formPedido.FormBorderStyle = FormBorderStyle.None;
+                        _fmTextilSoft.formPedido.Dock = DockStyle.Fill;
+                        panelContenedor.Controls.Add(_fmTextilSoft.formPedido);
+                        panelContenedor.Tag = _fmTextilSoft.formPedido;
+                        _fmTextilSoft.formPedido.BringToFront();
+                        if (_fmTextilSoft._user.EnableAnimators)
+                            AbrirAnimator();
+                        else
+                            _fmTextilSoft.formPedido.Show();
+                    }
+                    else
+                    {
+                        activeForm.Close();
+                        _fmTextilSoft.formPedido = formhija;
+                        _fmTextilSoft.formPedido.Visible = false;
+                        _fmTextilSoft.formPedido.BackColor = Color.FromArgb(32, 30, 45);
+                        _fmTextilSoft.formPedido.TopLevel = false;
+                        _fmTextilSoft.formPedido.FormBorderStyle = FormBorderStyle.None;
+                        _fmTextilSoft.formPedido.Dock = DockStyle.Fill;
+                        panelContenedor.Controls.Add(_fmTextilSoft.formPedido);
+                        panelContenedor.Tag = _fmTextilSoft.formPedido;
+                        _fmTextilSoft.formPedido.BringToFront();
+                        if (_fmTextilSoft._user.EnableAnimators)
+                            AbrirAnimator();
+                        else
+                            _fmTextilSoft.formPedido.Show();
+                    }
+                }
+                else
+                {
+                    activeForm.Close();
+                    activeForm = formhija;
+                    formhija.Visible = false;
+                    formhija.BackColor = Color.FromArgb(32, 30, 45);
+                    formhija.TopLevel = false;
+                    formhija.FormBorderStyle = FormBorderStyle.None;
+                    formhija.Dock = DockStyle.Fill;
+                    panelContenedor.Controls.Add(formhija);
+                    panelContenedor.Tag = formhija;
+                    formhija.BringToFront();
+                    if (_fmTextilSoft._user.EnableAnimators)
+                        AbrirAnimator();
+                    else
+                        formhija.Show();
+                }
             }
             else
             {
-                activeForm = formhija;
-                formhija.Visible = false;
-                formhija.BackColor = Color.FromArgb(32, 30, 45);
-                formhija.TopLevel = false;
-                formhija.FormBorderStyle = FormBorderStyle.None;
-                formhija.Dock = DockStyle.Fill;
-                panelContenedor.Controls.Add(formhija);
-                panelContenedor.Tag = formhija;
-                formhija.BringToFront();
-                formhija.Show();
-                if (_fmTextilSoft._user.EnableAnimators)
-                    AbrirAnimator();
+                if (formhija is FmCrearPedido)
+                {
+                    if (_fmTextilSoft.formPedido != null)
+                    {
+                        _fmTextilSoft.formPedido.Visible = false;
+                        _fmTextilSoft.formPedido.BackColor = Color.FromArgb(32, 30, 45);
+                        _fmTextilSoft.formPedido.TopLevel = false;
+                        _fmTextilSoft.formPedido.FormBorderStyle = FormBorderStyle.None;
+                        _fmTextilSoft.formPedido.Dock = DockStyle.Fill;
+                        panelContenedor.Controls.Add(_fmTextilSoft.formPedido);
+                        panelContenedor.Tag = _fmTextilSoft.formPedido;
+                        _fmTextilSoft.formPedido.BringToFront();
+                        if (_fmTextilSoft._user.EnableAnimators)
+                            AbrirAnimator();
+                        else
+                            _fmTextilSoft.formPedido.Show();
+                    }
+                    else
+                    {
+                        _fmTextilSoft.formPedido = formhija;
+                        _fmTextilSoft.formPedido.Visible = false;
+                        _fmTextilSoft.formPedido.BackColor = Color.FromArgb(32, 30, 45);
+                        _fmTextilSoft.formPedido.TopLevel = false;
+                        _fmTextilSoft.formPedido.FormBorderStyle = FormBorderStyle.None;
+                        _fmTextilSoft.formPedido.Dock = DockStyle.Fill;
+                        panelContenedor.Controls.Add(_fmTextilSoft.formPedido);
+                        panelContenedor.Tag = _fmTextilSoft.formPedido;
+                        _fmTextilSoft.formPedido.BringToFront();
+                        _fmTextilSoft.formPedido.Show();
+                        if (_fmTextilSoft._user.EnableAnimators)
+                            AbrirAnimator();
+                    }
+                }
+                else
+                {
+                    activeForm = formhija;
+                    formhija.Visible = false;
+                    formhija.BackColor = Color.FromArgb(32, 30, 45);
+                    formhija.TopLevel = false;
+                    formhija.FormBorderStyle = FormBorderStyle.None;
+                    formhija.Dock = DockStyle.Fill;
+                    panelContenedor.Controls.Add(formhija);
+                    panelContenedor.Tag = formhija;
+                    formhija.BringToFront();
+                    if (_fmTextilSoft._user.EnableAnimators)
+                        AbrirAnimator();
+                    else
+                        formhija.Show();
+                }
             }
         }
 
@@ -81,7 +157,7 @@ namespace UI.TextilSoft.SubForms.Pedidos
 
         private void btnCrearPedido_Click_1(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmCrearPedido(_factory));
+            AbrirFormHija(new FmCrearPedido(_factory,_fmTextilSoft));
         }
 
         private void lblPrincipal_Click(object sender, EventArgs e)

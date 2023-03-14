@@ -15,5 +15,7 @@ namespace Contracts.Controllers
         public PaginatedList<ListarPedidosEntity> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<ListarPedidosEntity, bool>> filterExpression, string orderBy, bool ascending);
         public ListarPedidosEntity ObtenerPedido(int NumeroOrden, ClientesEntity clienteEntity);
         public PaginatedList<ListarPedidosEntity> ObtenerListaPedidos(int pageCount);
+        
+        public string GenerarPedido(List<DetallePedidosYFabricaEntity> listaPedidos, bool EsPedido, int DNIEmpleado, int DNICLiente = 0, decimal totalPago = 0, decimal seña = 0);
     }
 }

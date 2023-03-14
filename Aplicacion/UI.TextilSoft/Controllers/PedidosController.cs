@@ -17,22 +17,29 @@ using System.Text;
 using System.Threading.Tasks;
 using Infrastructure;
 using ILogger = SL.Helper.Services.Log4net.ILogger;
+using Domain.Enum;
 
 namespace UI.TextilSoft.Controllers
 {
     public class PedidosController : IPedidosController
     {
         private readonly IPedidosService _pedidosService;
+        private readonly IPedidosFabricaService _pedidosFabricaService;
         private readonly IClientesService _clientesService;
         private readonly IEmpleadosService _empleadosService;
+        private readonly IDetallePedidosService _detallePedidosService;
+        private readonly IProductoService _productoService;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
         //private readonly IExpressionContext _expressionContext;
-        public PedidosController(IPedidosService pedidosService, IClientesService clientesService, IEmpleadosService empleadosService, IMapper mapper, ILogger logger)
+        public PedidosController(IPedidosService pedidosService, IClientesService clientesService, IPedidosFabricaService pedidosFabricaService, IEmpleadosService empleadosService, IDetallePedidosService detallePedidosService, IProductoService productoService, IMapper mapper, ILogger logger)
         {
             _pedidosService = pedidosService;
             _clientesService = clientesService;
+            _pedidosFabricaService = pedidosFabricaService;
             _empleadosService = empleadosService;
+            _detallePedidosService = detallePedidosService;
+            _productoService = productoService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -61,7 +68,7 @@ namespace UI.TextilSoft.Controllers
                 {
                     "ID_Pedido" => entity => entity.ID_Pedido,
                     "NumeroPedido" => entity => entity.NumeroPedido,
-                    "TotalPago" => entity => entity.TotalPago,
+                    "SubTotal" => entity => entity.SubTotal,
                     "Fecha" => entity => entity.Fecha,
                     "Seña" => entity => entity.Seña,
                     "Cliente" => entity => entity.Clientes.Nombre,
@@ -101,6 +108,40 @@ namespace UI.TextilSoft.Controllers
             {
                 _logger.GenerateFatalLog("Ocurrió un error fatal al obtener todos los pedidos", ex);
                 throw ex;
+            }
+        }
+        
+        public string GenerarPedido(List<DetallePedidosYFabricaEntity> listaPedidos, bool EsPedido, int DNIEmpleado ,int DNICLiente = 0, decimal subtotal = 0, decimal seña = 0)
+        {
+            string Mensaje = string.Empty;
+            try
+            {
+                if (EsPedido)
+                {
+                    List<DetallePedidosModel> ListadetallePedidosModel = new();
+                    foreach (var item in listaPedidos)
+                    {
+                        DetallePedidosModel detallePedidosModel = new();
+                        detallePedidosModel.Cantidad = item.Cantidad;
+                        detallePedidosModel.Detalle = item.Detalle;
+                        var producto = _productoService.Get(x => x.CodigoProducto == item.Codigo, tracking: false).FirstOrDefault();
+                        if(producto != null)
+                        {
+                            detallePedidosModel.ID_Producto = producto.ID_Producto;
+                            ListadetallePedidosModel.Add(detallePedidosModel);
+                        }
+                    }
+                    return _pedidosService.CrearPedido(DNICLiente, DNIEmpleado, subtotal, ListadetallePedidosModel);   
+                }
+                else
+                {
+                    return "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al crear el pedido", ex);
+                return "Ocurrió un error fatal al crear el pedido, contacte con el administrador por favor";
             }
         }
     }

@@ -39,28 +39,12 @@ namespace UI.TextilSoft.Mapeo
                 .ReverseMap()
                 .ForMember(dest => dest.Empleados, opt => opt.MapFrom(src => new EmpleadosModel { Nombre = StringSepare(src.AtendidoPor, " ", 0), Apellido = StringSepare(src.AtendidoPor, " ", 1) }))
                 .ForMember(dest => dest.Clientes, opt => opt.MapFrom(src => new ClientesModel { Nombre = StringSepare(src.Cliente, " ", 0), Apellido = StringSepare(src.Cliente, " ", 1) }));
-            
-            //CreateMap<List<PedidosModel>, List<ListarPedidosEntity>>()
-            //    .ReverseMap();
 
-            //CreateMap<PaginatedList<PedidosModel>, PaginatedList<ListarPedidosEntity>> ()
-            //    .ForMember(x => x.TotalPages, opt => opt.MapFrom(src => src.TotalPages))
-            //    .ForMember(x => x.TotalCount, opt => opt.MapFrom(src => src.TotalPages))
-            //    .ForMember(x => x.List.ForAll(x => x.EstadoPedido = ConvertToEstadoPedido(x.EstadoPedido.ID_EstadoPedido)))
-            //    .ReverseMap();
+            CreateMap<List<DetallePedidosYFabricaEntity>, List<DetallePedidosFabricaModel>>()
+                .ReverseMap();
 
-            //CreateMap<PedidosModel, ListarPedidosEntity>()
-            //    .ForMember(x => x.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
-            //    .ReverseMap();
-
-            //CreateMap<ListarPedidosEntity, PedidosModel>()
-            //    .ForMember(x => x.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido)))
-            //    .ReverseMap();
-
-            //map Expression<Func<PedidosModel, bool>> to Expression<Func<PedidosModel, bool>>>
-            //CreateMap<Expression<Func<PedidosModel, bool>>, Expression<Func<ListarPedidosEntity, bool>>>()
-            //    .ConvertUsing<ExpressionConverter<PedidosModel, ListarPedidosEntity>>();
-
+            CreateMap<List<DetallePedidosYFabricaEntity>, List<DetallePedidosModel>>()
+                .ReverseMap();
 
         }
 

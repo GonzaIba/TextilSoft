@@ -64,13 +64,16 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtTotal = new AltoControls.AltoTextBox();
             lblTotal = new System.Windows.Forms.Label();
             toolTipError = new System.Windows.Forms.ToolTip(components);
-            tbMantenerFiltro = new Tools.FormsTools.ToggleButton();
+            tbEsPedido = new Tools.FormsTools.ToggleButton();
             lblSi = new System.Windows.Forms.Label();
             lblNo = new System.Windows.Forms.Label();
             lblEsPedido = new System.Windows.Forms.Label();
             panelProductoDetalle = new System.Windows.Forms.Panel();
             timerSubir = new System.Windows.Forms.Timer(components);
             timerBajar = new System.Windows.Forms.Timer(components);
+            lblExtras = new System.Windows.Forms.Label();
+            txtSeña = new AltoControls.AltoTextBox();
+            label8 = new System.Windows.Forms.Label();
             panelClientes.SuspendLayout();
             panelProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
@@ -91,6 +94,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // panelClientes
             // 
             panelClientes.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelClientes.Controls.Add(txtSeña);
+            panelClientes.Controls.Add(label8);
+            panelClientes.Controls.Add(lblExtras);
             panelClientes.Controls.Add(label7);
             panelClientes.Controls.Add(label6);
             panelClientes.Controls.Add(label5);
@@ -256,9 +262,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             // btnCancelar
             // 
-            btnCancelar.BackColor = System.Drawing.Color.DimGray;
+            btnCancelar.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             btnCancelar.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnCancelar.Enabled = false;
             btnCancelar.FlatAppearance.BorderSize = 0;
             btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnCancelar.ForeColor = System.Drawing.Color.White;
@@ -273,10 +278,12 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.Visible = false;
+            btnCancelar.Click += btnCancelar_Click;
             // 
             // btnAgregarProducto
             // 
-            btnAgregarProducto.BackColor = System.Drawing.Color.DimGray;
+            btnAgregarProducto.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             btnAgregarProducto.Cursor = System.Windows.Forms.Cursors.Hand;
             btnAgregarProducto.Enabled = false;
             btnAgregarProducto.FlatAppearance.BorderSize = 0;
@@ -413,11 +420,13 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dgvProductos.RowTemplate.Height = 25;
             dgvProductos.Size = new System.Drawing.Size(940, 183);
             dgvProductos.TabIndex = 17;
+            dgvProductos.DataSourceChanged += dgvProductos_DataSourceChanged;
+            dgvProductos.CellClick += dgvProductos_CellClick;
             dgvProductos.DataError += dgvProductos_DataError;
             // 
             // btnGenerarPedido
             // 
-            btnGenerarPedido.BackColor = System.Drawing.Color.DimGray;
+            btnGenerarPedido.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             btnGenerarPedido.Cursor = System.Windows.Forms.Cursors.Hand;
             btnGenerarPedido.FlatAppearance.BorderSize = 0;
             btnGenerarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -479,23 +488,23 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblTotal.TabIndex = 20;
             lblTotal.Text = "Total:";
             // 
-            // tbMantenerFiltro
+            // tbEsPedido
             // 
-            tbMantenerFiltro.Checked = true;
-            tbMantenerFiltro.CheckState = System.Windows.Forms.CheckState.Checked;
-            tbMantenerFiltro.Cursor = System.Windows.Forms.Cursors.Hand;
-            tbMantenerFiltro.Location = new System.Drawing.Point(215, 30);
-            tbMantenerFiltro.MinimumSize = new System.Drawing.Size(45, 22);
-            tbMantenerFiltro.Name = "tbMantenerFiltro";
-            tbMantenerFiltro.OffBackColor = System.Drawing.Color.Gray;
-            tbMantenerFiltro.OffToggleColor = System.Drawing.Color.Gainsboro;
-            tbMantenerFiltro.OnBackColor = System.Drawing.Color.MediumSlateBlue;
-            tbMantenerFiltro.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            tbMantenerFiltro.Size = new System.Drawing.Size(55, 22);
-            tbMantenerFiltro.TabIndex = 87;
-            tbMantenerFiltro.Text = "toggleButton1";
-            tbMantenerFiltro.UseVisualStyleBackColor = true;
-            tbMantenerFiltro.CheckedChanged += tbMantenerFiltro_CheckedChanged;
+            tbEsPedido.Checked = true;
+            tbEsPedido.CheckState = System.Windows.Forms.CheckState.Checked;
+            tbEsPedido.Cursor = System.Windows.Forms.Cursors.Hand;
+            tbEsPedido.Location = new System.Drawing.Point(215, 30);
+            tbEsPedido.MinimumSize = new System.Drawing.Size(45, 22);
+            tbEsPedido.Name = "tbEsPedido";
+            tbEsPedido.OffBackColor = System.Drawing.Color.Gray;
+            tbEsPedido.OffToggleColor = System.Drawing.Color.Gainsboro;
+            tbEsPedido.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            tbEsPedido.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            tbEsPedido.Size = new System.Drawing.Size(55, 22);
+            tbEsPedido.TabIndex = 87;
+            tbEsPedido.Text = "toggleButton1";
+            tbEsPedido.UseVisualStyleBackColor = true;
+            tbEsPedido.CheckedChanged += tbMantenerFiltro_CheckedChanged;
             // 
             // lblSi
             // 
@@ -554,13 +563,46 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             timerBajar.Interval = 1;
             timerBajar.Tick += timerBajar_Tick;
             // 
+            // lblExtras
+            // 
+            lblExtras.AutoSize = true;
+            lblExtras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lblExtras.ForeColor = System.Drawing.Color.White;
+            lblExtras.Location = new System.Drawing.Point(592, 5);
+            lblExtras.Name = "lblExtras";
+            lblExtras.Size = new System.Drawing.Size(56, 21);
+            lblExtras.TabIndex = 15;
+            lblExtras.Text = "Extras";
+            // 
+            // txtSeña
+            // 
+            txtSeña.BackColor = System.Drawing.Color.Transparent;
+            txtSeña.Br = System.Drawing.Color.MidnightBlue;
+            txtSeña.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtSeña.ForeColor = System.Drawing.Color.White;
+            txtSeña.Location = new System.Drawing.Point(592, 35);
+            txtSeña.Name = "txtSeña";
+            txtSeña.Size = new System.Drawing.Size(122, 29);
+            txtSeña.TabIndex = 17;
+            txtSeña.TextChanged += txtSeña_TextChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = System.Drawing.Color.White;
+            label8.Location = new System.Drawing.Point(548, 41);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(35, 15);
+            label8.TabIndex = 16;
+            label8.Text = "Seña:";
+            // 
             // FmCrearPedido
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            BackColor = System.Drawing.Color.DimGray;
+            BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             ClientSize = new System.Drawing.Size(976, 581);
-            Controls.Add(tbMantenerFiltro);
+            Controls.Add(tbEsPedido);
             Controls.Add(lblSi);
             Controls.Add(lblNo);
             Controls.Add(lblEsPedido);
@@ -568,6 +610,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             Controls.Add(panelProductoDetalle);
             Name = "FmCrearPedido";
             Text = "FmCrearPedido";
+            FormClosing += FmCrearPedido_FormClosing;
             Load += FmCrearPedido_Load;
             panelClientes.ResumeLayout(false);
             panelClientes.PerformLayout();
@@ -612,7 +655,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private AltoControls.AltoTextBox txtTotal;
         private System.Windows.Forms.Label lblTotal;
         private System.Windows.Forms.ToolTip toolTipError;
-        private Tools.FormsTools.ToggleButton tbMantenerFiltro;
+        private Tools.FormsTools.ToggleButton tbEsPedido;
         private System.Windows.Forms.Label lblSi;
         private System.Windows.Forms.Label lblNo;
         private System.Windows.Forms.Label lblEsPedido;
@@ -620,5 +663,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private System.Windows.Forms.Timer timerSubir;
         private System.Windows.Forms.Timer timerBajar;
         private FontAwesome.Sharp.IconButton btnCancelar;
+        private AltoControls.AltoTextBox txtSeña;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblExtras;
     }
 }

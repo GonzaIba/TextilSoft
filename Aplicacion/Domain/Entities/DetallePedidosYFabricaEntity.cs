@@ -8,6 +8,7 @@ namespace Domain.Entities
 {
     public class DetallePedidosYFabricaEntity
     {
+        public string Acciones { get; set; }
         public Guid Codigo { get; set; }
         public string Detalle { get; set; }
         public string NombreProducto { get; set; }

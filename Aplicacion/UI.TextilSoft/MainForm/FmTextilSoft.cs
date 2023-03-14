@@ -25,6 +25,7 @@ using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Configuracion;
 using UI.TextilSoft.SubForms.Pedidos;
+using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 using UI.TextilSoft.SubForms.Produccion;
 using UI.TextilSoft.SubForms.Proveedores;
 using UI.TextilSoft.Tools;
@@ -38,6 +39,7 @@ namespace UI.TextilSoft.MainForm
         #region Variables
         private Form activeForm = null;
         public Form subForm = null;
+        public Form formPedido = null;
         private IconButton currentBtn;
         private Panel leftBorderBtn;
         private Random random;
@@ -210,24 +212,46 @@ namespace UI.TextilSoft.MainForm
 
             if (activeForm != null)
             {
-                activeForm.Close();
-                activeForm = formhija;
-                formhija.Visible = false;
-                formhija.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-                formhija.TopLevel = false;
-                formhija.FormBorderStyle = FormBorderStyle.None;
-                formhija.Dock = DockStyle.Fill;
-                panelContenedor.Controls.Add(formhija);
-                panelContenedor.Tag = formhija;
-                formhija.BringToFront();
-                formhija.Show();
+                if (formPedido != null && formhija is FmCrearPedido)
+                {
+                    formPedido.Visible = false;
+                    formPedido.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+                    formPedido.TopLevel = false;
+                    formPedido.FormBorderStyle = FormBorderStyle.None;
+                    formPedido.Dock = DockStyle.Fill;
+                    panelContenedor.Controls.Add(formPedido);
+                    panelContenedor.Tag = formPedido;
+                    formPedido.BringToFront();
+                    formPedido.Show();
 
-                //Si EnabledAnimator esta en true ejecutar el metodo
-                if (PerformanceConfiguration.EnabledAnimator)
-                    AbrirAnimator();
+                    //Si EnabledAnimator esta en true ejecutar el metodo
+                    if (PerformanceConfiguration.EnabledAnimator)
+                        AbrirAnimator();
 
-                timer1.Dispose();
-                timer2.Dispose();
+                    timer1.Dispose();
+                    timer2.Dispose();
+                }
+                else
+                {
+                    activeForm = formhija;
+                    formhija.Visible = false;
+                    formhija.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+                    formhija.TopLevel = false;
+                    formhija.FormBorderStyle = FormBorderStyle.None;
+                    formhija.Dock = DockStyle.Fill;
+                    panelContenedor.Controls.Add(formhija);
+                    panelContenedor.Tag = formhija;
+                    formhija.BringToFront();
+                    formhija.Show();
+
+                    //Si EnabledAnimator esta en true ejecutar el metodo
+                    if (PerformanceConfiguration.EnabledAnimator)
+                        AbrirAnimator();
+
+                    timer1.Dispose();
+                    timer2.Dispose();
+                }
+
             }
             else
             {

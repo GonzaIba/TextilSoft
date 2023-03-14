@@ -20,7 +20,7 @@ namespace Domain.Models
         public string Nombre { get; set; }
         public string Residencia { get; set; }
         public string Legajo { get; set; }
-        public string DNI { get; set; }
+        public int DNI { get; set; }
         public virtual ICollection<PedidosModel> Pedidos { get; set; }
         public virtual ICollection<PedidosFabricaModel> PedidosFabrica { get; set; }
         //public Usuario usuario { get; set; }

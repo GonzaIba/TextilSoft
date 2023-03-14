@@ -30,7 +30,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            AnimatorNS.Animation animation3 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmPedidos));
             lblPrincipal = new System.Windows.Forms.Label();
             panelContenedor = new System.Windows.Forms.Panel();
@@ -38,10 +38,10 @@
             btnCrearPedido = new FontAwesome.Sharp.IconButton();
             PanelAnimator = new AnimatorNS.Animator(components);
             panelTop = new System.Windows.Forms.Panel();
+            btnCerrarODT = new FontAwesome.Sharp.IconButton();
+            iconButton1 = new FontAwesome.Sharp.IconButton();
             btnListarPedidos = new FontAwesome.Sharp.IconButton();
             btnCancelarPedido = new FontAwesome.Sharp.IconButton();
-            iconButton1 = new FontAwesome.Sharp.IconButton();
-            btnCerrarODT = new FontAwesome.Sharp.IconButton();
             panelTop.SuspendLayout();
             SuspendLayout();
             // 
@@ -70,6 +70,7 @@
             // 
             // btnAdministrarPedido
             // 
+            btnAdministrarPedido.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnAdministrarPedido, AnimatorNS.DecorationType.None);
             btnAdministrarPedido.FlatAppearance.BorderSize = 0;
             btnAdministrarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -89,6 +90,7 @@
             // 
             // btnCrearPedido
             // 
+            btnCrearPedido.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnCrearPedido, AnimatorNS.DecorationType.None);
             btnCrearPedido.FlatAppearance.BorderSize = 0;
             btnCrearPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -110,22 +112,22 @@
             // 
             PanelAnimator.AnimationType = AnimatorNS.AnimationType.VertBlind;
             PanelAnimator.Cursor = null;
-            animation3.AnimateOnlyDifferences = true;
-            animation3.BlindCoeff = (System.Drawing.PointF)resources.GetObject("animation3.BlindCoeff");
-            animation3.LeafCoeff = 0F;
-            animation3.MaxTime = 1F;
-            animation3.MinTime = 0F;
-            animation3.MosaicCoeff = (System.Drawing.PointF)resources.GetObject("animation3.MosaicCoeff");
-            animation3.MosaicShift = (System.Drawing.PointF)resources.GetObject("animation3.MosaicShift");
-            animation3.MosaicSize = 0;
-            animation3.Padding = new System.Windows.Forms.Padding(0);
-            animation3.RotateCoeff = 0F;
-            animation3.RotateLimit = 0F;
-            animation3.ScaleCoeff = (System.Drawing.PointF)resources.GetObject("animation3.ScaleCoeff");
-            animation3.SlideCoeff = (System.Drawing.PointF)resources.GetObject("animation3.SlideCoeff");
-            animation3.TimeCoeff = 0F;
-            animation3.TransparencyCoeff = 0F;
-            PanelAnimator.DefaultAnimation = animation3;
+            animation1.AnimateOnlyDifferences = true;
+            animation1.BlindCoeff = (System.Drawing.PointF)resources.GetObject("animation1.BlindCoeff");
+            animation1.LeafCoeff = 0F;
+            animation1.MaxTime = 1F;
+            animation1.MinTime = 0F;
+            animation1.MosaicCoeff = (System.Drawing.PointF)resources.GetObject("animation1.MosaicCoeff");
+            animation1.MosaicShift = (System.Drawing.PointF)resources.GetObject("animation1.MosaicShift");
+            animation1.MosaicSize = 0;
+            animation1.Padding = new System.Windows.Forms.Padding(0);
+            animation1.RotateCoeff = 0F;
+            animation1.RotateLimit = 0F;
+            animation1.ScaleCoeff = (System.Drawing.PointF)resources.GetObject("animation1.ScaleCoeff");
+            animation1.SlideCoeff = (System.Drawing.PointF)resources.GetObject("animation1.SlideCoeff");
+            animation1.TimeCoeff = 0F;
+            animation1.TransparencyCoeff = 0F;
+            PanelAnimator.DefaultAnimation = animation1;
             PanelAnimator.TimeStep = 0.01F;
             // 
             // panelTop
@@ -144,8 +146,47 @@
             panelTop.Size = new System.Drawing.Size(914, 120);
             panelTop.TabIndex = 7;
             // 
+            // btnCerrarODT
+            // 
+            btnCerrarODT.Cursor = System.Windows.Forms.Cursors.Hand;
+            PanelAnimator.SetDecoration(btnCerrarODT, AnimatorNS.DecorationType.None);
+            btnCerrarODT.FlatAppearance.BorderSize = 0;
+            btnCerrarODT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnCerrarODT.ForeColor = System.Drawing.Color.White;
+            btnCerrarODT.IconChar = FontAwesome.Sharp.IconChar.Lock;
+            btnCerrarODT.IconColor = System.Drawing.Color.White;
+            btnCerrarODT.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnCerrarODT.IconSize = 35;
+            btnCerrarODT.Location = new System.Drawing.Point(739, 74);
+            btnCerrarODT.Name = "btnCerrarODT";
+            btnCerrarODT.Size = new System.Drawing.Size(172, 46);
+            btnCerrarODT.TabIndex = 10;
+            btnCerrarODT.Text = "Cerrar Orden De Trabajo";
+            btnCerrarODT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnCerrarODT.UseVisualStyleBackColor = true;
+            // 
+            // iconButton1
+            // 
+            iconButton1.Cursor = System.Windows.Forms.Cursors.Hand;
+            PanelAnimator.SetDecoration(iconButton1, AnimatorNS.DecorationType.None);
+            iconButton1.FlatAppearance.BorderSize = 0;
+            iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            iconButton1.ForeColor = System.Drawing.Color.White;
+            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Briefcase;
+            iconButton1.IconColor = System.Drawing.Color.White;
+            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            iconButton1.IconSize = 35;
+            iconButton1.Location = new System.Drawing.Point(572, 75);
+            iconButton1.Name = "iconButton1";
+            iconButton1.Size = new System.Drawing.Size(161, 46);
+            iconButton1.TabIndex = 9;
+            iconButton1.Text = "Asignar Orden De Trabajo";
+            iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            iconButton1.UseVisualStyleBackColor = true;
+            // 
             // btnListarPedidos
             // 
+            btnListarPedidos.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnListarPedidos, AnimatorNS.DecorationType.None);
             btnListarPedidos.FlatAppearance.BorderSize = 0;
             btnListarPedidos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -166,6 +207,7 @@
             // 
             // btnCancelarPedido
             // 
+            btnCancelarPedido.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnCancelarPedido, AnimatorNS.DecorationType.None);
             btnCancelarPedido.FlatAppearance.BorderSize = 0;
             btnCancelarPedido.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -181,42 +223,6 @@
             btnCancelarPedido.Text = "Cancelar Pedido";
             btnCancelarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnCancelarPedido.UseVisualStyleBackColor = true;
-            // 
-            // iconButton1
-            // 
-            PanelAnimator.SetDecoration(iconButton1, AnimatorNS.DecorationType.None);
-            iconButton1.FlatAppearance.BorderSize = 0;
-            iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            iconButton1.ForeColor = System.Drawing.Color.White;
-            iconButton1.IconChar = FontAwesome.Sharp.IconChar.Briefcase;
-            iconButton1.IconColor = System.Drawing.Color.White;
-            iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconButton1.IconSize = 35;
-            iconButton1.Location = new System.Drawing.Point(572, 75);
-            iconButton1.Name = "iconButton1";
-            iconButton1.Size = new System.Drawing.Size(161, 46);
-            iconButton1.TabIndex = 9;
-            iconButton1.Text = "Asignar Orden De Trabajo";
-            iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            iconButton1.UseVisualStyleBackColor = true;
-            // 
-            // btnCerrarODT
-            // 
-            PanelAnimator.SetDecoration(btnCerrarODT, AnimatorNS.DecorationType.None);
-            btnCerrarODT.FlatAppearance.BorderSize = 0;
-            btnCerrarODT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnCerrarODT.ForeColor = System.Drawing.Color.White;
-            btnCerrarODT.IconChar = FontAwesome.Sharp.IconChar.Lock;
-            btnCerrarODT.IconColor = System.Drawing.Color.White;
-            btnCerrarODT.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnCerrarODT.IconSize = 35;
-            btnCerrarODT.Location = new System.Drawing.Point(739, 74);
-            btnCerrarODT.Name = "btnCerrarODT";
-            btnCerrarODT.Size = new System.Drawing.Size(172, 46);
-            btnCerrarODT.TabIndex = 10;
-            btnCerrarODT.Text = "Cerrar Orden De Trabajo";
-            btnCerrarODT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            btnCerrarODT.UseVisualStyleBackColor = true;
             // 
             // FmPedidos
             // 
