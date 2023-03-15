@@ -23,7 +23,7 @@ namespace Infrastructure.TypeBuilders
                 .IsRequired(true);
 
             builder.HasOne(p => p.Pedidos)//si yo selecciono una propiedad de otra clase, el siguiente metodo apunta a la otra clase
-                .WithMany(c=>c.DetallePedido)
+                .WithMany(c => c.DetallePedido)
                 .HasForeignKey(p => p.ID_Pedido);
 
             builder.HasOne(p => p.Producto)

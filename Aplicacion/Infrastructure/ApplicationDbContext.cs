@@ -19,10 +19,10 @@ namespace Infrastructure
     {
         //Este constructor se utiliza para hacer una migracion a la base de datos
         //Se utiliza code first
-        //public ApplicationDbContext()
-        //{
+        public ApplicationDbContext()
+        {
 
-        //}
+        }
         public DbSet<PedidosModel> Pedidos { get; set; }
 
         /// <summary>

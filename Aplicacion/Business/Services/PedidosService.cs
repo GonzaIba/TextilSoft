@@ -27,7 +27,7 @@ namespace Business.Services
             _empleadosService = empleadosService;
         }
 
-        public string CrearPedido(int DNICLiente, int DNIEmpleado, decimal subTotal, List<DetallePedidosModel> ListadetallePedidos)
+        public string CrearPedido(int DNICLiente, int DNIEmpleado, decimal subTotal, List<DetallePedidosModel> ListadetallePedidos, decimal seña)
         {
             PedidosModel pedidosModel = new();
             try
@@ -49,11 +49,11 @@ namespace Business.Services
                 pedidosModel.Fecha = DateTime.Now;
                 pedidosModel.NumeroPedido = ObtenerUltimoNumeroPedido() + 1;
                 pedidosModel.SubTotal = subTotal;
-                pedidosModel.Seña = 0;
+                pedidosModel.Seña = seña;
                 pedidosModel.CreateUser = empleado.ID_Empleados;
 
                 Crear(pedidosModel);
-
+                _unitOfWork.SaveChanges();
                 foreach (var detallePedido in ListadetallePedidos)
                 {
                     detallePedido.ID_Pedido = pedidosModel.ID_Pedido;
@@ -64,7 +64,9 @@ namespace Business.Services
             }
             catch (Exception ex)
             {
-                CancelChanges(pedidosModel);
+                Eliminar(pedidosModel);
+                _unitOfWork.SaveChanges();
+                //CancelChanges(pedidosModel);
                 throw;
             }
         }

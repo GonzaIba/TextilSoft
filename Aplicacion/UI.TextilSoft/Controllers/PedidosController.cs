@@ -131,7 +131,7 @@ namespace UI.TextilSoft.Controllers
                             ListadetallePedidosModel.Add(detallePedidosModel);
                         }
                     }
-                    return _pedidosService.CrearPedido(DNICLiente, DNIEmpleado, subtotal, ListadetallePedidosModel);   
+                    return _pedidosService.CrearPedido(DNICLiente, DNIEmpleado, subtotal, ListadetallePedidosModel,seña);   
                 }
                 else
                 {

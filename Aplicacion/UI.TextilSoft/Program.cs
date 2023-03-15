@@ -235,8 +235,11 @@ namespace UI.TextilSoft
             var permisoRepository = services.GetRequiredService<IPermisoRepository>();
             var usuario_PermisoRepository = services.GetRequiredService<IUsuario_PermisoRepository>();
 
+            var empleadosRepository = services.GetRequiredService<IEmpleadosRepository>();
+
             UsuarioModel usuario = new();
             PermisoModel permisoModel = new();
+            EmpleadosModel empleadosModel = new();
             if (!usuarioRepository.Get(x => x.Nombre.ToLower() == "admin").Any())
             {
                 usuario.Nombre = "admin";
@@ -246,11 +249,25 @@ namespace UI.TextilSoft
                 usuario.CompanyId = companyId;
                 usuario.Active = true;
                 usuario.IsOwner = true;
+                usuario.DNI = 12345678;
                 usuarioRepository.Insert(usuario);
                 SldbContext.SaveChanges();
+
             }
             else
                 usuario = usuarioRepository.Get(x => x.Nombre == "admin").FirstOrDefault();
+
+            if (!empleadosRepository.Get(x => x.Nombre.ToLower() == "PRUEBA").Any())
+            {
+                empleadosModel.DNI = usuario.DNI;
+                empleadosModel.Nombre = "PRUEBA";
+                empleadosModel.Legajo = "ASDR-JPT";
+                empleadosModel.Apellido = "PRUEBA";
+                empleadosModel.Residencia = "Calle falsa 123";
+                //empleadosRepository.Insert(empleadosModel);
+                dbContext.Add(empleadosModel);
+                dbContext.SaveChanges();
+            }
 
             if (!permisoRepository.Get(x => x.Permiso.ToLower() == "EsAdmin").Any())
             {
