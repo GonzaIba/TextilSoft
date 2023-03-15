@@ -34,7 +34,7 @@ namespace Infrastructure.TypeBuilders
 
             builder.HasMany(p => p.DetallePedido)
                 .WithOne(x => x.Pedidos)
-                .HasForeignKey(d => d.ID_DetallePedido);
+                .HasForeignKey(d => d.ID_Pedido);
 
             builder.HasMany(p => p.Factura) //No tiene sentido la relacion de muchos a uno
                 .WithOne(x => x.Pedidos)    //Pero por algún motivo me generaba una columna rara... revisar
