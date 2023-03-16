@@ -55,7 +55,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 productosEntity.Color = txtColor.BackColor;
                 _factory.UseNew<IProductosController>().CrearProducto(productosEntity);
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Crear Producto", "Se creó el producto correctamente!", centerPosition);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Crear Producto", "Se creó el producto correctamente!", centerPosition);
                 fmMessageBox.ShowDialog();
             }
             catch (Exception ex)

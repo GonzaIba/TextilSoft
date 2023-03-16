@@ -18,10 +18,11 @@ using System.Threading.Tasks;
 using Infrastructure;
 using ILogger = SL.Helper.Services.Log4net.ILogger;
 using Domain.Enum;
+using System.Data.Entity.Core.Common.CommandTrees;
 
 namespace UI.TextilSoft.Controllers
 {
-    public class PedidosController : IPedidosController
+    public class PedidosController<T> : IPedidosController<T> where T : class
     {
         private readonly IPedidosService _pedidosService;
         private readonly IPedidosFabricaService _pedidosFabricaService;
@@ -43,7 +44,7 @@ namespace UI.TextilSoft.Controllers
             _mapper = mapper;
             _logger = logger;
         }
-
+        
         public ListarPedidosEntity ObtenerPedido(int Numeropedido, ClientesEntity clienteEntity)
         {
             ListarPedidosEntity pedidoEntity = new();
@@ -59,32 +60,54 @@ namespace UI.TextilSoft.Controllers
                 throw ex;
             }
         }
-
-        public PaginatedList<ListarPedidosEntity> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<ListarPedidosEntity, bool>> filterExpression, string orderBy, bool ascending)
+        
+        public PaginatedList<T> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<T, bool>> filterExpression, string orderBy, bool ascending, bool EsPedido)
         {
             try
             {
-                Expression<Func<PedidosModel, dynamic>> orderByExpressionPedidosModel = orderBy switch
+                if (EsPedido)
                 {
-                    "ID_Pedido" => entity => entity.ID_Pedido,
-                    "NumeroPedido" => entity => entity.NumeroPedido,
-                    "SubTotal" => entity => entity.SubTotal,
-                    "Fecha" => entity => entity.Fecha,
-                    "Seña" => entity => entity.Seña,
-                    "Cliente" => entity => entity.Clientes.Nombre,
-                    "AtendidoPor" => entity => entity.Empleados.Nombre,
-                    "EstadoPedido" => entity => entity.EstadoPedido,
-                    _ => entity => entity.ID_Pedido,
-                };
-                //var orderByExpressionPedidosModel = orderByExpression.ReplaceParameter<ListarPedidosEntity, PedidosModel>();
-                var filterExpressionPedidosModel = filterExpression.ReplaceParameter<ListarPedidosEntity, PedidosModel>();
-                var ListaPedidosModel = _pedidosService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, filterExpressionPedidosModel, orderBy, ascending);
-                var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
-                ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
-                ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
-                ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
-                //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
-                return ListaPedidosEntity;
+                    Expression<Func<PedidosModel, dynamic>> orderByExpressionPedidosModel = orderBy switch
+                    {
+                        "ID_Pedido" => entity => entity.ID_Pedido,
+                        "NumeroPedido" => entity => entity.NumeroPedido,
+                        "SubTotal" => entity => entity.SubTotal,
+                        "Fecha" => entity => entity.Fecha,
+                        "Seña" => entity => entity.Seña,
+                        "Cliente" => entity => entity.Clientes.Nombre,
+                        "AtendidoPor" => entity => entity.Empleados.Nombre,
+                        "EstadoPedido" => entity => entity.EstadoPedido,
+                        _ => entity => entity.ID_Pedido,
+                    };
+                    //var orderByExpressionPedidosModel = orderByExpression.ReplaceParameter<ListarPedidosEntity, PedidosModel>();
+                    var filterExpressionPedidosModel = filterExpression.ReplaceParameter<T, PedidosModel>();
+                    var ListaPedidosModel = _pedidosService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, filterExpressionPedidosModel, orderBy, ascending);
+                    var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
+                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
+                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
+                    return (PaginatedList<T>)(object)ListaPedidosEntity;
+                }
+                else
+                {
+                    Expression<Func<PedidosFabricaModel, dynamic>> orderByExpressionPedidosModel = orderBy switch
+                    {
+                        "ID_PedidosFabrica" => entity => entity.ID_PedidosFabrica,
+                        "Detalle" => entity => entity.Detalle,
+                        "AtendidoPor" => entity => entity.Empleados.Nombre,
+                        _ => entity => entity.ID_PedidosFabrica,
+                    };
+                    //var orderByExpressionPedidosModel = orderByExpression.ReplaceParameter<ListarPedidosEntity, PedidosModel>();
+                    var filterExpressionPedidosModel = filterExpression.ReplaceParameter<T, PedidosFabricaModel>();
+                    var ListaPedidosModel = _pedidosFabricaService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, filterExpressionPedidosModel, orderBy, ascending);
+                    var ListaPedidosEntity = new PaginatedList<ListarPedidosFabricaEntity>();
+                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosFabricaEntity>>(ListaPedidosModel.List.ToList());
+                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
+                    return (PaginatedList<T>)(object)ListaPedidosEntity;
+                }
             }
             catch (Exception ex)
             {
@@ -93,16 +116,28 @@ namespace UI.TextilSoft.Controllers
             }
         }
 
-        public PaginatedList<ListarPedidosEntity> ObtenerListaPedidos(int pageCount)
+        public PaginatedList<T> ObtenerListaPedidos(int pageCount, bool EsPedido)
         {
             try
             {
-                var ListaPedidosModel = _pedidosService.ObtenerTodosLosPedidos(pageCount);
-                var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
-                ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
-                ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
-                ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
-                return ListaPedidosEntity;
+                if(EsPedido)
+                {
+                    var ListaPedidosModel = _pedidosService.ObtenerTodosLosPedidos(pageCount);
+                    var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
+                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
+                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    return (PaginatedList<T>)(object)ListaPedidosEntity;
+                }
+                else
+                {
+                    var ListaPedidosModel = _pedidosFabricaService.ObtenerTodosLosPedidos(pageCount);
+                    var ListaPedidosEntity = new PaginatedList<ListarPedidosFabricaEntity>();
+                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosFabricaEntity>>(ListaPedidosModel.List.ToList());
+                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    return (PaginatedList<T>)(object)ListaPedidosEntity;
+                }
             }
             catch (Exception ex)
             {
@@ -135,13 +170,78 @@ namespace UI.TextilSoft.Controllers
                 }
                 else
                 {
-                    return "OK";
+                    List<DetallePedidosFabricaModel> ListadetallePedidosModel = new();
+                    foreach (var item in listaPedidos)
+                    {
+                        DetallePedidosFabricaModel detallePedidosModel = new();
+                        detallePedidosModel.Cantidad = item.Cantidad;
+                        detallePedidosModel.Detalle = item.Detalle;
+                        var producto = _productoService.Get(x => x.CodigoProducto == item.Codigo, tracking: false).FirstOrDefault();
+                        if (producto != null)
+                        {
+                            detallePedidosModel.ID_Producto = producto.ID_Producto;
+                            ListadetallePedidosModel.Add(detallePedidosModel);
+                        }
+                    }
+                    return _pedidosFabricaService.CrearPedidoParaFabrica(DNIEmpleado, ListadetallePedidosModel);
                 }
             }
             catch (Exception ex)
             {
                 _logger.GenerateFatalLog("Ocurrió un error fatal al crear el pedido", ex);
                 return "Ocurrió un error fatal al crear el pedido, contacte con el administrador por favor";
+            }
+        }
+
+        public PaginatedList<T> ObtenerPedidosParaODT(int pageIndex, int pageCount, string orderBy, bool ascending, bool EsPedido)
+        {
+            try
+            {
+                if (EsPedido)
+                {
+                    Expression<Func<PedidosModel, dynamic>> orderByExpressionPedidosModel = orderBy switch
+                    {
+                        "ID_Pedido" => entity => entity.ID_Pedido,
+                        "NumeroPedido" => entity => entity.NumeroPedido,
+                        "SubTotal" => entity => entity.SubTotal,
+                        "Fecha" => entity => entity.Fecha,
+                        "Seña" => entity => entity.Seña,
+                        "Cliente" => entity => entity.Clientes.Nombre,
+                        "AtendidoPor" => entity => entity.Empleados.Nombre,
+                        "EstadoPedido" => entity => entity.EstadoPedido,
+                        _ => entity => entity.ID_Pedido,
+                    };                
+                    Expression<Func<PedidosModel, bool>> expression = x => x.ID_EstadoPedido == (int)EstadoPedidosEnum.SinAsignar;
+                    var ListaPedidosModel = _pedidosService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, expression, orderBy, ascending);
+                    var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
+                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
+                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    return (PaginatedList<T>)(object)ListaPedidosEntity;
+                }
+                else
+                {
+                    Expression<Func<PedidosFabricaModel, dynamic>> orderByExpressionPedidosModel = orderBy switch
+                    {
+                        "ID_PedidosFabrica" => entity => entity.ID_PedidosFabrica,
+                        "Detalle" => entity => entity.Detalle,
+                        "AtendidoPor" => entity => entity.Empleados.Nombre,
+                        _ => entity => entity.ID_PedidosFabrica,
+                    };
+                    Expression<Func<PedidosFabricaModel, bool>> expression = x => x.ID_EstadoPedidoFabrica == (int)EstadoPedidosFabricaEnum.SinAsignar;
+                    var ListaPedidosModel = _pedidosFabricaService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, expression, orderBy, ascending);
+                    var ListaPedidosEntity = new PaginatedList<ListarPedidosFabricaEntity>();
+                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosFabricaEntity>>(ListaPedidosModel.List.ToList());
+                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
+                    return (PaginatedList<T>)(object)ListaPedidosEntity;
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al obtener pedidos", ex);
+                throw;
             }
         }
     }

@@ -183,6 +183,7 @@
             iconButton1.Text = "Asignar Orden De Trabajo";
             iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             iconButton1.UseVisualStyleBackColor = true;
+            iconButton1.Click += iconButton1_Click;
             // 
             // btnListarPedidos
             // 

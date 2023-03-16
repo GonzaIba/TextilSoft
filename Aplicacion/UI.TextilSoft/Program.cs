@@ -51,6 +51,9 @@ using OfficeOpenXml.FormulaParsing.Excel.Functions.DateTime;
 using SL.EmailHelper;
 using System.Windows.Media.Media3D;
 using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
+using Contracts.Controllers;
+using Domain.Entities;
+using UI.TextilSoft.Controllers;
 
 namespace UI.TextilSoft
 {
@@ -168,6 +171,9 @@ namespace UI.TextilSoft
             services.AddSingleton<Inicio>();
             services.AddSingleton<IControllerFactory,ControllerFactory>();
             services.AddSingleton<ILogger, Logger>();
+
+            services.AddSingleton<IPedidosController<ListarPedidosEntity>, PedidosController<ListarPedidosEntity>>();
+            services.AddSingleton<IPedidosController<ListarPedidosFabricaEntity>, PedidosController<ListarPedidosFabricaEntity>>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 

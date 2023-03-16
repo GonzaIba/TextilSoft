@@ -298,12 +298,29 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         {
             try
             {
-                string resultado = _factory.Use<IPedidosController>().GenerarPedido(DetallePedidos, tbEsPedido.Checked, Convert.ToInt32(_fmTextilSoft._user.DNI), Convert.ToInt32(txtDNI.Text), Convert.ToDecimal(txtSubtotal.Text), Convert.ToDecimal(txtSeña.Text));
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Crear pedido", "Esta seguro que desea crear el pedido?", centerPosition, true);
+                fmMessageBox.ShowDialog();
+
+                if (fmMessageBox.btnAceptar)
+                {
+                    string resultado = _factory.Use<IPedidosController<ListarPedidosEntity>>().GenerarPedido(DetallePedidos, tbEsPedido.Checked, Convert.ToInt32(_fmTextilSoft._user.DNI), Convert.ToInt32(txtDNI.Text), Convert.ToDecimal(txtSubtotal.Text), Convert.ToDecimal(txtSeña.Text));
+                    if (resultado == "OK")
+                    {
+                        FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Success, "Creación exitosa", "Se creó el pedido correctamente!", centerPosition);
+                        fmMessageBox.ShowDialog();
+                    }
+                    else
+                    {
+                        FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Error, "Error al crear el pedido", resultado, centerPosition);
+                        fmMessageBox2.ShowDialog();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Error al crear el pedido", "Hubo un error en el sistema, pruebe mas tarde o contacte con el administrador.", centerPosition, true);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Error al crear el pedido", "Hubo un error en el sistema, pruebe mas tarde o contacte con el administrador.", centerPosition);
                 fmMessageBox.ShowDialog();
             }
         }

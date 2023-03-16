@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Tools.FormsTools;
 using UI.TextilSoft.Factory;
+using Domain.Entities;
 
 namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
 {
@@ -69,7 +70,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             var cliente = _factory.Use<IClientesController>().ObtenerCliente(txtDNIcli.Text);
             if (cliente != null)
             {
-                var Pedido = _factory.Use<IPedidosController>().ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente);
+                var Pedido = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente);
                 if(Pedido != null)
                 {
                     tmLbl.Start();

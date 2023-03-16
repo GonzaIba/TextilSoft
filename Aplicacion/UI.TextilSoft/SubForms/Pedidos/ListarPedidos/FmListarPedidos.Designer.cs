@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             PanelProveedores = new System.Windows.Forms.Panel();
             GrillaPedidos = new System.Windows.Forms.DataGridView();
             lblPedidos = new System.Windows.Forms.Label();
@@ -55,6 +55,10 @@
             lblMantenerFiltro = new System.Windows.Forms.Label();
             lblFiltradoDeCampo = new System.Windows.Forms.Label();
             txtSearch = new AltoControls.AltoTextBox();
+            tbEsPedido = new Tools.FormsTools.ToggleButton();
+            lblPed_SI = new System.Windows.Forms.Label();
+            lblPed_NO = new System.Windows.Forms.Label();
+            lbl = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)GrillaPedidos).BeginInit();
             panelPaginado.SuspendLayout();
             SuspendLayout();
@@ -77,14 +81,14 @@
             GrillaPedidos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             GrillaPedidos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             GrillaPedidos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            GrillaPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            GrillaPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             GrillaPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             GrillaPedidos.EnableHeadersVisualStyles = false;
             GrillaPedidos.GridColor = System.Drawing.Color.FromArgb(0, 80, 200);
@@ -92,21 +96,21 @@
             GrillaPedidos.Name = "GrillaPedidos";
             GrillaPedidos.ReadOnly = true;
             GrillaPedidos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            GrillaPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
-            GrillaPedidos.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            GrillaPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
+            GrillaPedidos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             GrillaPedidos.RowTemplate.Height = 25;
-            GrillaPedidos.Size = new System.Drawing.Size(881, 285);
+            GrillaPedidos.Size = new System.Drawing.Size(965, 285);
             GrillaPedidos.TabIndex = 4;
             GrillaPedidos.DataSourceChanged += GrillaPedidos_DataSourceChanged;
             // 
@@ -115,7 +119,7 @@
             lblPedidos.AutoSize = true;
             lblPedidos.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPedidos.ForeColor = System.Drawing.Color.White;
-            lblPedidos.Location = new System.Drawing.Point(303, 9);
+            lblPedidos.Location = new System.Drawing.Point(381, 9);
             lblPedidos.Name = "lblPedidos";
             lblPedidos.Size = new System.Drawing.Size(187, 32);
             lblPedidos.TabIndex = 5;
@@ -126,7 +130,7 @@
             lblDateDesde.AutoSize = true;
             lblDateDesde.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblDateDesde.ForeColor = System.Drawing.Color.White;
-            lblDateDesde.Location = new System.Drawing.Point(460, 72);
+            lblDateDesde.Location = new System.Drawing.Point(531, 68);
             lblDateDesde.Name = "lblDateDesde";
             lblDateDesde.Size = new System.Drawing.Size(53, 21);
             lblDateDesde.TabIndex = 6;
@@ -137,7 +141,7 @@
             lblDateHasta.AutoSize = true;
             lblDateHasta.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblDateHasta.ForeColor = System.Drawing.Color.White;
-            lblDateHasta.Location = new System.Drawing.Point(631, 72);
+            lblDateHasta.Location = new System.Drawing.Point(701, 68);
             lblDateHasta.Name = "lblDateHasta";
             lblDateHasta.Size = new System.Drawing.Size(49, 21);
             lblDateHasta.TabIndex = 8;
@@ -149,7 +153,7 @@
             fmDateDesde.BorderSize = 0;
             fmDateDesde.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             fmDateDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            fmDateDesde.Location = new System.Drawing.Point(519, 70);
+            fmDateDesde.Location = new System.Drawing.Point(589, 66);
             fmDateDesde.MinimumSize = new System.Drawing.Size(4, 10);
             fmDateDesde.Name = "fmDateDesde";
             fmDateDesde.Size = new System.Drawing.Size(107, 24);
@@ -164,7 +168,7 @@
             fmDateHasta.BorderSize = 0;
             fmDateHasta.Font = new System.Drawing.Font("Segoe UI", 9.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             fmDateHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            fmDateHasta.Location = new System.Drawing.Point(686, 70);
+            fmDateHasta.Location = new System.Drawing.Point(756, 66);
             fmDateHasta.MinimumSize = new System.Drawing.Size(4, 10);
             fmDateHasta.Name = "fmDateHasta";
             fmDateHasta.Size = new System.Drawing.Size(107, 24);
@@ -178,7 +182,7 @@
             lblMostrar.AutoSize = true;
             lblMostrar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblMostrar.ForeColor = System.Drawing.Color.White;
-            lblMostrar.Location = new System.Drawing.Point(3, 72);
+            lblMostrar.Location = new System.Drawing.Point(3, 68);
             lblMostrar.Name = "lblMostrar";
             lblMostrar.Size = new System.Drawing.Size(65, 21);
             lblMostrar.TabIndex = 11;
@@ -189,7 +193,7 @@
             lblregistros.AutoSize = true;
             lblregistros.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblregistros.ForeColor = System.Drawing.Color.White;
-            lblregistros.Location = new System.Drawing.Point(136, 72);
+            lblregistros.Location = new System.Drawing.Point(133, 68);
             lblregistros.Name = "lblregistros";
             lblregistros.Size = new System.Drawing.Size(75, 21);
             lblregistros.TabIndex = 12;
@@ -207,7 +211,7 @@
             cboxCantidadRegistros.Items.AddRange(new object[] { "5", "10", "20" });
             cboxCantidadRegistros.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             cboxCantidadRegistros.ListTextColor = System.Drawing.Color.DimGray;
-            cboxCantidadRegistros.Location = new System.Drawing.Point(65, 72);
+            cboxCantidadRegistros.Location = new System.Drawing.Point(65, 68);
             cboxCantidadRegistros.Name = "cboxCantidadRegistros";
             cboxCantidadRegistros.Padding = new System.Windows.Forms.Padding(1);
             cboxCantidadRegistros.Size = new System.Drawing.Size(65, 21);
@@ -330,7 +334,7 @@
             panelPaginado.Controls.Add(btnSegundo);
             panelPaginado.Controls.Add(btnInicio);
             panelPaginado.Controls.Add(btnSiguiente);
-            panelPaginado.Location = new System.Drawing.Point(683, 387);
+            panelPaginado.Location = new System.Drawing.Point(767, 389);
             panelPaginado.Name = "panelPaginado";
             panelPaginado.Size = new System.Drawing.Size(209, 36);
             panelPaginado.TabIndex = 26;
@@ -339,7 +343,7 @@
             // 
             tbMantenerFiltro.Checked = true;
             tbMantenerFiltro.CheckState = System.Windows.Forms.CheckState.Checked;
-            tbMantenerFiltro.Location = new System.Drawing.Point(830, 72);
+            tbMantenerFiltro.Location = new System.Drawing.Point(898, 70);
             tbMantenerFiltro.MinimumSize = new System.Drawing.Size(45, 22);
             tbMantenerFiltro.Name = "tbMantenerFiltro";
             tbMantenerFiltro.OffBackColor = System.Drawing.Color.Gray;
@@ -357,7 +361,7 @@
             label4.AutoSize = true;
             label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label4.ForeColor = System.Drawing.Color.White;
-            label4.Location = new System.Drawing.Point(884, 72);
+            label4.Location = new System.Drawing.Point(952, 70);
             label4.Name = "label4";
             label4.Size = new System.Drawing.Size(23, 21);
             label4.TabIndex = 85;
@@ -368,7 +372,7 @@
             label5.AutoSize = true;
             label5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label5.ForeColor = System.Drawing.Color.White;
-            label5.Location = new System.Drawing.Point(802, 71);
+            label5.Location = new System.Drawing.Point(870, 69);
             label5.Name = "label5";
             label5.Size = new System.Drawing.Size(31, 21);
             label5.TabIndex = 84;
@@ -379,7 +383,7 @@
             lblMantenerFiltro.AutoSize = true;
             lblMantenerFiltro.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblMantenerFiltro.ForeColor = System.Drawing.Color.White;
-            lblMantenerFiltro.Location = new System.Drawing.Point(799, 39);
+            lblMantenerFiltro.Location = new System.Drawing.Point(867, 37);
             lblMantenerFiltro.Name = "lblMantenerFiltro";
             lblMantenerFiltro.Size = new System.Drawing.Size(108, 20);
             lblMantenerFiltro.TabIndex = 82;
@@ -390,7 +394,7 @@
             lblFiltradoDeCampo.AutoSize = true;
             lblFiltradoDeCampo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblFiltradoDeCampo.ForeColor = System.Drawing.Color.White;
-            lblFiltradoDeCampo.Location = new System.Drawing.Point(234, 72);
+            lblFiltradoDeCampo.Location = new System.Drawing.Point(331, 67);
             lblFiltradoDeCampo.Name = "lblFiltradoDeCampo";
             lblFiltradoDeCampo.Size = new System.Drawing.Size(56, 21);
             lblFiltradoDeCampo.TabIndex = 86;
@@ -402,18 +406,72 @@
             txtSearch.Br = System.Drawing.Color.MidnightBlue;
             txtSearch.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtSearch.ForeColor = System.Drawing.Color.White;
-            txtSearch.Location = new System.Drawing.Point(296, 67);
+            txtSearch.Location = new System.Drawing.Point(391, 64);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new System.Drawing.Size(136, 29);
             txtSearch.TabIndex = 87;
             txtSearch.TextChanged += txtSearch_TextChanged;
+            // 
+            // tbEsPedido
+            // 
+            tbEsPedido.Checked = true;
+            tbEsPedido.CheckState = System.Windows.Forms.CheckState.Checked;
+            tbEsPedido.Location = new System.Drawing.Point(242, 68);
+            tbEsPedido.MinimumSize = new System.Drawing.Size(45, 22);
+            tbEsPedido.Name = "tbEsPedido";
+            tbEsPedido.OffBackColor = System.Drawing.Color.Gray;
+            tbEsPedido.OffToggleColor = System.Drawing.Color.Gainsboro;
+            tbEsPedido.OnBackColor = System.Drawing.Color.MediumSlateBlue;
+            tbEsPedido.OnToggleColor = System.Drawing.Color.WhiteSmoke;
+            tbEsPedido.Size = new System.Drawing.Size(55, 22);
+            tbEsPedido.TabIndex = 89;
+            tbEsPedido.Text = "toggleButton1";
+            tbEsPedido.UseVisualStyleBackColor = true;
+            tbEsPedido.CheckedChanged += tbEsPedido_CheckedChanged;
+            // 
+            // lblPed_SI
+            // 
+            lblPed_SI.AutoSize = true;
+            lblPed_SI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblPed_SI.ForeColor = System.Drawing.Color.White;
+            lblPed_SI.Location = new System.Drawing.Point(300, 68);
+            lblPed_SI.Name = "lblPed_SI";
+            lblPed_SI.Size = new System.Drawing.Size(23, 21);
+            lblPed_SI.TabIndex = 91;
+            lblPed_SI.Text = "Si";
+            // 
+            // lblPed_NO
+            // 
+            lblPed_NO.AutoSize = true;
+            lblPed_NO.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblPed_NO.ForeColor = System.Drawing.Color.White;
+            lblPed_NO.Location = new System.Drawing.Point(214, 68);
+            lblPed_NO.Name = "lblPed_NO";
+            lblPed_NO.Size = new System.Drawing.Size(31, 21);
+            lblPed_NO.TabIndex = 90;
+            lblPed_NO.Text = "No";
+            // 
+            // lbl
+            // 
+            lbl.AutoSize = true;
+            lbl.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lbl.ForeColor = System.Drawing.Color.White;
+            lbl.Location = new System.Drawing.Point(187, 45);
+            lbl.Name = "lbl";
+            lbl.Size = new System.Drawing.Size(164, 20);
+            lbl.TabIndex = 88;
+            lbl.Text = "Es pedido para cliente?";
             // 
             // FmListarPedidos
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(30, 30, 30);
-            ClientSize = new System.Drawing.Size(919, 548);
+            ClientSize = new System.Drawing.Size(988, 548);
+            Controls.Add(tbEsPedido);
+            Controls.Add(lblPed_SI);
+            Controls.Add(lblPed_NO);
+            Controls.Add(lbl);
             Controls.Add(txtSearch);
             Controls.Add(lblFiltradoDeCampo);
             Controls.Add(tbMantenerFiltro);
@@ -465,5 +523,9 @@
         private System.Windows.Forms.Label lblMantenerFiltro;
         private System.Windows.Forms.Label lblFiltradoDeCampo;
         private AltoControls.AltoTextBox txtSearch;
+        private Tools.FormsTools.ToggleButton tbEsPedido;
+        private System.Windows.Forms.Label lblPed_SI;
+        private System.Windows.Forms.Label lblPed_NO;
+        private System.Windows.Forms.Label lbl;
     }
 }

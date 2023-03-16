@@ -10,10 +10,10 @@ namespace Domain.Entities
 {
     public class ListarPedidosEntity
     {
-        public int ID_Pedido { get; set; }
-        public int NumeroPedido { get; set; }
-        public Nullable<decimal> TotalPago { get; set; }
-        public Nullable<DateTime> Fecha { get; set; }
+        public int PedidoID { get; set; }
+        public int NroPedido { get; set; }
+        public decimal TotalPago { get; set; }
+        public DateTime Fecha { get; set; }
         public Nullable<decimal> Seña { get; set; }
         public string Cliente { get; set; }
         //public Guid ID_Empleados { get; set; }

@@ -33,6 +33,7 @@ namespace Business.Services
             try
             {
                 var detallePedidoRepository = _unitOfWork.GetRepository<IDetallePedidosRepository>();
+                var productoRepository = _unitOfWork.GetRepository<IProductosRepository>();
 
                 var cliente = _clientesService.Get(x => x.DNI == Convert.ToString(DNICLiente), tracking: false).FirstOrDefault();
                 if (cliente == null)
@@ -58,6 +59,9 @@ namespace Business.Services
                 {
                     detallePedido.ID_Pedido = pedidosModel.ID_Pedido;
                     detallePedidoRepository.Insert(detallePedido);
+                    var producto = productoRepository.Get(x => x.ID_Producto == 1, tracking: true).FirstOrDefault();
+                    producto.Stock = producto.Stock - detallePedido.Cantidad;
+                    productoRepository.Update(producto);
                     _unitOfWork.SaveChanges();
                 }
                 return "OK";
@@ -67,7 +71,7 @@ namespace Business.Services
                 Eliminar(pedidosModel);
                 _unitOfWork.SaveChanges();
                 //CancelChanges(pedidosModel);
-                throw;
+                return "Ocurrió un error al crear el pedido";
             }
         }
 
@@ -108,8 +112,14 @@ namespace Business.Services
         {
             try
             {
-                int? UltimoNumeroPedido = _repository.Get().Max(x => x.NumeroPedido);
-                return UltimoNumeroPedido == null ? 0 : (int)UltimoNumeroPedido;
+                var pedidos = _repository.Get();
+                int UltimoNumeroPedido = 0;
+                if (pedidos.Any())
+                {
+                    UltimoNumeroPedido = pedidos.Max(x => x.NumeroPedido);
+                    // Resto del código aquí
+                }
+                return UltimoNumeroPedido;
             }
             catch (Exception ex)
             {

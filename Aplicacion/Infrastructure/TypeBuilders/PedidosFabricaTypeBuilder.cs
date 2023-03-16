@@ -19,13 +19,20 @@ namespace Infrastructure.TypeBuilders
                 .IsRequired(false)
                 .HasColumnType("varchar(100)");
 
+            builder.Property(p => p.Fecha)
+                .IsRequired(true);
+
             builder.HasMany(p => p.OrdenDeTrabajoFabrica)
                 .WithOne(x => x.PedidosFabrica)
                 .HasForeignKey(d => d.ID_OrdenDeTrabajoFabrica);
 
             builder.HasMany(p => p.DetallePedidosFabrica)
                 .WithOne(x => x.PedidosFabrica)
-                .HasForeignKey(d => d.ID_DetallePedidosFabrica);
+                .HasForeignKey(d => d.ID_PedidosFabrica);
+
+            builder.HasOne(p => p.EstadoPedidoFabrica)
+                .WithMany(x => x.PedidosFabrica)
+                .HasForeignKey(d => d.ID_EstadoPedidoFabrica);
 
             builder.HasOne(p => p.Empleados)
                 .WithMany(x => x.PedidosFabrica)

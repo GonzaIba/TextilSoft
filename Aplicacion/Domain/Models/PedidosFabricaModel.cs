@@ -16,10 +16,13 @@ namespace Domain.Models
 
         public int ID_PedidosFabrica { get; set; }
         public Guid ID_Empleados { get; set; }
+        public int ID_EstadoPedidoFabrica { get; set; }
+        public DateTime Fecha { get; set; }
         public string Detalle { get; set; }
         public Guid CreateUser { get; set; }
 
         public virtual ICollection<DetallePedidosFabricaModel> DetallePedidosFabrica { get; set; }
+        public virtual EstadoPedidoFabricaModel EstadoPedidoFabrica { get; set; }
         public virtual EmpleadosModel Empleados { get; set; }
         public virtual ICollection<OrdenDeTrabajoFabricaModel> OrdenDeTrabajoFabrica { get; set; }
     }

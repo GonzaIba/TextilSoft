@@ -72,7 +72,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.DetallePedidosFabricaModel", b =>
                 {
                     b.Property<int>("ID_DetallePedidosFabrica")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
@@ -88,6 +90,8 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("ID_DetallePedidosFabrica");
 
+                    b.HasIndex("ID_PedidosFabrica");
+
                     b.HasIndex("ID_Producto");
 
                     b.ToTable("DetallePedidoFabricas");
@@ -96,7 +100,9 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Models.DetallePedidosModel", b =>
                 {
                     b.Property<int>("ID_DetallePedido")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
@@ -111,6 +117,8 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("ID_DetallePedido");
+
+                    b.HasIndex("ID_Pedido");
 
                     b.HasIndex("ID_Producto");
 
@@ -156,6 +164,27 @@ namespace Infrastructure.Migrations
                     b.HasKey("ID_Empleados");
 
                     b.ToTable("Empleados");
+                });
+
+            modelBuilder.Entity("Domain.Models.EstadoPedidoFabricaModel", b =>
+                {
+                    b.Property<int>("ID_EstadoPedidoFabrica")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
+                    b.HasKey("ID_EstadoPedidoFabrica");
+
+                    b.ToTable("EstadoPedidoFabrica");
                 });
 
             modelBuilder.Entity("Domain.Models.EstadoPedidoModel", b =>
@@ -323,8 +352,14 @@ namespace Infrastructure.Migrations
                     b.Property<string>("Detalle")
                         .HasColumnType("varchar(100)");
 
+                    b.Property<DateTime>("Fecha")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("ID_Empleados")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ID_EstadoPedidoFabrica")
+                        .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
@@ -332,6 +367,8 @@ namespace Infrastructure.Migrations
                     b.HasKey("ID_PedidosFabrica");
 
                     b.HasIndex("ID_Empleados");
+
+                    b.HasIndex("ID_EstadoPedidoFabrica");
 
                     b.ToTable("PedidosFabrica");
                 });
@@ -627,7 +664,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Models.PedidosFabricaModel", "PedidosFabrica")
                         .WithMany("DetallePedidosFabrica")
-                        .HasForeignKey("ID_DetallePedidosFabrica")
+                        .HasForeignKey("ID_PedidosFabrica")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -646,7 +683,7 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Models.PedidosModel", "Pedidos")
                         .WithMany("DetallePedido")
-                        .HasForeignKey("ID_DetallePedido")
+                        .HasForeignKey("ID_Pedido")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -718,7 +755,15 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Domain.Models.EstadoPedidoFabricaModel", "EstadoPedidoFabrica")
+                        .WithMany("PedidosFabrica")
+                        .HasForeignKey("ID_EstadoPedidoFabrica")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Empleados");
+
+                    b.Navigation("EstadoPedidoFabrica");
                 });
 
             modelBuilder.Entity("Domain.Models.PedidosModel", b =>
@@ -779,6 +824,11 @@ namespace Infrastructure.Migrations
                 {
                     b.Navigation("Pedidos");
 
+                    b.Navigation("PedidosFabrica");
+                });
+
+            modelBuilder.Entity("Domain.Models.EstadoPedidoFabricaModel", b =>
+                {
                     b.Navigation("PedidosFabrica");
                 });
 

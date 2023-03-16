@@ -14,6 +14,7 @@ using UI.TextilSoft.MainForm;
 using UI.TextilSoft.SubForms.Pedidos.AdministrarPedido;
 using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 using UI.TextilSoft.SubForms.Pedidos.ListarPedidos;
+using UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo;
 
 namespace UI.TextilSoft.SubForms.Pedidos
 {
@@ -157,7 +158,7 @@ namespace UI.TextilSoft.SubForms.Pedidos
 
         private void btnCrearPedido_Click_1(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmCrearPedido(_factory,_fmTextilSoft));
+            AbrirFormHija(new FmCrearPedido(_factory, _fmTextilSoft));
         }
 
         private void lblPrincipal_Click(object sender, EventArgs e)
@@ -173,6 +174,11 @@ namespace UI.TextilSoft.SubForms.Pedidos
         private void btnListarPedidos_Click(object sender, EventArgs e)
         {
             AbrirFormHija(new FmListarPedidos(_factory));
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmAsignarODT(_factory));
         }
     }
 }
