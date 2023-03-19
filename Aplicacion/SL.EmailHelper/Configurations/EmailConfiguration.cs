@@ -9,6 +9,5 @@ namespace SL.EmailHelper.Configurations
         public string Type { get; set; }
         public EmailSendGridConfiguration EmailSendGridConfiguration { get; set; }
         public EmailSMTPConfiguration EmailSMTPConfiguration { get; set; }
-        public bool TestEnabled { get; set; }
     }
 }

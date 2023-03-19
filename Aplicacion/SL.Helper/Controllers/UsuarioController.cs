@@ -511,6 +511,21 @@ namespace SL.Helper.Controllers
                 throw ex;
             }
         }
+
+        public void EliminarUsuario(string usuario, string contraseña)
+        {
+            try
+            {
+                var result = _usuarioService.Get(x => x.Nombre == usuario && x.Contraseña == contraseña).FirstOrDefault();
+                if(result != null)
+                    _usuarioService.Eliminar(result);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         #endregion
     }
 }

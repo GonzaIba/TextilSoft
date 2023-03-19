@@ -383,16 +383,16 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         {
             ContextMenuStrip my_menu = new ContextMenuStrip();
             int position_xy_mouse_row = Convert.ToInt32(treeConfigurarFamilia.HitTest(e.X, e.Y).Location);
-                if (e.Button == MouseButtons.Right)
+            if (e.Button == MouseButtons.Right)
+            {
+                if (position_xy_mouse_row >= 0)
                 {
-                    if (position_xy_mouse_row >= 0)
-                    {
-                        my_menu.Items.Add("Eliminar").Name = "Eliminar";
-                    }
-                    my_menu.Show(treeConfigurarFamilia, new Point(e.X, e.Y));
-
-                    my_menu.ItemClicked += new ToolStripItemClickedEventHandler(my_menu_ItemClicked);
+                    my_menu.Items.Add("Eliminar").Name = "Eliminar";
                 }
+                my_menu.Show(treeConfigurarFamilia, new Point(e.X, e.Y));
+
+                my_menu.ItemClicked += new ToolStripItemClickedEventHandler(my_menu_ItemClicked);
+            }
         }
 
         private void my_menu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

@@ -1,6 +1,7 @@
 ﻿using Contracts.Controllers;
 using Domain.Entities;
 using FontAwesome.Sharp;
+using MailKit.Search;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,8 +11,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
 {
@@ -24,13 +27,104 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
         private bool FirstTime, isLastPage, isFirstPage;
         private bool MantenerFiltroFechas, DateChanged;
         private IconButton LastIconButton;
+        private Dictionary<Point, Tuple<IconButton>> botonesPorCelda = new Dictionary<Point, Tuple<IconButton>>();
 
         private int IndexBtnPrimero, IndexBtnSegundo, IndexBtnTercero;
         public FmAsignarODT(IControllerFactory factory)
         {
             InitializeComponent();
             _factory = factory;
+            GrillaPedidos.CellPainting += GrillaPedidos_CellPainting;
         }
+
+        private async void GrillaPedidos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                Point celda = new Point(e.ColumnIndex, e.RowIndex);
+                if (!botonesPorCelda.ContainsKey(celda))
+                {
+                    //Crear los botones
+                    IconButton btnAsignarODT = new IconButton();
+                    btnAsignarODT.IconChar = IconChar.HandPointUp;
+                    btnAsignarODT.Cursor = Cursors.Hand;
+                    btnAsignarODT.IconColor = Color.White;
+                    btnAsignarODT.BackColor = Color.FromArgb(32, 30, 45);
+                    btnAsignarODT.FlatAppearance.BorderSize = 0;
+                    btnAsignarODT.FlatStyle = FlatStyle.Flat;
+                    btnAsignarODT.IconSize = 21;
+                    btnAsignarODT.Size = new Size(20, 20);
+                    btnAsignarODT.Click += new EventHandler((s, args) => AsignarODT(sender, e, btnAsignarODT)); //Evento click para modificar
+                    btnAsignarODT.Visible = true;
+                    btnAsignarODT.Parent = GrillaPedidos;
+                    //btnAsignarODT.Text = GrillaPedidos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                    //Almacenar los botones en el diccionario
+                    botonesPorCelda.Add(celda, new Tuple<IconButton>(btnAsignarODT));
+
+                    //Obtener los botones de la celda
+                    Tuple<IconButton> botones = botonesPorCelda[celda];
+                    IconButton buttonModificarCelda = botones.Item1;
+
+                    //Calcular la posición de los botones
+                    int x = e.CellBounds.Left + 5;
+                    int y = e.CellBounds.Top + (e.CellBounds.Height - buttonModificarCelda.Height) / 2;
+                    buttonModificarCelda.Location = new Point(x, y);
+
+                    //Dibujar los botones
+                    e.PaintBackground(e.CellBounds, true);
+                    e.PaintContent(e.CellBounds);
+
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void AsignarODT(object sender, EventArgs e, IconButton btnAsignarODT)
+        {
+            try
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Crear", "Esta seguro que desea tomar este pedido?", centerPosition, true);
+                fmMessageBox.ShowDialog();
+
+                if (fmMessageBox.btnAceptar)
+                {
+                    // Obtener la posición del botón en la tabla
+                    Point botonPosicion = btnAsignarODT.Location;
+                    DataGridView.HitTestInfo hitTestInfo = GrillaPedidos.HitTest(botonPosicion.X, botonPosicion.Y);
+
+                    string PedidoID = GrillaPedidos.Rows[hitTestInfo.RowIndex].Cells["PedidoID"].Value.ToString().Trim();
+
+                    //DetallePedidos.Remove(DetallePedidos.Where(x => x.Codigo == Codigo && x.Detalle == Detalle).FirstOrDefault());
+                    //GrillaPedidos.Refresh();
+                    //GrillaPedidos.DataSource = DetallePedidos.ToList();
+                    _factory.Use<IPedidosController<ListarPedidosEntity>>().AsignarODT(Convert.ToInt32(PedidoID), tbEsPedido.Checked);
+                    FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Success, "Exito", "Se asignó la ODT correctamente!", centerPosition, false);
+                    fmMessageBox2.ShowDialog();
+
+                    if (tbEsPedido.Checked)
+                        GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                    else
+                        GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+
+                    GrillaPedidos.Refresh();
+                    // Eliminar el botón del diccionario también
+                    Tuple<IconButton> botones = botonesPorCelda[botonesPorCelda.LastOrDefault().Key];
+                    IconButton buttonAsignarODT = botones.Item1;
+                    botonesPorCelda.Remove(botonesPorCelda.LastOrDefault().Key);
+                    buttonAsignarODT.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error", "Ocurrió un error al asignar la ODT", centerPosition, true);
+                fmMessageBox.ShowDialog();
+            }
+
+        }
+
 
         private void tbEsPedido_CheckedChanged(object sender, EventArgs e)
         {
@@ -330,7 +424,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked).List.ToList();
         }
 
-        #region helpers
+        #region Helpers
         private void ActualizarBotones()
         {
             btnPrimero.Text = IndexBtnPrimero.ToString();
@@ -391,13 +485,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             if (txtSearch.Text.Length > 0 && !string.IsNullOrEmpty(txtSearch.Text))
-            {
                 panelPaginado.Visible = false;
-            }
             else
-            {
                 panelPaginado.Visible = true;
-            }
+
             string searchValue = txtSearch.Text.Trim();
             ObtenerTodosLosPedidosConFiltro(searchValue, tbEsPedido.Checked);
         }
@@ -444,6 +535,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             {
 
             }
+        }
+
+        private void GrillaPedidos_DataSourceChanged(object sender, EventArgs e)
+        {
+            //foreach (var item in GrillaPedidos.)
+            //{
+
+            //}
         }
     }
 }

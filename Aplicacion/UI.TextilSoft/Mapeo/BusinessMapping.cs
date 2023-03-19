@@ -33,20 +33,22 @@ namespace UI.TextilSoft.Mapeo
                 .ReverseMap();
 
             CreateMap<PedidosModel, ListarPedidosEntity>()
-                .ForMember(dest => dest.PedidoID, opt => opt.MapFrom(src => src.ID_Pedido))
+                .ForMember(dest => dest.PedidoID, opt => opt.MapFrom(src => "      " + Convert.ToString(src.ID_Pedido)))
                 .ForMember(dest => dest.NroPedido, opt => opt.MapFrom(src => src.NumeroPedido))
                 .ForMember(dest => dest.EstadoPedido, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
                 .ForMember(dest => dest.AtendidoPor, opt => opt.MapFrom(src => src.Empleados.Nombre + " " + src.Empleados.Apellido))
                 .ForMember(dest => dest.Cliente, opt => opt.MapFrom(src => src.Clientes.Nombre + " " + src.Clientes.Apellido))
                 .ReverseMap()
+                .ForMember(dest => dest.ID_Pedido, opt => opt.MapFrom(src => "      "+ src.PedidoID))
                 .ForMember(dest => dest.Empleados, opt => opt.MapFrom(src => new EmpleadosModel { Nombre = StringSepare(src.AtendidoPor, " ", 0), Apellido = StringSepare(src.AtendidoPor, " ", 1) }))
                 .ForMember(dest => dest.Clientes, opt => opt.MapFrom(src => new ClientesModel { Nombre = StringSepare(src.Cliente, " ", 0), Apellido = StringSepare(src.Cliente, " ", 1) }));
 
             CreateMap<PedidosFabricaModel, ListarPedidosFabricaEntity>()
-                .ForMember(dest => dest.PedidoID, opt => opt.MapFrom(src => src.ID_PedidosFabrica))
+                .ForMember(dest => dest.PedidoID, opt => opt.MapFrom(src => "      " + Convert.ToString(src.ID_EstadoPedidoFabrica)))
                 .ForMember(dest => dest.EstadoPedidos, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedidoFabrica.ID_EstadoPedidoFabrica)))
                 .ForMember(dest => dest.AtendidoPor, opt => opt.MapFrom(src => src.Empleados.Nombre + " " + src.Empleados.Apellido))
                 .ReverseMap()
+                .ForMember(dest => dest.ID_PedidosFabrica, opt => opt.MapFrom(src => "      " + src.PedidoID))
                 .ForMember(dest => dest.Empleados, opt => opt.MapFrom(src => new EmpleadosModel { Nombre = StringSepare(src.AtendidoPor, " ", 0), Apellido = StringSepare(src.AtendidoPor, " ", 1) }));
 
             CreateMap<List<DetallePedidosYFabricaEntity>, List<DetallePedidosFabricaModel>>()

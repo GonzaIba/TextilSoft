@@ -99,7 +99,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                     break;
                 default:
                     // Filtro por defecto
-                    filterExpression = x => x.PedidoID > 0;
+                    filterExpression = x => Convert.ToInt32(x.PedidoID) > 0;
                     break;
             }
             return filterExpression;

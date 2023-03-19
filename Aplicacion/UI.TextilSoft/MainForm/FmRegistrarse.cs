@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Proveedores;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.MainForm
 {
@@ -77,6 +78,7 @@ namespace UI.TextilSoft.MainForm
             register.Email = txtMail.Text;
             register.Password = txtPassword.Text;
             register.ConfirmPassword = txtConfirmPassword.Text;
+            var centerPosition = new Point(this.Width / 2, this.Height / 2);
 
             if (register.Password == register.ConfirmPassword)
             {
@@ -86,30 +88,38 @@ namespace UI.TextilSoft.MainForm
                     {
                         try
                         {
+                            LimpiarControler();
+                            pnlRegistrarse.BringToFront();
                             _factory.Use<IUsuarioController>().EnviarConfirmacionEmail(register.Email);
-                            MessageBox.Show("Se ha enviado un correo de confirmación a su casilla de correo");
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Envio exitoso", "Se ha enviado un correo de confirmación a su casilla de correo", centerPosition, false);
+                            fmMessageBox.ShowDialog();
                             pnlRegistrarse.BringToFront();
                             AbrirFormHija(new FmIniciarSesion(_factory, _fmLobby));
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("No se pudo enviar el correo, inténtelo en la pantalla principal en unos segundos");
+                            _factory.UseNew<IUsuarioController>().EliminarUsuario(register.Nombre,register.Password);
+                            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de envío", "No se pudo enviar el correo, vuelva a crear el usuario o contacte con un administrador", centerPosition, false);
+                            fmMessageBox.ShowDialog();
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Usuario registrado correctamente");
+                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Registro exitoso", "Usuario registrado correctamente", centerPosition, false);
+                        fmMessageBox.ShowDialog();
                     }
                     this.Close();
                 }
                 else
                 {
-                    MessageBox.Show("Error al registrar el usuario");
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error", "Error al registrar el usuario", centerPosition, false);
+                    fmMessageBox.ShowDialog();
                 }
             }
             else
             {
-                MessageBox.Show("Las contraseñas no coinciden");
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Cuidado", "Las contraseñas no coinciden", centerPosition, false);
+                fmMessageBox.ShowDialog();
             }
         }
 

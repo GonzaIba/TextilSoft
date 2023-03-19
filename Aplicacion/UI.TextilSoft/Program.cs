@@ -195,7 +195,9 @@ namespace UI.TextilSoft
             string result = services.GetType().Assembly.Location;
             FileInfo file = new FileInfo(result);
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
-            if(!string.IsNullOrEmpty(Configuration.GetSection("TemphLog").Value.ToString()))
+            AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
+
+            if (!string.IsNullOrEmpty(Configuration.GetSection("TemphLog").Value.ToString()))
                 AppDomain.CurrentDomain.SetData("TemphLog", Configuration.GetSection("TemphLog").Value.ToString());
             else
                 AppDomain.CurrentDomain.SetData("TemphLog", AppDomain.CurrentDomain.BaseDirectory + "/Logs");
@@ -303,11 +305,27 @@ namespace UI.TextilSoft
                 // Si no hay registros, insertar los valores por defecto
                 var estadosPedido = new List<EstadoPedidoModel>
                 {
-                    new EstadoPedidoModel { Estado = "Sin Asignar", Active = true },
-                    new EstadoPedidoModel { Estado = "En Producción", Active = true },
-                    new EstadoPedidoModel { Estado = "En Depósito", Active = true },
+                    new EstadoPedidoModel { Estado = "SinAsignar", Active = true },
+                    new EstadoPedidoModel { Estado = "EnProducción", Active = true },
+                    new EstadoPedidoModel { Estado = "EnDepósito", Active = true },
                     new EstadoPedidoModel { Estado = "Entregado", Active = true },
                     new EstadoPedidoModel { Estado = "Cancelado", Active = true },
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+            
+            var estadoPedidoFabricaRepository = services.GetRequiredService<IEstadoPedidoFabricaRepository>();
+            if (!estadoPedidoFabricaRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<EstadoPedidoFabricaModel>
+                {
+                    new EstadoPedidoFabricaModel { Estado = "SinAsignar", Active = true },
+                    new EstadoPedidoFabricaModel { Estado = "EnProducción", Active = true },
+                    new EstadoPedidoFabricaModel { Estado = "Terminado", Active = true },
+                    new EstadoPedidoFabricaModel { Estado = "EnDepósito", Active = true },
                 };
 
                 dbContext.AddRange(estadosPedido);
@@ -392,5 +410,22 @@ namespace UI.TextilSoft
                 fmError.ShowDialog();
             }
         }
+
+        private static void ConfigureSendGridEmail(IServiceProvider services,IServiceCollection serviceCollection, int companyID)
+        {
+            var SendgridRepository = services.GetRequiredService<ICompanySendGridConfigRepository>();
+            var SendGridModel = SendgridRepository.Get(x => x.CompanyID == companyID).FirstOrDefault();
+            if(SendGridModel != null)
+            {
+                serviceCollection.AddTransient<EmailSendGridConfiguration>(x => new EmailSendGridConfiguration
+                {
+                    ApiKey = SendGridModel.ApiKey,
+                    From = SendGridModel.From,
+                    DisplayName = SendGridModel.DisplayName,
+                    ApiKeyId = SendGridModel.ApiKeyId
+                });
+            }
+        }
+        
     }
 }

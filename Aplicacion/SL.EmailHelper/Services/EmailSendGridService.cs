@@ -1,4 +1,5 @@
-﻿using SendGrid;
+﻿using Newtonsoft.Json;
+using SendGrid;
 using SendGrid.Helpers.Mail;
 using SL.EmailHelper.Configurations;
 using SL.EmailHelper.Contracts;
@@ -71,15 +72,29 @@ namespace SL.EmailHelper.Services
 
         private string SendAsync(SendGridMessage mailMessage, string sendGridId)
         {
-            var client = new SendGridClient(_emailConfig.ApiKey);
-            var response = client.SendEmailAsync(mailMessage);
-
-            if (response.Result.IsSuccessStatusCode)
+            try
             {
-                return sendGridId;
+                var client = new SendGridClient(_emailConfig.ApiKey);
+                var response = client.SendEmailAsync(mailMessage);
+
+                if (response.Result.IsSuccessStatusCode)
+                {
+                    return sendGridId;
+                }
+                else
+                {
+                    //Deserealize
+                    var ObjetoDeserealizado = JsonConvert.DeserializeObject<object>(response.Result.Body.ReadAsStringAsync().Result);
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
 
-            return null;
         }
     }
 }

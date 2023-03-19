@@ -37,9 +37,8 @@ namespace SL.IoC
             services.AddTransient<IEmailSendGridService, EmailSendgridService>();
             services.AddTransient<IEmailSmtpService, EmailSmtpService>();
             services.AddTransient<IGenericEmailFactory, GenericEmailFactory>();
-
             services.AddConfig<EmailConfiguration>(configuration, nameof(EmailConfiguration));
-            services.AddConfig<EmailSendGridConfiguration>(configuration, nameof(EmailConfiguration) + "." + nameof(EmailSendGridConfiguration));
+            //services.AddConfig<EmailSendGridConfiguration>(configuration, nameof(EmailConfiguration) + "." + nameof(EmailSendGridConfiguration));
             services.AddConfig<EmailSMTPConfiguration>(configuration, nameof(EmailConfiguration) + "." + nameof(EmailSMTPConfiguration));
 
             return services;

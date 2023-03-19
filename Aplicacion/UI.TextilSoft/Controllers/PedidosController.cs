@@ -244,5 +244,29 @@ namespace UI.TextilSoft.Controllers
                 throw;
             }
         }
+
+        public void AsignarODT(int idPedido, bool EsPedido)
+        {
+            try
+            {
+                if (EsPedido)
+                {
+                    var pedido = _pedidosService.Get(x => x.ID_Pedido == idPedido, tracking: true).FirstOrDefault();
+                    pedido.ID_EstadoPedido = (int)EstadoPedidosEnum.EnProducción;
+                    _pedidosService.Actualizar(pedido);
+                }
+                else
+                {
+                    var pedido = _pedidosFabricaService.Get(x => x.ID_PedidosFabrica == idPedido, tracking: true).FirstOrDefault();
+                    pedido.ID_EstadoPedidoFabrica = (int)EstadoPedidosFabricaEnum.EnProduccion;
+                    _pedidosFabricaService.Actualizar(pedido);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al asignar el pedido", ex);
+                throw ex;
+            }
+        }
     }
 }

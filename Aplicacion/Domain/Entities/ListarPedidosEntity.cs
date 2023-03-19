@@ -10,7 +10,7 @@ namespace Domain.Entities
 {
     public class ListarPedidosEntity
     {
-        public int PedidoID { get; set; }
+        public string PedidoID { get; set; }
         public int NroPedido { get; set; }
         public decimal TotalPago { get; set; }
         public DateTime Fecha { get; set; }
