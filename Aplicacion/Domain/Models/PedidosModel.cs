@@ -14,6 +14,7 @@ namespace Domain.Models
             this.DetallePedido = new HashSet<DetallePedidosModel>();
             this.Factura = new HashSet<FacturasModel>();
             this.OrdenDeTrabajo = new HashSet<OrdenDeTrabajoModel>();
+            this.HistorialPedidos = new HashSet<HistorialPedidosModel>();
         }
 
         public int ID_Pedido { get; set; }
@@ -32,6 +33,7 @@ namespace Domain.Models
         public virtual ICollection<FacturasModel> Factura { get; set; }
         public virtual ICollection<OrdenDeTrabajoModel> OrdenDeTrabajo { get; set; }
         public virtual EstadoPedidoModel EstadoPedido { get; set; }
+        public virtual ICollection<HistorialPedidosModel> HistorialPedidos { get; set; }
 
         //Aca hubo un tema al generar la migration. (HELP: ForeingKeys.txt)
     }

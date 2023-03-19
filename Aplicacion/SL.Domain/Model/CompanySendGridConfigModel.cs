@@ -9,7 +9,7 @@ namespace SL.Domain.Model
     public class CompanySendGridConfigModel
     {
         public int CompanySendGridConfigId { get; set; }
-        public int CompanyID { get; set; }
+        public int CompanyId { get; set; }
         public string ApiKey { get; set; }
         public string From { get; set; }
         public string DisplayName { get; set; }

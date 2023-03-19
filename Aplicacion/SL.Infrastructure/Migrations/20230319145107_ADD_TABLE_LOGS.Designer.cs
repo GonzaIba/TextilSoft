@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SL.Infrastructure;
 
 namespace SL.Infrastructure.Migrations
 {
     [DbContext(typeof(ServiceLayerDbContext))]
-    partial class ServiceLayerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230319145107_ADD_TABLE_LOGS")]
+    partial class ADD_TABLE_LOGS
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -201,11 +203,11 @@ namespace SL.Infrastructure.Migrations
 
                     b.Property<string>("Level")
                         .IsRequired()
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("varchar(50)");
 
                     b.Property<string>("Logger")
                         .IsRequired()
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Message")
                         .IsRequired()
@@ -213,7 +215,7 @@ namespace SL.Infrastructure.Migrations
 
                     b.Property<string>("Thread")
                         .IsRequired()
-                        .HasColumnType("varchar(500)");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("LoggerId");
 

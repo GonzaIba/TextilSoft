@@ -251,12 +251,12 @@ namespace UI.TextilSoft.Controllers
             {
                 if (EsPedido)
                 {
-                    var pedido = _pedidosService.Get(x => x.ID_Pedido == idPedido, tracking: true).FirstOrDefault();
-                    pedido.ID_EstadoPedido = (int)EstadoPedidosEnum.EnProducción;
-                    _pedidosService.Actualizar(pedido);
+                    _pedidosService.AsignarODT(idPedido);
+
                 }
                 else
                 {
+                    _pedidosFabricaService.AsignarODT(idPedido);
                     var pedido = _pedidosFabricaService.Get(x => x.ID_PedidosFabrica == idPedido, tracking: true).FirstOrDefault();
                     pedido.ID_EstadoPedidoFabrica = (int)EstadoPedidosFabricaEnum.EnProduccion;
                     _pedidosFabricaService.Actualizar(pedido);

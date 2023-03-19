@@ -24,6 +24,11 @@ namespace Business.Services
             _empleadosService = empleadosService;
         }
 
+        public void AsignarODT(int idPedido)
+        {
+            throw new NotImplementedException();
+        }
+
         public string CrearPedidoParaFabrica(int DNIEmpleado, List<DetallePedidosFabricaModel> detallePedidos)
         {
             PedidosFabricaModel pedidosModel = new();

@@ -8,6 +8,7 @@ namespace SL.Domain.Model
 {
     public class LoggerModel
     {
+        public int LoggerId { get; set; }
         public DateTime Date { get; set; }
         public string Thread { get; set; }
         public string Level { get; set; }
@@ -15,5 +16,7 @@ namespace SL.Domain.Model
         public string Message { get; set; }
         public string Exception { get; set; }
         public int CompanyId { get; set; }
+
+        public virtual CompanyModel Company { get; set; }
     }
 }

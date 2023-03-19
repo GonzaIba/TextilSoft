@@ -308,7 +308,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                     if (resultado == "OK")
                     {
                         FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Success, "Creación exitosa", "Se creó el pedido correctamente!", centerPosition);
-                        fmMessageBox.ShowDialog();
+                        fmMessageBox2.ShowDialog();
                     }
                     else
                     {
@@ -320,8 +320,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             catch (Exception ex)
             {
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Error al crear el pedido", "Hubo un error en el sistema, pruebe mas tarde o contacte con el administrador.", centerPosition);
-                fmMessageBox.ShowDialog();
+                FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Warning, "Error al crear el pedido", "Hubo un error en el sistema, pruebe mas tarde o contacte con el administrador.", centerPosition);
+                fmMessageBox2.ShowDialog();
             }
         }
 

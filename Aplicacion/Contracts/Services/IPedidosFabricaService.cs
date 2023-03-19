@@ -14,5 +14,6 @@ namespace Contracts.Services
         public string CrearPedidoParaFabrica(int DNIEmpleado, List<DetallePedidosFabricaModel> detallePedidos);
         public PaginatedList<PedidosFabricaModel> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<PedidosFabricaModel, dynamic>> orderByExpression, Expression<Func<PedidosFabricaModel, bool>> filterExpression, string orderBy, bool ascending);
         public PaginatedList<PedidosFabricaModel> ObtenerTodosLosPedidos(int pageCount);
+        public void AsignarODT(int idPedido);
     }
 }

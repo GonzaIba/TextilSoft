@@ -23,7 +23,6 @@ namespace SL.Business.Services
         public void SaveLog(Exception ex, string message)
         {
             LoggerModel loggerModel = new LoggerModel();
-            loggerModel.Date = DateTime.Now;
             loggerModel.Thread = ex.StackTrace;
             loggerModel.Level = "aa";
             loggerModel.Logger = "??";

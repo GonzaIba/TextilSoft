@@ -54,6 +54,7 @@ using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 using Contracts.Controllers;
 using Domain.Entities;
 using UI.TextilSoft.Controllers;
+using System.ComponentModel.Design;
 
 namespace UI.TextilSoft
 {
@@ -74,7 +75,6 @@ namespace UI.TextilSoft
             // Aquí va el código para iniciar tu aplicación
 
 
-
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -84,7 +84,7 @@ namespace UI.TextilSoft
             {
                 SetProcessDPIAware();
             }
-
+            
             var host = Host.CreateDefaultBuilder()
                 .ConfigureServices((services) =>
                 {
@@ -93,16 +93,12 @@ namespace UI.TextilSoft
                 .Build();
 
             var services = host.Services;
-
-            var XD = services.GetRequiredService<ILogger>();
-
-            
+            int CompanyId = Convert.ToInt32(Configuration.GetSection("CompanyConfiguration:CompanyId").Value);
             Configuration = services.GetRequiredService<IConfiguration>();
             var factory = services.GetRequiredService<IControllerFactory>();
             var taskresolver = new TaskResolver(services, factory);
             InitTaskResolver(taskresolver);
             bool IsDevelopment = Configuration.GetSection("Environment").Value.ToString() == "DEVELOPMENT" ? true : false;
-            int CompanyId = Convert.ToInt32(Configuration.GetSection("CompanyConfiguration:CompanyId").Value);
             string CompanyApiKey = Configuration.GetSection("CompanyConfiguration:CompanyApiKey")?.Value?.ToString() ?? "";
             var CompanyService = services.GetRequiredService<ICompanyService>();
             UpdateDatabases(services);
@@ -201,8 +197,13 @@ namespace UI.TextilSoft
                 AppDomain.CurrentDomain.SetData("TemphLog", Configuration.GetSection("TemphLog").Value.ToString());
             else
                 AppDomain.CurrentDomain.SetData("TemphLog", AppDomain.CurrentDomain.BaseDirectory + "/Logs");
-
+            
             services.AddHostedService<TaskResolver>();
+
+            
+            var serviceProvider = services.BuildServiceProvider();
+            int CompanyId = Convert.ToInt32(Configuration.GetSection("CompanyConfiguration:CompanyId").Value);
+            ConfigureSendGridEmail(serviceProvider,services , CompanyId);
         }
 
 
@@ -414,7 +415,7 @@ namespace UI.TextilSoft
         private static void ConfigureSendGridEmail(IServiceProvider services,IServiceCollection serviceCollection, int companyID)
         {
             var SendgridRepository = services.GetRequiredService<ICompanySendGridConfigRepository>();
-            var SendGridModel = SendgridRepository.Get(x => x.CompanyID == companyID).FirstOrDefault();
+            var SendGridModel = SendgridRepository.Get(x => x.CompanyId == companyID).FirstOrDefault();
             if(SendGridModel != null)
             {
                 serviceCollection.AddTransient<EmailSendGridConfiguration>(x => new EmailSendGridConfiguration
@@ -426,6 +427,5 @@ namespace UI.TextilSoft
                 });
             }
         }
-        
     }
 }

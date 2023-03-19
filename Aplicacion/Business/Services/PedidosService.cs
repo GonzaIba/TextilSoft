@@ -27,13 +27,39 @@ namespace Business.Services
             _empleadosService = empleadosService;
         }
 
+        public void AsignarODT(int idPedido)
+        {
+            try
+            {
+                var pedido = Get(x => x.ID_Pedido == idPedido, tracking: true).FirstOrDefault();
+                pedido.ID_EstadoPedido = (int)EstadoPedidosEnum.EnProducción;
+                _repository.Update(pedido);
+
+                var historialRepository = _unitOfWork.GetRepository<IHistorialPedidosRepository>();
+                HistorialPedidosModel historial = new();
+                historial.ID_Pedido = idPedido;
+                historial.ID_EstadoPedido = (int)EstadoPedidosEnum.EnProducción;
+                historial.Fecha = DateTime.Now;
+                historialRepository.Insert(historial);
+                
+                _unitOfWork.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public string CrearPedido(int DNICLiente, int DNIEmpleado, decimal subTotal, List<DetallePedidosModel> ListadetallePedidos, decimal seña)
         {
             PedidosModel pedidosModel = new();
+            HistorialPedidosModel historialPedidosModel = new();
             try
             {
                 var detallePedidoRepository = _unitOfWork.GetRepository<IDetallePedidosRepository>();
                 var productoRepository = _unitOfWork.GetRepository<IProductosRepository>();
+                var historialRepository = _unitOfWork.GetRepository<IHistorialPedidosRepository>();
 
                 var cliente = _clientesService.Get(x => x.DNI == Convert.ToString(DNICLiente), tracking: false).FirstOrDefault();
                 if (cliente == null)
@@ -64,6 +90,11 @@ namespace Business.Services
                     productoRepository.Update(producto);
                     _unitOfWork.SaveChanges();
                 }
+                historialPedidosModel.Fecha = DateTime.Now;
+                historialPedidosModel.ID_Pedido = pedidosModel.ID_Pedido;
+                historialPedidosModel.ID_EstadoPedido = pedidosModel.ID_EstadoPedido;
+                historialRepository.Insert(historialPedidosModel);
+                _unitOfWork.SaveChanges();
                 return "OK";
             }
             catch (Exception ex)

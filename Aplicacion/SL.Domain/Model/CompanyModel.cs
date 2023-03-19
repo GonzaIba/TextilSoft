@@ -8,6 +8,12 @@ namespace SL.Domain.Model
 {
     public class CompanyModel
     {
+        public CompanyModel()
+        {
+            this.Usuarios = new HashSet<UsuarioModel>();
+            this.Permisos = new HashSet<PermisoModel>();
+            this.Loggers = new HashSet<LoggerModel>();          
+        }
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string CompanyCuil { get; set; }
@@ -19,7 +25,9 @@ namespace SL.Domain.Model
         
         public ICollection<UsuarioModel> Usuarios { get; set; }
         public ICollection<PermisoModel> Permisos { get; set; }
+        public ICollection<LoggerModel> Loggers { get; set; }
         public CompanyCustomizeModel CompanyCustomize { get; set; }
+        public CompanySendGridConfigModel CompanySendGridConfig { get; set; }
         public CompanyAuthenticationModel CompanyAuthentication { get; set; }
     }
 }

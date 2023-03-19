@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.TypeBuilders
 {
-    class FacturasTypeBuilder : IEntityTypeConfiguration<FacturasModel>
+    public class FacturasTypeBuilder : IEntityTypeConfiguration<FacturasModel>
     {
         public void Configure(EntityTypeBuilder<FacturasModel> builder)
         {

@@ -15,5 +15,6 @@ namespace Contracts.Services
         public PaginatedList<PedidosModel> ObtenerPedidos(int pageIndex, int pageCount, Expression<Func<PedidosModel, dynamic>> orderByExpression, Expression<Func<PedidosModel, bool>> filterExpression, string orderBy, bool ascending);
         public PaginatedList<PedidosModel> ObtenerTodosLosPedidos(int pageCount);
         public int ObtenerUltimoNumeroPedido();
+        public void AsignarODT(int idPedido);
     }
 }

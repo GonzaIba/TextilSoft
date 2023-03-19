@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SL.Infrastructure;
 
 namespace SL.Infrastructure.Migrations
 {
     [DbContext(typeof(ServiceLayerDbContext))]
-    partial class ServiceLayerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230319134835_ADD_TABLE_SENDGRID")]
+    partial class ADD_TABLE_SENDGRID
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,47 +181,6 @@ namespace SL.Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("CompanySendGridConfiguration");
-                });
-
-            modelBuilder.Entity("SL.Domain.Model.LoggerModel", b =>
-                {
-                    b.Property<int>("LoggerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("GETDATE()");
-
-                    b.Property<string>("Exception")
-                        .HasColumnType("varchar(MAX)");
-
-                    b.Property<string>("Level")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("Logger")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasColumnType("varchar(MAX)");
-
-                    b.Property<string>("Thread")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
-                    b.HasKey("LoggerId");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Logs");
                 });
 
             modelBuilder.Entity("SL.Domain.Model.PermisoModel", b =>
@@ -403,17 +364,6 @@ namespace SL.Infrastructure.Migrations
                     b.Navigation("Company");
                 });
 
-            modelBuilder.Entity("SL.Domain.Model.LoggerModel", b =>
-                {
-                    b.HasOne("SL.Domain.Model.CompanyModel", "Company")
-                        .WithMany("Loggers")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("SL.Domain.Model.PermisoModel", b =>
                 {
                     b.HasOne("SL.Domain.Model.CompanyModel", "Company")
@@ -467,8 +417,6 @@ namespace SL.Infrastructure.Migrations
                     b.Navigation("CompanyCustomize");
 
                     b.Navigation("CompanySendGridConfig");
-
-                    b.Navigation("Loggers");
 
                     b.Navigation("Permisos");
 

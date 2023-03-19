@@ -19,6 +19,10 @@ namespace Infrastructure.TypeBuilders
                 .IsRequired()
                 .HasColumnType("varchar(50)");
 
+            builder.HasMany(ep => ep.HistorialPedidos)
+                .WithOne(hp => hp.EstadoPedido)
+                .HasForeignKey(hp => hp.ID_EstadoPedido);
+
             builder.Ignore(e => e.UpdateDate); //Las filas van a ser fijas asi que no se actualizan...
             builder.Ignore(e => e.CreateDate);
 
