@@ -21,7 +21,7 @@ namespace SL.Infrastructure.TypeBuilders
 
             builder.Property(p => p.Thread)
                 .IsRequired(true)
-                .HasColumnType("varchar(500)");
+                .HasColumnType("varchar(MAX)");
 
             builder.Property(p => p.Level)
                 .IsRequired(true)

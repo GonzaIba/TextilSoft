@@ -15,6 +15,7 @@ using System.Linq;
 using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
+using SL.Domain.Enums;
 
 namespace SL.Helper.Services.Log4net
 {
@@ -91,11 +92,12 @@ namespace SL.Helper.Services.Log4net
             {
                 string MensajeUsuario = $"Usuario: {_usuario?.Nombre ?? "---"}:{_usuario?.DNI ?? "---"} " + message;
                 FatalLog.Fatal(MensajeUsuario, ex);
-                _loggerService.SaveLog(ex, MensajeUsuario);
+                _loggerService.SaveLog(ex, MensajeUsuario,LogLevelEnum.Fatal);
                 SendFatalErrorEmail(message);
             }
-            catch
+            catch(Exception ex2)
             {
+                
             }
         }
 

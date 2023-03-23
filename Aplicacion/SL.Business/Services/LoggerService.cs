@@ -1,6 +1,7 @@
 ﻿using SL.Contracts;
 using SL.Contracts.Repositories;
 using SL.Contracts.Services;
+using SL.Domain.Enums;
 using SL.Domain.Model;
 using SL.Helper.Configurations;
 using System;
@@ -20,11 +21,11 @@ namespace SL.Business.Services
             _companyConfiguration = companyConfiguration;
         }
 
-        public void SaveLog(Exception ex, string message)
+        public void SaveLog(Exception ex, string message, LogLevelEnum logLevelEnum)
         {
             LoggerModel loggerModel = new LoggerModel();
             loggerModel.Thread = ex.StackTrace;
-            loggerModel.Level = "aa";
+            loggerModel.Level = logLevelEnum.ToString();
             loggerModel.Logger = "??";
             loggerModel.CompanyId = _companyConfiguration.CompanyId;
             if (ex.InnerException != null)
