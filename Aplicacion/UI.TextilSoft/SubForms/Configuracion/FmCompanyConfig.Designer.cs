@@ -117,6 +117,7 @@
             // 
             tgBtnEmailConfirmed.Checked = true;
             tgBtnEmailConfirmed.CheckState = System.Windows.Forms.CheckState.Checked;
+            tgBtnEmailConfirmed.Cursor = System.Windows.Forms.Cursors.Hand;
             tgBtnEmailConfirmed.Location = new System.Drawing.Point(483, 229);
             tgBtnEmailConfirmed.MinimumSize = new System.Drawing.Size(45, 22);
             tgBtnEmailConfirmed.Name = "tgBtnEmailConfirmed";
@@ -156,6 +157,7 @@
             // 
             tgBtnMinuscula.Checked = true;
             tgBtnMinuscula.CheckState = System.Windows.Forms.CheckState.Checked;
+            tgBtnMinuscula.Cursor = System.Windows.Forms.Cursors.Hand;
             tgBtnMinuscula.Location = new System.Drawing.Point(793, 185);
             tgBtnMinuscula.MinimumSize = new System.Drawing.Size(45, 22);
             tgBtnMinuscula.Name = "tgBtnMinuscula";
@@ -204,6 +206,7 @@
             // 
             tgBtnMayus.Checked = true;
             tgBtnMayus.CheckState = System.Windows.Forms.CheckState.Checked;
+            tgBtnMayus.Cursor = System.Windows.Forms.Cursors.Hand;
             tgBtnMayus.Location = new System.Drawing.Point(793, 221);
             tgBtnMayus.MinimumSize = new System.Drawing.Size(45, 22);
             tgBtnMayus.Name = "tgBtnMayus";
@@ -252,6 +255,7 @@
             // 
             tgBtnNumero.Checked = true;
             tgBtnNumero.CheckState = System.Windows.Forms.CheckState.Checked;
+            tgBtnNumero.Cursor = System.Windows.Forms.Cursors.Hand;
             tgBtnNumero.Location = new System.Drawing.Point(793, 256);
             tgBtnNumero.MinimumSize = new System.Drawing.Size(45, 22);
             tgBtnNumero.Name = "tgBtnNumero";
@@ -300,6 +304,7 @@
             // 
             tgBtnEspecial.Checked = true;
             tgBtnEspecial.CheckState = System.Windows.Forms.CheckState.Checked;
+            tgBtnEspecial.Cursor = System.Windows.Forms.Cursors.Hand;
             tgBtnEspecial.Location = new System.Drawing.Point(793, 291);
             tgBtnEspecial.MinimumSize = new System.Drawing.Size(45, 22);
             tgBtnEspecial.Name = "tgBtnEspecial";
@@ -379,6 +384,7 @@
             // 
             // btnSavePrefPW
             // 
+            btnSavePrefPW.Cursor = System.Windows.Forms.Cursors.Hand;
             btnSavePrefPW.FlatAppearance.BorderSize = 0;
             btnSavePrefPW.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSavePrefPW.ForeColor = System.Drawing.Color.White;
@@ -397,6 +403,7 @@
             // 
             // btnSavePrefAuth
             // 
+            btnSavePrefAuth.Cursor = System.Windows.Forms.Cursors.Hand;
             btnSavePrefAuth.FlatAppearance.BorderSize = 0;
             btnSavePrefAuth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSavePrefAuth.ForeColor = System.Drawing.Color.White;
@@ -495,6 +502,7 @@
             // 
             // btnLogo
             // 
+            btnLogo.Cursor = System.Windows.Forms.Cursors.Hand;
             btnLogo.FlatAppearance.BorderSize = 0;
             btnLogo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnLogo.ForeColor = System.Drawing.Color.White;
@@ -513,6 +521,7 @@
             // 
             // btnSavePersonalization
             // 
+            btnSavePersonalization.Cursor = System.Windows.Forms.Cursors.Hand;
             btnSavePersonalization.FlatAppearance.BorderSize = 0;
             btnSavePersonalization.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSavePersonalization.ForeColor = System.Drawing.Color.White;

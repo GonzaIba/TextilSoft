@@ -201,6 +201,8 @@ namespace UI.TextilSoft.SubForms.Configuracion
                 toolTipError.Show("Por favor, solo ingrese números", txtMaxFail, 0, -20, 2000);
                 txtMaxFail.Text = txtMaxFail.Text.Remove(txtMaxFail.Text.Length - 1);
             }
+            if (txtMaxFail.Text == "")
+                txtMaxFail.Text = "0";
         }
 
         private void btnSavePrefAuth_Click(object sender, EventArgs e)

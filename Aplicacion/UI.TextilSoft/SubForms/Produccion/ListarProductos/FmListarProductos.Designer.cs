@@ -73,7 +73,7 @@
             panelPaginado.Controls.Add(btnSegundo);
             panelPaginado.Controls.Add(btnInicio);
             panelPaginado.Controls.Add(btnSiguiente);
-            panelPaginado.Location = new System.Drawing.Point(689, 387);
+            panelPaginado.Location = new System.Drawing.Point(774, 381);
             panelPaginado.Name = "panelPaginado";
             panelPaginado.Size = new System.Drawing.Size(209, 36);
             panelPaginado.TabIndex = 95;
@@ -266,7 +266,7 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
             GrillaProductos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             GrillaProductos.RowTemplate.Height = 25;
-            GrillaProductos.Size = new System.Drawing.Size(881, 285);
+            GrillaProductos.Size = new System.Drawing.Size(966, 285);
             GrillaProductos.TabIndex = 88;
             GrillaProductos.CellContentClick += GrillaProductos_CellContentClick;
             GrillaProductos.CellMouseClick += GrillaProductos_CellMouseClick_1;
@@ -286,7 +286,7 @@
             PanelProduccion.Dock = System.Windows.Forms.DockStyle.Fill;
             PanelProduccion.Location = new System.Drawing.Point(0, 0);
             PanelProduccion.Name = "PanelProduccion";
-            PanelProduccion.Size = new System.Drawing.Size(916, 513);
+            PanelProduccion.Size = new System.Drawing.Size(995, 513);
             PanelProduccion.TabIndex = 94;
             // 
             // cboxCantidadRegistros
@@ -314,7 +314,7 @@
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(916, 513);
+            ClientSize = new System.Drawing.Size(995, 513);
             Controls.Add(PanelProduccion);
             Name = "FmListarProductos";
             Text = "FmListarProductos";

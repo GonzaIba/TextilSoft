@@ -179,6 +179,11 @@ namespace UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores
             prodProveedor = null;
         }
 
-
+        private void FmProductoProveedor_Load(object sender, EventArgs e)
+        {
+            LLenarGridView();
+            GrillaProductoProveedores.Columns[0].ReadOnly = true;
+            PanelProdProveedor.Visible = false;
+        }
     }
 }

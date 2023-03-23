@@ -29,320 +29,363 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.lblPedidos = new System.Windows.Forms.Label();
-            this.txtNO = new AltoControls.AltoTextBox();
-            this.lblNO = new System.Windows.Forms.Label();
-            this.txtDNIcli = new AltoControls.AltoTextBox();
-            this.lblDNIcli = new System.Windows.Forms.Label();
-            this.btnVerEstado = new FontAwesome.Sharp.IconButton();
-            this.IbSA = new FontAwesome.Sharp.IconButton();
-            this.pnlSA = new System.Windows.Forms.Panel();
-            this.IbEP = new FontAwesome.Sharp.IconButton();
-            this.pnlEP = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblEstadoSA = new System.Windows.Forms.Label();
-            this.lblEstadoEP = new System.Windows.Forms.Label();
-            this.IbED = new FontAwesome.Sharp.IconButton();
-            this.lblEstadoED = new System.Windows.Forms.Label();
-            this.pnlED = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.IbE = new FontAwesome.Sharp.IconButton();
-            this.lblEstadoE = new System.Windows.Forms.Label();
-            this.tmLbl = new System.Windows.Forms.Timer(this.components);
-            this.tmLblEP = new System.Windows.Forms.Timer(this.components);
-            this.tmLblED = new System.Windows.Forms.Timer(this.components);
-            this.tmLblE = new System.Windows.Forms.Timer(this.components);
-            this.toolTipError = new System.Windows.Forms.ToolTip(this.components);
-            this.pnlEP.SuspendLayout();
-            this.pnlED.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            lblPedidos = new System.Windows.Forms.Label();
+            txtNO = new AltoControls.AltoTextBox();
+            lblNO = new System.Windows.Forms.Label();
+            txtDNIcli = new AltoControls.AltoTextBox();
+            lblDNIcli = new System.Windows.Forms.Label();
+            btnVerEstado = new FontAwesome.Sharp.IconButton();
+            IbSA = new FontAwesome.Sharp.IconButton();
+            pnlSA = new System.Windows.Forms.Panel();
+            IbEP = new FontAwesome.Sharp.IconButton();
+            pnlEP = new System.Windows.Forms.Panel();
+            panel3 = new System.Windows.Forms.Panel();
+            lblEstadoSA = new System.Windows.Forms.Label();
+            lblEstadoEP = new System.Windows.Forms.Label();
+            IbED = new FontAwesome.Sharp.IconButton();
+            lblEstadoED = new System.Windows.Forms.Label();
+            pnlED = new System.Windows.Forms.Panel();
+            panel5 = new System.Windows.Forms.Panel();
+            IbE = new FontAwesome.Sharp.IconButton();
+            lblEstadoE = new System.Windows.Forms.Label();
+            tmLbl = new System.Windows.Forms.Timer(components);
+            tmLblEP = new System.Windows.Forms.Timer(components);
+            tmLblED = new System.Windows.Forms.Timer(components);
+            tmLblE = new System.Windows.Forms.Timer(components);
+            toolTipError = new System.Windows.Forms.ToolTip(components);
+            lblFechaSA = new System.Windows.Forms.Label();
+            lblFechaEP = new System.Windows.Forms.Label();
+            lblFechaED = new System.Windows.Forms.Label();
+            lblFechaE = new System.Windows.Forms.Label();
+            pnlEP.SuspendLayout();
+            pnlED.SuspendLayout();
+            SuspendLayout();
             // 
             // lblPedidos
             // 
-            this.lblPedidos.AutoSize = true;
-            this.lblPedidos.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblPedidos.ForeColor = System.Drawing.Color.White;
-            this.lblPedidos.Location = new System.Drawing.Point(270, 35);
-            this.lblPedidos.Name = "lblPedidos";
-            this.lblPedidos.Size = new System.Drawing.Size(164, 32);
-            this.lblPedidos.TabIndex = 6;
-            this.lblPedidos.Text = "Estado Pedido";
+            lblPedidos.AutoSize = true;
+            lblPedidos.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblPedidos.ForeColor = System.Drawing.Color.White;
+            lblPedidos.Location = new System.Drawing.Point(270, 35);
+            lblPedidos.Name = "lblPedidos";
+            lblPedidos.Size = new System.Drawing.Size(164, 32);
+            lblPedidos.TabIndex = 6;
+            lblPedidos.Text = "Estado Pedido";
             // 
             // txtNO
             // 
-            this.txtNO.BackColor = System.Drawing.Color.Transparent;
-            this.txtNO.Br = System.Drawing.Color.MidnightBlue;
-            this.txtNO.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtNO.ForeColor = System.Drawing.Color.White;
-            this.txtNO.Location = new System.Drawing.Point(123, 122);
-            this.txtNO.Name = "txtNO";
-            this.txtNO.Size = new System.Drawing.Size(92, 29);
-            this.txtNO.TabIndex = 8;
-            this.txtNO.TextChanged += new System.EventHandler(this.txtNO_TextChanged);
+            txtNO.BackColor = System.Drawing.Color.Transparent;
+            txtNO.Br = System.Drawing.Color.MidnightBlue;
+            txtNO.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtNO.ForeColor = System.Drawing.Color.White;
+            txtNO.Location = new System.Drawing.Point(123, 122);
+            txtNO.Name = "txtNO";
+            txtNO.Size = new System.Drawing.Size(92, 29);
+            txtNO.TabIndex = 8;
+            txtNO.TextChanged += txtNO_TextChanged;
             // 
             // lblNO
             // 
-            this.lblNO.AutoSize = true;
-            this.lblNO.ForeColor = System.Drawing.Color.White;
-            this.lblNO.Location = new System.Drawing.Point(12, 128);
-            this.lblNO.Name = "lblNO";
-            this.lblNO.Size = new System.Drawing.Size(106, 15);
-            this.lblNO.TabIndex = 7;
-            this.lblNO.Text = "Número de Orden:";
+            lblNO.AutoSize = true;
+            lblNO.ForeColor = System.Drawing.Color.White;
+            lblNO.Location = new System.Drawing.Point(12, 128);
+            lblNO.Name = "lblNO";
+            lblNO.Size = new System.Drawing.Size(106, 15);
+            lblNO.TabIndex = 7;
+            lblNO.Text = "Número de Orden:";
             // 
             // txtDNIcli
             // 
-            this.txtDNIcli.BackColor = System.Drawing.Color.Transparent;
-            this.txtDNIcli.Br = System.Drawing.Color.MidnightBlue;
-            this.txtDNIcli.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.txtDNIcli.ForeColor = System.Drawing.Color.White;
-            this.txtDNIcli.Location = new System.Drawing.Point(123, 169);
-            this.txtDNIcli.Name = "txtDNIcli";
-            this.txtDNIcli.Size = new System.Drawing.Size(92, 29);
-            this.txtDNIcli.TabIndex = 10;
-            this.txtDNIcli.TextChanged += new System.EventHandler(this.txtDNIcli_TextChanged);
+            txtDNIcli.BackColor = System.Drawing.Color.Transparent;
+            txtDNIcli.Br = System.Drawing.Color.MidnightBlue;
+            txtDNIcli.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtDNIcli.ForeColor = System.Drawing.Color.White;
+            txtDNIcli.Location = new System.Drawing.Point(123, 169);
+            txtDNIcli.Name = "txtDNIcli";
+            txtDNIcli.Size = new System.Drawing.Size(92, 29);
+            txtDNIcli.TabIndex = 10;
+            txtDNIcli.TextChanged += txtDNIcli_TextChanged;
             // 
             // lblDNIcli
             // 
-            this.lblDNIcli.AutoSize = true;
-            this.lblDNIcli.ForeColor = System.Drawing.Color.White;
-            this.lblDNIcli.Location = new System.Drawing.Point(12, 175);
-            this.lblDNIcli.Name = "lblDNIcli";
-            this.lblDNIcli.Size = new System.Drawing.Size(87, 15);
-            this.lblDNIcli.TabIndex = 9;
-            this.lblDNIcli.Text = "DNI del cliente:";
+            lblDNIcli.AutoSize = true;
+            lblDNIcli.ForeColor = System.Drawing.Color.White;
+            lblDNIcli.Location = new System.Drawing.Point(12, 175);
+            lblDNIcli.Name = "lblDNIcli";
+            lblDNIcli.Size = new System.Drawing.Size(87, 15);
+            lblDNIcli.TabIndex = 9;
+            lblDNIcli.Text = "DNI del cliente:";
             // 
             // btnVerEstado
             // 
-            this.btnVerEstado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnVerEstado.FlatAppearance.BorderSize = 0;
-            this.btnVerEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVerEstado.ForeColor = System.Drawing.Color.White;
-            this.btnVerEstado.IconChar = FontAwesome.Sharp.IconChar.MoneyCheck;
-            this.btnVerEstado.IconColor = System.Drawing.Color.White;
-            this.btnVerEstado.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnVerEstado.IconSize = 35;
-            this.btnVerEstado.Location = new System.Drawing.Point(104, 214);
-            this.btnVerEstado.Name = "btnVerEstado";
-            this.btnVerEstado.Size = new System.Drawing.Size(111, 42);
-            this.btnVerEstado.TabIndex = 11;
-            this.btnVerEstado.Text = "Ver Estado";
-            this.btnVerEstado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnVerEstado.UseVisualStyleBackColor = false;
-            this.btnVerEstado.Click += new System.EventHandler(this.btnVerEstado_Click);
+            btnVerEstado.BackColor = System.Drawing.Color.FromArgb(30, 30, 30);
+            btnVerEstado.FlatAppearance.BorderSize = 0;
+            btnVerEstado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnVerEstado.ForeColor = System.Drawing.Color.White;
+            btnVerEstado.IconChar = FontAwesome.Sharp.IconChar.MoneyCheck;
+            btnVerEstado.IconColor = System.Drawing.Color.White;
+            btnVerEstado.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnVerEstado.IconSize = 35;
+            btnVerEstado.Location = new System.Drawing.Point(104, 214);
+            btnVerEstado.Name = "btnVerEstado";
+            btnVerEstado.Size = new System.Drawing.Size(111, 42);
+            btnVerEstado.TabIndex = 11;
+            btnVerEstado.Text = "Ver Estado";
+            btnVerEstado.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnVerEstado.UseVisualStyleBackColor = false;
+            btnVerEstado.Click += btnVerEstado_Click;
             // 
             // IbSA
             // 
-            this.IbSA.BackColor = System.Drawing.Color.Transparent;
-            this.IbSA.FlatAppearance.BorderSize = 0;
-            this.IbSA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IbSA.ForeColor = System.Drawing.Color.Transparent;
-            this.IbSA.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
-            this.IbSA.IconColor = System.Drawing.Color.Lime;
-            this.IbSA.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.IbSA.IconSize = 35;
-            this.IbSA.Location = new System.Drawing.Point(352, 120);
-            this.IbSA.Name = "IbSA";
-            this.IbSA.Size = new System.Drawing.Size(29, 31);
-            this.IbSA.TabIndex = 12;
-            this.IbSA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.IbSA.UseVisualStyleBackColor = false;
+            IbSA.BackColor = System.Drawing.Color.Transparent;
+            IbSA.FlatAppearance.BorderSize = 0;
+            IbSA.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            IbSA.ForeColor = System.Drawing.Color.Transparent;
+            IbSA.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            IbSA.IconColor = System.Drawing.Color.Lime;
+            IbSA.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            IbSA.IconSize = 35;
+            IbSA.Location = new System.Drawing.Point(352, 120);
+            IbSA.Name = "IbSA";
+            IbSA.Size = new System.Drawing.Size(29, 31);
+            IbSA.TabIndex = 12;
+            IbSA.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            IbSA.UseVisualStyleBackColor = false;
             // 
             // pnlSA
             // 
-            this.pnlSA.BackColor = System.Drawing.Color.White;
-            this.pnlSA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlSA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.pnlSA.Location = new System.Drawing.Point(363, 146);
-            this.pnlSA.Name = "pnlSA";
-            this.pnlSA.Size = new System.Drawing.Size(5, 50);
-            this.pnlSA.TabIndex = 13;
+            pnlSA.BackColor = System.Drawing.Color.White;
+            pnlSA.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlSA.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            pnlSA.Location = new System.Drawing.Point(363, 146);
+            pnlSA.Name = "pnlSA";
+            pnlSA.Size = new System.Drawing.Size(5, 50);
+            pnlSA.TabIndex = 13;
             // 
             // IbEP
             // 
-            this.IbEP.BackColor = System.Drawing.Color.Transparent;
-            this.IbEP.FlatAppearance.BorderSize = 0;
-            this.IbEP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IbEP.ForeColor = System.Drawing.Color.Transparent;
-            this.IbEP.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
-            this.IbEP.IconColor = System.Drawing.Color.Lime;
-            this.IbEP.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.IbEP.IconSize = 35;
-            this.IbEP.Location = new System.Drawing.Point(352, 193);
-            this.IbEP.Name = "IbEP";
-            this.IbEP.Size = new System.Drawing.Size(29, 31);
-            this.IbEP.TabIndex = 14;
-            this.IbEP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.IbEP.UseVisualStyleBackColor = false;
+            IbEP.BackColor = System.Drawing.Color.Transparent;
+            IbEP.FlatAppearance.BorderSize = 0;
+            IbEP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            IbEP.ForeColor = System.Drawing.Color.Transparent;
+            IbEP.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            IbEP.IconColor = System.Drawing.Color.Lime;
+            IbEP.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            IbEP.IconSize = 35;
+            IbEP.Location = new System.Drawing.Point(352, 193);
+            IbEP.Name = "IbEP";
+            IbEP.Size = new System.Drawing.Size(29, 31);
+            IbEP.TabIndex = 14;
+            IbEP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            IbEP.UseVisualStyleBackColor = false;
             // 
             // pnlEP
             // 
-            this.pnlEP.BackColor = System.Drawing.Color.White;
-            this.pnlEP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlEP.Controls.Add(this.panel3);
-            this.pnlEP.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.pnlEP.Location = new System.Drawing.Point(363, 218);
-            this.pnlEP.Name = "pnlEP";
-            this.pnlEP.Size = new System.Drawing.Size(5, 50);
-            this.pnlEP.TabIndex = 14;
+            pnlEP.BackColor = System.Drawing.Color.White;
+            pnlEP.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlEP.Controls.Add(panel3);
+            pnlEP.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            pnlEP.Location = new System.Drawing.Point(363, 218);
+            pnlEP.Name = "pnlEP";
+            pnlEP.Size = new System.Drawing.Size(5, 50);
+            pnlEP.TabIndex = 14;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.White;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panel3.Location = new System.Drawing.Point(-1, 76);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(5, 50);
-            this.panel3.TabIndex = 15;
+            panel3.BackColor = System.Drawing.Color.White;
+            panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            panel3.Location = new System.Drawing.Point(-1, 76);
+            panel3.Name = "panel3";
+            panel3.Size = new System.Drawing.Size(5, 50);
+            panel3.TabIndex = 15;
             // 
             // lblEstadoSA
             // 
-            this.lblEstadoSA.AutoSize = true;
-            this.lblEstadoSA.ForeColor = System.Drawing.Color.White;
-            this.lblEstadoSA.Location = new System.Drawing.Point(387, 126);
-            this.lblEstadoSA.Name = "lblEstadoSA";
-            this.lblEstadoSA.Size = new System.Drawing.Size(64, 15);
-            this.lblEstadoSA.TabIndex = 15;
-            this.lblEstadoSA.Text = "Sin asignar";
+            lblEstadoSA.AutoSize = true;
+            lblEstadoSA.ForeColor = System.Drawing.Color.White;
+            lblEstadoSA.Location = new System.Drawing.Point(387, 126);
+            lblEstadoSA.Name = "lblEstadoSA";
+            lblEstadoSA.Size = new System.Drawing.Size(64, 15);
+            lblEstadoSA.TabIndex = 15;
+            lblEstadoSA.Text = "Sin asignar";
             // 
             // lblEstadoEP
             // 
-            this.lblEstadoEP.AutoSize = true;
-            this.lblEstadoEP.ForeColor = System.Drawing.Color.White;
-            this.lblEstadoEP.Location = new System.Drawing.Point(387, 199);
-            this.lblEstadoEP.Name = "lblEstadoEP";
-            this.lblEstadoEP.Size = new System.Drawing.Size(84, 15);
-            this.lblEstadoEP.TabIndex = 16;
-            this.lblEstadoEP.Text = "En producción";
+            lblEstadoEP.AutoSize = true;
+            lblEstadoEP.ForeColor = System.Drawing.Color.White;
+            lblEstadoEP.Location = new System.Drawing.Point(387, 199);
+            lblEstadoEP.Name = "lblEstadoEP";
+            lblEstadoEP.Size = new System.Drawing.Size(84, 15);
+            lblEstadoEP.TabIndex = 16;
+            lblEstadoEP.Text = "En producción";
             // 
             // IbED
             // 
-            this.IbED.BackColor = System.Drawing.Color.Transparent;
-            this.IbED.FlatAppearance.BorderSize = 0;
-            this.IbED.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IbED.ForeColor = System.Drawing.Color.Transparent;
-            this.IbED.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
-            this.IbED.IconColor = System.Drawing.Color.Lime;
-            this.IbED.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.IbED.IconSize = 35;
-            this.IbED.Location = new System.Drawing.Point(352, 268);
-            this.IbED.Name = "IbED";
-            this.IbED.Size = new System.Drawing.Size(29, 31);
-            this.IbED.TabIndex = 17;
-            this.IbED.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.IbED.UseVisualStyleBackColor = false;
+            IbED.BackColor = System.Drawing.Color.Transparent;
+            IbED.FlatAppearance.BorderSize = 0;
+            IbED.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            IbED.ForeColor = System.Drawing.Color.Transparent;
+            IbED.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            IbED.IconColor = System.Drawing.Color.Lime;
+            IbED.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            IbED.IconSize = 35;
+            IbED.Location = new System.Drawing.Point(352, 268);
+            IbED.Name = "IbED";
+            IbED.Size = new System.Drawing.Size(29, 31);
+            IbED.TabIndex = 17;
+            IbED.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            IbED.UseVisualStyleBackColor = false;
             // 
             // lblEstadoED
             // 
-            this.lblEstadoED.AutoSize = true;
-            this.lblEstadoED.ForeColor = System.Drawing.Color.White;
-            this.lblEstadoED.Location = new System.Drawing.Point(387, 275);
-            this.lblEstadoED.Name = "lblEstadoED";
-            this.lblEstadoED.Size = new System.Drawing.Size(69, 15);
-            this.lblEstadoED.TabIndex = 18;
-            this.lblEstadoED.Text = "En depósito";
+            lblEstadoED.AutoSize = true;
+            lblEstadoED.ForeColor = System.Drawing.Color.White;
+            lblEstadoED.Location = new System.Drawing.Point(387, 275);
+            lblEstadoED.Name = "lblEstadoED";
+            lblEstadoED.Size = new System.Drawing.Size(69, 15);
+            lblEstadoED.TabIndex = 18;
+            lblEstadoED.Text = "En depósito";
             // 
             // pnlED
             // 
-            this.pnlED.BackColor = System.Drawing.Color.White;
-            this.pnlED.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlED.Controls.Add(this.panel5);
-            this.pnlED.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.pnlED.Location = new System.Drawing.Point(363, 295);
-            this.pnlED.Name = "pnlED";
-            this.pnlED.Size = new System.Drawing.Size(5, 50);
-            this.pnlED.TabIndex = 16;
+            pnlED.BackColor = System.Drawing.Color.White;
+            pnlED.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            pnlED.Controls.Add(panel5);
+            pnlED.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            pnlED.Location = new System.Drawing.Point(363, 295);
+            pnlED.Name = "pnlED";
+            pnlED.Size = new System.Drawing.Size(5, 50);
+            pnlED.TabIndex = 16;
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.White;
-            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.panel5.Location = new System.Drawing.Point(-1, 76);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(5, 50);
-            this.panel5.TabIndex = 15;
+            panel5.BackColor = System.Drawing.Color.White;
+            panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            panel5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            panel5.Location = new System.Drawing.Point(-1, 76);
+            panel5.Name = "panel5";
+            panel5.Size = new System.Drawing.Size(5, 50);
+            panel5.TabIndex = 15;
             // 
             // IbE
             // 
-            this.IbE.BackColor = System.Drawing.Color.Transparent;
-            this.IbE.FlatAppearance.BorderSize = 0;
-            this.IbE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.IbE.ForeColor = System.Drawing.Color.Transparent;
-            this.IbE.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
-            this.IbE.IconColor = System.Drawing.Color.Lime;
-            this.IbE.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.IbE.IconSize = 35;
-            this.IbE.Location = new System.Drawing.Point(352, 346);
-            this.IbE.Name = "IbE";
-            this.IbE.Size = new System.Drawing.Size(29, 31);
-            this.IbE.TabIndex = 19;
-            this.IbE.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.IbE.UseVisualStyleBackColor = false;
+            IbE.BackColor = System.Drawing.Color.Transparent;
+            IbE.FlatAppearance.BorderSize = 0;
+            IbE.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            IbE.ForeColor = System.Drawing.Color.Transparent;
+            IbE.IconChar = FontAwesome.Sharp.IconChar.CheckCircle;
+            IbE.IconColor = System.Drawing.Color.Lime;
+            IbE.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            IbE.IconSize = 35;
+            IbE.Location = new System.Drawing.Point(352, 346);
+            IbE.Name = "IbE";
+            IbE.Size = new System.Drawing.Size(29, 31);
+            IbE.TabIndex = 19;
+            IbE.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            IbE.UseVisualStyleBackColor = false;
             // 
             // lblEstadoE
             // 
-            this.lblEstadoE.AutoSize = true;
-            this.lblEstadoE.ForeColor = System.Drawing.Color.White;
-            this.lblEstadoE.Location = new System.Drawing.Point(387, 353);
-            this.lblEstadoE.Name = "lblEstadoE";
-            this.lblEstadoE.Size = new System.Drawing.Size(61, 15);
-            this.lblEstadoE.TabIndex = 20;
-            this.lblEstadoE.Text = "Entregado";
+            lblEstadoE.AutoSize = true;
+            lblEstadoE.ForeColor = System.Drawing.Color.White;
+            lblEstadoE.Location = new System.Drawing.Point(387, 353);
+            lblEstadoE.Name = "lblEstadoE";
+            lblEstadoE.Size = new System.Drawing.Size(61, 15);
+            lblEstadoE.TabIndex = 20;
+            lblEstadoE.Text = "Entregado";
             // 
             // tmLbl
             // 
-            this.tmLbl.Interval = 10;
-            this.tmLbl.Tick += new System.EventHandler(this.tmLbl_Tick);
+            tmLbl.Interval = 10;
+            tmLbl.Tick += tmLbl_Tick;
             // 
             // tmLblEP
             // 
-            this.tmLblEP.Interval = 10;
-            this.tmLblEP.Tick += new System.EventHandler(this.tmLblEP_Tick);
+            tmLblEP.Interval = 10;
+            tmLblEP.Tick += tmLblEP_Tick;
             // 
             // tmLblED
             // 
-            this.tmLblED.Interval = 10;
-            this.tmLblED.Tick += new System.EventHandler(this.tmLblED_Tick);
+            tmLblED.Interval = 10;
+            tmLblED.Tick += tmLblED_Tick;
             // 
             // tmLblE
             // 
-            this.tmLblE.Interval = 10;
-            this.tmLblE.Tick += new System.EventHandler(this.tmLblE_Tick);
+            tmLblE.Interval = 10;
+            tmLblE.Tick += tmLblE_Tick;
+            // 
+            // lblFechaSA
+            // 
+            lblFechaSA.AutoSize = true;
+            lblFechaSA.ForeColor = System.Drawing.Color.White;
+            lblFechaSA.Location = new System.Drawing.Point(519, 126);
+            lblFechaSA.Name = "lblFechaSA";
+            lblFechaSA.Size = new System.Drawing.Size(0, 15);
+            lblFechaSA.TabIndex = 21;
+            // 
+            // lblFechaEP
+            // 
+            lblFechaEP.AutoSize = true;
+            lblFechaEP.ForeColor = System.Drawing.Color.White;
+            lblFechaEP.Location = new System.Drawing.Point(519, 199);
+            lblFechaEP.Name = "lblFechaEP";
+            lblFechaEP.Size = new System.Drawing.Size(0, 15);
+            lblFechaEP.TabIndex = 22;
+            // 
+            // lblFechaED
+            // 
+            lblFechaED.AutoSize = true;
+            lblFechaED.ForeColor = System.Drawing.Color.White;
+            lblFechaED.Location = new System.Drawing.Point(519, 275);
+            lblFechaED.Name = "lblFechaED";
+            lblFechaED.Size = new System.Drawing.Size(0, 15);
+            lblFechaED.TabIndex = 23;
+            // 
+            // lblFechaE
+            // 
+            lblFechaE.AutoSize = true;
+            lblFechaE.ForeColor = System.Drawing.Color.White;
+            lblFechaE.Location = new System.Drawing.Point(519, 353);
+            lblFechaE.Name = "lblFechaE";
+            lblFechaE.Size = new System.Drawing.Size(0, 15);
+            lblFechaE.TabIndex = 24;
             // 
             // FmAdministrarPedido
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblEstadoE);
-            this.Controls.Add(this.IbE);
-            this.Controls.Add(this.pnlED);
-            this.Controls.Add(this.lblEstadoED);
-            this.Controls.Add(this.IbED);
-            this.Controls.Add(this.lblEstadoEP);
-            this.Controls.Add(this.lblEstadoSA);
-            this.Controls.Add(this.pnlEP);
-            this.Controls.Add(this.IbEP);
-            this.Controls.Add(this.pnlSA);
-            this.Controls.Add(this.IbSA);
-            this.Controls.Add(this.btnVerEstado);
-            this.Controls.Add(this.txtDNIcli);
-            this.Controls.Add(this.lblDNIcli);
-            this.Controls.Add(this.txtNO);
-            this.Controls.Add(this.lblNO);
-            this.Controls.Add(this.lblPedidos);
-            this.Name = "FmAdministrarPedido";
-            this.Text = "FmAdministrarPedido";
-            this.Load += new System.EventHandler(this.FmAdministrarPedido_Load);
-            this.pnlEP.ResumeLayout(false);
-            this.pnlED.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(30, 30, 30);
+            ClientSize = new System.Drawing.Size(800, 450);
+            Controls.Add(lblFechaE);
+            Controls.Add(lblFechaED);
+            Controls.Add(lblFechaEP);
+            Controls.Add(lblFechaSA);
+            Controls.Add(lblEstadoE);
+            Controls.Add(IbE);
+            Controls.Add(pnlED);
+            Controls.Add(lblEstadoED);
+            Controls.Add(IbED);
+            Controls.Add(lblEstadoEP);
+            Controls.Add(lblEstadoSA);
+            Controls.Add(pnlEP);
+            Controls.Add(IbEP);
+            Controls.Add(pnlSA);
+            Controls.Add(IbSA);
+            Controls.Add(btnVerEstado);
+            Controls.Add(txtDNIcli);
+            Controls.Add(lblDNIcli);
+            Controls.Add(txtNO);
+            Controls.Add(lblNO);
+            Controls.Add(lblPedidos);
+            Name = "FmAdministrarPedido";
+            Text = "FmAdministrarPedido";
+            Load += FmAdministrarPedido_Load;
+            pnlEP.ResumeLayout(false);
+            pnlED.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -371,5 +414,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         private System.Windows.Forms.Timer tmLblED;
         private System.Windows.Forms.Timer tmLblE;
         private System.Windows.Forms.ToolTip toolTipError;
+        private System.Windows.Forms.Label lblFechaSA;
+        private System.Windows.Forms.Label lblFechaEP;
+        private System.Windows.Forms.Label lblFechaED;
+        private System.Windows.Forms.Label lblFechaE;
     }
 }

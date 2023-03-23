@@ -148,7 +148,13 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void btnSaveNewPassword_Click(object sender, EventArgs e)
         {
-            if (txtNewPassword.Text == txtConfirmNewPassword.Text)
+            if (string.IsNullOrEmpty(txtOldPassword.Text) || string.IsNullOrEmpty(txtNewPassword.Text) || string.IsNullOrEmpty(txtConfirmNewPassword.Text))
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Campos vacios", "Por favor complete los campos vacios", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+            else if (txtNewPassword.Text == txtConfirmNewPassword.Text)
             {
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Cambiar contraseña", "Esta seguro que quiere cambiar su contraseña?", centerPosition, true);

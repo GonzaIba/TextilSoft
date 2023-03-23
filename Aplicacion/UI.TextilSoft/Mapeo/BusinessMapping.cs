@@ -57,6 +57,11 @@ namespace UI.TextilSoft.Mapeo
             CreateMap<List<DetallePedidosYFabricaEntity>, List<DetallePedidosModel>>()
                 .ReverseMap();
 
+            CreateMap<PedidosModel, SeguimientoPedidosEntity>()
+                .ForMember(dest => dest.NumeroPedido, opt => opt.MapFrom(src => src.NumeroPedido))
+                .ForMember(dest => dest.EstadoActual, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
+                .ForMember(dest => dest.HistorialPedidos, opt => opt.MapFrom(src => src.HistorialPedidos.Select(hp => new HistorialPedidosEntity { EstadoPedido = ConvertToEstadoPedido(hp.EstadoPedido.ID_EstadoPedido), Fecha = hp.Fecha }).ToList()));
+
         }
 
         public string StringSepare(string text,string separe, int index)

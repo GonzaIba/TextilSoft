@@ -47,12 +47,13 @@ namespace SL.Helper.Controllers
             _companyConfiguration = companyConfiguration;
         }
 
-        public bool Crearusuario(Register register, int CompanyId)
+        public bool Crearusuario(Register register, int CompanyId,bool EmailConfirm)
         {
             try
             {
                 var usuario = _mapper.Map<UsuarioModel>(register);
                 usuario.CompanyId = CompanyId;
+                usuario.EmailConfirmado = EmailConfirm;
                 return _usuarioService.Register(usuario);
             }
             catch (Exception ex)

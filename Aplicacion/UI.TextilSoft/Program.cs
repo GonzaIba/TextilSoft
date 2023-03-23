@@ -170,6 +170,7 @@ namespace UI.TextilSoft
 
             services.AddSingleton<IPedidosController<ListarPedidosEntity>, PedidosController<ListarPedidosEntity>>();
             services.AddSingleton<IPedidosController<ListarPedidosFabricaEntity>, PedidosController<ListarPedidosFabricaEntity>>();
+            services.AddSingleton<IPedidosController<SeguimientoPedidosEntity>, PedidosController<SeguimientoPedidosEntity>>();
 
             services.AddConfig<CompanyConfiguration>(Configuration, nameof(CompanyConfiguration));
 

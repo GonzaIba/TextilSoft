@@ -35,6 +35,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             label1 = new System.Windows.Forms.Label();
             panelClientes = new System.Windows.Forms.Panel();
+            txtSeña = new AltoControls.AltoTextBox();
+            label8 = new System.Windows.Forms.Label();
+            lblExtras = new System.Windows.Forms.Label();
             label7 = new System.Windows.Forms.Label();
             label6 = new System.Windows.Forms.Label();
             label5 = new System.Windows.Forms.Label();
@@ -71,9 +74,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelProductoDetalle = new System.Windows.Forms.Panel();
             timerSubir = new System.Windows.Forms.Timer(components);
             timerBajar = new System.Windows.Forms.Timer(components);
-            lblExtras = new System.Windows.Forms.Label();
-            txtSeña = new AltoControls.AltoTextBox();
-            label8 = new System.Windows.Forms.Label();
             panelClientes.SuspendLayout();
             panelProductos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvProductos).BeginInit();
@@ -114,6 +114,39 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelClientes.Name = "panelClientes";
             panelClientes.Size = new System.Drawing.Size(952, 150);
             panelClientes.TabIndex = 1;
+            // 
+            // txtSeña
+            // 
+            txtSeña.BackColor = System.Drawing.Color.Transparent;
+            txtSeña.Br = System.Drawing.Color.MidnightBlue;
+            txtSeña.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtSeña.ForeColor = System.Drawing.Color.White;
+            txtSeña.Location = new System.Drawing.Point(592, 35);
+            txtSeña.Name = "txtSeña";
+            txtSeña.Size = new System.Drawing.Size(122, 29);
+            txtSeña.TabIndex = 17;
+            txtSeña.TextChanged += txtSeña_TextChanged;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.ForeColor = System.Drawing.Color.White;
+            label8.Location = new System.Drawing.Point(548, 41);
+            label8.Name = "label8";
+            label8.Size = new System.Drawing.Size(35, 15);
+            label8.TabIndex = 16;
+            label8.Text = "Seña:";
+            // 
+            // lblExtras
+            // 
+            lblExtras.AutoSize = true;
+            lblExtras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lblExtras.ForeColor = System.Drawing.Color.White;
+            lblExtras.Location = new System.Drawing.Point(592, 5);
+            lblExtras.Name = "lblExtras";
+            lblExtras.Size = new System.Drawing.Size(56, 21);
+            lblExtras.TabIndex = 15;
+            lblExtras.Text = "Extras";
             // 
             // label7
             // 
@@ -555,46 +588,13 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             // timerSubir
             // 
-            timerSubir.Interval = 1;
+            timerSubir.Interval = 10;
             timerSubir.Tick += timerSubir_Tick;
             // 
             // timerBajar
             // 
-            timerBajar.Interval = 1;
+            timerBajar.Interval = 10;
             timerBajar.Tick += timerBajar_Tick;
-            // 
-            // lblExtras
-            // 
-            lblExtras.AutoSize = true;
-            lblExtras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            lblExtras.ForeColor = System.Drawing.Color.White;
-            lblExtras.Location = new System.Drawing.Point(592, 5);
-            lblExtras.Name = "lblExtras";
-            lblExtras.Size = new System.Drawing.Size(56, 21);
-            lblExtras.TabIndex = 15;
-            lblExtras.Text = "Extras";
-            // 
-            // txtSeña
-            // 
-            txtSeña.BackColor = System.Drawing.Color.Transparent;
-            txtSeña.Br = System.Drawing.Color.MidnightBlue;
-            txtSeña.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            txtSeña.ForeColor = System.Drawing.Color.White;
-            txtSeña.Location = new System.Drawing.Point(592, 35);
-            txtSeña.Name = "txtSeña";
-            txtSeña.Size = new System.Drawing.Size(122, 29);
-            txtSeña.TabIndex = 17;
-            txtSeña.TextChanged += txtSeña_TextChanged;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.ForeColor = System.Drawing.Color.White;
-            label8.Location = new System.Drawing.Point(548, 41);
-            label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(35, 15);
-            label8.TabIndex = 16;
-            label8.Text = "Seña:";
             // 
             // FmCrearPedido
             // 

@@ -71,7 +71,7 @@ namespace UI.TextilSoft.MainForm
             }
 
         }
-      
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtUser.Text) || txtUser.Text == txtUserNameTextBase)
@@ -213,7 +213,7 @@ namespace UI.TextilSoft.MainForm
                                             Color.Black,
                                             centerPosition,
                                             null,
-                                            _factory.Use<IUsuarioController>().RecuperarContraseña,
+                                            _factory.UseNew<IUsuarioController>().RecuperarContraseña,
                                             "Usuario",
                                             "Email",
                                             "Recuperar"
@@ -507,7 +507,7 @@ namespace UI.TextilSoft.MainForm
 
         private void FmIniciarSesion_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void FmIniciarSesion_Click(object sender, EventArgs e)

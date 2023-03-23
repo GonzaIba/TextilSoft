@@ -11,7 +11,7 @@ namespace SL.Contracts
 {
     public interface IUsuarioController
     {
-        bool Crearusuario(Register appIdentityUser, int companyId);
+        bool Crearusuario(Register appIdentityUser, int companyId, bool EmailConfirm);
         bool ActualizarConfiguracionUsuario(UsuarioInformacion Usuarioinformacion);
         LoginResult LoginUser(Login appIdentityUser);
         //void UpdateUser(UsuarioModel appIdentityUser);

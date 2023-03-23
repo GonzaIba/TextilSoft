@@ -40,8 +40,16 @@ namespace SL.Business.Services
                     emailFrom: _emailSendGridConfiguration.From,
                     attachments: null
                 );
+                string body = string.Empty;
+                try
+                {
+                    body = HtmlDocumentService.GetHtmlDocument("Register.html", null, new List<string> { Convert.ToString(CodigoVerificacion) });
 
-                string body = HtmlDocumentService.GetHtmlDocument("Register.html", null, new List<string> { Convert.ToString(CodigoVerificacion) });
+                }
+                catch
+                {
+                    body = "Su código de verificación es: " + CodigoVerificacion;
+                }
                 message.Content += body;
                 SendEmail(message);
             }
@@ -58,12 +66,20 @@ namespace SL.Business.Services
                 (
                     to: new string[] { user.Email },
                     subject: "Restauración de contraseña",
-                    content: "Hola. Su nueva contraseña es "+ newPassword,
+                    content: "Hola "+user.Nombre+"! Su nueva contraseña es "+ newPassword,
                     emailFrom: _emailSendGridConfiguration.From,
                     attachments: null
                 );
-            
-            string body = HtmlDocumentService.GetHtmlDocument("ForgotPassword.html", null);
+            string body = string.Empty;
+            try
+            {
+                body = HtmlDocumentService.GetHtmlDocument("ForgotPassword.html", newPassword);
+            }
+            catch
+            {
+                body = "Su código de verificación es: " + newPassword;
+            }
+
             message.Content += body;
             SendEmail(message);
         }

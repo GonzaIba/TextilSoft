@@ -139,6 +139,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // btnConfiguracion
             // 
+            btnConfiguracion.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnConfiguracion, AnimatorNS.DecorationType.None);
             btnConfiguracion.Enabled = false;
             btnConfiguracion.FlatAppearance.BorderSize = 0;
@@ -150,7 +151,7 @@ namespace UI.TextilSoft.MainForm
             btnConfiguracion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnConfiguracion.IconSize = 35;
             btnConfiguracion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            btnConfiguracion.Location = new System.Drawing.Point(0, 448);
+            btnConfiguracion.Location = new System.Drawing.Point(0, 447);
             btnConfiguracion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnConfiguracion.Name = "btnConfiguracion";
             btnConfiguracion.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -167,6 +168,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // btnVentas
             // 
+            btnVentas.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnVentas, AnimatorNS.DecorationType.None);
             btnVentas.Enabled = false;
             btnVentas.FlatAppearance.BorderSize = 0;
@@ -195,6 +197,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // btnFacturas
             // 
+            btnFacturas.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnFacturas, AnimatorNS.DecorationType.None);
             btnFacturas.Enabled = false;
             btnFacturas.FlatAppearance.BorderSize = 0;
@@ -223,6 +226,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // btnProduccion
             // 
+            btnProduccion.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnProduccion, AnimatorNS.DecorationType.None);
             btnProduccion.Enabled = false;
             btnProduccion.FlatAppearance.BorderSize = 0;
@@ -234,7 +238,7 @@ namespace UI.TextilSoft.MainForm
             btnProduccion.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnProduccion.IconSize = 35;
             btnProduccion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            btnProduccion.Location = new System.Drawing.Point(0, 323);
+            btnProduccion.Location = new System.Drawing.Point(0, 322);
             btnProduccion.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnProduccion.Name = "btnProduccion";
             btnProduccion.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -251,6 +255,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // btnProveedores
             // 
+            btnProveedores.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnProveedores, AnimatorNS.DecorationType.None);
             btnProveedores.Enabled = false;
             btnProveedores.FlatAppearance.BorderSize = 0;
@@ -262,7 +267,7 @@ namespace UI.TextilSoft.MainForm
             btnProveedores.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnProveedores.IconSize = 35;
             btnProveedores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            btnProveedores.Location = new System.Drawing.Point(0, 389);
+            btnProveedores.Location = new System.Drawing.Point(0, 388);
             btnProveedores.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             btnProveedores.Name = "btnProveedores";
             btnProveedores.Padding = new System.Windows.Forms.Padding(2, 0, 0, 0);
@@ -279,6 +284,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // btnReportes
             // 
+            btnReportes.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnReportes, AnimatorNS.DecorationType.None);
             btnReportes.Enabled = false;
             btnReportes.FlatAppearance.BorderSize = 0;
@@ -307,6 +313,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // btnPedidos
             // 
+            btnPedidos.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnPedidos, AnimatorNS.DecorationType.None);
             btnPedidos.Enabled = false;
             btnPedidos.FlatAppearance.BorderSize = 0;

@@ -29,145 +29,147 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmProductoProveedor));
-            this.lblProductos = new System.Windows.Forms.Label();
-            this.GrillaProductoProveedores = new System.Windows.Forms.DataGridView();
-            this.btnProductoProveedor = new FontAwesome.Sharp.IconButton();
-            this.ProveedoresAnimator = new AnimatorNS.Animator(this.components);
-            this.PanelProdProveedor = new System.Windows.Forms.Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.GrillaProductoProveedores)).BeginInit();
-            this.SuspendLayout();
+            lblProductos = new System.Windows.Forms.Label();
+            GrillaProductoProveedores = new System.Windows.Forms.DataGridView();
+            btnProductoProveedor = new FontAwesome.Sharp.IconButton();
+            ProveedoresAnimator = new AnimatorNS.Animator(components);
+            PanelProdProveedor = new System.Windows.Forms.Panel();
+            ((System.ComponentModel.ISupportInitialize)GrillaProductoProveedores).BeginInit();
+            PanelProdProveedor.SuspendLayout();
+            SuspendLayout();
             // 
             // lblProductos
             // 
-            this.lblProductos.AutoSize = true;
-            this.ProveedoresAnimator.SetDecoration(this.lblProductos, AnimatorNS.DecorationType.None);
-            this.lblProductos.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblProductos.ForeColor = System.Drawing.Color.Transparent;
-            this.lblProductos.Location = new System.Drawing.Point(225, 25);
-            this.lblProductos.Name = "lblProductos";
-            this.lblProductos.Size = new System.Drawing.Size(356, 37);
-            this.lblProductos.TabIndex = 3;
-            this.lblProductos.Text = "Productos de proveedores";
+            lblProductos.AutoSize = true;
+            ProveedoresAnimator.SetDecoration(lblProductos, AnimatorNS.DecorationType.None);
+            lblProductos.Font = new System.Drawing.Font("Nirmala UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            lblProductos.ForeColor = System.Drawing.Color.Transparent;
+            lblProductos.Location = new System.Drawing.Point(247, 27);
+            lblProductos.Name = "lblProductos";
+            lblProductos.Size = new System.Drawing.Size(356, 37);
+            lblProductos.TabIndex = 3;
+            lblProductos.Text = "Productos de proveedores";
             // 
             // GrillaProductoProveedores
             // 
-            this.GrillaProductoProveedores.AllowUserToResizeColumns = false;
-            this.GrillaProductoProveedores.AllowUserToResizeRows = false;
-            this.GrillaProductoProveedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.GrillaProductoProveedores.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
-            this.GrillaProductoProveedores.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.GrillaProductoProveedores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.GrillaProductoProveedores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            GrillaProductoProveedores.AllowUserToResizeColumns = false;
+            GrillaProductoProveedores.AllowUserToResizeRows = false;
+            GrillaProductoProveedores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            GrillaProductoProveedores.BackgroundColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            GrillaProductoProveedores.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            GrillaProductoProveedores.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
+            GrillaProductoProveedores.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrillaProductoProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.GrillaProductoProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            this.ProveedoresAnimator.SetDecoration(this.GrillaProductoProveedores, AnimatorNS.DecorationType.None);
-            this.GrillaProductoProveedores.EnableHeadersVisualStyles = false;
-            this.GrillaProductoProveedores.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.GrillaProductoProveedores.Location = new System.Drawing.Point(35, 85);
-            this.GrillaProductoProveedores.Name = "GrillaProductoProveedores";
-            this.GrillaProductoProveedores.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            GrillaProductoProveedores.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            GrillaProductoProveedores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            ProveedoresAnimator.SetDecoration(GrillaProductoProveedores, AnimatorNS.DecorationType.None);
+            GrillaProductoProveedores.EnableHeadersVisualStyles = false;
+            GrillaProductoProveedores.GridColor = System.Drawing.Color.FromArgb(0, 80, 200);
+            GrillaProductoProveedores.Location = new System.Drawing.Point(35, 85);
+            GrillaProductoProveedores.Name = "GrillaProductoProveedores";
+            GrillaProductoProveedores.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(30)))), ((int)(((byte)(45)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.GrillaProductoProveedores.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.GrillaProductoProveedores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            GrillaProductoProveedores.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            GrillaProductoProveedores.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(66)))), ((int)(((byte)(82)))));
-            this.GrillaProductoProveedores.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.GrillaProductoProveedores.RowTemplate.Height = 25;
-            this.GrillaProductoProveedores.Size = new System.Drawing.Size(812, 285);
-            this.GrillaProductoProveedores.TabIndex = 4;
-            this.GrillaProductoProveedores.MouseClick += new System.Windows.Forms.MouseEventHandler(this.GrillaProductoProveedores_MouseClick);
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
+            GrillaProductoProveedores.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            GrillaProductoProveedores.RowTemplate.Height = 25;
+            GrillaProductoProveedores.Size = new System.Drawing.Size(812, 335);
+            GrillaProductoProveedores.TabIndex = 4;
+            GrillaProductoProveedores.MouseClick += GrillaProductoProveedores_MouseClick;
             // 
             // btnProductoProveedor
             // 
-            this.ProveedoresAnimator.SetDecoration(this.btnProductoProveedor, AnimatorNS.DecorationType.None);
-            this.btnProductoProveedor.FlatAppearance.BorderSize = 0;
-            this.btnProductoProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProductoProveedor.ForeColor = System.Drawing.Color.White;
-            this.btnProductoProveedor.IconChar = FontAwesome.Sharp.IconChar.ArrowLeft;
-            this.btnProductoProveedor.IconColor = System.Drawing.Color.White;
-            this.btnProductoProveedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnProductoProveedor.IconSize = 37;
-            this.btnProductoProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductoProveedor.Location = new System.Drawing.Point(35, 394);
-            this.btnProductoProveedor.Name = "btnProductoProveedor";
-            this.btnProductoProveedor.Size = new System.Drawing.Size(107, 44);
-            this.btnProductoProveedor.TabIndex = 9;
-            this.btnProductoProveedor.Text = "Ver proveedores";
-            this.btnProductoProveedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnProductoProveedor.UseVisualStyleBackColor = true;
-            this.btnProductoProveedor.Click += new System.EventHandler(this.btnProductoProveedor_Click);
+            ProveedoresAnimator.SetDecoration(btnProductoProveedor, AnimatorNS.DecorationType.None);
+            btnProductoProveedor.FlatAppearance.BorderSize = 0;
+            btnProductoProveedor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnProductoProveedor.ForeColor = System.Drawing.Color.White;
+            btnProductoProveedor.IconChar = FontAwesome.Sharp.IconChar.ArrowLeft;
+            btnProductoProveedor.IconColor = System.Drawing.Color.White;
+            btnProductoProveedor.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnProductoProveedor.IconSize = 37;
+            btnProductoProveedor.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            btnProductoProveedor.Location = new System.Drawing.Point(35, 426);
+            btnProductoProveedor.Name = "btnProductoProveedor";
+            btnProductoProveedor.Size = new System.Drawing.Size(107, 44);
+            btnProductoProveedor.TabIndex = 9;
+            btnProductoProveedor.Text = "Ver proveedores";
+            btnProductoProveedor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnProductoProveedor.UseVisualStyleBackColor = true;
+            btnProductoProveedor.Click += btnProductoProveedor_Click;
             // 
             // ProveedoresAnimator
             // 
-            this.ProveedoresAnimator.AnimationType = AnimatorNS.AnimationType.HorizSlide;
-            this.ProveedoresAnimator.Cursor = null;
+            ProveedoresAnimator.AnimationType = AnimatorNS.AnimationType.HorizSlide;
+            ProveedoresAnimator.Cursor = null;
             animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.BlindCoeff")));
+            animation1.BlindCoeff = (System.Drawing.PointF)resources.GetObject("animation1.BlindCoeff");
             animation1.LeafCoeff = 0F;
             animation1.MaxTime = 1F;
             animation1.MinTime = 0F;
-            animation1.MosaicCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicCoeff")));
-            animation1.MosaicShift = ((System.Drawing.PointF)(resources.GetObject("animation1.MosaicShift")));
+            animation1.MosaicCoeff = (System.Drawing.PointF)resources.GetObject("animation1.MosaicCoeff");
+            animation1.MosaicShift = (System.Drawing.PointF)resources.GetObject("animation1.MosaicShift");
             animation1.MosaicSize = 0;
             animation1.Padding = new System.Windows.Forms.Padding(0);
             animation1.RotateCoeff = 0F;
             animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.ScaleCoeff")));
-            animation1.SlideCoeff = ((System.Drawing.PointF)(resources.GetObject("animation1.SlideCoeff")));
+            animation1.ScaleCoeff = (System.Drawing.PointF)resources.GetObject("animation1.ScaleCoeff");
+            animation1.SlideCoeff = (System.Drawing.PointF)resources.GetObject("animation1.SlideCoeff");
             animation1.TimeCoeff = 0F;
             animation1.TransparencyCoeff = 0F;
-            this.ProveedoresAnimator.DefaultAnimation = animation1;
-            this.ProveedoresAnimator.TimeStep = 0.01F;
+            ProveedoresAnimator.DefaultAnimation = animation1;
+            ProveedoresAnimator.TimeStep = 0.01F;
             // 
             // PanelProdProveedor
             // 
-            this.ProveedoresAnimator.SetDecoration(this.PanelProdProveedor, AnimatorNS.DecorationType.None);
-            this.PanelProdProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelProdProveedor.Location = new System.Drawing.Point(0, 0);
-            this.PanelProdProveedor.Name = "PanelProdProveedor";
-            this.PanelProdProveedor.Size = new System.Drawing.Size(894, 450);
-            this.PanelProdProveedor.TabIndex = 10;
-            this.PanelProdProveedor.Visible = false;
-            this.PanelProdProveedor.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelProdProveedor_Paint);
+            PanelProdProveedor.Controls.Add(btnProductoProveedor);
+            PanelProdProveedor.Controls.Add(lblProductos);
+            ProveedoresAnimator.SetDecoration(PanelProdProveedor, AnimatorNS.DecorationType.None);
+            PanelProdProveedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            PanelProdProveedor.Location = new System.Drawing.Point(0, 0);
+            PanelProdProveedor.Name = "PanelProdProveedor";
+            PanelProdProveedor.Size = new System.Drawing.Size(894, 482);
+            PanelProdProveedor.TabIndex = 10;
+            PanelProdProveedor.Visible = false;
+            PanelProdProveedor.Paint += PanelProdProveedor_Paint;
             // 
             // FmProductoProveedor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(894, 450);
-            this.Controls.Add(this.btnProductoProveedor);
-            this.Controls.Add(this.GrillaProductoProveedores);
-            this.Controls.Add(this.lblProductos);
-            this.Controls.Add(this.PanelProdProveedor);
-            this.ProveedoresAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
-            this.Name = "FmProductoProveedor";
-            this.Text = "FmProductoProveedor";
-            ((System.ComponentModel.ISupportInitialize)(this.GrillaProductoProveedores)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.DimGray;
+            ClientSize = new System.Drawing.Size(894, 482);
+            Controls.Add(GrillaProductoProveedores);
+            Controls.Add(PanelProdProveedor);
+            ProveedoresAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
+            Name = "FmProductoProveedor";
+            Text = "FmProductoProveedor";
+            Load += FmProductoProveedor_Load;
+            ((System.ComponentModel.ISupportInitialize)GrillaProductoProveedores).EndInit();
+            PanelProdProveedor.ResumeLayout(false);
+            PanelProdProveedor.PerformLayout();
+            ResumeLayout(false);
         }
 
         #endregion

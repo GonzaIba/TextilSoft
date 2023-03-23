@@ -30,21 +30,23 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private int CantidadDisponible = 0;
         public decimal TotalActual = 0;
         private bool EliminandoRegistro = false;
+        private int y = 0, Y_Inicial_pnlDetalleProducto = 0, Y_Inicial_pnlClientes = 0;
         //Diccionario para almacenar los botones por celda
         private Dictionary<Point, Tuple<IconButton, IconButton>> botonesPorCelda = new Dictionary<Point, Tuple<IconButton, IconButton>>();
         public FmCrearPedido(IControllerFactory factory, FmTextilSoft fmTextilSoft)
         {
             CheckForIllegalCrossThreadCalls = false;
             InitializeComponent();
+            Y_Inicial_pnlDetalleProducto = panelProductoDetalle.Location.Y;
+            Y_Inicial_pnlClientes = panelClientes.Location.Y;
             _factory = factory;
             _fmTextilSoft = fmTextilSoft;
             panelProductos.Enabled = false;
             btnGenerarPedido.Enabled = false;
             DetallePedidos = new List<DetallePedidosYFabricaEntity>();
             dgvProductos.DataSource = DetallePedidos.ToList();
-            //dgvProductos.Columns.Add(new CustomButtonColumn("Acciones"));
-            //CellPainting
             dgvProductos.CellPainting += dgvProductos_CellPainting;
+            lblDatoProducto.Enabled = true;
         }
 
         private void FmCrearPedido_Load(object sender, EventArgs e)
@@ -251,14 +253,43 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
 
         private void tbMantenerFiltro_CheckedChanged(object sender, EventArgs e)
         {
-            EsPedido_EsPedidoFabrica(tbEsPedido.Checked);
+            //if(_fmTextilSoft._user.EnableAnimators)
+            EsPedido_EsPedidoFabrica_Animator(tbEsPedido.Checked);
+            //else
+            //    EsPedido_EsPedidoFabrica(tbEsPedido.Checked);
 
         }
 
         #region Helpers
+        private void EsPedido_EsPedidoFabrica_Animator(bool estado)
+        {
+            lblDatoProducto.Enabled = true;
+            txtSubtotal.Visible = estado;
+            txtTotal.Visible = estado;
+            lblSubTotal.Visible = estado;
+            lblTotal.Visible = estado;
+            if (!estado)
+            {
+                panelClientes.SendToBack();
+                panelProductoDetalle.BringToFront();
+                timerSubir.Start();
+                y = Y_Inicial_pnlDetalleProducto;
+            }
+            else
+            {
+                panelClientes.Enabled = true;
+                if (txtApellido.Text != "")
+                    panelProductos.Enabled = true;
+                else
+                    panelProductos.Enabled = false;
 
+                timerBajar.Start();
+                y = Y_Inicial_pnlClientes;
+            }
+        }
         private void EsPedido_EsPedidoFabrica(bool estado)
         {
+            lblDatoProducto.Enabled = true;
             panelClientes.Enabled = estado;
             txtSubtotal.Visible = estado;
             txtTotal.Visible = estado;
@@ -268,8 +299,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             {
                 panelClientes.Enabled = false;
                 panelProductos.Enabled = true;
-                //timerSubir.Start();
-                //y = Y_Inicial_pnlDetalleProducto;
             }
             else
             {
@@ -278,20 +307,41 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                     panelProductos.Enabled = true;
                 else
                     panelProductos.Enabled = false;
-                //timerBajar.Start();
-                //y = Y_Inicial_pnlClientes;
             }
         }
         #endregion
 
-        private void timerSubir_Tick(object sender, EventArgs e)
+        private async void timerSubir_Tick(object sender, EventArgs e)
         {
-
+            while (y > Y_Inicial_pnlClientes)
+            {
+                y -= 1;
+                await Task.Delay(TimeSpan.FromMilliseconds(8));
+                panelProductoDetalle.Location = new Point(panelProductoDetalle.Location.X, y);
+                if (y == Y_Inicial_pnlClientes)
+                {
+                    //panelClientes.Enabled = false;
+                    panelProductos.Enabled = true;
+                    timerSubir.Stop();
+                    break;
+                }
+            }
         }
 
         private async void timerBajar_Tick(object sender, EventArgs e)
         {
-
+            while (y < Y_Inicial_pnlDetalleProducto)
+            {
+                y += 1;
+                await Task.Delay(TimeSpan.FromMilliseconds(8));
+                panelProductoDetalle.Location = new Point(panelProductoDetalle.Location.X, y);
+                if (y == Y_Inicial_pnlDetalleProducto)
+                {
+                    timerBajar.Stop();
+                    panelClientes.Visible = true;
+                    break;
+                }
+            }
         }
 
         private void btnGenerarPedido_Click(object sender, EventArgs e)
@@ -304,7 +354,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
 
                 if (fmMessageBox.btnAceptar)
                 {
-                    string resultado = _factory.Use<IPedidosController<ListarPedidosEntity>>().GenerarPedido(DetallePedidos, tbEsPedido.Checked, Convert.ToInt32(_fmTextilSoft._user.DNI), Convert.ToInt32(txtDNI.Text), Convert.ToDecimal(txtSubtotal.Text), Convert.ToDecimal(txtSeña.Text));
+                    string resultado = _factory.Use<IPedidosController<ListarPedidosEntity>>().GenerarPedido(DetallePedidos, tbEsPedido.Checked, Convert.ToInt32(_fmTextilSoft._user.DNI), Convert.ToInt32(txtDNI.Text), Convert.ToDecimal(txtSubtotal.Text), Convert.ToDecimal(txtSeña.Text == "" ? 0 : txtSeña.Text));
                     if (resultado == "OK")
                     {
                         FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Success, "Creación exitosa", "Se creó el pedido correctamente!", centerPosition);
@@ -535,7 +585,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             {
                 if (!Regex.IsMatch(txtSeña.Text, "^[+-]?\\d*\\.?\\d+$"))
                 {
-                    if(txtSeña.Text == "")
+                    if (txtSeña.Text == "")
                         ActualizarTotal();
                     else
                     {

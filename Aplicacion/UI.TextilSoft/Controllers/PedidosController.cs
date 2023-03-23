@@ -44,14 +44,41 @@ namespace UI.TextilSoft.Controllers
             _mapper = mapper;
             _logger = logger;
         }
-        
-        public ListarPedidosEntity ObtenerPedido(int Numeropedido, ClientesEntity clienteEntity)
+
+        public T ObtenerPedido(int NumeroOrden, ClientesEntity clienteEntity, bool EsPedido)
+        {
+            try
+            {
+                if (EsPedido)
+                {
+                    SeguimientoPedidosEntity pedidoEntity = new();
+                    var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI), tracking: false).FirstOrDefault();
+                    var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroOrden && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido,HistorialPedidos,HistorialPedidos.EstadoPedido", tracking: false).FirstOrDefault();
+                    pedidoEntity = _mapper.Map<SeguimientoPedidosEntity>(pedidoModel);
+                    return (T)(object)pedidoEntity;
+                }
+                else
+                {
+                    ListarPedidosFabricaEntity pedidoEntity = new();
+                    var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI), tracking: false).FirstOrDefault();
+                    var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroOrden && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido", tracking: false).FirstOrDefault();
+                    pedidoEntity = _mapper.Map<ListarPedidosFabricaEntity>(pedidoModel);
+                    return (T)(object)pedidoEntity;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public ListarPedidosEntity ObtenerPedido(int NumeroPedido, ClientesEntity clienteEntity)
         {
             ListarPedidosEntity pedidoEntity = new();
             try
             {
                 var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI), tracking: false).FirstOrDefault();
-                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == Numeropedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido", tracking: false).FirstOrDefault();
+                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroPedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido", tracking: false).FirstOrDefault();
                 pedidoEntity = _mapper.Map<ListarPedidosEntity>(pedidoModel);
                 return pedidoEntity;
             }

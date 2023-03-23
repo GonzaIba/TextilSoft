@@ -82,7 +82,7 @@ namespace UI.TextilSoft.MainForm
 
             if (register.Password == register.ConfirmPassword)
             {
-                if (_factory.Use<IUsuarioController>().Crearusuario(register, _factory.Use<ICompanyController>().GetCurrentCompany()))
+                if (_factory.Use<IUsuarioController>().Crearusuario(register, _factory.Use<ICompanyController>().GetCurrentCompany(), _authenticationConfig.SignInRequireConfirmedAccount == true ? false : true))
                 {
                     if (_authenticationConfig.SignInRequireConfirmedAccount)
                     {

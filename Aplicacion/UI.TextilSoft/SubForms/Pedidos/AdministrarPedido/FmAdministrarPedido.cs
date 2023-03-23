@@ -27,7 +27,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         private bool StatusLoadFinished;
         private readonly IControllerFactory _factory;
         private EstadoPedidosEnum EstadoDelPedido;
-        
+
         public FmAdministrarPedido(IControllerFactory factory)
         {
             InitializeComponent();
@@ -45,6 +45,11 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             IbEP.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
             IbED.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
             IbE.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+
+            lblFechaSA.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+            lblFechaEP.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+            lblFechaED.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+            lblFechaE.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
 
             ySA = lblEstadoSA.Location.Y;
             yEP = lblEstadoEP.Location.Y;
@@ -70,11 +75,22 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
             var cliente = _factory.Use<IClientesController>().ObtenerCliente(txtDNIcli.Text);
             if (cliente != null)
             {
-                var Pedido = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente);
-                if(Pedido != null)
+                var Pedido = _factory.Use<IPedidosController<SeguimientoPedidosEntity>>().ObtenerPedido(Convert.ToInt32(txtNO.Text), cliente, true);
+                if (Pedido != null)
                 {
                     tmLbl.Start();
-                    EstadoDelPedido = Pedido.EstadoPedido;
+                    EstadoDelPedido = Pedido.EstadoActual;
+                    foreach (var item in Pedido.HistorialPedidos)
+                    {
+                        if(item.EstadoPedido == EstadoPedidosEnum.SinAsignar)
+                            lblFechaSA.Text = item.Fecha.ToString();
+                        if (item.EstadoPedido == EstadoPedidosEnum.EnProducción)
+                            lblFechaEP.Text = item.Fecha.ToString();
+                        if (item.EstadoPedido == EstadoPedidosEnum.EnDepósito)
+                            lblFechaED.Text = item.Fecha.ToString();
+                        if (item.EstadoPedido == EstadoPedidosEnum.Entregado)
+                            lblFechaE.Text = item.Fecha.ToString();
+                    }
                     ValidarEstadoDelPedido();
                 }
                 else
@@ -140,11 +156,17 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
                 IbED.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
                 IbE.IconColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
 
+                lblFechaSA.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                lblFechaEP.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                lblFechaED.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                lblFechaE.ForeColor = Color.FromArgb(this.BackColor.R, this.BackColor.G, this.BackColor.B);
+                
+
                 ySA = lblEstadoSA.Location.Y;
                 yEP = lblEstadoEP.Location.Y;
                 yED = lblEstadoED.Location.Y;
                 yE = lblEstadoE.Location.Y;
-                
+
                 pnlSA.Size = new Size(pnlSA.Size.Width, StartHeightPanels);
                 pnlEP.Size = new Size(pnlEP.Size.Width, StartHeightPanels);
                 pnlED.Size = new Size(pnlED.Size.Width, StartHeightPanels);
@@ -167,11 +189,11 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
 
         private void ValidarEstadoDelPedido()
         {
-            if(EstadoDelPedido == EstadoPedidosEnum.SinAsignar)
+            if (EstadoDelPedido == EstadoPedidosEnum.SinAsignar)
             {
                 IbEP.IconChar = IconChar.Circle;
                 IbED.IconChar = IconChar.Circle;
-                IbE.IconChar = IconChar.Circle;              
+                IbE.IconChar = IconChar.Circle;
             }
             else if (EstadoDelPedido == EstadoPedidosEnum.EnProducción)
             {
@@ -189,32 +211,35 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
         #region timers
         private void tmLbl_Tick(object sender, EventArgs e)
         {
-            ExecuteTimer(tmLbl, tmLblEP, lblEstadoSA, targetColorWhite, targetColorLimeGreen,ySA, pnlSA,IbSA);
+            ExecuteTimer(tmLbl, tmLblEP, lblEstadoSA, targetColorWhite, targetColorLimeGreen, ySA, pnlSA, IbSA);
+            if(lblFechaSA.Text != "")
+                FadeIn(lblFechaSA, targetColorWhite);
         }
 
         private void tmLblEP_Tick(object sender, EventArgs e)
         {
             ExecuteTimer(tmLblEP, tmLblED, lblEstadoEP, targetColorWhite, targetColorLimeGreen, yEP, pnlEP, IbEP);
+            if (lblFechaEP.Text != "")
+                FadeIn(lblFechaEP, targetColorWhite);
         }
 
         private void tmLblED_Tick(object sender, EventArgs e)
         {
             ExecuteTimer(tmLblED, tmLblE, lblEstadoED, targetColorWhite, targetColorLimeGreen, yED, pnlED, IbED);
-        }
-
-        private void geoMap1_ChildChanged(object sender, System.Windows.Forms.Integration.ChildChangedEventArgs e)
-        {
-
+            if (lblFechaED.Text != "")
+                FadeIn(lblFechaED, targetColorWhite);
         }
 
         private void tmLblE_Tick(object sender, EventArgs e)
         {
             ExecuteTimer(tmLblE, tmLblE, lblEstadoE, targetColorWhite, targetColorLimeGreen, yE, null, IbE);
+            if (lblFechaE.Text != "")
+                FadeIn(lblFechaE, targetColorWhite);
         }
-        
-        private void ExecuteTimer(Timer actualTimer,Timer nextTimer,Label labelEstado, int[] targetColorLabel, int[] targetColorIconButton,int Y,Panel panel, IconButton iconButton)
+
+        private void ExecuteTimer(Timer actualTimer, Timer nextTimer, Label labelEstado, int[] targetColorLabel, int[] targetColorIconButton, int Y, Panel panel, IconButton iconButton)
         {
-            if(panel is null) //Significa que es el último timer
+            if (panel is null) //Significa que es el último timer
             {
                 FadeIn(labelEstado, targetColorLabel);
                 FadeIn(iconButton, targetColorIconButton);
@@ -257,17 +282,17 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
 
         }
         #endregion
-        
+
         #region Fade in Labels
         int[] targetColorWhite = { 255, 255, 255 };
         int[] targetColorLimeGreen = { 0, 255, 0 };
         int[] fadeRGB = new int[3];
         int fadeRGBCount = 10;
-        
-        
+
+
         void FadeIn(dynamic control, int[] targetColor)
         {
-            if(control is FontAwesome.Sharp.IconButton)
+            if (control is FontAwesome.Sharp.IconButton)
             {
                 fadeRGB[0] = control.IconColor.R;
                 fadeRGB[1] = control.IconColor.G;
@@ -280,22 +305,22 @@ namespace UI.TextilSoft.SubForms.Pedidos.AdministrarPedido
                 fadeRGB[2] = control.ForeColor.B;
             }
             if (fadeRGB[0] > targetColor[0])
-                fadeRGB[0]-= fadeRGBCount;
+                fadeRGB[0] -= fadeRGBCount;
             else if (fadeRGB[0] < targetColor[0])
-                fadeRGB[0]+= fadeRGBCount;
+                fadeRGB[0] += fadeRGBCount;
             if (fadeRGB[1] > targetColor[1])
                 fadeRGB[1] -= fadeRGBCount;
             else if (fadeRGB[1] < targetColor[1])
                 fadeRGB[1] += fadeRGBCount;
             if (fadeRGB[2] > targetColor[2])
-                fadeRGB[2]-= fadeRGBCount;
+                fadeRGB[2] -= fadeRGBCount;
             else if (fadeRGB[2] < targetColor[2])
-                fadeRGB[2]+= fadeRGBCount;
+                fadeRGB[2] += fadeRGBCount;
             if (fadeRGB[0] == targetColor[0] && fadeRGB[1] == this.BackColor.G && fadeRGB[2] == this.BackColor.B)
             {
                 tmLbl.Stop();
             }
-            if(control is FontAwesome.Sharp.IconButton)
+            if (control is FontAwesome.Sharp.IconButton)
                 control.IconColor = Color.FromArgb(fadeRGB[0] > targetColor[0] ? targetColor[0] : fadeRGB[0], fadeRGB[1] > targetColor[1] ? targetColor[1] : fadeRGB[1], fadeRGB[2] > targetColor[2] ? targetColor[2] : fadeRGB[2]);
             else
                 control.ForeColor = Color.FromArgb(fadeRGB[0] > targetColor[0] ? targetColor[0] : fadeRGB[0], fadeRGB[1] > targetColor[1] ? targetColor[1] : fadeRGB[1], fadeRGB[2] > targetColor[2] ? targetColor[2] : fadeRGB[2]);

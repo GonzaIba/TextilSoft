@@ -503,7 +503,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                     var resultado = pedidos.Where(p =>
                                     p.NroPedido.ToString().Contains(searchValue) ||
                                     p.TotalPago.ToString().Contains(searchValue) ||
-                                    p.Fecha.ToString().Contains(searchValue) ||
+                                    p.Fecha.ToString("dd/MM/yyyy HH:mm").Contains(searchValue) ||
                                     p.Seña.HasValue && p.Seña.Value.ToString().Contains(searchValue) ||
                                     p.EstadoPedido.ToString().Contains(searchValue) ||
                                     p.AtendidoPor.Contains(searchValue) ||
@@ -519,7 +519,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 {
                     var pedidos = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerListaPedidos(Pagecount, EsPedido).List;
                     var resultado = pedidos.Where(p =>
-                                    p.Fecha.ToString().Contains(searchValue) ||
+                                    p.Fecha.ToString("dd/MM/yyyy HH:mm").Contains(searchValue) ||
                                     p.EstadoPedidos.ToString().Contains(searchValue) ||
                                     p.AtendidoPor.Contains(searchValue)
                                     ).ToList();
