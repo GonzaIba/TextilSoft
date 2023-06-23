@@ -13,12 +13,17 @@ namespace Domain.Entities
         public Guid Codigo { get; set; }
         public Color Color { get; set; }
         public string Composicion { get; set; }
-        public string Estampa { get; set; }
+        public string Transfer { get; set; }
         public string NombreProducto { get; set; }
         public decimal Precio { get; set; }
-        public string Tejido { get; set; }
+        public string TelaBase { get; set; }
+        public string TelaCombinacion { get; set; }
+        public string BolsilloInterior { get; set; }
+        public string Lazo { get; set; }
+        public string Vivo { get; set; }
+        public string ImagenPrenda { get; set; }
         public string TallePrenda { get; set; }
-        public string TipoProducto { get; set; }
+        public string TipoPrenda { get; set; }
         public int Stock { get; set; }
     }
 }

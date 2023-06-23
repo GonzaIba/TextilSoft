@@ -4,14 +4,16 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230326215414_ADD_TABLES_EXTRA_PRODUCTO")]
+    partial class ADD_TABLES_EXTRA_PRODUCTO
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -91,6 +93,30 @@ namespace Infrastructure.Migrations
                     b.HasKey("ID_Cliente");
 
                     b.ToTable("Cliente");
+                });
+
+            modelBuilder.Entity("Domain.Models.ComposicionModel", b =>
+                {
+                    b.Property<int>("ID_Composicion")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<string>("Codigo")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<string>("Nombre")
+                        .HasColumnType("varchar(100)");
+
+                    b.HasKey("ID_Composicion");
+
+                    b.ToTable("Composicion");
                 });
 
             modelBuilder.Entity("Domain.Models.DetallePedidosFabricaModel", b =>
@@ -524,10 +550,6 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
-                    b.Property<string>("Composicion")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
@@ -540,6 +562,9 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ID_BolsilloInterior")
                         .HasColumnType("int");
 
+                    b.Property<int>("ID_Composicion")
+                        .HasColumnType("int");
+
                     b.Property<int>("ID_Lazo")
                         .HasColumnType("int");
 
@@ -547,9 +572,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ID_TelaCombinacion")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ID_TipoPrenda")
                         .HasColumnType("int");
 
                     b.Property<int>("ID_Transfer")
@@ -574,6 +596,10 @@ namespace Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(50)");
 
+                    b.Property<string>("TipoPrenda")
+                        .IsRequired()
+                        .HasColumnType("varchar(50)");
+
                     b.Property<DateTime?>("UpdateDate")
                         .HasColumnType("datetime2");
 
@@ -581,13 +607,13 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("ID_BolsilloInterior");
 
+                    b.HasIndex("ID_Composicion");
+
                     b.HasIndex("ID_Lazo");
 
                     b.HasIndex("ID_TelaBase");
 
                     b.HasIndex("ID_TelaCombinacion");
-
-                    b.HasIndex("ID_TipoPrenda");
 
                     b.HasIndex("ID_Transfer");
 
@@ -766,27 +792,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("ID_TelaCombinacion");
 
                     b.ToTable("TelaCombinacion");
-                });
-
-            modelBuilder.Entity("Domain.Models.TipoPrendaModel", b =>
-                {
-                    b.Property<int>("ID_TipoPrenda")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("TipoPrenda")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.HasKey("ID_TipoPrenda");
-
-                    b.ToTable("TipoPrenda");
                 });
 
             modelBuilder.Entity("Domain.Models.TransferModel", b =>
@@ -1048,6 +1053,12 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Domain.Models.ComposicionModel", "Composicion")
+                        .WithMany()
+                        .HasForeignKey("ID_Composicion")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Domain.Models.LazoModel", "Lazo")
                         .WithMany()
                         .HasForeignKey("ID_Lazo")
@@ -1066,12 +1077,6 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.TipoPrendaModel", "TipoPrenda")
-                        .WithMany()
-                        .HasForeignKey("ID_TipoPrenda")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.HasOne("Domain.Models.TransferModel", "Transfer")
                         .WithMany()
                         .HasForeignKey("ID_Transfer")
@@ -1086,13 +1091,13 @@ namespace Infrastructure.Migrations
 
                     b.Navigation("BolsilloInterior");
 
+                    b.Navigation("Composicion");
+
                     b.Navigation("Lazo");
 
                     b.Navigation("TelaBase");
 
                     b.Navigation("TelaCombinacion");
-
-                    b.Navigation("TipoPrenda");
 
                     b.Navigation("Transfer");
 

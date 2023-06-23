@@ -1,6 +1,8 @@
 ﻿using Contracts.Controllers;
 using Domain.Entities;
 using FontAwesome.Sharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using MailKit.Search;
 using System;
 using System.Collections;
@@ -8,6 +10,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,6 +38,13 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             InitializeComponent();
             _factory = factory;
             GrillaPedidos.CellPainting += GrillaPedidos_CellPainting;
+            Dictionary<string, string> dicBasico = new();
+            byte[] data = new byte[128];
+            dicBasico.Add("txt_codigo_transfer", "078VINILO27");
+            dicBasico.Add("txt_temporada", "INV-23");
+            dicBasico.Add("txt_orden_armado", "15152");
+            RellenarPdf(dicBasico, ref data);
+            File.WriteAllBytes("", data);
         }
 
         private async void GrillaPedidos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
@@ -543,6 +553,62 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             //{
 
             //}
+        }
+
+        private byte[] RellenarPdf(Dictionary<string, string> dicBasico, ref byte[] strFileContent)
+        {
+
+            string strFormVacioPath = AppDomain.CurrentDomain.GetData("TempPath-ODT").ToString();
+            string strFormLlenoPath = AppDomain.CurrentDomain.GetData("TemplatePath-ODT").ToString();
+            //string strFormVacioPath = @"D:\Repositorios-SmartGit\TextilSoft\Templates\Orden-De-Trabajo.pdf" + templateFile;
+            //string strFormLlenoPath = @"D:\Repositorios-SmartGit\TextilSoft\Templates\Orden-De-Trabajo1.pdf";
+
+            try
+            {
+                using (FileStream fileOutput = new FileStream(strFormLlenoPath, FileMode.Create))
+                {
+                    PdfReader pdfReader = new PdfReader(strFormVacioPath);
+                    PdfStamper pdfStamper = new PdfStamper(pdfReader, fileOutput);
+
+                    AcroFields pdfFormFields = pdfStamper.AcroFields;
+                    PdfContentByte pdfContentByte = pdfStamper.GetOverContent(1);
+                    IDictionary<string, AcroFields.Item> dicFields = pdfFormFields.Fields;
+
+                    foreach (KeyValuePair<string, AcroFields.Item> CollectionItem in dicFields)
+                    {
+                        if (dicBasico.ContainsKey(CollectionItem.Key))
+                        {
+                            if (CollectionItem.Key == "imgQrAfip")
+                            {
+                                byte[] imageArray = File.ReadAllBytes(dicBasico[CollectionItem.Key]);
+                                string img = Convert.ToBase64String(imageArray);
+                                pdfFormFields.SetField(CollectionItem.Key, img);
+                            }
+                            else
+                            {
+                                pdfFormFields.SetField(CollectionItem.Key, dicBasico[CollectionItem.Key]);
+                            }
+                        }
+                    }
+
+                    pdfStamper.FormFlattening = false;
+                    pdfStamper.Close();
+                    pdfReader.Close();
+                    pdfContentByte.ClosePath();
+                }
+
+                if (File.Exists(strFormLlenoPath))
+                {
+                    strFileContent = File.ReadAllBytes(strFormLlenoPath);
+                    File.Delete(strFormLlenoPath);
+                }
+
+                return strFileContent;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

@@ -35,11 +35,10 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 {
                     btnActualizarProducto.Enabled = true;
                     txtNombreProducto.Text = producto.NombreProducto;
-                    txtTipoProducto.Text = producto.TipoProducto;
-                    txtEstampa.Text = producto.Estampa;
+                    txtTipoProducto.Text = producto.TipoPrenda;
+                    txtEstampa.Text = producto.Transfer;
                     txtComposicion.Text = producto.Composicion;
                     txtTalle.Text = producto.TallePrenda;
-                    txtTejido.Text = producto.Tejido;
                     txtPrecio.Text = producto.Precio.ToString();
                     txtCantidad.Text = producto.Stock.ToString();
                     IdProducto = producto.ID_Producto;
@@ -78,11 +77,10 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 }
                 ProductosEntity productosEntity = new ProductosEntity();
                 productosEntity.NombreProducto = txtNombreProducto.Text;
-                productosEntity.TipoProducto = txtTipoProducto.Text;
-                productosEntity.Estampa = txtEstampa.Text;
+                productosEntity.TipoPrenda = txtTipoProducto.Text;
+                productosEntity.Transfer = txtEstampa.Text;
                 productosEntity.Composicion = txtComposicion.Text;
                 productosEntity.TallePrenda = txtTalle.Text;
-                productosEntity.Tejido = txtTejido.Text;
                 productosEntity.Precio = Convert.ToDecimal(txtPrecio.Text);
                 productosEntity.Stock = Convert.ToInt32(txtCantidad.Text);
                 productosEntity.Color = txtColor.BackColor;

@@ -28,12 +28,84 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
         private int Pagecount, PageIndex, TotalPages;
         private bool FirstTime, isLastPage, isFirstPage;
         private IconButton LastIconButton;
+        private Dictionary<Point, Tuple<IconButton>> botonesPorCelda = new Dictionary<Point, Tuple<IconButton>>();
 
         private int IndexBtnPrimero, IndexBtnSegundo, IndexBtnTercero;
         public FmListarProductos(IControllerFactory factory)
         {
             _factory = factory;
             InitializeComponent();
+            GrillaProductos.CellPainting += GrillaProductos_CellPainting;
+        }
+
+        private async void GrillaProductos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex == 0)
+            {
+                Point celda = new Point(e.ColumnIndex, e.RowIndex);
+                if (!botonesPorCelda.ContainsKey(celda))
+                {
+                    //Crear los botones
+                    IconButton btnDetalleProducto = new IconButton();
+                    btnDetalleProducto.IconChar = IconChar.HandPointUp;
+                    btnDetalleProducto.Cursor = Cursors.Hand;
+                    btnDetalleProducto.IconColor = System.Drawing.Color.White;
+                    btnDetalleProducto.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+                    btnDetalleProducto.FlatAppearance.BorderSize = 0;
+                    btnDetalleProducto.FlatStyle = FlatStyle.Flat;
+                    btnDetalleProducto.IconSize = 21;
+                    btnDetalleProducto.Size = new Size(20, 20);
+                    btnDetalleProducto.Click += new EventHandler((s, args) => DetalleProducto(sender, e, btnDetalleProducto)); //Evento click para modificar
+                    btnDetalleProducto.Visible = true;
+                    btnDetalleProducto.Parent = GrillaProductos;
+                    //btnAsignarODT.Text = GrillaPedidos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                    //Almacenar los botones en el diccionario
+                    botonesPorCelda.Add(celda, new Tuple<IconButton>(btnDetalleProducto));
+
+                    //Obtener los botones de la celda
+                    Tuple<IconButton> botones = botonesPorCelda[celda];
+                    IconButton buttonModificarCelda = botones.Item1;
+
+                    //Calcular la posición de los botones
+                    int x = e.CellBounds.Left + 5;
+                    int y = e.CellBounds.Top + (e.CellBounds.Height - buttonModificarCelda.Height) / 2;
+                    buttonModificarCelda.Location = new Point(x, y);
+
+                    //Dibujar los botones
+                    e.PaintBackground(e.CellBounds, true);
+                    e.PaintContent(e.CellBounds);
+
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void DetalleProducto(object sender, EventArgs e, IconButton btnDetalleProducto)
+        {
+            try
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                // Obtener la posición del botón en la tabla
+                Point botonPosicion = btnDetalleProducto.Location;
+                DataGridView.HitTestInfo hitTestInfo = GrillaProductos.HitTest(botonPosicion.X, botonPosicion.Y);
+
+                string codigo = GrillaProductos.Rows[hitTestInfo.RowIndex].Cells["Codigo"].Value.ToString().Trim();
+                FmDetalleProductos fmDetalleProducto = new FmDetalleProductos(codigo,_factory);
+                fmDetalleProducto.ShowDialog();
+
+                // Eliminar el botón del diccionario también
+                Tuple<IconButton> botones = botonesPorCelda[botonesPorCelda.LastOrDefault().Key];
+                IconButton buttonAsignarODT = botones.Item1;
+                botonesPorCelda.Remove(botonesPorCelda.LastOrDefault().Key);
+                buttonAsignarODT.Dispose();
+            }
+            catch (Exception ex)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error", "Ocurrió un error al asignar la ODT", centerPosition, true);
+                fmMessageBox.ShowDialog();
+            }
         }
 
 
@@ -104,14 +176,9 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
                 var resultado = productos.Where(p =>
                                 p.Codigo.ToString().Contains(searchValue) ||
                                 //p.Color.Contains(searchValue) ||
-                                p.Composicion.Contains(searchValue) ||
-                                p.Estampa.Contains(searchValue) ||
-                                p.ID_Producto.ToString().Contains(searchValue) ||
+                                //p.ID_Producto.ToString().Contains(searchValue) ||
                                 p.NombreProducto.Contains(searchValue) ||
-                                p.Precio.ToString().Contains(searchValue) ||
-                                p.TallePrenda.Contains(searchValue) ||
-                                p.Tejido.Contains(searchValue) ||
-                                p.TipoProducto.Contains(searchValue)
+                                p.Precio.ToString().Contains(searchValue)
                                 ).ToList();
                 GrillaProductos.DataSource = resultado;
                 TotalPages = (int)Math.Ceiling(resultado.Count() / (double)Pagecount);
@@ -125,9 +192,9 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
             }
         }
 
-        private Expression<Func<ProductosEntity, bool>> Filtro(string nombreFiltro = "All", bool IsNextPage = false)
+        private Expression<Func<ProductoGrillaEntity, bool>> Filtro(string nombreFiltro = "All", bool IsNextPage = false)
         {
-            Expression<Func<ProductosEntity, bool>> filterExpression = null;
+            Expression<Func<ProductoGrillaEntity, bool>> filterExpression = null;
             switch (nombreFiltro)
             {
                 case "All":

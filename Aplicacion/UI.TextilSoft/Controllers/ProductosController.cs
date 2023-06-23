@@ -37,14 +37,14 @@ namespace UI.TextilSoft.Controllers
             bool isValidGuid = Regex.IsMatch(codigo, guidPattern);
             if (isValidGuid)
             {
-                var ProductoDTO = _productoService.Get(x => x.CodigoProducto == Guid.Parse(codigo)).FirstOrDefault();
+                var ProductoDTO = _productoService.Get(x => x.CodigoProducto == Guid.Parse(codigo),includeProperties: "TipoPrenda,TelaBase,TelaCombinacion,BolsilloInterior,Lazo,Vivo,Transfer").FirstOrDefault();
                 var ProductoEntity = _mapper.Map<ProductosEntity>(ProductoDTO);
                 return ProductoEntity;
             }
             return null;
         }
 
-        public PaginatedList<ProductosEntity> ObtenerProductos(int pageIndex, int pageCount, Expression<Func<ProductosEntity, bool>> filterExpression, string orderBy, bool ascending)
+        public PaginatedList<ProductoGrillaEntity> ObtenerProductos(int pageIndex, int pageCount, Expression<Func<ProductoGrillaEntity, bool>> filterExpression, string orderBy, bool ascending)
         {
             try
             {
@@ -53,21 +53,18 @@ namespace UI.TextilSoft.Controllers
                     "ID_Producto" => entity => entity.ID_Producto,
                     "CodigoProducto" => entity => entity.CodigoProducto.ToString(),
                     "Color" => entity => entity.Color,
-                    "Composicion" => entity => entity.Composicion,
-                    "Estampa" => entity => entity.Estampa,
-                    "NombreProducto" => entity => entity.NombreProducto,
+                    "Descripcion" => entity => entity.Descripcion,
                     "Precio" => entity => entity.Precio,
-                    "Tejido" => entity => entity.Tejido,
                     "TallePrenda" => entity => entity.TallePrenda,
-                    "TipoProducto" => entity => entity.TipoProducto,
+                    "TipoPrenda" => entity => entity.TipoPrenda,
                     "Stock" => entity => entity.Stock,
                     _ => entity => entity.ID_Producto,
                 };
                 //var orderByExpressionProductosModel = orderByExpression.ReplaceParameter<ListarPedidosEntity, PedidosModel>();
-                var filterExpressionProductosModel = filterExpression.ReplaceParameter<ProductosEntity, ProductosModel>();
+                var filterExpressionProductosModel = filterExpression.ReplaceParameter<ProductoGrillaEntity, ProductosModel>();
                 var ListaProductosModel = _productoService.ObtenerProductos(pageIndex, pageCount, orderByExpressionPedidosModel, filterExpressionProductosModel, orderBy, ascending);
-                var ListaProductosEntity = new PaginatedList<ProductosEntity>();
-                ListaProductosEntity.List = _mapper.Map<List<ProductosEntity>>(ListaProductosModel.List.ToList());
+                var ListaProductosEntity = new PaginatedList<ProductoGrillaEntity>();
+                ListaProductosEntity.List = _mapper.Map<List<ProductoGrillaEntity>>(ListaProductosModel.List.ToList());
                 ListaProductosEntity.TotalCount = ListaProductosModel.TotalCount;
                 ListaProductosEntity.TotalPages = ListaProductosModel.TotalPages;
                 //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
@@ -80,13 +77,13 @@ namespace UI.TextilSoft.Controllers
             }
         }
 
-        public PaginatedList<ProductosEntity> ObtenerListaProductos(int pageCount)
+        public PaginatedList<ProductoGrillaEntity> ObtenerListaProductos(int pageCount)
         {
             try
             {
                 var ListaProductosModel = _productoService.ObtenerTodosLosProductos(pageCount);
-                var ListaProductosEntity = new PaginatedList<ProductosEntity>();
-                ListaProductosEntity.List = _mapper.Map<List<ProductosEntity>>(ListaProductosModel.List.ToList());
+                var ListaProductosEntity = new PaginatedList<ProductoGrillaEntity>();
+                ListaProductosEntity.List = _mapper.Map<List<ProductoGrillaEntity>>(ListaProductosModel.List.ToList());
                 ListaProductosEntity.TotalCount = ListaProductosModel.TotalCount;
                 ListaProductosEntity.TotalPages = ListaProductosModel.TotalPages;
                 return ListaProductosEntity;
@@ -118,7 +115,7 @@ namespace UI.TextilSoft.Controllers
         {
             try
             {
-                var ProductoDTO = _productoService.Get(x => x.NombreProducto == productosEntity.NombreProducto).FirstOrDefault();
+                var ProductoDTO = _productoService.Get(x => x.Descripcion == productosEntity.NombreProducto).FirstOrDefault();
                 if (ProductoDTO != null)
                 {
                     throw new Exception("El producto ya existe");
@@ -141,7 +138,7 @@ namespace UI.TextilSoft.Controllers
         {
             try
             {
-                var ProductoDTO = _productoService.Get(x => x.NombreProducto == productosEntity.NombreProducto).FirstOrDefault();
+                var ProductoDTO = _productoService.Get(x => x.Descripcion == productosEntity.NombreProducto, includeProperties: "TipoPrenda,TelaBase,TelaCombinacion,BolsilloInterior,Lazo,Vivo,Transfer").FirstOrDefault();
                 if (ProductoDTO == null)
                 {
                     var producto = _mapper.Map<ProductosModel>(productosEntity);
@@ -151,13 +148,10 @@ namespace UI.TextilSoft.Controllers
                 {
                     string color = _mapper.Map<ProductosModel>(productosEntity).Color;
                     ProductoDTO.Color = color;
-                    ProductoDTO.Composicion = productosEntity.Composicion;
-                    ProductoDTO.Estampa = productosEntity.Estampa;
-                    ProductoDTO.NombreProducto = productosEntity.NombreProducto;
+                    ProductoDTO.Descripcion = productosEntity.NombreProducto;
                     ProductoDTO.Precio = productosEntity.Precio;
                     ProductoDTO.TallePrenda = productosEntity.TallePrenda;
-                    ProductoDTO.Tejido = productosEntity.Tejido;
-                    ProductoDTO.TipoProducto = productosEntity.TipoProducto;
+                    //ProductoDTO.TipoPrenda = productosEntity.TipoPrenda;
                     ProductoDTO.Stock = productosEntity.Stock;
                     _productoService.Actualizar(ProductoDTO);
                 }

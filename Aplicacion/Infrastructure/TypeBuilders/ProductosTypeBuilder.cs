@@ -15,23 +15,54 @@ namespace Infrastructure.TypeBuilders
         {
             builder.HasKey(p => p.ID_Producto);
 
+            builder.Property(p => p.CodigoProducto)
+                .IsRequired(true)
+                .HasDefaultValueSql("NEWID()");
+
             builder.Property(p => p.Color)
                 .IsRequired(true)
                 .HasColumnType("varchar(100)");
 
             builder.Property(p => p.Composicion)
                 .IsRequired(true)
-                .HasColumnType("varchar(50)");
+                .HasColumnType("varchar(100)");
+            
+            builder.HasOne(p => p.TipoPrenda)
+                .WithMany()
+                .HasForeignKey(p => p.ID_TipoPrenda)
+                .OnDelete(DeleteBehavior.Restrict);
+            
+            builder.HasOne(p => p.TelaBase)
+                .WithMany()
+                .HasForeignKey(p => p.ID_TelaBase)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(p => p.CodigoProducto)
-                .IsRequired(true)
-                .HasDefaultValueSql("NEWID()");
+            builder.HasOne(p => p.TelaCombinacion)
+                .WithMany()
+                .HasForeignKey(p => p.ID_TelaCombinacion)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(p => p.Estampa)
-                .IsRequired(true)
-                .HasColumnType("varchar(50)");
+            builder.HasOne(p => p.BolsilloInterior)
+                .WithMany()
+                .HasForeignKey(p => p.ID_BolsilloInterior)
+                .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Property(p => p.NombreProducto)
+            builder.HasOne(p => p.Lazo)
+                .WithMany()
+                .HasForeignKey(p => p.ID_Lazo)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(p => p.Vivo)
+                .WithMany()
+                .HasForeignKey(p => p.ID_Vivo)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(p => p.Transfer)
+                .WithMany()
+                .HasForeignKey(p => p.ID_Transfer)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Property(p => p.Descripcion)
                 .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
@@ -39,17 +70,13 @@ namespace Infrastructure.TypeBuilders
                 .IsRequired(true)
                 .HasColumnType("decimal(18,0)");
 
-            builder.Property(p => p.Tejido)
-                .IsRequired(true)
-                .HasColumnType("varchar(50)");
-
             builder.Property(p => p.TallePrenda)
                 .IsRequired(true)
                 .HasColumnType("varchar(50)");
 
-            builder.Property(p => p.TipoProducto)
+            builder.Property(p => p.ImagenPrenda)
                 .IsRequired(true)
-                .HasColumnType("varchar(50)");
+                .HasColumnType("varchar(MAX)");
 
             builder.Property(p => p.Stock)
                 .IsRequired(true)

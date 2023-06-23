@@ -12,8 +12,8 @@ namespace Contracts.Controllers
     public interface IProductosController
     {
         public ProductosEntity ObtenerProducto(string codigo);
-        public PaginatedList<ProductosEntity> ObtenerProductos(int pageIndex, int pageCount, Expression<Func<ProductosEntity, bool>> filterExpression, string orderBy, bool ascending);
-        public PaginatedList<ProductosEntity> ObtenerListaProductos(int pageCount);
+        public PaginatedList<ProductoGrillaEntity> ObtenerProductos(int pageIndex, int pageCount, Expression<Func<ProductoGrillaEntity, bool>> filterExpression, string orderBy, bool ascending);
+        public PaginatedList<ProductoGrillaEntity> ObtenerListaProductos(int pageCount);
 
         public void EliminarProducto(int IdProducto);
         public void ModificarProducto(ProductosEntity producto);

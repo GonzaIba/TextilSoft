@@ -194,11 +194,15 @@ namespace UI.TextilSoft
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
             AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
 
-            if (!string.IsNullOrEmpty(Configuration.GetSection("TemphLog").Value.ToString()))
+            if (!string.IsNullOrEmpty(Configuration.GetSection("TemphLog")?.Value?.ToString()))
                 AppDomain.CurrentDomain.SetData("TemphLog", Configuration.GetSection("TemphLog").Value.ToString());
             else
                 AppDomain.CurrentDomain.SetData("TemphLog", AppDomain.CurrentDomain.BaseDirectory + "/Logs");
-            
+
+            AppDomain.CurrentDomain.SetData("TempPath-ODT", AppDomain.CurrentDomain.BaseDirectory + "/Temp/Orden-De-Pago.pdf");
+            AppDomain.CurrentDomain.SetData("TemplatePath-ODT", AppDomain.CurrentDomain.BaseDirectory + "/Template/Orden-De-Pago1.pdf");
+
+
             services.AddHostedService<TaskResolver>();
 
             

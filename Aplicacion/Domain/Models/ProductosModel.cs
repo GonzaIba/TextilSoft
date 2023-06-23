@@ -19,16 +19,30 @@ namespace Domain.Models
         public Guid CodigoProducto { get; set; }
         public string Color { get; set; }
         public string Composicion { get; set; }
-        public string Estampa { get; set; }
-        public string NombreProducto { get; set; }
+        public int ID_TipoPrenda { get; set; }    
+        public int ID_TelaBase { get; set; }
+        public int ID_TelaCombinacion { get; set; }
+        public int ID_BolsilloInterior { get; set; }
+        public int ID_Lazo { get; set; }
+        public int ID_Vivo { get; set; }
+        public int ID_Transfer { get; set; }
+        public string Descripcion { get; set; }
         public decimal Precio { get; set; }
-        public string Tejido { get; set; }
         public string TallePrenda { get; set; }
-        public string TipoProducto { get; set; }
+        public string ImagenPrenda { get; set; }
         public int Stock { get; set; }
 
         public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }
         public virtual ICollection<DetallePedidosFabricaModel> DetallePedidosFabrica { get; set; }
         public virtual ICollection<VentasModel> Venta { get; set; }
+
+        public virtual TipoPrendaModel TipoPrenda { get; set; }
+        public virtual TelaBaseModel TelaBase { get; set; }
+        public virtual TelaCombinacionModel TelaCombinacion { get; set; }
+        public virtual BolsilloInteriorModel BolsilloInterior { get; set; }
+        public virtual LazoModel Lazo { get; set; }
+        public virtual VivoModel Vivo { get; set; }
+        public virtual TransferModel Transfer { get; set; }
+
     }
 }

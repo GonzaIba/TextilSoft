@@ -6,24 +6,33 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.Tools.FormsTools;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
 {
     public partial class FmCrearProducto : Form
     {
         private readonly IControllerFactory _factory;
+        private OpenFileDialog _dialog;
+        private string file64;
         public FmCrearProducto(IControllerFactory factory)
         {
             _factory = factory;
             InitializeComponent();
             cboxTalles.SelectedIndex = 0;
             cboxTalles.AutoCompleteMode = AutoCompleteMode.None;
+        }
+
+        private void FmCrearProducto_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void btnCrearProducto_Click(object sender, EventArgs e)
@@ -44,12 +53,11 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                     }
                 }
                 ProductosEntity productosEntity = new ProductosEntity();
-                productosEntity.NombreProducto = txtNombreProducto.Text;
-                productosEntity.TipoProducto = txtTipoProducto.Text;
-                productosEntity.Estampa = txtEstampa.Text;
-                productosEntity.Composicion = txtComposicion.Text;
+                //productosEntity.NombreProducto = txtNombreProducto.Text;
+                //productosEntity.TipoPrenda = txtTipoProducto.Text;
+                //productosEntity.Transfer = txtEstampa.Text;
+                //productosEntity.Composicion = txtComposicion.Text;
                 productosEntity.TallePrenda = cboxTalles.SelectedItem.ToString();
-                productosEntity.Tejido = txtTejido.Text;
                 productosEntity.Precio = Convert.ToDecimal(txtPrecio.Text);
                 productosEntity.Stock = Convert.ToInt32(txtCantidad.Text);
                 productosEntity.Color = txtColor.BackColor;
@@ -128,6 +136,62 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 txtPrecio.Text = txtPrecio.Text.Remove(txtPrecio.Text.Length - 1);
                 txtPrecio.Select();
             }
+        }
+
+        private void btnImagenPrenda_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                OpenFileDialog dialog = new OpenFileDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    //If de file is not jpg or png or jpeg then show error
+                    if (Path.GetExtension(dialog.FileName) != ".jpg" && Path.GetExtension(dialog.FileName) != ".png" && Path.GetExtension(dialog.FileName) != ".jpeg")
+                    {
+                        var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                        FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de imagen", "Solo se permiten archivos con extensión .jpg .png o .jpeg", centerPosition);
+                        fmMessageBox.ShowDialog();
+                    }
+                    else
+                    {
+                        _dialog = new OpenFileDialog();
+                        _dialog = dialog;
+                        //If file is jpg or png or jpeg then save it to the database
+                        pBoxImagenPrenda.ImageLocation = dialog.FileName.ToString();
+                        string path = Path.Combine(@"~\image");
+
+                        //if (!Directory.Exists(path))
+                        //{
+                        //    Directory.CreateDirectory(path);
+                        //}
+                        var fileName = System.IO.Path.GetFileName(dialog.FileName);
+                        path = path + fileName;
+                        //if (Directory.Exists(dialog.FileName+path))
+                        //{
+                        //    File.Copy(dialog.FileName, path);
+                        //}
+
+
+                        //Convert file to base 64
+                        byte[] imageArray = System.IO.File.ReadAllBytes(dialog.FileName);
+                        string base64ImageRepresentation = Convert.ToBase64String(imageArray);
+                        file64 = base64ImageRepresentation;
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de imagen", "No se pudo cargar el archivo", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+        }
+
+
+        private void LlenarComboboxs()
+        {
+            
         }
     }
 }
