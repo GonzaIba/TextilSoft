@@ -63,8 +63,9 @@ namespace UI.TextilSoft
         public static IConfiguration Configuration;
         public static IServiceCollection _services;
         private static readonly Microsoft.Extensions.Logging.ILoggerFactory _loggerFactory = LoggerFactory.Create(builder => builder.AddConsole().AddDebug());
-
-        /// <summary>
+        private static Random _rnd = new Random();
+        
+        /// <summary>v
         ///  The main entry point for the application.
         /// </summary>
         [STAThread]
@@ -241,7 +242,25 @@ namespace UI.TextilSoft
             return connectionString;
         }
 
-        private static void VerifyBusinessTables(IServiceProvider services,int companyId)
+        private static void ConfigureSendGridEmail(IServiceProvider services, IServiceCollection serviceCollection, int companyID)
+        {
+            var SendgridRepository = services.GetRequiredService<ICompanySendGridConfigRepository>();
+            var SendGridModel = SendgridRepository.Get(x => x.CompanyId == companyID).FirstOrDefault();
+            if (SendGridModel != null)
+            {
+                serviceCollection.AddTransient<EmailSendGridConfiguration>(x => new EmailSendGridConfiguration
+                {
+                    ApiKey = SendGridModel.ApiKey,
+                    From = SendGridModel.From,
+                    DisplayName = SendGridModel.DisplayName,
+                    ApiKeyId = SendGridModel.ApiKeyId
+                });
+            }
+        }
+
+
+        #region GenerateData
+        private static void VerifyBusinessTables(IServiceProvider services, int companyId)
         {
             var dbContext = services.GetRequiredService<ApplicationDbContext>();
             var SldbContext = services.GetRequiredService<ServiceLayerDbContext>();
@@ -301,7 +320,7 @@ namespace UI.TextilSoft
                 usuario_PermisoModel.Id_Permiso = permisoModel.Id_Permiso;
                 usuario_PermisoRepository.Insert(usuario_PermisoModel);
             }
-            
+
             SldbContext.SaveChanges();
 
             //Negocio
@@ -321,7 +340,7 @@ namespace UI.TextilSoft
                 dbContext.AddRange(estadosPedido);
                 dbContext.SaveChanges();
             }
-            
+
             var estadoPedidoFabricaRepository = services.GetRequiredService<IEstadoPedidoFabricaRepository>();
             if (!estadoPedidoFabricaRepository.TableNoTracking.Any())
             {
@@ -335,6 +354,101 @@ namespace UI.TextilSoft
                 };
 
                 dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+            GenerateProductDetail(services, companyId);
+        }
+
+        private static void GenerateProductDetail(IServiceProvider services, int companyId)
+        {
+            var result = GenerateRandomCodes();
+            var dbContext = services.GetRequiredService<ApplicationDbContext>();
+
+            var telaBaseRepository = services.GetRequiredService<ITelaBaseRepository>();
+            if (!telaBaseRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<TelaBaseModel>
+                {
+                    new TelaBaseModel { Nombre = "Panal",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "Satén",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "Mezclilla",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "Franella",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "Lino",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+            
+            var bolsilloInteriorRepository = services.GetRequiredService<IBolsilloInteriorRepository>();
+            if (!bolsilloInteriorRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<BolsilloInteriorModel>
+                {
+                    new BolsilloInteriorModel { Nombre = "Dobladillo",Codigo = GenerateRandomCodes(), Active = true },
+                    new BolsilloInteriorModel { Nombre = "Ojal",Codigo = GenerateRandomCodes(), Active = true },
+                    new BolsilloInteriorModel { Nombre = "Canguro",Codigo = GenerateRandomCodes(), Active = true },
+                    new BolsilloInteriorModel { Nombre = "Cremallera",Codigo = GenerateRandomCodes(), Active = true },
+                    new BolsilloInteriorModel { Nombre = "Plano",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+
+            var lazoRepository = services.GetRequiredService<ILazoRepository>();
+            if (!lazoRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<LazoModel>
+                {
+                    new LazoModel { Nombre = "Satén",Codigo = GenerateRandomCodes(), Active = true },
+                    new LazoModel { Nombre = "Rosa",Codigo = GenerateRandomCodes(), Active = true },
+                    new LazoModel { Nombre = "Terciopelo",Codigo = GenerateRandomCodes(), Active = true },
+                    new LazoModel { Nombre = "Algodón",Codigo = GenerateRandomCodes(), Active = true },
+                    new LazoModel { Nombre = "Encaje",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+
+            var vivoRepository = services.GetRequiredService<IVivoRepository>();
+            if (!vivoRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<VivoModel>
+                {
+                    new VivoModel { Nombre = "Tafetán",Codigo = GenerateRandomCodes(), Active = true },
+                    new VivoModel { Nombre = "Satén",Codigo = GenerateRandomCodes(), Active = true },
+                    new VivoModel { Nombre = "Cuero",Codigo = GenerateRandomCodes(), Active = true },
+                    new VivoModel { Nombre = "Algodón",Codigo = GenerateRandomCodes(), Active = true },
+                    new VivoModel { Nombre = "Piel sintética",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+
+            var transferRepository = services.GetRequiredService<ITransferRepository>();
+            if (!transferRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var transfer = new TransferModel {Codigo = "Vinilo", Imagen= "https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D1623412831034706&tbnid=RvHYN8I3ACxd3M&vet=12ahUKEwiR-Jndx62AAxWUObkGHSveAz4QMygCegUIARDBAQ..i&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fadmitoneoficial%2Fphotos%2Fa.193149390727731%2F1623412831034706%2F%3Ftype%3D3&docid=yewQGcPwkjOJNM&w=800&h=800&q=logo%20admit%20one&ved=2ahUKEwiR-Jndx62AAxWUObkGHSveAz4QMygCegUIARDBAQ", Active = true };
+
+                dbContext.Add(transfer);
+                dbContext.SaveChanges();
+
+                transfer.Codigo = transfer.ID_Transfer + transfer.Codigo + _rnd.Next(1, 101);
+
+                dbContext.Update(transfer);
                 dbContext.SaveChanges();
             }
         }
@@ -353,6 +467,10 @@ namespace UI.TextilSoft
             SLdbContext.SaveChanges();
             companyId = companyModel.CompanyId;
         }
+        #endregion
+
+        #region Helper
+        public static string GenerateRandomCodes() => _rnd.Next().ToString("x").ToUpper();
 
         private static void UpdateDatabases(IServiceProvider services)
         {
@@ -371,10 +489,11 @@ namespace UI.TextilSoft
 
                 throw;
             }
-
         }
 
+        #endregion
 
+        #region ConfigureExceptions
         static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
             // Crea una copia de la colección OpenForms
@@ -416,21 +535,7 @@ namespace UI.TextilSoft
                 fmError.ShowDialog();
             }
         }
+        #endregion
 
-        private static void ConfigureSendGridEmail(IServiceProvider services,IServiceCollection serviceCollection, int companyID)
-        {
-            var SendgridRepository = services.GetRequiredService<ICompanySendGridConfigRepository>();
-            var SendGridModel = SendgridRepository.Get(x => x.CompanyId == companyID).FirstOrDefault();
-            if(SendGridModel != null)
-            {
-                serviceCollection.AddTransient<EmailSendGridConfiguration>(x => new EmailSendGridConfiguration
-                {
-                    ApiKey = SendGridModel.ApiKey,
-                    From = SendGridModel.From,
-                    DisplayName = SendGridModel.DisplayName,
-                    ApiKeyId = SendGridModel.ApiKeyId
-                });
-            }
-        }
     }
 }

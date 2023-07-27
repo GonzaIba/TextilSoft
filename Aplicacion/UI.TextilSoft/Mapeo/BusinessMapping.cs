@@ -52,7 +52,7 @@ namespace UI.TextilSoft.Mapeo
                 .ForMember(dest => dest.NombreProducto, opt => opt.MapFrom(src => src.Descripcion))
                 .ForMember(dest => dest.Precio, opt => opt.MapFrom(src => src.Precio))
                 .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.Stock))
-                .ForMember(dest => dest.Acciones, opt => opt.MapFrom("      Ver Detalle"))
+                .ForMember(dest => dest.Acciones, opt => opt.MapFrom(_ => "      Ver Detalle"))
                 .ReverseMap();
 
             CreateMap<PedidosModel, ListarPedidosEntity>()

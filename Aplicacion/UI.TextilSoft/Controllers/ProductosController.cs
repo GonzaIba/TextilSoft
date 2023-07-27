@@ -73,7 +73,7 @@ namespace UI.TextilSoft.Controllers
             catch (Exception ex)
             {
                 _logger.GenerateFatalLog("Ocurrió un error fatal al obtener los productos paginado", ex);
-                throw;
+                throw ex;
             }
         }
 

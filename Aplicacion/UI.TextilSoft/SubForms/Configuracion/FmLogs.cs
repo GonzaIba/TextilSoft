@@ -67,113 +67,123 @@ namespace UI.TextilSoft.SubForms.Configuracion
 
         private void LeerLog()
         {
-            lbLog.Items.Clear();
-            int CantLineas = 0, pageCount = 1, totalLineas = 0;
-            bool isFirstLine = true;
-            using (StreamReader streamReader = new StreamReader(AppDomain.CurrentDomain.GetData("TemphLog").ToString() + Archivo))
+            try
             {
-                while (!streamReader.EndOfStream)
+                lbLog.Items.Clear();
+                int CantLineas = 0, pageCount = 1, totalLineas = 0;
+                bool isFirstLine = true;
+                using (StreamReader streamReader = new StreamReader(AppDomain.CurrentDomain.GetData("TemphLog").ToString() + Archivo))
                 {
-                    string LineaLogger = streamReader.ReadLine();
-                    if (isFirstLine)
+                    while (!streamReader.EndOfStream)
                     {
-                        CantLineas--;
-                        isFirstLine = false;
-                    }
-                    string fecha = LineaLogger != string.Empty ? LineaLogger.Substring(0, 10) : "";
-                    CantLineas++;
-                    if (!DateChanged)
-                    {
-                        if (CantLineas == PageCount)
+                        string LineaLogger = streamReader.ReadLine();
+                        if (isFirstLine)
                         {
-                            pageCount++;
-                            CantLineas = 0;
+                            CantLineas--;
+                            isFirstLine = false;
                         }
-                        if (pageCount == PageIndex)
+                        string fecha = LineaLogger != string.Empty ? LineaLogger.Substring(0, 10) : "";
+                        CantLineas++;
+                        if (!DateChanged)
                         {
-                            if (typeMessageFilter == LogEnum.All && LineaLogger.Contains(userFilter))
+                            if (CantLineas == PageCount)
                             {
-                                lbLog.Items.Add(LineaLogger);
-                                totalLineas++;
+                                pageCount++;
+                                CantLineas = 0;
                             }
-                            else if (LineaLogger.Contains(typeMessageFilter == LogEnum.Information ? "INFO" : typeMessageFilter.ToString().ToUpper()) && LineaLogger.Contains("Usuario: " + userFilter))
+                            if (pageCount == PageIndex)
                             {
-                                lbLog.Items.Add(LineaLogger);
-                                totalLineas++;
+                                if (typeMessageFilter == LogEnum.All && LineaLogger.Contains(userFilter))
+                                {
+                                    lbLog.Items.Add(LineaLogger);
+                                    totalLineas++;
+                                }
+                                else if (LineaLogger.Contains(typeMessageFilter == LogEnum.Information ? "INFO" : typeMessageFilter.ToString().ToUpper()) && LineaLogger.Contains("Usuario: " + userFilter))
+                                {
+                                    lbLog.Items.Add(LineaLogger);
+                                    totalLineas++;
+                                }
+                                else
+                                    CantLineas--;
                             }
                             else
-                                CantLineas--;
+                            {
+                                totalLineas++;
+                            }
                         }
                         else
                         {
-                            totalLineas++;
-                        }
-                    }
-                    else
-                    {
-                        if (Regex.IsMatch(fecha, "\\d{2,4}[/| -]\\d{1,2}[/| -]\\d{1,2}"))
-                        {
-                            if (Convert.ToDateTime(fecha) >= fmDateDesde.Value && Convert.ToDateTime(fecha) <= fmDateHasta.Value)
+                            if (Regex.IsMatch(fecha, "\\d{2,4}[/| -]\\d{1,2}[/| -]\\d{1,2}"))
                             {
+                                if (Convert.ToDateTime(fecha) >= fmDateDesde.Value && Convert.ToDateTime(fecha) <= fmDateHasta.Value)
+                                {
+                                    if (CantLineas == PageCount)
+                                    {
+                                        pageCount++;
+                                        CantLineas = 0;
+                                    }
+                                    if (pageCount == PageIndex)
+                                    {
+                                        if (typeMessageFilter == LogEnum.All && LineaLogger.Contains(userFilter))
+                                        {
+                                            lbLog.Items.Add(LineaLogger);
+                                            totalLineas++;
+                                        }
+                                        else if (LineaLogger.Contains(typeMessageFilter == LogEnum.Information ? "INFO" : typeMessageFilter.ToString().ToUpper()) && LineaLogger.Contains(userFilter))
+                                        {
+                                            lbLog.Items.Add(LineaLogger);
+                                            totalLineas++;
+                                        }
+                                        else
+                                            CantLineas--;
+                                    }
+                                    else
+                                    {
+                                        totalLineas++;
+                                    }
+                                }
+                                else
+                                {
+                                    CantLineas--;
+
+                                }
+                            }
+                            else
+                            {
+                                //Si cae acá, es porque puede ser un mensaje largo que se incrustó en la linea de abajo
+                                //Por ende tenemos que anexar esta linea con la anterior
                                 if (CantLineas == PageCount)
                                 {
                                     pageCount++;
                                     CantLineas = 0;
                                 }
+
                                 if (pageCount == PageIndex)
                                 {
-                                    if (typeMessageFilter == LogEnum.All && LineaLogger.Contains(userFilter))
-                                    {
-                                        lbLog.Items.Add(LineaLogger);
-                                        totalLineas++;
-                                    }
-                                    else if (LineaLogger.Contains(typeMessageFilter == LogEnum.Information ? "INFO" : typeMessageFilter.ToString().ToUpper()) && LineaLogger.Contains(userFilter))
-                                    {
-                                        lbLog.Items.Add(LineaLogger);
-                                        totalLineas++;
-                                    }
-                                    else
-                                        CantLineas--;
+                                    lbLog.Items.Add(LineaLogger);
+                                    totalLineas++;
                                 }
                                 else
                                 {
                                     totalLineas++;
                                 }
                             }
-                            else
-                            {
-                                CantLineas--;
-
-                            }
-                        }
-                        else
-                        {
-                            //Si cae acá, es porque puede ser un mensaje largo que se incrustó en la linea de abajo
-                            //Por ende tenemos que anexar esta linea con la anterior
-                            if (CantLineas == PageCount)
-                            {
-                                pageCount++;
-                                CantLineas = 0;
-                            }
-
-                            if (pageCount == PageIndex)
-                            {
-                                lbLog.Items.Add(LineaLogger);
-                                totalLineas++;
-                            }
-                            else
-                            {
-                                totalLineas++;
-                            }
                         }
                     }
+                    TotalLines = totalLineas;
+                    TotalPages = (int)Math.Ceiling(TotalLines / (double)PageCount);
+                    ActualizarBotones();
+                    VerificarPaginas();
+                    btnFinal.Text = "..." + TotalPages;
                 }
-                TotalLines = totalLineas;
-                TotalPages = (int)Math.Ceiling(TotalLines / (double)PageCount);
-                ActualizarBotones();
-                VerificarPaginas();
-                btnFinal.Text = "..." + TotalPages;
             }
+            catch (Exception ex)
+            {
+                var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                FmMessageBox fmMessageBox = new FmMessageBox(MessageBoxType.Error, "Error al leer el archivo de log", "Por motivos del sistema no se pudieron cargar los logs. Intente nuevamente mas tarde!", centerPosition);
+                fmMessageBox.ShowDialog();
+            }
+            
         }
 
         private void btnInicio_Click(object sender, EventArgs e)

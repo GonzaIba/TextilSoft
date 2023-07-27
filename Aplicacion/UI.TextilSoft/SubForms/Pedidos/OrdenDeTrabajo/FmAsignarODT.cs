@@ -38,13 +38,13 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             InitializeComponent();
             _factory = factory;
             GrillaPedidos.CellPainting += GrillaPedidos_CellPainting;
-            Dictionary<string, string> dicBasico = new();
-            byte[] data = new byte[128];
-            dicBasico.Add("txt_codigo_transfer", "078VINILO27");
-            dicBasico.Add("txt_temporada", "INV-23");
-            dicBasico.Add("txt_orden_armado", "15152");
-            RellenarPdf(dicBasico, ref data);
-            File.WriteAllBytes("", data);
+            //Dictionary<string, string> dicBasico = new();
+            //byte[] data = new byte[128];
+            //dicBasico.Add("txt_codigo_transfer", "078VINILO27");
+            //dicBasico.Add("txt_temporada", "INV-23");
+            //dicBasico.Add("txt_orden_armado", "15152");
+            //RellenarPdf(dicBasico, ref data);
+            //File.WriteAllBytes("", data);
         }
 
         private async void GrillaPedidos_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

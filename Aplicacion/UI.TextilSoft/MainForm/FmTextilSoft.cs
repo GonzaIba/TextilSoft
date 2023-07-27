@@ -599,28 +599,36 @@ namespace UI.TextilSoft.MainForm
         #region Activar Colores
         private async void ActivateButton(object senderBtn)
         {
-            await Task.Run(() =>
+            try
             {
-                if (senderBtn != null)
+                await Task.Run(() =>
                 {
-                    //Button
-                    DisableButton();
-                    System.Drawing.Color color = SelectThemeColor();
-                    currentBtn = (IconButton)senderBtn;
-                    currentBtn.BackColor = System.Drawing.Color.FromArgb(37, 36, 81);
-                    currentBtn.ForeColor = color;
-                    currentBtn.TextAlign = ContentAlignment.MiddleCenter;
-                    currentBtn.IconColor = color;
-                    currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
-                    currentBtn.ImageAlign = ContentAlignment.MiddleRight;
-                    btnBloquear.IconColor = color;
-                    //Left border button
-                    leftBorderBtn.BackColor = color;
-                    leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
-                    leftBorderBtn.Visible = true;
-                    leftBorderBtn.BringToFront();
-                }
-            });
+                    if (senderBtn != null)
+                    {
+                        //Button
+                        DisableButton();
+                        System.Drawing.Color color = SelectThemeColor();
+                        currentBtn = (IconButton)senderBtn;
+                        currentBtn.BackColor = System.Drawing.Color.FromArgb(37, 36, 81);
+                        currentBtn.ForeColor = color;
+                        currentBtn.TextAlign = ContentAlignment.MiddleCenter;
+                        currentBtn.IconColor = color;
+                        currentBtn.TextImageRelation = TextImageRelation.TextBeforeImage;
+                        currentBtn.ImageAlign = ContentAlignment.MiddleRight;
+                        btnBloquear.IconColor = color;
+                        //Left border button
+                        leftBorderBtn.BackColor = color;
+                        leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
+                        leftBorderBtn.Visible = true;
+                        leftBorderBtn.BringToFront();
+                    }
+                });
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void DisableButton()
