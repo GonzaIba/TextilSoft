@@ -401,6 +401,24 @@ namespace UI.TextilSoft
             }
 
 
+            var cinturaInteriorRepository = services.GetRequiredService<ICinturaInteriorRepository>();
+            if (!cinturaInteriorRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<CinturaInteriorModel>
+                {
+                    new CinturaInteriorModel { Nombre = "Dobladillo",Codigo = GenerateRandomCodes(), Active = true },
+                    new CinturaInteriorModel { Nombre = "Ojal",Codigo = GenerateRandomCodes(), Active = true },
+                    new CinturaInteriorModel { Nombre = "Canguro",Codigo = GenerateRandomCodes(), Active = true },
+                    new CinturaInteriorModel { Nombre = "Cremallera",Codigo = GenerateRandomCodes(), Active = true },
+                    new CinturaInteriorModel { Nombre = "Plano",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+
             var lazoRepository = services.GetRequiredService<ILazoRepository>();
             if (!lazoRepository.TableNoTracking.Any())
             {

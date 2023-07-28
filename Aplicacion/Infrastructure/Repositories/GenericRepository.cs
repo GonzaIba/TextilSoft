@@ -143,9 +143,6 @@ namespace Infrastructure.Repositories
                     break;
             }
 
-
-
-
             if (orderBy != null)
                 return orderBy(query);
             else

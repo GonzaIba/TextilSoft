@@ -313,7 +313,7 @@
             // 
             lblTelaBase.AutoSize = true;
             lblTelaBase.ForeColor = System.Drawing.Color.White;
-            lblTelaBase.Location = new System.Drawing.Point(315, 280);
+            lblTelaBase.Location = new System.Drawing.Point(85, 245);
             lblTelaBase.Name = "lblTelaBase";
             lblTelaBase.Size = new System.Drawing.Size(57, 15);
             lblTelaBase.TabIndex = 88;
@@ -344,7 +344,7 @@
             // 
             lblTransfer.AutoSize = true;
             lblTransfer.ForeColor = System.Drawing.Color.White;
-            lblTransfer.Location = new System.Drawing.Point(88, 242);
+            lblTransfer.Location = new System.Drawing.Point(318, 279);
             lblTransfer.Name = "lblTransfer";
             lblTransfer.Size = new System.Drawing.Size(51, 15);
             lblTransfer.TabIndex = 82;
@@ -390,7 +390,7 @@
             fmCboxTransfer.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTransfer.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTransfer.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTransfer.Location = new System.Drawing.Point(148, 240);
+            fmCboxTransfer.Location = new System.Drawing.Point(378, 277);
             fmCboxTransfer.Name = "fmCboxTransfer";
             fmCboxTransfer.Size = new System.Drawing.Size(126, 20);
             fmCboxTransfer.TabIndex = 110;
@@ -444,7 +444,7 @@
             fmCboxTelaBase.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTelaBase.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTelaBase.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTelaBase.Location = new System.Drawing.Point(378, 278);
+            fmCboxTelaBase.Location = new System.Drawing.Point(148, 243);
             fmCboxTelaBase.Name = "fmCboxTelaBase";
             fmCboxTelaBase.Size = new System.Drawing.Size(126, 20);
             fmCboxTelaBase.TabIndex = 113;
