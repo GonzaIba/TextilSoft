@@ -1,6 +1,7 @@
 ﻿using AltoControls;
 using Contracts.Controllers;
 using Domain.Entities;
+using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,7 +33,8 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
 
         private void FmCrearProducto_Load(object sender, EventArgs e)
         {
-
+            txtCantidad.Text = "0";
+            LlenarComboboxs();
         }
 
         private void btnCrearProducto_Click(object sender, EventArgs e)
@@ -191,7 +193,29 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
 
         private void LlenarComboboxs()
         {
+            fmCboxTelaBase.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.TelaBase);
+            fmCboxTelaBase.DisplayMember = "Nombre";
 
+            fmCboxTelaCombinacion.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.TelaCombinacion);
+            fmCboxTelaCombinacion.DisplayMember = "Nombre";
+
+            fmCboxBolsilloInt.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.BolsilloInterior);
+            fmCboxBolsilloInt.DisplayMember = "Nombre";
+
+            fmCboxCinturaInterior.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.CinturaInterior);
+            fmCboxCinturaInterior.DisplayMember = "Nombre";
+
+            fmCboxCollareta.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.Collareta);
+            fmCboxCollareta.DisplayMember = "Nombre";
+
+            fmCboxLazo.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.Lazo);
+            fmCboxLazo.DisplayMember = "Nombre";
+
+            fmCboxVivo.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.Vivo);
+            fmCboxVivo.DisplayMember = "Nombre";
+
+            fmCboxForreria.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.Forreria);
+            fmCboxForreria.DisplayMember = "Nombre";
         }
     }
 }

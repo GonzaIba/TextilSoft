@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +9,6 @@ namespace Contracts.Controllers
 {
     public interface IArmadoProductoController
     {
+        public dynamic ObtenerArmadoProductoPorTipo(ArmadoProductoEnum armadoProductoEnum);
     }
 }

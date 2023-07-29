@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.Internal;
 using Domain.Entities;
+using Domain.Entities.ArmadoProductos;
 using Domain.Enum;
 using Domain.GenericEntity;
 using Domain.Models;
@@ -85,6 +86,19 @@ namespace UI.TextilSoft.Mapeo
                 .ForMember(dest => dest.EstadoActual, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
                 .ForMember(dest => dest.HistorialPedidos, opt => opt.MapFrom(src => src.HistorialPedidos.Select(hp => new HistorialPedidosEntity { EstadoPedido = ConvertToEstadoPedido(hp.EstadoPedido.ID_EstadoPedido), Fecha = hp.Fecha }).ToList()));
 
+
+
+            #region Armado Productos
+            CreateMap<TelaBaseModel, TelaBaseEntity>();
+            CreateMap<TelaCombinacionModel, TelaCombinacionEntity>();
+            CreateMap<BolsilloInteriorModel, BolsilloInteriorEntity>();
+            CreateMap<CinturaInteriorModel, CinturaInteriorEntity>();
+            CreateMap<CollaretaModel, CollaretaEntity>();
+            CreateMap<LazoModel, LazoEntity>();
+            CreateMap<VivoModel, VivoEntity>();
+            CreateMap<ForreriaModel, ForreriaEntity>();
+            CreateMap<TransferModel, TransferEntity>();
+            #endregion
         }
 
         public string StringSepare(string text,string separe, int index)

@@ -64,6 +64,12 @@
             fmCboxBolsilloInt = new Tools.FormsTools.FmCombobox();
             altoTextBox1 = new AltoControls.AltoTextBox();
             btnImagenPrenda = new FontAwesome.Sharp.IconButton();
+            fmCboxCinturaInterior = new Tools.FormsTools.FmCombobox();
+            lblCinturaInterior = new System.Windows.Forms.Label();
+            fmCboxCollareta = new Tools.FormsTools.FmCombobox();
+            lblCollareta = new System.Windows.Forms.Label();
+            fmCboxForreria = new Tools.FormsTools.FmCombobox();
+            lblForreria = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)pBoxImagenPrenda).BeginInit();
             SuspendLayout();
             // 
@@ -71,9 +77,9 @@
             // 
             lblCantidad.AutoSize = true;
             lblCantidad.ForeColor = System.Drawing.Color.White;
-            lblCantidad.Location = new System.Drawing.Point(315, 351);
+            lblCantidad.Location = new System.Drawing.Point(359, 488);
             lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new System.Drawing.Size(58, 15);
+            lblCantidad.Size = new System.Drawing.Size(72, 20);
             lblCantidad.TabIndex = 31;
             lblCantidad.Text = "Cantidad:";
             // 
@@ -83,9 +89,9 @@
             lblPrincipal.BackColor = System.Drawing.Color.Transparent;
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(274, 43);
+            lblPrincipal.Location = new System.Drawing.Point(313, 57);
             lblPrincipal.Name = "lblPrincipal";
-            lblPrincipal.Size = new System.Drawing.Size(173, 32);
+            lblPrincipal.Size = new System.Drawing.Size(218, 41);
             lblPrincipal.TabIndex = 32;
             lblPrincipal.Text = "Crear Producto";
             // 
@@ -98,9 +104,10 @@
             btnCrearProducto.IconColor = System.Drawing.Color.White;
             btnCrearProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCrearProducto.IconSize = 35;
-            btnCrearProducto.Location = new System.Drawing.Point(307, 407);
+            btnCrearProducto.Location = new System.Drawing.Point(351, 543);
+            btnCrearProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCrearProducto.Name = "btnCrearProducto";
-            btnCrearProducto.Size = new System.Drawing.Size(123, 46);
+            btnCrearProducto.Size = new System.Drawing.Size(141, 61);
             btnCrearProducto.TabIndex = 33;
             btnCrearProducto.Text = "Guardar";
             btnCrearProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -113,9 +120,10 @@
             txtCantidad.Br = System.Drawing.Color.MidnightBlue;
             txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCantidad.ForeColor = System.Drawing.Color.White;
-            txtCantidad.Location = new System.Drawing.Point(378, 344);
+            txtCantidad.Location = new System.Drawing.Point(431, 479);
+            txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new System.Drawing.Size(69, 29);
+            txtCantidad.Size = new System.Drawing.Size(79, 39);
             txtCantidad.TabIndex = 34;
             txtCantidad.TextChanged += txtCantidad_TextChanged;
             // 
@@ -128,9 +136,10 @@
             btnSumar.IconColor = System.Drawing.Color.White;
             btnSumar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSumar.IconSize = 30;
-            btnSumar.Location = new System.Drawing.Point(447, 349);
+            btnSumar.Location = new System.Drawing.Point(510, 485);
+            btnSumar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSumar.Name = "btnSumar";
-            btnSumar.Size = new System.Drawing.Size(28, 28);
+            btnSumar.Size = new System.Drawing.Size(32, 37);
             btnSumar.TabIndex = 35;
             btnSumar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnSumar.UseVisualStyleBackColor = true;
@@ -145,9 +154,10 @@
             btnRestar.IconColor = System.Drawing.Color.White;
             btnRestar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnRestar.IconSize = 30;
-            btnRestar.Location = new System.Drawing.Point(476, 348);
+            btnRestar.Location = new System.Drawing.Point(543, 484);
+            btnRestar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnRestar.Name = "btnRestar";
-            btnRestar.Size = new System.Drawing.Size(28, 28);
+            btnRestar.Size = new System.Drawing.Size(32, 37);
             btnRestar.TabIndex = 36;
             btnRestar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnRestar.UseVisualStyleBackColor = true;
@@ -157,11 +167,12 @@
             // 
             txtColor.BackColor = System.Drawing.Color.White;
             txtColor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            txtColor.Location = new System.Drawing.Point(148, 311);
+            txtColor.Location = new System.Drawing.Point(710, 84);
+            txtColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtColor.Multiline = true;
             txtColor.Name = "txtColor";
             txtColor.ReadOnly = true;
-            txtColor.Size = new System.Drawing.Size(125, 23);
+            txtColor.Size = new System.Drawing.Size(143, 31);
             txtColor.TabIndex = 40;
             // 
             // btnChangeColor
@@ -173,9 +184,10 @@
             btnChangeColor.IconColor = System.Drawing.Color.Red;
             btnChangeColor.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnChangeColor.IconSize = 40;
-            btnChangeColor.Location = new System.Drawing.Point(272, 307);
+            btnChangeColor.Location = new System.Drawing.Point(852, 78);
+            btnChangeColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnChangeColor.Name = "btnChangeColor";
-            btnChangeColor.Size = new System.Drawing.Size(34, 37);
+            btnChangeColor.Size = new System.Drawing.Size(39, 49);
             btnChangeColor.TabIndex = 39;
             btnChangeColor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnChangeColor.UseVisualStyleBackColor = true;
@@ -185,9 +197,9 @@
             // 
             lblColor.AutoSize = true;
             lblColor.ForeColor = System.Drawing.Color.White;
-            lblColor.Location = new System.Drawing.Point(100, 314);
+            lblColor.Location = new System.Drawing.Point(655, 88);
             lblColor.Name = "lblColor";
-            lblColor.Size = new System.Drawing.Size(39, 15);
+            lblColor.Size = new System.Drawing.Size(48, 20);
             lblColor.TabIndex = 38;
             lblColor.Text = "Color:";
             // 
@@ -203,17 +215,19 @@
             cboxTalles.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             cboxTalles.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             cboxTalles.ListTextColor = System.Drawing.Color.DimGray;
-            cboxTalles.Location = new System.Drawing.Point(378, 243);
+            cboxTalles.Location = new System.Drawing.Point(432, 394);
+            cboxTalles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             cboxTalles.Name = "cboxTalles";
-            cboxTalles.Size = new System.Drawing.Size(126, 20);
+            cboxTalles.Size = new System.Drawing.Size(144, 27);
             cboxTalles.TabIndex = 41;
             cboxTalles.Texts = "";
             // 
             // pBoxImagenPrenda
             // 
-            pBoxImagenPrenda.Location = new System.Drawing.Point(541, 140);
+            pBoxImagenPrenda.Location = new System.Drawing.Point(618, 187);
+            pBoxImagenPrenda.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pBoxImagenPrenda.Name = "pBoxImagenPrenda";
-            pBoxImagenPrenda.Size = new System.Drawing.Size(254, 233);
+            pBoxImagenPrenda.Size = new System.Drawing.Size(290, 311);
             pBoxImagenPrenda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             pBoxImagenPrenda.TabIndex = 107;
             pBoxImagenPrenda.TabStop = false;
@@ -222,9 +236,9 @@
             // 
             lblImagen.AutoSize = true;
             lblImagen.ForeColor = System.Drawing.Color.White;
-            lblImagen.Location = new System.Drawing.Point(615, 122);
+            lblImagen.Location = new System.Drawing.Point(703, 163);
             lblImagen.Name = "lblImagen";
-            lblImagen.Size = new System.Drawing.Size(87, 15);
+            lblImagen.Size = new System.Drawing.Size(109, 20);
             lblImagen.TabIndex = 106;
             lblImagen.Text = "Imagen Prenda";
             // 
@@ -232,9 +246,9 @@
             // 
             lblLazo.AutoSize = true;
             lblLazo.ForeColor = System.Drawing.Color.White;
-            lblLazo.Location = new System.Drawing.Point(339, 210);
+            lblLazo.Location = new System.Drawing.Point(386, 262);
             lblLazo.Name = "lblLazo";
-            lblLazo.Size = new System.Drawing.Size(34, 15);
+            lblLazo.Size = new System.Drawing.Size(43, 20);
             lblLazo.TabIndex = 104;
             lblLazo.Text = "Lazo:";
             // 
@@ -242,9 +256,9 @@
             // 
             lblVivo.AutoSize = true;
             lblVivo.ForeColor = System.Drawing.Color.White;
-            lblVivo.Location = new System.Drawing.Point(339, 175);
+            lblVivo.Location = new System.Drawing.Point(388, 215);
             lblVivo.Name = "lblVivo";
-            lblVivo.Size = new System.Drawing.Size(33, 15);
+            lblVivo.Size = new System.Drawing.Size(41, 20);
             lblVivo.TabIndex = 102;
             lblVivo.Text = "Vivo:";
             // 
@@ -252,9 +266,9 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = System.Drawing.Color.White;
-            label2.Location = new System.Drawing.Point(34, 282);
+            label2.Location = new System.Drawing.Point(39, 356);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(105, 15);
+            label2.Size = new System.Drawing.Size(131, 20);
             label2.TabIndex = 100;
             label2.Text = "Tela Combinación:";
             // 
@@ -262,9 +276,9 @@
             // 
             lblBolsilloInterior.AutoSize = true;
             lblBolsilloInterior.ForeColor = System.Drawing.Color.White;
-            lblBolsilloInterior.Location = new System.Drawing.Point(307, 139);
+            lblBolsilloInterior.Location = new System.Drawing.Point(87, 397);
             lblBolsilloInterior.Name = "lblBolsilloInterior";
-            lblBolsilloInterior.Size = new System.Drawing.Size(65, 15);
+            lblBolsilloInterior.Size = new System.Drawing.Size(82, 20);
             lblBolsilloInterior.TabIndex = 98;
             lblBolsilloInterior.Text = "Bolsillo Int:";
             // 
@@ -274,18 +288,19 @@
             txtDesc.Br = System.Drawing.Color.MidnightBlue;
             txtDesc.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtDesc.ForeColor = System.Drawing.Color.White;
-            txtDesc.Location = new System.Drawing.Point(151, 133);
+            txtDesc.Location = new System.Drawing.Point(173, 168);
+            txtDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtDesc.Name = "txtDesc";
-            txtDesc.Size = new System.Drawing.Size(123, 29);
+            txtDesc.Size = new System.Drawing.Size(141, 39);
             txtDesc.TabIndex = 96;
             // 
             // lblDescripcion
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.ForeColor = System.Drawing.Color.White;
-            lblDescripcion.Location = new System.Drawing.Point(69, 139);
+            lblDescripcion.Location = new System.Drawing.Point(79, 176);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new System.Drawing.Size(72, 15);
+            lblDescripcion.Size = new System.Drawing.Size(90, 20);
             lblDescripcion.TabIndex = 95;
             lblDescripcion.Text = "Descripción:";
             // 
@@ -293,9 +308,9 @@
             // 
             lblComposicion.AutoSize = true;
             lblComposicion.ForeColor = System.Drawing.Color.White;
-            lblComposicion.Location = new System.Drawing.Point(58, 174);
+            lblComposicion.Location = new System.Drawing.Point(66, 223);
             lblComposicion.Name = "lblComposicion";
-            lblComposicion.Size = new System.Drawing.Size(81, 15);
+            lblComposicion.Size = new System.Drawing.Size(99, 20);
             lblComposicion.TabIndex = 90;
             lblComposicion.Text = "Composicion:";
             // 
@@ -303,9 +318,9 @@
             // 
             lblPrecio.AutoSize = true;
             lblPrecio.ForeColor = System.Drawing.Color.White;
-            lblPrecio.Location = new System.Drawing.Point(327, 315);
+            lblPrecio.Location = new System.Drawing.Point(373, 440);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new System.Drawing.Size(43, 15);
+            lblPrecio.Size = new System.Drawing.Size(53, 20);
             lblPrecio.TabIndex = 89;
             lblPrecio.Text = "Precio:";
             // 
@@ -313,9 +328,9 @@
             // 
             lblTelaBase.AutoSize = true;
             lblTelaBase.ForeColor = System.Drawing.Color.White;
-            lblTelaBase.Location = new System.Drawing.Point(85, 245);
+            lblTelaBase.Location = new System.Drawing.Point(97, 313);
             lblTelaBase.Name = "lblTelaBase";
-            lblTelaBase.Size = new System.Drawing.Size(57, 15);
+            lblTelaBase.Size = new System.Drawing.Size(74, 20);
             lblTelaBase.TabIndex = 88;
             lblTelaBase.Text = "Tela Base:";
             // 
@@ -323,9 +338,9 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = System.Drawing.Color.White;
-            label3.Location = new System.Drawing.Point(339, 243);
+            label3.Location = new System.Drawing.Point(387, 394);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(33, 15);
+            label3.Size = new System.Drawing.Size(42, 20);
             label3.TabIndex = 87;
             label3.Text = "Talle:";
             // 
@@ -335,18 +350,19 @@
             txtPrecio.Br = System.Drawing.Color.MidnightBlue;
             txtPrecio.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtPrecio.ForeColor = System.Drawing.Color.White;
-            txtPrecio.Location = new System.Drawing.Point(378, 309);
+            txtPrecio.Location = new System.Drawing.Point(431, 432);
+            txtPrecio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new System.Drawing.Size(126, 29);
+            txtPrecio.Size = new System.Drawing.Size(144, 39);
             txtPrecio.TabIndex = 86;
             // 
             // lblTransfer
             // 
             lblTransfer.AutoSize = true;
             lblTransfer.ForeColor = System.Drawing.Color.White;
-            lblTransfer.Location = new System.Drawing.Point(318, 279);
+            lblTransfer.Location = new System.Drawing.Point(363, 352);
             lblTransfer.Name = "lblTransfer";
-            lblTransfer.Size = new System.Drawing.Size(51, 15);
+            lblTransfer.Size = new System.Drawing.Size(64, 20);
             lblTransfer.TabIndex = 82;
             lblTransfer.Text = "Transfer:";
             // 
@@ -354,9 +370,9 @@
             // 
             lblTipoProducto.AutoSize = true;
             lblTipoProducto.ForeColor = System.Drawing.Color.White;
-            lblTipoProducto.Location = new System.Drawing.Point(39, 207);
+            lblTipoProducto.Location = new System.Drawing.Point(45, 267);
             lblTipoProducto.Name = "lblTipoProducto";
-            lblTipoProducto.Size = new System.Drawing.Size(101, 15);
+            lblTipoProducto.Size = new System.Drawing.Size(127, 20);
             lblTipoProducto.TabIndex = 81;
             lblTipoProducto.Text = "Tipo de Producto:";
             // 
@@ -372,9 +388,10 @@
             fmCboxTelaCombinacion.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTelaCombinacion.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTelaCombinacion.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTelaCombinacion.Location = new System.Drawing.Point(148, 277);
+            fmCboxTelaCombinacion.Location = new System.Drawing.Point(169, 352);
+            fmCboxTelaCombinacion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxTelaCombinacion.Name = "fmCboxTelaCombinacion";
-            fmCboxTelaCombinacion.Size = new System.Drawing.Size(126, 20);
+            fmCboxTelaCombinacion.Size = new System.Drawing.Size(144, 27);
             fmCboxTelaCombinacion.TabIndex = 108;
             fmCboxTelaCombinacion.Texts = "";
             // 
@@ -390,9 +407,10 @@
             fmCboxTransfer.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTransfer.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTransfer.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTransfer.Location = new System.Drawing.Point(378, 277);
+            fmCboxTransfer.Location = new System.Drawing.Point(432, 349);
+            fmCboxTransfer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxTransfer.Name = "fmCboxTransfer";
-            fmCboxTransfer.Size = new System.Drawing.Size(126, 20);
+            fmCboxTransfer.Size = new System.Drawing.Size(144, 27);
             fmCboxTransfer.TabIndex = 110;
             fmCboxTransfer.Texts = "";
             // 
@@ -408,9 +426,10 @@
             fmCboxTipoProducto.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTipoProducto.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTipoProducto.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTipoProducto.Location = new System.Drawing.Point(148, 207);
+            fmCboxTipoProducto.Location = new System.Drawing.Point(169, 267);
+            fmCboxTipoProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxTipoProducto.Name = "fmCboxTipoProducto";
-            fmCboxTipoProducto.Size = new System.Drawing.Size(126, 20);
+            fmCboxTipoProducto.Size = new System.Drawing.Size(144, 27);
             fmCboxTipoProducto.TabIndex = 111;
             fmCboxTipoProducto.Texts = "";
             // 
@@ -426,9 +445,10 @@
             fmCboxLazo.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxLazo.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxLazo.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxLazo.Location = new System.Drawing.Point(379, 210);
+            fmCboxLazo.Location = new System.Drawing.Point(432, 262);
+            fmCboxLazo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxLazo.Name = "fmCboxLazo";
-            fmCboxLazo.Size = new System.Drawing.Size(126, 20);
+            fmCboxLazo.Size = new System.Drawing.Size(144, 27);
             fmCboxLazo.TabIndex = 112;
             fmCboxLazo.Texts = "";
             // 
@@ -444,9 +464,10 @@
             fmCboxTelaBase.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTelaBase.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTelaBase.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTelaBase.Location = new System.Drawing.Point(148, 243);
+            fmCboxTelaBase.Location = new System.Drawing.Point(169, 310);
+            fmCboxTelaBase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxTelaBase.Name = "fmCboxTelaBase";
-            fmCboxTelaBase.Size = new System.Drawing.Size(126, 20);
+            fmCboxTelaBase.Size = new System.Drawing.Size(144, 27);
             fmCboxTelaBase.TabIndex = 113;
             fmCboxTelaBase.Texts = "";
             // 
@@ -462,9 +483,10 @@
             fmCboxVivo.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxVivo.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxVivo.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxVivo.Location = new System.Drawing.Point(379, 175);
+            fmCboxVivo.Location = new System.Drawing.Point(432, 215);
+            fmCboxVivo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxVivo.Name = "fmCboxVivo";
-            fmCboxVivo.Size = new System.Drawing.Size(126, 20);
+            fmCboxVivo.Size = new System.Drawing.Size(144, 27);
             fmCboxVivo.TabIndex = 114;
             fmCboxVivo.Texts = "";
             // 
@@ -480,9 +502,10 @@
             fmCboxBolsilloInt.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxBolsilloInt.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxBolsilloInt.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxBolsilloInt.Location = new System.Drawing.Point(379, 139);
+            fmCboxBolsilloInt.Location = new System.Drawing.Point(169, 395);
+            fmCboxBolsilloInt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxBolsilloInt.Name = "fmCboxBolsilloInt";
-            fmCboxBolsilloInt.Size = new System.Drawing.Size(126, 20);
+            fmCboxBolsilloInt.Size = new System.Drawing.Size(144, 27);
             fmCboxBolsilloInt.TabIndex = 115;
             fmCboxBolsilloInt.Texts = "";
             // 
@@ -492,9 +515,10 @@
             altoTextBox1.Br = System.Drawing.Color.MidnightBlue;
             altoTextBox1.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             altoTextBox1.ForeColor = System.Drawing.Color.White;
-            altoTextBox1.Location = new System.Drawing.Point(151, 168);
+            altoTextBox1.Location = new System.Drawing.Point(173, 215);
+            altoTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             altoTextBox1.Name = "altoTextBox1";
-            altoTextBox1.Size = new System.Drawing.Size(122, 29);
+            altoTextBox1.Size = new System.Drawing.Size(141, 39);
             altoTextBox1.TabIndex = 116;
             // 
             // btnImagenPrenda
@@ -507,21 +531,115 @@
             btnImagenPrenda.IconColor = System.Drawing.Color.White;
             btnImagenPrenda.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnImagenPrenda.IconSize = 45;
-            btnImagenPrenda.Location = new System.Drawing.Point(592, 379);
+            btnImagenPrenda.Location = new System.Drawing.Point(677, 505);
+            btnImagenPrenda.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnImagenPrenda.Name = "btnImagenPrenda";
-            btnImagenPrenda.Size = new System.Drawing.Size(154, 42);
+            btnImagenPrenda.Size = new System.Drawing.Size(176, 56);
             btnImagenPrenda.TabIndex = 117;
             btnImagenPrenda.Text = "Cargar Imagen";
             btnImagenPrenda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnImagenPrenda.UseVisualStyleBackColor = true;
             btnImagenPrenda.Click += btnImagenPrenda_Click;
             // 
+            // fmCboxCinturaInterior
+            // 
+            fmCboxCinturaInterior.BackColor = System.Drawing.Color.WhiteSmoke;
+            fmCboxCinturaInterior.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxCinturaInterior.BorderSize = 0;
+            fmCboxCinturaInterior.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            fmCboxCinturaInterior.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fmCboxCinturaInterior.ForeColor = System.Drawing.Color.DimGray;
+            fmCboxCinturaInterior.IconColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxCinturaInterior.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
+            fmCboxCinturaInterior.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
+            fmCboxCinturaInterior.ListTextColor = System.Drawing.Color.DimGray;
+            fmCboxCinturaInterior.Location = new System.Drawing.Point(169, 438);
+            fmCboxCinturaInterior.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            fmCboxCinturaInterior.Name = "fmCboxCinturaInterior";
+            fmCboxCinturaInterior.Size = new System.Drawing.Size(144, 27);
+            fmCboxCinturaInterior.TabIndex = 119;
+            fmCboxCinturaInterior.Texts = "";
+            // 
+            // lblCinturaInterior
+            // 
+            lblCinturaInterior.AutoSize = true;
+            lblCinturaInterior.ForeColor = System.Drawing.Color.White;
+            lblCinturaInterior.Location = new System.Drawing.Point(58, 438);
+            lblCinturaInterior.Name = "lblCinturaInterior";
+            lblCinturaInterior.Size = new System.Drawing.Size(111, 20);
+            lblCinturaInterior.TabIndex = 118;
+            lblCinturaInterior.Text = "Cintura Interior:";
+            // 
+            // fmCboxCollareta
+            // 
+            fmCboxCollareta.BackColor = System.Drawing.Color.WhiteSmoke;
+            fmCboxCollareta.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxCollareta.BorderSize = 0;
+            fmCboxCollareta.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            fmCboxCollareta.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fmCboxCollareta.ForeColor = System.Drawing.Color.DimGray;
+            fmCboxCollareta.IconColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxCollareta.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
+            fmCboxCollareta.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
+            fmCboxCollareta.ListTextColor = System.Drawing.Color.DimGray;
+            fmCboxCollareta.Location = new System.Drawing.Point(431, 169);
+            fmCboxCollareta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            fmCboxCollareta.Name = "fmCboxCollareta";
+            fmCboxCollareta.Size = new System.Drawing.Size(144, 27);
+            fmCboxCollareta.TabIndex = 121;
+            fmCboxCollareta.Texts = "";
+            // 
+            // lblCollareta
+            // 
+            lblCollareta.AutoSize = true;
+            lblCollareta.ForeColor = System.Drawing.Color.White;
+            lblCollareta.Location = new System.Drawing.Point(357, 169);
+            lblCollareta.Name = "lblCollareta";
+            lblCollareta.Size = new System.Drawing.Size(72, 20);
+            lblCollareta.TabIndex = 120;
+            lblCollareta.Text = "Collareta:";
+            // 
+            // fmCboxForreria
+            // 
+            fmCboxForreria.BackColor = System.Drawing.Color.WhiteSmoke;
+            fmCboxForreria.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxForreria.BorderSize = 0;
+            fmCboxForreria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            fmCboxForreria.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fmCboxForreria.ForeColor = System.Drawing.Color.DimGray;
+            fmCboxForreria.IconColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxForreria.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
+            fmCboxForreria.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
+            fmCboxForreria.ListTextColor = System.Drawing.Color.DimGray;
+            fmCboxForreria.Location = new System.Drawing.Point(432, 306);
+            fmCboxForreria.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            fmCboxForreria.Name = "fmCboxForreria";
+            fmCboxForreria.Size = new System.Drawing.Size(144, 27);
+            fmCboxForreria.TabIndex = 123;
+            fmCboxForreria.Texts = "";
+            // 
+            // lblForreria
+            // 
+            lblForreria.AutoSize = true;
+            lblForreria.ForeColor = System.Drawing.Color.White;
+            lblForreria.Location = new System.Drawing.Point(368, 306);
+            lblForreria.Name = "lblForreria";
+            lblForreria.Size = new System.Drawing.Size(63, 20);
+            lblForreria.TabIndex = 122;
+            lblForreria.Text = "Forreria:";
+            // 
             // FmCrearProducto
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(831, 465);
+            ClientSize = new System.Drawing.Size(950, 620);
+            Controls.Add(fmCboxForreria);
+            Controls.Add(lblForreria);
+            Controls.Add(fmCboxCollareta);
+            Controls.Add(lblCollareta);
+            Controls.Add(fmCboxCinturaInterior);
+            Controls.Add(lblCinturaInterior);
             Controls.Add(btnImagenPrenda);
             Controls.Add(altoTextBox1);
             Controls.Add(fmCboxBolsilloInt);
@@ -556,6 +674,7 @@
             Controls.Add(btnCrearProducto);
             Controls.Add(lblPrincipal);
             Controls.Add(lblCantidad);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FmCrearProducto";
             Text = "FmCrearProducto";
             Load += FmCrearProducto_Load;
@@ -600,5 +719,11 @@
         private Tools.FormsTools.FmCombobox fmCboxBolsilloInt;
         private AltoControls.AltoTextBox altoTextBox1;
         private FontAwesome.Sharp.IconButton btnImagenPrenda;
+        private Tools.FormsTools.FmCombobox fmCboxCinturaInterior;
+        private System.Windows.Forms.Label lblCinturaInterior;
+        private Tools.FormsTools.FmCombobox fmCboxCollareta;
+        private System.Windows.Forms.Label lblCollareta;
+        private Tools.FormsTools.FmCombobox fmCboxForreria;
+        private System.Windows.Forms.Label lblForreria;
     }
 }

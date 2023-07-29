@@ -55,6 +55,8 @@ using Contracts.Controllers;
 using Domain.Entities;
 using UI.TextilSoft.Controllers;
 using System.ComponentModel.Design;
+using Contracts.Services;
+using Business.Services;
 
 namespace UI.TextilSoft
 {
@@ -166,6 +168,7 @@ namespace UI.TextilSoft
             services.AddSingleton<FmTextilSoft>();
             services.AddSingleton<FmCrearPedido>();
             services.AddSingleton<Inicio>();
+            services.AddSingleton<IArmadoProductoService, ArmadoProductoService>();
             services.AddSingleton<IControllerFactory,ControllerFactory>();
             services.AddSingleton<ILogger, Logger>();
 
@@ -362,33 +365,50 @@ namespace UI.TextilSoft
 
         private static void GenerateProductDetail(IServiceProvider services, int companyId)
         {
-            var result = GenerateRandomCodes();
             var dbContext = services.GetRequiredService<ApplicationDbContext>();
 
             var telaBaseRepository = services.GetRequiredService<ITelaBaseRepository>();
             if (!telaBaseRepository.TableNoTracking.Any())
             {
-                // Si no hay registros, insertar los valores por defecto
                 var estadosPedido = new List<TelaBaseModel>
                 {
-                    new TelaBaseModel { Nombre = "Panal",Codigo = GenerateRandomCodes(), Active = true },
-                    new TelaBaseModel { Nombre = "Satén",Codigo = GenerateRandomCodes(), Active = true },
-                    new TelaBaseModel { Nombre = "Mezclilla",Codigo = GenerateRandomCodes(), Active = true },
-                    new TelaBaseModel { Nombre = "Franella",Codigo = GenerateRandomCodes(), Active = true },
-                    new TelaBaseModel { Nombre = "Lino",Codigo = GenerateRandomCodes(), Active = true }
+                    new TelaBaseModel { Nombre = "No Lleva",Codigo = "0", Active = true },
+                    new TelaBaseModel { Nombre = "EDEN ESTAMPADO",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "MIC MINI FANTASIA",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "J MOVIE",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "JERSEY TECH FIT 140",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaBaseModel { Nombre = "MICROFIBRA EST",Codigo = GenerateRandomCodes(), Active = true }
                 };
 
                 dbContext.AddRange(estadosPedido);
                 dbContext.SaveChanges();
             }
 
-            
+
+            var telaCombinacionRepository = services.GetRequiredService<ITelaCombinacionRepository>();
+            if (!telaCombinacionRepository.TableNoTracking.Any())
+            {
+                var estadosPedido = new List<TelaCombinacionModel>
+                {
+                    new TelaCombinacionModel { Nombre = "No Lleva",Codigo = "0", Active = true },
+                    new TelaCombinacionModel { Nombre = "COURO ECOLÓGICO0",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaCombinacionModel { Nombre = "POWERNET LIVIANO",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaCombinacionModel { Nombre = "MICROFIBRA TEXT LIVIANO",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaCombinacionModel { Nombre = "ELASTICA ROBUSTA",Codigo = GenerateRandomCodes(), Active = true },
+                    new TelaCombinacionModel { Nombre = "LINO LIVIANO",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+
             var bolsilloInteriorRepository = services.GetRequiredService<IBolsilloInteriorRepository>();
             if (!bolsilloInteriorRepository.TableNoTracking.Any())
             {
-                // Si no hay registros, insertar los valores por defecto
                 var estadosPedido = new List<BolsilloInteriorModel>
                 {
+                    new BolsilloInteriorModel { Nombre = "No Lleva",Codigo = "0", Active = true },
                     new BolsilloInteriorModel { Nombre = "Dobladillo",Codigo = GenerateRandomCodes(), Active = true },
                     new BolsilloInteriorModel { Nombre = "Ojal",Codigo = GenerateRandomCodes(), Active = true },
                     new BolsilloInteriorModel { Nombre = "Canguro",Codigo = GenerateRandomCodes(), Active = true },
@@ -401,13 +421,31 @@ namespace UI.TextilSoft
             }
 
 
+            var collaretaRepository = services.GetRequiredService<ICollaretaRepository>();
+            if (!collaretaRepository.TableNoTracking.Any())
+            {
+                var estadosPedido = new List<CollaretaModel>
+                {
+                    new CollaretaModel { Nombre = "No Lleva",Codigo = "0", Active = true },
+                    new CollaretaModel { Nombre = "JACARD MINI PANAL",Codigo = GenerateRandomCodes(), Active = true },
+                    new CollaretaModel { Nombre = "POWERNET LIVIANO",Codigo = GenerateRandomCodes(), Active = true },
+                    new CollaretaModel { Nombre = "MIC MINI FANTASIA",Codigo = GenerateRandomCodes(), Active = true },
+                    new CollaretaModel { Nombre = "MORLEY",Codigo = GenerateRandomCodes(), Active = true },
+                    new CollaretaModel { Nombre = "COROLO",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+            
+
             var cinturaInteriorRepository = services.GetRequiredService<ICinturaInteriorRepository>();
             if (!cinturaInteriorRepository.TableNoTracking.Any())
             {
-                // Si no hay registros, insertar los valores por defecto
                 var estadosPedido = new List<CinturaInteriorModel>
                 {
-                    new CinturaInteriorModel { Nombre = "Dobladillo",Codigo = GenerateRandomCodes(), Active = true },
+                    new CinturaInteriorModel { Nombre = "No Lleva",Codigo = "0", Active = true },
+                    new CinturaInteriorModel { Nombre = "MICROFIBRA",Codigo = GenerateRandomCodes(), Active = true },
                     new CinturaInteriorModel { Nombre = "Ojal",Codigo = GenerateRandomCodes(), Active = true },
                     new CinturaInteriorModel { Nombre = "Canguro",Codigo = GenerateRandomCodes(), Active = true },
                     new CinturaInteriorModel { Nombre = "Cremallera",Codigo = GenerateRandomCodes(), Active = true },
@@ -419,12 +457,29 @@ namespace UI.TextilSoft
             }
 
 
+            var forreriaRepository = services.GetRequiredService<IForreriaRepository>();
+            if (!forreriaRepository.TableNoTracking.Any())
+            {
+                var estadosPedido = new List<ForreriaModel>
+                {
+                    new ForreriaModel { Nombre = "No Lleva",Codigo = "0", Active = true },
+                    new ForreriaModel { Nombre = "JACARD MINI PANAL",Codigo = GenerateRandomCodes(), Active = true },
+                    new ForreriaModel { Nombre = "POWERNET LIVIANO",Codigo = GenerateRandomCodes(), Active = true },
+                    new ForreriaModel { Nombre = "MIC MINI FANTASIA",Codigo = GenerateRandomCodes(), Active = true },
+                    new ForreriaModel { Nombre = "MORLEY",Codigo = GenerateRandomCodes(), Active = true },
+                    new ForreriaModel { Nombre = "COROLO",Codigo = GenerateRandomCodes(), Active = true }
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
             var lazoRepository = services.GetRequiredService<ILazoRepository>();
             if (!lazoRepository.TableNoTracking.Any())
             {
-                // Si no hay registros, insertar los valores por defecto
                 var estadosPedido = new List<LazoModel>
                 {
+                    new LazoModel { Nombre = "No Lleva",Codigo = "0", Active = true },
                     new LazoModel { Nombre = "Satén",Codigo = GenerateRandomCodes(), Active = true },
                     new LazoModel { Nombre = "Rosa",Codigo = GenerateRandomCodes(), Active = true },
                     new LazoModel { Nombre = "Terciopelo",Codigo = GenerateRandomCodes(), Active = true },
@@ -440,9 +495,9 @@ namespace UI.TextilSoft
             var vivoRepository = services.GetRequiredService<IVivoRepository>();
             if (!vivoRepository.TableNoTracking.Any())
             {
-                // Si no hay registros, insertar los valores por defecto
                 var estadosPedido = new List<VivoModel>
                 {
+                    new VivoModel { Nombre = "No Lleva",Codigo = "0", Active = true },
                     new VivoModel { Nombre = "Tafetán",Codigo = GenerateRandomCodes(), Active = true },
                     new VivoModel { Nombre = "Satén",Codigo = GenerateRandomCodes(), Active = true },
                     new VivoModel { Nombre = "Cuero",Codigo = GenerateRandomCodes(), Active = true },
@@ -458,7 +513,6 @@ namespace UI.TextilSoft
             var transferRepository = services.GetRequiredService<ITransferRepository>();
             if (!transferRepository.TableNoTracking.Any())
             {
-                // Si no hay registros, insertar los valores por defecto
                 var transfer = new TransferModel {Codigo = "Vinilo", Imagen= "https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D1623412831034706&tbnid=RvHYN8I3ACxd3M&vet=12ahUKEwiR-Jndx62AAxWUObkGHSveAz4QMygCegUIARDBAQ..i&imgrefurl=https%3A%2F%2Fwww.facebook.com%2Fadmitoneoficial%2Fphotos%2Fa.193149390727731%2F1623412831034706%2F%3Ftype%3D3&docid=yewQGcPwkjOJNM&w=800&h=800&q=logo%20admit%20one&ved=2ahUKEwiR-Jndx62AAxWUObkGHSveAz4QMygCegUIARDBAQ", Active = true };
 
                 dbContext.Add(transfer);
