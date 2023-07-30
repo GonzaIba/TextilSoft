@@ -17,15 +17,16 @@ namespace Domain.Models
 
         public int ID_Producto { get; set; }
         public Guid CodigoProducto { get; set; }
-        public string Color { get; set; }
         public string Composicion { get; set; }
         public int ID_TipoPrenda { get; set; }    
         public int ID_TelaBase { get; set; }
         public int ID_TelaCombinacion { get; set; }
         public int ID_BolsilloInterior { get; set; }
+        public int ID_CinturaInterior { get; set; }
+        public int ID_Collareta { get; set; }
         public int ID_Lazo { get; set; }
         public int ID_Vivo { get; set; }
-        public int ID_Transfer { get; set; }
+        public int ID_Forreria { get; set; }
         public string Descripcion { get; set; }
         public decimal Precio { get; set; }
         public string TallePrenda { get; set; }
@@ -40,9 +41,10 @@ namespace Domain.Models
         public virtual TelaBaseModel TelaBase { get; set; }
         public virtual TelaCombinacionModel TelaCombinacion { get; set; }
         public virtual BolsilloInteriorModel BolsilloInterior { get; set; }
+        public virtual CinturaInteriorModel CinturaInterior { get; set; }
+        public virtual CollaretaModel Collareta { get; set; }
         public virtual LazoModel Lazo { get; set; }
         public virtual VivoModel Vivo { get; set; }
-        public virtual TransferModel Transfer { get; set; }
-
+        public virtual ForreriaModel Forreria { get; set; }
     }
 }

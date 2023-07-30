@@ -19,10 +19,6 @@ namespace Infrastructure.TypeBuilders
                 .IsRequired(true)
                 .HasDefaultValueSql("NEWID()");
 
-            builder.Property(p => p.Color)
-                .IsRequired(true)
-                .HasColumnType("varchar(100)");
-
             builder.Property(p => p.Composicion)
                 .IsRequired(true)
                 .HasColumnType("varchar(100)");
@@ -47,6 +43,16 @@ namespace Infrastructure.TypeBuilders
                 .HasForeignKey(p => p.ID_BolsilloInterior)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            builder.HasOne(p => p.CinturaInterior)
+                .WithMany()
+                .HasForeignKey(p => p.ID_CinturaInterior)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(p => p.Collareta)
+                .WithMany()
+                .HasForeignKey(p => p.ID_Collareta)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.HasOne(p => p.Lazo)
                 .WithMany()
                 .HasForeignKey(p => p.ID_Lazo)
@@ -57,9 +63,9 @@ namespace Infrastructure.TypeBuilders
                 .HasForeignKey(p => p.ID_Vivo)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.HasOne(p => p.Transfer)
+            builder.HasOne(p => p.Forreria)
                 .WithMany()
-                .HasForeignKey(p => p.ID_Transfer)
+                .HasForeignKey(p => p.ID_Forreria)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Property(p => p.Descripcion)

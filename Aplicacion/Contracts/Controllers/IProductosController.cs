@@ -17,6 +17,6 @@ namespace Contracts.Controllers
 
         public void EliminarProducto(int IdProducto);
         public void ModificarProducto(ProductosEntity producto);
-        public void CrearProducto(ProductosEntity productosEntity);
+        public void CrearProducto(ABMProductoEntity productosEntity);
     }
 }

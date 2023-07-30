@@ -1,4 +1,5 @@
 ﻿using Contracts.Repositories;
+using Domain.Entities;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Contracts.Services
         public List<VivoModel> ObtenerVivos();
 
         public List<ForreriaModel> ObtenerForrerias();
-
+        
+        public ProductosModel ObtenerCodigosDeArmados(ABMProductoEntity aBMProductoEntity);
     }
 }

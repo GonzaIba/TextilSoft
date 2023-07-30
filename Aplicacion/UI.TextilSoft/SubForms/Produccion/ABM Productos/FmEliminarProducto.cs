@@ -56,13 +56,11 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 {
                     txtNombreProducto.Text = producto.NombreProducto;
                     txtTipoProducto.Text = producto.TipoPrenda;
-                    txtEstampa.Text = producto.Transfer;
                     txtComposicion.Text = producto.Composicion;
                     txtTalle.Text = producto.TallePrenda;
                     txtPrecio.Text = producto.Precio.ToString();
                     txtCantidad.Text = producto.Stock.ToString();
                     IdProducto = producto.ID_Producto;
-                    txtColor.BackColor = producto.Color;
                     btnEliminarProducto.Enabled = true;
                 }
                 else

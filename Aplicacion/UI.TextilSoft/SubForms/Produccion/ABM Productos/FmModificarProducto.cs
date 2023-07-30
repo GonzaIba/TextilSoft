@@ -36,13 +36,11 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                     btnActualizarProducto.Enabled = true;
                     txtNombreProducto.Text = producto.NombreProducto;
                     txtTipoProducto.Text = producto.TipoPrenda;
-                    txtEstampa.Text = producto.Transfer;
                     txtComposicion.Text = producto.Composicion;
                     txtTalle.Text = producto.TallePrenda;
                     txtPrecio.Text = producto.Precio.ToString();
                     txtCantidad.Text = producto.Stock.ToString();
                     IdProducto = producto.ID_Producto;
-                    txtColor.BackColor = producto.Color;
                     btnActualizarProducto.Enabled = true;
                 }
                 else
@@ -78,12 +76,10 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 ProductosEntity productosEntity = new ProductosEntity();
                 productosEntity.NombreProducto = txtNombreProducto.Text;
                 productosEntity.TipoPrenda = txtTipoProducto.Text;
-                productosEntity.Transfer = txtEstampa.Text;
                 productosEntity.Composicion = txtComposicion.Text;
                 productosEntity.TallePrenda = txtTalle.Text;
                 productosEntity.Precio = Convert.ToDecimal(txtPrecio.Text);
                 productosEntity.Stock = Convert.ToInt32(txtCantidad.Text);
-                productosEntity.Color = txtColor.BackColor;
                 _factory.UseNew<IProductosController>().ModificarProducto(productosEntity);
             }
             catch (Exception ex)

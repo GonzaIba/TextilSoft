@@ -4,14 +4,16 @@ using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230729201507_ALTER_TABLE_PRODUCTOS_ADDFK")]
+    partial class ALTER_TABLE_PRODUCTOS_ADDFK
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,10 +181,6 @@ namespace Infrastructure.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("Color")
-                        .IsRequired()
-                        .HasColumnType("varchar(500)");
-
                     b.Property<string>("Detalle")
                         .HasColumnType("varchar(500)");
 
@@ -192,16 +190,11 @@ namespace Infrastructure.Migrations
                     b.Property<int>("ID_Producto")
                         .HasColumnType("int");
 
-                    b.Property<int>("ID_Transfer")
-                        .HasColumnType("int");
-
                     b.HasKey("ID_DetallePedido");
 
                     b.HasIndex("ID_Pedido");
 
                     b.HasIndex("ID_Producto");
-
-                    b.HasIndex("ID_Transfer");
 
                     b.ToTable("DetallePedido");
                 });
@@ -601,6 +594,10 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasDefaultValueSql("NEWID()");
 
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasColumnType("varchar(100)");
+
                     b.Property<string>("Composicion")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
@@ -636,6 +633,9 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("ID_TipoPrenda")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ID_Transfer")
                         .HasColumnType("int");
 
                     b.Property<int>("ID_Vivo")
@@ -677,6 +677,8 @@ namespace Infrastructure.Migrations
                     b.HasIndex("ID_TelaCombinacion");
 
                     b.HasIndex("ID_TipoPrenda");
+
+                    b.HasIndex("ID_Transfer");
 
                     b.HasIndex("ID_Vivo");
 
@@ -1008,17 +1010,9 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Models.TransferModel", "Transfer")
-                        .WithMany("DetallePedido")
-                        .HasForeignKey("ID_Transfer")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Pedidos");
 
                     b.Navigation("Producto");
-
-                    b.Navigation("Transfer");
                 });
 
             modelBuilder.Entity("Domain.Models.FacturasModel", b =>
@@ -1185,6 +1179,12 @@ namespace Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("Domain.Models.TransferModel", "Transfer")
+                        .WithMany()
+                        .HasForeignKey("ID_Transfer")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Domain.Models.VivoModel", "Vivo")
                         .WithMany()
                         .HasForeignKey("ID_Vivo")
@@ -1206,6 +1206,8 @@ namespace Infrastructure.Migrations
                     b.Navigation("TelaCombinacion");
 
                     b.Navigation("TipoPrenda");
+
+                    b.Navigation("Transfer");
 
                     b.Navigation("Vivo");
                 });
@@ -1293,11 +1295,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("OrdenDeTrabajo");
 
                     b.Navigation("OrdenDeTrabajoFabrica");
-                });
-
-            modelBuilder.Entity("Domain.Models.TransferModel", b =>
-                {
-                    b.Navigation("DetallePedido");
                 });
 #pragma warning restore 612, 618
         }

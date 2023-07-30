@@ -35,10 +35,11 @@
             PanelAnimator = new AnimatorNS.Animator(components);
             lblPrincipal = new System.Windows.Forms.Label();
             btnListarProductos = new FontAwesome.Sharp.IconButton();
-            fmCombobox1 = new Tools.FormsTools.FmCombobox();
             label1 = new System.Windows.Forms.Label();
             panelContenedor = new System.Windows.Forms.Panel();
             pnlTop = new System.Windows.Forms.Panel();
+            fmCboxABM = new Tools.FormsTools.FmCombobox();
+            btnGestionarAP = new FontAwesome.Sharp.IconButton();
             tipABM = new System.Windows.Forms.ToolTip(components);
             pnlTop.SuspendLayout();
             SuspendLayout();
@@ -72,9 +73,9 @@
             PanelAnimator.SetDecoration(lblPrincipal, AnimatorNS.DecorationType.None);
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(336, 9);
+            lblPrincipal.Location = new System.Drawing.Point(384, 12);
             lblPrincipal.Name = "lblPrincipal";
-            lblPrincipal.Size = new System.Drawing.Size(120, 32);
+            lblPrincipal.Size = new System.Drawing.Size(153, 41);
             lblPrincipal.TabIndex = 0;
             lblPrincipal.Text = "Productos";
             // 
@@ -89,35 +90,15 @@
             btnListarProductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnListarProductos.IconSize = 35;
             btnListarProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnListarProductos.Location = new System.Drawing.Point(299, 74);
+            btnListarProductos.Location = new System.Drawing.Point(3, 94);
+            btnListarProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnListarProductos.Name = "btnListarProductos";
-            btnListarProductos.Size = new System.Drawing.Size(179, 46);
+            btnListarProductos.Size = new System.Drawing.Size(205, 61);
             btnListarProductos.TabIndex = 8;
             btnListarProductos.Text = "Listar Todos Productos";
             btnListarProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnListarProductos.UseVisualStyleBackColor = true;
             btnListarProductos.Click += btnListarProductos_Click;
-            // 
-            // fmCombobox1
-            // 
-            fmCombobox1.BackColor = System.Drawing.Color.WhiteSmoke;
-            fmCombobox1.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            fmCombobox1.BorderSize = 1;
-            PanelAnimator.SetDecoration(fmCombobox1, AnimatorNS.DecorationType.None);
-            fmCombobox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
-            fmCombobox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            fmCombobox1.ForeColor = System.Drawing.Color.DimGray;
-            fmCombobox1.IconColor = System.Drawing.Color.MediumSlateBlue;
-            fmCombobox1.Items.AddRange(new object[] { "Crear Producto", "Modificar Producto", "Eliminar Producto" });
-            fmCombobox1.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
-            fmCombobox1.ListTextColor = System.Drawing.Color.DimGray;
-            fmCombobox1.Location = new System.Drawing.Point(85, 84);
-            fmCombobox1.Name = "fmCombobox1";
-            fmCombobox1.Padding = new System.Windows.Forms.Padding(1);
-            fmCombobox1.Size = new System.Drawing.Size(138, 30);
-            fmCombobox1.TabIndex = 10;
-            fmCombobox1.Texts = "";
-            fmCombobox1.OnSelectedIndexChanged += fmCombobox1_OnSelectedIndexChanged;
             // 
             // label1
             // 
@@ -126,9 +107,9 @@
             PanelAnimator.SetDecoration(label1, AnimatorNS.DecorationType.None);
             label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(85, 56);
+            label1.Location = new System.Drawing.Point(494, 96);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(142, 25);
+            label1.Size = new System.Drawing.Size(178, 32);
             label1.TabIndex = 11;
             label1.Text = "ABM Productos";
             // 
@@ -136,33 +117,79 @@
             // 
             PanelAnimator.SetDecoration(panelContenedor, AnimatorNS.DecorationType.None);
             panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            panelContenedor.Location = new System.Drawing.Point(0, 120);
+            panelContenedor.Location = new System.Drawing.Point(0, 160);
+            panelContenedor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new System.Drawing.Size(800, 330);
+            panelContenedor.Size = new System.Drawing.Size(914, 440);
             panelContenedor.TabIndex = 12;
             // 
             // pnlTop
             // 
+            pnlTop.Controls.Add(fmCboxABM);
+            pnlTop.Controls.Add(btnGestionarAP);
             pnlTop.Controls.Add(label1);
             pnlTop.Controls.Add(btnListarProductos);
-            pnlTop.Controls.Add(fmCombobox1);
             PanelAnimator.SetDecoration(pnlTop, AnimatorNS.DecorationType.None);
             pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             pnlTop.Location = new System.Drawing.Point(0, 0);
+            pnlTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new System.Drawing.Size(800, 120);
+            pnlTop.Size = new System.Drawing.Size(914, 160);
             pnlTop.TabIndex = 0;
+            // 
+            // fmCboxABM
+            // 
+            fmCboxABM.BackColor = System.Drawing.Color.WhiteSmoke;
+            fmCboxABM.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxABM.BorderSize = 0;
+            PanelAnimator.SetDecoration(fmCboxABM, AnimatorNS.DecorationType.None);
+            fmCboxABM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            fmCboxABM.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fmCboxABM.ForeColor = System.Drawing.Color.DimGray;
+            fmCboxABM.IconColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxABM.Items.AddRange(new object[] { "Crear Producto", "Modificar Producto", "Eliminar Producto" });
+            fmCboxABM.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
+            fmCboxABM.ListTextColor = System.Drawing.Color.DimGray;
+            fmCboxABM.Location = new System.Drawing.Point(494, 130);
+            fmCboxABM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            fmCboxABM.Name = "fmCboxABM";
+            fmCboxABM.Size = new System.Drawing.Size(178, 27);
+            fmCboxABM.TabIndex = 122;
+            fmCboxABM.Texts = "";
+            fmCboxABM.OnSelectedIndexChanged += fmCboxABM_OnSelectedIndexChanged;
+            // 
+            // btnGestionarAP
+            // 
+            PanelAnimator.SetDecoration(btnGestionarAP, AnimatorNS.DecorationType.None);
+            btnGestionarAP.FlatAppearance.BorderSize = 0;
+            btnGestionarAP.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnGestionarAP.ForeColor = System.Drawing.Color.White;
+            btnGestionarAP.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            btnGestionarAP.IconColor = System.Drawing.Color.White;
+            btnGestionarAP.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnGestionarAP.IconSize = 35;
+            btnGestionarAP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnGestionarAP.Location = new System.Drawing.Point(214, 96);
+            btnGestionarAP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnGestionarAP.Name = "btnGestionarAP";
+            btnGestionarAP.Size = new System.Drawing.Size(243, 61);
+            btnGestionarAP.TabIndex = 12;
+            btnGestionarAP.Text = "Gestionar Armado Productos";
+            btnGestionarAP.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnGestionarAP.UseVisualStyleBackColor = true;
+            btnGestionarAP.Click += btnGestionarAP_Click;
             // 
             // FmProduccion
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(914, 600);
             Controls.Add(lblPrincipal);
             Controls.Add(panelContenedor);
             Controls.Add(pnlTop);
             PanelAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FmProduccion";
             Text = "FmProduccion";
             pnlTop.ResumeLayout(false);
@@ -176,9 +203,10 @@
         private System.Windows.Forms.ToolTip tipABM;
         private System.Windows.Forms.Label lblPrincipal;
         private FontAwesome.Sharp.IconButton btnListarProductos;
-        private Tools.FormsTools.FmCombobox fmCombobox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panelContenedor;
         private System.Windows.Forms.Panel pnlTop;
+        private FontAwesome.Sharp.IconButton btnGestionarAP;
+        private Tools.FormsTools.FmCombobox fmCboxABM;
     }
 }

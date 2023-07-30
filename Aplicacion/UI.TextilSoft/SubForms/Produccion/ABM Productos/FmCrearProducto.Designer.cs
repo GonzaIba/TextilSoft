@@ -62,7 +62,7 @@
             fmCboxTelaBase = new Tools.FormsTools.FmCombobox();
             fmCboxVivo = new Tools.FormsTools.FmCombobox();
             fmCboxBolsilloInt = new Tools.FormsTools.FmCombobox();
-            altoTextBox1 = new AltoControls.AltoTextBox();
+            txtComposicion = new AltoControls.AltoTextBox();
             btnImagenPrenda = new FontAwesome.Sharp.IconButton();
             fmCboxCinturaInterior = new Tools.FormsTools.FmCombobox();
             lblCinturaInterior = new System.Windows.Forms.Label();
@@ -77,7 +77,7 @@
             // 
             lblCantidad.AutoSize = true;
             lblCantidad.ForeColor = System.Drawing.Color.White;
-            lblCantidad.Location = new System.Drawing.Point(359, 488);
+            lblCantidad.Location = new System.Drawing.Point(359, 487);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new System.Drawing.Size(72, 20);
             lblCantidad.TabIndex = 31;
@@ -120,7 +120,7 @@
             txtCantidad.Br = System.Drawing.Color.MidnightBlue;
             txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCantidad.ForeColor = System.Drawing.Color.White;
-            txtCantidad.Location = new System.Drawing.Point(431, 479);
+            txtCantidad.Location = new System.Drawing.Point(431, 478);
             txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new System.Drawing.Size(79, 39);
@@ -136,7 +136,7 @@
             btnSumar.IconColor = System.Drawing.Color.White;
             btnSumar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSumar.IconSize = 30;
-            btnSumar.Location = new System.Drawing.Point(510, 485);
+            btnSumar.Location = new System.Drawing.Point(510, 484);
             btnSumar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSumar.Name = "btnSumar";
             btnSumar.Size = new System.Drawing.Size(32, 37);
@@ -154,7 +154,7 @@
             btnRestar.IconColor = System.Drawing.Color.White;
             btnRestar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnRestar.IconSize = 30;
-            btnRestar.Location = new System.Drawing.Point(543, 484);
+            btnRestar.Location = new System.Drawing.Point(543, 483);
             btnRestar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnRestar.Name = "btnRestar";
             btnRestar.Size = new System.Drawing.Size(32, 37);
@@ -215,7 +215,7 @@
             cboxTalles.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             cboxTalles.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             cboxTalles.ListTextColor = System.Drawing.Color.DimGray;
-            cboxTalles.Location = new System.Drawing.Point(432, 394);
+            cboxTalles.Location = new System.Drawing.Point(432, 393);
             cboxTalles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             cboxTalles.Name = "cboxTalles";
             cboxTalles.Size = new System.Drawing.Size(144, 27);
@@ -318,7 +318,7 @@
             // 
             lblPrecio.AutoSize = true;
             lblPrecio.ForeColor = System.Drawing.Color.White;
-            lblPrecio.Location = new System.Drawing.Point(373, 440);
+            lblPrecio.Location = new System.Drawing.Point(373, 439);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new System.Drawing.Size(53, 20);
             lblPrecio.TabIndex = 89;
@@ -338,7 +338,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = System.Drawing.Color.White;
-            label3.Location = new System.Drawing.Point(387, 394);
+            label3.Location = new System.Drawing.Point(387, 393);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(42, 20);
             label3.TabIndex = 87;
@@ -350,7 +350,7 @@
             txtPrecio.Br = System.Drawing.Color.MidnightBlue;
             txtPrecio.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtPrecio.ForeColor = System.Drawing.Color.White;
-            txtPrecio.Location = new System.Drawing.Point(431, 432);
+            txtPrecio.Location = new System.Drawing.Point(431, 431);
             txtPrecio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new System.Drawing.Size(144, 39);
@@ -432,6 +432,7 @@
             fmCboxTipoProducto.Size = new System.Drawing.Size(144, 27);
             fmCboxTipoProducto.TabIndex = 111;
             fmCboxTipoProducto.Texts = "";
+            fmCboxTipoProducto.OnSelectedIndexChanged += fmCboxTipoProducto_OnSelectedIndexChanged;
             // 
             // fmCboxLazo
             // 
@@ -509,17 +510,17 @@
             fmCboxBolsilloInt.TabIndex = 115;
             fmCboxBolsilloInt.Texts = "";
             // 
-            // altoTextBox1
+            // txtComposicion
             // 
-            altoTextBox1.BackColor = System.Drawing.Color.Transparent;
-            altoTextBox1.Br = System.Drawing.Color.MidnightBlue;
-            altoTextBox1.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            altoTextBox1.ForeColor = System.Drawing.Color.White;
-            altoTextBox1.Location = new System.Drawing.Point(173, 215);
-            altoTextBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            altoTextBox1.Name = "altoTextBox1";
-            altoTextBox1.Size = new System.Drawing.Size(141, 39);
-            altoTextBox1.TabIndex = 116;
+            txtComposicion.BackColor = System.Drawing.Color.Transparent;
+            txtComposicion.Br = System.Drawing.Color.MidnightBlue;
+            txtComposicion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtComposicion.ForeColor = System.Drawing.Color.White;
+            txtComposicion.Location = new System.Drawing.Point(173, 215);
+            txtComposicion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtComposicion.Name = "txtComposicion";
+            txtComposicion.Size = new System.Drawing.Size(141, 39);
+            txtComposicion.TabIndex = 116;
             // 
             // btnImagenPrenda
             // 
@@ -641,7 +642,7 @@
             Controls.Add(fmCboxCinturaInterior);
             Controls.Add(lblCinturaInterior);
             Controls.Add(btnImagenPrenda);
-            Controls.Add(altoTextBox1);
+            Controls.Add(txtComposicion);
             Controls.Add(fmCboxBolsilloInt);
             Controls.Add(fmCboxVivo);
             Controls.Add(fmCboxTelaBase);
@@ -717,7 +718,7 @@
         private Tools.FormsTools.FmCombobox fmCboxTelaBase;
         private Tools.FormsTools.FmCombobox fmCboxVivo;
         private Tools.FormsTools.FmCombobox fmCboxBolsilloInt;
-        private AltoControls.AltoTextBox altoTextBox1;
+        private AltoControls.AltoTextBox txtComposicion;
         private FontAwesome.Sharp.IconButton btnImagenPrenda;
         private Tools.FormsTools.FmCombobox fmCboxCinturaInterior;
         private System.Windows.Forms.Label lblCinturaInterior;

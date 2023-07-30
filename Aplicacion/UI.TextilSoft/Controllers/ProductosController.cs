@@ -21,11 +21,13 @@ namespace UI.TextilSoft.Controllers
     public class ProductosController : IProductosController
     {
         private IProductoService _productoService;
+        private IArmadoProductoService _armadoProductoService;
         private IMapper _mapper;
         private ILogger _logger;
-        public ProductosController(IProductoService productoService, IMapper mapper, ILogger logger)
+        public ProductosController(IProductoService productoService, IArmadoProductoService armadoProductoService, IMapper mapper, ILogger logger)
         {
             _productoService = productoService;
+            _armadoProductoService = armadoProductoService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -52,7 +54,6 @@ namespace UI.TextilSoft.Controllers
                 {
                     "ID_Producto" => entity => entity.ID_Producto,
                     "CodigoProducto" => entity => entity.CodigoProducto.ToString(),
-                    "Color" => entity => entity.Color,
                     "Descripcion" => entity => entity.Descripcion,
                     "Precio" => entity => entity.Precio,
                     "TallePrenda" => entity => entity.TallePrenda,
@@ -111,25 +112,22 @@ namespace UI.TextilSoft.Controllers
 
         }
 
-        public void CrearProducto(ProductosEntity productosEntity)
+        public void CrearProducto(ABMProductoEntity productoEntity)
         {
             try
             {
-                var ProductoDTO = _productoService.Get(x => x.Descripcion == productosEntity.NombreProducto).FirstOrDefault();
+                var ProductoDTO = _productoService.Get(x => x.Descripcion == productoEntity.Descripcion).FirstOrDefault();
                 if (ProductoDTO != null)
-                {
                     throw new Exception("El producto ya existe");
-                }
                 else
                 {
-                    var producto = _mapper.Map<ProductosModel>(productosEntity);
-                    //producto.CodigoProducto = null;
+                    var producto = _armadoProductoService.ObtenerCodigosDeArmados(productoEntity);                  
                     _productoService.Crear(producto);
                 }
             }
             catch (Exception ex)
             {
-                _logger.GenerateLogError("Ocurrió un error al crear el producto con el nombre: " + productosEntity.NombreProducto, ex);
+                _logger.GenerateLogError("Ocurrió un error al crear el producto con el nombre: " + productoEntity.Descripcion, ex);
                 throw ex;
             }
         }
@@ -146,8 +144,6 @@ namespace UI.TextilSoft.Controllers
                 }
                 else
                 {
-                    string color = _mapper.Map<ProductosModel>(productosEntity).Color;
-                    ProductoDTO.Color = color;
                     ProductoDTO.Descripcion = productosEntity.NombreProducto;
                     ProductoDTO.Precio = productosEntity.Precio;
                     ProductoDTO.TallePrenda = productosEntity.TallePrenda;

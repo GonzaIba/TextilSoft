@@ -1,6 +1,7 @@
 ﻿using AltoControls;
 using Contracts.Controllers;
 using Domain.Entities;
+using Domain.Entities.ArmadoProductos;
 using Domain.Enum;
 using System;
 using System.Collections.Generic;
@@ -54,15 +55,20 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                         }
                     }
                 }
-                ProductosEntity productosEntity = new ProductosEntity();
-                //productosEntity.NombreProducto = txtNombreProducto.Text;
-                //productosEntity.TipoPrenda = txtTipoProducto.Text;
-                //productosEntity.Transfer = txtEstampa.Text;
-                //productosEntity.Composicion = txtComposicion.Text;
+                ABMProductoEntity productosEntity = new ABMProductoEntity();
+                productosEntity.Descripcion = txtDesc.Text;
+                productosEntity.Composicion = txtComposicion.Text;
+                productosEntity.CodigoTelaBase = ((TelaBaseEntity)fmCboxTelaBase.SelectedItem).Codigo;
+                productosEntity.CodigoTelaCombinacion = ((TelaCombinacionEntity)fmCboxTelaCombinacion.SelectedItem).Codigo;
+                productosEntity.CodigoBolsilloInterior = ((BolsilloInteriorEntity)fmCboxBolsilloInt.SelectedItem).Codigo;
+                productosEntity.CodigoCinturaInterior = ((CinturaInteriorEntity)fmCboxCinturaInterior.SelectedItem).Codigo;
+                productosEntity.CodigoCollareta = ((CollaretaEntity)fmCboxCollareta.SelectedItem).Codigo;
+                productosEntity.CodigoLazo = ((LazoEntity)fmCboxLazo.SelectedItem).Codigo;
+                productosEntity.CodigoVivo = ((VivoEntity)fmCboxVivo.SelectedItem).Codigo;
+                productosEntity.CodigoForreria = ((ForreriaEntity)fmCboxForreria.SelectedItem).Codigo;
                 productosEntity.TallePrenda = cboxTalles.SelectedItem.ToString();
                 productosEntity.Precio = Convert.ToDecimal(txtPrecio.Text);
                 productosEntity.Stock = Convert.ToInt32(txtCantidad.Text);
-                productosEntity.Color = txtColor.BackColor;
                 _factory.UseNew<IProductosController>().CrearProducto(productosEntity);
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Crear Producto", "Se creó el producto correctamente!", centerPosition);
@@ -111,6 +117,8 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
             {
                 toolTipError.Show("Por favor, solo ingrese números", txtCantidad, 0, -20, 2000);
                 txtCantidad.Text = txtCantidad.Text.Remove(txtCantidad.Text.Length - 1);
+                if (string.IsNullOrEmpty(txtCantidad.Text))
+                    txtCantidad.Text = "0";
             }
             else if (!string.IsNullOrEmpty(txtCantidad.Text))
             {
@@ -119,6 +127,8 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 {
                     toolTipError.Show("Por favor, solo ingrese números positivos", txtCantidad, 0, -20, 2000);
                     txtCantidad.Text = txtCantidad.Text.Remove(txtCantidad.Text.Length - 1);
+                    if (string.IsNullOrEmpty(txtCantidad.Text))
+                        txtCantidad.Text = "0";
                 }
             }
         }
@@ -216,6 +226,11 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
 
             fmCboxForreria.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.Forreria);
             fmCboxForreria.DisplayMember = "Nombre";
+        }
+
+        private void fmCboxTipoProducto_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Aca vamos a vamos a bloquear los comboboxs que no apliquen
         }
     }
 }

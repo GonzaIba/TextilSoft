@@ -1,15 +1,14 @@
-﻿using Contracts.Repositories;
+﻿using AutoMapper;
+using Contracts.Repositories;
 using Contracts.Services;
+using Domain.Entities;
 using Domain.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Services
 {
-    public class ArmadoProductoService :  IArmadoProductoService
+    public class ArmadoProductoService : IArmadoProductoService
     {
         private readonly ITelaBaseRepository _telaBaseRepository;
         private readonly ITelaCombinacionRepository _telaCombinacionRepository;
@@ -19,6 +18,7 @@ namespace Business.Services
         private readonly ILazoRepository _lazoRepository;
         private readonly IVivoRepository _vivoRepository;
         private readonly IForreriaRepository _forreriaRepository;
+        private readonly IMapper _mapper;
         public ArmadoProductoService(
             ITelaBaseRepository telaBaseRepository,
             ITelaCombinacionRepository telaCombinacionRepository,
@@ -27,7 +27,8 @@ namespace Business.Services
             ICollaretaRepository collaretaRepository,
             ILazoRepository lazoRepository,
             IVivoRepository vivoRepository,
-            IForreriaRepository forreriaRepository
+            IForreriaRepository forreriaRepository,
+            IMapper mapper
             )
         {
             _telaBaseRepository = telaBaseRepository;
@@ -38,9 +39,23 @@ namespace Business.Services
             _lazoRepository = lazoRepository;
             _vivoRepository = vivoRepository;
             _forreriaRepository = forreriaRepository;
+            _mapper = mapper;
         }
 
-
+        public ProductosModel ObtenerCodigosDeArmados(ABMProductoEntity abmProductoEntity)
+        {
+            var producto = _mapper.Map<ProductosModel>(abmProductoEntity);
+            producto.ID_TelaBase = _telaBaseRepository.Get(x => x.Codigo == abmProductoEntity.CodigoTelaBase).FirstOrDefault().ID_TelaBase;
+            producto.ID_TelaCombinacion = _telaCombinacionRepository.Get(x => x.Codigo == abmProductoEntity.CodigoTelaCombinacion).FirstOrDefault().ID_TelaCombinacion;
+            //LLenar los otros id con la misma metodologia de arriba
+            producto.ID_BolsilloInterior = _bolsilloInteriorRepository.Get(x => x.Codigo == abmProductoEntity.CodigoBolsilloInterior).FirstOrDefault().ID_BolsilloInterior;
+            producto.ID_CinturaInterior = _cinturaInteriorRepository.Get(x => x.Codigo == abmProductoEntity.CodigoCinturaInterior).FirstOrDefault().ID_CinturaInterior;
+            producto.ID_Collareta = _collaretaRepository.Get(x => x.Codigo == abmProductoEntity.CodigoCollareta).FirstOrDefault().ID_Collareta;
+            producto.ID_Lazo = _lazoRepository.Get(x => x.Codigo == abmProductoEntity.CodigoLazo).FirstOrDefault().ID_Lazo;
+            producto.ID_Vivo = _vivoRepository.Get(x => x.Codigo == abmProductoEntity.CodigoVivo).FirstOrDefault().ID_Vivo;
+            producto.ID_Forreria = _forreriaRepository.Get(x => x.Codigo == abmProductoEntity.CodigoForreria).FirstOrDefault().ID_Forreria;
+            return producto;
+        }
 
 
         #region Getters
@@ -48,7 +63,7 @@ namespace Business.Services
         {
             return _telaBaseRepository.Get().ToList();
         }
-        
+
         public List<TelaCombinacionModel> ObtenerTelaCombinaciones()
         {
             return _telaCombinacionRepository.Get().ToList();

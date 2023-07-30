@@ -12,6 +12,7 @@ using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.SubForms.Pedidos.AdministrarPedido;
 using UI.TextilSoft.SubForms.Produccion.ABM_Productos;
+using UI.TextilSoft.SubForms.Produccion.GestionarAP;
 using UI.TextilSoft.SubForms.Produccion.ListarProductos;
 
 namespace UI.TextilSoft.SubForms.Produccion
@@ -77,13 +78,18 @@ namespace UI.TextilSoft.SubForms.Produccion
             });
         }
 
-        private void fmCombobox1_OnSelectedIndexChanged(object sender, EventArgs e)
+        private void btnGestionarAP_Click(object sender, EventArgs e)
         {
-            if (fmCombobox1.SelectedIndex == 0)
+            AbrirFormHija(new FmArmadoProducto(_factory,_fmTextilSoft));
+        }
+
+        private void fmCboxABM_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (fmCboxABM.SelectedIndex == 0)
             {
                 AbrirFormHija(new FmCrearProducto(_factory));
             }
-            else if (fmCombobox1.SelectedIndex == 1)
+            else if (fmCboxABM.SelectedIndex == 1)
             {
                 AbrirFormHija(new FmModificarProducto(_factory));
             }

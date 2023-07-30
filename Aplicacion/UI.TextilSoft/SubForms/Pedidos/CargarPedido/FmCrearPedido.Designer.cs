@@ -51,6 +51,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtDNI = new AltoControls.AltoTextBox();
             label2 = new System.Windows.Forms.Label();
             panelProductos = new System.Windows.Forms.Panel();
+            fmCboxTransfer = new Tools.FormsTools.FmCombobox();
+            lblTransfer = new System.Windows.Forms.Label();
             btnCancelar = new FontAwesome.Sharp.IconButton();
             btnAgregarProducto = new FontAwesome.Sharp.IconButton();
             lblDatoProducto = new System.Windows.Forms.Label();
@@ -85,9 +87,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             label1.AutoSize = true;
             label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(7, 5);
+            label1.Location = new System.Drawing.Point(8, 7);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(142, 21);
+            label1.Size = new System.Drawing.Size(177, 28);
             label1.TabIndex = 0;
             label1.Text = "Datos Del Cliente";
             // 
@@ -110,9 +112,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelClientes.Controls.Add(txtDNI);
             panelClientes.Controls.Add(label2);
             panelClientes.Controls.Add(label1);
-            panelClientes.Location = new System.Drawing.Point(12, 54);
+            panelClientes.Location = new System.Drawing.Point(14, 72);
+            panelClientes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelClientes.Name = "panelClientes";
-            panelClientes.Size = new System.Drawing.Size(952, 150);
+            panelClientes.Size = new System.Drawing.Size(1088, 200);
             panelClientes.TabIndex = 1;
             // 
             // txtSeña
@@ -121,9 +124,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtSeña.Br = System.Drawing.Color.MidnightBlue;
             txtSeña.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtSeña.ForeColor = System.Drawing.Color.White;
-            txtSeña.Location = new System.Drawing.Point(592, 35);
+            txtSeña.Location = new System.Drawing.Point(677, 47);
+            txtSeña.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtSeña.Name = "txtSeña";
-            txtSeña.Size = new System.Drawing.Size(122, 29);
+            txtSeña.Size = new System.Drawing.Size(139, 39);
             txtSeña.TabIndex = 17;
             txtSeña.TextChanged += txtSeña_TextChanged;
             // 
@@ -131,9 +135,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             label8.AutoSize = true;
             label8.ForeColor = System.Drawing.Color.White;
-            label8.Location = new System.Drawing.Point(548, 41);
+            label8.Location = new System.Drawing.Point(626, 55);
             label8.Name = "label8";
-            label8.Size = new System.Drawing.Size(35, 15);
+            label8.Size = new System.Drawing.Size(44, 20);
             label8.TabIndex = 16;
             label8.Text = "Seña:";
             // 
@@ -142,9 +146,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblExtras.AutoSize = true;
             lblExtras.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             lblExtras.ForeColor = System.Drawing.Color.White;
-            lblExtras.Location = new System.Drawing.Point(592, 5);
+            lblExtras.Location = new System.Drawing.Point(677, 7);
             lblExtras.Name = "lblExtras";
-            lblExtras.Size = new System.Drawing.Size(56, 21);
+            lblExtras.Size = new System.Drawing.Size(70, 28);
             lblExtras.TabIndex = 15;
             lblExtras.Text = "Extras";
             // 
@@ -152,9 +156,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             label7.AutoSize = true;
             label7.ForeColor = System.Drawing.Color.White;
-            label7.Location = new System.Drawing.Point(286, 111);
+            label7.Location = new System.Drawing.Point(323, 151);
             label7.Name = "label7";
-            label7.Size = new System.Drawing.Size(66, 15);
+            label7.Size = new System.Drawing.Size(83, 20);
             label7.TabIndex = 14;
             label7.Text = "Residencia:";
             // 
@@ -162,9 +166,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             label6.AutoSize = true;
             label6.ForeColor = System.Drawing.Color.White;
-            label6.Location = new System.Drawing.Point(287, 77);
+            label6.Location = new System.Drawing.Point(328, 106);
             label6.Name = "label6";
-            label6.Size = new System.Drawing.Size(55, 15);
+            label6.Size = new System.Drawing.Size(70, 20);
             label6.TabIndex = 13;
             label6.Text = "Telefono:";
             // 
@@ -172,9 +176,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             label5.AutoSize = true;
             label5.ForeColor = System.Drawing.Color.White;
-            label5.Location = new System.Drawing.Point(287, 39);
+            label5.Location = new System.Drawing.Point(328, 52);
             label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(33, 15);
+            label5.Size = new System.Drawing.Size(41, 20);
             label5.TabIndex = 12;
             label5.Text = "Mail:";
             // 
@@ -184,9 +188,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtResidencia.Br = System.Drawing.Color.MidnightBlue;
             txtResidencia.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtResidencia.ForeColor = System.Drawing.Color.White;
-            txtResidencia.Location = new System.Drawing.Point(358, 105);
+            txtResidencia.Location = new System.Drawing.Point(409, 143);
+            txtResidencia.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtResidencia.Name = "txtResidencia";
-            txtResidencia.Size = new System.Drawing.Size(126, 29);
+            txtResidencia.Size = new System.Drawing.Size(144, 39);
             txtResidencia.TabIndex = 10;
             // 
             // txtTelefono
@@ -195,9 +200,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtTelefono.Br = System.Drawing.Color.MidnightBlue;
             txtTelefono.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtTelefono.ForeColor = System.Drawing.Color.White;
-            txtTelefono.Location = new System.Drawing.Point(358, 70);
+            txtTelefono.Location = new System.Drawing.Point(409, 96);
+            txtTelefono.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtTelefono.Name = "txtTelefono";
-            txtTelefono.Size = new System.Drawing.Size(126, 29);
+            txtTelefono.Size = new System.Drawing.Size(144, 39);
             txtTelefono.TabIndex = 9;
             // 
             // txtMail
@@ -206,9 +212,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtMail.Br = System.Drawing.Color.MidnightBlue;
             txtMail.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtMail.ForeColor = System.Drawing.Color.White;
-            txtMail.Location = new System.Drawing.Point(358, 35);
+            txtMail.Location = new System.Drawing.Point(409, 47);
+            txtMail.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtMail.Name = "txtMail";
-            txtMail.Size = new System.Drawing.Size(126, 29);
+            txtMail.Size = new System.Drawing.Size(144, 39);
             txtMail.TabIndex = 8;
             // 
             // txtApellido
@@ -217,9 +224,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtApellido.Br = System.Drawing.Color.MidnightBlue;
             txtApellido.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtApellido.ForeColor = System.Drawing.Color.White;
-            txtApellido.Location = new System.Drawing.Point(92, 107);
+            txtApellido.Location = new System.Drawing.Point(105, 143);
+            txtApellido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtApellido.Name = "txtApellido";
-            txtApellido.Size = new System.Drawing.Size(123, 29);
+            txtApellido.Size = new System.Drawing.Size(141, 39);
             txtApellido.TabIndex = 7;
             // 
             // txtNombre
@@ -228,18 +236,19 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtNombre.Br = System.Drawing.Color.MidnightBlue;
             txtNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtNombre.ForeColor = System.Drawing.Color.White;
-            txtNombre.Location = new System.Drawing.Point(92, 72);
+            txtNombre.Location = new System.Drawing.Point(105, 96);
+            txtNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new System.Drawing.Size(123, 29);
+            txtNombre.Size = new System.Drawing.Size(141, 39);
             txtNombre.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.ForeColor = System.Drawing.Color.White;
-            label4.Location = new System.Drawing.Point(38, 111);
+            label4.Location = new System.Drawing.Point(35, 148);
             label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(54, 15);
+            label4.Size = new System.Drawing.Size(69, 20);
             label4.TabIndex = 5;
             label4.Text = "Apellido:";
             // 
@@ -247,9 +256,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             label3.AutoSize = true;
             label3.ForeColor = System.Drawing.Color.White;
-            label3.Location = new System.Drawing.Point(38, 77);
+            label3.Location = new System.Drawing.Point(37, 103);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(54, 15);
+            label3.Size = new System.Drawing.Size(67, 20);
             label3.TabIndex = 4;
             label3.Text = "Nombre:";
             // 
@@ -259,9 +268,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtDNI.Br = System.Drawing.Color.MidnightBlue;
             txtDNI.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtDNI.ForeColor = System.Drawing.Color.White;
-            txtDNI.Location = new System.Drawing.Point(93, 35);
+            txtDNI.Location = new System.Drawing.Point(106, 47);
+            txtDNI.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtDNI.Name = "txtDNI";
-            txtDNI.Size = new System.Drawing.Size(122, 29);
+            txtDNI.Size = new System.Drawing.Size(139, 39);
             txtDNI.TabIndex = 3;
             txtDNI.TextChanged += txtDNI_TextChanged;
             txtDNI.Click += txtDNI_Click;
@@ -270,15 +280,17 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             label2.AutoSize = true;
             label2.ForeColor = System.Drawing.Color.White;
-            label2.Location = new System.Drawing.Point(49, 39);
+            label2.Location = new System.Drawing.Point(56, 52);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(30, 15);
+            label2.Size = new System.Drawing.Size(38, 20);
             label2.TabIndex = 2;
             label2.Text = "DNI:";
             // 
             // panelProductos
             // 
             panelProductos.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelProductos.Controls.Add(fmCboxTransfer);
+            panelProductos.Controls.Add(lblTransfer);
             panelProductos.Controls.Add(btnCancelar);
             panelProductos.Controls.Add(btnAgregarProducto);
             panelProductos.Controls.Add(lblDatoProducto);
@@ -288,10 +300,40 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelProductos.Controls.Add(lblDescripcion);
             panelProductos.Controls.Add(txtCodigo);
             panelProductos.Controls.Add(lblCodigo);
-            panelProductos.Location = new System.Drawing.Point(5, 6);
+            panelProductos.Location = new System.Drawing.Point(6, 8);
+            panelProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelProductos.Name = "panelProductos";
-            panelProductos.Size = new System.Drawing.Size(940, 77);
+            panelProductos.Size = new System.Drawing.Size(1074, 103);
             panelProductos.TabIndex = 15;
+            // 
+            // fmCboxTransfer
+            // 
+            fmCboxTransfer.BackColor = System.Drawing.Color.WhiteSmoke;
+            fmCboxTransfer.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxTransfer.BorderSize = 0;
+            fmCboxTransfer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            fmCboxTransfer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fmCboxTransfer.ForeColor = System.Drawing.Color.DimGray;
+            fmCboxTransfer.IconColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxTransfer.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
+            fmCboxTransfer.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
+            fmCboxTransfer.ListTextColor = System.Drawing.Color.DimGray;
+            fmCboxTransfer.Location = new System.Drawing.Point(806, 10);
+            fmCboxTransfer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            fmCboxTransfer.Name = "fmCboxTransfer";
+            fmCboxTransfer.Size = new System.Drawing.Size(134, 27);
+            fmCboxTransfer.TabIndex = 116;
+            fmCboxTransfer.Texts = "";
+            // 
+            // lblTransfer
+            // 
+            lblTransfer.AutoSize = true;
+            lblTransfer.ForeColor = System.Drawing.Color.White;
+            lblTransfer.Location = new System.Drawing.Point(736, 5);
+            lblTransfer.Name = "lblTransfer";
+            lblTransfer.Size = new System.Drawing.Size(64, 20);
+            lblTransfer.TabIndex = 115;
+            lblTransfer.Text = "Transfer:";
             // 
             // btnCancelar
             // 
@@ -304,9 +346,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnCancelar.IconColor = System.Drawing.Color.White;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelar.IconSize = 35;
-            btnCancelar.Location = new System.Drawing.Point(782, 20);
+            btnCancelar.Location = new System.Drawing.Point(946, 55);
+            btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new System.Drawing.Size(102, 47);
+            btnCancelar.Size = new System.Drawing.Size(125, 42);
             btnCancelar.TabIndex = 17;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -326,11 +369,12 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnAgregarProducto.IconColor = System.Drawing.Color.White;
             btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarProducto.IconSize = 35;
-            btnAgregarProducto.Location = new System.Drawing.Point(674, 19);
+            btnAgregarProducto.Location = new System.Drawing.Point(946, 5);
+            btnAgregarProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAgregarProducto.Name = "btnAgregarProducto";
-            btnAgregarProducto.Size = new System.Drawing.Size(102, 47);
+            btnAgregarProducto.Size = new System.Drawing.Size(125, 48);
             btnAgregarProducto.TabIndex = 8;
-            btnAgregarProducto.Text = "Agregar Producto";
+            btnAgregarProducto.Text = "Agregar Al Carrito";
             btnAgregarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnAgregarProducto.UseVisualStyleBackColor = false;
             btnAgregarProducto.Click += btnAgregarProducto_Click;
@@ -340,9 +384,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblDatoProducto.AutoSize = true;
             lblDatoProducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             lblDatoProducto.ForeColor = System.Drawing.Color.White;
-            lblDatoProducto.Location = new System.Drawing.Point(3, 7);
+            lblDatoProducto.Location = new System.Drawing.Point(3, 9);
             lblDatoProducto.Name = "lblDatoProducto";
-            lblDatoProducto.Size = new System.Drawing.Size(158, 21);
+            lblDatoProducto.Size = new System.Drawing.Size(197, 28);
             lblDatoProducto.TabIndex = 16;
             lblDatoProducto.Text = "Datos Del Producto";
             // 
@@ -353,9 +397,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtCantidad.Enabled = false;
             txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCantidad.ForeColor = System.Drawing.Color.White;
-            txtCantidad.Location = new System.Drawing.Point(607, 31);
+            txtCantidad.Location = new System.Drawing.Point(694, 41);
+            txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new System.Drawing.Size(61, 29);
+            txtCantidad.Size = new System.Drawing.Size(70, 39);
             txtCantidad.TabIndex = 7;
             txtCantidad.TextChanged += txtCantidad_TextChanged;
             // 
@@ -366,18 +411,19 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtDescripcion.Enabled = false;
             txtDescripcion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtDescripcion.ForeColor = System.Drawing.Color.White;
-            txtDescripcion.Location = new System.Drawing.Point(281, 31);
+            txtDescripcion.Location = new System.Drawing.Point(322, 10);
+            txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new System.Drawing.Size(256, 29);
+            txtDescripcion.Size = new System.Drawing.Size(293, 87);
             txtDescripcion.TabIndex = 6;
             // 
             // lblCantidad
             // 
             lblCantidad.AutoSize = true;
             lblCantidad.ForeColor = System.Drawing.Color.White;
-            lblCantidad.Location = new System.Drawing.Point(543, 36);
+            lblCantidad.Location = new System.Drawing.Point(621, 48);
             lblCantidad.Name = "lblCantidad";
-            lblCantidad.Size = new System.Drawing.Size(58, 15);
+            lblCantidad.Size = new System.Drawing.Size(72, 20);
             lblCantidad.TabIndex = 5;
             lblCantidad.Text = "Cantidad:";
             // 
@@ -385,9 +431,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.ForeColor = System.Drawing.Color.White;
-            lblDescripcion.Location = new System.Drawing.Point(207, 36);
+            lblDescripcion.Location = new System.Drawing.Point(230, 48);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new System.Drawing.Size(72, 15);
+            lblDescripcion.Size = new System.Drawing.Size(90, 20);
             lblDescripcion.TabIndex = 4;
             lblDescripcion.Text = "Descripcion:";
             // 
@@ -397,9 +443,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtCodigo.Br = System.Drawing.Color.MidnightBlue;
             txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCodigo.ForeColor = System.Drawing.Color.White;
-            txtCodigo.Location = new System.Drawing.Point(55, 31);
+            txtCodigo.Location = new System.Drawing.Point(63, 41);
+            txtCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new System.Drawing.Size(146, 29);
+            txtCodigo.Size = new System.Drawing.Size(167, 39);
             txtCodigo.TabIndex = 3;
             txtCodigo.TextChanged += txtCodigo_TextChanged;
             // 
@@ -407,9 +454,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblCodigo.AutoSize = true;
             lblCodigo.ForeColor = System.Drawing.Color.White;
-            lblCodigo.Location = new System.Drawing.Point(3, 36);
+            lblCodigo.Location = new System.Drawing.Point(3, 48);
             lblCodigo.Name = "lblCodigo";
-            lblCodigo.Size = new System.Drawing.Size(49, 15);
+            lblCodigo.Size = new System.Drawing.Size(61, 20);
             lblCodigo.TabIndex = 2;
             lblCodigo.Text = "Codigo:";
             // 
@@ -430,10 +477,12 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvProductos.ColumnHeadersHeight = 29;
             dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvProductos.EnableHeadersVisualStyles = false;
             dgvProductos.GridColor = System.Drawing.Color.FromArgb(0, 80, 200);
-            dgvProductos.Location = new System.Drawing.Point(5, 88);
+            dgvProductos.Location = new System.Drawing.Point(6, 117);
+            dgvProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             dgvProductos.Name = "dgvProductos";
             dgvProductos.ReadOnly = true;
             dgvProductos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -445,13 +494,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvProductos.RowHeadersWidth = 51;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
             dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             dgvProductos.RowTemplate.Height = 25;
-            dgvProductos.Size = new System.Drawing.Size(940, 183);
+            dgvProductos.Size = new System.Drawing.Size(1074, 244);
             dgvProductos.TabIndex = 17;
             dgvProductos.DataSourceChanged += dgvProductos_DataSourceChanged;
             dgvProductos.CellClick += dgvProductos_CellClick;
@@ -468,9 +518,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnGenerarPedido.IconColor = System.Drawing.Color.White;
             btnGenerarPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnGenerarPedido.IconSize = 35;
-            btnGenerarPedido.Location = new System.Drawing.Point(7, 275);
+            btnGenerarPedido.Location = new System.Drawing.Point(8, 367);
+            btnGenerarPedido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnGenerarPedido.Name = "btnGenerarPedido";
-            btnGenerarPedido.Size = new System.Drawing.Size(102, 42);
+            btnGenerarPedido.Size = new System.Drawing.Size(117, 56);
             btnGenerarPedido.TabIndex = 9;
             btnGenerarPedido.Text = "Generar Pedido";
             btnGenerarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -484,18 +535,19 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtSubtotal.Enabled = false;
             txtSubtotal.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtSubtotal.ForeColor = System.Drawing.Color.White;
-            txtSubtotal.Location = new System.Drawing.Point(262, 275);
+            txtSubtotal.Location = new System.Drawing.Point(299, 367);
+            txtSubtotal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtSubtotal.Name = "txtSubtotal";
-            txtSubtotal.Size = new System.Drawing.Size(122, 29);
+            txtSubtotal.Size = new System.Drawing.Size(139, 39);
             txtSubtotal.TabIndex = 19;
             // 
             // lblSubTotal
             // 
             lblSubTotal.AutoSize = true;
             lblSubTotal.ForeColor = System.Drawing.Color.White;
-            lblSubTotal.Location = new System.Drawing.Point(202, 281);
+            lblSubTotal.Location = new System.Drawing.Point(231, 375);
             lblSubTotal.Name = "lblSubTotal";
-            lblSubTotal.Size = new System.Drawing.Size(54, 15);
+            lblSubTotal.Size = new System.Drawing.Size(68, 20);
             lblSubTotal.TabIndex = 18;
             lblSubTotal.Text = "Subtotal:";
             // 
@@ -506,18 +558,19 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtTotal.Enabled = false;
             txtTotal.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtTotal.ForeColor = System.Drawing.Color.White;
-            txtTotal.Location = new System.Drawing.Point(441, 275);
+            txtTotal.Location = new System.Drawing.Point(504, 367);
+            txtTotal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtTotal.Name = "txtTotal";
-            txtTotal.Size = new System.Drawing.Size(122, 29);
+            txtTotal.Size = new System.Drawing.Size(139, 39);
             txtTotal.TabIndex = 21;
             // 
             // lblTotal
             // 
             lblTotal.AutoSize = true;
             lblTotal.ForeColor = System.Drawing.Color.White;
-            lblTotal.Location = new System.Drawing.Point(397, 281);
+            lblTotal.Location = new System.Drawing.Point(454, 375);
             lblTotal.Name = "lblTotal";
-            lblTotal.Size = new System.Drawing.Size(35, 15);
+            lblTotal.Size = new System.Drawing.Size(45, 20);
             lblTotal.TabIndex = 20;
             lblTotal.Text = "Total:";
             // 
@@ -526,14 +579,15 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             tbEsPedido.Checked = true;
             tbEsPedido.CheckState = System.Windows.Forms.CheckState.Checked;
             tbEsPedido.Cursor = System.Windows.Forms.Cursors.Hand;
-            tbEsPedido.Location = new System.Drawing.Point(215, 30);
-            tbEsPedido.MinimumSize = new System.Drawing.Size(45, 22);
+            tbEsPedido.Location = new System.Drawing.Point(246, 40);
+            tbEsPedido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            tbEsPedido.MinimumSize = new System.Drawing.Size(51, 29);
             tbEsPedido.Name = "tbEsPedido";
             tbEsPedido.OffBackColor = System.Drawing.Color.Gray;
             tbEsPedido.OffToggleColor = System.Drawing.Color.Gainsboro;
             tbEsPedido.OnBackColor = System.Drawing.Color.MediumSlateBlue;
             tbEsPedido.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            tbEsPedido.Size = new System.Drawing.Size(55, 22);
+            tbEsPedido.Size = new System.Drawing.Size(63, 29);
             tbEsPedido.TabIndex = 87;
             tbEsPedido.Text = "toggleButton1";
             tbEsPedido.UseVisualStyleBackColor = true;
@@ -544,9 +598,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblSi.AutoSize = true;
             lblSi.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblSi.ForeColor = System.Drawing.Color.White;
-            lblSi.Location = new System.Drawing.Point(269, 31);
+            lblSi.Location = new System.Drawing.Point(307, 41);
             lblSi.Name = "lblSi";
-            lblSi.Size = new System.Drawing.Size(23, 21);
+            lblSi.Size = new System.Drawing.Size(28, 28);
             lblSi.TabIndex = 89;
             lblSi.Text = "Si";
             // 
@@ -555,9 +609,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblNo.AutoSize = true;
             lblNo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblNo.ForeColor = System.Drawing.Color.White;
-            lblNo.Location = new System.Drawing.Point(187, 30);
+            lblNo.Location = new System.Drawing.Point(214, 40);
             lblNo.Name = "lblNo";
-            lblNo.Size = new System.Drawing.Size(31, 21);
+            lblNo.Size = new System.Drawing.Size(39, 28);
             lblNo.TabIndex = 88;
             lblNo.Text = "No";
             // 
@@ -566,9 +620,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblEsPedido.AutoSize = true;
             lblEsPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblEsPedido.ForeColor = System.Drawing.Color.White;
-            lblEsPedido.Location = new System.Drawing.Point(200, 7);
+            lblEsPedido.Location = new System.Drawing.Point(229, 9);
             lblEsPedido.Name = "lblEsPedido";
-            lblEsPedido.Size = new System.Drawing.Size(80, 20);
+            lblEsPedido.Size = new System.Drawing.Size(102, 25);
             lblEsPedido.TabIndex = 86;
             lblEsPedido.Text = "Es Pedido?";
             // 
@@ -581,9 +635,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelProductoDetalle.Controls.Add(txtTotal);
             panelProductoDetalle.Controls.Add(txtSubtotal);
             panelProductoDetalle.Controls.Add(lblTotal);
-            panelProductoDetalle.Location = new System.Drawing.Point(12, 210);
+            panelProductoDetalle.Location = new System.Drawing.Point(14, 280);
+            panelProductoDetalle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelProductoDetalle.Name = "panelProductoDetalle";
-            panelProductoDetalle.Size = new System.Drawing.Size(952, 324);
+            panelProductoDetalle.Size = new System.Drawing.Size(1088, 432);
             panelProductoDetalle.TabIndex = 90;
             // 
             // timerSubir
@@ -598,16 +653,17 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             // FmCrearPedido
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(976, 581);
+            ClientSize = new System.Drawing.Size(1115, 775);
             Controls.Add(tbEsPedido);
             Controls.Add(lblSi);
             Controls.Add(lblNo);
             Controls.Add(lblEsPedido);
             Controls.Add(panelClientes);
             Controls.Add(panelProductoDetalle);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FmCrearPedido";
             Text = "FmCrearPedido";
             FormClosing += FmCrearPedido_FormClosing;
@@ -666,5 +722,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private AltoControls.AltoTextBox txtSeña;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lblExtras;
+        private Tools.FormsTools.FmCombobox fmCboxTransfer;
+        private System.Windows.Forms.Label lblTransfer;
     }
 }
