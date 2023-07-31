@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class LazoRepository : GenericRepository<LazoModel>, ILazoRepository
+    public class TipoPrendaRepository : GenericRepository<TipoPrendaModel>, ITipoPrendaRepository
     {
-        public LazoRepository(ApplicationDbContext context) : base(context)
+        public TipoPrendaRepository(ApplicationDbContext context) : base(context)
         {
 
         }

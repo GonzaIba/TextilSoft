@@ -26,7 +26,9 @@ namespace Contracts.Services
         public List<VivoModel> ObtenerVivos();
 
         public List<ForreriaModel> ObtenerForrerias();
-        
+
+        public List<TipoPrendaModel> ObtenerLosTiposDePrendas();
+
         public ProductosModel ObtenerCodigosDeArmados(ABMProductoEntity aBMProductoEntity);
     }
 }

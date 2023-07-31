@@ -12,7 +12,7 @@ namespace Domain.Entities
         public string Descripcion { get; set; }
         public Guid CodigoProducto { get; set; }
         public string Composicion { get; set; }
-        public string CodigoTipoPrenda { get; set; }
+        public string TipoDePrenda { get; set; }
         public string CodigoTelaBase { get; set; }
         public string CodigoTelaCombinacion { get; set; }
         public string CodigoBolsilloInterior { get; set; }

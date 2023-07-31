@@ -56,7 +56,9 @@ namespace UI.TextilSoft.Mapeo
                 .ForMember(dest => dest.Precio, opt => opt.MapFrom(src => src.Precio))
                 .ForMember(dest => dest.Stock, opt => opt.MapFrom(src => src.Stock))
                 .ForMember(dest => dest.Composicion, opt => opt.MapFrom(src => src.Composicion))
-                .ReverseMap();
+                .ForMember(dest => dest.TipoDePrenda, opt => opt.Ignore())
+                .ReverseMap()
+                .ForMember(dest => dest.ID_TipoPrenda, opt => opt.MapFrom(src => 0));
 
             CreateMap<ProductosModel, ProductoGrillaEntity>()
                 .ForMember(dest => dest.ID_Producto, opt => opt.MapFrom(src => src.ID_Producto))
@@ -101,6 +103,7 @@ namespace UI.TextilSoft.Mapeo
 
 
             #region Armado Productos
+            CreateMap<TipoPrendaModel, TipoPrendaEntity>();
             CreateMap<TelaBaseModel, TelaBaseEntity>();
             CreateMap<TelaCombinacionModel, TelaCombinacionEntity>();
             CreateMap<BolsilloInteriorModel, BolsilloInteriorEntity>();

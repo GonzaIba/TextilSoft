@@ -39,7 +39,7 @@ namespace UI.TextilSoft.Controllers
             bool isValidGuid = Regex.IsMatch(codigo, guidPattern);
             if (isValidGuid)
             {
-                var ProductoDTO = _productoService.Get(x => x.CodigoProducto == Guid.Parse(codigo),includeProperties: "TipoPrenda,TelaBase,TelaCombinacion,BolsilloInterior,Lazo,Vivo,Transfer").FirstOrDefault();
+                var ProductoDTO = _productoService.Get(x => x.CodigoProducto == Guid.Parse(codigo),includeProperties: "TipoPrenda,TelaBase,TelaCombinacion,BolsilloInterior,CinturaInterior,Collareta,Lazo,Vivo,Forreria").FirstOrDefault();
                 var ProductoEntity = _mapper.Map<ProductosEntity>(ProductoDTO);
                 return ProductoEntity;
             }

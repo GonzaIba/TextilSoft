@@ -103,7 +103,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ListarProductos
             catch (Exception ex)
             {
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error", "Ocurrió un error al asignar la ODT", centerPosition, true);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error", "Ocurrió un error al querer ver el detalle del producto", centerPosition, true);
                 fmMessageBox.ShowDialog();
             }
         }

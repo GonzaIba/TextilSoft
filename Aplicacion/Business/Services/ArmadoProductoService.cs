@@ -18,6 +18,7 @@ namespace Business.Services
         private readonly ILazoRepository _lazoRepository;
         private readonly IVivoRepository _vivoRepository;
         private readonly IForreriaRepository _forreriaRepository;
+        private readonly ITipoPrendaRepository _tipoPrendaRepository;
         private readonly IMapper _mapper;
         public ArmadoProductoService(
             ITelaBaseRepository telaBaseRepository,
@@ -28,6 +29,7 @@ namespace Business.Services
             ILazoRepository lazoRepository,
             IVivoRepository vivoRepository,
             IForreriaRepository forreriaRepository,
+            ITipoPrendaRepository tipoPrendaRepository,
             IMapper mapper
             )
         {
@@ -39,6 +41,7 @@ namespace Business.Services
             _lazoRepository = lazoRepository;
             _vivoRepository = vivoRepository;
             _forreriaRepository = forreriaRepository;
+            _tipoPrendaRepository = tipoPrendaRepository;
             _mapper = mapper;
         }
 
@@ -47,13 +50,13 @@ namespace Business.Services
             var producto = _mapper.Map<ProductosModel>(abmProductoEntity);
             producto.ID_TelaBase = _telaBaseRepository.Get(x => x.Codigo == abmProductoEntity.CodigoTelaBase).FirstOrDefault().ID_TelaBase;
             producto.ID_TelaCombinacion = _telaCombinacionRepository.Get(x => x.Codigo == abmProductoEntity.CodigoTelaCombinacion).FirstOrDefault().ID_TelaCombinacion;
-            //LLenar los otros id con la misma metodologia de arriba
             producto.ID_BolsilloInterior = _bolsilloInteriorRepository.Get(x => x.Codigo == abmProductoEntity.CodigoBolsilloInterior).FirstOrDefault().ID_BolsilloInterior;
             producto.ID_CinturaInterior = _cinturaInteriorRepository.Get(x => x.Codigo == abmProductoEntity.CodigoCinturaInterior).FirstOrDefault().ID_CinturaInterior;
             producto.ID_Collareta = _collaretaRepository.Get(x => x.Codigo == abmProductoEntity.CodigoCollareta).FirstOrDefault().ID_Collareta;
             producto.ID_Lazo = _lazoRepository.Get(x => x.Codigo == abmProductoEntity.CodigoLazo).FirstOrDefault().ID_Lazo;
             producto.ID_Vivo = _vivoRepository.Get(x => x.Codigo == abmProductoEntity.CodigoVivo).FirstOrDefault().ID_Vivo;
             producto.ID_Forreria = _forreriaRepository.Get(x => x.Codigo == abmProductoEntity.CodigoForreria).FirstOrDefault().ID_Forreria;
+            producto.ID_TipoPrenda = _tipoPrendaRepository.Get(x => x.TipoPrenda == abmProductoEntity.TipoDePrenda).FirstOrDefault().ID_TipoPrenda;
             return producto;
         }
 
@@ -97,6 +100,11 @@ namespace Business.Services
         public List<ForreriaModel> ObtenerForrerias()
         {
             return _forreriaRepository.Get().ToList();
+        }
+
+        public List<TipoPrendaModel> ObtenerLosTiposDePrendas()
+        {
+            return _tipoPrendaRepository.Get().ToList();
         }
         #endregion
     }

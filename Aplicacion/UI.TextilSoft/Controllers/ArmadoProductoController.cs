@@ -33,6 +33,7 @@ namespace UI.TextilSoft.Controllers
                 ArmadoProductoEnum.Lazo => _mapper.Map<List<LazoEntity>>(_armadoProductoService.ObtenerLazos()),
                 ArmadoProductoEnum.Vivo => _mapper.Map<List<VivoEntity>>(_armadoProductoService.ObtenerVivos()),
                 ArmadoProductoEnum.Forreria => _mapper.Map<List<ForreriaEntity>>(_armadoProductoService.ObtenerForrerias()),
+                ArmadoProductoEnum.TipoPrenda => _mapper.Map<List<TipoPrendaEntity>>(_armadoProductoService.ObtenerLosTiposDePrendas()),
                 _ => null,
             };
     }

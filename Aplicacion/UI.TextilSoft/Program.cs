@@ -57,6 +57,7 @@ using UI.TextilSoft.Controllers;
 using System.ComponentModel.Design;
 using Contracts.Services;
 using Business.Services;
+using Domain.Enum;
 
 namespace UI.TextilSoft
 {
@@ -366,6 +367,23 @@ namespace UI.TextilSoft
         private static void GenerateProductDetail(IServiceProvider services, int companyId)
         {
             var dbContext = services.GetRequiredService<ApplicationDbContext>();
+            
+            var tipoPrendaRepository = services.GetRequiredService<ITipoPrendaRepository>();
+            if (!tipoPrendaRepository.TableNoTracking.Any())
+            {
+                var tipoPrendas = new List<TipoPrendaModel>();
+
+                // Obtén todos los valores del enum TipoPrendaEnum
+                var tipoPrendaValues = Enum.GetValues(typeof(TipoPrendaEnum));
+                // Itera sobre los valores del enum y agrega instancias a la lista estadosPedido
+                foreach (TipoPrendaEnum tipoPrenda in tipoPrendaValues)
+                {
+                    tipoPrendas.Add(new TipoPrendaModel { TipoPrenda = tipoPrenda.ToString(), Active = true });
+                }
+
+                dbContext.AddRange(tipoPrendas);
+                dbContext.SaveChanges();
+            }
 
             var telaBaseRepository = services.GetRequiredService<ITelaBaseRepository>();
             if (!telaBaseRepository.TableNoTracking.Any())

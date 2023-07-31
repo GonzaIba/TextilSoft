@@ -129,7 +129,7 @@ namespace UI.TextilSoft.MainForm
             labelBienvenida.Location = new System.Drawing.Point(42, 36);
             labelBienvenida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelBienvenida.Name = "labelBienvenida";
-            labelBienvenida.Size = new System.Drawing.Size(110, 26);
+            labelBienvenida.Size = new System.Drawing.Size(137, 35);
             labelBienvenida.TabIndex = 7;
             labelBienvenida.Text = "TextilSoft";
             labelBienvenida.MouseDown += panelContenedor_MouseDown;
@@ -357,10 +357,11 @@ namespace UI.TextilSoft.MainForm
             toolStrip1.BackColor = System.Drawing.Color.Transparent;
             PanelAnimator.SetDecoration(toolStrip1, AnimatorNS.DecorationType.None);
             toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { toolStripLabel1 });
             toolStrip1.Location = new System.Drawing.Point(0, 0);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new System.Drawing.Size(890, 26);
+            toolStrip1.Size = new System.Drawing.Size(890, 34);
             toolStrip1.TabIndex = 0;
             toolStrip1.Text = "toolStrip1";
             toolStrip1.RendererChanged += toolStrip1_RendererChanged;
@@ -371,7 +372,7 @@ namespace UI.TextilSoft.MainForm
             toolStripLabel1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             toolStripLabel1.ForeColor = System.Drawing.Color.White;
             toolStripLabel1.Name = "toolStripLabel1";
-            toolStripLabel1.Size = new System.Drawing.Size(51, 23);
+            toolStripLabel1.Size = new System.Drawing.Size(67, 31);
             toolStripLabel1.Text = "Hola";
             toolStripLabel1.MouseDown += panelContenedor_MouseDown;
             // 
@@ -415,7 +416,7 @@ namespace UI.TextilSoft.MainForm
             // 
             // FmTextilSoft
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.Black;
             ClientSize = new System.Drawing.Size(1090, 603);

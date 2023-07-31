@@ -53,11 +53,9 @@
             lblTelaBase = new System.Windows.Forms.Label();
             label3 = new System.Windows.Forms.Label();
             txtPrecio = new AltoControls.AltoTextBox();
-            lblTransfer = new System.Windows.Forms.Label();
-            lblTipoProducto = new System.Windows.Forms.Label();
+            lblTipoPrenda = new System.Windows.Forms.Label();
             fmCboxTelaCombinacion = new Tools.FormsTools.FmCombobox();
-            fmCboxTransfer = new Tools.FormsTools.FmCombobox();
-            fmCboxTipoProducto = new Tools.FormsTools.FmCombobox();
+            fmCboxTipoPrenda = new Tools.FormsTools.FmCombobox();
             fmCboxLazo = new Tools.FormsTools.FmCombobox();
             fmCboxTelaBase = new Tools.FormsTools.FmCombobox();
             fmCboxVivo = new Tools.FormsTools.FmCombobox();
@@ -77,7 +75,7 @@
             // 
             lblCantidad.AutoSize = true;
             lblCantidad.ForeColor = System.Drawing.Color.White;
-            lblCantidad.Location = new System.Drawing.Point(359, 487);
+            lblCantidad.Location = new System.Drawing.Point(358, 443);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new System.Drawing.Size(72, 20);
             lblCantidad.TabIndex = 31;
@@ -104,7 +102,7 @@
             btnCrearProducto.IconColor = System.Drawing.Color.White;
             btnCrearProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCrearProducto.IconSize = 35;
-            btnCrearProducto.Location = new System.Drawing.Point(351, 543);
+            btnCrearProducto.Location = new System.Drawing.Point(346, 500);
             btnCrearProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCrearProducto.Name = "btnCrearProducto";
             btnCrearProducto.Size = new System.Drawing.Size(141, 61);
@@ -120,12 +118,13 @@
             txtCantidad.Br = System.Drawing.Color.MidnightBlue;
             txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCantidad.ForeColor = System.Drawing.Color.White;
-            txtCantidad.Location = new System.Drawing.Point(431, 478);
+            txtCantidad.Location = new System.Drawing.Point(430, 434);
             txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
             txtCantidad.Size = new System.Drawing.Size(79, 39);
             txtCantidad.TabIndex = 34;
             txtCantidad.TextChanged += txtCantidad_TextChanged;
+            txtCantidad.Click += txtCantidad_Click;
             // 
             // btnSumar
             // 
@@ -136,7 +135,7 @@
             btnSumar.IconColor = System.Drawing.Color.White;
             btnSumar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSumar.IconSize = 30;
-            btnSumar.Location = new System.Drawing.Point(510, 484);
+            btnSumar.Location = new System.Drawing.Point(509, 440);
             btnSumar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSumar.Name = "btnSumar";
             btnSumar.Size = new System.Drawing.Size(32, 37);
@@ -154,7 +153,7 @@
             btnRestar.IconColor = System.Drawing.Color.White;
             btnRestar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnRestar.IconSize = 30;
-            btnRestar.Location = new System.Drawing.Point(543, 483);
+            btnRestar.Location = new System.Drawing.Point(542, 439);
             btnRestar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnRestar.Name = "btnRestar";
             btnRestar.Size = new System.Drawing.Size(32, 37);
@@ -215,7 +214,7 @@
             cboxTalles.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             cboxTalles.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             cboxTalles.ListTextColor = System.Drawing.Color.DimGray;
-            cboxTalles.Location = new System.Drawing.Point(432, 393);
+            cboxTalles.Location = new System.Drawing.Point(431, 349);
             cboxTalles.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             cboxTalles.Name = "cboxTalles";
             cboxTalles.Size = new System.Drawing.Size(144, 27);
@@ -318,7 +317,7 @@
             // 
             lblPrecio.AutoSize = true;
             lblPrecio.ForeColor = System.Drawing.Color.White;
-            lblPrecio.Location = new System.Drawing.Point(373, 439);
+            lblPrecio.Location = new System.Drawing.Point(372, 395);
             lblPrecio.Name = "lblPrecio";
             lblPrecio.Size = new System.Drawing.Size(53, 20);
             lblPrecio.TabIndex = 89;
@@ -338,7 +337,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = System.Drawing.Color.White;
-            label3.Location = new System.Drawing.Point(387, 393);
+            label3.Location = new System.Drawing.Point(386, 349);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(42, 20);
             label3.TabIndex = 87;
@@ -350,31 +349,22 @@
             txtPrecio.Br = System.Drawing.Color.MidnightBlue;
             txtPrecio.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtPrecio.ForeColor = System.Drawing.Color.White;
-            txtPrecio.Location = new System.Drawing.Point(431, 431);
+            txtPrecio.Location = new System.Drawing.Point(430, 387);
             txtPrecio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
             txtPrecio.Size = new System.Drawing.Size(144, 39);
             txtPrecio.TabIndex = 86;
+            txtPrecio.TextChanged += txtPrecio_TextChanged;
             // 
-            // lblTransfer
+            // lblTipoPrenda
             // 
-            lblTransfer.AutoSize = true;
-            lblTransfer.ForeColor = System.Drawing.Color.White;
-            lblTransfer.Location = new System.Drawing.Point(363, 352);
-            lblTransfer.Name = "lblTransfer";
-            lblTransfer.Size = new System.Drawing.Size(64, 20);
-            lblTransfer.TabIndex = 82;
-            lblTransfer.Text = "Transfer:";
-            // 
-            // lblTipoProducto
-            // 
-            lblTipoProducto.AutoSize = true;
-            lblTipoProducto.ForeColor = System.Drawing.Color.White;
-            lblTipoProducto.Location = new System.Drawing.Point(45, 267);
-            lblTipoProducto.Name = "lblTipoProducto";
-            lblTipoProducto.Size = new System.Drawing.Size(127, 20);
-            lblTipoProducto.TabIndex = 81;
-            lblTipoProducto.Text = "Tipo de Producto:";
+            lblTipoPrenda.AutoSize = true;
+            lblTipoPrenda.ForeColor = System.Drawing.Color.White;
+            lblTipoPrenda.Location = new System.Drawing.Point(57, 267);
+            lblTipoPrenda.Name = "lblTipoPrenda";
+            lblTipoPrenda.Size = new System.Drawing.Size(113, 20);
+            lblTipoPrenda.TabIndex = 81;
+            lblTipoPrenda.Text = "Tipo de Prenda:";
             // 
             // fmCboxTelaCombinacion
             // 
@@ -395,44 +385,25 @@
             fmCboxTelaCombinacion.TabIndex = 108;
             fmCboxTelaCombinacion.Texts = "";
             // 
-            // fmCboxTransfer
+            // fmCboxTipoPrenda
             // 
-            fmCboxTransfer.BackColor = System.Drawing.Color.WhiteSmoke;
-            fmCboxTransfer.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            fmCboxTransfer.BorderSize = 0;
-            fmCboxTransfer.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            fmCboxTransfer.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            fmCboxTransfer.ForeColor = System.Drawing.Color.DimGray;
-            fmCboxTransfer.IconColor = System.Drawing.Color.MediumSlateBlue;
-            fmCboxTransfer.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
-            fmCboxTransfer.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
-            fmCboxTransfer.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTransfer.Location = new System.Drawing.Point(432, 349);
-            fmCboxTransfer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            fmCboxTransfer.Name = "fmCboxTransfer";
-            fmCboxTransfer.Size = new System.Drawing.Size(144, 27);
-            fmCboxTransfer.TabIndex = 110;
-            fmCboxTransfer.Texts = "";
-            // 
-            // fmCboxTipoProducto
-            // 
-            fmCboxTipoProducto.BackColor = System.Drawing.Color.WhiteSmoke;
-            fmCboxTipoProducto.BorderColor = System.Drawing.Color.MediumSlateBlue;
-            fmCboxTipoProducto.BorderSize = 0;
-            fmCboxTipoProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            fmCboxTipoProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            fmCboxTipoProducto.ForeColor = System.Drawing.Color.DimGray;
-            fmCboxTipoProducto.IconColor = System.Drawing.Color.MediumSlateBlue;
-            fmCboxTipoProducto.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
-            fmCboxTipoProducto.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
-            fmCboxTipoProducto.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTipoProducto.Location = new System.Drawing.Point(169, 267);
-            fmCboxTipoProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            fmCboxTipoProducto.Name = "fmCboxTipoProducto";
-            fmCboxTipoProducto.Size = new System.Drawing.Size(144, 27);
-            fmCboxTipoProducto.TabIndex = 111;
-            fmCboxTipoProducto.Texts = "";
-            fmCboxTipoProducto.OnSelectedIndexChanged += fmCboxTipoProducto_OnSelectedIndexChanged;
+            fmCboxTipoPrenda.BackColor = System.Drawing.Color.WhiteSmoke;
+            fmCboxTipoPrenda.BorderColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxTipoPrenda.BorderSize = 0;
+            fmCboxTipoPrenda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            fmCboxTipoPrenda.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            fmCboxTipoPrenda.ForeColor = System.Drawing.Color.DimGray;
+            fmCboxTipoPrenda.IconColor = System.Drawing.Color.MediumSlateBlue;
+            fmCboxTipoPrenda.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
+            fmCboxTipoPrenda.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
+            fmCboxTipoPrenda.ListTextColor = System.Drawing.Color.DimGray;
+            fmCboxTipoPrenda.Location = new System.Drawing.Point(169, 267);
+            fmCboxTipoPrenda.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            fmCboxTipoPrenda.Name = "fmCboxTipoPrenda";
+            fmCboxTipoPrenda.Size = new System.Drawing.Size(144, 27);
+            fmCboxTipoPrenda.TabIndex = 111;
+            fmCboxTipoPrenda.Texts = "";
+            fmCboxTipoPrenda.OnSelectedIndexChanged += fmCboxTipoProducto_OnSelectedIndexChanged;
             // 
             // fmCboxLazo
             // 
@@ -647,8 +618,7 @@
             Controls.Add(fmCboxVivo);
             Controls.Add(fmCboxTelaBase);
             Controls.Add(fmCboxLazo);
-            Controls.Add(fmCboxTipoProducto);
-            Controls.Add(fmCboxTransfer);
+            Controls.Add(fmCboxTipoPrenda);
             Controls.Add(fmCboxTelaCombinacion);
             Controls.Add(pBoxImagenPrenda);
             Controls.Add(lblImagen);
@@ -663,8 +633,7 @@
             Controls.Add(lblTelaBase);
             Controls.Add(label3);
             Controls.Add(txtPrecio);
-            Controls.Add(lblTransfer);
-            Controls.Add(lblTipoProducto);
+            Controls.Add(lblTipoPrenda);
             Controls.Add(cboxTalles);
             Controls.Add(txtColor);
             Controls.Add(btnChangeColor);
@@ -709,11 +678,9 @@
         private System.Windows.Forms.Label lblTelaBase;
         private System.Windows.Forms.Label label3;
         private AltoControls.AltoTextBox txtPrecio;
-        private System.Windows.Forms.Label lblTransfer;
-        private System.Windows.Forms.Label lblTipoProducto;
+        private System.Windows.Forms.Label lblTipoPrenda;
         private Tools.FormsTools.FmCombobox fmCboxTelaCombinacion;
-        private Tools.FormsTools.FmCombobox fmCboxTransfer;
-        private Tools.FormsTools.FmCombobox fmCboxTipoProducto;
+        private Tools.FormsTools.FmCombobox fmCboxTipoPrenda;
         private Tools.FormsTools.FmCombobox fmCboxLazo;
         private Tools.FormsTools.FmCombobox fmCboxTelaBase;
         private Tools.FormsTools.FmCombobox fmCboxVivo;

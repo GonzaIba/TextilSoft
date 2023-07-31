@@ -55,9 +55,15 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                         }
                     }
                 }
+                if (string.IsNullOrEmpty(file64))
+                {
+                    toolTipError.Show("Por favor, seleccione una imagen", btnImagenPrenda, 0, -20, 2000);
+                    return;
+                }
                 ABMProductoEntity productosEntity = new ABMProductoEntity();
                 productosEntity.Descripcion = txtDesc.Text;
                 productosEntity.Composicion = txtComposicion.Text;
+                productosEntity.TipoDePrenda = ((TipoPrendaEntity)fmCboxTipoPrenda.SelectedItem).TipoPrenda;
                 productosEntity.CodigoTelaBase = ((TelaBaseEntity)fmCboxTelaBase.SelectedItem).Codigo;
                 productosEntity.CodigoTelaCombinacion = ((TelaCombinacionEntity)fmCboxTelaCombinacion.SelectedItem).Codigo;
                 productosEntity.CodigoBolsilloInterior = ((BolsilloInteriorEntity)fmCboxBolsilloInt.SelectedItem).Codigo;
@@ -69,6 +75,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 productosEntity.TallePrenda = cboxTalles.SelectedItem.ToString();
                 productosEntity.Precio = Convert.ToDecimal(txtPrecio.Text);
                 productosEntity.Stock = Convert.ToInt32(txtCantidad.Text);
+                productosEntity.ImagenPrenda = file64;
                 _factory.UseNew<IProductosController>().CrearProducto(productosEntity);
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Success, "Crear Producto", "Se creó el producto correctamente!", centerPosition);
@@ -133,13 +140,6 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
             }
         }
 
-        private void btnChangeColor_Click(object sender, EventArgs e)
-        {
-            ColorDialog colorDialog = new ColorDialog();
-            if (colorDialog.ShowDialog() == DialogResult.OK)
-                txtColor.BackColor = colorDialog.Color;
-        }
-
         private void txtPrecio_TextChanged(object sender, EventArgs e)
         {
             if (System.Text.RegularExpressions.Regex.IsMatch(txtPrecio.Text, "[^0-9]"))
@@ -148,6 +148,24 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 txtPrecio.Text = txtPrecio.Text.Remove(txtPrecio.Text.Length - 1);
                 txtPrecio.Select();
             }
+            else if (!string.IsNullOrEmpty(txtPrecio.Text))
+            {
+                var value = Convert.ToInt32(txtPrecio.Text);
+                if (value < 0)
+                {
+                    toolTipError.Show("Por favor, solo ingrese números positivos", txtPrecio, 0, -20, 2000);
+                    txtPrecio.Text = txtPrecio.Text.Remove(txtPrecio.Text.Length - 1);
+                    if (string.IsNullOrEmpty(txtPrecio.Text))
+                        txtPrecio.Text = "0";
+                }
+            }
+        }
+
+        private void btnChangeColor_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+                txtColor.BackColor = colorDialog.Color;
         }
 
         private void btnImagenPrenda_Click(object sender, EventArgs e)
@@ -203,6 +221,9 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
 
         private void LlenarComboboxs()
         {
+            fmCboxTipoPrenda.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.TipoPrenda);
+            fmCboxTipoPrenda.DisplayMember = "TipoPrenda";
+
             fmCboxTelaBase.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoProductoPorTipo(ArmadoProductoEnum.TelaBase);
             fmCboxTelaBase.DisplayMember = "Nombre";
 
@@ -231,6 +252,11 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
         private void fmCboxTipoProducto_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             //Aca vamos a vamos a bloquear los comboboxs que no apliquen
+        }
+
+        private void txtCantidad_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Domain.Enum
         Collareta = 5,
         Lazo = 6,
         Vivo = 7,
-        Forreria = 8
+        Forreria = 8,
+        TipoPrenda = 9
     }
 }

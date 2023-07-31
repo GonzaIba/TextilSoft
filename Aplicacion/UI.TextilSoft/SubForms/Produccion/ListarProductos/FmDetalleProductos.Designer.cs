@@ -39,11 +39,8 @@
             lblTelaBase = new System.Windows.Forms.Label();
             lblTalle = new System.Windows.Forms.Label();
             txtPrecio = new AltoControls.AltoTextBox();
-            txtTejido = new AltoControls.AltoTextBox();
-            txtTransfer = new AltoControls.AltoTextBox();
-            txtTipoProducto = new AltoControls.AltoTextBox();
-            lblTransfer = new System.Windows.Forms.Label();
-            lblTipoProducto = new System.Windows.Forms.Label();
+            txtTelaBase = new AltoControls.AltoTextBox();
+            lblTipoPrenda = new System.Windows.Forms.Label();
             txtCodigo = new AltoControls.AltoTextBox();
             lblCodigo = new System.Windows.Forms.Label();
             txtDesc = new AltoControls.AltoTextBox();
@@ -60,6 +57,13 @@
             lblImagen = new System.Windows.Forms.Label();
             pBoxImagenPrenda = new System.Windows.Forms.PictureBox();
             txtStockProducto = new AltoControls.AltoTextBox();
+            lblCinturaInterior = new System.Windows.Forms.Label();
+            txtCinturaInt = new AltoControls.AltoTextBox();
+            lblCollareta = new System.Windows.Forms.Label();
+            txtCollareta = new AltoControls.AltoTextBox();
+            txtTipoPrenda = new AltoControls.AltoTextBox();
+            txtForreria = new AltoControls.AltoTextBox();
+            lblForreria = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)pBoxImagenPrenda).BeginInit();
             SuspendLayout();
             // 
@@ -67,20 +71,21 @@
             // 
             txtColor.BackColor = System.Drawing.Color.White;
             txtColor.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            txtColor.Location = new System.Drawing.Point(115, 315);
+            txtColor.Location = new System.Drawing.Point(695, 522);
+            txtColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtColor.Multiline = true;
             txtColor.Name = "txtColor";
             txtColor.ReadOnly = true;
-            txtColor.Size = new System.Drawing.Size(125, 23);
+            txtColor.Size = new System.Drawing.Size(143, 31);
             txtColor.TabIndex = 63;
             // 
             // lblColor
             // 
             lblColor.AutoSize = true;
             lblColor.ForeColor = System.Drawing.Color.White;
-            lblColor.Location = new System.Drawing.Point(63, 317);
+            lblColor.Location = new System.Drawing.Point(632, 525);
             lblColor.Name = "lblColor";
-            lblColor.Size = new System.Drawing.Size(39, 15);
+            lblColor.Size = new System.Drawing.Size(48, 20);
             lblColor.TabIndex = 61;
             lblColor.Text = "Color:";
             // 
@@ -93,13 +98,15 @@
             btnSumar.IconColor = System.Drawing.Color.White;
             btnSumar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSumar.IconSize = 30;
-            btnSumar.Location = new System.Drawing.Point(6, 405);
+            btnSumar.Location = new System.Drawing.Point(7, 540);
+            btnSumar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSumar.Name = "btnSumar";
-            btnSumar.Size = new System.Drawing.Size(91, 33);
+            btnSumar.Size = new System.Drawing.Size(104, 44);
             btnSumar.TabIndex = 59;
             btnSumar.Text = "Volver";
             btnSumar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnSumar.UseVisualStyleBackColor = true;
+            btnSumar.Click += btnSumar_Click;
             // 
             // lblPrincipal
             // 
@@ -107,9 +114,9 @@
             lblPrincipal.BackColor = System.Drawing.Color.Transparent;
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(279, 24);
+            lblPrincipal.Location = new System.Drawing.Point(319, 32);
             lblPrincipal.Name = "lblPrincipal";
-            lblPrincipal.Size = new System.Drawing.Size(192, 32);
+            lblPrincipal.Size = new System.Drawing.Size(240, 41);
             lblPrincipal.TabIndex = 56;
             lblPrincipal.Text = "Detalle Producto";
             // 
@@ -117,9 +124,9 @@
             // 
             lblStock.AutoSize = true;
             lblStock.ForeColor = System.Drawing.Color.White;
-            lblStock.Location = new System.Drawing.Point(296, 319);
+            lblStock.Location = new System.Drawing.Point(342, 477);
             lblStock.Name = "lblStock";
-            lblStock.Size = new System.Drawing.Size(39, 15);
+            lblStock.Size = new System.Drawing.Size(48, 20);
             lblStock.TabIndex = 55;
             lblStock.Text = "Stock:";
             // 
@@ -127,20 +134,22 @@
             // 
             txtComposicion.BackColor = System.Drawing.Color.Transparent;
             txtComposicion.Br = System.Drawing.Color.MidnightBlue;
+            txtComposicion.Enabled = false;
             txtComposicion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtComposicion.ForeColor = System.Drawing.Color.White;
-            txtComposicion.Location = new System.Drawing.Point(118, 245);
+            txtComposicion.Location = new System.Drawing.Point(135, 279);
+            txtComposicion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtComposicion.Name = "txtComposicion";
-            txtComposicion.Size = new System.Drawing.Size(123, 29);
+            txtComposicion.Size = new System.Drawing.Size(141, 39);
             txtComposicion.TabIndex = 54;
             // 
             // lblComposicion
             // 
             lblComposicion.AutoSize = true;
             lblComposicion.ForeColor = System.Drawing.Color.White;
-            lblComposicion.Location = new System.Drawing.Point(25, 252);
+            lblComposicion.Location = new System.Drawing.Point(30, 286);
             lblComposicion.Name = "lblComposicion";
-            lblComposicion.Size = new System.Drawing.Size(81, 15);
+            lblComposicion.Size = new System.Drawing.Size(99, 20);
             lblComposicion.TabIndex = 53;
             lblComposicion.Text = "Composicion:";
             // 
@@ -148,9 +157,9 @@
             // 
             lblPrecio.AutoSize = true;
             lblPrecio.ForeColor = System.Drawing.Color.White;
-            lblPrecio.Location = new System.Drawing.Point(293, 248);
+            lblPrecio.Location = new System.Drawing.Point(337, 428);
             lblPrecio.Name = "lblPrecio";
-            lblPrecio.Size = new System.Drawing.Size(43, 15);
+            lblPrecio.Size = new System.Drawing.Size(53, 20);
             lblPrecio.TabIndex = 52;
             lblPrecio.Text = "Precio:";
             // 
@@ -158,9 +167,9 @@
             // 
             lblTelaBase.AutoSize = true;
             lblTelaBase.ForeColor = System.Drawing.Color.White;
-            lblTelaBase.Location = new System.Drawing.Point(279, 283);
+            lblTelaBase.Location = new System.Drawing.Point(52, 335);
             lblTelaBase.Name = "lblTelaBase";
-            lblTelaBase.Size = new System.Drawing.Size(57, 15);
+            lblTelaBase.Size = new System.Drawing.Size(74, 20);
             lblTelaBase.TabIndex = 51;
             lblTelaBase.Text = "Tela Base:";
             // 
@@ -168,9 +177,9 @@
             // 
             lblTalle.AutoSize = true;
             lblTalle.ForeColor = System.Drawing.Color.White;
-            lblTalle.Location = new System.Drawing.Point(305, 212);
+            lblTalle.Location = new System.Drawing.Point(349, 383);
             lblTalle.Name = "lblTalle";
-            lblTalle.Size = new System.Drawing.Size(33, 15);
+            lblTalle.Size = new System.Drawing.Size(42, 20);
             lblTalle.TabIndex = 50;
             lblTalle.Text = "Talle:";
             // 
@@ -178,84 +187,58 @@
             // 
             txtPrecio.BackColor = System.Drawing.Color.Transparent;
             txtPrecio.Br = System.Drawing.Color.MidnightBlue;
+            txtPrecio.Enabled = false;
             txtPrecio.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtPrecio.ForeColor = System.Drawing.Color.White;
-            txtPrecio.Location = new System.Drawing.Point(344, 242);
+            txtPrecio.Location = new System.Drawing.Point(393, 420);
+            txtPrecio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtPrecio.Name = "txtPrecio";
-            txtPrecio.Size = new System.Drawing.Size(126, 29);
+            txtPrecio.Size = new System.Drawing.Size(144, 39);
             txtPrecio.TabIndex = 49;
             // 
-            // txtTejido
+            // txtTelaBase
             // 
-            txtTejido.BackColor = System.Drawing.Color.Transparent;
-            txtTejido.Br = System.Drawing.Color.MidnightBlue;
-            txtTejido.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            txtTejido.ForeColor = System.Drawing.Color.White;
-            txtTejido.Location = new System.Drawing.Point(342, 277);
-            txtTejido.Name = "txtTejido";
-            txtTejido.Size = new System.Drawing.Size(126, 29);
-            txtTejido.TabIndex = 48;
+            txtTelaBase.BackColor = System.Drawing.Color.Transparent;
+            txtTelaBase.Br = System.Drawing.Color.MidnightBlue;
+            txtTelaBase.Enabled = false;
+            txtTelaBase.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtTelaBase.ForeColor = System.Drawing.Color.White;
+            txtTelaBase.Location = new System.Drawing.Point(135, 326);
+            txtTelaBase.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtTelaBase.Name = "txtTelaBase";
+            txtTelaBase.Size = new System.Drawing.Size(144, 39);
+            txtTelaBase.TabIndex = 48;
             // 
-            // txtTransfer
+            // lblTipoPrenda
             // 
-            txtTransfer.BackColor = System.Drawing.Color.Transparent;
-            txtTransfer.Br = System.Drawing.Color.MidnightBlue;
-            txtTransfer.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            txtTransfer.ForeColor = System.Drawing.Color.White;
-            txtTransfer.Location = new System.Drawing.Point(118, 209);
-            txtTransfer.Name = "txtTransfer";
-            txtTransfer.Size = new System.Drawing.Size(123, 29);
-            txtTransfer.TabIndex = 47;
-            // 
-            // txtTipoProducto
-            // 
-            txtTipoProducto.BackColor = System.Drawing.Color.Transparent;
-            txtTipoProducto.Br = System.Drawing.Color.MidnightBlue;
-            txtTipoProducto.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            txtTipoProducto.ForeColor = System.Drawing.Color.White;
-            txtTipoProducto.Location = new System.Drawing.Point(118, 174);
-            txtTipoProducto.Name = "txtTipoProducto";
-            txtTipoProducto.Size = new System.Drawing.Size(123, 29);
-            txtTipoProducto.TabIndex = 46;
-            // 
-            // lblTransfer
-            // 
-            lblTransfer.AutoSize = true;
-            lblTransfer.ForeColor = System.Drawing.Color.White;
-            lblTransfer.Location = new System.Drawing.Point(55, 214);
-            lblTransfer.Name = "lblTransfer";
-            lblTransfer.Size = new System.Drawing.Size(51, 15);
-            lblTransfer.TabIndex = 45;
-            lblTransfer.Text = "Transfer:";
-            // 
-            // lblTipoProducto
-            // 
-            lblTipoProducto.AutoSize = true;
-            lblTipoProducto.ForeColor = System.Drawing.Color.White;
-            lblTipoProducto.Location = new System.Drawing.Point(6, 179);
-            lblTipoProducto.Name = "lblTipoProducto";
-            lblTipoProducto.Size = new System.Drawing.Size(101, 15);
-            lblTipoProducto.TabIndex = 44;
-            lblTipoProducto.Text = "Tipo de Producto:";
+            lblTipoPrenda.AutoSize = true;
+            lblTipoPrenda.ForeColor = System.Drawing.Color.White;
+            lblTipoPrenda.Location = new System.Drawing.Point(13, 237);
+            lblTipoPrenda.Name = "lblTipoPrenda";
+            lblTipoPrenda.Size = new System.Drawing.Size(113, 20);
+            lblTipoPrenda.TabIndex = 44;
+            lblTipoPrenda.Text = "Tipo de Prenda:";
             // 
             // txtCodigo
             // 
             txtCodigo.BackColor = System.Drawing.Color.Transparent;
             txtCodigo.Br = System.Drawing.Color.MidnightBlue;
+            txtCodigo.Enabled = false;
             txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCodigo.ForeColor = System.Drawing.Color.White;
-            txtCodigo.Location = new System.Drawing.Point(118, 138);
+            txtCodigo.Location = new System.Drawing.Point(135, 184);
+            txtCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new System.Drawing.Size(122, 29);
+            txtCodigo.Size = new System.Drawing.Size(139, 39);
             txtCodigo.TabIndex = 43;
             // 
             // lblCodigo
             // 
             lblCodigo.AutoSize = true;
             lblCodigo.ForeColor = System.Drawing.Color.White;
-            lblCodigo.Location = new System.Drawing.Point(58, 144);
+            lblCodigo.Location = new System.Drawing.Point(67, 190);
             lblCodigo.Name = "lblCodigo";
-            lblCodigo.Size = new System.Drawing.Size(49, 15);
+            lblCodigo.Size = new System.Drawing.Size(61, 20);
             lblCodigo.TabIndex = 42;
             lblCodigo.Text = "Código:";
             // 
@@ -263,20 +246,22 @@
             // 
             txtDesc.BackColor = System.Drawing.Color.Transparent;
             txtDesc.Br = System.Drawing.Color.MidnightBlue;
+            txtDesc.Enabled = false;
             txtDesc.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtDesc.ForeColor = System.Drawing.Color.White;
-            txtDesc.Location = new System.Drawing.Point(117, 102);
+            txtDesc.Location = new System.Drawing.Point(134, 136);
+            txtDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtDesc.Name = "txtDesc";
-            txtDesc.Size = new System.Drawing.Size(123, 29);
+            txtDesc.Size = new System.Drawing.Size(141, 39);
             txtDesc.TabIndex = 66;
             // 
             // lblDescripcion
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.ForeColor = System.Drawing.Color.White;
-            lblDescripcion.Location = new System.Drawing.Point(35, 108);
+            lblDescripcion.Location = new System.Drawing.Point(41, 142);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new System.Drawing.Size(72, 15);
+            lblDescripcion.Size = new System.Drawing.Size(90, 20);
             lblDescripcion.TabIndex = 65;
             lblDescripcion.Text = "Descripción:";
             // 
@@ -284,30 +269,32 @@
             // 
             lblBolsilloInterior.AutoSize = true;
             lblBolsilloInterior.ForeColor = System.Drawing.Color.White;
-            lblBolsilloInterior.Location = new System.Drawing.Point(273, 108);
+            lblBolsilloInterior.Location = new System.Drawing.Point(14, 428);
             lblBolsilloInterior.Name = "lblBolsilloInterior";
-            lblBolsilloInterior.Size = new System.Drawing.Size(65, 15);
+            lblBolsilloInterior.Size = new System.Drawing.Size(113, 20);
             lblBolsilloInterior.TabIndex = 68;
-            lblBolsilloInterior.Text = "Bolsillo Int:";
+            lblBolsilloInterior.Text = "Bolsillo Interior:";
             // 
             // txtBolsilloInt
             // 
             txtBolsilloInt.BackColor = System.Drawing.Color.Transparent;
             txtBolsilloInt.Br = System.Drawing.Color.MidnightBlue;
+            txtBolsilloInt.Enabled = false;
             txtBolsilloInt.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtBolsilloInt.ForeColor = System.Drawing.Color.White;
-            txtBolsilloInt.Location = new System.Drawing.Point(344, 102);
+            txtBolsilloInt.Location = new System.Drawing.Point(135, 420);
+            txtBolsilloInt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtBolsilloInt.Name = "txtBolsilloInt";
-            txtBolsilloInt.Size = new System.Drawing.Size(126, 29);
+            txtBolsilloInt.Size = new System.Drawing.Size(144, 39);
             txtBolsilloInt.TabIndex = 67;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.ForeColor = System.Drawing.Color.White;
-            label2.Location = new System.Drawing.Point(1, 287);
+            label2.Location = new System.Drawing.Point(-3, 383);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(105, 15);
+            label2.Size = new System.Drawing.Size(131, 20);
             label2.TabIndex = 70;
             label2.Text = "Tela Combinación:";
             // 
@@ -315,20 +302,22 @@
             // 
             txtTelaCombinacion.BackColor = System.Drawing.Color.Transparent;
             txtTelaCombinacion.Br = System.Drawing.Color.MidnightBlue;
+            txtTelaCombinacion.Enabled = false;
             txtTelaCombinacion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtTelaCombinacion.ForeColor = System.Drawing.Color.White;
-            txtTelaCombinacion.Location = new System.Drawing.Point(115, 280);
+            txtTelaCombinacion.Location = new System.Drawing.Point(135, 373);
+            txtTelaCombinacion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtTelaCombinacion.Name = "txtTelaCombinacion";
-            txtTelaCombinacion.Size = new System.Drawing.Size(126, 29);
+            txtTelaCombinacion.Size = new System.Drawing.Size(144, 39);
             txtTelaCombinacion.TabIndex = 69;
             // 
             // lblVivo
             // 
             lblVivo.AutoSize = true;
             lblVivo.ForeColor = System.Drawing.Color.White;
-            lblVivo.Location = new System.Drawing.Point(305, 144);
+            lblVivo.Location = new System.Drawing.Point(349, 241);
             lblVivo.Name = "lblVivo";
-            lblVivo.Size = new System.Drawing.Size(33, 15);
+            lblVivo.Size = new System.Drawing.Size(41, 20);
             lblVivo.TabIndex = 72;
             lblVivo.Text = "Vivo:";
             // 
@@ -336,20 +325,22 @@
             // 
             txtVivo.BackColor = System.Drawing.Color.Transparent;
             txtVivo.Br = System.Drawing.Color.MidnightBlue;
+            txtVivo.Enabled = false;
             txtVivo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtVivo.ForeColor = System.Drawing.Color.White;
-            txtVivo.Location = new System.Drawing.Point(344, 137);
+            txtVivo.Location = new System.Drawing.Point(393, 232);
+            txtVivo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtVivo.Name = "txtVivo";
-            txtVivo.Size = new System.Drawing.Size(126, 29);
+            txtVivo.Size = new System.Drawing.Size(144, 39);
             txtVivo.TabIndex = 71;
             // 
             // lblLazo
             // 
             lblLazo.AutoSize = true;
             lblLazo.ForeColor = System.Drawing.Color.White;
-            lblLazo.Location = new System.Drawing.Point(305, 179);
+            lblLazo.Location = new System.Drawing.Point(349, 288);
             lblLazo.Name = "lblLazo";
-            lblLazo.Size = new System.Drawing.Size(34, 15);
+            lblLazo.Size = new System.Drawing.Size(43, 20);
             lblLazo.TabIndex = 74;
             lblLazo.Text = "Lazo:";
             // 
@@ -357,39 +348,44 @@
             // 
             txtLazo.BackColor = System.Drawing.Color.Transparent;
             txtLazo.Br = System.Drawing.Color.MidnightBlue;
+            txtLazo.Enabled = false;
             txtLazo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtLazo.ForeColor = System.Drawing.Color.White;
-            txtLazo.Location = new System.Drawing.Point(344, 172);
+            txtLazo.Location = new System.Drawing.Point(393, 278);
+            txtLazo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtLazo.Name = "txtLazo";
-            txtLazo.Size = new System.Drawing.Size(126, 29);
+            txtLazo.Size = new System.Drawing.Size(144, 39);
             txtLazo.TabIndex = 73;
             // 
             // txtTalle
             // 
             txtTalle.BackColor = System.Drawing.Color.Transparent;
             txtTalle.Br = System.Drawing.Color.MidnightBlue;
+            txtTalle.Enabled = false;
             txtTalle.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtTalle.ForeColor = System.Drawing.Color.White;
-            txtTalle.Location = new System.Drawing.Point(344, 207);
+            txtTalle.Location = new System.Drawing.Point(393, 373);
+            txtTalle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtTalle.Name = "txtTalle";
-            txtTalle.Size = new System.Drawing.Size(126, 29);
+            txtTalle.Size = new System.Drawing.Size(144, 39);
             txtTalle.TabIndex = 75;
             // 
             // lblImagen
             // 
             lblImagen.AutoSize = true;
             lblImagen.ForeColor = System.Drawing.Color.White;
-            lblImagen.Location = new System.Drawing.Point(608, 91);
+            lblImagen.Location = new System.Drawing.Point(695, 121);
             lblImagen.Name = "lblImagen";
-            lblImagen.Size = new System.Drawing.Size(47, 15);
+            lblImagen.Size = new System.Drawing.Size(59, 20);
             lblImagen.TabIndex = 76;
             lblImagen.Text = "Imagen";
             // 
             // pBoxImagenPrenda
             // 
-            pBoxImagenPrenda.Location = new System.Drawing.Point(507, 109);
+            pBoxImagenPrenda.Location = new System.Drawing.Point(579, 145);
+            pBoxImagenPrenda.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pBoxImagenPrenda.Name = "pBoxImagenPrenda";
-            pBoxImagenPrenda.Size = new System.Drawing.Size(254, 233);
+            pBoxImagenPrenda.Size = new System.Drawing.Size(290, 311);
             pBoxImagenPrenda.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             pBoxImagenPrenda.TabIndex = 77;
             pBoxImagenPrenda.TabStop = false;
@@ -398,19 +394,110 @@
             // 
             txtStockProducto.BackColor = System.Drawing.Color.Transparent;
             txtStockProducto.Br = System.Drawing.Color.MidnightBlue;
+            txtStockProducto.Enabled = false;
             txtStockProducto.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtStockProducto.ForeColor = System.Drawing.Color.White;
-            txtStockProducto.Location = new System.Drawing.Point(342, 312);
+            txtStockProducto.Location = new System.Drawing.Point(393, 467);
+            txtStockProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtStockProducto.Name = "txtStockProducto";
-            txtStockProducto.Size = new System.Drawing.Size(126, 29);
+            txtStockProducto.Size = new System.Drawing.Size(144, 39);
             txtStockProducto.TabIndex = 78;
+            // 
+            // lblCinturaInterior
+            // 
+            lblCinturaInterior.AutoSize = true;
+            lblCinturaInterior.ForeColor = System.Drawing.Color.White;
+            lblCinturaInterior.Location = new System.Drawing.Point(281, 142);
+            lblCinturaInterior.Name = "lblCinturaInterior";
+            lblCinturaInterior.Size = new System.Drawing.Size(111, 20);
+            lblCinturaInterior.TabIndex = 80;
+            lblCinturaInterior.Text = "Cintura Interior:";
+            // 
+            // txtCinturaInt
+            // 
+            txtCinturaInt.BackColor = System.Drawing.Color.Transparent;
+            txtCinturaInt.Br = System.Drawing.Color.MidnightBlue;
+            txtCinturaInt.Enabled = false;
+            txtCinturaInt.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtCinturaInt.ForeColor = System.Drawing.Color.White;
+            txtCinturaInt.Location = new System.Drawing.Point(393, 136);
+            txtCinturaInt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCinturaInt.Name = "txtCinturaInt";
+            txtCinturaInt.Size = new System.Drawing.Size(144, 39);
+            txtCinturaInt.TabIndex = 79;
+            // 
+            // lblCollareta
+            // 
+            lblCollareta.AutoSize = true;
+            lblCollareta.ForeColor = System.Drawing.Color.White;
+            lblCollareta.Location = new System.Drawing.Point(318, 190);
+            lblCollareta.Name = "lblCollareta";
+            lblCollareta.Size = new System.Drawing.Size(72, 20);
+            lblCollareta.TabIndex = 82;
+            lblCollareta.Text = "Collareta:";
+            // 
+            // txtCollareta
+            // 
+            txtCollareta.BackColor = System.Drawing.Color.Transparent;
+            txtCollareta.Br = System.Drawing.Color.MidnightBlue;
+            txtCollareta.Enabled = false;
+            txtCollareta.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtCollareta.ForeColor = System.Drawing.Color.White;
+            txtCollareta.Location = new System.Drawing.Point(393, 183);
+            txtCollareta.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCollareta.Name = "txtCollareta";
+            txtCollareta.Size = new System.Drawing.Size(144, 39);
+            txtCollareta.TabIndex = 81;
+            // 
+            // txtTipoPrenda
+            // 
+            txtTipoPrenda.BackColor = System.Drawing.Color.Transparent;
+            txtTipoPrenda.Br = System.Drawing.Color.MidnightBlue;
+            txtTipoPrenda.Enabled = false;
+            txtTipoPrenda.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtTipoPrenda.ForeColor = System.Drawing.Color.White;
+            txtTipoPrenda.Location = new System.Drawing.Point(135, 231);
+            txtTipoPrenda.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtTipoPrenda.Name = "txtTipoPrenda";
+            txtTipoPrenda.Size = new System.Drawing.Size(141, 39);
+            txtTipoPrenda.TabIndex = 83;
+            // 
+            // txtForreria
+            // 
+            txtForreria.BackColor = System.Drawing.Color.Transparent;
+            txtForreria.Br = System.Drawing.Color.MidnightBlue;
+            txtForreria.Enabled = false;
+            txtForreria.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtForreria.ForeColor = System.Drawing.Color.White;
+            txtForreria.Location = new System.Drawing.Point(393, 326);
+            txtForreria.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtForreria.Name = "txtForreria";
+            txtForreria.Size = new System.Drawing.Size(144, 39);
+            txtForreria.TabIndex = 85;
+            // 
+            // lblForreria
+            // 
+            lblForreria.AutoSize = true;
+            lblForreria.ForeColor = System.Drawing.Color.White;
+            lblForreria.Location = new System.Drawing.Point(328, 335);
+            lblForreria.Name = "lblForreria";
+            lblForreria.Size = new System.Drawing.Size(63, 20);
+            lblForreria.TabIndex = 84;
+            lblForreria.Text = "Forreria:";
             // 
             // FmDetalleProductos
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(23, 21, 32);
-            ClientSize = new System.Drawing.Size(800, 450);
+            ClientSize = new System.Drawing.Size(914, 600);
+            Controls.Add(txtForreria);
+            Controls.Add(lblForreria);
+            Controls.Add(txtTipoPrenda);
+            Controls.Add(lblCollareta);
+            Controls.Add(txtCollareta);
+            Controls.Add(lblCinturaInterior);
+            Controls.Add(txtCinturaInt);
             Controls.Add(txtStockProducto);
             Controls.Add(pBoxImagenPrenda);
             Controls.Add(lblImagen);
@@ -436,13 +523,11 @@
             Controls.Add(lblTelaBase);
             Controls.Add(lblTalle);
             Controls.Add(txtPrecio);
-            Controls.Add(txtTejido);
-            Controls.Add(txtTransfer);
-            Controls.Add(txtTipoProducto);
-            Controls.Add(lblTransfer);
-            Controls.Add(lblTipoProducto);
+            Controls.Add(txtTelaBase);
+            Controls.Add(lblTipoPrenda);
             Controls.Add(txtCodigo);
             Controls.Add(lblCodigo);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FmDetalleProductos";
             Text = "FmDetalleProductos";
             Load += FmDetalleProductos_Load;
@@ -466,11 +551,11 @@
         private System.Windows.Forms.Label lblTelaBase;
         private System.Windows.Forms.Label lblTalle;
         private AltoControls.AltoTextBox txtPrecio;
-        private AltoControls.AltoTextBox txtTejido;
+        private AltoControls.AltoTextBox txtTelaBase;
         private AltoControls.AltoTextBox txtTransfer;
         private AltoControls.AltoTextBox txtTipoProducto;
         private System.Windows.Forms.Label lblTransfer;
-        private System.Windows.Forms.Label lblTipoProducto;
+        private System.Windows.Forms.Label lblTipoPrenda;
         private AltoControls.AltoTextBox txtCodigo;
         private System.Windows.Forms.Label lblCodigo;
         private AltoControls.AltoTextBox txtDesc;
@@ -487,5 +572,12 @@
         private System.Windows.Forms.Label lblImagen;
         private System.Windows.Forms.PictureBox pBoxImagenPrenda;
         private AltoControls.AltoTextBox txtStockProducto;
+        private System.Windows.Forms.Label lblCinturaInterior;
+        private AltoControls.AltoTextBox txtCinturaInt;
+        private System.Windows.Forms.Label lblCollareta;
+        private AltoControls.AltoTextBox txtCollareta;
+        private AltoControls.AltoTextBox txtTipoPrenda;
+        private AltoControls.AltoTextBox txtForreria;
+        private System.Windows.Forms.Label lblForreria;
     }
 }
