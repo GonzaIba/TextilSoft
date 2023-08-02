@@ -1,5 +1,6 @@
 ﻿using Contracts.Repositories;
 using Domain.Entities;
+using Domain.Enum;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -30,5 +31,7 @@ namespace Contracts.Services
         public List<TipoPrendaModel> ObtenerLosTiposDePrendas();
 
         public ProductosModel ObtenerCodigosDeArmados(ABMProductoEntity aBMProductoEntity);
+
+        (dynamic, ArmadoProductoEnum) ObtenerArmadoPorCodigo(ArmadoProductoEnum armadoProductoEnum, string code);
     }
 }

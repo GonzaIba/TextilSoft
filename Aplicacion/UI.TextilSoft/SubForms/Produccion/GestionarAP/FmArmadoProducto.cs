@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
+using UI.TextilSoft.Tools.ExtensionsControls;
 
 namespace UI.TextilSoft.SubForms.Produccion.GestionarAP
 {
@@ -22,44 +23,35 @@ namespace UI.TextilSoft.SubForms.Produccion.GestionarAP
         public FmArmadoProducto(IControllerFactory factory, FmTextilSoft fmTextilSoft)
         {
             InitializeComponent();
+            _factory = factory;
+            _fmTextilSoft = fmTextilSoft;
         }
 
         private void FmArmadoProducto_Load(object sender, EventArgs e)
         {
-            var tipoPrendaValues = Enum.GetValues(typeof(TipoPrendaEnum));
-
+            var tipoPrendaValues = Enum.GetValues(typeof(ArmadoProductoEnum));
+            fmCboxTipoArmado.DataSource = tipoPrendaValues;
         }
 
         private void txtDesc_TextChanged(object sender, EventArgs e)
         {
-            if (txtD.Text.Length == 8)
+            if (txtCodigo.Text.Length == 8)
             {
-                string DNI = txtDNI.Text;
-                var Cliente = _factory.UseNew<IClientesController>().ObtenerCliente(DNI);
-                if (Cliente is null)
+                string Codigo = txtCodigo.Text;
+                var Armado = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoPorCodigo((ArmadoProductoEnum)fmCboxTipoArmado.SelectedItem, Codigo);
+                if (Armado is null)
                 {
-                    MessageBox.Show("El cliente con el dni: " + txtDNI.Text + " No existe, vuelva a ingresarlo porfavor");
-                    txtDNI.LimpiarTextbox();
-                    panelProductos.Enabled = false;
+                    MessageBox.Show("No existe ningun producto con este código. Por Favor, vuelva a ingresarlo");
+                    txtCodigo.LimpiarTextbox();
                 }
                 else
                 {
-                    txtNombre.Text = Cliente.Nombre;
-                    txtResidencia.Text = Cliente.Residencia;
-                    txtApellido.Text = Cliente.Apellido;
-                    txtMail.Text = Cliente.Mail;
-                    txtTelefono.Text = Cliente.Telefono;
-                    panelProductos.Enabled = true;
+                    txtEliminarNombre.Text = Armado.Nombre;
                 }
             }
             else
             {
-                panelProductos.Enabled = false;
-                txtNombre.LimpiarTextbox();
-                txtResidencia.LimpiarTextbox();
-                txtApellido.LimpiarTextbox();
-                txtMail.LimpiarTextbox();
-                txtTelefono.LimpiarTextbox();
+                txtEliminarNombre.LimpiarTextbox();
             }
         }
     }

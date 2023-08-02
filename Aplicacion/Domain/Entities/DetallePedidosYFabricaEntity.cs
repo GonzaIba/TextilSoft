@@ -11,6 +11,7 @@ namespace Domain.Entities
         public string Acciones { get; set; }
         public Guid Codigo { get; set; }
         public string Detalle { get; set; }
+        public string Color { get; set; }
         public string NombreProducto { get; set; }
         public decimal PrecioProducto { get; set; }
         public int Cantidad { get; set; }

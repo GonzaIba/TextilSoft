@@ -19,6 +19,10 @@ namespace Infrastructure.TypeBuilders
                 .HasColumnType("varchar(500)")
                 .IsRequired(false);
 
+            builder.Property(p => p.Color)
+                .HasColumnType("varchar(500)")
+                .IsRequired(true);
+
             builder.Property(p => p.Cantidad)
                 .IsRequired(true);
 
@@ -29,6 +33,10 @@ namespace Infrastructure.TypeBuilders
             builder.HasOne(p => p.Producto)
                 .WithMany(c => c.DetallePedidosFabrica)
                 .HasForeignKey(p => p.ID_Producto);
+
+            builder.HasOne(p => p.Transfer)
+                .WithMany(c => c.DetallePedidoFabrica)
+                .HasForeignKey(p => p.ID_Transfer);
 
             builder.Ignore(p => p.CreateDate);
 

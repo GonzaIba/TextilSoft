@@ -31,7 +31,7 @@
             lblPrincipal = new System.Windows.Forms.Label();
             fmCboxTipoArmado = new Tools.FormsTools.FmCombobox();
             lblCollareta = new System.Windows.Forms.Label();
-            txtDesc = new AltoControls.AltoTextBox();
+            txtCodigo = new AltoControls.AltoTextBox();
             lblDescripcion = new System.Windows.Forms.Label();
             btnEliminar = new FontAwesome.Sharp.IconButton();
             txtEliminarNombre = new AltoControls.AltoTextBox();
@@ -82,18 +82,18 @@
             lblCollareta.TabIndex = 124;
             lblCollareta.Text = "Tipo De Armado";
             // 
-            // txtDesc
+            // txtCodigo
             // 
-            txtDesc.BackColor = System.Drawing.Color.Transparent;
-            txtDesc.Br = System.Drawing.Color.MidnightBlue;
-            txtDesc.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            txtDesc.ForeColor = System.Drawing.Color.White;
-            txtDesc.Location = new System.Drawing.Point(108, 211);
-            txtDesc.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            txtDesc.Name = "txtDesc";
-            txtDesc.Size = new System.Drawing.Size(141, 39);
-            txtDesc.TabIndex = 123;
-            txtDesc.TextChanged += txtDesc_TextChanged;
+            txtCodigo.BackColor = System.Drawing.Color.Transparent;
+            txtCodigo.Br = System.Drawing.Color.MidnightBlue;
+            txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtCodigo.ForeColor = System.Drawing.Color.White;
+            txtCodigo.Location = new System.Drawing.Point(108, 211);
+            txtCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCodigo.Name = "txtCodigo";
+            txtCodigo.Size = new System.Drawing.Size(141, 39);
+            txtCodigo.TabIndex = 123;
+            txtCodigo.TextChanged += txtDesc_TextChanged;
             // 
             // lblDescripcion
             // 
@@ -127,6 +127,7 @@
             // 
             txtEliminarNombre.BackColor = System.Drawing.Color.Transparent;
             txtEliminarNombre.Br = System.Drawing.Color.MidnightBlue;
+            txtEliminarNombre.Enabled = false;
             txtEliminarNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtEliminarNombre.ForeColor = System.Drawing.Color.White;
             txtEliminarNombre.Location = new System.Drawing.Point(108, 258);
@@ -199,7 +200,7 @@
             Controls.Add(btnEliminar);
             Controls.Add(fmCboxTipoArmado);
             Controls.Add(lblCollareta);
-            Controls.Add(txtDesc);
+            Controls.Add(txtCodigo);
             Controls.Add(lblDescripcion);
             Controls.Add(lblPrincipal);
             Name = "FmArmadoProducto";
@@ -214,7 +215,7 @@
         private System.Windows.Forms.Label lblPrincipal;
         private Tools.FormsTools.FmCombobox fmCboxTipoArmado;
         private System.Windows.Forms.Label lblCollareta;
-        private AltoControls.AltoTextBox txtDesc;
+        private AltoControls.AltoTextBox txtCodigo;
         private System.Windows.Forms.Label lblDescripcion;
         private FontAwesome.Sharp.IconButton btnEliminar;
         private AltoControls.AltoTextBox txtEliminarNombre;

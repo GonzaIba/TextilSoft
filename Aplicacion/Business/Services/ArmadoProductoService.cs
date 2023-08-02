@@ -2,6 +2,7 @@
 using Contracts.Repositories;
 using Contracts.Services;
 using Domain.Entities;
+using Domain.Enum;
 using Domain.Models;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,9 +61,24 @@ namespace Business.Services
             return producto;
         }
 
+        public (dynamic, ArmadoProductoEnum) ObtenerArmadoPorCodigo(ArmadoProductoEnum armadoProductoEnum, string code) =>
+        armadoProductoEnum switch
+        {
+            ArmadoProductoEnum.TelaBase => (_telaBaseRepository.Get(x=>x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.TelaBase),
+            ArmadoProductoEnum.TelaCombinacion => (_telaCombinacionRepository.Get(x => x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.TelaCombinacion),
+            ArmadoProductoEnum.BolsilloInterior => (_bolsilloInteriorRepository.Get(x => x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.BolsilloInterior),
+            ArmadoProductoEnum.CinturaInterior => (_cinturaInteriorRepository.Get(x => x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.CinturaInterior),
+            ArmadoProductoEnum.Collareta => (_collaretaRepository.Get(x => x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.Collareta),
+            ArmadoProductoEnum.Lazo => (_lazoRepository.Get(x => x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.Lazo),
+            ArmadoProductoEnum.Vivo => (_vivoRepository.Get(x => x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.Vivo),
+            ArmadoProductoEnum.Forreria => (_forreriaRepository.Get(x => x.Codigo == code).FirstOrDefault(), ArmadoProductoEnum.Forreria),
+            ArmadoProductoEnum.TipoPrenda => (_tipoPrendaRepository.Get(x => x.TipoPrenda == code).FirstOrDefault(), ArmadoProductoEnum.TipoPrenda),
+            _ => (null,ArmadoProductoEnum.Vivo),
+        };
 
-        #region Getters
-        public List<TelaBaseModel> ObtenerTelasBase()
+
+    #region Getters
+    public List<TelaBaseModel> ObtenerTelasBase()
         {
             return _telaBaseRepository.Get().ToList();
         }

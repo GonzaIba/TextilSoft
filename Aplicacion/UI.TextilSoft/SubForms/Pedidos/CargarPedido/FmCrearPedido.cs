@@ -47,6 +47,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dgvProductos.DataSource = DetallePedidos.ToList();
             dgvProductos.CellPainting += dgvProductos_CellPainting;
             lblDatoProducto.Enabled = true;
+
+            fmCboxTransfer.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerTransfer();
+            fmCboxTransfer.DisplayMember = "Nombre";
         }
 
         private void FmCrearPedido_Load(object sender, EventArgs e)
@@ -107,6 +110,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                     FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "No encontrado", "No se encontró el producto", centerPosition);
                     fmMessageBox.ShowDialog();
                     txtCantidad.Enabled = false;
+                    txtColor.Enabled = false;
                     txtDescripcion.Enabled = false;
                     btnAgregarProducto.Enabled = false;
                     txtDNI.LimpiarTextbox();
@@ -114,6 +118,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                 else
                 {
                     txtCantidad.Enabled = true;
+                    txtColor.Enabled = true;
                     txtDescripcion.Enabled = true;
                     btnAgregarProducto.Enabled = true;
                 }
@@ -174,6 +179,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                             DetallePedidos.Add(new DetallePedidosYFabricaEntity
                             {
                                 Codigo = Producto.Codigo,
+                                Color = txtColor.Text,
                                 Detalle = txtDescripcion.Text,
                                 Cantidad = Convert.ToInt32(txtCantidad.Text),
                                 PrecioProducto = Producto.Precio,
@@ -184,12 +190,13 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                             dgvProductos.DataSource = DetallePedidos.ToList();
 
                             txtCodigo.Enabled = true;
-                            txtCodigo.Text = "";
+                            txtColor.Text = "";                   
                             txtCantidad.Text = "";
                             txtDescripcion.Text = "";
                             btnAgregarProducto.Text = "Agregar Producto";
                             btnCancelar.Visible = false;
                             txtCodigo.LimpiarTextbox();
+                            txtColor.LimpiarTextbox();
                             txtCantidad.LimpiarTextbox();
                             btnGenerarPedido.Enabled = true;
                         }
@@ -213,7 +220,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                         {
                             CantidadTotal += x.Cantidad;
                         });
-                        if ((CantidadTotal + Convert.ToInt32(txtCantidad.Text)) > CantidadDisponible)
+                        if ((Convert.ToInt32(txtCantidad.Text)) > CantidadDisponible)
                         {
                             var centerPosition = new Point(this.Width / 2, this.Height / 2);
                             FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error de cuentas", "Hay varios productos con el mismo código y superan el stock pedido, solo puede hasta: " + (CantidadDisponible - CantidadTotal).ToString(), centerPosition);
@@ -226,12 +233,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                             //Select DetallePedidos and update
                             var DetallePedido = DetallePedidos.Where(x => x.Codigo == Producto.Codigo && x.Detalle == txtDescripcion.Text).FirstOrDefault();
                             DetallePedido.Cantidad = Cantidad;
+                            DetallePedido.Color = txtColor.Text;
                             DetallePedido.Detalle = txtDescripcion.Text;
                             ActualizarTotal();
                             dgvProductos.DataSource = DetallePedidos.ToList();
 
                             txtCodigo.Enabled = true;
                             txtCodigo.LimpiarTextbox();
+                            txtColor.LimpiarTextbox();
                             txtCantidad.LimpiarTextbox();
                             txtDescripcion.LimpiarTextbox();
                             btnAgregarProducto.Text = "Agregar Producto";

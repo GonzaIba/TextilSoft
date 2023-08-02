@@ -15,26 +15,63 @@ namespace UI.TextilSoft.Controllers
     public class ArmadoProductoController : IArmadoProductoController
     {
         private readonly IArmadoProductoService _armadoProductoService;
+        private readonly ITransferService _transferService;
         private readonly IMapper _mapper;
-        public ArmadoProductoController(IArmadoProductoService armadoProductoService, IMapper mapper)
+        public ArmadoProductoController(IArmadoProductoService armadoProductoService,ITransferService transferService, IMapper mapper)
         {
             _armadoProductoService = armadoProductoService;
+            _transferService = transferService;
             _mapper = mapper;
         }
 
-        public dynamic ObtenerArmadoProductoPorTipo(ArmadoProductoEnum armadoProductoEnum) =>
-            armadoProductoEnum switch
+        public dynamic ObtenerArmadoPorCodigo(ArmadoProductoEnum armadoProductoEnum, string code)
+        {
+            var (dynamicREsult, TipoEnum) = _armadoProductoService.ObtenerArmadoPorCodigo(armadoProductoEnum, code);
+            switch (TipoEnum)
             {
-                ArmadoProductoEnum.TelaBase =>  _mapper.Map<List<TelaBaseEntity>>(_armadoProductoService.ObtenerTelasBase()),
-                ArmadoProductoEnum.TelaCombinacion => _mapper.Map<List<TelaCombinacionEntity>>(_armadoProductoService.ObtenerTelaCombinaciones()),
-                ArmadoProductoEnum.BolsilloInterior => _mapper.Map<List<BolsilloInteriorEntity>>(_armadoProductoService.ObtenerBolsillosInteriores()),
-                ArmadoProductoEnum.CinturaInterior => _mapper.Map<List<CinturaInteriorEntity>>(_armadoProductoService.ObtenerCinturasInteriores()),
-                ArmadoProductoEnum.Collareta => _mapper.Map<List<CollaretaEntity>>(_armadoProductoService.ObtenerCollaretas()),
-                ArmadoProductoEnum.Lazo => _mapper.Map<List<LazoEntity>>(_armadoProductoService.ObtenerLazos()),
-                ArmadoProductoEnum.Vivo => _mapper.Map<List<VivoEntity>>(_armadoProductoService.ObtenerVivos()),
-                ArmadoProductoEnum.Forreria => _mapper.Map<List<ForreriaEntity>>(_armadoProductoService.ObtenerForrerias()),
-                ArmadoProductoEnum.TipoPrenda => _mapper.Map<List<TipoPrendaEntity>>(_armadoProductoService.ObtenerLosTiposDePrendas()),
-                _ => null,
-            };
+                case ArmadoProductoEnum.TelaBase:
+                    return _mapper.Map<TelaBaseEntity>(dynamicREsult);
+                case ArmadoProductoEnum.TelaCombinacion:
+                    return _mapper.Map<TelaCombinacionEntity>(dynamicREsult);
+                case ArmadoProductoEnum.BolsilloInterior:
+                    return _mapper.Map<BolsilloInteriorEntity>(dynamicREsult);
+                case ArmadoProductoEnum.CinturaInterior:
+                    return _mapper.Map<CinturaInteriorEntity>(dynamicREsult);
+                case ArmadoProductoEnum.Collareta:
+                    return _mapper.Map<CollaretaEntity>(dynamicREsult);
+                case ArmadoProductoEnum.Lazo:
+                    return _mapper.Map<LazoEntity>(dynamicREsult);
+                case ArmadoProductoEnum.Vivo:
+                    return _mapper.Map<VivoEntity>(dynamicREsult);
+                case ArmadoProductoEnum.Forreria:
+                    return _mapper.Map<ForreriaEntity>(dynamicREsult);
+                case ArmadoProductoEnum.TipoPrenda:
+                    return _mapper.Map<TipoPrendaEntity>(dynamicREsult);
+                default:
+                    return null;
+            }
+        }
+
+        public dynamic ObtenerArmadoProductoPorTipo(ArmadoProductoEnum armadoProductoEnum) =>
+        armadoProductoEnum switch
+        {
+            ArmadoProductoEnum.TelaBase =>  _mapper.Map<List<TelaBaseEntity>>(_armadoProductoService.ObtenerTelasBase()),
+            ArmadoProductoEnum.TelaCombinacion => _mapper.Map<List<TelaCombinacionEntity>>(_armadoProductoService.ObtenerTelaCombinaciones()),
+            ArmadoProductoEnum.BolsilloInterior => _mapper.Map<List<BolsilloInteriorEntity>>(_armadoProductoService.ObtenerBolsillosInteriores()),
+            ArmadoProductoEnum.CinturaInterior => _mapper.Map<List<CinturaInteriorEntity>>(_armadoProductoService.ObtenerCinturasInteriores()),
+            ArmadoProductoEnum.Collareta => _mapper.Map<List<CollaretaEntity>>(_armadoProductoService.ObtenerCollaretas()),
+            ArmadoProductoEnum.Lazo => _mapper.Map<List<LazoEntity>>(_armadoProductoService.ObtenerLazos()),
+            ArmadoProductoEnum.Vivo => _mapper.Map<List<VivoEntity>>(_armadoProductoService.ObtenerVivos()),
+            ArmadoProductoEnum.Forreria => _mapper.Map<List<ForreriaEntity>>(_armadoProductoService.ObtenerForrerias()),
+            ArmadoProductoEnum.TipoPrenda => _mapper.Map<List<TipoPrendaEntity>>(_armadoProductoService.ObtenerLosTiposDePrendas()),
+            _ => null,
+        };
+
+        public List<TransferEntity> ObtenerTransfer()
+        {
+            var ListaTransferModel =  _transferService.Get().ToList();
+            var ListaTransfer = _mapper.Map<List<TransferEntity>>(ListaTransferModel);
+            return ListaTransfer;
+        }
     }
 }

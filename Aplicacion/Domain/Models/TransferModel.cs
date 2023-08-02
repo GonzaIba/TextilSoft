@@ -11,11 +11,13 @@ namespace Domain.Models
         public TransferModel()
         {
             DetallePedido = new HashSet<DetallePedidosModel>();
+            DetallePedidoFabrica = new HashSet<DetallePedidosFabricaModel>();
         }
         public int ID_Transfer { get; set; }
         public string Codigo { get; set; }
         public string Imagen { get; set; }
 
         public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }
+        public virtual ICollection<DetallePedidosFabricaModel> DetallePedidoFabrica { get; set; }
     }
 }

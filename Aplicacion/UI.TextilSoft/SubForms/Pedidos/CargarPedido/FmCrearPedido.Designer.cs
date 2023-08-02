@@ -51,6 +51,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtDNI = new AltoControls.AltoTextBox();
             label2 = new System.Windows.Forms.Label();
             panelProductos = new System.Windows.Forms.Panel();
+            txtColor = new AltoControls.AltoTextBox();
+            label9 = new System.Windows.Forms.Label();
             fmCboxTransfer = new Tools.FormsTools.FmCombobox();
             lblTransfer = new System.Windows.Forms.Label();
             btnCancelar = new FontAwesome.Sharp.IconButton();
@@ -115,7 +117,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelClientes.Location = new System.Drawing.Point(14, 72);
             panelClientes.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelClientes.Name = "panelClientes";
-            panelClientes.Size = new System.Drawing.Size(1088, 200);
+            panelClientes.Size = new System.Drawing.Size(1142, 200);
             panelClientes.TabIndex = 1;
             // 
             // txtSeña
@@ -289,6 +291,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // panelProductos
             // 
             panelProductos.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            panelProductos.Controls.Add(txtColor);
+            panelProductos.Controls.Add(label9);
             panelProductos.Controls.Add(fmCboxTransfer);
             panelProductos.Controls.Add(lblTransfer);
             panelProductos.Controls.Add(btnCancelar);
@@ -303,8 +307,31 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelProductos.Location = new System.Drawing.Point(6, 8);
             panelProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelProductos.Name = "panelProductos";
-            panelProductos.Size = new System.Drawing.Size(1074, 103);
+            panelProductos.Size = new System.Drawing.Size(1128, 103);
             panelProductos.TabIndex = 15;
+            // 
+            // txtColor
+            // 
+            txtColor.BackColor = System.Drawing.Color.Transparent;
+            txtColor.Br = System.Drawing.Color.MidnightBlue;
+            txtColor.Enabled = false;
+            txtColor.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            txtColor.ForeColor = System.Drawing.Color.White;
+            txtColor.Location = new System.Drawing.Point(698, 55);
+            txtColor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtColor.Name = "txtColor";
+            txtColor.Size = new System.Drawing.Size(102, 39);
+            txtColor.TabIndex = 118;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.ForeColor = System.Drawing.Color.White;
+            label9.Location = new System.Drawing.Point(642, 66);
+            label9.Name = "label9";
+            label9.Size = new System.Drawing.Size(48, 20);
+            label9.TabIndex = 117;
+            label9.Text = "Color:";
             // 
             // fmCboxTransfer
             // 
@@ -318,7 +345,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             fmCboxTransfer.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTransfer.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTransfer.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTransfer.Location = new System.Drawing.Point(806, 10);
+            fmCboxTransfer.Location = new System.Drawing.Point(817, 40);
             fmCboxTransfer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxTransfer.Name = "fmCboxTransfer";
             fmCboxTransfer.Size = new System.Drawing.Size(134, 27);
@@ -329,7 +356,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblTransfer.AutoSize = true;
             lblTransfer.ForeColor = System.Drawing.Color.White;
-            lblTransfer.Location = new System.Drawing.Point(736, 5);
+            lblTransfer.Location = new System.Drawing.Point(854, 16);
             lblTransfer.Name = "lblTransfer";
             lblTransfer.Size = new System.Drawing.Size(64, 20);
             lblTransfer.TabIndex = 115;
@@ -346,10 +373,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnCancelar.IconColor = System.Drawing.Color.White;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelar.IconSize = 35;
-            btnCancelar.Location = new System.Drawing.Point(946, 55);
+            btnCancelar.Location = new System.Drawing.Point(972, 55);
             btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new System.Drawing.Size(125, 42);
+            btnCancelar.Size = new System.Drawing.Size(133, 42);
             btnCancelar.TabIndex = 17;
             btnCancelar.Text = "Cancelar";
             btnCancelar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -369,12 +396,12 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnAgregarProducto.IconColor = System.Drawing.Color.White;
             btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarProducto.IconSize = 35;
-            btnAgregarProducto.Location = new System.Drawing.Point(946, 5);
+            btnAgregarProducto.Location = new System.Drawing.Point(972, 5);
             btnAgregarProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAgregarProducto.Name = "btnAgregarProducto";
-            btnAgregarProducto.Size = new System.Drawing.Size(125, 48);
+            btnAgregarProducto.Size = new System.Drawing.Size(133, 48);
             btnAgregarProducto.TabIndex = 8;
-            btnAgregarProducto.Text = "Agregar Al Carrito";
+            btnAgregarProducto.Text = "Agregar Producto";
             btnAgregarProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnAgregarProducto.UseVisualStyleBackColor = false;
             btnAgregarProducto.Click += btnAgregarProducto_Click;
@@ -397,10 +424,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtCantidad.Enabled = false;
             txtCantidad.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCantidad.ForeColor = System.Drawing.Color.White;
-            txtCantidad.Location = new System.Drawing.Point(694, 41);
+            txtCantidad.Location = new System.Drawing.Point(698, 9);
             txtCantidad.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCantidad.Name = "txtCantidad";
-            txtCantidad.Size = new System.Drawing.Size(70, 39);
+            txtCantidad.Size = new System.Drawing.Size(102, 39);
             txtCantidad.TabIndex = 7;
             txtCantidad.TextChanged += txtCantidad_TextChanged;
             // 
@@ -421,7 +448,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             // 
             lblCantidad.AutoSize = true;
             lblCantidad.ForeColor = System.Drawing.Color.White;
-            lblCantidad.Location = new System.Drawing.Point(621, 48);
+            lblCantidad.Location = new System.Drawing.Point(620, 19);
             lblCantidad.Name = "lblCantidad";
             lblCantidad.Size = new System.Drawing.Size(72, 20);
             lblCantidad.TabIndex = 5;
@@ -638,7 +665,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             panelProductoDetalle.Location = new System.Drawing.Point(14, 280);
             panelProductoDetalle.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelProductoDetalle.Name = "panelProductoDetalle";
-            panelProductoDetalle.Size = new System.Drawing.Size(1088, 432);
+            panelProductoDetalle.Size = new System.Drawing.Size(1142, 432);
             panelProductoDetalle.TabIndex = 90;
             // 
             // timerSubir
@@ -656,7 +683,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(1115, 775);
+            ClientSize = new System.Drawing.Size(1169, 775);
             Controls.Add(tbEsPedido);
             Controls.Add(lblSi);
             Controls.Add(lblNo);
@@ -724,5 +751,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private System.Windows.Forms.Label lblExtras;
         private Tools.FormsTools.FmCombobox fmCboxTransfer;
         private System.Windows.Forms.Label lblTransfer;
+        private AltoControls.AltoTextBox txtColor;
+        private System.Windows.Forms.Label label9;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Domain.Enum;
+﻿using Domain.Entities.ArmadoProductos;
+using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,7 @@ namespace Contracts.Controllers
     public interface IArmadoProductoController
     {
         public dynamic ObtenerArmadoProductoPorTipo(ArmadoProductoEnum armadoProductoEnum);
+        public dynamic ObtenerArmadoPorCodigo(ArmadoProductoEnum armadoProductoEnum, string code);
+        public List<TransferEntity> ObtenerTransfer();
     }
 }
