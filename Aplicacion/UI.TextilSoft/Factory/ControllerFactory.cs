@@ -44,7 +44,7 @@ namespace UI.TextilSoft.Factory
             _controllerDictionary[type] = Object; //Agregamos el objeto por mas que no este en el diccionario
             return Object;
         }
-
+         
         public void UpdateServices()
         {
             foreach (var service in _controllerDictionary)

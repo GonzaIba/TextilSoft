@@ -15,5 +15,7 @@ namespace Domain.Entities
         public string NombreProducto { get; set; }
         public decimal PrecioProducto { get; set; }
         public int Cantidad { get; set; }
+
+        public string CodigoTransfer { get; set; }
     }
 }

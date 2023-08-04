@@ -85,7 +85,7 @@ namespace Business.Services
                 {
                     detallePedido.ID_Pedido = pedidosModel.ID_Pedido;
                     detallePedidoRepository.Insert(detallePedido);
-                    var producto = productoRepository.Get(x => x.ID_Producto == 1, tracking: true).FirstOrDefault();
+                    var producto = productoRepository.Get(x => x.ID_Producto == detallePedido.ID_Producto, tracking: true).FirstOrDefault();
                     producto.Stock = producto.Stock - detallePedido.Cantidad;
                     productoRepository.Update(producto);
                     _unitOfWork.SaveChanges();

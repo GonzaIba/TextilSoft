@@ -3,6 +3,7 @@ using Contracts.Controllers;
 using Contracts.Services;
 using Domain.Entities.ArmadoProductos;
 using Domain.Enum;
+using Domain.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -67,11 +68,22 @@ namespace UI.TextilSoft.Controllers
             _ => null,
         };
 
-        public List<TransferEntity> ObtenerTransfer()
+        public List<TransferEntity> ObtenerTransfer(string codigo = "")
         {
-            var ListaTransferModel =  _transferService.Get().ToList();
+            var ListaTransferModel = new List<TransferModel>();
+            if (codigo == "")
+                ListaTransferModel = _transferService.Get().ToList();
+            else
+                ListaTransferModel = _transferService.Get(x => x.Codigo == codigo).ToList();
+            
             var ListaTransfer = _mapper.Map<List<TransferEntity>>(ListaTransferModel);
             return ListaTransfer;
+        }
+
+        public void CrearTransfer(TransferEntity transfer)
+        {
+            var transferModel = _mapper.Map<TransferModel>(transfer);
+            _transferService.Crear(transferModel);
         }
     }
 }

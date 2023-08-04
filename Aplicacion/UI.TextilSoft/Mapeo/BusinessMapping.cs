@@ -112,7 +112,11 @@ namespace UI.TextilSoft.Mapeo
             CreateMap<LazoModel, LazoEntity>();
             CreateMap<VivoModel, VivoEntity>();
             CreateMap<ForreriaModel, ForreriaEntity>();
-            CreateMap<TransferModel, TransferEntity>();
+            CreateMap<TransferModel, TransferEntity>()
+                .ForMember(dest => dest.Codigo, opt => opt.MapFrom(src => src.Codigo))
+                .ForMember(dest => dest.Imagen, opt => opt.MapFrom(src => src.Imagen))
+                .ReverseMap()
+                .ForMember(dest => dest.ID_Transfer, opt => opt.MapFrom(src => 0));
             #endregion
         }
 

@@ -12,6 +12,7 @@ namespace Contracts.Controllers
     {
         public dynamic ObtenerArmadoProductoPorTipo(ArmadoProductoEnum armadoProductoEnum);
         public dynamic ObtenerArmadoPorCodigo(ArmadoProductoEnum armadoProductoEnum, string code);
-        public List<TransferEntity> ObtenerTransfer();
+        public List<TransferEntity> ObtenerTransfer(string codigo = "");
+        public void CrearTransfer(TransferEntity transfer);
     }
 }

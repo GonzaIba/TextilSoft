@@ -80,7 +80,7 @@ namespace UI.TextilSoft.SubForms.Produccion
 
         private void btnGestionarAP_Click(object sender, EventArgs e)
         {
-            AbrirFormHija(new FmArmadoProducto(_factory,_fmTextilSoft));
+            AbrirFormHija(new FmArmadoProducto(_factory, _fmTextilSoft));
         }
 
         private void fmCboxABM_OnSelectedIndexChanged(object sender, EventArgs e)
@@ -97,6 +97,11 @@ namespace UI.TextilSoft.SubForms.Produccion
             {
                 AbrirFormHija(new FmEliminarProducto(_factory));
             }
+        }
+
+        private void btnGestionarT_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmGestionarTransfer(_factory));
         }
     }
 }

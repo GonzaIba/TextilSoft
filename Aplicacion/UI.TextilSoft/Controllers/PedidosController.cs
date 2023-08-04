@@ -30,10 +30,11 @@ namespace UI.TextilSoft.Controllers
         private readonly IEmpleadosService _empleadosService;
         private readonly IDetallePedidosService _detallePedidosService;
         private readonly IProductoService _productoService;
+        private readonly ITransferService _transferService;
         private readonly IMapper _mapper;
         private readonly ILogger _logger;
         //private readonly IExpressionContext _expressionContext;
-        public PedidosController(IPedidosService pedidosService, IClientesService clientesService, IPedidosFabricaService pedidosFabricaService, IEmpleadosService empleadosService, IDetallePedidosService detallePedidosService, IProductoService productoService, IMapper mapper, ILogger logger)
+        public PedidosController(IPedidosService pedidosService, IClientesService clientesService, IPedidosFabricaService pedidosFabricaService, IEmpleadosService empleadosService, IDetallePedidosService detallePedidosService, IProductoService productoService, ITransferService transferService, IMapper mapper, ILogger logger)
         {
             _pedidosService = pedidosService;
             _clientesService = clientesService;
@@ -41,6 +42,7 @@ namespace UI.TextilSoft.Controllers
             _empleadosService = empleadosService;
             _detallePedidosService = detallePedidosService;
             _productoService = productoService;
+            _transferService = transferService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -186,6 +188,8 @@ namespace UI.TextilSoft.Controllers
                         DetallePedidosModel detallePedidosModel = new();
                         detallePedidosModel.Cantidad = item.Cantidad;
                         detallePedidosModel.Detalle = item.Detalle;
+                        detallePedidosModel.Color = item.Color;
+                        detallePedidosModel.ID_Transfer = _transferService.Get(x => x.Codigo == item.CodigoTransfer).FirstOrDefault().ID_Transfer;
                         var producto = _productoService.Get(x => x.CodigoProducto == item.Codigo, tracking: false).FirstOrDefault();
                         if(producto != null)
                         {
@@ -203,6 +207,8 @@ namespace UI.TextilSoft.Controllers
                         DetallePedidosFabricaModel detallePedidosModel = new();
                         detallePedidosModel.Cantidad = item.Cantidad;
                         detallePedidosModel.Detalle = item.Detalle;
+                        detallePedidosModel.Color = item.Color;
+                        detallePedidosModel.ID_Transfer = _transferService.Get(x => x.Codigo == item.CodigoTransfer).FirstOrDefault().ID_Transfer;
                         var producto = _productoService.Get(x => x.CodigoProducto == item.Codigo, tracking: false).FirstOrDefault();
                         if (producto != null)
                         {

@@ -30,9 +30,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             label1 = new System.Windows.Forms.Label();
             panelClientes = new System.Windows.Forms.Panel();
             txtSeña = new AltoControls.AltoTextBox();
@@ -373,7 +373,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnCancelar.IconColor = System.Drawing.Color.White;
             btnCancelar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelar.IconSize = 35;
-            btnCancelar.Location = new System.Drawing.Point(972, 55);
+            btnCancelar.Location = new System.Drawing.Point(969, 55);
             btnCancelar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new System.Drawing.Size(133, 42);
@@ -396,7 +396,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnAgregarProducto.IconColor = System.Drawing.Color.White;
             btnAgregarProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAgregarProducto.IconSize = 35;
-            btnAgregarProducto.Location = new System.Drawing.Point(972, 5);
+            btnAgregarProducto.Location = new System.Drawing.Point(969, 5);
             btnAgregarProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAgregarProducto.Name = "btnAgregarProducto";
             btnAgregarProducto.Size = new System.Drawing.Size(133, 48);
@@ -411,7 +411,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             lblDatoProducto.AutoSize = true;
             lblDatoProducto.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             lblDatoProducto.ForeColor = System.Drawing.Color.White;
-            lblDatoProducto.Location = new System.Drawing.Point(3, 9);
+            lblDatoProducto.Location = new System.Drawing.Point(3, 5);
             lblDatoProducto.Name = "lblDatoProducto";
             lblDatoProducto.Size = new System.Drawing.Size(197, 28);
             lblDatoProducto.TabIndex = 16;
@@ -438,10 +438,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtDescripcion.Enabled = false;
             txtDescripcion.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtDescripcion.ForeColor = System.Drawing.Color.White;
-            txtDescripcion.Location = new System.Drawing.Point(322, 10);
+            txtDescripcion.Location = new System.Drawing.Point(322, 16);
             txtDescripcion.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtDescripcion.Name = "txtDescripcion";
-            txtDescripcion.Size = new System.Drawing.Size(293, 87);
+            txtDescripcion.Size = new System.Drawing.Size(293, 81);
             txtDescripcion.TabIndex = 6;
             // 
             // lblCantidad
@@ -496,14 +496,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dgvProductos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dgvProductos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dgvProductos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dgvProductos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             dgvProductos.ColumnHeadersHeight = 29;
             dgvProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgvProductos.EnableHeadersVisualStyles = false;
@@ -513,20 +513,20 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dgvProductos.Name = "dgvProductos";
             dgvProductos.ReadOnly = true;
             dgvProductos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            dgvProductos.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             dgvProductos.RowHeadersWidth = 51;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
-            dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
+            dgvProductos.RowsDefaultCellStyle = dataGridViewCellStyle9;
             dgvProductos.RowTemplate.Height = 25;
             dgvProductos.Size = new System.Drawing.Size(1074, 244);
             dgvProductos.TabIndex = 17;
@@ -545,10 +545,10 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             btnGenerarPedido.IconColor = System.Drawing.Color.White;
             btnGenerarPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnGenerarPedido.IconSize = 35;
-            btnGenerarPedido.Location = new System.Drawing.Point(8, 367);
+            btnGenerarPedido.Location = new System.Drawing.Point(18, 357);
             btnGenerarPedido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnGenerarPedido.Name = "btnGenerarPedido";
-            btnGenerarPedido.Size = new System.Drawing.Size(117, 56);
+            btnGenerarPedido.Size = new System.Drawing.Size(122, 56);
             btnGenerarPedido.TabIndex = 9;
             btnGenerarPedido.Text = "Generar Pedido";
             btnGenerarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

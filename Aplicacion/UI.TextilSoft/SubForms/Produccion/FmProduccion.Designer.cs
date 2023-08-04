@@ -30,7 +30,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            AnimatorNS.Animation animation1 = new AnimatorNS.Animation();
+            AnimatorNS.Animation animation2 = new AnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FmProduccion));
             PanelAnimator = new AnimatorNS.Animator(components);
             lblPrincipal = new System.Windows.Forms.Label();
@@ -41,6 +41,7 @@
             fmCboxABM = new Tools.FormsTools.FmCombobox();
             btnGestionarAP = new FontAwesome.Sharp.IconButton();
             tipABM = new System.Windows.Forms.ToolTip(components);
+            btnGestionarT = new FontAwesome.Sharp.IconButton();
             pnlTop.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,22 +49,22 @@
             // 
             PanelAnimator.AnimationType = AnimatorNS.AnimationType.VertBlind;
             PanelAnimator.Cursor = null;
-            animation1.AnimateOnlyDifferences = true;
-            animation1.BlindCoeff = (System.Drawing.PointF)resources.GetObject("animation1.BlindCoeff");
-            animation1.LeafCoeff = 0F;
-            animation1.MaxTime = 1F;
-            animation1.MinTime = 0F;
-            animation1.MosaicCoeff = (System.Drawing.PointF)resources.GetObject("animation1.MosaicCoeff");
-            animation1.MosaicShift = (System.Drawing.PointF)resources.GetObject("animation1.MosaicShift");
-            animation1.MosaicSize = 0;
-            animation1.Padding = new System.Windows.Forms.Padding(0);
-            animation1.RotateCoeff = 0F;
-            animation1.RotateLimit = 0F;
-            animation1.ScaleCoeff = (System.Drawing.PointF)resources.GetObject("animation1.ScaleCoeff");
-            animation1.SlideCoeff = (System.Drawing.PointF)resources.GetObject("animation1.SlideCoeff");
-            animation1.TimeCoeff = 0F;
-            animation1.TransparencyCoeff = 0F;
-            PanelAnimator.DefaultAnimation = animation1;
+            animation2.AnimateOnlyDifferences = true;
+            animation2.BlindCoeff = (System.Drawing.PointF)resources.GetObject("animation2.BlindCoeff");
+            animation2.LeafCoeff = 0F;
+            animation2.MaxTime = 1F;
+            animation2.MinTime = 0F;
+            animation2.MosaicCoeff = (System.Drawing.PointF)resources.GetObject("animation2.MosaicCoeff");
+            animation2.MosaicShift = (System.Drawing.PointF)resources.GetObject("animation2.MosaicShift");
+            animation2.MosaicSize = 0;
+            animation2.Padding = new System.Windows.Forms.Padding(0);
+            animation2.RotateCoeff = 0F;
+            animation2.RotateLimit = 0F;
+            animation2.ScaleCoeff = (System.Drawing.PointF)resources.GetObject("animation2.ScaleCoeff");
+            animation2.SlideCoeff = (System.Drawing.PointF)resources.GetObject("animation2.SlideCoeff");
+            animation2.TimeCoeff = 0F;
+            animation2.TransparencyCoeff = 0F;
+            PanelAnimator.DefaultAnimation = animation2;
             PanelAnimator.TimeStep = 0.01F;
             // 
             // lblPrincipal
@@ -73,7 +74,7 @@
             PanelAnimator.SetDecoration(lblPrincipal, AnimatorNS.DecorationType.None);
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(384, 12);
+            lblPrincipal.Location = new System.Drawing.Point(365, 9);
             lblPrincipal.Name = "lblPrincipal";
             lblPrincipal.Size = new System.Drawing.Size(153, 41);
             lblPrincipal.TabIndex = 0;
@@ -107,7 +108,7 @@
             PanelAnimator.SetDecoration(label1, AnimatorNS.DecorationType.None);
             label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(494, 96);
+            label1.Location = new System.Drawing.Point(724, 94);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(178, 32);
             label1.TabIndex = 11;
@@ -125,6 +126,8 @@
             // 
             // pnlTop
             // 
+            pnlTop.Controls.Add(btnGestionarT);
+            pnlTop.Controls.Add(lblPrincipal);
             pnlTop.Controls.Add(fmCboxABM);
             pnlTop.Controls.Add(btnGestionarAP);
             pnlTop.Controls.Add(label1);
@@ -150,7 +153,7 @@
             fmCboxABM.Items.AddRange(new object[] { "Crear Producto", "Modificar Producto", "Eliminar Producto" });
             fmCboxABM.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxABM.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxABM.Location = new System.Drawing.Point(494, 130);
+            fmCboxABM.Location = new System.Drawing.Point(724, 128);
             fmCboxABM.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             fmCboxABM.Name = "fmCboxABM";
             fmCboxABM.Size = new System.Drawing.Size(178, 27);
@@ -169,7 +172,7 @@
             btnGestionarAP.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnGestionarAP.IconSize = 35;
             btnGestionarAP.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnGestionarAP.Location = new System.Drawing.Point(214, 96);
+            btnGestionarAP.Location = new System.Drawing.Point(214, 94);
             btnGestionarAP.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnGestionarAP.Name = "btnGestionarAP";
             btnGestionarAP.Size = new System.Drawing.Size(243, 61);
@@ -179,13 +182,33 @@
             btnGestionarAP.UseVisualStyleBackColor = true;
             btnGestionarAP.Click += btnGestionarAP_Click;
             // 
+            // btnGestionarT
+            // 
+            PanelAnimator.SetDecoration(btnGestionarT, AnimatorNS.DecorationType.None);
+            btnGestionarT.FlatAppearance.BorderSize = 0;
+            btnGestionarT.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnGestionarT.ForeColor = System.Drawing.Color.White;
+            btnGestionarT.IconChar = FontAwesome.Sharp.IconChar.DrawPolygon;
+            btnGestionarT.IconColor = System.Drawing.Color.White;
+            btnGestionarT.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            btnGestionarT.IconSize = 35;
+            btnGestionarT.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            btnGestionarT.Location = new System.Drawing.Point(463, 95);
+            btnGestionarT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnGestionarT.Name = "btnGestionarT";
+            btnGestionarT.Size = new System.Drawing.Size(181, 61);
+            btnGestionarT.TabIndex = 123;
+            btnGestionarT.Text = "Gestionar Transfer";
+            btnGestionarT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            btnGestionarT.UseVisualStyleBackColor = true;
+            btnGestionarT.Click += btnGestionarT_Click;
+            // 
             // FmProduccion
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
             ClientSize = new System.Drawing.Size(914, 600);
-            Controls.Add(lblPrincipal);
             Controls.Add(panelContenedor);
             Controls.Add(pnlTop);
             PanelAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
@@ -195,7 +218,6 @@
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -208,5 +230,6 @@
         private System.Windows.Forms.Panel pnlTop;
         private FontAwesome.Sharp.IconButton btnGestionarAP;
         private Tools.FormsTools.FmCombobox fmCboxABM;
+        private FontAwesome.Sharp.IconButton btnGestionarT;
     }
 }

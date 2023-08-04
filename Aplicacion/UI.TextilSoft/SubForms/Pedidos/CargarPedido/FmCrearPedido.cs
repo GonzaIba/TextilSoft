@@ -1,5 +1,6 @@
 ﻿using Contracts.Controllers;
 using Domain.Entities;
+using Domain.Entities.ArmadoProductos;
 using FontAwesome.Sharp;
 using SL.Domain.Entities;
 using System;
@@ -48,8 +49,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             dgvProductos.CellPainting += dgvProductos_CellPainting;
             lblDatoProducto.Enabled = true;
 
-            fmCboxTransfer.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerTransfer();
-            fmCboxTransfer.DisplayMember = "Nombre";
         }
 
         private void FmCrearPedido_Load(object sender, EventArgs e)
@@ -61,6 +60,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             txtTelefono.Enabled = false;
             txtTotal.Text = "0";
             txtSubtotal.Text = "0";
+            fmCboxTransfer.DataSource = _factory.UseNew<IArmadoProductoController>().ObtenerTransfer();
+            fmCboxTransfer.DisplayMember = "Codigo";
         }
 
         private void txtDNI_TextChanged(object sender, EventArgs e)
@@ -182,6 +183,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                                 Color = txtColor.Text,
                                 Detalle = txtDescripcion.Text,
                                 Cantidad = Convert.ToInt32(txtCantidad.Text),
+                                CodigoTransfer = ((TransferEntity)fmCboxTransfer.SelectedItem).Codigo,
                                 PrecioProducto = Producto.Precio,
                                 NombreProducto = Producto.NombreProducto
                             });
@@ -190,7 +192,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                             dgvProductos.DataSource = DetallePedidos.ToList();
 
                             txtCodigo.Enabled = true;
-                            txtColor.Text = "";                   
+                            txtColor.Text = "";
                             txtCantidad.Text = "";
                             txtDescripcion.Text = "";
                             btnAgregarProducto.Text = "Agregar Producto";
@@ -198,6 +200,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                             txtCodigo.LimpiarTextbox();
                             txtColor.LimpiarTextbox();
                             txtCantidad.LimpiarTextbox();
+                            fmCboxTransfer.SelectedIndex = -1;
                             btnGenerarPedido.Enabled = true;
                         }
                     }
@@ -234,6 +237,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                             var DetallePedido = DetallePedidos.Where(x => x.Codigo == Producto.Codigo && x.Detalle == txtDescripcion.Text).FirstOrDefault();
                             DetallePedido.Cantidad = Cantidad;
                             DetallePedido.Color = txtColor.Text;
+                            DetallePedido.CodigoTransfer = ((TransferEntity)fmCboxTransfer.SelectedItem).Codigo;
                             DetallePedido.Detalle = txtDescripcion.Text;
                             ActualizarTotal();
                             dgvProductos.DataSource = DetallePedidos.ToList();
@@ -296,28 +300,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
                 y = Y_Inicial_pnlClientes;
             }
         }
-        private void EsPedido_EsPedidoFabrica(bool estado)
-        {
-            lblDatoProducto.Enabled = true;
-            panelClientes.Enabled = estado;
-            txtSubtotal.Visible = estado;
-            txtTotal.Visible = estado;
-            lblSubTotal.Visible = estado;
-            lblTotal.Visible = estado;
-            if (!estado)
-            {
-                panelClientes.Enabled = false;
-                panelProductos.Enabled = true;
-            }
-            else
-            {
-                panelClientes.Enabled = true;
-                if (txtApellido.Text != "")
-                    panelProductos.Enabled = true;
-                else
-                    panelProductos.Enabled = false;
-            }
-        }
         #endregion
 
         private async void timerSubir_Tick(object sender, EventArgs e)
@@ -363,7 +345,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
 
                 if (fmMessageBox.btnAceptar)
                 {
-                    string resultado = _factory.Use<IPedidosController<ListarPedidosEntity>>().GenerarPedido(DetallePedidos, tbEsPedido.Checked, Convert.ToInt32(_fmTextilSoft._user.DNI), Convert.ToInt32(txtDNI.Text), Convert.ToDecimal(txtSubtotal.Text), Convert.ToDecimal(txtSeña.Text == "" ? 0 : txtSeña.Text));
+                    string resultado = _factory.UseNew<IPedidosController<ListarPedidosEntity>>().GenerarPedido(DetallePedidos, tbEsPedido.Checked, Convert.ToInt32(_fmTextilSoft._user.DNI), Convert.ToInt32(txtDNI.Text), Convert.ToDecimal(txtSubtotal.Text), Convert.ToDecimal(txtSeña.Text == "" ? 0 : txtSeña.Text));
                     if (resultado == "OK")
                     {
                         FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Success, "Creación exitosa", "Se creó el pedido correctamente!", centerPosition);
@@ -608,7 +590,6 @@ namespace UI.TextilSoft.SubForms.Pedidos.CargarPedido
             catch (Exception ex)
             {
 
-                throw;
             }
         }
     }
