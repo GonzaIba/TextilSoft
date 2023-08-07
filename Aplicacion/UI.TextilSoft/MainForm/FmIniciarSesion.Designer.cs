@@ -82,9 +82,10 @@
             btnValidarCodigo.IconColor = System.Drawing.Color.White;
             btnValidarCodigo.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnValidarCodigo.IconSize = 30;
-            btnValidarCodigo.Location = new System.Drawing.Point(622, 275);
+            btnValidarCodigo.Location = new System.Drawing.Point(711, 367);
+            btnValidarCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnValidarCodigo.Name = "btnValidarCodigo";
-            btnValidarCodigo.Size = new System.Drawing.Size(100, 31);
+            btnValidarCodigo.Size = new System.Drawing.Size(114, 41);
             btnValidarCodigo.TabIndex = 34;
             btnValidarCodigo.Text = "Validar";
             btnValidarCodigo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -96,9 +97,9 @@
             lnklblCodigo.AutoSize = true;
             LoginAnimator.SetDecoration(lnklblCodigo, AnimatorNS.DecorationType.None);
             lnklblCodigo.LinkColor = System.Drawing.Color.White;
-            lnklblCodigo.Location = new System.Drawing.Point(609, 314);
+            lnklblCodigo.Location = new System.Drawing.Point(696, 419);
             lnklblCodigo.Name = "lnklblCodigo";
-            lnklblCodigo.Size = new System.Drawing.Size(127, 15);
+            lnklblCodigo.Size = new System.Drawing.Size(163, 20);
             lnklblCodigo.TabIndex = 33;
             lnklblCodigo.TabStop = true;
             lnklblCodigo.Text = "No recibiste el código?";
@@ -108,9 +109,10 @@
             // 
             pnlCodigo.BackColor = System.Drawing.Color.White;
             LoginAnimator.SetDecoration(pnlCodigo, AnimatorNS.DecorationType.None);
-            pnlCodigo.Location = new System.Drawing.Point(616, 265);
+            pnlCodigo.Location = new System.Drawing.Point(704, 353);
+            pnlCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlCodigo.Name = "pnlCodigo";
-            pnlCodigo.Size = new System.Drawing.Size(115, 1);
+            pnlCodigo.Size = new System.Drawing.Size(131, 1);
             pnlCodigo.TabIndex = 22;
             // 
             // txtCodigo
@@ -120,9 +122,10 @@
             LoginAnimator.SetDecoration(txtCodigo, AnimatorNS.DecorationType.None);
             txtCodigo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCodigo.ForeColor = System.Drawing.Color.Gray;
-            txtCodigo.Location = new System.Drawing.Point(616, 237);
+            txtCodigo.Location = new System.Drawing.Point(704, 316);
+            txtCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new System.Drawing.Size(113, 22);
+            txtCodigo.Size = new System.Drawing.Size(129, 27);
             txtCodigo.TabIndex = 23;
             txtCodigo.KeyPress += txtCodigo_KeyPress;
             // 
@@ -132,9 +135,9 @@
             LoginAnimator.SetDecoration(lblCodigo, AnimatorNS.DecorationType.None);
             lblCodigo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblCodigo.ForeColor = System.Drawing.Color.White;
-            lblCodigo.Location = new System.Drawing.Point(615, 209);
+            lblCodigo.Location = new System.Drawing.Point(703, 279);
             lblCodigo.Name = "lblCodigo";
-            lblCodigo.Size = new System.Drawing.Size(113, 19);
+            lblCodigo.Size = new System.Drawing.Size(141, 23);
             lblCodigo.TabIndex = 32;
             lblCodigo.Text = "Ingrese el código";
             // 
@@ -145,9 +148,9 @@
             LoginAnimator.SetDecoration(lblLoginError, AnimatorNS.DecorationType.None);
             lblLoginError.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblLoginError.ForeColor = System.Drawing.Color.Red;
-            lblLoginError.Location = new System.Drawing.Point(294, 292);
+            lblLoginError.Location = new System.Drawing.Point(336, 389);
             lblLoginError.Name = "lblLoginError";
-            lblLoginError.Size = new System.Drawing.Size(208, 19);
+            lblLoginError.Size = new System.Drawing.Size(258, 23);
             lblLoginError.TabIndex = 25;
             lblLoginError.Text = "Usuario y/o contraseña inválidos";
             // 
@@ -156,9 +159,9 @@
             linkLabel2.AutoSize = true;
             LoginAnimator.SetDecoration(linkLabel2, AnimatorNS.DecorationType.None);
             linkLabel2.LinkColor = System.Drawing.Color.White;
-            linkLabel2.Location = new System.Drawing.Point(361, 430);
+            linkLabel2.Location = new System.Drawing.Point(413, 573);
             linkLabel2.Name = "linkLabel2";
-            linkLabel2.Size = new System.Drawing.Size(76, 15);
+            linkLabel2.Size = new System.Drawing.Size(94, 20);
             linkLabel2.TabIndex = 31;
             linkLabel2.TabStop = true;
             linkLabel2.Text = "Crear Cuenta";
@@ -169,9 +172,9 @@
             linkLabel1.AutoSize = true;
             LoginAnimator.SetDecoration(linkLabel1, AnimatorNS.DecorationType.None);
             linkLabel1.LinkColor = System.Drawing.Color.White;
-            linkLabel1.Location = new System.Drawing.Point(332, 322);
+            linkLabel1.Location = new System.Drawing.Point(379, 429);
             linkLabel1.Name = "linkLabel1";
-            linkLabel1.Size = new System.Drawing.Size(136, 15);
+            linkLabel1.Size = new System.Drawing.Size(171, 20);
             linkLabel1.TabIndex = 30;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Olvidaste tu contraseña?";
@@ -188,9 +191,10 @@
             btnLogin.IconChar = FontAwesome.Sharp.IconChar.ArrowAltCircleRight;
             btnLogin.IconColor = System.Drawing.Color.White;
             btnLogin.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            btnLogin.Location = new System.Drawing.Point(280, 350);
+            btnLogin.Location = new System.Drawing.Point(320, 467);
+            btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnLogin.Name = "btnLogin";
-            btnLogin.Size = new System.Drawing.Size(227, 67);
+            btnLogin.Size = new System.Drawing.Size(259, 89);
             btnLogin.TabIndex = 29;
             btnLogin.Text = "Ingresar";
             btnLogin.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -204,10 +208,11 @@
             iconPictureBox1.IconChar = FontAwesome.Sharp.IconChar.Lock;
             iconPictureBox1.IconColor = System.Drawing.Color.White;
             iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconPictureBox1.IconSize = 64;
-            iconPictureBox1.Location = new System.Drawing.Point(64, 185);
+            iconPictureBox1.IconSize = 73;
+            iconPictureBox1.Location = new System.Drawing.Point(73, 247);
+            iconPictureBox1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             iconPictureBox1.Name = "iconPictureBox1";
-            iconPictureBox1.Size = new System.Drawing.Size(64, 64);
+            iconPictureBox1.Size = new System.Drawing.Size(73, 85);
             iconPictureBox1.TabIndex = 28;
             iconPictureBox1.TabStop = false;
             // 
@@ -218,10 +223,11 @@
             iconUserName.IconChar = FontAwesome.Sharp.IconChar.User;
             iconUserName.IconColor = System.Drawing.Color.White;
             iconUserName.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            iconUserName.IconSize = 64;
-            iconUserName.Location = new System.Drawing.Point(64, 59);
+            iconUserName.IconSize = 73;
+            iconUserName.Location = new System.Drawing.Point(73, 79);
+            iconUserName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             iconUserName.Name = "iconUserName";
-            iconUserName.Size = new System.Drawing.Size(64, 64);
+            iconUserName.Size = new System.Drawing.Size(73, 85);
             iconUserName.TabIndex = 24;
             iconUserName.TabStop = false;
             // 
@@ -230,9 +236,10 @@
             panel2.Controls.Add(pnlPasswordError);
             panel2.Controls.Add(panel6);
             LoginAnimator.SetDecoration(panel2, AnimatorNS.DecorationType.None);
-            panel2.Location = new System.Drawing.Point(221, 186);
+            panel2.Location = new System.Drawing.Point(253, 248);
+            panel2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel2.Name = "panel2";
-            panel2.Size = new System.Drawing.Size(368, 96);
+            panel2.Size = new System.Drawing.Size(421, 128);
             panel2.TabIndex = 27;
             // 
             // pnlPasswordError
@@ -240,9 +247,10 @@
             pnlPasswordError.Controls.Add(lblPasswordError);
             LoginAnimator.SetDecoration(pnlPasswordError, AnimatorNS.DecorationType.None);
             pnlPasswordError.Dock = System.Windows.Forms.DockStyle.Top;
-            pnlPasswordError.Location = new System.Drawing.Point(0, 63);
+            pnlPasswordError.Location = new System.Drawing.Point(0, 84);
+            pnlPasswordError.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlPasswordError.Name = "pnlPasswordError";
-            pnlPasswordError.Size = new System.Drawing.Size(368, 24);
+            pnlPasswordError.Size = new System.Drawing.Size(421, 32);
             pnlPasswordError.TabIndex = 7;
             // 
             // lblPasswordError
@@ -251,9 +259,9 @@
             LoginAnimator.SetDecoration(lblPasswordError, AnimatorNS.DecorationType.None);
             lblPasswordError.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPasswordError.ForeColor = System.Drawing.Color.Red;
-            lblPasswordError.Location = new System.Drawing.Point(3, 3);
+            lblPasswordError.Location = new System.Drawing.Point(3, 4);
             lblPasswordError.Name = "lblPasswordError";
-            lblPasswordError.Size = new System.Drawing.Size(130, 19);
+            lblPasswordError.Size = new System.Drawing.Size(161, 23);
             lblPasswordError.TabIndex = 8;
             lblPasswordError.Text = "Contraseña inválido";
             // 
@@ -264,17 +272,19 @@
             LoginAnimator.SetDecoration(panel6, AnimatorNS.DecorationType.None);
             panel6.Dock = System.Windows.Forms.DockStyle.Top;
             panel6.Location = new System.Drawing.Point(0, 0);
+            panel6.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel6.Name = "panel6";
-            panel6.Size = new System.Drawing.Size(368, 63);
+            panel6.Size = new System.Drawing.Size(421, 84);
             panel6.TabIndex = 6;
             // 
             // pnlDownPasswordtxt
             // 
             pnlDownPasswordtxt.BackColor = System.Drawing.Color.White;
             LoginAnimator.SetDecoration(pnlDownPasswordtxt, AnimatorNS.DecorationType.None);
-            pnlDownPasswordtxt.Location = new System.Drawing.Point(13, 40);
+            pnlDownPasswordtxt.Location = new System.Drawing.Point(15, 53);
+            pnlDownPasswordtxt.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlDownPasswordtxt.Name = "pnlDownPasswordtxt";
-            pnlDownPasswordtxt.Size = new System.Drawing.Size(335, 1);
+            pnlDownPasswordtxt.Size = new System.Drawing.Size(383, 1);
             pnlDownPasswordtxt.TabIndex = 7;
             // 
             // txtPassword
@@ -284,9 +294,10 @@
             LoginAnimator.SetDecoration(txtPassword, AnimatorNS.DecorationType.None);
             txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtPassword.ForeColor = System.Drawing.Color.Gray;
-            txtPassword.Location = new System.Drawing.Point(13, 12);
+            txtPassword.Location = new System.Drawing.Point(15, 16);
+            txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
-            txtPassword.Size = new System.Drawing.Size(335, 22);
+            txtPassword.Size = new System.Drawing.Size(383, 27);
             txtPassword.TabIndex = 0;
             txtPassword.Text = "Ingrese una Contraseña";
             txtPassword.Click += txtPassword_Click;
@@ -300,9 +311,9 @@
             LoginAnimator.SetDecoration(label3, AnimatorNS.DecorationType.None);
             label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             label3.ForeColor = System.Drawing.Color.White;
-            label3.Location = new System.Drawing.Point(134, 198);
+            label3.Location = new System.Drawing.Point(153, 264);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(79, 19);
+            label3.Size = new System.Drawing.Size(97, 23);
             label3.TabIndex = 26;
             label3.Text = "Contraseña";
             // 
@@ -311,9 +322,10 @@
             panel4.Controls.Add(pnlUserNameError);
             panel4.Controls.Add(pnlUserNameText);
             LoginAnimator.SetDecoration(panel4, AnimatorNS.DecorationType.None);
-            panel4.Location = new System.Drawing.Point(221, 60);
+            panel4.Location = new System.Drawing.Point(253, 80);
+            panel4.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel4.Name = "panel4";
-            panel4.Size = new System.Drawing.Size(368, 96);
+            panel4.Size = new System.Drawing.Size(421, 128);
             panel4.TabIndex = 21;
             // 
             // pnlUserNameError
@@ -321,9 +333,10 @@
             pnlUserNameError.Controls.Add(lblUserNameError);
             LoginAnimator.SetDecoration(pnlUserNameError, AnimatorNS.DecorationType.None);
             pnlUserNameError.Dock = System.Windows.Forms.DockStyle.Top;
-            pnlUserNameError.Location = new System.Drawing.Point(0, 63);
+            pnlUserNameError.Location = new System.Drawing.Point(0, 84);
+            pnlUserNameError.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlUserNameError.Name = "pnlUserNameError";
-            pnlUserNameError.Size = new System.Drawing.Size(368, 24);
+            pnlUserNameError.Size = new System.Drawing.Size(421, 32);
             pnlUserNameError.TabIndex = 7;
             // 
             // lblUserNameError
@@ -332,9 +345,9 @@
             LoginAnimator.SetDecoration(lblUserNameError, AnimatorNS.DecorationType.None);
             lblUserNameError.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblUserNameError.ForeColor = System.Drawing.Color.Red;
-            lblUserNameError.Location = new System.Drawing.Point(3, 3);
+            lblUserNameError.Location = new System.Drawing.Point(3, 4);
             lblUserNameError.Name = "lblUserNameError";
-            lblUserNameError.Size = new System.Drawing.Size(107, 19);
+            lblUserNameError.Size = new System.Drawing.Size(132, 23);
             lblUserNameError.TabIndex = 8;
             lblUserNameError.Text = "Usuario inválido";
             // 
@@ -345,17 +358,19 @@
             LoginAnimator.SetDecoration(pnlUserNameText, AnimatorNS.DecorationType.None);
             pnlUserNameText.Dock = System.Windows.Forms.DockStyle.Top;
             pnlUserNameText.Location = new System.Drawing.Point(0, 0);
+            pnlUserNameText.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlUserNameText.Name = "pnlUserNameText";
-            pnlUserNameText.Size = new System.Drawing.Size(368, 63);
+            pnlUserNameText.Size = new System.Drawing.Size(421, 84);
             pnlUserNameText.TabIndex = 6;
             // 
             // panel3
             // 
             panel3.BackColor = System.Drawing.Color.White;
             LoginAnimator.SetDecoration(panel3, AnimatorNS.DecorationType.None);
-            panel3.Location = new System.Drawing.Point(13, 40);
+            panel3.Location = new System.Drawing.Point(15, 53);
+            panel3.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panel3.Name = "panel3";
-            panel3.Size = new System.Drawing.Size(335, 1);
+            panel3.Size = new System.Drawing.Size(383, 1);
             panel3.TabIndex = 7;
             // 
             // txtUser
@@ -365,9 +380,10 @@
             LoginAnimator.SetDecoration(txtUser, AnimatorNS.DecorationType.None);
             txtUser.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtUser.ForeColor = System.Drawing.Color.Gray;
-            txtUser.Location = new System.Drawing.Point(13, 12);
+            txtUser.Location = new System.Drawing.Point(15, 16);
+            txtUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtUser.Name = "txtUser";
-            txtUser.Size = new System.Drawing.Size(335, 22);
+            txtUser.Size = new System.Drawing.Size(383, 27);
             txtUser.TabIndex = 0;
             txtUser.Text = "Ingrese un Usuario";
             txtUser.Click += txtUser_Click;
@@ -381,9 +397,9 @@
             LoginAnimator.SetDecoration(lblLogin, AnimatorNS.DecorationType.None);
             lblLogin.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblLogin.ForeColor = System.Drawing.Color.White;
-            lblLogin.Location = new System.Drawing.Point(295, 5);
+            lblLogin.Location = new System.Drawing.Point(337, 7);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new System.Drawing.Size(126, 28);
+            lblLogin.Size = new System.Drawing.Size(161, 35);
             lblLogin.TabIndex = 19;
             lblLogin.Text = "Iniciar Sesión";
             // 
@@ -393,9 +409,9 @@
             LoginAnimator.SetDecoration(lblUsuario, AnimatorNS.DecorationType.None);
             lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblUsuario.ForeColor = System.Drawing.Color.White;
-            lblUsuario.Location = new System.Drawing.Point(134, 72);
+            lblUsuario.Location = new System.Drawing.Point(153, 96);
             lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new System.Drawing.Size(56, 19);
+            lblUsuario.Size = new System.Drawing.Size(68, 23);
             lblUsuario.TabIndex = 20;
             lblUsuario.Text = "Usuario";
             // 
@@ -404,9 +420,11 @@
             LoginAnimator.SetDecoration(pnlLogin, AnimatorNS.DecorationType.None);
             pnlLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             pnlLogin.Location = new System.Drawing.Point(0, 0);
+            pnlLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             pnlLogin.Name = "pnlLogin";
-            pnlLogin.Size = new System.Drawing.Size(800, 482);
+            pnlLogin.Size = new System.Drawing.Size(914, 643);
             pnlLogin.TabIndex = 35;
+            pnlLogin.Paint += pnlLogin_Paint;
             // 
             // LoginAnimator
             // 
@@ -433,10 +451,10 @@
             // 
             // FmIniciarSesion
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(30, 30, 30);
-            ClientSize = new System.Drawing.Size(800, 482);
+            ClientSize = new System.Drawing.Size(914, 643);
             Controls.Add(btnValidarCodigo);
             Controls.Add(lnklblCodigo);
             Controls.Add(pnlCodigo);
@@ -455,6 +473,7 @@
             Controls.Add(lblUsuario);
             Controls.Add(pnlLogin);
             LoginAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FmIniciarSesion";
             Text = "FmIniciarSesion";
             FormClosing += FmIniciarSesion_FormClosing;

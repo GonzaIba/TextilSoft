@@ -46,7 +46,7 @@ namespace UI.TextilSoft.MainForm
         private void Start()
         {
             var fmlobby = new FmLobby(_controllerFactory, this);
-            AbrirFormHija(fmlobby);
+            //AbrirFormHija(fmlobby);
             while (circularProgressBar1.Value < 2000)
             {
                 circularProgressBar1.Value++;
@@ -54,10 +54,11 @@ namespace UI.TextilSoft.MainForm
             }
             circularProgressBar1.Visible = false;
             if (PerformanceConfiguration.EnabledAnimator)
-                fmlobby.Show();
+                fmlobby.ShowDialog();
             else
-                fmlobby.Show();
+                fmlobby.ShowDialog();
 
+            this.Close();
         }
 
         private void circularProgressBar1_Click(object sender, EventArgs e)
@@ -69,7 +70,6 @@ namespace UI.TextilSoft.MainForm
         {
             Activeform = formhija;
             formhija.BackColor = Color.FromArgb(30, 30, 30);
-            formhija.BringToFront();
             formhija.FormBorderStyle = FormBorderStyle.Fixed3D;
         }
         private async Task AbrirAnimator(Form formhija)

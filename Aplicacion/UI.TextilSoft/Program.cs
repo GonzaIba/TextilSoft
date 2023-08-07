@@ -199,13 +199,25 @@ namespace UI.TextilSoft
             var Infraestructura = file.Directory.Parent.Parent.Parent.Parent.FullName + @"\SL.Infrastructure";
             AppDomain.CurrentDomain.SetData("InfraestructuraRootPath", Infraestructura);
 
-            if (!string.IsNullOrEmpty(Configuration.GetSection("TemphLog")?.Value?.ToString()))
-                AppDomain.CurrentDomain.SetData("TemphLog", Configuration.GetSection("TemphLog").Value.ToString());
+            if (!string.IsNullOrEmpty(Configuration.GetSection("TemplatesConfig:TemphLog")?.Value?.ToString()))
+                AppDomain.CurrentDomain.SetData("TemphLog", Configuration.GetSection("TemplatesConfig:TemphLog").Value.ToString());
             else
                 AppDomain.CurrentDomain.SetData("TemphLog", AppDomain.CurrentDomain.BaseDirectory + "/Logs");
 
-            AppDomain.CurrentDomain.SetData("TempPath-ODT", AppDomain.CurrentDomain.BaseDirectory + "/Temp/Orden-De-Pago.pdf");
-            AppDomain.CurrentDomain.SetData("TemplatePath-ODT", AppDomain.CurrentDomain.BaseDirectory + "/Template/Orden-De-Pago1.pdf");
+            if (!string.IsNullOrEmpty(Configuration.GetSection("TemplatesConfig:TempPath-ODT")?.Value?.ToString()))
+                AppDomain.CurrentDomain.SetData("TempPath-ODT", Configuration.GetSection("TemplatesConfig:TempPath-ODT").Value.ToString());
+            else
+                AppDomain.CurrentDomain.SetData("TempPath-ODT", AppDomain.CurrentDomain.BaseDirectory + "/Temp");
+
+            if (!string.IsNullOrEmpty(Configuration.GetSection("TemplatesConfig:TemplatePath-ODT")?.Value?.ToString()))
+                AppDomain.CurrentDomain.SetData("TemplatePath-ODT", Configuration.GetSection("TemplatesConfig:TemplatePath-ODT").Value.ToString());
+            else
+                AppDomain.CurrentDomain.SetData("TemplatePath-ODT", AppDomain.CurrentDomain.BaseDirectory + "/Templates/Orden-De-Pago1.pdf");
+
+            if (!string.IsNullOrEmpty(Configuration.GetSection("TemplatesConfig:TempPathName-ODT")?.Value?.ToString()))
+                AppDomain.CurrentDomain.SetData("TempPathName-ODT", Configuration.GetSection("TemplatesConfig:TempPathName-ODT").Value.ToString());
+            else
+                AppDomain.CurrentDomain.SetData("TempPathName-ODT", "OrdenDeTrabajo-");
 
 
             services.AddHostedService<TaskResolver>();

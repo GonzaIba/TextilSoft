@@ -59,9 +59,9 @@
             lblCompanyTitle.AutoSize = true;
             lblCompanyTitle.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblCompanyTitle.ForeColor = System.Drawing.Color.White;
-            lblCompanyTitle.Location = new System.Drawing.Point(290, 20);
+            lblCompanyTitle.Location = new System.Drawing.Point(331, 27);
             lblCompanyTitle.Name = "lblCompanyTitle";
-            lblCompanyTitle.Size = new System.Drawing.Size(385, 45);
+            lblCompanyTitle.Size = new System.Drawing.Size(480, 54);
             lblCompanyTitle.TabIndex = 44;
             lblCompanyTitle.Text = "Asignar Orden De Trabajo";
             // 
@@ -82,10 +82,12 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             GrillaPedidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            GrillaPedidos.ColumnHeadersHeight = 29;
             GrillaPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             GrillaPedidos.EnableHeadersVisualStyles = false;
             GrillaPedidos.GridColor = System.Drawing.Color.FromArgb(0, 80, 200);
-            GrillaPedidos.Location = new System.Drawing.Point(9, 144);
+            GrillaPedidos.Location = new System.Drawing.Point(10, 192);
+            GrillaPedidos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             GrillaPedidos.Name = "GrillaPedidos";
             GrillaPedidos.ReadOnly = true;
             GrillaPedidos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
@@ -97,6 +99,7 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             GrillaPedidos.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            GrillaPedidos.RowHeadersWidth = 51;
             GrillaPedidos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(26, 32, 40);
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -104,7 +107,7 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(49, 66, 82);
             GrillaPedidos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             GrillaPedidos.RowTemplate.Height = 25;
-            GrillaPedidos.Size = new System.Drawing.Size(957, 285);
+            GrillaPedidos.Size = new System.Drawing.Size(1094, 380);
             GrillaPedidos.TabIndex = 45;
             GrillaPedidos.DataSourceChanged += GrillaPedidos_DataSourceChanged;
             // 
@@ -112,14 +115,16 @@
             // 
             tbEsPedido.Checked = true;
             tbEsPedido.CheckState = System.Windows.Forms.CheckState.Checked;
-            tbEsPedido.Location = new System.Drawing.Point(517, 118);
-            tbEsPedido.MinimumSize = new System.Drawing.Size(45, 22);
+            tbEsPedido.Cursor = System.Windows.Forms.Cursors.Hand;
+            tbEsPedido.Location = new System.Drawing.Point(591, 157);
+            tbEsPedido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            tbEsPedido.MinimumSize = new System.Drawing.Size(51, 29);
             tbEsPedido.Name = "tbEsPedido";
             tbEsPedido.OffBackColor = System.Drawing.Color.Gray;
             tbEsPedido.OffToggleColor = System.Drawing.Color.Gainsboro;
             tbEsPedido.OnBackColor = System.Drawing.Color.MediumSlateBlue;
             tbEsPedido.OnToggleColor = System.Drawing.Color.WhiteSmoke;
-            tbEsPedido.Size = new System.Drawing.Size(55, 22);
+            tbEsPedido.Size = new System.Drawing.Size(63, 29);
             tbEsPedido.TabIndex = 93;
             tbEsPedido.Text = "toggleButton1";
             tbEsPedido.UseVisualStyleBackColor = true;
@@ -130,9 +135,9 @@
             lblPed_SI.AutoSize = true;
             lblPed_SI.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPed_SI.ForeColor = System.Drawing.Color.White;
-            lblPed_SI.Location = new System.Drawing.Point(575, 118);
+            lblPed_SI.Location = new System.Drawing.Point(657, 157);
             lblPed_SI.Name = "lblPed_SI";
-            lblPed_SI.Size = new System.Drawing.Size(23, 21);
+            lblPed_SI.Size = new System.Drawing.Size(28, 28);
             lblPed_SI.TabIndex = 95;
             lblPed_SI.Text = "Si";
             // 
@@ -141,9 +146,9 @@
             lblPed_NO.AutoSize = true;
             lblPed_NO.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPed_NO.ForeColor = System.Drawing.Color.White;
-            lblPed_NO.Location = new System.Drawing.Point(489, 118);
+            lblPed_NO.Location = new System.Drawing.Point(559, 157);
             lblPed_NO.Name = "lblPed_NO";
-            lblPed_NO.Size = new System.Drawing.Size(31, 21);
+            lblPed_NO.Size = new System.Drawing.Size(39, 28);
             lblPed_NO.TabIndex = 94;
             lblPed_NO.Text = "No";
             // 
@@ -152,9 +157,9 @@
             lbl.AutoSize = true;
             lbl.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lbl.ForeColor = System.Drawing.Color.White;
-            lbl.Location = new System.Drawing.Point(462, 95);
+            lbl.Location = new System.Drawing.Point(528, 127);
             lbl.Name = "lbl";
-            lbl.Size = new System.Drawing.Size(164, 20);
+            lbl.Size = new System.Drawing.Size(207, 25);
             lbl.TabIndex = 92;
             lbl.Text = "Es pedido para cliente?";
             // 
@@ -170,10 +175,11 @@
             cboxCantidadRegistros.Items.AddRange(new object[] { "5", "10", "20" });
             cboxCantidadRegistros.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             cboxCantidadRegistros.ListTextColor = System.Drawing.Color.DimGray;
-            cboxCantidadRegistros.Location = new System.Drawing.Point(71, 112);
+            cboxCantidadRegistros.Location = new System.Drawing.Point(81, 149);
+            cboxCantidadRegistros.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             cboxCantidadRegistros.Name = "cboxCantidadRegistros";
             cboxCantidadRegistros.Padding = new System.Windows.Forms.Padding(1);
-            cboxCantidadRegistros.Size = new System.Drawing.Size(65, 21);
+            cboxCantidadRegistros.Size = new System.Drawing.Size(74, 28);
             cboxCantidadRegistros.TabIndex = 98;
             cboxCantidadRegistros.Texts = "";
             // 
@@ -182,9 +188,9 @@
             lblregistros.AutoSize = true;
             lblregistros.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblregistros.ForeColor = System.Drawing.Color.White;
-            lblregistros.Location = new System.Drawing.Point(139, 112);
+            lblregistros.Location = new System.Drawing.Point(159, 149);
             lblregistros.Name = "lblregistros";
-            lblregistros.Size = new System.Drawing.Size(75, 21);
+            lblregistros.Size = new System.Drawing.Size(92, 28);
             lblregistros.TabIndex = 97;
             lblregistros.Text = "Registros";
             // 
@@ -193,9 +199,9 @@
             lblMostrar.AutoSize = true;
             lblMostrar.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblMostrar.ForeColor = System.Drawing.Color.White;
-            lblMostrar.Location = new System.Drawing.Point(9, 112);
+            lblMostrar.Location = new System.Drawing.Point(10, 149);
             lblMostrar.Name = "lblMostrar";
-            lblMostrar.Size = new System.Drawing.Size(65, 21);
+            lblMostrar.Size = new System.Drawing.Size(81, 28);
             lblMostrar.TabIndex = 96;
             lblMostrar.Text = "Mostrar";
             // 
@@ -208,9 +214,10 @@
             panelPaginado.Controls.Add(btnSegundo);
             panelPaginado.Controls.Add(btnInicio);
             panelPaginado.Controls.Add(btnSiguiente);
-            panelPaginado.Location = new System.Drawing.Point(757, 433);
+            panelPaginado.Location = new System.Drawing.Point(865, 577);
+            panelPaginado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelPaginado.Name = "panelPaginado";
-            panelPaginado.Size = new System.Drawing.Size(209, 36);
+            panelPaginado.Size = new System.Drawing.Size(239, 48);
             panelPaginado.TabIndex = 99;
             // 
             // btnTercero
@@ -219,9 +226,10 @@
             btnTercero.FlatAppearance.BorderSize = 0;
             btnTercero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnTercero.ForeColor = System.Drawing.Color.White;
-            btnTercero.Location = new System.Drawing.Point(114, 8);
+            btnTercero.Location = new System.Drawing.Point(130, 11);
+            btnTercero.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnTercero.Name = "btnTercero";
-            btnTercero.Size = new System.Drawing.Size(24, 23);
+            btnTercero.Size = new System.Drawing.Size(27, 31);
             btnTercero.TabIndex = 25;
             btnTercero.Text = "3";
             btnTercero.UseVisualStyleBackColor = true;
@@ -237,9 +245,10 @@
             btnAnterior.IconColor = System.Drawing.Color.White;
             btnAnterior.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAnterior.IconSize = 20;
-            btnAnterior.Location = new System.Drawing.Point(29, 10);
+            btnAnterior.Location = new System.Drawing.Point(33, 13);
+            btnAnterior.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAnterior.Name = "btnAnterior";
-            btnAnterior.Size = new System.Drawing.Size(24, 23);
+            btnAnterior.Size = new System.Drawing.Size(27, 31);
             btnAnterior.TabIndex = 22;
             btnAnterior.UseVisualStyleBackColor = true;
             btnAnterior.Click += btnAnterior_Click;
@@ -250,9 +259,10 @@
             btnPrimero.FlatAppearance.BorderSize = 0;
             btnPrimero.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnPrimero.ForeColor = System.Drawing.Color.White;
-            btnPrimero.Location = new System.Drawing.Point(55, 8);
+            btnPrimero.Location = new System.Drawing.Point(63, 11);
+            btnPrimero.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnPrimero.Name = "btnPrimero";
-            btnPrimero.Size = new System.Drawing.Size(24, 23);
+            btnPrimero.Size = new System.Drawing.Size(27, 31);
             btnPrimero.TabIndex = 17;
             btnPrimero.Text = "1";
             btnPrimero.UseVisualStyleBackColor = true;
@@ -265,9 +275,10 @@
             btnFinal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnFinal.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnFinal.ForeColor = System.Drawing.Color.White;
-            btnFinal.Location = new System.Drawing.Point(160, 6);
+            btnFinal.Location = new System.Drawing.Point(183, 8);
+            btnFinal.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnFinal.Name = "btnFinal";
-            btnFinal.Size = new System.Drawing.Size(42, 28);
+            btnFinal.Size = new System.Drawing.Size(48, 37);
             btnFinal.TabIndex = 24;
             btnFinal.Text = "...N";
             btnFinal.UseVisualStyleBackColor = true;
@@ -279,9 +290,10 @@
             btnSegundo.FlatAppearance.BorderSize = 0;
             btnSegundo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnSegundo.ForeColor = System.Drawing.Color.White;
-            btnSegundo.Location = new System.Drawing.Point(85, 8);
+            btnSegundo.Location = new System.Drawing.Point(97, 11);
+            btnSegundo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSegundo.Name = "btnSegundo";
-            btnSegundo.Size = new System.Drawing.Size(24, 23);
+            btnSegundo.Size = new System.Drawing.Size(27, 31);
             btnSegundo.TabIndex = 19;
             btnSegundo.Text = "2";
             btnSegundo.UseVisualStyleBackColor = true;
@@ -294,9 +306,10 @@
             btnInicio.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnInicio.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             btnInicio.ForeColor = System.Drawing.Color.White;
-            btnInicio.Location = new System.Drawing.Point(8, 5);
+            btnInicio.Location = new System.Drawing.Point(9, 7);
+            btnInicio.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnInicio.Name = "btnInicio";
-            btnInicio.Size = new System.Drawing.Size(19, 27);
+            btnInicio.Size = new System.Drawing.Size(22, 36);
             btnInicio.TabIndex = 23;
             btnInicio.Text = "1";
             btnInicio.UseVisualStyleBackColor = true;
@@ -312,9 +325,10 @@
             btnSiguiente.IconColor = System.Drawing.Color.White;
             btnSiguiente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSiguiente.IconSize = 20;
-            btnSiguiente.Location = new System.Drawing.Point(141, 10);
+            btnSiguiente.Location = new System.Drawing.Point(161, 13);
+            btnSiguiente.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnSiguiente.Name = "btnSiguiente";
-            btnSiguiente.Size = new System.Drawing.Size(24, 23);
+            btnSiguiente.Size = new System.Drawing.Size(27, 31);
             btnSiguiente.TabIndex = 21;
             btnSiguiente.UseVisualStyleBackColor = true;
             btnSiguiente.Click += btnSiguiente_Click;
@@ -325,9 +339,10 @@
             txtSearch.Br = System.Drawing.Color.MidnightBlue;
             txtSearch.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtSearch.ForeColor = System.Drawing.Color.White;
-            txtSearch.Location = new System.Drawing.Point(282, 110);
+            txtSearch.Location = new System.Drawing.Point(322, 147);
+            txtSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new System.Drawing.Size(136, 29);
+            txtSearch.Size = new System.Drawing.Size(155, 39);
             txtSearch.TabIndex = 101;
             txtSearch.TextChanged += txtSearch_TextChanged;
             // 
@@ -336,18 +351,18 @@
             lblFiltradoDeCampo.AutoSize = true;
             lblFiltradoDeCampo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblFiltradoDeCampo.ForeColor = System.Drawing.Color.White;
-            lblFiltradoDeCampo.Location = new System.Drawing.Point(220, 112);
+            lblFiltradoDeCampo.Location = new System.Drawing.Point(251, 149);
             lblFiltradoDeCampo.Name = "lblFiltradoDeCampo";
-            lblFiltradoDeCampo.Size = new System.Drawing.Size(56, 21);
+            lblFiltradoDeCampo.Size = new System.Drawing.Size(68, 28);
             lblFiltradoDeCampo.TabIndex = 100;
             lblFiltradoDeCampo.Text = "Buscar";
             // 
             // FmAsignarODT
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(23, 21, 32);
-            ClientSize = new System.Drawing.Size(981, 489);
+            ClientSize = new System.Drawing.Size(1121, 652);
             Controls.Add(txtSearch);
             Controls.Add(lblFiltradoDeCampo);
             Controls.Add(panelPaginado);
@@ -360,6 +375,7 @@
             Controls.Add(lbl);
             Controls.Add(GrillaPedidos);
             Controls.Add(lblCompanyTitle);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FmAsignarODT";
             Text = "FmAsignarODT";
             Load += FmAsignarODT_Load;

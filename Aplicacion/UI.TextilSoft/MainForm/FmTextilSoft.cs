@@ -91,7 +91,11 @@ namespace UI.TextilSoft.MainForm
         {
             try
             {
-                _fmLobby.Hide();
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    _fmLobby.Hide();
+                });
+                //
                 AbrirFormHija(new FmVacio());
                 toolStrip1.Renderer = new ToolStripRenderCustom();
                 timer1.Start();

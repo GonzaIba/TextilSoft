@@ -101,6 +101,7 @@ namespace UI.TextilSoft.MainForm
             // btnBloquear
             // 
             btnBloquear.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right;
+            btnBloquear.Cursor = System.Windows.Forms.Cursors.Hand;
             PanelAnimator.SetDecoration(btnBloquear, AnimatorNS.DecorationType.None);
             btnBloquear.FlatAppearance.BorderSize = 0;
             btnBloquear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -126,7 +127,7 @@ namespace UI.TextilSoft.MainForm
             PanelAnimator.SetDecoration(labelBienvenida, AnimatorNS.DecorationType.None);
             labelBienvenida.Font = new System.Drawing.Font("Times New Roman", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             labelBienvenida.ForeColor = System.Drawing.Color.Red;
-            labelBienvenida.Location = new System.Drawing.Point(42, 36);
+            labelBienvenida.Location = new System.Drawing.Point(18, 39);
             labelBienvenida.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             labelBienvenida.Name = "labelBienvenida";
             labelBienvenida.Size = new System.Drawing.Size(137, 35);

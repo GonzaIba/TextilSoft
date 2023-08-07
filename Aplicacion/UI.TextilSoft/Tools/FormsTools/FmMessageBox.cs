@@ -34,7 +34,7 @@ namespace UI.TextilSoft.Tools.FormsTools
             if (btncancel)
             {
                 btnCancelar.Visible = true;
-                btnCancelar.Location = new Point(btnCancelar.Location.X + 15, btnCancelar.Location.Y);
+                //btnCancelar.Location = new Point(btnAceptar.Location.X + 15, btnCancelar.Location.Y);
                 iconButton1.Location = new Point(iconButton1.Location.X - 15, iconButton1.Location.Y);
             }
             switch (messageBoxType)

@@ -208,11 +208,12 @@ namespace Infrastructure.Repositories
                     query = query.Include(includeProperty);
                 }
             }
-
+            int totalPages= (int)Math.Ceiling(query.Count() / (double)pageCount);
+            pageIndex = pageIndex == 0 ? 1 : pageIndex;
             return new PaginatedList<T>
             {
                 TotalCount = query.Count(),
-                TotalPages = (int)Math.Ceiling(query.Count() / (double)pageCount),
+                TotalPages = totalPages == 0 ? 1: totalPages,
                 List = (ascending)
                             ?
                         query.OrderBy(orderByExpression)

@@ -112,9 +112,12 @@ namespace UI.TextilSoft.Controllers
                     var filterExpressionPedidosModel = filterExpression.ReplaceParameter<T, PedidosModel>();
                     var ListaPedidosModel = _pedidosService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, filterExpressionPedidosModel, orderBy, ascending);
                     var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
-                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
-                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
-                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    if(ListaPedidosModel.List.Count() != 0)
+                    {
+                        ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
+                        ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                        ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;               
+                    }
                     //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
                     return (PaginatedList<T>)(object)ListaPedidosEntity;
                 }
@@ -131,9 +134,13 @@ namespace UI.TextilSoft.Controllers
                     var filterExpressionPedidosModel = filterExpression.ReplaceParameter<T, PedidosFabricaModel>();
                     var ListaPedidosModel = _pedidosFabricaService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, filterExpressionPedidosModel, orderBy, ascending);
                     var ListaPedidosEntity = new PaginatedList<ListarPedidosFabricaEntity>();
-                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosFabricaEntity>>(ListaPedidosModel.List.ToList());
-                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
-                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    if(ListaPedidosModel.List.Count() != 0)
+                    {
+                        ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosFabricaEntity>>(ListaPedidosModel?.List?.ToList());
+                        ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                        ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    }
+
                     //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
                     return (PaginatedList<T>)(object)ListaPedidosEntity;
                 }
@@ -247,9 +254,12 @@ namespace UI.TextilSoft.Controllers
                     Expression<Func<PedidosModel, bool>> expression = x => x.ID_EstadoPedido == (int)EstadoPedidosEnum.SinAsignar;
                     var ListaPedidosModel = _pedidosService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, expression, orderBy, ascending);
                     var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
-                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
-                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
-                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    if(ListaPedidosModel.TotalCount != 0)
+                    {
+                        ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosEntity>>(ListaPedidosModel.List.ToList());
+                        ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                        ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;                
+                    }
                     return (PaginatedList<T>)(object)ListaPedidosEntity;
                 }
                 else
@@ -264,9 +274,12 @@ namespace UI.TextilSoft.Controllers
                     Expression<Func<PedidosFabricaModel, bool>> expression = x => x.ID_EstadoPedidoFabrica == (int)EstadoPedidosFabricaEnum.SinAsignar;
                     var ListaPedidosModel = _pedidosFabricaService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, expression, orderBy, ascending);
                     var ListaPedidosEntity = new PaginatedList<ListarPedidosFabricaEntity>();
-                    ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosFabricaEntity>>(ListaPedidosModel.List.ToList());
-                    ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
-                    ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    if (ListaPedidosModel.TotalCount != 0)
+                    {
+                        ListaPedidosEntity.List = _mapper.Map<List<ListarPedidosFabricaEntity>>(ListaPedidosModel.List.ToList());
+                        ListaPedidosEntity.TotalCount = ListaPedidosModel.TotalCount;
+                        ListaPedidosEntity.TotalPages = ListaPedidosModel.TotalPages;
+                    }
                     //ListaPedidosModel.List.ToList().ForEach(listaPedidos => ListaPedidosEntity.List.ToList().Add(_mapper.Map<ListarPedidosEntity>(listaPedidos)));
                     return (PaginatedList<T>)(object)ListaPedidosEntity;
                 }
@@ -285,7 +298,6 @@ namespace UI.TextilSoft.Controllers
                 if (EsPedido)
                 {
                     _pedidosService.AsignarODT(idPedido);
-
                 }
                 else
                 {

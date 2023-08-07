@@ -4,13 +4,16 @@ using Contracts.Services;
 using Domain.Enum;
 using Domain.GenericEntity;
 using Domain.Models;
+using iTextSharp.text.pdf;
+using Microsoft.IdentityModel.Protocols;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection.PortableExecutable;
 using System.Text;
 using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Business.Services
 {
@@ -31,7 +34,57 @@ namespace Business.Services
         {
             try
             {
-                var pedido = Get(x => x.ID_Pedido == idPedido, tracking: true).FirstOrDefault();
+                var pedido = Get(x => x.ID_Pedido == idPedido,
+                includeProperties: "DetallePedido,DetallePedido.Producto,DetallePedido.Transfer,DetallePedido.Producto.TelaBase,DetallePedido.Producto.TelaCombinacion,DetallePedido.Producto.BolsilloInterior,DetallePedido.Producto.CinturaInterior,DetallePedido.Producto.Collareta,DetallePedido.Producto.Lazo,DetallePedido.Producto.Vivo,DetallePedido.Producto.Forreria" +
+                "", tracking: true).FirstOrDefault();
+
+                string rutaBaseTemp = AppDomain.CurrentDomain.GetData("TempPath-ODT").ToString() + pedido.ID_Pedido.ToString();
+                if(!Directory.Exists(rutaBaseTemp))
+                    Directory.CreateDirectory(rutaBaseTemp);
+                
+                foreach (var detalle in pedido.DetallePedido)
+                {
+                    Dictionary<string, string> dicBasico = new();
+                    byte[] data = new byte[128];
+                    string NombreYRutaPDF = rutaBaseTemp + "\\" + AppDomain.CurrentDomain.GetData("TempPathName-ODT").ToString();
+
+                    dicBasico.Add("txt_orden_armado", pedido.ID_Pedido.ToString());
+                    dicBasico.Add("txt_temporada", "INV-23");
+                    dicBasico.Add("txt_artículo", detalle.Producto.ID_Producto.ToString()) ;
+                    dicBasico.Add("txt_descripcion", detalle.Producto.Descripcion);
+                    dicBasico.Add("txt_composicion", detalle.Producto.Composicion);
+
+                    dicBasico.Add("txt_codigo_tela_base", detalle.Producto.TelaBase.Codigo == "0" ? "NO LLEVA" : detalle.Producto.TelaBase.Codigo);
+                    dicBasico.Add("txt_tela_base", detalle.Producto.TelaBase.Nombre);
+
+                    dicBasico.Add("txt_codigo_combinacion", detalle.Producto.TelaCombinacion.Codigo == "0" ? "NO LLEVA" : detalle.Producto.TelaCombinacion.Codigo);
+                    dicBasico.Add("txt_combinacion", detalle.Producto.TelaCombinacion.Nombre);
+
+                    dicBasico.Add("txt_codigo_bolsillo_int", detalle.Producto.BolsilloInterior.Codigo == "0" ? "NO LLEVA" : detalle.Producto.BolsilloInterior.Codigo);
+                    dicBasico.Add("txt_bolsillo_int", detalle.Producto.BolsilloInterior.Nombre);
+
+                    dicBasico.Add("txt_codigo_lazo", detalle.Producto.Lazo.Codigo == "0" ? "NO LLEVA" : detalle.Producto.Lazo.Codigo);
+                    dicBasico.Add("txt_lazo", detalle.Producto.Lazo.Nombre);
+
+                    dicBasico.Add("txt_codigo_vivo", detalle.Producto.Vivo.Codigo == "0" ? "NO LLEVA" : detalle.Producto.Vivo.Codigo);
+                    dicBasico.Add("txt_vivo", detalle.Producto.Vivo.Nombre);
+
+                    dicBasico.Add("txt_codigo_forreria", detalle.Producto.Forreria.Codigo == "0" ? "NO LLEVA" : detalle.Producto.Forreria.Codigo);
+                    dicBasico.Add("txt_forreria", detalle.Producto.Forreria.Nombre);
+                    
+                    dicBasico.Add("txt_codigo_transfer", detalle.Transfer.Codigo == "0" ? "NO LLEVA" : detalle.Transfer.Codigo);
+                    dicBasico.Add("txt_pedido_especial", "SI");
+
+                    dicBasico.Add("img_prenda", detalle.Producto.ImagenPrenda);
+                    dicBasico.Add("img_transfer", detalle.Transfer.Imagen);
+                    
+                    RellenarPdf(AppDomain.CurrentDomain.GetData("TemplatePath-ODT") + "Orden-De-Trabajo.pdf", dicBasico, ref data, NombreYRutaPDF, pedido.ID_Pedido, false);
+                    string pathODT = NombreYRutaPDF + pedido.ID_Pedido.ToString() + ".pdf";
+
+                    File.WriteAllBytes(pathODT, data);
+                }
+                
+                
                 pedido.ID_EstadoPedido = (int)EstadoPedidosEnum.EnProducción;
                 _repository.Update(pedido);
 
@@ -158,5 +211,60 @@ namespace Business.Services
                 throw;
             }
         }
+
+        #region GenerarPDF
+        public void RellenarPdf(string templatePathFileName, Dictionary<string, string> dicBasico, ref byte[] strFileContent, string tempPathFileName = "ArchivoPDF", int numeroIdentificador = 0, bool encripted = false)
+        {
+            string strFormVacioPath = templatePathFileName;
+            string strFormLlenoPath = tempPathFileName + numeroIdentificador.ToString() + ".pdf";
+
+            try
+            {
+                using (FileStream fileOutput = new FileStream(strFormLlenoPath, FileMode.Create))
+                {
+                    PdfReader pdfReader = new PdfReader(strFormVacioPath);
+                    PdfStamper pdfStamper = new PdfStamper(pdfReader, fileOutput);
+                    if (encripted)
+                    {
+                        pdfStamper.SetEncryption(PdfWriter.STRENGTH128BITS, null, "123456", PdfWriter.AllowCopy | PdfWriter.AllowPrinting);
+                    }
+                    AcroFields pdfFormFields = pdfStamper.AcroFields;
+                    PdfContentByte pdfContentByte = pdfStamper.GetOverContent(1);
+                    IDictionary<string, AcroFields.Item> dicFields = pdfFormFields.Fields;
+
+                    foreach (var CollectionItem in dicFields)
+                    {
+                        if (dicBasico.ContainsKey(CollectionItem.Key))
+                        {
+                            if (CollectionItem.Key.StartsWith("img_"))
+                            {
+                                //byte[] imageArray = System.IO.File.ReadAllBytes(dicBasico[CollectionItem.Key]);
+                                //string image = Convert.ToBase64String(imageArray);
+                                pdfFormFields.SetField(CollectionItem.Key, dicBasico[CollectionItem.Key]);
+                            }
+                            else
+                                pdfFormFields.SetField(CollectionItem.Key, dicBasico[CollectionItem.Key]);
+                        }
+                    }
+
+                    pdfStamper.FormFlattening = false;
+                    pdfStamper.Close();
+                    pdfReader.Close();
+                    pdfContentByte.ClosePath();
+                }
+
+                if (File.Exists(strFormLlenoPath))
+                {
+                    strFileContent = File.ReadAllBytes(strFormLlenoPath);
+                    File.Delete(strFormLlenoPath);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
+
     }
 }

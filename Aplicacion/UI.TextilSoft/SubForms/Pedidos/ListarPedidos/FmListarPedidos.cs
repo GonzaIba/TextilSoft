@@ -474,6 +474,8 @@ namespace UI.TextilSoft.SubForms.Pedidos.ListarPedidos
                 btnTercero.BackColor = Color.FromArgb(40, 40, 40);
             else
                 btnTercero.BackColor = Color.FromArgb(32, 30, 45);
+
+            VerificarPaginas();
         }
 
 

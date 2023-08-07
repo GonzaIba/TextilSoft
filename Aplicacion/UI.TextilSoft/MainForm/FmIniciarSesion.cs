@@ -47,6 +47,7 @@ namespace UI.TextilSoft.MainForm
             pnlLogin.Visible = false;
             _fmLobby = fmLobby;
             this.Click += FmIniciarSesion_Click;
+            txtUser.Focus();
         }
         #endregion
 
@@ -62,7 +63,11 @@ namespace UI.TextilSoft.MainForm
                 txtPasswordTextBase = txtPassword.Text;
                 pnlPasswordError.Visible = false;
                 pnlUserNameError.Visible = false;
-                txtUser.Focus();
+                // Establecer el foco de manera diferida
+                this.BeginInvoke((MethodInvoker)delegate
+                {
+                    txtUser.Focus();
+                });
             }
             catch (Exception ex)
             {
@@ -326,8 +331,8 @@ namespace UI.TextilSoft.MainForm
 
             ActivarODesactivarCodigo(false);
 
-            fmTextilSoft.Show();
-            _fmLobby.Hide();
+            fmTextilSoft.ShowDialog();
+            //_fmLobby.Hide();
         }
         #endregion
 
@@ -512,7 +517,7 @@ namespace UI.TextilSoft.MainForm
 
         private void FmIniciarSesion_Click(object sender, EventArgs e)
         {
-
+            txtUser.Focus();
         }
 
         private void txtPassword_KeyPress(object sender, KeyPressEventArgs e)
@@ -522,6 +527,11 @@ namespace UI.TextilSoft.MainForm
                 //btnLogin_Click_1
                 btnLogin_Click(sender, e);
             }
+        }
+
+        private void pnlLogin_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

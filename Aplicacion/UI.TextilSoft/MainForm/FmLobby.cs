@@ -51,8 +51,7 @@ namespace UI.TextilSoft.MainForm
 
             Activeform = new FmVacio();
             pnlLogin.Visible = false;
-
-            this.Focus();
+            
             this.StartPosition = FormStartPosition.CenterScreen;
         }
         #endregion
@@ -61,7 +60,6 @@ namespace UI.TextilSoft.MainForm
         {
             try
             {
-                _inicio.Hide();
                 CompanyCustomizeEntity company = _factory.Use<ICompanyController>().GetCustomizeCompany();
 
                 lblCompanyName.Text = company.Name;             
@@ -159,7 +157,7 @@ namespace UI.TextilSoft.MainForm
 
         private void FmLobby_FormClosing(object sender, FormClosingEventArgs e)
         {
-            Application.Exit();
+            //Application.Exit();
         }
     }
 }
