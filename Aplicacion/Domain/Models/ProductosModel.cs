@@ -13,6 +13,7 @@ namespace Domain.Models
             this.DetallePedido = new HashSet<DetallePedidosModel>();
             this.Venta = new HashSet<VentasModel>();
             this.DetallePedidosFabrica = new HashSet<DetallePedidosFabricaModel>();
+            this.ProductoDefectos = new HashSet<ProductoDefectoModel>();
         }
 
         public int ID_Producto { get; set; }
@@ -36,6 +37,7 @@ namespace Domain.Models
         public virtual ICollection<DetallePedidosModel> DetallePedido { get; set; }
         public virtual ICollection<DetallePedidosFabricaModel> DetallePedidosFabrica { get; set; }
         public virtual ICollection<VentasModel> Venta { get; set; }
+        public virtual ICollection<ProductoDefectoModel> ProductoDefectos { get; set; }
 
         public virtual TipoPrendaModel TipoPrenda { get; set; }
         public virtual TelaBaseModel TelaBase { get; set; }

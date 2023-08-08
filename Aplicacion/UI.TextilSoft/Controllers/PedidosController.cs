@@ -313,5 +313,18 @@ namespace UI.TextilSoft.Controllers
                 throw ex;
             }
         }
+        
+        public void AgregarSeña(int idPedido,decimal seña)
+        {
+            try
+            {
+                _pedidosService.AgregarSeña(idPedido, seña);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }

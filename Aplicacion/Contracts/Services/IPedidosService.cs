@@ -16,5 +16,6 @@ namespace Contracts.Services
         public PaginatedList<PedidosModel> ObtenerTodosLosPedidos(int pageCount);
         public int ObtenerUltimoNumeroPedido();
         public void AsignarODT(int idPedido);
+        public void AgregarSeña(int idPedido, decimal seña);
     }
 }

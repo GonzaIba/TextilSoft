@@ -100,7 +100,9 @@ namespace UI.TextilSoft.Mapeo
                 .ForMember(dest => dest.EstadoActual, opt => opt.MapFrom(src => ConvertToEstadoPedido(src.EstadoPedido.ID_EstadoPedido)))
                 .ForMember(dest => dest.HistorialPedidos, opt => opt.MapFrom(src => src.HistorialPedidos.Select(hp => new HistorialPedidosEntity { EstadoPedido = ConvertToEstadoPedido(hp.EstadoPedido.ID_EstadoPedido), Fecha = hp.Fecha }).ToList()));
 
-
+            CreateMap<VentasEntity, VentasModel>()
+                .ReverseMap()
+                .ForMember(dest => dest.FechaVenta, opt => opt.MapFrom(src => src.CreateDate));
 
             #region Armado Productos
             CreateMap<TipoPrendaModel, TipoPrendaEntity>();

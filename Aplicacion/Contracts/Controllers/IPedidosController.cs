@@ -20,5 +20,6 @@ namespace Contracts.Controllers
         
         public string GenerarPedido(List<DetallePedidosYFabricaEntity> listaPedidos, bool EsPedido, int DNIEmpleado, int DNICLiente = 0, decimal totalPago = 0, decimal seña = 0);
         public void AsignarODT(int idPedido, bool EsPedido);
+        public void AgregarSeña(int idPedido, decimal seña);
     }
 }

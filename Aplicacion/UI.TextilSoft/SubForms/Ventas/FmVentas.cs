@@ -16,5 +16,15 @@ namespace UI.TextilSoft.SubForms.Ventas
         {
             InitializeComponent();
         }
+
+        private void btnSeña_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRegistrarVenta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

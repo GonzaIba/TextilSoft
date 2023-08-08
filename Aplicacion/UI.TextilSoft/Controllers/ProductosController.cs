@@ -5,6 +5,7 @@ using Contracts.Services;
 using Domain.Entities;
 using Domain.GenericEntity;
 using Domain.Models;
+using SL.Contracts;
 using SL.Helper.Extensions;
 using SL.Helper.Services.Log4net;
 using System;
@@ -21,13 +22,20 @@ namespace UI.TextilSoft.Controllers
     public class ProductosController : IProductosController
     {
         private IProductoService _productoService;
+        private IProductoDefectoService _productoDefectoService;
         private IArmadoProductoService _armadoProductoService;
+        private IUsuarioService _usuarioService;
         private IMapper _mapper;
         private ILogger _logger;
-        public ProductosController(IProductoService productoService, IArmadoProductoService armadoProductoService, IMapper mapper, ILogger logger)
+        public ProductosController(IProductoService productoService,
+            IArmadoProductoService armadoProductoService,
+            IProductoDefectoService productoDefectoService,
+            IMapper mapper,
+            ILogger logger)
         {
             _productoService = productoService;
             _armadoProductoService = armadoProductoService;
+            _productoDefectoService = productoDefectoService;
             _mapper = mapper;
             _logger = logger;
         }
@@ -155,6 +163,24 @@ namespace UI.TextilSoft.Controllers
             catch (Exception ex)
             {
                 _logger.GenerateLogError("Ocurrió un error al crear el producto con el nombre: " + productosEntity.NombreProducto, ex);
+                throw ex;
+            }
+        }
+
+        public void RegistrarProductoDefectuoso(int idProducto,int cantidad, string motivo, int idUsuario)
+        {
+            try
+            {
+                ProductoDefectoModel productoDefectoModel = new();
+                productoDefectoModel.ID_Producto = idProducto;
+                productoDefectoModel.Motivo = motivo;
+                productoDefectoModel.Cantidad = cantidad;
+                productoDefectoModel.CreateUser = ;
+                _productoDefectoService.Crear(productoDefectoModel);
+            }
+            catch (Exception ex)
+            {
+
                 throw ex;
             }
         }

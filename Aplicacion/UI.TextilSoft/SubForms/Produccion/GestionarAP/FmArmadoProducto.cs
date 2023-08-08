@@ -13,6 +13,7 @@ using System.Windows.Forms;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.Tools.ExtensionsControls;
+using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Produccion.GestionarAP
 {
@@ -41,7 +42,10 @@ namespace UI.TextilSoft.SubForms.Produccion.GestionarAP
                 var Armado = _factory.UseNew<IArmadoProductoController>().ObtenerArmadoPorCodigo((ArmadoProductoEnum)fmCboxTipoArmado.SelectedItem, Codigo);
                 if (Armado is null)
                 {
-                    MessageBox.Show("No existe ningun producto con este código. Por Favor, vuelva a ingresarlo");
+                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Inexistencia", "No existe ningun producto con este código. Por Favor, vuelva a ingresarlo", centerPosition);
+                    fmMessageBox.ShowDialog();
+                    //MessageBox.Show("No existe ningun producto con este código. Por Favor, vuelva a ingresarlo");
                     txtCodigo.LimpiarTextbox();
                 }
                 else

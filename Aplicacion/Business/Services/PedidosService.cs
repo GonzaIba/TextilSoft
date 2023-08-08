@@ -30,6 +30,22 @@ namespace Business.Services
             _empleadosService = empleadosService;
         }
 
+        public void AgregarSeña(int idPedido, decimal seña)
+        {
+            var pedidoModel = GetById(idPedido);
+            if ((pedidoModel.SubTotal + seña) < seña)
+                throw new Exception("La seña supera el límite del subtotal");
+
+            if(pedidoModel.ID_EstadoPedido == (int)EstadoPedidosEnum.Cancelado)
+                throw new Exception("No se puede señar el pedido ya que fue cancelado");
+            else if (pedidoModel.ID_EstadoPedido == (int)EstadoPedidosEnum.Entregado)
+                throw new Exception("No se puede señar el pedido ya que ya fue entregado");
+
+            pedidoModel.Seña = pedidoModel.Seña + seña;
+            _repository.Update(pedidoModel);
+            _unitOfWork.SaveChanges();
+        }
+
         public void AsignarODT(int idPedido)
         {
             try

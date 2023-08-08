@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
-    public class BolsilloInteriorRepository : GenericRepository<BolsilloInteriorModel>, IBolsilloInteriorRepository
+    public class ProductoDefectoRepository : GenericRepository<ProductoDefectoModel>, IProductoDefectoRepository
     {
-        public BolsilloInteriorRepository(ApplicationDbContext context) : base(context)
+        public ProductoDefectoRepository(ApplicationDbContext context) : base(context)
         {
 
         }

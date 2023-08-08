@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Contracts.Services
+namespace Contracts.Repositories
 {
-    public interface IVentasService : IGenericService<VentasModel>
+    public interface IProductoDefectoRepository : IGenericRepository<ProductoDefectoModel>
     {
-        public void RegistrarVenta(VentasModel ventasModel);
     }
 }
