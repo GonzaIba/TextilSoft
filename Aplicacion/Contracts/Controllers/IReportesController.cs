@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enum;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Contracts.Controllers
 {
-    public interface IVentasController
+    public interface IReportesController
     {
-        public void RegistrarVenta(VentasEntity ventasEntity, string DNI);
+        public dynamic ObtenerReportesConFiltro(ReporteTipoOperacionEnum tipoOperacionEnum, DateTime from, DateTime to);
     }
 }

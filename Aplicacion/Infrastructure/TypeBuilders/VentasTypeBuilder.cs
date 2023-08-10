@@ -15,20 +15,17 @@ namespace Infrastructure.TypeBuilders
         {
             builder.HasKey(p => p.ID_Venta);
 
-            builder.Property(p => p.CapitalRecibido)
-                .IsRequired(false)
-                .HasColumnType("varchar(50)");
-
-            builder.Property(p => p.FechaVenta)
-                .IsRequired(false);
-
-            builder.Property(p => p.Descripcion)
-                .IsRequired(false)
-                .HasColumnType("varchar(50)");
+            builder.Property(p => p.Cantidad)
+                .IsRequired(true)
+                .HasColumnType("int");
 
             builder.HasOne(p => p.Producto)
                 .WithMany(x=>x.Venta)
                 .HasForeignKey(p=>p.ID_Producto);
+
+            builder.Property(p => p.TotalCapitalRecibido)
+                .IsRequired(true)
+                .HasColumnType("decimal(18,2)");
 
             builder.ToTable("Venta");
         }

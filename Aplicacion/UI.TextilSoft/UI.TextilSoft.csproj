@@ -74,4 +74,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SubForms\Informes-Reportes\Reporte-Stock\" />
+  </ItemGroup>
+
 </Project>

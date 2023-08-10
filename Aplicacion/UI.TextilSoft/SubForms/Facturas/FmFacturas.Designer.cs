@@ -28,12 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FmFacturas";
+            lblPrincipal = new System.Windows.Forms.Label();
+            SuspendLayout();
+            // 
+            // lblPrincipal
+            // 
+            lblPrincipal.AutoSize = true;
+            lblPrincipal.BackColor = System.Drawing.Color.Transparent;
+            lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            lblPrincipal.ForeColor = System.Drawing.Color.White;
+            lblPrincipal.Location = new System.Drawing.Point(250, 25);
+            lblPrincipal.Name = "lblPrincipal";
+            lblPrincipal.Size = new System.Drawing.Size(226, 41);
+            lblPrincipal.TabIndex = 35;
+            lblPrincipal.Text = "Generar Factura";
+            // 
+            // FmFacturas
+            // 
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
+            ClientSize = new System.Drawing.Size(800, 450);
+            Controls.Add(lblPrincipal);
+            Name = "FmFacturas";
+            Text = "FmFacturas";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private System.Windows.Forms.Label lblPrincipal;
     }
 }

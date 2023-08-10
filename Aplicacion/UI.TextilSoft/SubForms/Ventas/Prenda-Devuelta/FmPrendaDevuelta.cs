@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.TextilSoft.Factory;
@@ -51,7 +52,23 @@ namespace UI.TextilSoft.SubForms.Ventas.Prenda_Devuelta
                 return;
             }
 
-            _factory.UseNew<IProductosController>().RegistrarProductoDefectuoso(producto.ID_Producto, Convert.ToInt32(txtCantidad.Text), txtMotivo.Text, _fmTextilSoft._user.);
+            _factory.UseNew<IProductosController>().RegistrarProductoDefectuoso(producto.ID_Producto, Convert.ToInt32(txtCantidad.Text), txtMotivo.Text, _fmTextilSoft._usuarioInformacion.DNI);
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!Regex.IsMatch(txtCantidad.Text, "^[+-]?\\d*\\.?\\d+$"))
+                {
+                    toolTipError.Show("Solo se permiten números enteros", txtCantidad, 0, -20, 2000);
+                    txtCantidad.Text = txtCantidad.Text.Remove(txtCantidad.Text.Length - 1);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

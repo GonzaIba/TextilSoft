@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Business.Services;
 using Contracts.Controllers;
 using Contracts.Services;
 using Domain.Entities;
+using Domain.Enum;
 using Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -16,21 +18,25 @@ namespace UI.TextilSoft.Controllers
         private readonly IMapper _mapper;
         private readonly IVentasService _ventasService;
         private readonly IProductoService _productoService;
+        private readonly IEmpleadosService _empleadosService;
         
-        public VentasController(IVentasService ventasService, IProductoService productoService, IMapper mapper)
+        public VentasController(IMapper mapper, IVentasService ventasService, IProductoService productoService, IEmpleadosService empleadosService)
         {
+            _mapper = mapper;
             _ventasService = ventasService;
             _productoService = productoService;
-            _mapper = mapper;
+            _empleadosService = empleadosService;
         }
 
-        public void RegistrarVenta(VentasEntity ventasEntity)
+        public void RegistrarVenta(VentasEntity ventasEntity, string DNI)
         {
             try
             {
                 var ventasModel = _mapper.Map<VentasModel>(ventasEntity);
-                int idProducto = _productoService.Get(x => x.CodigoProducto.ToString() == ventasEntity.CodigoProducto).FirstOrDefault().ID_Producto;
-                ventasModel.ID_Producto = idProducto;
+                var producto = _productoService.Get(x => x.CodigoProducto.ToString() == ventasEntity.CodigoProducto).FirstOrDefault();
+                ventasModel.ID_Producto = producto.ID_Producto;
+                ventasModel.TotalCapitalRecibido = producto.Precio * ventasEntity.Cantidad;
+                ventasModel.CreateUser = _empleadosService.Get(x => x.DNI == Convert.ToInt32(DNI)).FirstOrDefault().ID_Empleados;
                 _ventasService.RegistrarVenta(ventasModel);
             }
             catch (Exception ex)

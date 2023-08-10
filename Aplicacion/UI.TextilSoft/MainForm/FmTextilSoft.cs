@@ -24,10 +24,13 @@ using System.Windows.Media;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Configuracion;
+using UI.TextilSoft.SubForms.Informes_Reportes;
+using UI.TextilSoft.SubForms.Informes_Reportes.Reporte_Ventas;
 using UI.TextilSoft.SubForms.Pedidos;
 using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 using UI.TextilSoft.SubForms.Produccion;
 using UI.TextilSoft.SubForms.Proveedores;
+using UI.TextilSoft.SubForms.Ventas;
 using UI.TextilSoft.Tools;
 using UI.TextilSoft.Tools.FormsTools;
 using ILogger = SL.Helper.Services.Log4net.ILogger;
@@ -287,6 +290,7 @@ namespace UI.TextilSoft.MainForm
 
         private void btnVentas_Click(object sender, EventArgs e)
         {
+            AbrirFormHija(new FmVentas(_factory, this));
             ActivateButton(sender);
             BotonPresionado = true;
             SonidoForm();
@@ -301,6 +305,7 @@ namespace UI.TextilSoft.MainForm
 
         private void btnReportes_Click(object sender, EventArgs e)
         {
+            AbrirFormHija(new FmInformes(_factory, this));
             ActivateButton(sender);
             BotonPresionado = true;
             SonidoForm();

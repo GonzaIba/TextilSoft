@@ -104,6 +104,11 @@ namespace UI.TextilSoft.Mapeo
                 .ReverseMap()
                 .ForMember(dest => dest.FechaVenta, opt => opt.MapFrom(src => src.CreateDate));
 
+            CreateMap<(TipoPrendaModel, int), ReportePrendasEntity>()
+                .ForMember(dest => dest.CodigoPrenda, opt => opt.MapFrom(src => src.Item1.ID_TipoPrenda))
+                .ForMember(dest => dest.TipoPrenda, opt => opt.MapFrom(src => src.Item1.TipoPrenda))
+                .ForMember(dest => dest.Cantidad, opt => opt.MapFrom(src => src.Item2));
+
             #region Armado Productos
             CreateMap<TipoPrendaModel, TipoPrendaEntity>();
             CreateMap<TelaBaseModel, TelaBaseEntity>();

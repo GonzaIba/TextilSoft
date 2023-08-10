@@ -21,18 +21,20 @@ namespace UI.TextilSoft.Controllers
 {
     public class ProductosController : IProductosController
     {
+        private IEmpleadosService _empleadosService;
         private IProductoService _productoService;
         private IProductoDefectoService _productoDefectoService;
         private IArmadoProductoService _armadoProductoService;
-        private IUsuarioService _usuarioService;
         private IMapper _mapper;
         private ILogger _logger;
-        public ProductosController(IProductoService productoService,
+        public ProductosController(IEmpleadosService empleadosService,
+            IProductoService productoService,
             IArmadoProductoService armadoProductoService,
             IProductoDefectoService productoDefectoService,
             IMapper mapper,
             ILogger logger)
         {
+            _empleadosService = empleadosService;
             _productoService = productoService;
             _armadoProductoService = armadoProductoService;
             _productoDefectoService = productoDefectoService;
@@ -166,8 +168,8 @@ namespace UI.TextilSoft.Controllers
                 throw ex;
             }
         }
-
-        public void RegistrarProductoDefectuoso(int idProducto,int cantidad, string motivo, int idUsuario)
+        
+        public void RegistrarProductoDefectuoso(int idProducto,int cantidad, string motivo, int dniEmpleado)
         {
             try
             {
@@ -175,14 +177,18 @@ namespace UI.TextilSoft.Controllers
                 productoDefectoModel.ID_Producto = idProducto;
                 productoDefectoModel.Motivo = motivo;
                 productoDefectoModel.Cantidad = cantidad;
-                productoDefectoModel.CreateUser = ;
+                productoDefectoModel.CreateUser = _empleadosService.Get(x=> x.DNI == dniEmpleado).FirstOrDefault().ID_Empleados;
                 _productoDefectoService.Crear(productoDefectoModel);
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
+        }
+
+        public void RegistrarProductoDefectuoso(int idProducto, int cantidad, string motivo)
+        {
+            throw new NotImplementedException();
         }
     }
 }

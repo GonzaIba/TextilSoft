@@ -1,4 +1,5 @@
-﻿using Contracts.Controllers;
+﻿using AltoControls;
+using Contracts.Controllers;
 using Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -73,13 +74,26 @@ namespace UI.TextilSoft.SubForms.Ventas.Seña
         {
             try
             {
-                if (!string.IsNullOrEmpty(txtCantidadSeña.Text))
+                foreach (Control control in this.Controls)
                 {
-                    var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error datos faltantes", "Por favor ingrese la cantidad", centerPosition);
-                    fmMessageBox.ShowDialog();
-                    return;
+                    if (control.Name.Contains("txt") && control.Name != "txtColor")
+                    {
+                        AltoTextBox textBox = (AltoTextBox)control;
+                        if (string.IsNullOrWhiteSpace(textBox.Text) && string.IsNullOrEmpty(textBox.Text))
+                        {
+                            toolTipError.Show("Por favor, complete el campo", textBox, 0, -20, 2000);
+                            textBox.Focus();
+                            return;
+                        }
+                    }
                 }
+                //if (!string.IsNullOrEmpty(txtCantidadSeña.Text))
+                //{
+                //    var centerPosition = new Point(this.Width / 2, this.Height / 2);
+                //    FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Error datos faltantes", "Por favor ingrese la cantidad", centerPosition);
+                //    fmMessageBox.ShowDialog();
+                //    return;
+                //}
                 var pedido = _factory.UseNew<IPedidosController<ListarPedidosEntity>>().ObtenerPedido(Convert.ToInt32(txtCodigoPedido.Text), clientesEntity);
                 if (pedido is null)
                 {
