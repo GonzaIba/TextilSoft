@@ -58,5 +58,18 @@ namespace UI.TextilSoft.SubForms.Produccion.GestionarAP
                 txtEliminarNombre.LimpiarTextbox();
             }
         }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    var Armado = _factory.UseNew<IArmadoProductoController>().((ArmadoProductoEnum)fmCboxTipoArmado.SelectedItem, Codigo);
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    throw;
+            //}
+        }
     }
 }

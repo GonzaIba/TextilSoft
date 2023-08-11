@@ -53,10 +53,9 @@
             btnCrear.IconColor = System.Drawing.Color.White;
             btnCrear.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCrear.IconSize = 35;
-            btnCrear.Location = new System.Drawing.Point(82, 425);
-            btnCrear.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnCrear.Location = new System.Drawing.Point(70, 335);
             btnCrear.Name = "btnCrear";
-            btnCrear.Size = new System.Drawing.Size(95, 45);
+            btnCrear.Size = new System.Drawing.Size(83, 34);
             btnCrear.TabIndex = 131;
             btnCrear.Text = "Crear";
             btnCrear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -69,10 +68,9 @@
             txtCodigo.Br = System.Drawing.Color.MidnightBlue;
             txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCodigo.ForeColor = System.Drawing.Color.White;
-            txtCodigo.Location = new System.Drawing.Point(57, 128);
-            txtCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCodigo.Location = new System.Drawing.Point(50, 96);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new System.Drawing.Size(141, 39);
+            txtCodigo.Size = new System.Drawing.Size(123, 29);
             txtCodigo.TabIndex = 130;
             txtCodigo.TextChanged += txtCodigo_TextChanged;
             // 
@@ -80,9 +78,9 @@
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.ForeColor = System.Drawing.Color.White;
-            lblDescripcion.Location = new System.Drawing.Point(91, 95);
+            lblDescripcion.Location = new System.Drawing.Point(80, 71);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new System.Drawing.Size(61, 20);
+            lblDescripcion.Size = new System.Drawing.Size(49, 15);
             lblDescripcion.TabIndex = 129;
             lblDescripcion.Text = "Código:";
             // 
@@ -92,9 +90,9 @@
             lblPrincipal.BackColor = System.Drawing.Color.Transparent;
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(156, 22);
+            lblPrincipal.Location = new System.Drawing.Point(136, 16);
             lblPrincipal.Name = "lblPrincipal";
-            lblPrincipal.Size = new System.Drawing.Size(467, 41);
+            lblPrincipal.Size = new System.Drawing.Size(373, 32);
             lblPrincipal.TabIndex = 134;
             lblPrincipal.Text = "Gestion De Armado De Productos";
             // 
@@ -108,10 +106,9 @@
             btnImagenPrenda.IconColor = System.Drawing.Color.White;
             btnImagenPrenda.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnImagenPrenda.IconSize = 45;
-            btnImagenPrenda.Location = new System.Drawing.Point(43, 175);
-            btnImagenPrenda.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnImagenPrenda.Location = new System.Drawing.Point(38, 131);
             btnImagenPrenda.Name = "btnImagenPrenda";
-            btnImagenPrenda.Size = new System.Drawing.Size(176, 40);
+            btnImagenPrenda.Size = new System.Drawing.Size(154, 46);
             btnImagenPrenda.TabIndex = 137;
             btnImagenPrenda.Text = "Cargar Imagen";
             btnImagenPrenda.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -120,20 +117,18 @@
             // 
             // pBoxImagenTransfer
             // 
-            pBoxImagenTransfer.Location = new System.Drawing.Point(12, 223);
-            pBoxImagenTransfer.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pBoxImagenTransfer.Location = new System.Drawing.Point(12, 183);
             pBoxImagenTransfer.Name = "pBoxImagenTransfer";
-            pBoxImagenTransfer.Size = new System.Drawing.Size(264, 194);
+            pBoxImagenTransfer.Size = new System.Drawing.Size(231, 146);
             pBoxImagenTransfer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             pBoxImagenTransfer.TabIndex = 136;
             pBoxImagenTransfer.TabStop = false;
             // 
             // pBoxImagenTransferBuscar
             // 
-            pBoxImagenTransferBuscar.Location = new System.Drawing.Point(456, 223);
-            pBoxImagenTransferBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            pBoxImagenTransferBuscar.Location = new System.Drawing.Point(400, 183);
             pBoxImagenTransferBuscar.Name = "pBoxImagenTransferBuscar";
-            pBoxImagenTransferBuscar.Size = new System.Drawing.Size(264, 194);
+            pBoxImagenTransferBuscar.Size = new System.Drawing.Size(231, 146);
             pBoxImagenTransferBuscar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             pBoxImagenTransferBuscar.TabIndex = 141;
             pBoxImagenTransferBuscar.TabStop = false;
@@ -147,10 +142,9 @@
             btnSearch.IconColor = System.Drawing.Color.White;
             btnSearch.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnSearch.IconSize = 35;
-            btnSearch.Location = new System.Drawing.Point(540, 175);
-            btnSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnSearch.Location = new System.Drawing.Point(462, 131);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new System.Drawing.Size(95, 36);
+            btnSearch.Size = new System.Drawing.Size(104, 46);
             btnSearch.TabIndex = 140;
             btnSearch.Text = "Buscar";
             btnSearch.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -163,28 +157,27 @@
             txtTransferBuscar.Br = System.Drawing.Color.MidnightBlue;
             txtTransferBuscar.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtTransferBuscar.ForeColor = System.Drawing.Color.White;
-            txtTransferBuscar.Location = new System.Drawing.Point(518, 128);
-            txtTransferBuscar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtTransferBuscar.Location = new System.Drawing.Point(453, 96);
             txtTransferBuscar.Name = "txtTransferBuscar";
-            txtTransferBuscar.Size = new System.Drawing.Size(141, 39);
+            txtTransferBuscar.Size = new System.Drawing.Size(123, 29);
             txtTransferBuscar.TabIndex = 139;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(562, 104);
+            label1.Location = new System.Drawing.Point(492, 78);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(61, 20);
+            label1.Size = new System.Drawing.Size(49, 15);
             label1.TabIndex = 138;
             label1.Text = "Código:";
             // 
             // FmGestionarTransfer
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(800, 523);
+            ClientSize = new System.Drawing.Size(700, 392);
             Controls.Add(pBoxImagenTransferBuscar);
             Controls.Add(btnSearch);
             Controls.Add(txtTransferBuscar);
@@ -195,6 +188,7 @@
             Controls.Add(btnCrear);
             Controls.Add(txtCodigo);
             Controls.Add(lblDescripcion);
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "FmGestionarTransfer";
             Text = "FmGestionarTransfer";
             ((System.ComponentModel.ISupportInitialize)pBoxImagenTransfer).EndInit();

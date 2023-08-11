@@ -34,6 +34,10 @@ namespace UI.TextilSoft.Controllers
             {
                 var ventasModel = _mapper.Map<VentasModel>(ventasEntity);
                 var producto = _productoService.Get(x => x.CodigoProducto.ToString() == ventasEntity.CodigoProducto).FirstOrDefault();
+                if( producto is null)
+                {
+                    throw new Exception("No existe un producto asociado");
+                }
                 ventasModel.ID_Producto = producto.ID_Producto;
                 ventasModel.TotalCapitalRecibido = producto.Precio * ventasEntity.Cantidad;
                 ventasModel.CreateUser = _empleadosService.Get(x => x.DNI == Convert.ToInt32(DNI)).FirstOrDefault().ID_Empleados;

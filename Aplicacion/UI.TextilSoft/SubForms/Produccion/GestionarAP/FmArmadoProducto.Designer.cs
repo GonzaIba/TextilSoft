@@ -47,9 +47,9 @@
             lblPrincipal.BackColor = System.Drawing.Color.Transparent;
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(155, 42);
+            lblPrincipal.Location = new System.Drawing.Point(136, 32);
             lblPrincipal.Name = "lblPrincipal";
-            lblPrincipal.Size = new System.Drawing.Size(467, 41);
+            lblPrincipal.Size = new System.Drawing.Size(373, 32);
             lblPrincipal.TabIndex = 33;
             lblPrincipal.Text = "Gestion De Armado De Productos";
             // 
@@ -65,10 +65,9 @@
             fmCboxTipoArmado.Items.AddRange(new object[] { "XS", "S", "M", "L", "XL", "XXL", "XXXL" });
             fmCboxTipoArmado.ListBackColor = System.Drawing.Color.FromArgb(230, 228, 245);
             fmCboxTipoArmado.ListTextColor = System.Drawing.Color.DimGray;
-            fmCboxTipoArmado.Location = new System.Drawing.Point(303, 129);
-            fmCboxTipoArmado.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            fmCboxTipoArmado.Location = new System.Drawing.Point(265, 97);
             fmCboxTipoArmado.Name = "fmCboxTipoArmado";
-            fmCboxTipoArmado.Size = new System.Drawing.Size(144, 27);
+            fmCboxTipoArmado.Size = new System.Drawing.Size(126, 20);
             fmCboxTipoArmado.TabIndex = 125;
             fmCboxTipoArmado.Texts = "";
             // 
@@ -76,9 +75,9 @@
             // 
             lblCollareta.AutoSize = true;
             lblCollareta.ForeColor = System.Drawing.Color.White;
-            lblCollareta.Location = new System.Drawing.Point(318, 105);
+            lblCollareta.Location = new System.Drawing.Point(278, 79);
             lblCollareta.Name = "lblCollareta";
-            lblCollareta.Size = new System.Drawing.Size(120, 20);
+            lblCollareta.Size = new System.Drawing.Size(93, 15);
             lblCollareta.TabIndex = 124;
             lblCollareta.Text = "Tipo De Armado";
             // 
@@ -88,10 +87,9 @@
             txtCodigo.Br = System.Drawing.Color.MidnightBlue;
             txtCodigo.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCodigo.ForeColor = System.Drawing.Color.White;
-            txtCodigo.Location = new System.Drawing.Point(108, 211);
-            txtCodigo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCodigo.Location = new System.Drawing.Point(94, 158);
             txtCodigo.Name = "txtCodigo";
-            txtCodigo.Size = new System.Drawing.Size(141, 39);
+            txtCodigo.Size = new System.Drawing.Size(123, 29);
             txtCodigo.TabIndex = 123;
             txtCodigo.TextChanged += txtDesc_TextChanged;
             // 
@@ -99,9 +97,9 @@
             // 
             lblDescripcion.AutoSize = true;
             lblDescripcion.ForeColor = System.Drawing.Color.White;
-            lblDescripcion.Location = new System.Drawing.Point(41, 219);
+            lblDescripcion.Location = new System.Drawing.Point(36, 164);
             lblDescripcion.Name = "lblDescripcion";
-            lblDescripcion.Size = new System.Drawing.Size(61, 20);
+            lblDescripcion.Size = new System.Drawing.Size(49, 15);
             lblDescripcion.TabIndex = 122;
             lblDescripcion.Text = "Código:";
             // 
@@ -114,10 +112,9 @@
             btnEliminar.IconColor = System.Drawing.Color.White;
             btnEliminar.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnEliminar.IconSize = 35;
-            btnEliminar.Location = new System.Drawing.Point(67, 317);
-            btnEliminar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            btnEliminar.Location = new System.Drawing.Point(59, 238);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new System.Drawing.Size(141, 61);
+            btnEliminar.Size = new System.Drawing.Size(123, 46);
             btnEliminar.TabIndex = 126;
             btnEliminar.Text = "Eliminar";
             btnEliminar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -130,19 +127,18 @@
             txtEliminarNombre.Enabled = false;
             txtEliminarNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtEliminarNombre.ForeColor = System.Drawing.Color.White;
-            txtEliminarNombre.Location = new System.Drawing.Point(108, 258);
-            txtEliminarNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtEliminarNombre.Location = new System.Drawing.Point(94, 194);
             txtEliminarNombre.Name = "txtEliminarNombre";
-            txtEliminarNombre.Size = new System.Drawing.Size(141, 39);
+            txtEliminarNombre.Size = new System.Drawing.Size(123, 29);
             txtEliminarNombre.TabIndex = 128;
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
             lblNombre.ForeColor = System.Drawing.Color.White;
-            lblNombre.Location = new System.Drawing.Point(35, 266);
+            lblNombre.Location = new System.Drawing.Point(31, 200);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new System.Drawing.Size(67, 20);
+            lblNombre.Size = new System.Drawing.Size(54, 15);
             lblNombre.TabIndex = 127;
             lblNombre.Text = "Nombre:";
             // 
@@ -152,19 +148,18 @@
             txtCrearNombre.Br = System.Drawing.Color.MidnightBlue;
             txtCrearNombre.Font = new System.Drawing.Font("Comic Sans MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             txtCrearNombre.ForeColor = System.Drawing.Color.White;
-            txtCrearNombre.Location = new System.Drawing.Point(337, 258);
-            txtCrearNombre.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            txtCrearNombre.Location = new System.Drawing.Point(295, 194);
             txtCrearNombre.Name = "txtCrearNombre";
-            txtCrearNombre.Size = new System.Drawing.Size(141, 39);
+            txtCrearNombre.Size = new System.Drawing.Size(123, 29);
             txtCrearNombre.TabIndex = 133;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = System.Drawing.Color.White;
-            label1.Location = new System.Drawing.Point(371, 230);
+            label1.Location = new System.Drawing.Point(325, 172);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(67, 20);
+            label1.Size = new System.Drawing.Size(54, 15);
             label1.TabIndex = 132;
             label1.Text = "Nombre:";
             // 
@@ -177,21 +172,21 @@
             iconButton1.IconColor = System.Drawing.Color.White;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton1.IconSize = 35;
-            iconButton1.Location = new System.Drawing.Point(337, 305);
-            iconButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            iconButton1.Location = new System.Drawing.Point(295, 229);
             iconButton1.Name = "iconButton1";
-            iconButton1.Size = new System.Drawing.Size(141, 61);
+            iconButton1.Size = new System.Drawing.Size(123, 46);
             iconButton1.TabIndex = 131;
             iconButton1.Text = "Crear";
             iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             iconButton1.UseVisualStyleBackColor = true;
+            iconButton1.Click += iconButton1_Click;
             // 
             // FmArmadoProducto
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.FromArgb(32, 30, 45);
-            ClientSize = new System.Drawing.Size(850, 450);
+            ClientSize = new System.Drawing.Size(744, 338);
             Controls.Add(txtCrearNombre);
             Controls.Add(label1);
             Controls.Add(iconButton1);
@@ -203,6 +198,7 @@
             Controls.Add(txtCodigo);
             Controls.Add(lblDescripcion);
             Controls.Add(lblPrincipal);
+            Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             Name = "FmArmadoProducto";
             Text = "FmArmadoProducto";
             Load += FmArmadoProducto_Load;

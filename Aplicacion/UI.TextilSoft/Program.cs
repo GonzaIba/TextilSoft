@@ -299,6 +299,9 @@ namespace UI.TextilSoft
                 usuario.Active = true;
                 usuario.IsOwner = true;
                 usuario.DNI = 12345678;
+                usuario.EnableVolume = false;
+                usuario.EnableSlicePanel = false;
+                usuario.EnableAnimators = false;
                 usuarioRepository.Insert(usuario);
                 SldbContext.SaveChanges();
 
@@ -351,6 +354,19 @@ namespace UI.TextilSoft
                     new EstadoPedidoModel { Estado = "EnDepósito", Active = true },
                     new EstadoPedidoModel { Estado = "Entregado", Active = true },
                     new EstadoPedidoModel { Estado = "Cancelado", Active = true },
+                };
+
+                dbContext.AddRange(estadosPedido);
+                dbContext.SaveChanges();
+            }
+
+            var clientesRepository = services.GetRequiredService<IClientesRepository>();
+            if (!clientesRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var estadosPedido = new List<ClientesModel>
+                {
+                    new ClientesModel { DNI = "42886278", Nombre="Gonzalo", Apellido="Ibañez", EstadoCliente="Activo", FechaNac=DateTime.Now, Mail="gonza_28.00@hotmail.com", Telefono=1566178382, Residencia="Calle falsa 123", Active = true }
                 };
 
                 dbContext.AddRange(estadosPedido);
