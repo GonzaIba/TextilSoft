@@ -378,6 +378,10 @@ namespace UI.TextilSoft.Controllers
             try
             {
                 var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroPedido, includeProperties: "EstadoPedido,Clientes,Empleados", tracking: false).FirstOrDefault();
+
+                if (pedidoModel is null)
+                    return (null, null);
+
                 if (pedidoModel.ID_EstadoPedido != (int)EstadoPedidosEnum.Cancelado && pedidoModel.ID_EstadoPedido != (int)EstadoPedidosEnum.Entregado)
                 {
                     var detallePedidoModel = _detallePedidosService.Get(x => x.ID_Pedido == pedidoModel.ID_Pedido, includeProperties: "Producto,Transfer", tracking: false).ToList();
