@@ -12,6 +12,7 @@ namespace Domain.Models
         public Nullable<int> NumeroFactura { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<decimal> TotalPago { get; set; }
+        public string Nota { get; set; }
         public int ID_Pedido { get; set; }
 
         public virtual PedidosModel Pedidos { get; set; }

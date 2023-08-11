@@ -10,6 +10,11 @@ namespace Contracts.Services
     public interface IEmpleadosService : IGenericService<EmpleadosModel>
     {
         public EmpleadosModel EmpleadoLogueado { get; set; }
+
+        /// <summary>
+        /// Se loguea el empleado en el sistema
+        /// </summary>
+        /// <param name="empleadosModel"></param>
         public void LoginEmpleado(EmpleadosModel empleadosModel);
     }
 }

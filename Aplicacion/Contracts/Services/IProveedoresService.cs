@@ -16,8 +16,10 @@ namespace Contracts.Services
         /// <param name="proveedoresEntity">Es el parametro de la capa de usuario</param>
         void CrearFactura(ProveedoresModel proveedoresEntity); 
 
-        void Test(IEnumerable<ProveedoresModel> listita);
-
+        /// <summary>
+        /// Se elimina un proveedor
+        /// </summary>
+        /// <param name="proveedoresEntity"></param>
         void EliminarProveedor(ProveedoresEntity proveedoresEntity);
 
     }

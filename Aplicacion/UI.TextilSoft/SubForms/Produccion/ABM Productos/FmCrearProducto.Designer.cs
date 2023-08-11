@@ -98,7 +98,7 @@
             btnCrearProducto.FlatAppearance.BorderSize = 0;
             btnCrearProducto.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             btnCrearProducto.ForeColor = System.Drawing.Color.White;
-            btnCrearProducto.IconChar = FontAwesome.Sharp.IconChar.Save;
+            btnCrearProducto.IconChar = FontAwesome.Sharp.IconChar.Tshirt;
             btnCrearProducto.IconColor = System.Drawing.Color.White;
             btnCrearProducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCrearProducto.IconSize = 35;
@@ -107,7 +107,7 @@
             btnCrearProducto.Name = "btnCrearProducto";
             btnCrearProducto.Size = new System.Drawing.Size(141, 61);
             btnCrearProducto.TabIndex = 33;
-            btnCrearProducto.Text = "Guardar";
+            btnCrearProducto.Text = "Crear";
             btnCrearProducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnCrearProducto.UseVisualStyleBackColor = true;
             btnCrearProducto.Click += btnCrearProducto_Click;

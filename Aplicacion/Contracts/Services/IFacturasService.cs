@@ -9,6 +9,11 @@ namespace Contracts.Services
 {
     public interface IFacturasService : IGenericService<FacturasModel>
     {
-
+        /// <summary>
+        /// Genera una factura y actualiza el pedido a entregado
+        /// </summary>
+        /// <param name="factura"></param>
+        /// <param name="pedido"></param>
+        public void CrearFactura(FacturasModel factura, PedidosModel pedido);
     }
 }

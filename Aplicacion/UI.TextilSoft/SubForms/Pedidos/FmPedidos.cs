@@ -12,6 +12,7 @@ using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.MainForm;
 using UI.TextilSoft.SubForms.Pedidos.AdministrarPedido;
+using UI.TextilSoft.SubForms.Pedidos.CancelarPedido;
 using UI.TextilSoft.SubForms.Pedidos.CargarPedido;
 using UI.TextilSoft.SubForms.Pedidos.ListarPedidos;
 using UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo;
@@ -179,6 +180,16 @@ namespace UI.TextilSoft.SubForms.Pedidos
         private void iconButton1_Click(object sender, EventArgs e)
         {
             AbrirFormHija(new FmAsignarODT(_factory));
+        }
+
+        private void btnCancelarPedido_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmCancelarPedido(_factory, _fmTextilSoft));
+        }
+
+        private void btnCerrarODT_Click(object sender, EventArgs e)
+        {
+            AbrirFormHija(new FmCerrarODT(_factory));
         }
     }
 }

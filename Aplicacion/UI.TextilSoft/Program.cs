@@ -373,6 +373,19 @@ namespace UI.TextilSoft
                 dbContext.SaveChanges();
             }
 
+            var proveedoresRepository = services.GetRequiredService<IProveedoresRepository>();
+            if (!proveedoresRepository.TableNoTracking.Any())
+            {
+                // Si no hay registros, insertar los valores por defecto
+                var proveedor = new List<ProveedoresModel>
+                {
+                    new ProveedoresModel { Nombre = "Gonzalo",Mail="Gonza_28.00@hotmail.com", DNI="428862989", LugarEmpresa="Olivos", FechaNac=DateTime.Now, EstadoProveedor="Al dia", Active = true }
+                };
+
+                dbContext.AddRange(proveedor);
+                dbContext.SaveChanges();
+            }
+
             GenerateProductDetail(services, companyId);
         }
 

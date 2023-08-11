@@ -80,7 +80,8 @@ namespace UI.TextilSoft.Controllers
             try
             {
                 var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI), tracking: false).FirstOrDefault();
-                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroPedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido", tracking: false).FirstOrDefault();
+                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroPedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido,Empleados", tracking: false).FirstOrDefault();
+                pedidoModel.Clientes = clienteModel;
                 pedidoEntity = _mapper.Map<ListarPedidosEntity>(pedidoModel);
                 return pedidoEntity;
             }
@@ -233,7 +234,7 @@ namespace UI.TextilSoft.Controllers
             }
         }
 
-        public PaginatedList<T> ObtenerPedidosParaODT(int pageIndex, int pageCount, string orderBy, bool ascending, bool EsPedido)
+        public PaginatedList<T> ObtenerPedidosParaODT(int pageIndex, int pageCount, string orderBy, bool ascending, bool EsPedido, bool EsParaCerrarODT =false)
         {
             try
             {
@@ -250,8 +251,13 @@ namespace UI.TextilSoft.Controllers
                         "AtendidoPor" => entity => entity.Empleados.Nombre,
                         "EstadoPedido" => entity => entity.EstadoPedido,
                         _ => entity => entity.ID_Pedido,
-                    };                
-                    Expression<Func<PedidosModel, bool>> expression = x => x.ID_EstadoPedido == (int)EstadoPedidosEnum.SinAsignar;
+                    };
+                    Expression<Func<PedidosModel, bool>> expression;
+                    if(!EsParaCerrarODT)
+                        expression = x => x.ID_EstadoPedido == (int)EstadoPedidosEnum.SinAsignar;
+                    else
+                        expression = x => x.ID_EstadoPedido == (int)EstadoPedidosEnum.EnProducción;
+                    
                     var ListaPedidosModel = _pedidosService.ObtenerPedidos(pageIndex, pageCount, orderByExpressionPedidosModel, expression, orderBy, ascending);
                     var ListaPedidosEntity = new PaginatedList<ListarPedidosEntity>();
                     if(ListaPedidosModel.TotalCount != 0)
@@ -302,9 +308,6 @@ namespace UI.TextilSoft.Controllers
                 else
                 {
                     _pedidosFabricaService.AsignarODT(idPedido);
-                    var pedido = _pedidosFabricaService.Get(x => x.ID_PedidosFabrica == idPedido, tracking: true).FirstOrDefault();
-                    pedido.ID_EstadoPedidoFabrica = (int)EstadoPedidosFabricaEnum.EnProduccion;
-                    _pedidosFabricaService.Actualizar(pedido);
                 }
             }
             catch (Exception ex)
@@ -313,7 +316,31 @@ namespace UI.TextilSoft.Controllers
                 throw ex;
             }
         }
-        
+
+        public void CerrarODT(int idPedido, bool EsPedido)
+        {
+            try
+            {
+                if (EsPedido)
+                {
+                    var pedido = _pedidosService.GetById(idPedido);
+                    pedido.ID_EstadoPedido = (int)EstadoPedidosEnum.EnDepósito;
+                    _pedidosService.Actualizar(pedido);
+                }
+                else
+                {
+                    var pedidoFabrica = _pedidosFabricaService.GetById(idPedido);
+                    pedidoFabrica.ID_EstadoPedidoFabrica = (int)EstadoPedidosFabricaEnum.EnDeposito;
+                    _pedidosFabricaService.Actualizar(pedidoFabrica);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.GenerateFatalLog("Ocurrió un error fatal al asignar el pedido", ex);
+                throw ex;
+            }
+        }
+
         public void AgregarSeña(int idPedido,decimal seña)
         {
             try
@@ -324,6 +351,61 @@ namespace UI.TextilSoft.Controllers
             {
 
                 throw ex;
+            }
+        }
+
+        public void CancelarPedido(int NumeroPedido, ClientesEntity clienteEntity)
+        {
+            ListarPedidosEntity pedidoEntity = new();
+            try
+            {
+                var clienteModel = _clientesService.Get(x => x.DNI == Convert.ToString(clienteEntity.DNI), tracking: false).FirstOrDefault();
+                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroPedido && x.ID_Cliente == clienteModel.ID_Cliente, includeProperties: "EstadoPedido", tracking: false).FirstOrDefault();
+                if(pedidoModel.ID_EstadoPedido != (int)EstadoPedidosEnum.Cancelado && pedidoModel.ID_EstadoPedido != (int)EstadoPedidosEnum.Entregado)
+                {
+                    pedidoModel.ID_EstadoPedido = (int)EstadoPedidosEnum.Cancelado;
+                    _pedidosService.Actualizar(pedidoModel);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public (List<DetallePedidosYFabricaEntity>,ClientesEntity) ObtenerDetallePedido(int NumeroPedido)
+        {
+            try
+            {
+                var pedidoModel = _pedidosService.Get(x => x.NumeroPedido == NumeroPedido, includeProperties: "EstadoPedido,Clientes,Empleados", tracking: false).FirstOrDefault();
+                if (pedidoModel.ID_EstadoPedido != (int)EstadoPedidosEnum.Cancelado && pedidoModel.ID_EstadoPedido != (int)EstadoPedidosEnum.Entregado)
+                {
+                    var detallePedidoModel = _detallePedidosService.Get(x => x.ID_Pedido == pedidoModel.ID_Pedido, includeProperties: "Producto,Transfer", tracking: false).ToList();
+                    if(detallePedidoModel.Count == 0)
+                        return (null, null);
+
+                    List<DetallePedidosYFabricaEntity> listaDetalle = new();
+                    foreach (var item in detallePedidoModel)
+                    {
+                        DetallePedidosYFabricaEntity detalle = new();
+                        detalle.Codigo = item.Producto.CodigoProducto;
+                        detalle.Cantidad = item.Cantidad;
+                        detalle.Detalle = item.Detalle;
+                        detalle.NombreProducto = item.Producto.Descripcion;
+                        detalle.PrecioProducto = item.Producto.Precio;
+                        detalle.CodigoTransfer = item.Transfer.Codigo;
+                        detalle.Color = item.Color;
+                        listaDetalle.Add(detalle);                    
+                    }
+                    var clienteEntity = _mapper.Map<ClientesEntity>(pedidoModel.Clientes);
+                    return (listaDetalle, clienteEntity);
+                }
+                return (null, null);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+
             }
         }
     }

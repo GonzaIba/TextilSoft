@@ -63,7 +63,7 @@ namespace UI.TextilSoft.Controllers
                     })
                     .OrderByDescending(x => x.Cantidad)
                     .ToList();
-                    return null;
+                    return PrendasMasDefecuosas;
                 case ReporteTipoOperacionEnum.TotalCapitalRecibido:
                     var listCapitalEntreFechas = _ventasService.ObtenerCapitalEntreFechas(from, to);
                     var Empleado = _empleadosService.GetById(listCapitalEntreFechas.CreateUser);

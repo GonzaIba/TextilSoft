@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Proveedores.Producto_de_proveedores;
+using UI.TextilSoft.Tools.FormsTools;
 using UI.TextilSoft.Tools.RegexPatterns;
 
 namespace UI.TextilSoft.SubForms.Proveedores
@@ -44,14 +45,24 @@ namespace UI.TextilSoft.SubForms.Proveedores
 
         private void btnSaveChanges_Click(object sender, EventArgs e)
         {
-            var ListaProveedores = ListaProveedoresDeGrilla();
-            var ListaAcambiar = _factory.Use<IProveedoresController>().DetectarCambios(ListaProveedores);
-            if (ListaAcambiar.Count == 0)
-                MessageBox.Show("No tiene cambios para guardar");
-            else
+            var centerPosition = new Point(this.Width / 2, this.Height / 2);
+            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Guardad Cambios", "Esta seguro de guardar los cambios?", centerPosition, true);
+            fmMessageBox.ShowDialog();
+            var result = fmMessageBox.btnAceptar;
+            if (result)
             {
-                _factory.Use<IProveedoresController>().ActualizarProveedoresPorGrilla(ListaAcambiar);
-                LLenarGridView();
+                var ListaProveedores = ListaProveedoresDeGrilla();
+                var ListaAcambiar = _factory.Use<IProveedoresController>().DetectarCambios(ListaProveedores);
+                if (ListaAcambiar.Count == 0)
+                {
+                    FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Error, "Error", "No tiene cambios para guardar", centerPosition, true);
+                    fmMessageBox2.ShowDialog();
+                }
+                else
+                {
+                    _factory.Use<IProveedoresController>().ActualizarProveedoresPorGrilla(ListaAcambiar);
+                    LLenarGridView();
+                }
             }
         }
 

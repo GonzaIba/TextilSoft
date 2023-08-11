@@ -527,6 +527,23 @@ namespace SL.Helper.Controllers
                 throw ex;
             }
         }
+        
+        public bool ConfirmarContraseña(string usuario, string contraseña)
+        {
+            try
+            {
+                var result = _usuarioService.Get(x => x.Nombre == usuario && x.Contraseña == contraseña).FirstOrDefault();
+                if (result != null)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
         #endregion
     }
 }

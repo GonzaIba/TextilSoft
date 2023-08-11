@@ -36,10 +36,7 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
             {
                 txtNombreProducto.Text = string.Empty;
                 txtTipoProducto.Text = string.Empty;
-                txtEstampa.Text = string.Empty;
-                txtComposicion.Text = string.Empty;
                 txtTalle.Text = string.Empty;
-                txtTejido.Text = string.Empty;
                 txtPrecio.Text = string.Empty;
                 txtCantidad.Text = string.Empty;
                 IdProducto = 0;
@@ -56,7 +53,6 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 {
                     txtNombreProducto.Text = producto.NombreProducto;
                     txtTipoProducto.Text = producto.TipoPrenda;
-                    txtComposicion.Text = producto.Composicion;
                     txtTalle.Text = producto.TallePrenda;
                     txtPrecio.Text = producto.Precio.ToString();
                     txtCantidad.Text = producto.Stock.ToString();
@@ -98,7 +94,6 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 fmMessageBox.ShowDialog();
                 throw;
             }
-
         }
     }
 }

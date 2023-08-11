@@ -9,6 +9,11 @@ namespace Contracts.Controllers
 {
     public interface IVentasController
     {
+        /// <summary>
+        /// Se registra una venta y el DNI del empleado que atendió
+        /// </summary>
+        /// <param name="ventasEntity"></param>
+        /// <param name="DNI"></param>
         public void RegistrarVenta(VentasEntity ventasEntity, string DNI);
     }
 }

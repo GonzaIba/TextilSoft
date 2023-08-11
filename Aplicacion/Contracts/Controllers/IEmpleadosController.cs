@@ -9,6 +9,11 @@ namespace Contracts.Controllers
     public interface IEmpleadosController
     {
         //public void LoginEmpleado(Usuario usuario);
+        
+        /// <summary>
+        /// Verifica si el empleado esta logueado
+        /// </summary>
+        /// <returns></returns>
         public bool UserLogged();
     }
 }

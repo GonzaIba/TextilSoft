@@ -32,6 +32,7 @@ namespace SL.Contracts
         void RecuperarContraseña(string nombre, string email);
         bool CambiarContraseña(int id,string oldPassword, string newPassword);
         bool ValidarCodigoDeVerificacion(Usuario usuario,int numero);
-        void EliminarUsuario(string usuario, string contraseña);   
+        void EliminarUsuario(string usuario, string contraseña);
+        bool ConfirmarContraseña(string usuario, string contraseña);
     }
 }

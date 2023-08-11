@@ -88,11 +88,6 @@ namespace Business.Services
             }
             _repository.Delete(ProveedorDTO);
             _unitOfWork.SaveChanges();
-        }
-
-        public void Test(IEnumerable<ProveedoresModel> listita)
-        {
-            var resultado = _mapper.Map<IEnumerable<ProveedoresEntity>>(listita);
-        }       
+        }  
     }
 }

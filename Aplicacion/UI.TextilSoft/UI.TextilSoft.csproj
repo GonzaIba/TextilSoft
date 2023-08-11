@@ -59,6 +59,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="SubForms\Pedidos\OrdenDeTrabajo\FmCerrarODT.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -72,10 +75,6 @@
     <None Update="appsettings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SubForms\Informes-Reportes\Reporte-Stock\" />
   </ItemGroup>
 
 </Project>

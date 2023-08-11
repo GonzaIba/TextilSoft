@@ -52,9 +52,9 @@
             PanelAnimator.SetDecoration(lblPrincipal, AnimatorNS.DecorationType.None);
             lblPrincipal.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             lblPrincipal.ForeColor = System.Drawing.Color.White;
-            lblPrincipal.Location = new System.Drawing.Point(336, 9);
+            lblPrincipal.Location = new System.Drawing.Point(384, 12);
             lblPrincipal.Name = "lblPrincipal";
-            lblPrincipal.Size = new System.Drawing.Size(97, 32);
+            lblPrincipal.Size = new System.Drawing.Size(124, 41);
             lblPrincipal.TabIndex = 0;
             lblPrincipal.Text = "Pedidos";
             lblPrincipal.Click += lblPrincipal_Click;
@@ -63,9 +63,10 @@
             // 
             PanelAnimator.SetDecoration(panelContenedor, AnimatorNS.DecorationType.None);
             panelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            panelContenedor.Location = new System.Drawing.Point(0, 120);
+            panelContenedor.Location = new System.Drawing.Point(0, 160);
+            panelContenedor.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelContenedor.Name = "panelContenedor";
-            panelContenedor.Size = new System.Drawing.Size(914, 397);
+            panelContenedor.Size = new System.Drawing.Size(1045, 529);
             panelContenedor.TabIndex = 3;
             // 
             // btnAdministrarPedido
@@ -79,9 +80,10 @@
             btnAdministrarPedido.IconColor = System.Drawing.Color.White;
             btnAdministrarPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnAdministrarPedido.IconSize = 35;
-            btnAdministrarPedido.Location = new System.Drawing.Point(439, 75);
+            btnAdministrarPedido.Location = new System.Drawing.Point(502, 100);
+            btnAdministrarPedido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnAdministrarPedido.Name = "btnAdministrarPedido";
-            btnAdministrarPedido.Size = new System.Drawing.Size(127, 46);
+            btnAdministrarPedido.Size = new System.Drawing.Size(145, 61);
             btnAdministrarPedido.TabIndex = 5;
             btnAdministrarPedido.Text = "Estado Pedido";
             btnAdministrarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -99,9 +101,10 @@
             btnCrearPedido.IconColor = System.Drawing.Color.White;
             btnCrearPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCrearPedido.IconSize = 35;
-            btnCrearPedido.Location = new System.Drawing.Point(0, 74);
+            btnCrearPedido.Location = new System.Drawing.Point(0, 99);
+            btnCrearPedido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCrearPedido.Name = "btnCrearPedido";
-            btnCrearPedido.Size = new System.Drawing.Size(138, 46);
+            btnCrearPedido.Size = new System.Drawing.Size(158, 61);
             btnCrearPedido.TabIndex = 6;
             btnCrearPedido.Text = "Generar Pedido";
             btnCrearPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -142,8 +145,9 @@
             PanelAnimator.SetDecoration(panelTop, AnimatorNS.DecorationType.None);
             panelTop.Dock = System.Windows.Forms.DockStyle.Top;
             panelTop.Location = new System.Drawing.Point(0, 0);
+            panelTop.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             panelTop.Name = "panelTop";
-            panelTop.Size = new System.Drawing.Size(914, 120);
+            panelTop.Size = new System.Drawing.Size(1045, 160);
             panelTop.TabIndex = 7;
             // 
             // btnCerrarODT
@@ -157,13 +161,15 @@
             btnCerrarODT.IconColor = System.Drawing.Color.White;
             btnCerrarODT.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCerrarODT.IconSize = 35;
-            btnCerrarODT.Location = new System.Drawing.Point(739, 74);
+            btnCerrarODT.Location = new System.Drawing.Point(845, 99);
+            btnCerrarODT.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCerrarODT.Name = "btnCerrarODT";
-            btnCerrarODT.Size = new System.Drawing.Size(172, 46);
+            btnCerrarODT.Size = new System.Drawing.Size(197, 61);
             btnCerrarODT.TabIndex = 10;
             btnCerrarODT.Text = "Cerrar Orden De Trabajo";
             btnCerrarODT.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnCerrarODT.UseVisualStyleBackColor = true;
+            btnCerrarODT.Click += btnCerrarODT_Click;
             // 
             // iconButton1
             // 
@@ -176,9 +182,10 @@
             iconButton1.IconColor = System.Drawing.Color.White;
             iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             iconButton1.IconSize = 35;
-            iconButton1.Location = new System.Drawing.Point(572, 75);
+            iconButton1.Location = new System.Drawing.Point(654, 100);
+            iconButton1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             iconButton1.Name = "iconButton1";
-            iconButton1.Size = new System.Drawing.Size(161, 46);
+            iconButton1.Size = new System.Drawing.Size(184, 61);
             iconButton1.TabIndex = 9;
             iconButton1.Text = "Asignar Orden De Trabajo";
             iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -197,9 +204,10 @@
             btnListarPedidos.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnListarPedidos.IconSize = 35;
             btnListarPedidos.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            btnListarPedidos.Location = new System.Drawing.Point(300, 75);
+            btnListarPedidos.Location = new System.Drawing.Point(343, 100);
+            btnListarPedidos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnListarPedidos.Name = "btnListarPedidos";
-            btnListarPedidos.Size = new System.Drawing.Size(133, 46);
+            btnListarPedidos.Size = new System.Drawing.Size(152, 61);
             btnListarPedidos.TabIndex = 8;
             btnListarPedidos.Text = "Listar Pedidos";
             btnListarPedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -217,23 +225,26 @@
             btnCancelarPedido.IconColor = System.Drawing.Color.White;
             btnCancelarPedido.IconFont = FontAwesome.Sharp.IconFont.Auto;
             btnCancelarPedido.IconSize = 35;
-            btnCancelarPedido.Location = new System.Drawing.Point(144, 75);
+            btnCancelarPedido.Location = new System.Drawing.Point(165, 100);
+            btnCancelarPedido.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             btnCancelarPedido.Name = "btnCancelarPedido";
-            btnCancelarPedido.Size = new System.Drawing.Size(138, 45);
+            btnCancelarPedido.Size = new System.Drawing.Size(158, 60);
             btnCancelarPedido.TabIndex = 7;
             btnCancelarPedido.Text = "Cancelar Pedido";
             btnCancelarPedido.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             btnCancelarPedido.UseVisualStyleBackColor = true;
+            btnCancelarPedido.Click += btnCancelarPedido_Click;
             // 
             // FmPedidos
             // 
-            AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             BackColor = System.Drawing.Color.DimGray;
-            ClientSize = new System.Drawing.Size(914, 517);
+            ClientSize = new System.Drawing.Size(1045, 689);
             Controls.Add(panelContenedor);
             Controls.Add(panelTop);
             PanelAnimator.SetDecoration(this, AnimatorNS.DecorationType.None);
+            Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             Name = "FmPedidos";
             Text = "FmPedidos";
             panelTop.ResumeLayout(false);

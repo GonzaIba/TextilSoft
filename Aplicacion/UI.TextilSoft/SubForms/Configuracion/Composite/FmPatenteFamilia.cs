@@ -410,7 +410,7 @@ namespace UI.TextilSoft.SubForms.Configuracion.Composite
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var centerPosition = new Point(this.Width / 2, this.Height / 2);
-            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Aviso", "Estas seguro de eliminar este permiso?", centerPosition);
+            FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Aviso", "Estas seguro de eliminar este permiso?", centerPosition, true);
             fmMessageBox.ShowDialog();
             if (fmMessageBox.DialogResult == DialogResult.OK)
             {

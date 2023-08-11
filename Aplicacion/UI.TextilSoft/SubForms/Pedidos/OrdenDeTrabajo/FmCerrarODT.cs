@@ -21,7 +21,7 @@ using UI.TextilSoft.Tools.FormsTools;
 
 namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
 {
-    public partial class FmAsignarODT : Form
+    public partial class FmCerrarODT : Form
     {
         private readonly IControllerFactory _factory;
         private bool IsPreviousActive;
@@ -33,7 +33,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
         private Dictionary<Point, Tuple<IconButton>> botonesPorCelda = new Dictionary<Point, Tuple<IconButton>>();
 
         private int IndexBtnPrimero, IndexBtnSegundo, IndexBtnTercero;
-        public FmAsignarODT(IControllerFactory factory)
+        public FmCerrarODT(IControllerFactory factory)
         {
             InitializeComponent();
             _factory = factory;
@@ -57,7 +57,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                     btnAsignarODT.FlatStyle = FlatStyle.Flat;
                     btnAsignarODT.IconSize = 21;
                     btnAsignarODT.Size = new Size(20, 20);
-                    btnAsignarODT.Click += new EventHandler((s, args) => AsignarODT(sender, e, btnAsignarODT)); //Evento click para modificar
+                    btnAsignarODT.Click += new EventHandler((s, args) => CerrarODT(sender, e, btnAsignarODT)); //Evento click para modificar
                     btnAsignarODT.Visible = true;
                     btnAsignarODT.Parent = GrillaPedidos;
                     //btnAsignarODT.Text = GrillaPedidos.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
@@ -83,12 +83,12 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             }
         }
 
-        private void AsignarODT(object sender, EventArgs e, IconButton btnAsignarODT)
+        private void CerrarODT(object sender, EventArgs e, IconButton btnAsignarODT)
         {
             try
             {
                 var centerPosition = new Point(this.Width / 2, this.Height / 2);
-                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Asignar ODT", "Esta seguro que desea tomar este pedido?", centerPosition, true);
+                FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Warning, "Cerrar ODT", "Esta seguro que desea terminar este pedido?", centerPosition, true);
                 fmMessageBox.ShowDialog();
 
                 if (fmMessageBox.btnAceptar)
@@ -102,14 +102,14 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                     //DetallePedidos.Remove(DetallePedidos.Where(x => x.Codigo == Codigo && x.Detalle == Detalle).FirstOrDefault());
                     //GrillaPedidos.Refresh();
                     //GrillaPedidos.DataSource = DetallePedidos.ToList();
-                    _factory.Use<IPedidosController<ListarPedidosEntity>>().AsignarODT(Convert.ToInt32(PedidoID), tbEsPedido.Checked);
-                    FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Success, "Exito", "Se asignó la ODT correctamente!", centerPosition, false);
+                    _factory.Use<IPedidosController<ListarPedidosEntity>>().CerrarODT(Convert.ToInt32(PedidoID), tbEsPedido.Checked);
+                    FmMessageBox fmMessageBox2 = new FmMessageBox(Tools.MessageBoxType.Success, "Exito", "Se cerró la ODT correctamente!", centerPosition, false);
                     fmMessageBox2.ShowDialog();
 
                     if (tbEsPedido.Checked)
-                        GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                        GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
                     else
-                        GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                        GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
 
                     GrillaPedidos.Refresh();
                     // Eliminar el botón del diccionario también
@@ -172,7 +172,7 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             {
                 string orderBy = "ID_Pedido";
                 LastColumn = orderBy;
-                var PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked);
+                var PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked, true);
                 //Set total pages to btnFinal
                 btnFinal.Text = "..." + (PedidosPaginado.TotalPages == 0 ? "1" : PedidosPaginado.TotalPages.ToString());
                 TotalPages = PedidosPaginado.TotalPages;
@@ -209,9 +209,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             {
                 string orderBy = "ID_PedidosFabrica";
                 LastColumn = orderBy;
-                var PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked);
+                var PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked, true);
                 //Set total pages to btnFinal
-                btnFinal.Text = "..." + (PedidosPaginado.TotalPages == 0 ? "1": PedidosPaginado.TotalPages.ToString());
+                btnFinal.Text = "..." + (PedidosPaginado.TotalPages == 0 ? "1" : PedidosPaginado.TotalPages.ToString());
                 TotalPages = PedidosPaginado.TotalPages;
                 GrillaPedidos.DataSource = PedidosPaginado.List.Cast<object>().ToList();
 
@@ -247,9 +247,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
         private void btnInicio_Click(object sender, EventArgs e)
         {
             if (tbEsPedido.Checked)
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
             else
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(1, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
 
             PageIndex = 1;
             IndexBtnPrimero = 1;
@@ -270,9 +270,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 }
                 PageIndex--;
                 if (tbEsPedido.Checked)
-                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
                 else
-                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
 
             }
             ActualizarBotones();
@@ -282,9 +282,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
         {
             PageIndex = IndexBtnSegundo;
             if (tbEsPedido.Checked)
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
             else
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
 
             ActualizarBotones();
         }
@@ -297,9 +297,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 PageIndex = IndexBtnPrimero;
                 dynamic PedidosPaginado = null;
                 if (tbEsPedido.Checked)
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
                 else
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
 
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
                 btnAnterior.Enabled = false;
@@ -312,9 +312,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 PageIndex = IndexBtnPrimero;
                 dynamic PedidosPaginado = null;
                 if (tbEsPedido.Checked)
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
                 else
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
 
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
                 btnAnterior.Enabled = true;
@@ -330,9 +330,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 PageIndex = IndexBtnTercero;
                 dynamic PedidosPaginado = null;
                 if (tbEsPedido.Checked)
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
                 else
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
 
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
             }
@@ -344,9 +344,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 PageIndex = IndexBtnTercero;
                 dynamic PedidosPaginado = null;
                 if (tbEsPedido.Checked)
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
                 else
-                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked);
+                    PedidosPaginado = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true);
 
                 GrillaPedidos.DataSource = PedidosPaginado.List.ToList();
             }
@@ -365,9 +365,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
                 }
                 PageIndex++;
                 if (tbEsPedido.Checked)
-                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
                 else
-                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                    GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
 
             }
             ActualizarBotones();
@@ -376,9 +376,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
         private void btnFinal_Click(object sender, EventArgs e)
         {
             if (tbEsPedido.Checked)
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(TotalPages, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(TotalPages, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
             else
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(TotalPages, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(TotalPages, Pagecount, LastColumn, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
 
             if (TotalPages > 2)
             {
@@ -422,9 +422,9 @@ namespace UI.TextilSoft.SubForms.Pedidos.OrdenDeTrabajo
             LastIconButton = button;
             LastColumn = ColumnName;
             if (tbEsPedido.Checked)
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked,true).List.ToList();
             else
-                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked).List.ToList();
+                GrillaPedidos.DataSource = _factory.Use<IPedidosController<ListarPedidosFabricaEntity>>().ObtenerPedidosParaODT(PageIndex, Pagecount, orderBy, IsPreviousActive, tbEsPedido.Checked, true).List.ToList();
         }
 
         #region Helpers

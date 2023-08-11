@@ -24,6 +24,7 @@ using System.Windows.Media;
 using UI.TextilSoft.Configurations;
 using UI.TextilSoft.Factory;
 using UI.TextilSoft.SubForms.Configuracion;
+using UI.TextilSoft.SubForms.Facturas;
 using UI.TextilSoft.SubForms.Informes_Reportes;
 using UI.TextilSoft.SubForms.Informes_Reportes.Reporte_Ventas;
 using UI.TextilSoft.SubForms.Pedidos;
@@ -298,6 +299,7 @@ namespace UI.TextilSoft.MainForm
 
         private void btnFacturas_Click(object sender, EventArgs e)
         {
+            AbrirFormHija(new FmFacturas(_factory, this));
             ActivateButton(sender);
             BotonPresionado = true;
             SonidoForm();

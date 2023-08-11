@@ -35,13 +35,16 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 {
                     btnActualizarProducto.Enabled = true;
                     txtNombreProducto.Text = producto.NombreProducto;
-                    txtTipoProducto.Text = producto.TipoPrenda;
-                    txtComposicion.Text = producto.Composicion;
                     txtTalle.Text = producto.TallePrenda;
                     txtPrecio.Text = producto.Precio.ToString();
                     txtCantidad.Text = producto.Stock.ToString();
                     IdProducto = producto.ID_Producto;
-                    btnActualizarProducto.Enabled = true;
+
+                    txtCantidad.Enabled = true;
+                    txtCodigoProd.Enabled = true;
+                    txtNombreProducto.Enabled = true;
+                    txtPrecio.Enabled = true;
+                    txtTalle.Enabled = true;
                 }
                 else
                 {
@@ -75,8 +78,6 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 }
                 ProductosEntity productosEntity = new ProductosEntity();
                 productosEntity.NombreProducto = txtNombreProducto.Text;
-                productosEntity.TipoPrenda = txtTipoProducto.Text;
-                productosEntity.Composicion = txtComposicion.Text;
                 productosEntity.TallePrenda = txtTalle.Text;
                 productosEntity.Precio = Convert.ToDecimal(txtPrecio.Text);
                 productosEntity.Stock = Convert.ToInt32(txtCantidad.Text);
@@ -88,6 +89,20 @@ namespace UI.TextilSoft.SubForms.Produccion.ABM_Productos
                 FmMessageBox fmMessageBox = new FmMessageBox(Tools.MessageBoxType.Error, "Actualizar Producto", "No se pudo actualizar el producto, inténtelo nuevamente mas tarde o contacte con el administrador", centerPosition);
                 fmMessageBox.ShowDialog();
             }
+        }
+
+        private void txtCodigoProd_TextChanged(object sender, EventArgs e)
+        {
+            btnActualizarProducto.Enabled = false;
+            txtNombreProducto.Text = "";
+            txtTalle.Text = "";
+            txtPrecio.Text = "";
+            txtCantidad.Text = "";
+
+            txtCantidad.Enabled = false;
+            txtNombreProducto.Enabled = false;
+            txtPrecio.Enabled = false;
+            txtTalle.Enabled = false;
         }
     }
 }
